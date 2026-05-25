@@ -1,12 +1,16 @@
-SDES2GRECAPTYPE ;ALB/BWF - SDES2 get recall appointment types ;APR 30, 2024
- ;;5.3;Scheduling;**877**;Aug 13, 1993;Build 14
+SDES2GRECAPTYPE ;ALB/BWF,LAB - SDES2 get recall appointment types ;JUN 17,2025
+ ;;5.3;Scheduling;**877,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
+ ;
+ ; Reference to DUZ^XUP is supported by IA #7487
  ;
  Q
 GETRECREMTYPES(RES,SDCONTEXT,SDINPUT) ;
  N SDECCNT,SDI,RECTYPES,ERRORS
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("RecallReminderType",1)="" D BUILDJSON^SDES2JSON(.RES,.ERRORS) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
+ ;
  S SDECCNT=0
  S SDI=0 F  S SDI=$O(^SD(403.51,SDI)) Q:'SDI  D
  .S SDECCNT=SDECCNT+1

@@ -1,6 +1,8 @@
-SDES2GETELIGCD ;ALB/LAB - SDES2 GET ELIGIBILITY CODES ;NOV 22, 2022
- ;;5.3;Scheduling;**869**;Aug 13, 1993;Build 13
+SDES2GETELIGCD ;ALB/LAB,MCB - SDES2 GET ELIGIBILITY CODES ;July 30,2025
+ ;;5.3;Scheduling;**869,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
+ ;
+ ; Reference to DUZ^XUP is supported by IA #7487
  ;
  Q
  ;
@@ -9,6 +11,7 @@ GETELIGCODES(RESULT,SDCONTEXT,SDPARAM) ;
   ;validate context array for accuracy
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("EligibilityCodes",1)="" D BUILDJSON^SDES2JSON(.RESULT,.ERRORS) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  D:$G(SDPARAM("EligibilityCodeName"))'="" SINGLECODE(.ELIGCODES,.SDPARAM)
  D:$G(SDPARAM("EligibilityCodeName"))="" ALLCODES(.ELIGCODES)
  ;

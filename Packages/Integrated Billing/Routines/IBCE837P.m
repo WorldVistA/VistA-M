@@ -1,5 +1,5 @@
 IBCE837P ;EDE/JWS POST EXECUTE - OUTPUT FOR 837 TRANSMISSION - CONTINUED ;
- ;;2.0;INTEGRATED BILLING;**718,727,743,742,759**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**718,727,743,742,759,770**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -36,11 +36,11 @@ POST ;POST execute for 837, called by IBCE837A@POST
  . ;JWS;IB*2.0*742;EBILL-1645;Remove adj reason code AAA on secondary claims with PayerID not equal to IPRNT or PPRNT
  . ;skip if not a secondary (Medicare Supplemental) claim and perform if there is at least 1 LCAS record
  . I COB=2,IBPID'="IPRNT",IBPID'="PPRNT",$F(",12M61,SMTX1,SMDEV",","_IBOPID),$D(^TMP("IBXDATA",$J,1,200,1,2)) D 5
- . ;JWS;IB*2.0*742;EBILL-2321;copy Billing Provider info to Service Facility data;this needs to be after the AB3, AAA and LCAS segment modes
+ . ;JWS;IB*2.0*742;EBILL-2321;copy Billing Prov info to Service Facility data;this needs to be after the AB3, AAA and LCAS segment modes
  . ; only perform this workaround for PPRNT and null payer ids
  . I IBPID=""!(IBPID="PPRNT") D 12^IBCE837Q
  . ;JWS;IB*2.0*742v7;moved DME prof claim workaround inside the PayerIdSwitches check above for testing purposes.
- . ;JWS;IB*2.0*742;EBILL-2852;remove provider info from DME professional claims;
+ . ;JWS;IB*2.0*742;EBILL-2852;remove Prov info from DME professional claims;
  . I IBPID="SMDEV",$$FT^IBCEF(IBXIEN)=2 D 13^IBCE837Q
  . Q
  ;
@@ -53,6 +53,9 @@ POST ;POST execute for 837, called by IBCE837A@POST
  . I $F(",12B60,12B53,12B45,SB890,SB891,SB892,",","_IBPID_",") D 15^IBCE837Q
  . ;JWS;IB*2.0*759;EBILL-3312; ClearOI14whenEqualOI23.exe
  . D 16^IBCE837Q
+ ;
+ ;JWS;IB*2.0*770;EBILL-3440-OP1 segment - don't pass qualifier unless it's valid for Other Payer Rendering Secondary ID qualifier 0B, 1G, G2, LU
+ D 17^IBCE837Q
  Q
  ; 
 1 ;;IB*2.0*718;JWS;11/30/21;EBILL-1629;Incorporate FSC Override - clear PRF9 and PRF10 when there is an RX1 segment
@@ -70,42 +73,42 @@ POST ;POST execute for 837, called by IBCE837A@POST
  N IBPID,X1
  S IBPID=$G(^TMP("IBXDATA",$J,1,37,1,3))
  I IBPID="SMTX1"!(IBPID="12M61") D
- . K ^TMP("IBXDATA",$J,1,15,1,9)   ;PRV-9 : Billing Provider Primary ID
- . K ^TMP("IBXDATA",$J,1,15,1,12)  ;PRV-12 : Billing Provider Primary ID Qualifier
- . K ^TMP("IBXDATA",$J,1,57,1,5)   ;SUB2-5 : Lab/Facility Primary ID Qualifier
+ . K ^TMP("IBXDATA",$J,1,15,1,9)   ;PRV-9 : Billing Prov Primary ID
+ . K ^TMP("IBXDATA",$J,1,15,1,12)  ;PRV-12 : Billing Prov Primary ID qual
+ . K ^TMP("IBXDATA",$J,1,57,1,5)   ;SUB2-5 : Lab/Facility Primary ID qual
  . K ^TMP("IBXDATA",$J,1,57,1,6)   ;SUB2-6 : Lab/Facility Primary ID
- . K ^TMP("IBXDATA",$J,1,97,1,2)   ;OPR1-2 : Attending Prov Primary ID Qualifier
+ . K ^TMP("IBXDATA",$J,1,97,1,2)   ;OPR1-2 : Attending Prov Primary ID qual
  . K ^TMP("IBXDATA",$J,1,97,1,3)   ;OPR1-3 : Attending Prov Primary ID
- . K ^TMP("IBXDATA",$J,1,97,1,5)   ;OPR1-5 : Other Operating Prov Primary ID Qualifier
- . K ^TMP("IBXDATA",$J,1,97,1,6)   ;OPR1-6 : Other Operating Provider Primary ID
- . K ^TMP("IBXDATA",$J,1,97,1,8)   ;OPR1-8 : Operating Phy Primary ID Qualifier
+ . K ^TMP("IBXDATA",$J,1,97,1,5)   ;OPR1-5 : Other Operating Prov Primary ID qual
+ . K ^TMP("IBXDATA",$J,1,97,1,6)   ;OPR1-6 : Other Operating Prov Primary ID
+ . K ^TMP("IBXDATA",$J,1,97,1,8)   ;OPR1-8 : Operating Phy Primary ID qual
  . K ^TMP("IBXDATA",$J,1,97,1,9)   ;OPR1-9 : Operating Phy Primary ID
- . K ^TMP("IBXDATA",$J,1,97,1,11)  ;OPR1-11 : Referring Prov Primary ID Qualifier
- . K ^TMP("IBXDATA",$J,1,97,1,12)  ;OPR1-12 : Referring Provider Primary ID
- . K ^TMP("IBXDATA",$J,1,103,1,6)  ;OPR7-6 : Supervising Prov Primary ID Qualifier
- . K ^TMP("IBXDATA",$J,1,103,1,7)  ;OPR7-7 : Supervising Provider Primary ID
- . K ^TMP("IBXDATA",$J,1,104.2,1,8)  ;OPR9-8 : Rendering Provider Primary ID Qualifier
- . K ^TMP("IBXDATA",$J,1,104.2,1,9)  ;OPR9-9 : Rendering Provider Primary ID
- . ;;K ^TMP("IBXDATA",$J,1,104.6,1,8)  ;Asst Surgeon Primary ID Qualifier
+ . K ^TMP("IBXDATA",$J,1,97,1,11)  ;OPR1-11 : Referring Prov Primary ID qual
+ . K ^TMP("IBXDATA",$J,1,97,1,12)  ;OPR1-12 : Referring Prov Primary ID
+ . K ^TMP("IBXDATA",$J,1,103,1,6)  ;OPR7-6 : Supervising Prov Primary ID qual
+ . K ^TMP("IBXDATA",$J,1,103,1,7)  ;OPR7-7 : Supervising Prov Primary ID
+ . K ^TMP("IBXDATA",$J,1,104.2,1,8)  ;OPR9-8 : Rendering Prov Primary ID qual
+ . K ^TMP("IBXDATA",$J,1,104.2,1,9)  ;OPR9-9 : Rendering Prov Primary ID
+ . ;;K ^TMP("IBXDATA",$J,1,104.6,1,8)  ;Asst Surgeon Primary ID qual
  . ;;K ^TMP("IBXDATA",$J,1,104.6,1,9)  ;Asst Surgeon Primary ID
  . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,192,X1)) Q:X1=""  D
- .. K ^TMP("IBXDATA",$J,1,192,X1,8)  ;LOPE-8 : Operating Physician Primary ID Qualifier
+ .. K ^TMP("IBXDATA",$J,1,192,X1,8)  ;LOPE-8 : Operating Physician Primary ID qual
  .. K ^TMP("IBXDATA",$J,1,192,X1,9)  ;LOPE-9 : Operating Physician Primary ID
  . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,193,X1)) Q:X1=""  D
- .. K ^TMP("IBXDATA",$J,1,193,X1,8)  ;LOP1-8 : Other Operating Provider Primary ID Qualifier
- .. K ^TMP("IBXDATA",$J,1,193,X1,9)  ;LOP1-9 : Other Operating Provider Primary ID
+ .. K ^TMP("IBXDATA",$J,1,193,X1,8)  ;LOP1-8 : Other Operating Prov Primary ID qual
+ .. K ^TMP("IBXDATA",$J,1,193,X1,9)  ;LOP1-9 : Other Operating Prov Primary ID
  . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,193.3,X1)) Q:X1=""  D 
- .. K ^TMP("IBXDATA",$J,1,193.3,X1,8)  ;LREN-8 : Rendering Provider Primary ID Qualifier
- .. K ^TMP("IBXDATA",$J,1,193.3,X1,9)  ;LREN-9 : Rendering Provider Primary ID
+ .. K ^TMP("IBXDATA",$J,1,193.3,X1,8)  ;LREN-8 : Rendering Prov Primary ID qual
+ .. K ^TMP("IBXDATA",$J,1,193.3,X1,9)  ;LREN-9 : Rendering Prov Primary ID
  . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,193.6,X1)) Q:X1=""  D
- .. K ^TMP("IBXDATA",$J,1,193.6,X1,4)  ;LPUR-4 : Purchase Service Provider Primary ID Qualifier
- .. K ^TMP("IBXDATA",$J,1,193.6,X1,5)  ;LPUR-5 : Purchase Service Provider Primary ID
+ .. K ^TMP("IBXDATA",$J,1,193.6,X1,4)  ;LPUR-4 : Purchase Service Prov Primary ID qual
+ .. K ^TMP("IBXDATA",$J,1,193.6,X1,5)  ;LPUR-5 : Purchase Service Prov Primary ID
  . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,194,X1)) Q:X1=""  D
- .. K ^TMP("IBXDATA",$J,1,194,X1,8)  ;LSUP-8 : Supervising Provider Primary ID Qualifier
- .. K ^TMP("IBXDATA",$J,1,194,X1,9)  ;LSUP-9 : Supervising Provider Primary ID
+ .. K ^TMP("IBXDATA",$J,1,194,X1,8)  ;LSUP-8 : Supervising Prov Primary ID qual
+ .. K ^TMP("IBXDATA",$J,1,194,X1,9)  ;LSUP-9 : Supervising Prov Primary ID
  . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,194.3,X1)) Q:X1=""  D
- .. K ^TMP("IBXDATA",$J,1,194.3,X1,8)  ;LREF-8 : Referring Provider Primary ID Qualifier
- .. K ^TMP("IBXDATA",$J,1,194.3,X1,9)  ;LREF-9 : Referring Provider Primary ID
+ .. K ^TMP("IBXDATA",$J,1,194.3,X1,8)  ;LREF-8 : Referring Prov Primary ID qual
+ .. K ^TMP("IBXDATA",$J,1,194.3,X1,9)  ;LREF-9 : Referring Prov Primary ID
  .. Q
  . Q
  Q
@@ -210,22 +213,22 @@ POST ;POST execute for 837, called by IBCE837A@POST
  . Q
  Q
  ;
-7 ;IB*2.0*727;JWS;5/4/22;EBILL-1657;remove provider secondary ID and qualifer if Dest Payer is Medicare Part-A
- ; removes valid 5010 provider IDs that are not allowed by Medicare
+7 ;IB*2.0*727;JWS;5/4/22;EBILL-1657;remove Prov secondary ID and qualifer if Dest Payer is Medicare Part-A
+ ; removes valid 5010 Prov IDs that are not allowed by Medicare
  N X1,X2,I
  S X1=0
  I $G(^TMP("IBXDATA",$J,1,37,1,3))="12M61" D  ;Medicare Part A payer ID (changeHealth care)
- . ;JWS;3/20/23;EBILL-3282;need to modify billing provider secondary id qualifier for Part A - just like Part B; workaround doc error
- . I $G(^TMP("IBXDATA",$J,1,28,1,6))="1C" S ^(6)="G2"  ;seq=28 : CI1A billing provider secondary id data
- . F I=2,4,6,8 D 71(98,1,I) D  ;seq=98 : OPR2 attending provider sec id
+ . ;JWS;3/20/23;EBILL-3282;need to modify billing Prov secondary id qualifier for Part A - just like Part B; workaround doc error
+ . I $G(^TMP("IBXDATA",$J,1,28,1,6))="1C" S ^(6)="G2"  ;seq=28 : CI1A billing Prov secondary id data
+ . F I=2,4,6,8 D 71(98,1,I) D  ;seq=98 : OPR2 attending Prov sec id
  . D 72(98,1,2)
- . F I=2,4,6,8 D 71(99,1,I)  ;seq=99 : OPR3 operating provider sec id
+ . F I=2,4,6,8 D 71(99,1,I)  ;seq=99 : OPR3 operating Prov sec id
  . D 72(99,1,2)
- . F I=2,4,6,8 D 71(100,1,I)  ;seq=100 : OPR4 other operating provider sec id
+ . F I=2,4,6,8 D 71(100,1,I)  ;seq=100 : OPR4 other operating Prov sec id
  . D 72(100,1,2)
- . F I=2,4,6,8 D 71(104.4,1,I)  ;seq=104.4 : OPRA rendering provider sec id
+ . F I=2,4,6,8 D 71(104.4,1,I)  ;seq=104.4 : OPRA rendering Prov sec id
  . D 72(104.4,1,2)
- . F I=2,4,6 D 71(101,1,I)  ;seq=101 : OPR5 referring provider sec id
+ . F I=2,4,6 D 71(101,1,I)  ;seq=101 : OPR5 referring Prov sec id
  . D 72(101,1,2)
  . F I=7:1:12 K ^TMP("IBXDATA",$J,1,57,1,I)  ;seq=57 : SUB2 service facility data
  . S X2=0 F  S X2=$O(^TMP("IBXDATA",$J,1,192,X2)) Q:X2=""  D  ;seq=192 : LOPE line operating physician data
@@ -234,10 +237,10 @@ POST ;POST execute for 837, called by IBCE837A@POST
  . S X2=0 F  S X2=$O(^TMP("IBXDATA",$J,1,193,X2)) Q:X2=""  D  ;seq=193 : LOP1 line other operating physician data
  .. F I=10,12,14 D 71(193,X2,I)
  .. D 72(193,X2,10)
- . S X2=0 F  S X2=$O(^TMP("IBXDATA",$J,1,193.3,X2)) Q:X2=""  D  ;seq=193.3 : LREN line rendering provider data
+ . S X2=0 F  S X2=$O(^TMP("IBXDATA",$J,1,193.3,X2)) Q:X2=""  D  ;seq=193.3 : LREN line rendering Prov data
  .. F I=10,12,14 D 71(193.3,X2,I)
  .. D 72(193.3,X2,10)
- . S X2=0 F  S X2=$O(^TMP("IBXDATA",$J,1,194.3,X2)) Q:X2=""  D  ;seq=194.3 : LREF line referring provider data
+ . S X2=0 F  S X2=$O(^TMP("IBXDATA",$J,1,194.3,X2)) Q:X2=""  D  ;seq=194.3 : LREF line referring Prov data
  .. F I=10,12,14 D 71(194.3,X2,I)
  .. D 72(194.3,X2,10)
  . Q
@@ -304,24 +307,24 @@ POST ;POST execute for 837, called by IBCE837A@POST
  ....S ^TMP("IBXDATA",$J,1,112,X2,9)=""
  Q
  ;
-9 ; IB*2.0*727;JWS;5/4/22;EBILL-2602;remove or change provider secondary ID and qualifier if Dest Payer is Medicare Part B
+9 ; IB*2.0*727;JWS;5/4/22;EBILL-2602;remove or change Prov secondary ID and qualifier if Dest Payer is Medicare Part B
  N I,X1
  I $G(^TMP("IBXDATA",$J,1,37,1,3))="SMTX1" D  ;Medicare Part B payer ID (changeHealth care)
- . I $G(^TMP("IBXDATA",$J,1,28,1,6))="1C" S ^(6)="G2"  ;seq=28 : CI1A billing provider secondary id data
- . F I=2,4,6 I $G(^TMP("IBXDATA",$J,1,101,1,I))'="1G",$G(^(I))'="0B" K ^(I),^(I+1)  ;seq=101 : OPR5 referring provider secondary id
- . F I=2,4,6,8 I $G(^TMP("IBXDATA",$J,1,104.4,1,I))="1C" S ^(I)="G2"  ;seq=104.4 : OPRA rendering provider sec id
+ . I $G(^TMP("IBXDATA",$J,1,28,1,6))="1C" S ^(6)="G2"  ;seq=28 : CI1A billing Prov secondary id data
+ . F I=2,4,6 I $G(^TMP("IBXDATA",$J,1,101,1,I))'="1G",$G(^(I))'="0B" K ^(I),^(I+1)  ;seq=101 : OPR5 referring Prov secondary id
+ . F I=2,4,6,8 I $G(^TMP("IBXDATA",$J,1,104.4,1,I))="1C" S ^(I)="G2"  ;seq=104.4 : OPRA rendering Prov sec id
  . F I=7:1:12 K ^TMP("IBXDATA",$J,1,57,1,I)  ;seq=57 : SUB2 service facility data
  . ; WCJ EBILL-3260;3/17/23;workaround documentation error, EI needed removed not changed to G2
- . F I=2,4,6,8 I $G(^TMP("IBXDATA",$J,1,104,1,I))="EI" K ^(I),^(I+1)  ;seq=104 : OPR8 supervising provider secondary id data
- . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,193.6,X1)) Q:X1=""  D  ;seq=193.6 : LPUR line purchase service provider data
+ . F I=2,4,6,8 I $G(^TMP("IBXDATA",$J,1,104,1,I))="EI" K ^(I),^(I+1)  ;seq=104 : OPR8 supervising Prov secondary id data
+ . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,193.6,X1)) Q:X1=""  D  ;seq=193.6 : LPUR line purchase service Prov data
  .. ;JWS;8/15/22;IB*2.0*727v12;FSC workaround documentation was incorrect - Set LPUR-6 = "1G" and LPUR-7 = 'VAD001'
  .. ;JWS;10/19/22;EBILL-2979;IB*2.0*727v14;should only set if LPUR line exists
  .. I $G(^TMP("IBXDATA",$J,1,193.6,X1,2))'="" D
  ... S ^TMP("IBXDATA",$J,1,193.6,X1,6)="1G"
  ... S ^TMP("IBXDATA",$J,1,193.6,X1,7)="VAD001"
- . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,194,X1)) Q:X1=""  D  ;seq=194 : LSUP line supervising provider data
+ . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,194,X1)) Q:X1=""  D  ;seq=194 : LSUP line supervising Prov data
  .. F I=10,12,14 I $G(^TMP("IBXDATA",$J,1,194,X1,I))="G2" K ^(I),^(I+1)
- . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,194.3,X1)) Q:X1=""  D  ;seq=194.3 : LREF line referring provider data
+ . S X1=0 F  S X1=$O(^TMP("IBXDATA",$J,1,194.3,X1)) Q:X1=""  D  ;seq=194.3 : LREF line referring Prov data
  .. ;8/1/22;EBILL-2711;IB*270*727v10;JWS;was missing a not (') condition, so remove ID and qualifier if NOT = '1G'
  .. F I=10,12,14 I $G(^TMP("IBXDATA",$J,1,194.3,X1,I))'="1G" K ^(I),^(I+1)
  Q

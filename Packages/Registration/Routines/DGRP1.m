@@ -1,5 +1,5 @@
 DGRP1 ;ALB/MRL,ERC,BAJ,PWC,JAM,JAM,ARF - DEMOGRAPHIC DATA ;19 Jul 2017  3:02 PM
- ;;5.3;Registration;**109,161,506,244,546,570,629,638,649,700,653,688,750,851,907,925,941,985,1014,1033,1056,1111**;Aug 13, 1993;Build 18
+ ;;5.3;Registration;**109,161,506,244,546,570,629,638,649,700,653,688,750,851,907,925,941,985,1014,1033,1056,1111,1143**;Aug 13, 1993;Build 36
  ;
 EN ;
  ; JAM - Patch DG*5.3*941, Reformatting Registration screen 1.  New field layout.
@@ -18,7 +18,7 @@ EN ;
  W ! S Z="",Z1=7 D WW1^DGRPV
  ;Display SSN and SSN Verification status DG*5.3*688 BAJ 11/22/2005
  W "SS: " S X=$P(DGRP(0),"^",9),Z=$E(X,1,3)_"-"_$E(X,4,5)_"-"_$E(X,6,10),Z1=13 D WW1^DGRPV W SSNV
- ;add Pseuso SSN Reason - DG*5.3*653, ERC
+ ;add Pseudo SSN Reason - DG*5.3*653, ERC
  I $P(DGRP(0),U,9)["P" D
  . N DGSPACE
  . S DGSPACE=10-$L(Z) ;adjust to maintain spacing on screen
@@ -40,7 +40,8 @@ EN ;
  ;* Output Pager
  ; DG*5.3*1111; The Pager: label is only displayed when the PAGER NUMBER (#.135) field of the PATIENT (#2)
  ;              file is populated and will no longer display "UNANSWERED" when the field is NULL.
- I $P(DGRP(.13),U,5)'="" W ?47,"Pager #: ",?56,$P(DGRP(.13),U,5)
+ ; DG*5.3*1143; The "Pager #:" prompt is no longer displayed on the PATIENT DEMOGRAPHIC DATA, SCREEN <1>
+ ;I $P(DGRP(.13),U,5)'="" W ?47,"Pager #: ",?56,$P(DGRP(.13),U,5)
  ;I $P(DGRP(.13),U,5)'="" W ?56,$P(DGRP(.13),U,5)
  ;I $P(DGRP(.13),U,5)="" W ?56,"UNANSWERED"
  ;
@@ -131,7 +132,7 @@ GETSTAT(SSNV) ;get SSN VERIFIED STATUS DG*5.3*688 BAJ 11/22/2005
  S SSNV=$S(T=2:"INVALID",T=4:"VERIFIED",1:"")
  Q
  ;
-SSNREAS(DGREAS) ;get Pseuso SSN Reason - DG*5.3*653, ERC
+SSNREAS(DGREAS) ;get Pseudo SSN Reason - DG*5.3*653, ERC
  S DGREAS=$P(DGRP("SSN"),U)
  I $G(DGREAS)']"" Q
  S DGREAS=$S(DGREAS="R":"Refused to Provide",DGREAS="S":"SSN Unknown/Follow-up Required",DGREAS="N":"No SSN Assigned",1:"< None Entered >")

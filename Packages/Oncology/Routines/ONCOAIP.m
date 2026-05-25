@@ -1,5 +1,5 @@
 ONCOAIP ;HINES OIFO/GWB - [EE Abstract Edit Primary] ;09/26/11
- ;;2.2;ONCOLOGY;**1,4,5,6,10,15,16,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,5,6,10,15,16,20,21,22**;Jul 31, 2013;Build 6
  ;P16 remove recalculation of abstract
 ED ;[EE Abstract Edit Primary]
  N ONCDC8
@@ -91,6 +91,15 @@ MEN ;Primary Menu Options
  I OSP="" S OSP=$O(^ONCO(160.1,0))
  S IIN=$P($G(^ONCO(160.1,OSP,1)),U,4)
  S RH=$P($G(^ONCO(160.19,IIN,0)),U,2)
+ ;
+ ; Patch 21 - Stuff Reporting Facility (.03) and Type of Reporting
+ ;  Source (1.2) and don't allow editing (fields .03 and 1.2 removed
+ ;  from [ONC ABSTRACT])
+ ; Patch 22 - Remove/change back for Reporting Facility based on
+ ;  whether COC Accredited in Site Params
+ S $P(^ONCO(165.5,D0,0),"^",3)=IIN  ;Patch 22 remove above
+ S $P(^ONCO(165.5,D0,0),"^",10)=1
+ ;
  K OSP
  D TOPNAM
  W @IOF

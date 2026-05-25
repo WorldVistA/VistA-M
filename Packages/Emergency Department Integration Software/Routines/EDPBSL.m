@@ -1,5 +1,5 @@
-EDPBSL ;SLC/KCM - Selection List Configuration ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPBSL ;SLC/KCM - Selection List Configuration ; 9/22/25 5:46pm
+ ;;2.0;EMERGENCY DEPARTMENT;**42**;May 2, 2012;Build 6
  ;
 LOAD(AREA) ; Load selection lists for area
  N TOKEN
@@ -51,7 +51,7 @@ SAVE(EDPAREA,REQ) ; save the selection changes
  . D CLEARSET(SET)
  . S X=CTYP F  S X=$O(REQ(X)) Q:$E(X,1,$L(CTYP))'=CTYP  D
  . . K CODE S CODE="" D NVPARSE^EDPX(.CODE,REQ(X,1))
- . . ; I CODE("id")>0 D UPDCODE(CTYP,.CODE) -- want to keep codes matched to nat'l --KCM
+ . . I CODE("id")>0,CODE("natl")="(local)" D UPDCODE(CTYP,.CODE) ;EDP*2*42
  . . I CODE("id")<1 D ADDCODE(CTYP,.CODE)
  . . D ADD2SET(SET,.CODE)
  D SAVEU^EDPBLK(EDPAREA,"selection",.TOKEN)          ; save selection config -- UNLOCK

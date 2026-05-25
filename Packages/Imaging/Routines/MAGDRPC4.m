@@ -1,13 +1,10 @@
-MAGDRPC4 ;WOIFO/EDM,DAC - Imaging RPCs ; Feb 15, 2022@10:29:19
- ;;3.0;IMAGING;**11,30,51,50,54,49,138,156,180,305**;Mar 19, 2002;Build 3
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDRPC4 ;WOIFO/EDM,DAC - Imaging RPCs ; Nov 16, 2022@08:45:43
+ ;;3.0;IMAGING;**11,30,51,50,54,49,138,156,180,305,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -166,8 +163,8 @@ NEXTIMG(OUT,FROMS,ONLYCHECK,SENT) ; RPC = MAG DICOM GET NEXT QUEUE ENTRY
  ;
  L +^MAGDOUTP(2006.574):1E9 ; P305 PMK 09/23/2021 - Lock entire global, RPC MUST wait
  ;
- ; First clean up transmitted queue entries
- S I="" F  S I=$O(SENT(I)) Q:I=""  D CLEAN
+ ; First update up transmitted queue status
+ S I="" F  S I=$O(SENT(I)) Q:I=""  D UPDTSTATUS ; P333 PMK 07/27/2022
  S SITE=$O(^MAG(2006.1,"B",DUZ(2),"")) ; parameters are defined for the sending site
  S XMITTIME=$$GET1^DIQ(2006.1,SITE,208)
  S FAILTIME=$$GET1^DIQ(2006.1,SITE,209)
@@ -222,6 +219,7 @@ NEXTIMG(OUT,FROMS,ONLYCHECK,SENT) ; RPC = MAG DICOM GET NEXT QUEUE ENTRY
  . . . . S DISKVOLUME=$$GET1^DIQ(2006.918,ARTIFACTINSTIX,7,"I") ; DISK VOLUME
  . . . . S PHYSICALREF=$$GET1^DIQ(2005.2,DISKVOLUME,1) ; PHYSICAL REFERENCE
  . . . . S FILEPATH=$$GET1^DIQ(2006.918,ARTIFACTINSTIX,8) ; FILEPATH
+ . . . . S OUT(14)=$$GET1^DIQ(2006.918,ARTIFACTINSTIX,4,"I") ; CREATED DATE/TIME - P333 PMK 11/16/2022
  . . . . S (F2,F3)=PHYSICALREF_FILEPATH_F1
  . . . . Q
  . . . E  D
@@ -233,6 +231,7 @@ NEXTIMG(OUT,FROMS,ONLYCHECK,SENT) ; RPC = MAG DICOM GET NEXT QUEUE ENTRY
  . . . . S DFN=$P($G(^MAG(2005,+OUT(7),0)),"^",7) ; P156 DAC - get DFN from image (not group)
  . . . . ; get path for *.TXT, always the same as the FULL file
  . . . . D FILEFIND^MAGDFB(IMAGEIEN,"FULL",JBTOHD,0,.F1,.F3)
+ . . . . S OUT(14)=$P($G(^MAG(2005,IMAGEIEN,2)),"^",1) ; DATE/TIME IMAGE SAVED - P333 PMK 11/16/2022
  . . . . Q
  . . . S OUT(9)=F1 ; file name
  . . . S OUT(10)=F2 ; full file path
@@ -283,36 +282,50 @@ CLEANUP ; remove old studies
  Q
  ;
 CLEAN ; remove one image entry from the queue
- N D0,D1,REQUESTDATETIME,STUID,PRIORITY,STATE,NEWSTATE ; P305 PMK 09/29/2021
+ N ACNUMB,D0,D1,LOC,PRIORITY,REQUESTDT,STATE,STUID,X ; P333 PMK 07/27/2022
+ S D0=$P(SENT(I),"^",1),D1=$P(SENT(I),"^",2)
+ Q:'$D(^MAGDOUTP(2006.574,D0,1,D1))
+ ;
+ S X=$G(^MAGDOUTP(2006.574,D0,0)),ACNUMB=$P(X,"^",3),LOC=$P(X,"^",4)
+ S PRIORITY=+$P(X,"^",5),REQUESTDT=$P(X,"^",7)
+ S STATE=$P($G(^MAGDOUTP(2006.574,D0,1,D1,0)),"^",2)
+ ;
+ ; delete one image node and its STATE index
+ K ^MAGDOUTP(2006.574,D0,1,D1)
+ I LOC'="",PRIORITY'="",STATE'="" K ^MAGDOUTP(2006.574,"STATE",LOC,PRIORITY,STATE,D0,D1)
+ S X=$G(^MAGDOUTP(2006.574,D0,1,0))
+ S $P(X,"^",4)=$P(X,"^",4)-1 ; decrement the image count
+ S ^MAGDOUTP(2006.574,D0,1,0)=X
+ ;
+ ; are there any more images
+ Q:$O(^MAGDOUTP(2006.574,D0,1,0))  ; yup, don't delete the study node yet
+ ;
+ ; no more images, delete the study node
+ ;
+ S STUID=$G(^MAGDOUTP(2006.574,D0,2))
+ K ^MAGDOUTP(2006.574,D0)
+ K:REQUESTDT'="" ^MAGDOUTP(2006.574,"C",REQUESTDT,D0)
+ K:ACNUMB'="" ^MAGDOUTP(2006.574,"D",ACNUMB,D0) ; P333 PMK 07/27/2022
+ K:STUID'="" ^MAGDOUTP(2006.574,"STUDY",STUID)
+ S X=$G(^MAGDOUTP(2006.574,0))
+ S $P(X,"^",4)=$P(X,"^",4)-1 ; decrement the study count
+ S ^MAGDOUTP(2006.574,0)=X
+ Q
+ ;
+UPDTSTATUS ; update the status of the DICOM object - P333 PMK 07/27/2022
+ N D0,D1,LOC,NEWSTATE,PRIORITY,STATE,X ; P333 PMK 07/27/2022
  S D0=$P(SENT(I),"^",1),D1=$P(SENT(I),"^",2),NEWSTATE=$P(SENT(I),"^",3)
  Q:'$D(^MAGDOUTP(2006.574,D0,1,D1))
  ;
  S X=$G(^MAGDOUTP(2006.574,D0,0)),LOC=$P(X,"^",4),PRIORITY=+$P(X,"^",5)
- S REQUESTDATETIME=$P(X,"^",7)
  S STATE=$P($G(^MAGDOUTP(2006.574,D0,1,D1,0)),"^",2)
  ;
- I NEWSTATE'="" D  Q  ; just update the status and get out
+ I NEWSTATE'="" D  ; just update the status
  . S $P(^MAGDOUTP(2006.574,D0,1,D1,0),"^",2)=NEWSTATE,$P(^(0),"^",3)=$H
  . ; remove the old xref before setting the new one - P305 PMK 09/29/2021
  . I LOC'="",PRIORITY'="",STATE'="" K ^MAGDOUTP(2006.574,"STATE",LOC,PRIORITY,STATE,D0,D1)
  . I LOC'="",PRIORITY'="" S ^MAGDOUTP(2006.574,"STATE",LOC,PRIORITY,NEWSTATE,D0,D1)=""
  . Q
- ;
- K ^MAGDOUTP(2006.574,D0,1,D1)
- I LOC'="",PRIORITY'="",STATE'="" K ^MAGDOUTP(2006.574,"STATE",LOC,PRIORITY,STATE,D0,D1)
- S X=$G(^MAGDOUTP(2006.574,D0,1,0))
- S $P(X,"^",4)=$P(X,"^",4)-1
- S ^MAGDOUTP(2006.574,D0,1,0)=X
- ;
- Q:$O(^MAGDOUTP(2006.574,D0,1,0))  ; don't delete the study node yet
- ;
- S STUID=$G(^MAGDOUTP(2006.574,D0,2))
- K ^MAGDOUTP(2006.574,D0)
- K:REQUESTDATETIME'="" ^MAGDOUTP(2006.574,"C",REQUESTDATETIME,D0)
- K:STUID'="" ^MAGDOUTP(2006.574,"STUDY",STUID)
- S X=$G(^MAGDOUTP(2006.574,0))
- S $P(X,"^",4)=$P(X,"^",4)-1
- S ^MAGDOUTP(2006.574,0)=X
  Q
  ;
 FIND(DATE,CASE,NUM) ;

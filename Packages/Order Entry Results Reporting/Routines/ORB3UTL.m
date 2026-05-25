@@ -1,20 +1,5 @@
-ORB3UTL ;SLC/JMH - OE/RR Notification Utilities ;Oct 27, 2023@11:55
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**377,539,535**;Dec 17, 1997;Build 20
- ;
- ; Reference to DEFALERT^XQALDATA,GETPAT3^XQALDATA in ICR #4834
- ; Reference to ^TIU(8925) in ICR #2937
- ; Reference to ^GMR(123) in ICR #2586
- ; Reference to ^SRF() in ICR #7436
- ; Reference to $$CANDO^TIULP in #2322
- ; Reference to ^TIU(8925.1) in #4476
- ; Reference to $$BOIL^TIUSRVD in #2876
- ; Reference to ^DPT( in ICR #10035
- ; Reference to ^DIE in ICR #10018
- ; Reference to FILE^DIE,UPDATE^DIE,WP^DIE in ICR #2053
- ; Reference to $$GET1^DIQ in ICR #2056
- ; Reference to $$NOW^XLFDT in ICR #10103
- ; Reference to ALERTDAT^XQALBUTL in ICR #2788
- ; Reference to DEFALERT^XQALDATA,GETPAT3^XQALDATA in ICR #4834
+ORB3UTL ;SLC/JMH - OE/RR Notification Utilities ;Aug 20, 2019@09:43
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**377,539**;Dec 17, 1997;Build 0
  ;
 GENALRTS ;fire off due alerts
  ;get unfired records
@@ -81,12 +66,11 @@ NOTIFPG(ORY,ORPAT,ORFROM,ORTO) ;page through a patients alerts
  D REMNONOR^ORQORB(.NONORLST)
  S (I,J)=0
  F  S I=$O(^TMP("ORB2",$J,I)) Q:'I  D
- .N ORPROV,ORALRTDAT ; ajb
+ .N ORPROV ; ajb
  .S ALRTDFN=""
  .S ALRT=^TMP("ORB2",$J,I)
  .S PRE=$E(ALRT,1,1)
  .S ALRTXQA=$P(ALRT,U,2)  ;XQAID
- .D ALERTDAT^XQALBUTL(ALRTXQA,"ORALRTDAT")
  .S NONOR="" F  S NONOR=$O(NONORLST(NONOR)) Q:NONOR=""  D
  ..I ALRTXQA[NONOR S REM=1  ;allow this type of alert to be Removed
  .S ALRTMSG=$P($P(ALRT,U),PRE_"  ",2)
@@ -95,24 +79,13 @@ NOTIFPG(ORY,ORPAT,ORFROM,ORTO) ;page through a patients alerts
  ..S ALRTI=$P(ALRT,"  ")
  ..S ALRTPT=""
  ..S ALRTLOC=""
- ..I $E($P(ALRTXQA,";"),1,3)="TIU" D
- ... N ORIEN,ORREF,ORTIU
- ... S ORPROV="N/A"
- ... S ORURG="Moderate"
- ... S ORTIU=+$G(ORALRTDAT(2)) D  Q:'ORTIU
- .... N ORTIUTXT,ORTIUTXT6
- .... I ORTIU Q
- .... S ORTIUTXT=$P(ALRTXQA,";"),ORTIUTXT6=$E(ORTIUTXT,1,6)
- .... I "^TIUADD^TIUERR^"[ORTIUTXT6 S ORTIU=$E(ORTIUTXT,7,999) Q
- .... I ORTIUTXT?3A1.99999999N S ORTIU=$E(ORTIUTXT,4,999)
- ... S ORIEN=+$P($G(^TIU(8925,ORTIU,12)),U,10) I 'ORIEN D
- .... S ORREF=$P($G(^TIU(8925,ORTIU,14)),U,5) Q:ORREF=""
- .... I $P(ORREF,";",2)="GMR(123," S ORIEN=$P($G(^GMR(123,+ORREF,0)),U,3) I ORIEN="" S ORPROV="UNKNOWN"
- .... I $P(ORREF,";",2)="SRF(" S ORIEN=$P($G(^SRF(+ORREF,0)),U,14) I ORIEN="" S ORPROV="UNKNOWN"
- ... I +ORIEN>0 S ORPROV=$$GETPRVNM^ORWORB(ORIEN)
+ ..I $E($P(ALRTXQA,";"),1,3)="TIU" S ORURG="Moderate"
  ..I $P(ALRTXQA,",")="OR" D
- ...N NOPROV
- ...S NOPROV=0
+ ...; ajb
+ ... D
+ .... N XQALERTD D ALERTDAT^XQALBUTL(ALRTXQA)
+ .... S ORPROV=$$GET1^DIQ(100,+XQALERTD("2"),1)
+ ...; ajb
  ...S ORN=$P($P(ALRTXQA,";"),",",3)
  ...S URG=$G(URGLIST(ORN))
  ...S ORURG=$S(URG=1:"HIGH",URG=2:"Moderate",1:"low")
@@ -121,15 +94,10 @@ NOTIFPG(ORY,ORPAT,ORFROM,ORTO) ;page through a patients alerts
  ...S ALRTI=$S(ORN=90:"L",$P(ORN0,U,6)="INFODEL":"I",1:"")
  ...S ALRTDFN=$P(ALRTXQA,",",2)
  ...S ALRTLOC=$G(^DPT(+$G(ALRTDFN),.1))
- ...I $G(ORN)=6,$P(ALRT,U)["Your task #" S ALRTMSG=$E($P(ALRT,U),2,999),NOPROV=1,ORPROV="N/A"
- ...; ajb
- ... I 'NOPROV S ORPROV=$$GETPROV^ORWORB(ORN,ALRTDFN,.ORALRTDAT)
- ...; ajb
  ..S ALRTI=$S(ALRTI="I":"I",ALRTI="L":"L",1:"")
  ..I (ALRT["): ")!($G(ORN)=27&(ALRT[") CV")) D  ;WAT
  ...S ALRTPT=$P(ALRT,": ")
- ...N ORTRM S ORTRM=$S($E(ALRTPT,1,2)="G ":3,$E(ALRTPT,1,2)="I ":3,1:2)
- ...S ALRTPT=$E(ALRTPT,ORTRM,$L(ALRTPT))
+ ...S ALRTPT=$E(ALRTPT,4,$L(ALRTPT))
  ...I $G(ORN)=27&(ALRT[") CV") S ALRTMSG=$P($P(ALRT,U),": ",2) ;WAT
  ...E  S ALRTMSG=$P($P(ALRT,U),"): ",2) ;WAT
  ...I $E(ALRTMSG,1,1)="[" D

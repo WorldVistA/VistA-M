@@ -1,5 +1,5 @@
 PSORRX1 ;AITC/BWF - Remote RX driver ;8/30/16 12:00am
- ;;7.0;OUTPATIENT PHARMACY;**454,499,509,519,532,594,643,736,740**;DEC 1997;Build 18
+ ;;7.0;OUTPATIENT PHARMACY;**454,499,509,519,532,594,643,736,740,774**;DEC 1997;Build 15
  ;
  ;Reference ^PSDRUG( supported by DBIA 221
  ;Reference ^PSNDF supported by DBIA 2195
@@ -52,7 +52,7 @@ LOGERR(DFN,DATA,HLDAT,NMSG) ;
 RXPRSE(DFN,DATA,HLDAT) ;
  ;RDF|14|Site Number~Rx Number~Drug Name~Quantity~Refills~Days Supply~Expiration Date
  ;~Issue Date~Stop Date~Last Fill Date~Sig~Detail~Status~VA Product IEN
- N RXSITE,RXNUM,DNAME,QTY,REFILLS,DSUPP,EXPDT,ISSDATE,STOPDT,LFDT,SIG,DETAIL,STAT,STATNM,STATERR,DDONE,I,VAPIEN,VAFQDN,DAT
+ N RXSITE,RXNUM,DNAME,QTY,REFILLS,DSUPP,EXPDT,ISSDATE,STOPDT,LFDT,SIG,DETAIL,STAT,STATNM,STATERR,DDONE,I,VAPIEN,DAT,PARK  ; 774 removed VAFQDN (obsolete)
  ; p736 - removed code to handle overflow nodes as value is already passed in the correct format
  S RXSITE=$P(DATA,ORFS,2),RXNUM=$P(DATA,ORFS,3),DNAME=$P(DATA,ORFS,4),QTY=$P(DATA,ORFS,5)
  Q:DNAME=""
@@ -61,12 +61,13 @@ RXPRSE(DFN,DATA,HLDAT) ;
  S STAT=$P(DATA,ORFS,14) Q:STAT=""
  ; VA Product IEN
  S VAPIEN=$P(DATA,ORFS,15)
- S VAFQDN=$P(DATA,ORFS,16)
+ S PARK=+$P(DATA,ORFS,17)  ; 774
  Q:STAT=""
  Q:'RXSITE!('RXNUM)
- S @HLDAT@(DFN,RXSITE,STAT,DNAME,0)=RXNUM_U_QTY_U_REFILLS_U_DSUPP_U_EXPDT_U_ISSDATE_U_STOPDT_U_LFDT_U_STAT_U_VAPIEN_U_DNAME_U_VAFQDN
+ S @HLDAT@(DFN,RXSITE,STAT,DNAME,0)=RXNUM_U_QTY_U_REFILLS_U_DSUPP_U_EXPDT_U_ISSDATE_U_STOPDT_U_LFDT_U_STAT_U_VAPIEN_U_DNAME  ; 774 removed VAFQDN
  S @HLDAT@(DFN,RXSITE,STAT,DNAME,"SIG")=SIG
  S @HLDAT@(DFN,RXSITE,STAT,DNAME,"DETAIL")=DETAIL
+ S @HLDAT@(DFN,RXSITE,STAT,DNAME,"PARK")=$S($G(PARK):1,1:0)  ; 774
  Q
  ; build and send refill request
 REFREQ ;
@@ -89,7 +90,7 @@ REFREQ ;
  I '$L(VAPID) W !!,"Missing VA Product IEN. Rx# ",RXNUM," cannot be refilled." S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
  S LOCDRUG=$$DRUGMTCH(REMDRUG,VAPID)
  I $G(LOCDRUG)=-1 Q  ; user entered no so no reason to prompt again
- I '$G(LOCDRUG) W !!,"Could not match remote drug to a local drug. Cannot refill Rx # ",RXNUM,"." S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
+ I '$G(LOCDRUG) W !,"Cannot refill Rx # ",RXNUM,"." S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q  ; 774 - Remove reference to Drug Match
  ; PSO 740
  I '$$VALDRGINT^PSORRPA1(LOCDRUG,"R",RXNUM) S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
  ; if we got this far, fill is most likely happening and remote
@@ -133,10 +134,10 @@ PARTIAL() ;
  ; prompt for fields that would normally be prompted for a local partial fill.
  D FULL^VALM1
  S REMDRUG=$P(REMDATA,U,11),VAPID=$P(REMDATA,U,10)
- I '$L(VAPID) W !!,"Missing VA Product ID. Rx# ",PRXNUM," cannot process a partial fill." S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
+ I '$L(VAPID) W !,"Missing VA Product ID. Rx# ",PRXNUM," cannot process a partial fill." S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
  S LOCDRUG=$$DRUGMTCH(REMDRUG,VAPID)
  I $G(LOCDRUG)=-1 Q  ; user entered no so no reason to prompt again
- I '$G(LOCDRUG) W !!,"Could not match remote drug to a local drug. Cannot process a partial fill for Rx # ",PRXNUM,"." S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
+ I '$G(LOCDRUG) W !,"Cannot process a partial fill for Rx # ",PRXNUM,"." S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q   ; 774 - Remove reference to Drug Match
  ; PSO 740
  I '$$VALDRGINT^PSORRPA1(LOCDRUG,"P",PRXNUM) S DIR(0)="FO",DIR("A")="Press RETURN to continue" D ^DIR Q
  ; if we got this far, fill is most likely happening and remote

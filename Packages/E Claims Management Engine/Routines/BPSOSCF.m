@@ -1,5 +1,5 @@
 BPSOSCF ;BHAM ISC/FCS/DRS/DLF - Low-level format of .02 ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,23,28**;JUN 2004;Build 22
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,23,28,40,41**;JUN 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; 100  (Transaction Header Segment)
@@ -24,19 +24,23 @@ BPSOSCF ;BHAM ISC/FCS/DRS/DLF - Low-level format of .02 ;06/01/2004
  ; 290  (Intermediary Segment)
  ; 300  (Last Known 4Rx Segment)
  ;
- ; FORMAT = IEN in BPS NCPDP FORMATS (#9002313.92)
- ; NODE = Segment Node
+ ; FORMAT = IEN to file #9002313.92, BPS NCPDP FORMATS
+ ; NODE = A specific segment node (e.g. 100, 110)
  ; MEDN = Transaction multiple in BPS Claims
 XLOOP(FORMAT,NODE,MEDN) ; format claim record
  ;
- Q:$G(FORMAT)=""  Q:$G(NODE)=""  ; FORMAT, NODE required
+ ; Both FORMAT and NODE are required.
+ I $G(FORMAT)="" Q
+ I $G(NODE)="" Q
  ;
- N FLAG,FLDIEN,FLDINFO,IEN511,IEN59,MDATA,NCPVERS,NODEIEN,ORDER,OVERRIDE,PMODE,RECMIEN,BPSX
+ N FLAG,FLDIEN,FLDINFO,IEN511,IEN59,MDATA,NCPVERS,NODEIEN,ORDER
+ N OVERRIDE,PMODE,RECMIEN,BPSX
+ ;
  ; quit If the payer sheet doesn't have the segment
- I '$D(^BPSF(9002313.92,FORMAT,NODE,0)) Q
+ I NODE'=230,'$D(^BPSF(9002313.92,FORMAT,NODE,0)) Q
  ;
  ; VA doesn't do these segments
- I ",300,290,280,270,260,250,240,230,220,210,200,170,140,"[(","_NODE_",") Q
+ I ",300,290,280,270,260,250,240,220,210,200,170,140,"[(","_NODE_",") Q
  ;
  ; Per NCPDP standard, eligibility doesn't support segments listed below
  I BPS("Transaction Code")="E1",",290,280,270,260,250,230,220,210,200,190,180,170,160,130,"[(","_NODE_",") Q
@@ -50,32 +54,42 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  ; DUR is handled differently since it is repeating
  I NODE=180 D DURPPS^BPSOSHF(FORMAT,NODE,MEDN) Q
  ;
+ ; The Diagnosis related fields will be populated only if the user
+ ; entered a diagnosis code via the RED Action (ECME User Screen) or
+ ; the DIA Action (Pharmacist Worklist).
+ I NODE=230 D DXFIELDS^BPSOSH3 Q
+ ;
  ; Loop through the fields in the segment
  S ORDER=0
  F  S ORDER=$O(^BPSF(9002313.92,FORMAT,NODE,"B",ORDER)) Q:'ORDER  D
- . ; Get the pointer to the BPS NCPDP FIELD DEFS table
+ . ;
+ . ; Set MDATA to the record from file 9002313.92, BPS NCPDP FORMATS.
  . S RECMIEN=$O(^BPSF(9002313.92,FORMAT,NODE,"B",ORDER,0))
  . I 'RECMIEN D IMPOSS^BPSOSUE("DB","TI","NODE="_NODE,"ORDER="_ORDER,2,$T(+0)) Q
- . S MDATA=^BPSF(9002313.92,FORMAT,NODE,RECMIEN,0),FLDIEN=$P(MDATA,U,2)
- .; Corrupt or erroneous format file
+ . S MDATA=^BPSF(9002313.92,FORMAT,NODE,RECMIEN,0)
+ . ;
+ . ; Get the pointer to the BPS NCPDP FIELD DEFS table
+ . S FLDIEN=$P(MDATA,U,2)
  . I 'FLDIEN Q
+ . ;
  . S FLDINFO=$G(^BPSF(9002313.91,FLDIEN,0))  ; BPS NCPDP FIELD DEFS (#9002313.91)
  . I FLDINFO="" D IMPOSS^BPSOSUE("DB,P","TI","FLDIEN="_FLDIEN,,"XLOOP",$T(+0)) Q
- .; Quit for 111-AM Segment Identification
- .;           478-H7 Other Amount Claimed Submitted Count
- .;           479-H8 Other Amount Claimed Submitted Qualifier
- .; 478 and 479 are handled by 480 and 111 is standard field for each segment
- . S BPSX=$P(FLDINFO,U) I ",111,478,479,"[(","_BPSX_",") Q
- .;
- .; Set override value (may not be defined so override will be null)
+ . ;
+ . ; Quit for 111-AM Segment Identification (standard field for each segment)
+ . ;          478-H7 Other Amount Claimed Submitted Count      (handled with
+ . ;          479-H8 Other Amount Claimed Submitted Qualifier    field 480)
+ . S BPSX=$P(FLDINFO,U)
+ . I ",111,478,479,"[(","_BPSX_",") Q
+ . ;
+ . ; Set override value (may not be defined so override will be null)
  . I $D(MEDN) S OVERRIDE=$G(BPS("OVERRIDE","RX",MEDN,FLDIEN))
  . E  S OVERRIDE=$G(BPS("OVERRIDE",FLDIEN))
- .;
- .; Get processing mode (S-Standard (default), X-Special Code)
+ . ;
+ . ; Get processing mode (S-Standard (default), X-Special Code)
  . S PMODE=$P(MDATA,U,3)
- . I PMODE="" S PMODE="S" ;default it
- .;
- .; Default FLAG and value being computed
+ . I PMODE="" S PMODE="S"
+ . ;
+ . ; Default FLAG and value being computed
  . S FLAG="GFS"
  . S BPS("X")=""
  . ;
@@ -87,11 +101,16 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  . ;   of field's Get code and change Flag to FS so Format and
  . ;   Set code is still done but not GET code
  . I PMODE="X",OVERRIDE="" D
- .. S FLAG="FS"
- .. D XSPCCODE(FORMAT,NODE,RECMIEN)
+ . . S FLAG="FS"
+ . . D XSPCCODE(FORMAT,NODE,RECMIEN)
  . ;
  . ; Call XFLDCODE to do processing based on FLAG setting
  . D XFLDCODE(NODE,FLDIEN,FLAG)
+ ;
+ ; If the current segment is 110/Patient, conditionally populate
+ ; field 335-2C PREGNANCY INDICATOR.
+ ;
+ I NODE=110 D PREG^BPSOSH3
  ;
  ; If the current segment is 130/Claim, populate field 460-ET
  ; QUANTITY PRESCRIBED if it's not already populated.
@@ -103,10 +122,11 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  . D XFLDCODE(NODE,FLDIEN,"GFS")
  . Q
  ; 
- ; The user has the ability, via the action RED / Resubmit with
- ; Edits, to add to the claim fields not on the payer sheet.
- ; Any fields to be added to the claim are stored in the file
- ; BPS NCPDP OVERRIDE.
+ ; The user has the ability to add to the claim fields not on the payer
+ ; sheet.  This is done via the action RED/Resubmit with Edits on the
+ ; ECME User Screen or via the action ECS/Edit Claim Submitted on the
+ ; Reject Information Screen.  Any fields to be added to the claim are
+ ; stored in the file BPS NCPDP OVERRIDE.
  ;
  ; Determine the transaction from the claim.  Determine
  ; override, and Quit if none.  Field 1.13 is NCPDP OVERRIDES,
@@ -129,8 +149,7 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  ;
  Q
  ;
- ;
- ; Execute Get, Format and/or Set MUMPS code for NCPDP Field
+ ; Execute Get, Format, and/or Set MUMPS code for NCPDP Field
  ;
  ; Parameters:   NODE    -  Segment Node
  ;               FLDIEN  -  NCPDP Field Definitions IEN
@@ -143,34 +162,37 @@ XLOOP(FORMAT,NODE,MEDN) ; format claim record
  ;   by the SET logic for the DUR fields.  This variable is newed
  ;   by the calling routine
 XFLDCODE(NODE,FLDIEN,FLAG) ;EP
- ; 5.1 loops through the 10, 25, 30 nodes
  ;
  N FNODE,INDEX,MCODE,NCPVERS,X
  ;
  ; Check if record exists and FLAG variable is set correctly
- ; Changed from Q: to give fatal error - 10/18/2000
  I 'FLDIEN D IMPOSS^BPSOSUE("DB,P","TI","FLDIEN="_FLDIEN,,"XFLDCODE",$T(+0)) Q
  I FLAG="" D IMPOSS^BPSOSUE("DB,P","TI","FLAG null",,"XFLDCODE",$T(+0)) Q
+ ;
  ; get NCPDP version, default to vD.0
- S NCPVERS=$G(BPS("NCPDP","Version")) S:NCPVERS="" NCPVERS="D0"
+ S NCPVERS=$G(BPS("NCPDP","Version"))
+ I NCPVERS="" S NCPVERS="D0"
+ ;
  ; Loop through GET CODE, D0 FORMAT (or FORMAT), SET CODE w-p fields and execute code
  F FNODE=10,20,25,30 D
- .I FNODE=25,NCPVERS="D0" Q  ; node 25 is FORMAT CODE for versions before D.0
- .I FNODE=20,NCPVERS'="D0" Q  ; node 20 is FORMAT CODE for vD.0
- .I FLAG'[$S(FNODE=10:"G",FNODE=25!(FNODE=20):"F",FNODE=30:"S",1:"") Q
- .I '$D(^BPSF(9002313.91,FLDIEN,FNODE,0)) D IMPOSS^BPSOSUE("DB","TI","FLDIEN="_FLDIEN,"FNODE="_FNODE,"XFLDCODE",$T(+0))
- .; Loop through the W-P field and execute each line
- .S INDEX=0
- .F  S INDEX=$O(^BPSF(9002313.91,FLDIEN,FNODE,INDEX)) Q:'INDEX  D
- ..; If doing SET code and if this is not the header segment, add the ID prefix
- ..I FNODE=30,NODE'=100 S BPS("X")=$P($G(^BPSF(9002313.91,FLDIEN,5)),U,1)_BPS("X")
- ..; Get the code and xecute
- ..S MCODE=$G(^BPSF(9002313.91,FLDIEN,FNODE,INDEX,0))
- ..Q:MCODE=""  Q:$E(MCODE,1)=";"  ; no M code or comment
- ..X MCODE
+ . I FNODE=25,NCPVERS="D0" Q  ; node 25 is FORMAT CODE for versions before D.0
+ . I FNODE=20,NCPVERS'="D0" Q  ; node 20 is FORMAT CODE for vD.0
+ . I FLAG'[$S(FNODE=10:"G",FNODE=25!(FNODE=20):"F",FNODE=30:"S",1:"") Q
+ . I '$D(^BPSF(9002313.91,FLDIEN,FNODE,0)) D IMPOSS^BPSOSUE("DB","TI","FLDIEN="_FLDIEN,"FNODE="_FNODE,"XFLDCODE",$T(+0))
+ . ;
+ . ; If doing SET code and if this is not the header segment, add the ID prefix
+ . I FNODE=30,NODE'=100 S BPS("X")=$P($G(^BPSF(9002313.91,FLDIEN,5)),U,1)_BPS("X")
+ . ;
+ . ; Loop through the W-P field and execute each line
+ . S INDEX=0
+ . F  S INDEX=$O(^BPSF(9002313.91,FLDIEN,FNODE,INDEX)) Q:'INDEX  D
+ . . ; Get the code and xecute
+ . . S MCODE=$G(^BPSF(9002313.91,FLDIEN,FNODE,INDEX,0))
+ . . I MCODE="" Q
+ . . I $E(MCODE,1)=";" Q
+ . . X MCODE
  ;
  Q
- ;
  ;
  ; Execute Special Code (for NCPDP Field within NCPDP Record)
  ; FORMAT = NCPDP Record Format IEN (9002313.92)
@@ -182,9 +204,10 @@ XSPCCODE(FORMAT,NODE,RECMIEN) ;EP - Above and BPSOSHR
  N INDEX,MCODE
  S INDEX=0
  F  S INDEX=$O(^BPSF(9002313.92,FORMAT,NODE,RECMIEN,1,INDEX)) Q:'INDEX  D
+ . ; Get the code and xecute
  . S MCODE=$G(^BPSF(9002313.92,FORMAT,NODE,RECMIEN,1,INDEX,0))
- . Q:MCODE=""
- . Q:$E(MCODE,1)=";"
+ . I MCODE="" Q
+ . I $E(MCODE,1)=";" Q
  . X MCODE
  Q
  ;

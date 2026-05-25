@@ -1,9 +1,9 @@
-PSSHRVL1 ;WOIFO/Alex Vasquez, Timothy Sabat, Steve Gordon - Continuation Data Validation routine for drug checks ;01/15/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,169,160,173,178,224**;9/30/97;Build 3
+PSSHRVL1 ;WOIFO/AV,TS,SG - Continuation Data Validation routine for drug checks ; Jan 15, 2007@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,169,160,173,178,224,254,262**;9/30/97;Build 66
  ;
  ; Reference to ^PSNDF(50.68 supported by IA #2079
  ; Reference to ^PSNDF(50.68 supported by IA #3735
- ; 
+ ;
 NEXTEX(PSS,PSSHASH) ;
  ;@DESC Gets the next exception
  ;@PSS The temp hash
@@ -36,7 +36,7 @@ WRITE(PSSHASH) ;
  NEW PSS
  SET PSS("PharmOrderNo")=""
  SET PSS("I")=""
- FOR  SET PSS("PharmOrderNo")=$ORDER(PSSHASH("Exception","PROFILE",PSS("PharmOrderNo"))) QUIT:PSS("PharmOrderNo")=""  DO 
+ FOR  SET PSS("PharmOrderNo")=$ORDER(PSSHASH("Exception","PROFILE",PSS("PharmOrderNo"))) QUIT:PSS("PharmOrderNo")=""  DO
   . FOR  SET PSS("I")=$ORDER(PSSHASH("Exception","PROFILE",PSS("PharmOrderNo"),PSS("I"))) QUIT:PSS("I")=""  DO
   . . DO WPROFILE(.PSSHASH,.PSS)
   . . QUIT
@@ -44,7 +44,7 @@ WRITE(PSSHASH) ;
  ;
  SET PSS("PharmOrderNo")=""
  SET PSS("I")=""
- FOR  SET PSS("PharmOrderNo")=$ORDER(PSSHASH("Exception","PROSPECTIVE","DOSE",PSS("PharmOrderNo"))) QUIT:PSS("PharmOrderNo")=""  DO 
+ FOR  SET PSS("PharmOrderNo")=$ORDER(PSSHASH("Exception","PROSPECTIVE","DOSE",PSS("PharmOrderNo"))) QUIT:PSS("PharmOrderNo")=""  DO
   . FOR  SET PSS("I")=$ORDER(PSSHASH("Exception","PROSPECTIVE","DOSE",PSS("PharmOrderNo"),PSS("I"))) QUIT:PSS("I")=""  DO
   . . DO WDOSE(.PSSHASH,.PSS)
   . . ;kill off node to prevent next loop from setting PSS("PharmOrderNo") to "DOSE"
@@ -53,7 +53,7 @@ WRITE(PSSHASH) ;
  ;
  SET PSS("PharmOrderNo")=""
  SET PSS("I")=""
- FOR  SET PSS("PharmOrderNo")=$ORDER(PSSHASH("Exception","PROSPECTIVE",PSS("PharmOrderNo"))) QUIT:PSS("PharmOrderNo")=""  DO 
+ FOR  SET PSS("PharmOrderNo")=$ORDER(PSSHASH("Exception","PROSPECTIVE",PSS("PharmOrderNo"))) QUIT:PSS("PharmOrderNo")=""  DO
   . FOR  SET PSS("I")=$ORDER(PSSHASH("Exception","PROSPECTIVE",PSS("PharmOrderNo"),PSS("I"))) QUIT:PSS("I")=""  DO
   . . DO WPROSPEC(.PSSHASH,.PSS)
   . QUIT
@@ -134,18 +134,21 @@ GCNREASN(DRUGIEN,DRUGNM,ORDRNUM,BADGCN) ;
  ;DRUGNM-NAME OF DRUG
  ;ORDRNUM-PHARMACY ORDER NUM
  ;BADGCN-(OPTIONAL)FLAG IS SET to 1 IF DRUG RETURNED AS NOT FOUND BY SWRI/FDB
- ;        if set to -1 Missing or invalid GCNSEQNO  from Input node  
- N VAPROD1,NDNODE,REASON,MESSAGE,VAIEN,PSSVQPAC,PSSVQDOS,PSSVQNOM,PSSVQREM,PSSVQTY1,PSSVQTY2,PSSREASN
+ ;        if set to -1 Missing or invalid GCNSEQNO  from Input node
+ N VAPROD1,NDNODE,REASON,MESSAGE,VAIEN,PSSVQPAC,PSSVQDOS,PSSVQNOM,PSSVQREM,PSSVQTY1,PSSVQTY2,PSSREASN,PSSVAPRD,PSSPGXFG
+ S (PSSVAPRD,PSSPGXFG)=0
+ S:+$G(DRUGIEN) PSSVAPRD=$P($G(^PSDRUG(+DRUGIEN,"ND")),U,3)
+ S PSSPGXFG=+$$PGX^PSNAPIS("",PSSVAPRD) ;PSSPGXFG=1 meant drug is elligble for pgx. NXCHKMSG should include PGx text.
  S MESSAGE=$$NOCHKMSG(DRUGNM,ORDRNUM),PSSVQDOS=0,PSSVQPAC=$S($E(PSSHASH("Base"),1,2)="PS":1,1:0) I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI S PSSVQDOS=1
  S REASON="",PSSVQREM=$S($P(ORDRNUM,";")="R":1,1:0)
  S PSSVQTY1=$P(ORDRNUM,";",3),PSSVQTY1=$$UP^XLFSTR(PSSVQTY1),PSSVQTY2=$S(PSSVQTY1["PROSPECTIVE":1,1:0)
  ;
  S VAPROD1=""
  D  ;Case statement
- .I $G(BADGCN)=1 S MESSAGE=$$NXCHKMSG(DRUGNM) S PSSVQNOM=$$GCMESS,REASON=$S(PSSVQNOM:"^1",1:""),PSSREASN=1 Q
+ .I $G(BADGCN)=1 S MESSAGE=$$NXCHKMSG(DRUGNM) S PSSVQNOM=$$GCMESS,REASON=$S(PSSVQNOM:"^1",1:""),PSSREASN=1 S ^TMP($J,"SAVE","IN","GCNMSG")="" Q
  .I '$G(DRUGIEN),'PSSVQREM S REASON="No dispense drug found for Orderable Item",PSSREASN=2 Q
  .S NDNODE=$G(^PSDRUG(DRUGIEN,"ND"))
- .;if no ndnode or 3rd piece not populated 
+ .;if no ndnode or 3rd piece not populated
  .I 'PSSVQREM,'$L(NDNODE)!('$P(NDNODE,U,3)) D  Q
  ..S REASON="Drug not matched to NDF",PSSREASN=3 D:PSSVQPAC&($D(^TMP($J,PSSHASH("Base"),"IN","DOSE"))) NZMSG I 'PSSVQPAC S MESSAGE=$$NXCHKMSG(DRUGNM),REASON=""
  .S VAIEN=$S('PSSVQREM:+$P(NDNODE,U,3),1:0)
@@ -159,7 +162,7 @@ GCNREASN(DRUGIEN,DRUGNM,ORDRNUM,BADGCN) ;
  ;
 NOCHKMSG(DRUGNM,ORDRNUM) ;
  ;Returns msg that no checks could be performed.
- ;INPUTS: 
+ ;INPUTS:
  ;DRUGNM-Name of drug
  ;ORDRNUM-PHARMACY ORDER NUMBER
  N MESSAGE
@@ -168,7 +171,7 @@ NOCHKMSG(DRUGNM,ORDRNUM) ;
  ;
 OUTPAT(ORDRNUM) ;
  ; Returns " Outpatient" if it is one.
- ;INPUTS: 
+ ;INPUTS:
  ;ORDRNUM-PHARMACY ORDER NUMBER
  ;PSSBASE - globally defined
  ;
@@ -204,7 +207,7 @@ INRSON(ERRNUM,ORDERNUM) ;
  I $E(ORDERNUM)="N" S NONVAFLG=1
  D
  .I ERRNUM=1 D  Q
- .. I 'NONVAFLG S REASON="No Dispense Drug found." Q   ; No active Dispense Drug found for Pending order. 
+ .. I 'NONVAFLG S REASON="No Dispense Drug found." Q   ; No active Dispense Drug found for Pending order.
  .. I NONVAFLG S REASON="No Dispense Drug found."      ; No active Dispense Drug found for Non-VA med order.
  .I ERRNUM=2 S REASON="Free Text Dosage could not be evaluated." Q
  .I ERRNUM=3 S REASON="Free Text Infusion Rate could not be evaluated."
@@ -223,10 +226,10 @@ DEMOCHK(AGE,BSA,WEIGHT,PSDRUG,WHERE) ;
  S PSRESULT="",PSREASON="",TEXT="",WHERE=$S(+$G(WHERE)=1:1,1:0),AGE=+$G(AGE),BSA=+$G(BSA),WEIGHT=+$G(WEIGHT)
  I AGE=0 D  Q PSRESULT
  .S TEXT=" AGE"
- .D:WHERE=0 
+ .D:WHERE=0
  ..S PSMESSAGE=$$DOSEMSG(PSDRUG)
  ..S PSREASON="One or more required patient parameters unavailable:"_TEXT
- .D:WHERE=1 
+ .D:WHERE=1
  ..S PSMESSAGE="Dosing checks could not be done for Drug: "_PSDRUG_", please complete a manual check for appropriate dosing."
  .S PSRESULT=PSMESSAGE_U_PSREASON
  Q PSRESULT
@@ -235,7 +238,7 @@ MEDRTE(PSROUTE,PSDRUGNM) ;
  ;Checks route if null
  ;inputs: ROUTE-MEDICATION ROUTE
  ;DRUGNM-DRUG NAME
- ;RETURNS THE ERROR MESSAGE AND ERROR REASON 
+ ;RETURNS THE ERROR MESSAGE AND ERROR REASON
  N PSMESSAGE,PSREASON,PSRESULT
  S PSRESULT=""
  I '$L(PSROUTE) D
@@ -249,7 +252,7 @@ MEDRTE(PSROUTE,PSDRUGNM) ;
 CHKDSTYP(DOSETYP,PSDRUGNM) ;
  ;inputs: DOSETYP-DOSE TYPE (MAINTENANCE,LOADING)
  ;PSDRUGNM-DRUG NAME
- ;RETURNS THE ERROR MESSAGE AND ERROR REASON 
+ ;RETURNS THE ERROR MESSAGE AND ERROR REASON
  N PSREASON,PSRESULT,PSMSG,TEXT,OKFLAG
  S PSRESULT="",OKFLAG=0
  F TEXT="LOADING","MAINTENANCE","INITIAL DOSE","INTERMEDIATE DOSE","PROPHYLACTIC","SINGLE DOSE" D  Q:OKFLAG
@@ -441,12 +444,23 @@ GCNMESX ;
  ;
  ;
 NXCHKMSG(DRUGNM) ;2.1 changes
- N PSSZMESS
+ N PSSZMESS,PSSDSFG,PSSX,PSSTXT1,PSSTXT2,PSSTXT3
  I $D(^TMP($J,PSSHASH("Base"),"IN","DOSE")) D  Q PSSZMESS
  .I 'PSSVQDOS!('PSSVQTY2)!(PSSVQREM)!($$EXMT(DRUGIEN)) S PSSZMESS=MESSAGE Q
  .S PSSZMESS="Dosing Checks could not be performed for Drug: "_DRUGNM_", please complete a manual check for appropriate Dosing." ; 2.1 Schedule not known, so message must stay generic
+ ;PSSDSFG=1 will include Dosing in the warning
+ S PSSDSFG=$S(PSSVQDOS&($G(PSSVQTY2))&('$$EXMT(DRUGIEN)):1,1:0)
+ S PSSTXT1=", Duplicate Therapy, appropriate Dosing and Pharmacogenomics."
+ S PSSTXT2=", Duplicate Therapy and appropriate Dosing."
+ S PSSTXT3=", Duplicate Therapy and Pharmacogenomics."
+ I $G(ORDRNUM)["PROFILE" S PSSX=" and Duplicate Therapy."
+ I $G(ORDRNUM)["PROSPECTIVE" D
+ . I PSSDSFG,PSSPGXFG S PSSX=PSSTXT1 Q
+ . I PSSDSFG,'PSSPGXFG S PSSX=PSSTXT2 Q
+ . I 'PSSDSFG,PSSPGXFG S PSSX=PSSTXT3 Q
+ . S PSSX=" and Duplicate Therapy."
  S PSSZMESS="Order Checks could not be done for"
- S PSSZMESS=PSSZMESS_$S(PSSVQREM:" Remote",2:"")_" Drug: "_DRUGNM_", please complete a manual check for Drug Interactions"_$S(PSSVQDOS&($G(PSSVQTY2))&('$$EXMT(DRUGIEN)):", Duplicate Therapy and appropriate Dosing.",1:" and Duplicate Therapy.")
+ S PSSZMESS=PSSZMESS_$S(PSSVQREM:" Remote",2:"")_" Drug: "_DRUGNM_", please complete a manual check for Drug Interactions"_PSSX
  Q PSSZMESS
  ;
  ;

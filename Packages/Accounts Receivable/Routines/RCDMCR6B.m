@@ -1,5 +1,5 @@
 RCDMCR6B ;ALB/YG - 50-100 Percent SC Exempt Charge Reconciliation Report - Input/output; Apr 9, 2019@21:06
- ;;4.5;Accounts Receivable;**347**;Mar 20, 1995;Build 47
+ ;;4.5;Accounts Receivable;**347,454**;Mar 20, 1995;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; See RCDMCR6A for detailed description
@@ -61,7 +61,12 @@ COLLECT(STOPIT,ARTYPE) ; Get the report data
  . . . I ARTYPE=7,"^ACTIVE^OPEN^SUSPENDED^WRITE-OFF^COLLECTED/CLOSED^CANCELLATION^"'[(U_STATUS_U) Q
  . . . K IBDATA S IBDATA=0
  . . . S IBIEN=""
- . . . F  S IBIEN=$O(^IB("ABIL",BILLNO,IBIEN)) Q:'IBIEN  S OUT=$$GETIB^RCDMCR4B(IBIEN,0) I OUT,$P(OUT,U,5)'=10 S IBDATA=IBDATA+1,IBDATA(IBDATA)=OUT
+ . . . F  S IBIEN=$O(^IB("ABIL",BILLNO,IBIEN)) Q:'IBIEN  D  ; PRCA*4.5*454
+ . . . .I "^6^7^"[(U_$$GET1^DIQ(350,IBIEN,".03:.11","I")_U) Q  ; skip billing groups 6 and 7 (TRICARE/CHAMPVA), ICR #4541
+ . . . .S OUT=$$GETIB^RCDMCR4B(IBIEN,0)
+ . . . .I OUT,$P(OUT,U,5)'=10 S IBDATA=IBDATA+1,IBDATA(IBDATA)=OUT
+ . . . .Q
+ . . . ;
  . . . I 'IBDATA Q
  . . . M ^TMP($J,"RCDMCR6","ARIB",BILLNO,"IBDATA")=IBDATA
  . . . S ^TMP($J,"RCDMCR6","ARIB",BILLNO,"STATUS")=STATUS

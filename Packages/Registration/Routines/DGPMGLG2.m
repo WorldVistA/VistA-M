@@ -1,5 +1,5 @@
 DGPMGLG2 ;ALB/LM - G&L GENERATION, CONT.; 24 MAY 90
- ;;5.3;Registration;**12,34,418**;Aug 13, 1993
+ ;;5.3;Registration;**12,34,418,1132**;Aug 13, 1993;Build 1
  ;
  ;Finds 2 most recent locations and treating specialties for the
  ;corresponding admission (note that ASIH creates its own admission,
@@ -28,8 +28,12 @@ LAST S (D,MV("LWD"),MV("PWD"),MV("LTS"),MV("PTS"),MV("ASIH"),ZMV("LWD"),ZMV("LTS
  ;  check for corres. movement for location, If admit, Quit
  I +MV("MT")=20,$P(MD,"^",24)]"",$D(^DGPM(+$P(MD,"^",24),0)) S:$P(^(0),"^",6)]"" MV("LWD")=$P(^(0),"^",6) I +MV("TT")=6,$P(^DGPM($P(MD,"^",24),0),"^",2)=1 Q
  I "^13^42^43^44^45^47^"'[("^"_+MV("MT")_"^") S:$P(MD,"^",9)]"" MV("LTS")=$P(MD,"^",9) ;  Last TS
- I "^13^"[("^"_+MV("MT")_"^"),$P(MD,"^",15)]"" S X=$O(^DGPM("ATS",DFN,$P(MD,"^",15),0)) I X D  ; looks for ASIH  admisssion
- .S ZMV("LTS")=$O(^DGPM("ATS",DFN,$P(MD,"^",15),X,0)) ; Last TS
+ I "^13^"[("^"_+MV("MT")_"^"),$P(MD,"^",15)]"" S X=0 D
+ .F  S X=$O(^DGPM("ATS",DFN,$P(MD,"^",15),X)) Q:'X  Q:$G(ZMV("LTS"))  D
+ ..S DGMVDT=9999999.9999999-X I DGMVDT>TO Q
+ ..S ZMV("LTS")=$O(^DGPM("ATS",DFN,$P(MD,"^",15),X,0)) ; Last TS
+ ..Q
+ .Q
  I ZMV("LTS")]"" S ZMV("LTS")=ZMV("LTS")_"^"_$S('$D(^DIC(45.7,+ZMV("LTS"),0)):"NO TS",$P(^(0),"^",3)]"":$P(^(0),"^",3),$P(^(0),"^")]"":$E($P(^(0),"^"),1,5),1:"NO TS") ;  Last TS
  ;
  S J=9999999.9999999-(MD+($P(MD,"^",22)/10000000))

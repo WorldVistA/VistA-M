@@ -1,5 +1,5 @@
 RCDPEM2 ;ALB/TMK/PJH - MANUAL ERA AND EFT MATCHING ;Jun 11, 2014@13:24:36
- ;;4.5;Accounts Receivable;**173,208,276,284,293,298,303,304,321,326,332,409**;Mar 20, 1995;Build 17
+ ;;4.5;Accounts Receivable;**173,208,276,284,293,298,303,304,321,326,332,409,439**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -43,7 +43,7 @@ MWQ D INIT^RCDPEWL7
  ;
 MATCH1 ; Manually 'match' an ERA to an EFT
  N DA,DIC,DIE,DIR,DIROUT,DR,DTRNG,DTOUT,DUOUT,EFTTOT,END,ERATOT
- N RCEFT,RCERA,RCMATCH,RCMTFLG,RCNAME,RCQUIT,START,X,XX,Y,YY
+ N RCEFT,RCERA,RCMATCH,RCNAME,RCQUIT,START,X,XX,Y,YY
  W !,"THIS OPTION WILL ALLOW YOU TO MANUALLY MATCH AN EFT DETAIL RECORD"
  W !,"WITH AN ERA RECORD."
  ;S XX=$$PMATCH(RCERA)
@@ -136,12 +136,9 @@ M12A ; PRCA*4.5*303 - MATCH WL jumps here to complete the manual match
  . W ! D ^DIR K DIR
  . I $S($D(DUOUT)!$D(DTOUT):1,Y'=1:1,1:0) S RCQUIT=1 Q
  ; END PRCA*4.5*326
- S DIE="^RCY(344.4,",DR=".09////1",DA=RCERA D ^DIE
- I '$D(Y) S DIE="^RCY(344.31,",DR=".08////1;.1////"_RCERA,DA=RCEFT D ^DIE
- S RCMTFLG=$S('$D(Y):1,1:0)
+ D UPDMATCH^RCDPEU2(RCERA,RCEFT,1) ; PRCA*4.5*438
  ; PRCA*4.5*326 - Add EFT suffix
- W !,"EFT #"_$$GET1^DIQ(344.31,RCEFT,.01,"E")_" WAS "_$S(RCMTFLG:"SUCCESSFULLY",1:"NOT")_" MATCHED TO ERA #"_RCERA ; PRCA*4.5*326
- I 'RCMTFLG S DIR(0)="E" D ^DIR K DIR G M1Q
+ W !,"EFT #"_$$GET1^DIQ(344.31,RCEFT,.01,"E")_" WAS SUCCESSFULLY MATCHED TO ERA #"_RCERA ; PRCA*4.5*326
  ;PRCA*4.5*304 add ability to use auto-posting for a manually matched item
  ;  Only if the amount of payments match.
  I 'RCMATCH D  G M1Q    ;if payment amounts don't match, don't allow for auto-posting.

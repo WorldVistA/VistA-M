@@ -1,5 +1,5 @@
 RCDPESP1 ;BIRM/SAB - ePayment Lockbox Site Parameter Reports ;29 Jan 2019 18:00:14
- ;;4.5;Accounts Receivable;**298,304,318,321,326,332,345,349,424**;Mar 20, 1995;Build 11
+ ;;4.5;Accounts Receivable;**298,304,318,321,326,332,345,349,424,450**;Mar 20, 1995;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -11,7 +11,7 @@ RPT ; EDI Lockbox Parameters Report [RCDPE SITE PARAMETER REPORT]
  ;    RCDPE AUTO-PAY EXCLUSION file (#344.6)
  ;
  ; LOCAL VARIABLES:
- ;    RTYPE - Type of Report to run (Medical, Pharmacy, or Both)
+ ;    RTYPE - Type of Report (Medical, Pharmacy, or Both)
  ;
  ; PRCA*4.5*349 - Add categories prompt
  N %ZIS,POP,RCCATS,RCHDR,RCLSTMGR,RCTEMP,RCTMPND,RCTYPE
@@ -35,7 +35,7 @@ RPT ; EDI Lockbox Parameters Report [RCDPE SITE PARAMETER REPORT]
  . S RCTEMP="RCDPE PARAMETERS REPORT"
  . D LMRPT^RCDPEARL(.RCHDR,$NA(^TMP($J,RCTMPND)),RCTEMP) ; Generate ListMan display
  . K ^TMP($J,RCTMPND)
- ; PRCA*4.5*349 - End modified code block
+ ; PRCA*4.5*349 - End
  W !!                                   ; skip lines before device prompt
  S %ZIS="QM" D ^%ZIS Q:POP
  I $D(IO("Q")) D  Q
@@ -79,15 +79,16 @@ SPRPT ; site parameter report entry point
  S RCHDR("PGNMBR")=0  ; page number
  ;
  ; AR SITE PARAMETER file (#342)
- D GETS^DIQ(342,"1,",".01;.14;.15;7.02;7.03;7.04;7.05;7.06;7.07;7.08;7.09","E",RCGLB(342)) ; PRCA*4.5*345
+ D GETS^DIQ(342,"1,",".01;.14;.15;.17;7.02;7.03;7.04;7.05;7.06;7.07;7.08;7.09","E",RCGLB(342)) ; PRCA*4.5*345, PRCA*4.5*450 Add first party field .17
  ; add site to header data
  S RCHDR("SITE")="Site: "_@RCGLB(342)@(342,"1,",.01,"E")
  ;
- ; PRCA*4.5*345 add field .14 and .15 for first party auto-decrease 
+ ; PRCA*4.5*345 add field .14 and .15 for 1st party auto-decrease
+ ; PRCA*4.5*450 add field .17 for 1st party auto-decrease, manual 
  D AD2RPT("### EDI Lockbox Site & First Party Parameters ###")
- F RCFLD=7.02,7.03,7.04,.14,.15,7.05,7.06,7.07,7.08,7.09 D  ; EFT and ERA days unmatched  - PRCA*4.5*321
+ F RCFLD=7.02,7.03,7.04,.14,.15,.17,7.05,7.06,7.07,7.08,7.09 D  ; EFT and ERA days unmatched  - PRCA*4.5*321, PRCA*4.5*450
  . I RCFLD=7.05 D AD2RPT(" "),AD2RPT("### Auto-Audit Site Parameters ###")
- . S RCITEM=$S(RCFLD=.14!(RCFLD=.15)!(RCFLD>7.04):"TITLE",1:"LABEL") ; PRCA*4.5*345
+ . S RCITEM=$S(RCFLD=.14!(RCFLD=.15)!(RCFLD=.17)!(RCFLD>7.04):"TITLE",1:"LABEL") ; PRCA*4.5*345, PRCA*4.5*450
  . I RCTYPE="P",(RCFLD=7.05)!(RCFLD=7.07)!(RCFLD=7.09) Q  ; PRCA*4.5*349 Exclude TRICARE
  . I RCTYPE="M",(RCFLD=7.06)!(RCFLD=7.08)!(RCFLD=7.09) Q  ; PRCA*4.5*349 Exclude TRICARE
  . I RCTYPE="T",RCFLD>7.04,RCFLD<7.09 Q  ; PRCA*4.5*349 Line Added TRICARE
@@ -102,7 +103,7 @@ SPRPT ; site parameter report entry point
  ; Display Parameters
  ; RCDPE PARAMETER file (#344.61)
  S Y=".02;.03;.04;.05;.06;.07;.1;.11;.12;.13;1.01;1.02;1.03;1.04"
- S Y=Y_";1.05;1.06;1.07;1.08;1.09;1.1;1.11" ; PRCA*4.5*349 - Add TRICARE  ;PRCA*4.5*423 added 1.11
+ S Y=Y_";1.05;1.06;1.07;1.08;1.09;1.1;1.11" ; PRCA*4.5*349 - Add TRICARE  ;PRCA*4.5*423 add 1.11
  D GETS^DIQ(344.61,"1,",Y,"E",RCGLB(344.61))
  ;
  S Y=$$GET1^DID(344.61,.1,,"LABEL")_": "_@RCGLB(344.61)@(344.61,"1,",.1,"E") ; PRCA*4.5*321
@@ -111,22 +112,22 @@ SPRPT ; site parameter report entry point
  ;
  ; get auto-post and auto-decrease settings, save zero node
  S X=$G(^RCY(344.61,1,0))
- S XX=$G(^RCY(344.61,1,1))                      ; PRCA*4.5*349 - Added line
+ S XX=$G(^RCY(344.61,1,1))                      ; PRCA*4.5*349
  S RCPARM("AUTO-POST")=$P(X,U,2)
  S RCPARM("AUTO-DECREASE")=$P(X,U,3)
  S RCPARM(344.61,0)=X
- S RCPARM(344.61,1)=XX                          ; PRCA*4.5*349 - Added line
+ S RCPARM(344.61,1)=XX                          ; PRCA*4.5*349
  S RCPARM("RX AUTO-POST")=$P(XX,U,1)
- S RCPARM("RX AUTO-DECREASE")=$P(XX,U,2)        ; PRCA*4.5*349 - Added line
- S RCPARM("TRI AUTO-POST")=$P(XX,U,5)           ; PRCA*4.5*349 - Added line
- S RCPARM("TRI AUTO-DECREASE")=$P(XX,U,6)       ; PRCA*4.5*349 - Added line
+ S RCPARM("RX AUTO-DECREASE")=$P(XX,U,2)        ; PRCA*4.5*349
+ S RCPARM("TRI AUTO-POST")=$P(XX,U,5)           ; PRCA*4.5*349
+ S RCPARM("TRI AUTO-DECREASE")=$P(XX,U,6)       ; PRCA*4.5*349
  ;
  ; PRCA*4.5*349 - Start modified block - Move code into subroutines for easier maintenance
- I (RCTYPE="M")!(RCTYPE="A") D MPARAMS^RCDPESPC(.RCPARM)  ; Display Medical Claim parameters
+ I (RCTYPE="M")!(RCTYPE="A") D MPARAMS^RCDPESPC(.RCPARM)  ; Medical Claim parameters
  ;
- I (RCTYPE="P")!(RCTYPE="A") D RXPARAMS^RCDPESPC(.RCPARM) ; Display Rx parameters 
+ I (RCTYPE="P")!(RCTYPE="A") D RXPARAMS^RCDPESPC(.RCPARM) ; Rx parameters 
  ;
- I (RCTYPE="T")!(RCTYPE="A") D TPARAMS^RCDPESPC(.RCPARM)  ; Display Rx parameters
+ I (RCTYPE="T")!(RCTYPE="A") D TPARAMS^RCDPESPC(.RCPARM)  ; Rx parameters
  ; PRCA*4.5*349 - End modified block
  ;
  D ZPARAMS^RCDPESPC ; Display Zero Pay Auto=Post Parameter PRCA*4.5*424 added lines
@@ -182,7 +183,7 @@ SPHDR(HDR) ; HDR passed by ref.
  W @IOF,Y
  S X="   Run Date: "_HDR("RUNDATE"),Y=X_$J(HDR("SITE"),IOM-($L(X)+1))
  W !,Y
- ; PRCA*4.5*349 - Added categories to report header
+ ; PRCA*4.5*349 - Add categories to report header
  ; Add categories
  S Y="   Categories: "
  S CNT=$L(RCCATS,U),CUR=""
@@ -354,7 +355,7 @@ AUTOD(PAID,WHICH,RCGLB,RCTYPE) ; Display auto-decrease parameters - PRCA*4.5*345
  ; Do not display Auto-Decrease questions when Auto-Post Disabled
  S ONOFF=$$AUTOPON^RCDPESPC(WHICH)
  I ONOFF=0 D  Q
- . I PAID=0,WHICH=2 Q                           ;PRCA*4.5*424 added line
+ . I PAID=0,WHICH=2 Q                           ;PRCA*4.5*424
  . N WNAME
  . S WNAME=$S(WHICH=0:"Medical",WHICH=1:"Pharmacy",1:"TRICARE")
  . D AD2RPT("NOTICE: "_WNAME_" Auto-Decrease unavailable because Auto-Posting of "_WNAME_" Claims is currently disabled")
@@ -401,8 +402,8 @@ AUTOD(PAID,WHICH,RCGLB,RCTYPE) ; Display auto-decrease parameters - PRCA*4.5*345
  . D AD2RPT(" "_RCSTRING)
  . ;
  . ; Loop and print entries
- . S RCCODE="" F  S RCCODE=$O(^RCY(344.62,"B",RCCODE)) Q:RCCODE=""  D  ; PRCA*4.5*349 - Sort CARC entries by CARC code instead of by most recently entered
- . . S RCI=0 F  S RCI=$O(^RCY(344.62,"B",RCCODE,RCI)) Q:'RCI  D        ; PRCA*4.5*349 - Sort CARC entries by CARC code instead of by most recently entered
+ . S RCCODE="" F  S RCCODE=$O(^RCY(344.62,"B",RCCODE)) Q:RCCODE=""  D  ; PRCA*4.5*349 - Sort CARC entries by CARC code, not by most recently entered
+ . . S RCI=0 F  S RCI=$O(^RCY(344.62,"B",RCCODE,RCI)) Q:'RCI  D        ; PRCA*4.5*349 - Sort CARC entries by CARC code, not by most recently entered
  . . . S RCCIEN=$O(^RC(345,"B",RCCODE,""))
  . . . S RCDESC=$G(^RC(345,RCCIEN,1,1,0)) ; WP field 345.04
  . . . I WHICH=0 S FIELD=$S(PAID:.02,1:.08)
@@ -431,9 +432,9 @@ AUTOD(PAID,WHICH,RCGLB,RCTYPE) ; Display auto-decrease parameters - PRCA*4.5*345
  S Y=$J(X,40)_@RCGLB(344.61)@(344.61,"1,",FIELD,"E")
  D AD2RPT(" "),AD2RPT(Y)
  Q
- ; END - PRCA*4.5*326
+ ; END PRCA*4.5*326
  ;
-OPPAYS(RCTYPE) ; Output list of excluded payers - Added for PRCA*4.5*345
+OPPAYS(RCTYPE) ; Output list of excluded payers - New for PRCA*4.5*345
  ; Input: RCTYPE - Type of list being displayed. Free text. 
  ;        RCPARM - array assumed to exist and contain AUTO-POST and AUTO-DECREASE flags for MED or PHARM 
  ;        RCGLB - array assumed to exist and contain output from GETS^DIQ for payer exclusions

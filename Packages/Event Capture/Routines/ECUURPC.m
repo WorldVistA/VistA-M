@@ -1,5 +1,5 @@
-ECUURPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;Jul 27, 2023@18:54:35
- ;;2.0;EVENT CAPTURE;**25,42,49,94,95,76,104,124,139,145,152,156,158,161,159,164,165,169**;8 May 96;Build 1
+ECUURPC ;ALB/JAM - Event Capture Data Entry Broker Utilities ;12/4/24  12:04
+ ;;2.0;EVENT CAPTURE;**25,42,49,94,95,76,104,124,139,145,152,156,158,161,159,164,165,169,170**;8 May 96;Build 2
  ;
  ; Reference to $$CODEN^ICDEX in ICR #5747
  ; Reference to ^DIC in ICR #10006
@@ -98,7 +98,9 @@ VERSRV(RESULTS,ECARY,VERSION)   ; Return server version of option name and
  S ECCLVER=$G(VERSION)
  I $G(ECARY)="" Q
  N ECLST,ECMINV
- S ECMINV="2.12.1.0"  ;139,145 Minimum version of EC GUI client - 152:2.7,156:2.8,158:2.9,161:2.10,159:2.11,164:2.11.1
+ ; 139,145 Minimum version of EC GUI client - 
+ ; 152:2.7,156:2.8,158:2.9,161:2.10,159:2.11,164:2.11.1,165:2.12.0,169:2.12.1,170:2.13.0
+ S ECMINV="2.13.0.0"
  D FIND^DIC(19,"",1,"X",ECARY,1,,,,"ECLST")
  I 'ECLST("DILIST",0) S RESULTS="" Q
  S RESULTS=ECLST("DILIST","ID",1,1)

@@ -1,5 +1,5 @@
 PSOERXU8 ;ALB/BLB - eRx Utilities/RPC's ; 08/18/2020 10:02am
- ;;7.0;OUTPATIENT PHARMACY;**581,617,700,743,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**581,617,700,743,746,770**;DEC 1997;Build 145
  ;
  ;  Reference to ^XTV(8991.9) in ICR #7002
  ;  Reference to ^VA(200 supported by ICR #10060
@@ -21,7 +21,7 @@ BPROC(PSOIEN,BTYPE,MVFLD,VBFLD,VBDTTMF,VDTTM) ;
  . S ERXIEN=0 F  S ERXIEN=$O(^PS(52.49,"PAT2",ERXPAT,ERXDT,ERXIEN)) Q:'ERXIEN  D
  . . I '$G(MBMSITE),$$GET1^DIQ(52.49,ERXIEN,24.1,"I")'=PSNPINST Q
  . . S ERESTAT=$$GET1^DIQ(52.49,ERXIEN,1)
- . . I (",PR,RM,RJ,CAN,CXQ,"[(","_ERESTAT_","))!(",E,"[(","_$E(ERESTAT)_",")) Q
+ . . I ($E(ERESTAT,1,3)="REM")!(",PR,RM,RJ,CAN,CXQ,"[(","_ERESTAT_","))!(",E,"[(","_$E(ERESTAT)_",")) Q
  . . ; do not process any rx's that are not a 'newRx'.
  . . I $$GET1^DIQ(52.49,ERXIEN,.08,"I")'="N" Q
  . . ; eRx Provider already validated
@@ -30,7 +30,7 @@ BPROC(PSOIEN,BTYPE,MVFLD,VBFLD,VBDTTMF,VDTTM) ;
  . . I BTYPE="PR",$$GET1^DIQ(52.49,ERXIEN,2.1,"I")'=ERXPROV Q
  . . S EXARY(ERXIEN)=""
  I '$O(EXARY(0)) Q
- W !!
+ W !
  I BTYPE="PA" D
  . W !,"This patient has other prescriptions for: "_$$FMTE^XLFDT(ERXRECDT)
  . W !,"Patient: "_$$GET1^DIQ(52.46,ERXPAT,.01,"E")
@@ -74,9 +74,10 @@ BPROC(PSOIEN,BTYPE,MVFLD,VBFLD,VBDTTMF,VDTTM) ;
  . I BTYPE="PR" S FDA(52.49,I_",",2.3)=$$GET1^DIQ(52.49,PSOIEN,2.3,"I")
  . S FDA(52.49,I_",",MVFLD)=1,FDA(52.49,I_",",VBFLD)=$G(DUZ),FDA(52.49,I_",",VBDTTMF)=VDTTM
  . D FILE^DIE(,"FDA") K FDA
- . I $$GET1^DIQ(52.49,I,1,"E")="N" D UPDSTAT^PSOERXU1(I,"I")
- . I $$GET1^DIQ(52.49,I,1.3,"I"),$$GET1^DIQ(52.49,I,1.5,"I"),$$GET1^DIQ(52.49,I,1.7,"I") D
- . . D UPDSTAT^PSOERXU1(I,"W")
+ . I $E($$GET1^DIQ(52.49,I,1,"E"))'="H" D
+ . . I $$GET1^DIQ(52.49,I,1.3,"I"),$$GET1^DIQ(52.49,I,1.5,"I"),$$GET1^DIQ(52.49,I,1.7,"I") D  Q
+ . . . D UPDSTAT^PSOERXU1(I,"W")
+ . . I $$GET1^DIQ(52.49,I,1,"E")="N" D UPDSTAT^PSOERXU1(I,"I")
  Q
  ;
 VADEA(NPIEN,ERXIEN) ; Get Provider's VA DEA Matching DEATXT if possible. If no match, get default USER FOR INPATIENT DEA#.
@@ -140,12 +141,15 @@ VISTASIG(ERXIEN) ; Returns the VistA SIG, if present
  ; Input: (r) ERXIEN   - Pointer to ERX HOLDING QUEUE File (#52.49)
  ;Output:     VISTASIG - VistA SIG in one string
  ;
- N VISTASIG,SIG
+ N VISTASIG,SIG,INDFLG
  S VISTASIG=""
  S SIG=0 F  S SIG=$O(^PS(52.49,ERXIEN,"SIG",SIG)) Q:'SIG  D
  . S VISTASIG=VISTASIG_$G(^PS(52.49,ERXIEN,"SIG",SIG,0))
- ; VA Patient Instructions
- I $$GET1^DIQ(52.49,ERXIEN,27)'="" D
+ I VISTASIG="" Q ""
+ S INDFLG=$$GET1^DIQ(52.49,ERXIEN,29.1,"I")
+ ; VA Patient Instructions and Indication for Use
+ I $$GET1^DIQ(52.49,ERXIEN,27)'=""!(+$G(INDFLG))=1 D
+ . I +$G(INDFLG) S VISTASIG=VISTASIG_$S($E(VISTASIG,$L(VISTASIG))=" ":"",1:" ")_$$GET1^DIQ(52.49,ERXIEN,29) ;concatenate Indication for Use into the SIG
  . S VISTASIG=VISTASIG_$S($E(VISTASIG,$L(VISTASIG))=" ":"",1:" ")_$$GET1^DIQ(52.49,ERXIEN,27)
  Q VISTASIG
  ;
@@ -163,6 +167,6 @@ RENEWALS(ERXIEN) ; Returns whether Renewals are Prohibited or no
  ;
 SUFCHK(RESULT,ERXPRDEA,VADEADFL,ERXSUFF) ; Check for matching DEA, mismatched suffix
  I ERXPRDEA'="",($L(VADEADFL)>8),(ERXPRDEA'=VADEADFL),($P(ERXPRDEA,"-")=$P(VADEADFL,"-")),'$G(ERXSUFF) D  ; PSO*7*743
- . D SUFFWARN^PSOERXUT(.RESULT,ERXPRDEA,$S($L($G(VADEADFL)>8):VADEADFL,1:VADEANUM),0)
+ . D SUFFWARN^PSOERXUT(.RESULT,ERXPRDEA,$S($L($G(VADEADFL)>8):VADEADFL,1:$G(VADEANUM)),0)
  . S RESULT=$S($G(RESULT)="0^B":RESULT,1:"0^W")
  Q

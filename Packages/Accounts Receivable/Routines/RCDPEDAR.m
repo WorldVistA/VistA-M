@@ -1,17 +1,17 @@
 RCDPEDAR ;ALB/TMK - ACTIVITY REPORT ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,276,284,283,298,304,318,321,326,432**;Mar 20, 1995;Build 16
+ ;;4.5;Accounts Receivable;**173,276,284,283,298,304,318,321,326,432,439**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 RPT ; Daily Activity Rpt On Demand
- N POP,RCDET,RCDIV,RCDONLY,RCDT1,RCDT2,RCHDR,RCINC,RCLSTMGR,RCNJ
- N RCPAR,RCPAY,RCPYRSEL,RCRANGE,RCSTOP,RCTMPND,RCTYPE,VAUTD,X,XX,Y,%ZIS
+ N POP,RCDET,RCDIV,RCDONLY,RCDT1,RCDT2,RCEXCEL,RCEXSTOP,RCHDR,RCINC,RCLSTMGR,RCNJ  ;PRCA*4.5*439
+ N RCPAR,RCPAY,RCPYRSEL,RCRANGE,RCSTOP,RCTMPND,RCTYPE,RCUNBAL,VAUTD,X,XX,Y,%ZIS
  S RCNJ=0                                   ; Not the nightly job, user interactions
  D DIVISION^VAUTOMA                         ; IA 664 Select Division/Station - sets VAUTD
  I 'VAUTD,($D(VAUTD)'=11) Q
- S RCDET=$$RTYPE()                          ; Select Report Type (Summary/Detail)
+ S RCDET=$$RTYPE^RCDPEDA4()                 ; Select Report Type (Summary/Detail)
  Q:RCDET=-1
- S XX=$$DTRANGE(.RCDT1,.RCDT2)              ; Select Date Range to be used
+ S XX=$$DTRANGE^RCDPEDA4(.RCDT1,.RCDT2)     ; Select Date Range to be used
  Q:'XX
  ;
  ; PRCA*4.5*326 - Ask to show Medical/Pharmacy Tricare CHAMPVA or All
@@ -28,15 +28,28 @@ RPT ; Daily Activity Rpt On Demand
  . S RCPAR("DICA")="Select Insurance Company NAME: "
  . S XX=$$SELPAY^RCDPEU1(.RCPAR)
  ;
- S RCDONLY=$$DBTONLY()                      ; Debit only filter   ;PRCA*4.5*321
+ S RCDONLY=$$DBTONLY^RCDPEDA4()             ; Debit only filter   ;PRCA*4.5*321
  Q:RCDONLY=-1                               ; '^' or timeout
- S RCLSTMGR=$$ASKLM^RCDPEARL                ; Ask to Display in Listman Template
- Q:RCLSTMGR<0                               ; '^' or timeout
+ ;
+ S RCUNBAL=$$UNBALONLY^RCDPEDA4()           ; Unbalanced only filter   ;Add new filter, PRCA*4.5*439
+ Q:RCUNBAL=-1                               ; '^' or timeout
+ ;
+ ; PRCA*4.5*439 Add Excel, begin
+ ; if user selected detail report (RCDET=1), offer option of Excel format
+ S RCEXCEL=0,RCEXSTOP=0 I RCDET D  Q:RCEXSTOP
+ . S RCEXCEL=$$DISPTY^RCDPEM3() I RCEXCEL<0 S RCEXSTOP=1 Q
+ . ; display device info about Excel format, set ListMan flag to prevent question
+ . I RCEXCEL S RCLSTMGR="^" D INFO^RCDPEM6
+ . I $D(DUOUT)!$D(DTOUT) S RCEXSTOP=1 Q
+ ;
+ ; if not output to Excel ask for ListMan display, quit if timeout or "^"
+ S RCLSTMGR=0 I 'RCEXCEL S RCLSTMGR=$$ASKLM^RCDPEARL Q:RCLSTMGR<0
+ ; PRCA*4.5*439 Add Excel, end
  ;
  I RCLSTMGR=1 D  Q                          ; ListMan Template format, put in array
  . S RCTMPND="RCDPE_DAR"
  . K ^TMP($J,RCTMPND)
- . D EN(RCDET,RCDT1,RCDT2,RCLSTMGR,RCDONLY)
+ . D EN(RCDET,RCDT1,RCDT2,RCLSTMGR,RCDONLY,0,RCUNBAL)   ; PRCA*4.5*439 RCUNBAL
  . D LMHDR^RCDPEDA4(.RCSTOP,RCDET,1,RCDT1,RCDT2,.RCHDR,RCDONLY)
  . D LMRPT^RCDPEARL(.RCHDR,$NA(^TMP($J,RCTMPND))) ; Generate ListMan display
  . K ^TMP($J,RCTMPND)
@@ -48,7 +61,7 @@ RPT ; Daily Activity Rpt On Demand
  ;
  I $D(IO("Q")) D  Q                         ; Queued Report
  . N ZTDESC,ZTRTN,ZTSAVE,ZTSK
- . S ZTRTN="EN^RCDPEDAR("_RCDET_","_RCDT1_","_RCDT2_",0,"_RCDONLY_")" ;PRCA*4.5*321 added RCDONLY
+ . S ZTRTN="EN^RCDPEDAR("_RCDET_","_RCDT1_","_RCDT2_",0,"_RCDONLY_",0,"_RCUNBAL_")" ;PRCA*4.5*321 added RCDONLY ;PRCA*4.5*439 added RCUNBAL
  . S ZTDESC="AR - EDI LOCKBOX EFT DAILY ACTIVITY REPORT"
  . S ZTSAVE("RC*")="",ZTSAVE("VAUTD")=""
  . S ZTSAVE("^TMP(""RCDPEU1"",$J,")="" ; PRCA*4.5*326
@@ -59,60 +72,10 @@ RPT ; Daily Activity Rpt On Demand
  . D HOME^%ZIS
  ;
  U IO
- D EN(RCDET,RCDT1,RCDT2,RCLSTMGR,RCDONLY)
+ D EN(RCDET,RCDT1,RCDT2,RCLSTMGR,RCDONLY,RCEXCEL,RCUNBAL)    ;PRCA*4.5*439 Add RCEXCEL, added RCUNBAL
  Q
  ;
-DBTONLY() ; Allows the user to select filter to only show EFTs with debits
- ; PRCA*4.5*321 Added subroutine
- ; Input:   None
- ; Returns: 0       - All EFTs to display
- ;          1       - Only EFTs with debits to be displayed
- ;         -1       - User up-arrowed or timed out
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT
- S DIR("A")="Show EFTs with debits only? "
- S DIR(0)="SA^Y:YES;N:NO"
- S DIR("B")="NO"
- S DIR("?",1)="Enter 'YES' to only show EFTs with a debit flag of 'D'."
- S DIR("?")="Enter 'NO' to show all EFTs."
- D ^DIR
- I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
- Q $E(Y,1)="Y"
- ;
-RTYPE() ; Allows the user to select the report type (Summary/Detail)
- ; Input:   None
- ; Returns: 0       - Summary Display
- ;          1       - Detail Display
- ;         -1       - User up-arrowed or timed out
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT
- S DIR("A")="(S)UMMARY OR (D)ETAIL?: "
- S DIR(0)="SA^S:SUMMARY TOTALS ONLY;D:DETAIL AND TOTALS"
- S DIR("B")="D"
- D ^DIR
- I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
- Q Y="D"
- ;
-DTRANGE(STDATE,ENDDATE) ; Allows the user to select the date range to by used
- ; Input:   None
- ; Output:  STDATE  = Internal Fileman Date to start at
- ;          ENDDATE - Internal Fileman Date to end at
- ; Returns: 0 - User up-arrowed or timed out, 1 otherwise
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT
- S DIR("?")="Enter the earliest date of receipt of deposit to include on the report."
- S DIR(0)="DAO^:"_DT_":APE"
- S DIR("A")="START DATE: "
- D ^DIR
- Q:$D(DTOUT)!$D(DUOUT)!(Y="") 0
- S STDATE=Y
- K DIR
- S DIR("?")="Enter the latest date of receipt of deposit to include on the report."
- S DIR("B")=Y(0)
- S DIR(0)="DAO^"_RCDT1_":"_DT_":APE",DIR("A")="END DATE: "
- D ^DIR
- Q:$D(DTOUT)!$D(DUOUT)!(Y="") 0
- S ENDDATE=Y
- Q 1
- ;
-EN(RCDET,RCDT1,RCDT2,RCLSTMGR,DONLY) ; Entry point for report, might be queued
+EN(RCDET,RCDT1,RCDT2,RCLSTMGR,DONLY,RCEXCEL,RCUNBAL) ; Entry point for report, might be queued
  ; Input:   RCDET       - 1 - Detail Report, 0 - Summary
  ;          RCDT1       - Internal Fileman Start date
  ;          RCDT2       - Internal Fileman End date
@@ -120,14 +83,20 @@ EN(RCDET,RCDT1,RCDT2,RCLSTMGR,DONLY) ; Entry point for report, might be queued
  ;                        Optional, defaults to 0
  ;          DONLY       - 1 only display EFTs with a debit flag of 'D'
  ;                        0 display all EFTs
+ ;          RCEXCEL     - 1 display in Excel format, 0 otherwise  ;PRCA*4.5*439 Add Excel
+ ;                        Optional, defaults to 0
+ ;          RCUNBAL     - A - All, B - Balanced, U - Unbalanced ; PRCA*4.5*439 Add Unbalanced/Balanced selection
+ ;                        Optional, defaults to All
  ;          RCPAY       - A - All Payers selected
  ;                      - R - Range of Payers
  ;                      - S - Specific payers
  ;          RCPYRSEL    - Array of selected payers (Only present if A1=3 above
  ;          VAUTD       - 1 - All selected divisions OR an array of selected divisions
- N DFLG,DTADD,IEN3443,IEN34431,INPUT,RCFLG,RCJOB,RCT,XX,Z   ; PRCA*4.5*321 Added DFLG
+ N DFLG,DTADD,IEN3443,IEN34431,INPUT,RCDBAL,RCDBALOK,RCFLG,RCJOB,RCT,XX,Z   ; PRCA*4.5*321 Added DFLG ; PRCA*4.5*439 Added RCDBAL,RCDBALOK
  N:$G(ZTSK) ZTSTOP                          ; Job was tasked, ZTSTOP = flag to stop
  S:'$D(RCLSTMGR) RCLSTMGR=0
+ S:'$D(RCEXCEL) RCEXCEL=0  ;PRCA*4.5*439 Add Excel
+ S:'$D(RCUNBAL) RCUNBAL="A"  ;PRCA*4.5*439 Add Unbalanced/Balanced selection
  S RCPAY=$G(RCPAY,"A") ; PRCA*4.5*326
  ;
  S XX=$S(RCLSTMGR:1,1:0)
@@ -143,6 +112,7 @@ EN(RCDET,RCDT1,RCDT2,RCLSTMGR,DONLY) ; Entry point for report, might be queued
  S $P(INPUT,"^",4)=0                        ; Current Page Number
  S $P(INPUT,"^",5)=0                        ; Stop Flag
  S $P(INPUT,"^",10)=DONLY
+ S $P(INPUT,"^",11)=RCUNBAL                 ; User selection: A - All, B - Balanced, U - Unbalanced  PRCA*4.5*439
  F  D  Q:'DTADD  Q:DTADD>(RCDT2_".9999")  Q:$P(INPUT,"^",5)=1
  . S DTADD=$O(^RCY(344.3,"ARECDT",DTADD))
  . Q:'DTADD
@@ -151,6 +121,15 @@ EN(RCDET,RCDT1,RCDT2,RCLSTMGR,DONLY) ; Entry point for report, might be queued
  . F  D  Q:'IEN3443  Q:$P(INPUT,"^",5)=1
  . . S IEN3443=$O(^RCY(344.3,"ARECDT",DTADD,IEN3443))
  . . Q:'IEN3443
+ . . ;Add block of code to check for balanced or out of balance deposits PRCA*4.5*439
+ . . ;Check user's filter selection, match to balance state of deposit
+ . . ;Only check for balanced or not if user did not select 'A' for ALL.
+ . . I RCUNBAL'="A" S RCDBALOK=1 D  I 'RCDBALOK Q   ;If deposit balance/unbalance doesn't match user selection, quit to ignore this deposit.
+ . . . S RCDBAL=$$DEPBAL^RCDPEDA4(IEN3443)  ;Check deposit balance. Compare to EFT totals. 1 if in balance, 0 if out of balance.
+ . . . ; If user selected unbalanced deposits in filter selection, skip balanced deposits by setting okay flag to zero (RCDBALOK).
+ . . . I RCUNBAL="U" S:RCDBAL RCDBALOK=0 Q
+ . . . ; If user selected balanced deposits in filter selection, skip unbalanced deposits by setting okay flag to zero (RCDBALOK).
+ . . . I RCUNBAL="B" S:'RCDBAL RCDBALOK=0 Q 
  . . S IEN34431="",RCFLG=0
  . . F  D  Q:IEN34431=""
  . . . S IEN34431=$O(^RCY(344.31,"B",IEN3443,IEN34431))
@@ -181,7 +160,8 @@ EN(RCDET,RCDT1,RCDT2,RCLSTMGR,DONLY) ; Entry point for report, might be queued
  I '$P(INPUT,"^",5) D
  . S $P(INPUT,"^",6)=RCDT1                  ; Start of Date Range
  . S $P(INPUT,"^",7)=RCDT2                  ; End of Date Range
- . D RPT1(.INPUT)
+ . I 'RCEXCEL D RPT1(.INPUT)
+ . I RCEXCEL D EXCEL(INPUT)                 ; Print in Excel format ; PRCA*4.5*439 Add EXCEL
  D ENQ(INPUT)
  Q
  ;
@@ -279,3 +259,138 @@ CHKDIV(IEN,FLG,VAUTD) ;
  S I=0 I 'VAUTD F  S I=$O(VAUTD(I)) Q:'I!RES  I NAME=VAUTD(I) S RES=1
 CHKDIVX ;
  Q RES
+ ;
+EXCEL(INPUT) ; Loop to print Excel Format ;PRCA*4.5*439 Add EXCEL tag
+ ; Input:   INPUT       - A1^A2^A3^...^An Where:
+ ;                         A1 - 1 if called from Nightly Process, 0 otherwise
+ ;                         A2 - 1 if displaying to Listman, 0 otherwise
+ ;                         A4 - Current Page Number
+ ;                         A5 - Stop Flag
+ ;                         A6 - Start of Date Range
+ ;                         A7 - End of Date Range
+ ; Output in Excel Format
+ D EXCELHDR^RCDPEDA4
+ N DTADD,IEN3443,IEN34431
+ ;
+ S DTADD=""
+ F  D  Q:DTADD=""  Q:$P(INPUT,"^",5)=1
+ . S DTADD=$O(^TMP("RCDAILYACT",$J,DTADD)) Q:DTADD=""
+ . S IEN3443=""
+ . F  S IEN3443=$O(^TMP("RCDAILYACT",$J,DTADD,IEN3443)) Q:'IEN3443  D
+ . . S IEN34431=""
+ . . F  S IEN34431=$O(^TMP("RCDAILYACT",$J,DTADD,IEN3443,"EFT",IEN34431)) Q:'IEN34431  D
+ . . . D EXCEL2(IEN3443,IEN34431)
+ ;
+ W !!,"*** END OF REPORT ***",!
+ Q
+ ;
+EXCEL2(IEN3443,IEN34431)  ; Print lines in Excel format ;PRCA*4.5*439 Add EXCEL3 tag
+ ; Output in Excel foramt
+ ; Input:   IEN3443    - Internal IEN for 344.3
+ ;          IEN34431   - Internal IEN for file 344.31
+ ;
+ N DEPDT,DEPNUM,DFLG,IEN344,MDT,MULT,PAMT,PAYER,PAYID,RCDBAL,RCDEBIT,TOTDEP,TRDOC,TRDOCS,TRSTAT,X,XX,YY
+ ;PRCA*4.5*380 - Check for multiple mail messages on this deposit
+ S:$O(^RCY(344.3,IEN3443,3,0))'="" MULT="*"
+ ;PRCA*4.5*380 - Check if prior deposits exist
+ S DEPNUM=$$GET1^DIQ(344.3,IEN3443,.06,"I"),DEPDT=$$GET1^DIQ(344.3,IEN3443,.07,"I")      ; Deposit Number and Deposit Date
+ S XX=$O(^RCY(344.3,"ADEP2",DEPNUM,DEPDT,0)),XX=$O(^RCY(344.3,"ADEP2",DEPNUM,DEPDT,XX))
+ S:XX'="" MULT=$G(MULT)_"+"
+ S TOTDEP=$$GET1^DIQ(344.3,IEN3443,.08,"I")                                              ; Total Deposit
+ S RCDBAL=$$DEPBAL^RCDPEDA4(IEN3443),RCDBAL=$S(RCDBAL:"",1:"UNBALANCED")                 ; Is Deposit balanceD, 0-No, 1-Yes
+ ;PRCA*4.5*380 - Include multi-mail message indicator with date
+ W !,DEPNUM,"^",RCDBAL,"^",$$FMTE^XLFDT(DEPDT\1,"2Z"),$G(MULT),"^",TOTDEP,"^"   ;Deposit #^Unbalanced Indicator^Deposit Date_Multi Flag^Total Deposit
+ S YY=$$GET1^DIQ(344.31,IEN34431,3,"E")             ; Debit/Credit flag ; PRCA*4.5*321 added line
+ S DFLG=$S(YY="D":1,1:0)                            ; PRCA*4.5*321 added line
+ S PAMT=$$GET1^DIQ(344.31,IEN34431,.07,"I")         ; Amount of Payment
+ S XX=+$$GET1^DIQ(344.31,IEN34431,.09,"I")          ; Receipt # from 344.31
+ S TRDOC=$$GET1^DIQ(344,XX,200,"I")                 ; FMS Document #
+ I $$GET1^DIQ(344,XX,201,"I") S X="ACCEPTED"        ; Default ON-LINE ENTRY status to accepted - PRCA*4.5*326
+ E  S X=$S(TRDOC'="":$$STATUS^GECSSGET(TRDOC),1:"") ; PRCA*4.5*326
+ S XX=$S(X="":"",X=-1:"NO FMS DOC",1:$E($P(X," ",1),1,10))
+ W XX,"^"
+ S XX=$$GET1^DIQ(344.31,IEN34431,.01,"E")           ; EFT Transaction detail - PRCA*4.5*326
+ W XX,"^"
+ S XX=$$GET1^DIQ(344.31,IEN34431,.12,"I")           ; Date Claims Paid
+ W $$FMTE^XLFDT(XX\1,"2Z"),"^"
+ S XX=$$GET1^DIQ(344.31,IEN34431,.07,"I")           ; Amount of Payment
+ S RCDEBIT=$$GET1^DIQ(344.31,IEN34431,3,"E")        ; Check for Debit
+ I '($E(XX)="-") S XX=$S(RCDEBIT="D":"-",1:"")_XX   ; If Debit, add minus sign
+ W XX,"^"
+ ;
+ S XX=$$GET1^DIQ(344.31,IEN34431,.08,"I")           ; Match Status, Internal
+ S YY=$$GET1^DIQ(344.31,IEN34431,.1,"I")            ; ERA IEN
+ S MDT=""
+ I XX=1 S MDT=$$MATCHDT^RCDPEWL7(IEN34431)          ; PRCA*4.5*326 - Date matched to ERA
+ S XX=$$GET1^DIQ(344.31,IEN34431,.08,"E")           ; Match Status, External
+ W XX,"^",YY,"^",MDT,"^"                            ; Match Status^ERA^Date Matched
+ S XX=$$GET1^DIQ(344.31,IEN34431,.04,"I")           ; Trace Number
+ W XX,"^"
+ S IEN344=$$GET1^DIQ(344.31,IEN34431,.09,"I")       ; Receipt IEN
+ S XX=""
+ I IEN344'="" S XX=$$GET1^DIQ(344,IEN344,200,"I")   ; FMS Document Number
+ W XX,"^"
+ S PAYER=$$GET1^DIQ(344.31,IEN34431,.02,"I")        ; Payer Name
+ S:PAYER="" PAYER="NO PAYER NAME RECEIVED"
+ S PAYID=$$GET1^DIQ(344.31,IEN34431,.03,"I")        ; Payer ID (TIN)
+ W PAYER,"^",PAYID,"^"                              ; Payer Name^Payer ID (TIN)
+ ; Get TR #s
+ D EXCELTR(IEN344,IEN34431,.TRDOCS,.TRSTAT) ; Get comma delimited list of TR document #s and status
+ W TRDOCS,"^"
+ S XX=""
+ I IEN344'="" S XX=$$GET1^DIQ(344,IEN344,.01,"I")   ; Receipt Number
+ W XX,"^"
+ W TRSTAT
+ Q
+ ;
+EXCELTR(IEN344,IEN34431,TRDOCS,TRSTAT) ;Get TR #s  ;PRCA*4.5*439 Add EXCELTR tag
+ ; Input:   IEN344     - Internal IEN for file 344
+ ;          IEN34431   - Internal IEN for file 344.31
+ ;          TRDOCS     - Variable to hold list of TR document numbers
+ ;
+ ; Output:  TRDOCS     - List of TR document numbers
+ ;
+ N IEN3444,IENS,RECEIPT,TRDOC,XX
+ S TRDOCS="",TRSTAT=""                            ; Initialize list of TR document numbers and status
+ S IEN3444=$$GET1^DIQ(344.31,IEN34431,.1,"I")     ; Internal IEN for for 344.4
+ S RECEIPT=+$$GET1^DIQ(344.31,IEN34431,.09,"I")   ; Receipt # from 344.31
+ Q:'IEN3444
+ I $L(RECEIPT) D                                  ; If a receipt exists, get FMS doc # and status
+ . S TRDOC=$TR($$GET1^DIQ(344,RECEIPT,200,"I")," ")           ; FMS Document #
+ . I $$GET1^DIQ(344,RECEIPT,201,"I") S TRSTAT="ACCEPTED"      ; Default ON-LINE ENTRY status to accepted - PRCA*4.5*326
+ . E  S TRSTAT=$S(TRDOC'="":$$STATUS^GECSSGET(TRDOC),1:"")
+ ;
+ S TRDOC=""
+ S RECEIPT=$$GET1^DIQ(344.4,IEN3444,.08,"I")      ; Receipt # from 344.4
+ I RECEIPT="" Q
+ S TRDOC=$TR($$GET1^DIQ(344,RECEIPT,200,"I")," ") ; FMS Document #
+ I TRDOC="" Q
+ S TRDOCS=TRDOC                                   ; First TR Document #
+ S XX=""
+ F  D  Q:XX=""                                    ; If EFT is matched to an ERA, look for additional TR Documents
+ . S XX=$O(^RCY(344.4,IEN3444,8,XX))
+ . Q:XX=""
+ . S IENS=XX_","_IEN3444_","
+ . S RECEIPT=$$GET1^DIQ(344.48,IENS,.01,"I")      ; Other receipt numbers
+ . I RECEIPT="" Q
+ . S TRDOC=$TR($$GET1^DIQ(344,RECEIPT,200,"I")," ")  ; FMS Document #
+ . Q:TRDOC=""
+ . S TRDOCS=TRDOCS_","_TRDOC                      ; Comma delimited list of TR Document #s
+ Q
+ ;
+EXCELRST(IEN344,TRDOCS,TRSTAT)                ; Get Deposit Receipt Status  ;PRCA*4.5*439 Add EXCELRST tag
+ ; Input:   IEN344     - Internal IEN for 344
+ ;          TRDOCS     - Variable to hold list of TR document numbers
+ ;          TRSTAT     - Variable to hold Deposit Receipt Status
+ ;
+ ; Output:  TRSTAT     - Deposit Receipt Status
+ ;
+ N TRDOC,X
+ S TRSTAT=""                                                   ; Initialize status to null
+ S TRDOC=$P(TRDOCS,",",1)                                      ; Get first TR document, Deposit Receipt Status is null
+ Q:'$L(TRDOC)                                                  ; Quit if there isn't a TR document
+ I $$GET1^DIQ(344,IEN344,201,"I") S X="ACCEPTED"               ; Default ON-LINE ENTRY status to accepted - PRCA*4.5*326
+ E  S X=$S(TRDOC'="":$$STATUS^GECSSGET(TRDOC),1:"")            ; PRCA*4.5*326
+ S TRSTAT=$S(X="":"",X=-1:"NO FMS DOC",1:$E($P(X," ",1),1,10)) ; FMS Document Status for EFT
+ Q
+ ; Moved tags RCDPEDA4: RTYPE, DTRANGE, DBTONLY, EXCELHDR; PRCA*4.5*439

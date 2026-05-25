@@ -1,13 +1,10 @@
-MAGDHOW4 ;WOIFO/PMK - Capture Consult/GMRC data ;17 Sep 2018 9:39 AM
- ;;3.0;IMAGING;**138,208**;Mar 19, 2002;Build 6;Sep 03, 2013
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDHOW4 ;WOIFO/PMK - Capture Consult/GMRC data ; Oct 04, 2022@07:55:05
+ ;;3.0;IMAGING;**138,208,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -97,7 +94,7 @@ OBR(HLMSTATE,GMRCIEN,SAVEORCSEG,SERVICE) ; build the OBR segment (see OBR^GMRCHL
  ; store consult and clinic identification info in "filler field 2"
  ;   <itype code> _ <itype name>
  ; ` <service ien> _ <service name>
- ; ` <division station number> _ <division name>
+ ; ` <division INSTITUTION file (#4) IEN> _ <division name>
  ; ` <current CPRS GMRC or Appointment Scheduling status>
  ;
  S Z=ITYPCODE_"_"_ITYPNAME_"```"

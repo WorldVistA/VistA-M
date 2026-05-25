@@ -1,5 +1,5 @@
 IBECEAU ;ALB/CPM - Cancel/Edit/Add... Utilities ;11-MAR-93
- ;;2.0;INTEGRATED BILLING;**91,249,402,651,663,678,715**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**91,249,402,651,663,678,715,769**;21-MAR-94;Build 42
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 CHECK(TALK) ; Retrieve the institution and MAS Service pointer.
@@ -61,6 +61,7 @@ CNPQ Q +$G(Y)
  ;
 HDR(OPT) ; Display the header for an action
  ; Input:    OPT  --  Action Header
+ I $G(IBSYNC)="-1" K IBSYNC Q  ;Don't print header if billing clock is out of sync and user not proceeding, IB*2*769
  N ADD,HDR S ADD=OPT="A D D"
  D CLEAR^VALM1 S IBY=1,HDR=OPT_"   A   C H A R G E"
  I 'ADD S IBIDX=$G(^TMP("IBACMIDX",$J,IBNBR)),IBN=+$P(IBIDX,"^",4),IBND=$G(^IB(IBN,0))

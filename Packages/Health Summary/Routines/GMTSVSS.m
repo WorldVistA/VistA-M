@@ -1,25 +1,24 @@
-GMTSVSS ; SLC/KER - Selected Vital Signs           ; 02/27/2002
- ;;2.7;Health Summary;**8,20,28,35,49,78,107**;Oct 20, 1995;Build 3
- ;                          
- ; External References
- ;   DBIA  4791  EN1^GMVHS
- ;   DBIA 10141  $$VERSION^XPDUTL
- ;   DBIA 10015  EN^DIQ1
- ;   DBIA 10022  %XY^%RCR
- ;                    
- ; Health Summary patch GMTS*2.7*35 will require 
+GMTSVSS ;SLC/KER - Selected Vital Signs ;Feb 19, 2026@11:15
+ ;;2.7;Health Summary;**8,20,28,35,49,78,107,147**;Oct 20, 1995;Build 5
+ ;
+ ; REFERENCE     ICR NUMBER
+ ; ========================
+ ; EN1^GMVHS       4791
+ ;
+ ; Health Summary patch GMTS*2.7*35 will require
  ; Vitals version 4.0, patch GMRV*4.0*7
- ;                          
+ ;
 OUTPAT ; Outpatient Select Vitals Signs Main control
  N CNT,COL,COLL,HDR,GMTSDA,GMTSDT,GMTSF,GMTSI,GMW,GMRVSTR,LOOP,MAX,ROW,WIDTH
+ N GMTSMVF
  K ^UTILITY($J,"GMRVD") S MAX=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:100)
  S GMTSI=0 F  S GMTSI=$O(GMTSEG(GMTSEGN,120.51,GMTSI)) Q:GMTSI'>0  S GMTSDA=GMTSEG(GMTSEGN,120.51,GMTSI) D BLDSTR
  Q:'$D(GMRVSTR)
  S GMRVSTR(0)=GMTSBEG_U_GMTSEND_U_MAX_U_1
  ;   Set to only get Vital Sign for Clinics
  S GMRVSTR("LT")="^C^"
- ;D BLDHDR,EN1^GMRVUT0
  D BLDHDR,EN1^GMVHS
+ S GMTSMVF=$$IMDSORD^GMTSVS
  ;   If no data, display most recent inpatient measurements
  I '$D(^UTILITY($J,"GMRVD")) D  Q
  . D CKP^GMTSUP Q:$D(GMTSQIT)  W "*** No Outpatient measurements ***",!!
@@ -34,15 +33,15 @@ OUTPAT ; Outpatient Select Vitals Signs Main control
  K ^UTILITY($J,"GMRVD"),GMTSVMVR
  Q
 ENVS ; Set up for extraction routine
- N CNT,COL,COLL,HDR,HDR1,GMTSDA,GMTSDT,GMTSF,GMTSI,GMW,LOOP,ROW,WIDTH
+ N CNT,COL,COLL,HDR,HDR1,GMTSDA,GMTSDT,GMTSF,GMTSI,GMW,LOOP,ROW,WIDTH,GMTSMVF
  K ^UTILITY($J,"GMRVD"),GMRVSTR("LT")
  S MAX=$S(+($G(MAX))>0:MAX,+($G(MAX))'>0&(+($G(GMTSNDM))>0):+($G(GMTSNDM)),1:100)
  S GMTSI=0 F  S GMTSI=$O(GMTSEG(GMTSEGN,120.51,GMTSI)) Q:GMTSI'>0  S GMTSDA=GMTSEG(GMTSEGN,120.51,GMTSI) D BLDSTR
  Q:'$D(GMRVSTR)
  S GMRVSTR(0)=GMTSBEG_U_GMTSEND_U_MAX_U_1
- ;D BLDHDR,EN1^GMRVUT0
  D BLDHDR,EN1^GMVHS
  I '$D(^UTILITY($J,"GMRVD")) Q
+ S GMTSMVF=$$IMDSORD^GMTSVS
  S ROW=1 D NXTROW
  D WRTHDR,WRTHDR1
  S GMTSDT="" F GMTSF=1:1:MAX S GMTSDT=$O(^UTILITY($J,"GMRVD",GMTSDT)) Q:GMTSDT'>0  D WRT Q:$D(GMTSQIT)  D CKP^GMTSUP Q:$D(GMTSQIT)  W !
@@ -53,10 +52,9 @@ ENVS ; Set up for extraction routine
  K ^UTILITY($J,"GMRVD"),GMTSVMVR
  Q
 BLDSTR ; Builds GMRVSTR string for extract call
- N DA,DIC,DIQ,DR,VIT
+ N VIT
  S GMTSVMVR=+$$VERSION^XPDUTL("GMRV")
- S DIQ="VIT(",DIQ(0)="E",DIC=120.51,DR="1",DA=GMTSDA
- D EN^DIQ1 S VIT=VIT(120.51,DA,1,"E")
+ S VIT=$$FIELD^GMVGETVT(GMTSDA,2,"E")
  S GMRVSTR=$S($D(GMRVSTR):GMRVSTR_";"_VIT,1:VIT)
  Q
 BLDHDR ; Builds the HDR array
@@ -99,16 +97,16 @@ WRTHDR ; Writes Header
 WRTHDR1 ; Writes 2nd line of header
  N GMI
  I GMTSVMVR'>3 F GMI=0:1:5 D CKP^GMTSUP Q:'$D(HDR(GMI))!($D(GMTSQIT))  D
- . I $P(HDR(GMI),U)="HT" W ?$P(COL,U,GMI+1),"IN(CM)"
- . I $P(HDR(GMI),U)="WT" W ?$P(COL,U,GMI+1),"LB(KG)"
- . I $P(HDR(GMI),U)="T" W ?$P(COL,U,GMI+1),"F(C)"
+ . I $P(HDR(GMI),U)="HT" W ?$P(COL,U,GMI+1),$S(GMTSMVF:"CM(IN)",1:"IN(CM)")
+ . I $P(HDR(GMI),U)="WT" W ?$P(COL,U,GMI+1),$S(GMTSMVF:"KG(LB)",1:"LB(KG)")
+ . I $P(HDR(GMI),U)="T" W ?$P(COL,U,GMI+1),$S(GMTSMVF:"C(F)",1:"F(C)")
  I GMTSVMVR>3 S GMI="" F  S GMI=$O(HDR(GMI)) Q:(GMI="")  Q:('$D(HDR(GMI)))!($D(GMTSQIT))  D CKP^GMTSUP D
- . I $P(HDR(GMI),U)="HT" W ?$P(COL,U,GMI+1),"IN(CM)"
- . I $P(HDR(GMI),U)="WT" W ?$P(COL,U,GMI+1),"LB(KG)[BMI]"
- . I $P(HDR(GMI),U)="T" W ?$P(COL,U,GMI+1),"F(C)"
- . I $P(HDR(GMI),U)="CVP" W ?$P(COL,U,GMI+1),"CMH20(MMHG)"
+ . I $P(HDR(GMI),U)="HT" W ?$P(COL,U,GMI+1),$S(GMTSMVF:"CM(IN)",1:"IN(CM)")
+ . I $P(HDR(GMI),U)="WT" W ?$P(COL,U,GMI+1),$S(GMTSMVF:"KG(LB)",1:"LB(KG)")_"[BMI]"
+ . I $P(HDR(GMI),U)="T" W ?$P(COL,U,GMI+1),$S(GMTSMVF:"C(F)",1:"F(C)")
+ . I $P(HDR(GMI),U)="CVP" W ?$P(COL,U,GMI+1),$S(GMTSMVF:"MMHG(CMH2O)",1:"CMH2O(MMHG)")
  . I $P(HDR(GMI),U)="PO2" W ?$P(COL,U,GMI+1),"(L/MIN)(%)"
- . I $P(HDR(GMI),U)="CG" W ?$P(COL,U,GMI+1),"IN(CM)"
+ . I $P(HDR(GMI),U)="CG" W ?$P(COL,U,GMI+1),$S(GMTSMVF:"CM(IN)",1:"IN(CM)")
  D CKP^GMTSUP Q:$D(GMTSQIT)  W !!
  Q
 WRT ; Writes vitals record for one observation time
@@ -118,22 +116,28 @@ WRT ; Writes vitals record for one observation time
  I GMTSVMVR'>3 F GMTSI=0:1:5 S GMTSVI=$O(HDR(GMTSVI)) Q:GMTSVI=""!($D(GMTSQIT))  D
  . S GMTSVT=$P(HDR(GMTSVI),U),IEN=$O(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,0))
  . I +IEN D CKP^GMTSUP Q:$D(GMTSQIT)  D
- . . S GMTSVAL=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,8)
+ . . I GMTSMVF,("^HT^WT^T^CG^CVP^"[(U_GMTSVT_U)) S GMTSVAL=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,13)
+ . . E  S GMTSVAL=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,8)
  . . W ?$P(COL,U,GMTSI+1),GMTSVAL
- . . S GMTSMET=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,13) I GMTSMET'="" W "("_$P(^(+IEN),U,13)_")"
+ . . I GMTSMVF,("^HT^WT^T^CG^CVP^"[(U_GMTSVT_U)) S GMTSMET=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,8)
+ . . E  S GMTSMET=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,13)
+ . . I GMTSMET'="" W "("_GMTSMET_")"
  . . Q
  . Q
  I GMTSVMVR>3 F GMTSI=0:1 S GMTSVI=$O(HDR(GMTSVI)) Q:GMTSVI=""!($D(GMTSQIT))  D
  . S GMTSVT=$P(HDR(GMTSVI),U),IEN=$O(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,0))
  . I +IEN D CKP^GMTSUP Q:$D(GMTSQIT)  D
- . . S GMTSVAL=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,8)
+ . . I GMTSMVF,("^HT^WT^T^CG^CVP^"[(U_GMTSVT_U)) S GMTSVAL=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,13)
+ . . E  S GMTSVAL=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,8)
  . . S:GMTSVT="PN"&(GMTSVAL=99) GMTSVAL="Unable to Respond" ;p.107 changed from "No Response" to "Unable to Respond"
  . . S:GMTSVT="P"&(GMTSVAL?1A.E) GMTSVAL=$E(GMTSVAL,1,7)
  . . W ?$P(COL,U,GMTSI+1),GMTSVAL
  . . S GMTSMET=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,13,17)
  . . S GMTSLMIN=$P(GMTSMET,U,3),GMTSPERC=$P(GMTSMET,U,4)
  . . S GMTSQUAL=$P(GMTSMET,U,5) S:GMTSQUAL]"" GMTSQUAL=$E(GMTSQUAL,1,15)
- . . S GMTSBMI=$P(GMTSMET,U,2),GMTSMET=$P(GMTSMET,U,1)
+ . . S GMTSBMI=$P(GMTSMET,U,2)
+ . . I GMTSMVF,("^HT^WT^T^CG^CVP^"[(U_GMTSVT_U)) S GMTSMET=$P(^UTILITY($J,"GMRVD",GMTSDT,GMTSVT,+IEN),U,8)
+ . . E  S GMTSMET=$P(GMTSMET,U,1)
  . . I GMTSMET'="" W "("_GMTSMET_")" ;   centigrade/kilos/centimeters
  . . I GMTSBMI'="" W "["_GMTSBMI_"]" ;   body mass index
  . . I GMTSLMIN'=""!(GMTSPERC'="") W "["_GMTSLMIN_"]["_GMTSPERC_"]" ; [liters/min supplemental O2][% supplemental O2]

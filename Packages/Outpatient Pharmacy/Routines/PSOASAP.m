@@ -1,8 +1,9 @@
-PSOASAP ;BIRM/MFR - American Society for Automation in Pharmacy (ASAP) Field Values ;09/30/15
- ;;7.0;OUTPATIENT PHARMACY;**451,496,625**;DEC 1997;Build 42
+PSOASAP ;BIRM/MFR - American Society for Automation in Pharmacy (ASAP) Field Values ;Jun 04, 2025@11:49:34
+ ;;7.0;OUTPATIENT PHARMACY;**451,496,625,772**;DEC 1997;Build 105
  ;
- ; *** TH Segment - Transaction Header ***
+ ; *** TH Segment - Transaction Header *****
 TH01() ;ASAP Version (3.0, 4.0, 4.1, 4.2, etc.)
+ I $$VERSIONLOCKED^PSOSPMU0($P(PSOASVER,"_")) Q $P(PSOASVER,"_")
  Q PSOASVER
  ;
 TH02() ;ASAP 3.0 : Business Partner Implemetation Version (Not Used)
@@ -23,7 +24,7 @@ TH05() ;ASAP 3.0 : Message Type (Not Used)
  ;
 TH06() ;ASAP 3.0 : Response ID (Not Used)
  ;      ASAP 4.0+: Creation Time. Format: HHMMSS or HHMM
- Q $$TH06^PSOASAP0()
+ Q $$TH06^PSOASAP2()  ; pso*7*772  need to perform different assignments depending on version
  ;
 TH07() ;ASAP 3.0 : Project ID (Not Used)
  ;      ASAP 4.0+: File Type. Returns: "T" - Test or "P" - Production
@@ -56,7 +57,7 @@ TH13() ;ASAP 3.0 : Data Segment Terminator Character
  ;
  ; *** IS Segment - Information Source ***
 IS01() ; Unique Information Source ID
- Q ("VA"_+$$SITE^VASITE())
+ Q $$IS01^PSOASAP2()   ; pso*7*772  need to perform different assignments depending on version
  ;
 IS02() ; Information Source Entity Name
  Q $$GET1^DIQ(4,+$$SITE^VASITE,100)
@@ -74,10 +75,12 @@ IS03() ;ASAP 3.0 : Address Information 1 (Not Used)
  ;
 IS04() ;ASAP 3.0 : Address Information 2 (Not Used)
  ;      ASAP 4.0+: N/A
- Q ""
+ ;      ASAP 5.0 : send VistA vendor
+ Q "DEPT OF VET AFFAIRS - OFFICE OF INFORMATION AND TECHNOLOGY"
  ;
 IS05() ;ASAP 3.0 : City Address (Not Used)
  ;      ASAP 4.0+: N/A
+ ;      ASAP 5.0 : send null
  Q ""
  ;
 IS06() ;ASAP 3.0 : State Address (Not Used)
@@ -161,7 +164,8 @@ PHA08() ;Pharmacy State Address
  Q $$GET1^DIQ(5,STATEIEN,1)
  ;
 PHA09() ;Pharmacy ZIP Code
- Q $$NUMERIC^PSOASAP0($$GET1^DIQ(59,SITEIEN,.05))
+ I PSOASVER<5.0 Q $$NUMERIC^PSOASAP0($$GET1^DIQ(59,SITEIEN,.05))
+ Q $$GET1^DIQ(59,SITEIEN,.05)   ;pso*7*772  no need to exclude hyphen(s) for 5.0+
  ;
 PHA10() ;Phone Number
  Q $$PHA10^PSOASAP0()
@@ -226,7 +230,7 @@ PAT15() ;Patient State Address
  Q $$PAT15^PSOASAP0()
  ;
 PAT16() ;Patient ZIP Code
- Q $$PAT16^PSOASAP0()
+ Q $$PAT16^PSOASAP2()
  ;
 PAT17() ;Patient Phone Number
  Q $$PAT17^PSOASAP0()
@@ -251,57 +255,6 @@ PAT22() ;ASAP 3.0 : Primary Prescription Coverage Type (Not Used)
  Q $$PAT22^PSOASAP0()
  ;
 PAT23() ;ASAP 3.0: Secondary Prescription Coverage Type (Not Used)
- Q ""
- ;
-PAT24() ;ASAP 3.0: Language Code (Not Used)
- Q ""
- ;
-PAT25() ;ASAP 3.0: Work Phone Number (Not Used)
- Q ""
- ;
-PAT26() ;ASAP 3.0: Alternate Phone Number (Not Used)
- Q ""
- ;
-PAT27() ;ASAP 3.0: Drivers License Number
- Q ""
- ;
-PAT28() ;ASAP 3.0: Facility Code (Not Used)
- Q ""
- ;
-PAT29() ;ASAP 3.0: Unit Identifier (Not Used)
- Q ""
- ;
-PAT30() ;ASAP 3.0: Room Number (Not Used)
- Q ""
- ;
-PAT31() ;ASAP 3.0: Bed (Not Used)
- Q ""
- ;
-PAT32() ;ASAP 3.0: Medical Record Number (Not Used)
- Q ""
- ;
-PAT33() ;ASAP 3.0: Admission Date (Not Used)
- Q ""
- ;
-PAT34() ;ASAP 3.0: Admission Time (Not Used)
- Q ""
- ;
-PAT35() ;ASAP 3.0: Discharge Date (Not Used)
- Q ""
- ;
-PAT36() ;ASAP 3.0: Discharge Time (Not Used)
- Q ""
- ;
-PAT37() ;ASAP 3.0: Primary Coverage Start Date (Not Used)
- Q ""
- ;
-PAT38() ;ASAP 3.0: Not Used
- Q ""
- ;
-PAT39() ;ASAP 3.0: Secondary Coverage Start Date (Not Used)
- Q ""
- ;
-PAT40() ;ASAP 3.0: Secondary Coverage Stop Date (Not Used)
  Q ""
  ;
  ; *** RX Segment - Prescription Order (ASAP 3.0 only) ***
@@ -341,7 +294,7 @@ RX11() ;Diagnosis Code Qualifier
 RX12() ;Diagnosis Code
  Q ""
  ;
-RX13() ;Product ID Qualifier (Always return "01" for 'NDC') 
+RX13() ;Product ID Qualifier (Always return "01" for 'NDC')
  Q "01"
  ;
 RX14() ;Product ID (NDC - National Drug Code)
@@ -423,7 +376,7 @@ DSP07() ;ASAP 3.0 : ;Unique System ID - Prescriber (Not Used)
  Q $$DSP07^PSOASAP0()
  ;
 DSP08() ;Product ID (NDC - National Drug Code) (ASAP 3.0: Not Used)
- Q $$DSP08^PSOASAP0()
+ Q $$DSP08^PSOASAP2()
  ;
 DSP09() ;ASAP 3.0: Date Filled
  ;       ASAP 4.0+: Quantity Dispensed
@@ -480,39 +433,20 @@ DSP21() ;ASAP 3.0: Level of Service Code (Not Used)
  Q ""
  ;
 DSP22() ;ASAP 3.0: Brand or Generic Indicator (Not Used)
+ ; ASAP 4.2+: Quantity Prescribed - assign the value from DSP09 Quantity
+ ;            Dispensed when the end-user activates DSP22 from Not Used
+ ;            to Required or Optional (on a custom, unlocked ASAP version)
+ I $E($G(PSOASVER),1,4)="4.2A"!($E($G(PSOASVER),1,4)="4.2B"!($E($G(PSOASVER),1,3)="5.0"))!(PSOASVER>5) Q $$DSP09^PSOASAP0()
  Q ""
  ;
 DSP23() ;ASAP 3.0: Patient Advisory Leaflet (Not Used)
- Q ""
+ ;       ASAP 4.2a+: Rx Sig  (added in 4.2a)
+ Q $$DSP23^PSOASAP1()
  ;
 DSP24() ;ASAP 3.0: Warning/Auxiliary Labels (Not Used)
  Q ""
  ;
 DSP25() ;ASAP 3.0: Warning/Auxiliary Labels (Not Used)
- Q ""
- ;
-DSP26() ;ASAP 3.0: Warning/Auxiliary Labels (Not Used)
- Q ""
- ;
-DSP27() ;ASAP 3.0: Warning/Auxiliary Labels (Not Used)
- Q ""
- ;
-DSP28() ;ASAP 3.0: Warning/Auxiliary Labels (Not Used)
- Q ""
- ;
-DSP29() ;ASAP 3.0: Bar Code on Vial Label (Not Used)
- Q ""
- ;
-DSP30() ;ASAP 3.0: Group Identifier (Not Used)
- Q ""
- ;
-DSP31() ;ASAP 3.0: Group Rx Count (Not Used)
- Q ""
- ;
-DSP32() ;ASAP 3.0: Partial Fill Indicator (Not Used)
- Q ""
- ;
-DSP33() ;ASAP 3.0: Priority (Not Used)
  Q ""
  ;
  ; *** PRE Segment - Prescriber Information ***
@@ -552,37 +486,8 @@ PRE09() ;ASAP 3.0: Prescriber' First Name
  Q $$PRE09^PSOASAP0()
  ;
 PRE10() ;ASAP 3.0: Prescriber' Middle Name
+ ;  ASAP 4.2B+ : Jurisdiction or State Issuing Prescriber License Number
  Q $$PRE10^PSOASAP0()
- ;
-PRE11() ;ASAP 3.0: Name Prefix (Not Used)
- Q ""
- ;
-PRE12() ;ASAP 3.0: Name Suffix (Not Used)
- Q ""
- ;
-PRE13() ;ASAP 3.0: Address Information - 1 (Not Used)
- Q ""
- ;
-PRE14() ;ASAP 3.0: Address Information - 2 (Not Used)
- Q ""
- ;
-PRE15() ;ASAP 3.0: City Address (Not Used)
- Q ""
- ;
-PRE16() ;ASAP 3.0: State Address (Not Used)
- Q ""
- ;
-PRE17() ;ASAP 3.0: Zip Code Address (Not Used)
- Q ""
- ;
-PRE18() ;ASAP 3.0: Phone Number (Not Used)
- Q ""
- ;
-PRE19() ;ASAP 3.0: Prescriber Specialty (Not Used)
- Q ""
- ;
-PRE20() ;ASAP 3.0: Prescriber Fax Number (Not Used)
- Q ""
  ;
  ; *** CDI Segment - Compound Drug Ingredient Detail ***
 CDI01() ;Compound Drug Ingredient Sequence Number (Not Used)
@@ -665,6 +570,69 @@ AIR10() ;First Name of Pharmacist (Not Used)
 AIR11() ;ASAP 4.2: Dropping Off/Picking Up Identifier Qualifier
  Q ""
  ;
+AIR12() ;(Not Used)
+ Q ""
+ ;
+AIR13() ; (Not Used)
+ Q ""
+ ;
+AIR14() ; (Not Used)
+ Q ""
+ ;
+AIR15() ;(Not Used)
+ Q ""
+ ;
+AIR16() ; (Not Used)
+ Q ""
+ ;
+AIR17() ; (Not Used)
+ Q ""
+ ;
+AIR18() ; (Not Used)
+ Q ""
+ ;
+AIR19() ; (Not Used)
+ Q ""
+ ;
+AIR20() ;(Not Used)
+ Q ""
+ ;
+AIR21() ;(Not Used)
+ Q ""
+ ;
+AIR22() ; (Not Used)
+ Q ""
+ ;
+AIR23() ; (Not Used)
+ Q ""
+ ;
+AIR24() ;(Not Used)
+ Q ""
+ ;
+AIR25() ; (Not Used)
+ Q ""
+ ;
+AIR26() ;(Not Used)
+ Q ""
+ ;
+AIR27() ; (Not Used)
+ Q ""
+ ;
+AIR28() ;(Not Used)
+ Q ""
+ ;
+AIR29() ;(Not Used)
+ Q ""
+ ;
+AIR30() ; (Not Used)
+ Q ""
+ ;
+AIR31() ; (Not Used)
+ Q ""
+ ;
+AIR32() ; (Not Used)
+ Q ""
+ ;
  ; *** RPH Segment - Pharmacist Information (ASAP 3.0 Only) ***
 RPH01() ;Reporting Status (Not Used)
  Q ""
@@ -738,7 +706,7 @@ PLN12() ;Relationship Code (Not Used)
  ;
  ; *** TP Segment - Pharmacy Trailer ***
 TP01() ;Detail Segment Count
- Q PSOTPCNT
+ Q $G(PSOTPCNT)
  ;
  ; *** TT Segment - Transaction Set Trailer ***
 TT01() ;Transaction Control Number

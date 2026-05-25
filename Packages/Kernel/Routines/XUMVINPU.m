@@ -1,10 +1,11 @@
-XUMVINPU ;MVI/DRI - Master Veteran Index New Person Utilities ;7/31/20  15:04
- ;;8.0;KERNEL;**691,711,710,732,733**;Jul 10, 1995;Build 0
+XUMVINPU ;MVI/DRI - Master Veteran Index New Person Utilities ;10/23/20  16:40
+ ;;8.0;KERNEL;**691,711,710,732,733,799**;Jul 10, 1995;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**711, Story  977780 (jfw)
  ;**732, Story 1204309 (mko)
  ;**733, Story 1291666 (dri)
+ ;**799 VAMPI-22625
  ;
 GET(XURET,XUDUZ,SECID,NPI,SSN) ;rpc to retrieve new person file data
  ; called from rpc: XUS MVI NEW PERSON GET
@@ -282,7 +283,8 @@ UPDATE(XURET,XUARR) ;rpc to update new person file data
  . I FLDNAM="NPI",IDATA="@" D  Q
  . . S XUFDA(200,XUDUZ_",",41.99)=IDATA,XUFDA(200,XUDUZ_",",41.98)=IDATA
  . . ;GET NPI TO BE DELETED FROM ARR(X+1)
- . . S ARR=$Q(@ARR) S NPI=$P(@ARR,"^",3),IENS=$O(^VA(200,XUDUZ,"NPISTATUS","C",NPI,""))_","_XUDUZ_",",XUFDA(200.042,IENS,.01)="@"
+ . . S ARR=$Q(@ARR) S NPI=$P(@ARR,"^",3) I $O(^VA(200,XUDUZ,"NPISTATUS","C",NPI,"")) S IENS=$O(^VA(200,XUDUZ,"NPISTATUS","C",NPI,""))_","_XUDUZ_",",XUFDA(200.042,IENS,.01)="@" ;**663 - STORY 783347 (dri) add check of npi in effective date mult
+ . . ;**799 VAMPI-22625
  . S XUFDA(FILENUM,$S(FILENUM=200:+$G(XUDUZ),1:+$G(NCIEN))_",",FLDNUM)=IDATA
  Q:$G(XURET(0))<0
  I '$G(NPINEW),'$D(XUFDA) S XURET(0)="-1^No data to file for record '"_XUDUZ_"' in file 200" Q

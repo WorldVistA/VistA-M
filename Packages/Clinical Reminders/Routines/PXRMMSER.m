@@ -1,8 +1,15 @@
-PXRMMSER ;SLC/PKR,AJB - Computed findings for military service information. ;02/08/2024
- ;;2.0;CLINICAL REMINDERS;**11,12,21,24,26,42,88**;Feb 04, 2005;Build 13
- ;Reference       ICR#
- ;MSDATA^DGMSE    5354
- ;OEIF^DGMSE      5354
+PXRMMSER ;SLC/PKR,AJB - Computed findings for military service information. ;Nov 06, 2024@12:58:57
+ ;;2.0;CLINICAL REMINDERS;**11,12,21,24,26,42,88,89**;Feb 04, 2005;Build 16
+ ;
+ ; Reference to CVEDT^DGCV in ICR #4156
+ ; Reference to MSDATA^DGSE in ICR #5354
+ ; Reference to OEIF^DGMSE in ICR #5354
+ ; Reference to ELIG^VADPT in ICR #10061
+ ; Reference to KVAR^VADPT in ICR #10061
+ ; Reference to SVC^VADPT in ICR #10061
+ ; Reference to $$FMTE^XLFDT in ICR #10103
+ ;
+ Q
  ;
  ;===============
 AORANGE(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
@@ -51,7 +58,7 @@ CVELIG(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;Computed finding for
  ;      (piece 1)  1 - qualifies as a CV
  ;                 0 - does not qualify as a CV
  ;                -1 - bad DFN or date
- ;      (piece 3)  1 - vet was eligible on date specified (or DT)      
+ ;      (piece 3)  1 - vet was eligible on date specified (or DT)
  ;                 0 - vet was not eligible on date specified (or DT)
  S CV=$P(RESULT,U,1),EDATE=$P(RESULT,U,2),ELIG=$P(RESULT,U,3)
  I 'CV S NFOUND=0 Q
@@ -258,6 +265,15 @@ OIF(DFN,NGET,BDT,EDT,NFOUND,TEST,DATE,DATA,TEXT) ;This computed
  . S TEST(NFOUND)=TEMP(FDATE,"TEST"),DATE(NFOUND)=FDATE
  . S (DATA(NFOUND,"VALUE"),DATA(NFOUND,"LOCATION"))=TEMP(FDATE,"DATA","LOCATION")
  . S TEXT(NFOUND)=TEMP(FDATE,"TEXT")
+ Q
+ ;
+ ;===============
+PGULF(DFN,TEST,DATE,VALUE,TEXT) ;Single value computed finding for
+ ; PERSIAN GULF INDICATOR
+ D GETSVCD(DFN)
+ S TEST=+$G(^TMP($J,"SVC",DFN,16))
+ I 'TEST Q
+ S DATE=$$NOW^PXRMDATE
  Q
  ;
  ;===============

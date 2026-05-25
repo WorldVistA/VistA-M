@@ -1,5 +1,5 @@
 PSOERXA0 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,586,617,651,545,743,769**;DEC 1997;Build 26
+ ;;7.0;OUTPATIENT PHARMACY;**467,586,617,651,545,743,769,770**;DEC 1997;Build 145
  ;
  Q
  ; All parameters are optional, however at least one needs to be passed in for processing to be sucessful.
@@ -121,6 +121,7 @@ PRVMTCH(PSORES,NPI,DEA,CS) ;
  I '$D(^VA(200,"ANPI",NPI)) S PSORES="0^No matching NPI." Q
  ; get a list of providers that match the NPI#
  S (NPIEN,NPCNT)=0 F  S NPIEN=$O(^VA(200,"ANPI",NPI,NPIEN)) Q:'NPIEN  D
+ .I $$GET1^DIQ(200,NPIEN,53.4,"I"),$$GET1^DIQ(200,NPIEN,53.4,"I")'>DT Q  ; inactive provider
  .S NPLIST(NPIEN)="",NPCNT=$G(NPCNT)+1
  ; no matches
  I '$D(NPLIST) S PSORES="0^Could not match provided NPI." Q
@@ -141,7 +142,7 @@ PRVMTCH(PSORES,NPI,DEA,CS) ;
  ..S DEACNT=$G(DEACNT)+1,DEAMTCH(SRCH)=""          ; PSO*7*743 End
  .S DEAMTCH(SRCH)="",DEACNT=$G(DEACNT)+1
  I DEACNT>1 S PSORES="0^Multiple DEA matches found." Q
- I DEACNT=0 S PSORES="0^NPI match, DEA mismatch." Q
+ I $G(CS),DEACNT=0 S PSORES="0^NPI match, DEA mismatch." Q
  S NDMTCH=$O(DEAMTCH(0))
  I '$$MEDAUTH(NDMTCH) S PSORES="0^NPI/DEA match, not authorized to write medication orders." Q
  I NDMTCH S PSORES=NDMTCH_U_$$GET1^DIQ(200,NDMTCH,.01,"E") Q

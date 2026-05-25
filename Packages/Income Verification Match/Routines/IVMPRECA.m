@@ -1,5 +1,5 @@
 IVMPRECA ;ALB/KCL,BRM,PJR,RGL,CKN,TDM,KUM - DEMOGRAPHICS MESSAGE CONSISTENCY CHECK ;7/06/24 11:16AM
- ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,34,58,56,115,144,121,151,145,164,210,215**;21-OCT-94;Build 14
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,34,58,56,115,144,121,151,145,164,210,215,219**;21-OCT-94;Build 36
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; This routine will perform data validation checks on uploadable
@@ -188,7 +188,7 @@ PID11 ; Perform consistency check for seq. 11
  . . . ; I ADDRTYPE="P"!(ADDRTYPE="VAB1")!(ADDRTYPE="VAB2")!(ADDRTYPE="VAB3")!(ADDRTYPE="VAB4") S ADDRESS(ADDRTYPE)=IVMPID(11,ADDSEQ)
  . . . Q:'$D(IVMALADT(ADDRTYPE))
  . . . I IVMALADT(ADDRTYPE)="" S ADDRESS(ADDRTYPE)=IVMPID(11,ADDSEQ)
- . . . ;IVM*2.0*164 - Uncomment below to enable confidentail address processing
+ . . . ;IVM*2.0*164 - Uncomment below to enable confidential address processing
  . . . I $P(IVMALADT(ADDRTYPE),"^")="CA" D
  . . . . S ADDRESS("CA")=IVMPID(11,ADDSEQ)
  . . . . S CONFADCT=$P(IVMALADT(ADDRTYPE),"^",2)
@@ -274,6 +274,28 @@ ZPDPA ; compare ZPD with DHCP
  I IVMXREF["ZPD32",$$AUTODOD^IVMLDEMD(DFN)
  ; IVM*2.0*210 - Preferred Language and Date/Time
  I IVMXREF["ZPD47",$$AUTOLANG^IVMPREC9(DFN)
+ Q
+ ;
+ZGDPA ; compare ZGD with DHCP
+ ; IVM*2.0*219 - Moved ZGD tag from IVMPREC8 and renamed it to ZGDPA tag to fix size error
+ ;   ZGD tag in IVMPREC8 now calls ZGDPA
+ S IVMADFLG=0
+ S IVMPIECE=$E(IVMXREF,4,7)
+ I $P(IVMSEG,HLFS,$E(IVMPIECE,1,2))]"" D
+ .; - set var IVMFLD to incoming HL7
+ .I 'IVMADFLG S IVMFLD=$P(IVMSEG,HLFS,IVMPIECE)
+ .; - ZGD06 as the ZGD address field is 5 ~ pieces
+ .I IVMXREF["ZGD06" D
+ ..S IVMADDR=$P(IVMSEG,HLFS,$E(IVMPIECE,1,2)),IVMPIECE=$E(IVMPIECE,3)
+ ..S IVMFLD=$P(IVMADDR,$E(HLECH),IVMPIECE),IVMADFLG=1
+ ..I IVMFLD]"",IVMPIECE=4 S IVMFLD=$O(^DIC(5,"C",IVMFLD,0))
+ ..I IVMFLD]"",IVMPIECE=5 S X=IVMFLD D ZIPIN^VAFADDR S IVMFLD=$G(X)
+ .; - if HL7 dt convert to FM dt
+ .I IVMXREF["ZGD08" S IVMFLD=$$FMDATE^HLFNC(IVMFLD)
+ .; - execute code on the 1 node and get DHCP
+ .S IVMDHCP="" X:$D(^IVM(301.92,+IVMDEMDA,1)) ^(1) S IVMDHCP=Y
+ .; if field from IVM <> DHCP-store for uploading
+ .I IVMFLD]"",(IVMFLD'=IVMDHCP) D STORE^IVMPREC9
  Q
  ;
 DODCK(DFN) ;this will check if Date of Death needs to be uploaded or not.

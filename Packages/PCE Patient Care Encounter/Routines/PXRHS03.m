@@ -1,5 +1,5 @@
-PXRHS03 ;SLC/SBW - PCE Visit data immunization extract ;Sep 08, 2023@13:07
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,210,216,217,236**;Aug 12, 1996;Build 17
+PXRHS03 ;SLC/SBW - PCE Visit data immunization extract ;08/02/2024
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,210,216,217,236,247**;Aug 12, 1996;Build 5
 IMMUN(DFN,PXFG,PXFILTER) ;Administered immunizations
  ;INPUT  : DFN      - Pointer to PATIENT file (#2)
  ;       : PXFG     - Primary sort order
@@ -83,6 +83,11 @@ IMMUN(DFN,PXFG,PXFILTER) ;Administered immunizations
  . . . I '$D(REC) Q
  . . . S PXVDATA=$S('+REC(9000010.11,DA,1207,"I"):"",1:$$GETMDATA(+REC(9000010.11,DA,1207,"I")))  ;manuf,lot #,exp dt
  . . . S VDATA=$$GETVDATA(+REC(9000010.11,DA,.03,"I"))
+ . . .;If the VISIT file entry does not exist, skip this entry.
+ . . . I VDATA=-1 D  Q
+ . . . . N VISITIEN
+ . . . . S VISITIEN=+REC(9000010.11,DA,.03,"I")
+ . . . . D NONEXISTENTVISIT^PXRHS02(9000010.11,DA,VISITIEN)
  . . . K PXVARRAY D GETVIS(DA,.PXVARRAY)
  . . . S PXVIMIEN=REC(9000010.11,DA,.01,"I")
  . . . S SNIMM=$P($G(^AUTTIMM(PXVIMIEN,0)),U,2)
@@ -175,6 +180,7 @@ GETVDATA(DA) ;Get location of encounter and outside location from visit file
  S DIC=9000010,DIQ="VREC(",DIQ(0)="IE"
  S DR=".01;.06;.07;.22;2101"
  D EN^DIQ1
+ I $D(VREC)=0 Q -1
  S HLOC=VREC(9000010,DA,.22,"E")
  S HLOCABB=$$GETHLOC^PXRHS02(+VREC(9000010,DA,.22,"I"))
  Q VREC(9000010,DA,.01,"I")_U_VREC(9000010,DA,.06,"E")_U_VREC(9000010,DA,.07,"I")_U_VREC(9000010,DA,2101,"E")_U_HLOC_U_HLOCABB
@@ -263,6 +269,11 @@ CONREF(DFN,PXFG,PXFILTER) ;Contraindicated and refused immunizations
  .N PXERROR,PXRESULT,PXDATA
  .S PXVCVX=$P($G(^AUTTIMM(PXIMM,0)),U,3)
  .S PXVDATA=$$GETVDATA($P($G(^AUPNVICR(PXIFN,0)),U,3))
+ .;If the VISIT file entry does not exist, skip this entry.
+ .I PXVDATA=-1 D  Q
+ .. N VISITIEN
+ .. S VISITIEN=$P($G(^AUPNVICR(PXIFN,0)),U,3)
+ .. D NONEXISTENTVISIT^PXRHS02(9000010.707,PXIFN,VISITIEN)
  .S PXEVENTDT=$P($G(^AUPNVICR(PXIFN,12)),U,1)
  .I PXEVENTDT="" S PXEVENTDT=$P(PXVDATA,U,1)
  .S PXVSTOP=$$SCREEN($G(PXFILTER),PXIMM,PXVCVX,.PXVCNT,PXEVENTDT) Q:PXVSTOP

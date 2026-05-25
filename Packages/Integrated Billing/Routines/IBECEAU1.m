@@ -1,5 +1,5 @@
 IBECEAU1 ;ALB/CPM - Cancel/Edit/Add... Clock Utilities ; 12-MAR-93
- ;;2.0;INTEGRATED BILLING;**57,704**;21-MAR-94;Build 49
+ ;;2.0;INTEGRATED BILLING;**57,704,769**;21-MAR-94;Build 42
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 CLSTR(DFN,DATE) ; Find the billing clock in effect on DATE.
@@ -12,7 +12,9 @@ CLSTR(DFN,DATE) ; Find the billing clock in effect on DATE.
  N X,Y
  K IBCLST S IBCLDA=""
  I '$G(DATE)!'$G(DFN) G CLSTRQ
- S X="" F  S X=$O(^IBE(351,"AIVDT",DFN,X)) Q:'X  S IBCLDA=0 F  S IBCLDA=$O(^IBE(351,"AIVDT",DFN,X,IBCLDA)) Q:'IBCLDA  S Y=$G(^IBE(351,IBCLDA,0)) I Y,$P(Y,"^",4)'=3,$P(Y,"^",3)'>DATE S IBCLST=Y G CLSTRQ
+ ;IB*2.0*769 - Ensure closed date is calculated when not set
+ S X="" F  S X=$O(^IBE(351,"AIVDT",DFN,X)) Q:'X  Q:$G(IBCLST)  S IBCLDA=0 F  S IBCLDA=$O(^IBE(351,"AIVDT",DFN,X,IBCLDA)) Q:'IBCLDA  D  Q:$G(IBCLST)
+ .S Y=$G(^IBE(351,IBCLDA,0)) I Y,$P(Y,"^",4)'=3,$P(Y,"^",3)'>DATE,DATE<=$S($P(Y,"^",10):$P(Y,"^",10),1:$$FMADD^XLFDT($P(Y,"^",3),364)) S IBCLST=Y
 CLSTRQ Q
  ;
 CLDSP(X,NAM) ; Display Billing Clock data for NAM.
@@ -41,7 +43,7 @@ CLINP(BEG,DIF,IBCLDA) ; Update Billing Clock Inpatient Days
  I 'Y!($D(DIRUT))!($D(DUOUT)) W !,"The billing clock has not been updated." G CLINPQ
  S DIE="^IBE(351,",DA=IBCLDA,DR=".09////"_DAYS_";13////"_DUZ_";14///NOW" D ^DIE
  W !,"The clock has been updated."
- I $$GET1^DIQ(351,IBCLDA_",",16,"I")=1 D EN^IBECECU1(DFN,IBCLDA)  ;IB*2.0*704 - Update billing clocks as other sites
+ I $$GET1^DIQ(351,IBCLDA_",",16,"I")=1 D EN^IBECECU1(DFN,IBCLDA,1)  ;IB*2.0*704/769 - Update billing clocks as other sites, include 3rd parameter
 CLINPQ S IBF=0 F I=90,180,270 I BEG'>I,DAYS>I S IBF=1 Q
  I IBF W !!,*7,"   ** Please review to see if this patient requires a new copay charge. **"
 CLINPQ1 Q
@@ -61,5 +63,5 @@ CLAMT(STR,AMT,IBCLDA) ; Update Billing Clock Medicare Deductible co-payments
  I 'Y!($D(DIRUT))!($D(DUOUT)) W !,"The billing clock has not been updated." G CLAMTQ
  S DIE="^IBE(351,",DA=IBCLDA,DR=".0"_PTR_"////"_NEWAMT_";13////"_DUZ_";14///NOW" D ^DIE
  W !,"The clock has been updated."
- I $$GET1^DIQ(351,IBCLDA_",",16,"I")=1 D EN^IBECECU1(DFN,IBCLDA)  ;IB*2.0*704 - Update billing clocks as other sites
+ I $$GET1^DIQ(351,IBCLDA_",",16,"I")=1 D EN^IBECECU1(DFN,IBCLDA,1)  ;IB*2.0*704/769 - Update billing clocks as other sites, include 3rd parameter
 CLAMTQ Q

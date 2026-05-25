@@ -1,4 +1,4 @@
-OCXOZ0B ;SLC/RJS,CLA - Order Check Scan ;OCT 30,2024 at 12:49
+OCXOZ0B ;SLC/RJS,CLA - Order Check Scan ;JUL 23,2025 at 13:11
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -66,11 +66,11 @@ CHK278 ; Look through the current environment for valid Event/Elements for this 
  ;    Local CHK278 Variables
  ; OCXDF(2) ----> Data Field: FILLER (FREE TEXT)
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
- ; OCXDF(162) --> Data Field: RECENT METFORMIN EGFR DAYS (NUMERIC)
+ ; OCXDF(125) --> Data Field: RECENT GLUCOPHAGE CREATININE TEXT (FREE TEXT)
  ;
  ;      Local Extrinsic Functions
  ;
- I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(162)=$P($$GEDAYS^ORKPS(OCXDF(37)),"^",1) D CHK283
+ I $L(OCXDF(2)),($E(OCXDF(2),1,2)="PS") S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXDF(125)=$P($$GLCREAT^ORKPS(OCXDF(37)),"^",2) D CHK283
  Q
  ;
 CHK283 ; Look through the current environment for valid Event/Elements for this patient.
@@ -80,12 +80,12 @@ CHK283 ; Look through the current environment for valid Event/Elements for this 
  ;
  ;    Local CHK283 Variables
  ; OCXDF(37) ---> Data Field: PATIENT IEN (NUMERIC)
- ; OCXDF(165) --> Data Field: RECENT METFORMIN EGFR TEXT (FREE TEXT)
+ ; OCXDF(127) --> Data Field: RECENT GLUCOPHAGE CREATININE DAYS (NUMERIC)
  ;
  ;      Local Extrinsic Functions
- ; FILE(DFN,86, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: METFORMIN ORDER)
+ ; FILE(DFN,86, -----> FILE DATA IN PATIENT ACTIVE DATA FILE  (Event/Element: GLUCOPHAGE ORDER)
  ;
- S OCXDF(165)=$P($$GLEGFR^ORKPS(OCXDF(37)),"^",2),OCXOERR=$$FILE(DFN,86,"162,165") Q:OCXOERR 
+ S OCXDF(127)=$P($$GCDAYS^ORKPS(OCXDF(37)),"^",1),OCXOERR=$$FILE(DFN,86,"125,127") Q:OCXOERR 
  Q
  ;
 CHK292 ; Look through the current environment for valid Event/Elements for this patient.

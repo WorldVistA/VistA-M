@@ -1,5 +1,5 @@
 RCDPEAD3 ;ALB/PJH - AUTO DECREASE ; 6/27/19 2:43pm
- ;;4.5;Accounts Receivable;**345,349**;Mar 20, 1995;Build 44
+ ;;4.5;Accounts Receivable;**345,349,450**;Mar 20, 1995;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;Read ^IBM(361.1) via Private IA 4051
  ;
@@ -8,7 +8,8 @@ EN(RCDAY) ; EP - EN^RCDPEM. Auto Decrease - applies to auto-posted claims only
  ; INPUT  RCDAY - Day to search for auto-posted but not decreased lines
  ; OUTPUT - Auto-decreases claims
  ;
- N IEN350,IENS41,J,RC6AM,RCARRAY,RCBAL3RD,RCBILL,RCDAYS,RCERA,RCLINE,RCPAID,RCQIEN,RCRTYPE,RCSECS,STAT,STATUS,X
+ N IEN350,IENS41,IENS3441,J,MFIELD,MFILE,MIEN,MULT,RC6AM,RCARRAY,RCBAL3RD,RCBILL,RCDAYS,RCERA,RCLINE,RCPAID,RCQIEN,RCRTYPE,RCSECS
+ N STAT,STATUS,X
  ; Nightly process does not pass RCDAY. Default: Run for most recent business day minus RCDAYS delay
  S RCDAYS=+$$GET1^DIQ(342,"1,",.15,"E")
  I $G(RCDAY)="" D  ;
@@ -35,12 +36,21 @@ EN(RCDAY) ; EP - EN^RCDPEM. Auto Decrease - applies to auto-posted claims only
  . . D FLAG(RCERA,RCLINE) ; PRCA*4.5*349 - Flag line as having been processed
  ;
  ; Scan entries in RCDPE FIRST PARTY CHARGE QUEUE that could not be decreased due to existence of a pre-pay
+ K ^TMP("RCQUEUE",$J) ; PRCA*4.5*450 add ^TMP global for tracking 3rd party balance amount
  S RCQIEN=0
  F  S RCQIEN=$O(^RCY(344.74,RCQIEN)) Q:'RCQIEN  D  ;
  . S IEN350=$$GET1^DIQ(344.74,RCQIEN_",",.01,"I")
  . S RCBILL=$$GET1^DIQ(344.74,RCQIEN_",",.02,"I")
  . S IENS41=$$GET1^DIQ(344.74,RCQIEN_",",.04,"E")
- . S (RCPAID,RCBAL3RD)=+$$GET1^DIQ(344.41,IENS41,.03)
+ . ; PRCA*4.5*450 Begin modified code block
+ . S IENS3441=$$GET1^DIQ(344.74,RCQIEN_",",.05,"E")
+ . I IENS41="",IENS3441="" Q  ; No pointer to multiple
+ . I IENS41'="" S MIEN=IENS41,MFILE=344.41,MFIELD=.03
+ . I IENS3441'="" S MIEN=IENS3441,MFILE=344.01,MFIELD=.04
+ . S RCPAID=+$$GET1^DIQ(MFILE,MIEN,MFIELD)
+ . I '$D(^TMP("RCQUEUE",$J,MFILE,MIEN)) S ^TMP("RCQUEUE",$J,MFILE,MIEN)=RCPAID
+ . S RCBAL3RD=^TMP("RCQUEUE",$J,MFILE,MIEN)
+ . ; PRCA*4.5*450 End modified code block
  . ; Access to file 350 DBIA4541.
  . S STATUS=$$GET1^DIQ(350,IEN350_",",.05,"I")
  . I STATUS'=8 D DEL74(RCQIEN) ; If charge is not on hold remove from queue, but continue with checks.
@@ -49,6 +59,7 @@ EN(RCDAY) ; EP - EN^RCDPEM. Auto Decrease - applies to auto-posted claims only
  . ; On hold charge with no pre-pay. Release from hold.
  . I STATUS=8 D  ;
  . . I $$PREPAY(IEN350)=1 Q  ; Still has open pre-pay so quit
+ . . N DFN,IBDUZ,IBNOS,IBSEQNO
  . . S IBNOS=IEN350,IBSEQNO=1,IBDUZ=.5
  . . S DFN=$$GET1^DIQ(350,IEN350_",",.02,"I") ; DBIA4541
  . . D ^IBR ; Call to ^IBR allowed by DBIA7007
@@ -58,6 +69,8 @@ EN(RCDAY) ; EP - EN^RCDPEM. Auto Decrease - applies to auto-posted claims only
  . I STATUS'=3 Q
  . ;
  . S X=$$PROCESS(IEN350,RCBILL,RCPAID,.RCBAL3RD) ; Process this charge for attempted auto-decrease
+ . S ^TMP("RCQUEUE",$J,MFILE,MIEN)=RCBAL3RD
+  K ^TMP("RCQUEUE",$J)
  ; 
  Q
  ;
@@ -67,8 +80,8 @@ EN2(RCERA,RCARRAY,RCLINE) ; Auto-decrease selected lines
  ;          RCLINE      - ERA line sequence
  ;
  ; Get claim number RCBILL for the ERA line using EOB #361.1 pointer
- N AMT,COMMENT,COPAY,DEBT,DFN,EOBIEN,FDA,IBNOS,IBSEQNO,IBDUZ,PRCADB,PRCATY,QUIT
- N RCBAL,RCBILL,RCCLAIM,RCCOPAY,RCGROUP,RCLST,RCSTATUS,RCSUB,RCTRANDA,RCTYP3,RCTYPE,STATUS
+ N AMT,COMMENT,COPAY,DEBT,DFN,EOBIEN,FDA,IBNOS,IBSEQNO,IBDUZ,IENS41,PRCADB,PRCATY,QUIT
+ N RCBAL,RCBAL3RD,RCBILL,RCCLAIM,RCCOPAY,RCGROUP,RCLST,RCPAID,RCSTATUS,RCSUB,RCTRANDA,RCTYP3,RCTYPE,STATUS
  ;
  ; Get amount paid on the line
  S IENS41=RCLINE_","_RCERA_","
@@ -100,12 +113,11 @@ EN2(RCERA,RCARRAY,RCLINE) ; Auto-decrease selected lines
  S QUIT=0
  S RCSUB=0
  F  S RCSUB=$O(^TMP("IBRBF",$J,RCBILL,RCSUB)) Q:'RCSUB  D  Q:QUIT  ;
- . S RCTYPE=$$GET1^DIQ(350,RCSUB_",",.03,"I") ; Access to file 350 covered by DBIA4541
- . S RCGROUP=$$GET1^DIQ(350,RCSUB_",",".03:.11","I") ; Billing group 4=OPT COPAY, 5=RX COPAY
+ . S RCTYPE=$$GET1^DIQ(350,RCSUB_",",.03,"E") ; Access to file 350 covered by DBIA4541
+ . S RCGROUP=$$GET1^DIQ(350,RCSUB_",",".03:.11","I")
  . I RCTYPE=""!(RCGROUP="") Q
- . I $D(^RC(342,1,14,"ACE",1,RCTYPE)) D  ; Action type is flagged for auto-decrease
- . . I RCTYP3="O",RCGROUP'=4 Q  ; Only match O/P claim with O/P charge
- . . I RCTYP3="PH",RCGROUP'=5 Q  ; Only match RX claim with RX charge
+ . ; PRCA*4.5*450 - Replace checks for bill type with subroutine call
+ . I $$TYPE(RCGROUP,RCTYPE,RCTYP3) D  ;
  . . S RCLST(RCBILL,RCSUB)=""
  . . ; If charge is on hold then release it.
  . . S STATUS=$$GET1^DIQ(350,RCSUB_",",.05,"I") ; DBIA4541
@@ -127,11 +139,13 @@ PROCESS(IEN350,RCBILL,RCPAID,RCBAL3RD) ; Process this charge for attempted auto-
  ; Inputs: IEN350 - Internal entry number for charge in file #350
  ;         RCBILL - Internal entry number for third party bill from file #399
  ;         RCPAID - Amount paid on ERA line for this third party bill
+ ;         STAT   - Array of status' eligible for offset (assumed to be set in the calling subroutine)
  ;         RCBAL3RD - Remaining balance on third party bill not yet used for auto-decrease of a copay
  ; Returns: 1 - quit loop after processing this record
  ;          0 - don't quit
  ;
  ; Get copay claim (external format)
+ N RETURN
  S RETURN=0
  S RCCLAIM=$$GET1^DIQ(350,IEN350_",",.11) ; DBIA4541
  I RCCLAIM="" Q 0
@@ -191,21 +205,15 @@ AMT(RCBAL,RCPAID,RCOPAY) ; Calculate Decrease Amount
  ; Existing debit balance on 1st party account
  Q $S(RCPAID<RCOPAY:RCPAID,1:RCOPAY)
  ;
-SHOWTYP() ; EP - Display list of IB ACTION TYPE enabled for 1st party auto-decrease
- ; Input - None
+SHOWTYP(NAME) ; EP - Display list of IB ACTION TYPE enabled for 1st party auto-decrease
+ ; Input - NAME, specify auto-post or manual
  ; Output - To screen
- N COUNT,FLAG,IEN2,TYPE,X
- S COUNT=0
+ N FLAG
  S FLAG=$$GET1^DIQ(342,"1,",.14,"I")
  I FLAG D  ; Only show enabled types if auto-decrease is on
- . S IEN2=0
- . F  S IEN2=$O(^RC(342,1,14,IEN2)) Q:'IEN2  D  ;
- . . S FLAG=$$GET1^DIQ(342.014,IEN2_",1,",.02,"I")
- . . I FLAG D  ;
- . . . I COUNT=0 W !!,"Charge types enabled for 1st party auto-decrease:"
- . . . W !,"   "_$$GET1^DIQ(342.014,IEN2_",1,",.01,"E")
- . . . S COUNT=COUNT+1
- W !
+ . W !!,"Charge types enabled for 1st party auto-decrease",NAME   ;PRCA*4.5*450 Add AUTO-POST or MANUAL
+ . W !," All Inpatient, Outpatient and Pharmacy, except ""CANCEL"" charges." ; PRCA*4.5*450 remove list and add free text explanation.
+ . W !
  Q
  ;
 TRAN1(IEN350,IEN399,IEN430,AMT,RCPAID) ; File auto-decrease comment on first party AR
@@ -215,7 +223,7 @@ TRAN1(IEN350,IEN399,IEN430,AMT,RCPAID) ; File auto-decrease comment on first par
  ;         AMT    - Amount of auto-decease
  ;         RCPAID - Amount paid on third party bill
  ;
- N BILL3,BILL430,COMMENT,FDA,IENS,RCDOS
+ N BILL3,BILL430,COMMENT,FDA,IENS,RCDOS,RCTRANDA
  S RCDOS=$$DOS(IEN350)
  S BILL3=$$GET1^DIQ(399,IEN399_",",.01,"E")
  S BILL430=$$GET1^DIQ(430,IEN399_",",.01,"E")
@@ -229,14 +237,14 @@ TRAN1(IEN350,IEN399,IEN430,AMT,RCPAID) ; File auto-decrease comment on first par
  S FDA(433,RCTRANDA_",",42)=.5
  D FILE^DIE("","FDA")
  ;
- S COMMENT(1)="THIRD PARTY PAYMENT RECIEVED ON BILL NUMBER "_BILL430_" = $"_$FN(RCPAID,"",2)
- S COMMENT(2)="DOS:"_RCDOS_"   "_$$RXMT(IEN350)
- S COMMENT(3)="$"_$FN(AMT,"",2)_" AUTO-DECREASE APPLIED FOR CLAIMS MATCHING"
- S COMMENT(4)=$$GET1^DIQ(200,".5,",.01,"E")
+ ; PRCA*4.5*450 Amend comments
+ S COMMENT(1)="3RD PARTY PAYMENT RECEIVED ON BILL NUMBER "_BILL430_" = $"_$FN(RCPAID,"",2)
+ S COMMENT(2)="DOS:"_RCDOS_"   "_$$RXMT(IEN350)_" "
+ S COMMENT(3)="$"_$FN(AMT,"",2)_" COMPUTERIZED OFFSET APPLIED FOR CLAIMS"
+ S COMMENT(4)="MATCHING "_$$GET1^DIQ(200,".5,",.01,"E")
  D WP^DIE(433,RCTRANDA_",",41,"","COMMENT")
  L -^PRCA(433,RCTRANDA)
  Q RCTRANDA
- Q
  ;
 TRAN3(IEN350,IEN399,IEN430,AMT,COPAY) ; File auto-decrease comment on third party AR
  ; Input:  IEN350 - Internal entry number to IB Action (File #350)
@@ -245,7 +253,7 @@ TRAN3(IEN350,IEN399,IEN430,AMT,COPAY) ; File auto-decrease comment on third part
  ;         AMT    - Amount of auto-decease
  ;         COPAY  - Copay amount being decreased
  ;
- N BILL1,COMMENT,FDA,IENS,RCDOS
+ N BILL1,COMMENT,FDA,IENS,RCDOS,RCTRANDA
  S RCDOS=$$DOS(IEN350)
  S BILL1=$$GET1^DIQ(430,IEN430_",",.01,"E")
  ;
@@ -258,9 +266,9 @@ TRAN3(IEN350,IEN399,IEN430,AMT,COPAY) ; File auto-decrease comment on third part
  S FDA(433,RCTRANDA_",",42)=.5
  D FILE^DIE("","FDA")
  ;
- S COMMENT(1)="FIRST PARTY BILL # "_BILL1_" AUTO-DECREASED $"_$FN(AMT,"",2)_" FOR CLAIMS MATCHING"
- S COMMENT(2)="DOS:"_RCDOS
- S COMMENT(3)=$$GET1^DIQ(200,".5,",.01,"E")
+ ; PRCA*4.5*450 Amend comments
+ S COMMENT(1)="1ST PARTY BILL # "_BILL1_" COMPUTERIZED OFFSET $"_$FN(AMT,"",2)
+ S COMMENT(2)=" FOR CLAIMS MATCHING DOS:"_RCDOS_" "_$$GET1^DIQ(200,".5,",.01,"E")
  D WP^DIE(433,RCTRANDA_",",41,"","COMMENT")
  L -^PRCA(433,RCTRANDA)
  Q RCTRANDA
@@ -273,22 +281,25 @@ COMM1(COMMENT,IEN350,IEN399,AMT,RCPAID) ; Build comment text for first party bil
  ; Output: COMMENT - Array passed by reference
  N BILL3
  S BILL3=$$GET1^DIQ(430,IEN399_",",.01,"E")
- S COMMENT(1)="THIRD PARTY PAYMENT RECIEVED ON BILL NUMBER "_BILL3_" = $"_$FN(RCPAID,"",2)
- S COMMENT(2)="DOS: "_$$DOS(IEN350)_"   "_$$RXMT(IEN350)
- S COMMENT(3)="$"_$FN(AMT,"",2)_" AUTO-DECREASE APPLIED FOR CLAIMS MATCHING"
- S COMMENT(4)=$$GET1^DIQ(200,".5,",.01,"E")
+ S COMMENT(1)="3RD PARTY PAYMENT RECEIVED ON BILL NUMBER "_BILL3_" = $"_$FN(RCPAID,"",2)
+ S COMMENT(2)="DOS: "_$$DOS(IEN350)_"   "_$$RXMT(IEN350)_" "
+ S COMMENT(3)="$"_$FN(AMT,"",2)_" COMPUTERIZED OFFSET APPLIED FOR CLAIMS"
+ S COMMENT(4)="MATCHING "_$$GET1^DIQ(200,".5,",.01,"E")
  Q
  ;
 DOS(IEN350) ; Get Date of Service for charge
  ; Input: IEN350 - Intenal entry number of IB Action (file #350)
  ;
- N FIELD,FILE,FROM,IEN,RETURN
+ N FIELD,FILE,FROM,FROM2,IEN,RETURN
  S RETURN=""
  S FROM=$$GET1^DIQ(350,IEN350_",",.04,"I") ; DBIA4541
+ ; PRCA*4.5*450 Add Refill and Inpatient to logic
+ S FROM2=$P(FROM,";",2),FROM=$P(FROM,";",1)
  S FILE=$P(FROM,":",1),IEN=+$P(FROM,":",2)
+ I FILE=52,$P(FROM2,":",1)=1 S FILE=52.1,IEN=$P(FROM2,":",2)_","_$P(FROM,":",2)
  ; Use issue date for prescription or date for o/p encounter
- S FIELD=$S(FILE=52:1,FILE=409.68:.01,1:"")
- I FIELD="" S FILE=350,FIELD=.17,IEN=IEN350 ; If not Rx or o/p use Event date from charge file
+ S FIELD=$S(FILE=52:1,FILE=52.1:.01,FILE=409.68:.01,FILE=405:.01,FILE=45:2,1:"")
+ I FIELD="" S FILE=350,FIELD=.17,IEN=IEN350 ; If other package use Event date from charge file
  S RETURN=$$GET1^DIQ(FILE,IEN_",",FIELD,"I")
  I RETURN'="" S RETURN=$$FMTE^XLFDT(RETURN,"2D")
  Q RETURN
@@ -296,11 +307,14 @@ DOS(IEN350) ; Get Date of Service for charge
 RXMT(IEN350) ; Return Rx # or "MT" for transaction comment line
  ; Input: IEN350 - Internal entry number of IB Action (file #350)
  ;
- N FROM,RETURN
- S RETURN="MT"
- S FROM=$$GET1^DIQ(350,IEN350_",",.04,"I") ; DBIA4541
- S FILE=$P(FROM,":",1),IEN=+$P(FROM,":",2)
- I FILE=52 S RETURN="RX#: "_$$GET1^DIQ(FILE,IEN_",",.01,"E") ; RX #
+ ; prca*4.5*450 - Add I/P to comments
+ N FILE,IEN,FROM,RCGROUP,RETURN
+ S RCGROUP=$$GET1^DIQ(350,IEN350_",",".03:.11","I") ; Billing group
+ S RETURN=$S(RCGROUP=4:"MT",RCGROUP=5:"RX#: ",1:"IP")
+ I RCGROUP=5 D  ;
+ . S FROM=$$GET1^DIQ(350,IEN350_",",.04,"I") ; DBIA4541
+ . S FILE=$P(FROM,":",1),IEN=+$P(FROM,":",2)
+ . I FILE=52 S RETURN=RETURN_$$GET1^DIQ(FILE,IEN_",",.01,"E") ; RX #
  Q RETURN
  ;
 PREPAY(IEN350) ; Check for open pre-pay
@@ -370,3 +384,18 @@ FLAG(RCERA,RCLINE) ; Flag ERA detail line as having been checked or processed fo
  S FDA(344.41,RCLINE_","_RCERA_",",10.01)=1
  D FILE^DIE("","FDA")
  Q
+ ; PRCA*4.5*450 - Subroutine added
+TYPE(RCGROUP,RCTYPE,RCTYP3) ; Is this first party charge eligible for auto-offset - EP from RCDPEAD3 and 5
+ ; Inputs
+ ;        RCGROUP   - 1st party bill group. Set of codes from file 350.1 field .11
+ ;        RCTYPE    - Name of IB ACTION TYPE from file 350.1
+ ;        RCTYP3    - 3rd party bill type as determined by $$TYP^IBRFN
+ ; Returns 1 - Eligible, 0 - Not eligible
+ ;       
+ N RETURN
+ S RETURN=0
+ I ("^1^2^3^4^5^8^9^"[("^"_RCGROUP_"^")),RCTYPE'["CANCLE" D  ; IP, OP or RX and not a cancellation
+ . I RCTYP3="O",RCGROUP=4 S RETURN=1 Q  ; Only match O/P claim with O/P charge
+ . I RCTYP3="PH",RCGROUP=5 S RETURN=1 Q  ; Only match RX claim with RX charge
+ . I RCTYP3="I",("^1^2^3^8^9^"[("^"_RCGROUP_"^")) S RETURN=1 ; Only match IP claim with IP charge
+ Q RETURN

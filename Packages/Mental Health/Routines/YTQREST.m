@@ -1,8 +1,9 @@
 YTQREST ;SLC/KCM - RESTful API front controller ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**158,178,182,181,187,199,202,204,208,223,238,239,249,250**;Dec 30, 1994;Build 26
+ ;;5.01;MENTAL HEALTH;**158,178,182,181,187,199,202,204,208,223,238,239,249,250,236**;Dec 30, 1994;Build 25
  ;
  ; Reference to EN^XPAR in ICR #2263
  ; Reference to XUP in ICR #4409
+ ; Reference to STA^XUAF4 in ICR #2171
  ;
  ; .HTTPREQ: HTTP-formatted request and JSON body (if present)
  ; .HTTPRSP: HTTP-formatted response and JSON body (if present)
@@ -119,12 +120,19 @@ REVIEW(HTTPRSP,HTTPREQ) ; results review resources
 ASI(HTTPRSP,HTTPREQ) ; addiction severity index resources
  Q
 GETCONN(ARGS,RESULTS) ;Respond to the connection check
- N DATAOUT,ERRARY,JSONOUT
+ N DATAOUT,ERRARY,JSONOUT,DIVSTR
  K ^TMP("YTQ-JSON",$J)
+ S DIVSTR=$$NS^XUAF4($G(DUZ(2)))
  S DATAOUT("connection","status")="OK"
  S DATAOUT("connection","datetime")=$$HTE^XLFDT($H,2)
- D ENCODE^XLFJSON("DATAOUT","JSONOUT","ERRARY")
- S ^TMP("YTQ-JSON",$J,1,0)=JSONOUT(1)
+ S DATAOUT("connection","selectedDivIEN")=$G(DUZ(2))
+ S DATAOUT("connection","selectedDiv")=$P(DIVSTR,U,2)
+ S DATAOUT("connection","selectedDivName")=$P(DIVSTR,U)
+ N PROP,JSTR
+ S JSTR="{""connection"":{"
+ S PROP="" F  S PROP=$O(DATAOUT("connection",PROP)) Q:PROP=""  D
+ . S JSTR=JSTR_""""_PROP_""":"""_DATAOUT("connection",PROP)_""","
+ S JSTR=$E(JSTR,1,$L(JSTR)-1)_"}}",^TMP("YTQ-JSON",$J,1,0)=JSTR
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))
  Q
 GETDTIM(ARGS,RESULTS) ;Return user DTIME timeout
@@ -133,7 +141,7 @@ GETDTIM(ARGS,RESULTS) ;Return user DTIME timeout
  S YSDTIME=$$DTIME^XUP(DUZ)  ;User level first
  S:+YSDTIME=0 YSDTIME=$$GET^XPAR("USR^SYS","ORWOR TIMEOUT CHART",1,"I")  ;ORWOR 2nd
  I 'YSDTIME,$G(DTIME) S YSDTIME=DTIME  ;Default last
- S DATAOUT("timeout","dtime")=$G(DTIME)
+ S DATAOUT("timeout","dtime")=$G(YSDTIME)
  D ENCODE^XLFJSON("DATAOUT","JSONOUT","ERRARY")
  S ^TMP("YTQ-JSON",$J,1,0)=JSONOUT(1)
  S RESULTS=$NA(^TMP("YTQ-JSON",$J))

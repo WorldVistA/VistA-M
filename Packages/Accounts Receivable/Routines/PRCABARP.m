@@ -1,5 +1,5 @@
 PRCABARP ;EDE/YMG - BILLING ADDRESS DISCREPANCY REPORT; 04/10/2022
- ;;4.5;Accounts Receivable;**403**;Mar 20, 1995;Build 5
+ ;;4.5;Accounts Receivable;**403,461**;Mar 20, 1995;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to BADADR^DGUTL3 in ICR #7321
@@ -62,6 +62,7 @@ COMPILE ; compile report
  .S DIEN="" F  S DIEN=$O(^RCD(340,"B",DBTR,DIEN)) Q:'DIEN  D
  ..S N1=$G(^RCD(340,DIEN,1)) I $TR($P(N1,U,1,6),U,"")="" Q  ; quit if no address in file 340
  ..S DFN=$P(DBTR,";"),DCSD=0
+ ..S (PADDR,TADDR)=""  ;  PRCA*4.5*461
  ..D DEM^VADPT
  ..; make sure that name is wihtin filtering range
  ..I SNM'="",VADM(1)'=SNM,VADM(1)']SNM Q

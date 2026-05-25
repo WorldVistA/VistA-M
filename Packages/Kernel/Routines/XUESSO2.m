@@ -1,5 +1,5 @@
 XUESSO2 ;ISD/HGW - Enhanced Single Sign-On Utilities ; Apr 19, 2022@14:57
- ;;8.0;KERNEL;**655,659,630,701,731,771,779**;Jul 10, 1995;Build 5
+ ;;8.0;KERNEL;**655,659,630,701,731,771,779,799,759**;Jul 10, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This utility will identify a VistA user for auditing and HIPAA requirements.
@@ -29,6 +29,9 @@ XUESSO2 ;ISD/HGW - Enhanced Single Sign-On Utilities ; Apr 19, 2022@14:57
  ;   XATR(9) = unique Social Security (SSN) or Taxpayer Identification Number (TIN) [assigned by the Social Security Administration]
  ;   XATR(10)= AD UPN [Active Directory User Principle Name (UPN)]
  ;   XATR(11)= E-Mail Address
+ ;   XATR(12)= Sex/Gender
+ ;   XATR(13)= DOB (Date of Birth - YYYYMMDD)
+ ;
  Q
  ;
 FINDUSER(XATR) ;Function. Find user using minimum attributes for user identification
@@ -116,9 +119,12 @@ ADDUSER(XATR) ;Function. Add user using minimum attributes for user identificati
  ; Return: Fail    = "-1^Error Message"
  ;         Success = IEN of NEW PERSON file (#200) entry (Note: this routine will NOT set DUZ to the identified IEN)
  ;
- N SID,NEWDUZ,ERRMSG
+ N SID,NEWDUZ,ERRMSG,RAIEN,RANM
  I '$$AUTH() Q "-1^Not an authorized calling routine"
  I $G(DUZ("LOA"))<2 Q "-1^Not authorized"
+ S RAIEN=$P($G(DUZ("REMAPP")),U) ;P759 CEP
+ S RANM=$P($G(DUZ("REMAPP")),U,2) ;P759 CEP
+ I '$$CANADD($G(DUZ("REMAPP"))) Q "-1^"_"BSE LOGIN ERROR - "_RANM_" remote application is not allowed to add new users." ;P759 CEP
  S ERRMSG=""
  ;Minimum 4 Attributes are required to add a new user
  I ($G(XATR(1))="")!($L($G(XATR(1)))<4) Q "-1^Subject Organization is required to add a new user"
@@ -142,6 +148,18 @@ ADDUSER(XATR) ;Function. Add user using minimum attributes for user identificati
  I ($G(DUZ("REMAPP"))'="") D SETREMAP(NEWDUZ,$P(DUZ("REMAPP"),"^"))
  Q NEWDUZ  ;Every thing OK
  ;
+CANADD(REMLN) ; Function P759 CEP
+ ; P759 CEP
+ ; CALLED BY XUESSO2 AND XUESS01
+ ; Input:  REMLN = DUZ("REMAPP") (if defined) RA_IEN ^ RA_NAME
+ ; Output: 1 if allowed to add users or field is blank
+ ;         0 if not found or not allowed to add users
+ N XURAAUTH,XURACADD,ENTRY
+ Q:$G(REMLN)="" 1 ;DEFAULT TO 1 IF DUZ("REMAPP") WAS NULL
+ S ENTRY=$P(REMLN,U) Q:+ENTRY'>0 0
+ S XURAAUTH=$G(^XWB(8994.5,ENTRY,2))
+ S XURACADD=$P(XURAAUTH,U) S:XURACADD="" XURACADD=1 ;IF NOTHING THERE, DEF 1
+ Q +$G(XURACADD)
 SECMATCH(SECID) ;Function. Find match for SECID.
  N Y,Z
  I $G(SECID)="" Q ""
@@ -190,7 +208,8 @@ NETMAIL(NETNAME,MAIL) ;Function. Find match for NETWORK USERNAME and EMAIL ADDRE
 ADDU(XUNAME) ;Function. Add a new name to the NPF
  N DD,DO,DIC,DA,X,Y,DUZZERO
  K ^TMP("DIERR",$J)
- S DIC="^VA(200,",DIC(0)="F",X=XUNAME
+ ;*799 Story VAMPI-22625 (jfw) - Remove "F" flag from DIC(0) to allow Space-Bar return
+ S DIC="^VA(200,",DIC(0)="",X=XUNAME
  ; Get a LOCK. Block if can't get.
  L +^VA(200,"HL7"):10 Q:'$T "-1^Addition of new users is blocked"
  S DUZZERO=DUZ(0),DUZ(0)="@" ;Make sure we can add the entry
@@ -210,15 +229,29 @@ UPDU(XATR,NEWDUZ) ;Function. Update user in the NPF
  I ($G(XATR(6))'=""),(XATR(6)'=$P($G(^VA(200,NEWDUZ,501)),U,1)) S FDR(200,IEN,501.1)=$$UP^XLFSTR($E($G(XATR(6)),1,15)) ;NETWORK USERNAME
  I ($G(XATR(7))'=""),(XATR(7)'=$P($G(^VA(200,NEWDUZ,205)),U,1)) S FDR(200,IEN,205.1)=$TR($E($G(XATR(7)),1,40),"^","%") ;SecID
  I ($G(XATR(8))'=""),(XATR(8)'=$P($G(^VA(200,NEWDUZ,"NPI")),U,1)) S FDR(200,IEN,41.99)=$G(XATR(8)) ;NPI
- I ($G(XATR(9))'=""),(XATR(9)'=$P($G(^VA(200,NEWDUZ,1)),U,9)) S ERRMSG=$$ADDS(.FDR,NEWDUZ,$G(XATR(9))) I ERRMSG'="" Q ERRMSG ;SSN
+ ;*799 Story VAMPI-22625 (jfw) - Remove any dashes in the SSN.
+ I ($G(XATR(9))'=""),(XATR(9)'=$P($G(^VA(200,NEWDUZ,1)),U,9)) S ERRMSG=$$ADDS(.FDR,NEWDUZ,$TR($G(XATR(9)),"-")) I ERRMSG'="" Q ERRMSG ;SSN
  I ($G(XATR(10))'=""),(XATR(10)'=$P($G(^VA(200,NEWDUZ,205)),U,5)) S FDR(200,IEN,205.5)=$$LOW^XLFSTR($G(XATR(10))) ;ADUPN
  I ($G(XATR(11))'=""),(XATR(11)'=$P($G(^VA(200,NEWDUZ,.15)),U,1)) S FDR(200,IEN,.151)=$$LOW^XLFSTR($G(XATR(11))) ;e-mail
+ ;include sex and dob in update of NPF (New Person File) ;**799 - STORY 783347 VAMPI-22625 (dri)
+ I ($G(XATR(12))'=""),(XATR(12)'=$P($G(^VA(200,NEWDUZ,1)),U,2)) S FDR(200,IEN,4)=$G(XATR(12)) ;sex/gender
+ I ($G(XATR(13))'=""),($$HL7TFM^XLFDT($G(XATR(13)))'=$P($G(^VA(200,NEWDUZ,1)),U,3)) S FDR(200,IEN,5)=$$HL7TFM^XLFDT($G(XATR(13))) ;dob
+ ;*799 Story VAMPI-22625 (jfw) - Add/Update address information if it exists
+ I ($G(XATR(14))'=""),(XATR(14)'=$P($G(^VA(200,NEWDUZ,.11)),U,1)) S FDR(200,IEN,.111)=$$UP^XLFSTR($G(XATR(14)))  ;Street 1
+ I ($G(XATR(15))'=""),(XATR(15)'=$P($G(^VA(200,NEWDUZ,.11)),U,2)) S FDR(200,IEN,.112)=$$UP^XLFSTR($G(XATR(15)))  ;Street 2
+ I ($G(XATR(16))'=""),(XATR(16)'=$P($G(^VA(200,NEWDUZ,.11)),U,3)) S FDR(200,IEN,.113)=$$UP^XLFSTR($G(XATR(16)))  ;Street 3
+ I ($G(XATR(17))'=""),(XATR(17)'=$P($G(^VA(200,NEWDUZ,.11)),U,4)) S FDR(200,IEN,.114)=$$UP^XLFSTR($G(XATR(17)))  ;City
+ I ($G(XATR(18))'="") D
+ .N XUSTATE S XUSTATE=$O(^DIC(5,"C",XATR(18),0))
+ .I ($G(XUSTATE)'=""),(XUSTATE'=$P($G(^VA(200,NEWDUZ,.11)),U,5)) S FDR(200,IEN,.115)=XUSTATE  ;State
+ I ($G(XATR(19))'=""),(XATR(19)'=$P($G(^VA(200,NEWDUZ,.11)),U,6)) S FDR(200,IEN,.116)=$G(XATR(19))  ;Zip
+ ;
  I $G(XATR(5))'="" S ERRMSG=$$SETCNTXT(NEWDUZ,$G(XATR(5))) I ERRMSG'="" Q ERRMSG ;Assign Context Option
  ; Apply all the changes
  S DUZZERO=DUZ(0),DUZ(0)="@" ;Make sure we can update the entry
  I $D(FDR) K IEN D UPDATE^DIE("E","FDR","IEN") ;File all the data
  S DUZ(0)=DUZZERO ;Restore original FM access
- I $D(^TMP("DIERR",$J)) Q "-1^FileMan error"  ;FileMan Error
+ I $D(^TMP("DIERR",$J)) Q "-1^FileMan error: "_$G(^TMP("DIERR",$J,1,"TEXT",1)) ;FileMan Error
  I +ERRMSG<1 Q ERRMSG ;Couldn't update user
  I +NEWDUZ<1 Q "-1^Update of user record failed"
  Q ""

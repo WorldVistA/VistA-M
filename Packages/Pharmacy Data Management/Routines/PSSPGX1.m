@@ -1,0 +1,168 @@
+PSSPGX1 ;BIR/MV - PHARMACOGENOMICS API CONTINUE ;09/20/07
+ ;;1.0;PHARMACY DATA MANAGEMENT;**262**;9/30/97;Build 66
+ ;
+ ; Reference to ^MXMLDOM is supported by DBIA #3561
+ ;
+PGXMAIN(PSSBASE,PSSGENES,PSSDRUGS,PSSRSLT) ;
+ ;PSSBASE  = Name of subscript(ex: PSSPGX) [require]
+ ;PSSGENES = Genetic test array for PGX order checks.
+ ;  PSSGENES(GENE,"GENE")="" [require]
+ ;  PSSGENES(GENE,"GENOTYPE")=VINCI_Genotype - ex: PSSGENES(CYP2D6,"GENOTYPE")="*>*9/*10"
+ ;  PSSGENES(GENE,"PHENOTYPE")=VINCI_Phenotype - ex: PSSGENES(CYP2D6,"PHENOTYPE")="INTERMEDIATE/NORMAL/ULTRARAPID METABOLIZER"  
+ ;  PSSGENES(GENE,"ACTIVITY_SCORE")=VINCI_ActivityScore - ex: PSSGENES(CYP2D6,"ACTIVITY_SCORE")="1-3"
+ ;PSSDRUGS  = Drugs array for PGX order checks.
+ ;  PSSDRUGS(IEN,"DRUGNAME")=Drug name [require]; IEN of file 50
+ ;  PSSDRUGS(PSSIEN,"GCN")=GCNSEQNO [require]
+ ;  PSSDRUGS(PSSIEN,"VUID")=VUID [require]
+ ;PSSRSLT = 1 for successful; results are stored in ^TMP($J,"PSSPGX")
+ ;          -1^error message (ex: -1^ERROR #6059: Unable to open TCP/IP socket...
+ NEW PSSXML,PSSRSLT,PSSOUT,PSSWS,PSSDOC
+ ;PSSFDBFG=1 (VENDOR DOWN) PSSFDBFG=2 (exception. ex: PSSXML has incorrected path or API name). 
+ I $G(PSSBASE)="" S PSSBASE="PSS"
+ K ^TMP($J,"OUT","EXCEPTION"),^TMP($J,"OUT XML"),^TMP("MXMLDOM",$J)
+ K PSSFDBFG
+ S PSSXML=$$BLDXML(.PSSGENES,.PSSDRUGS)
+ D SETWEBS(.PSSWS)
+ S PSSRSLT=$$POST^PSSPGX2(.PSSDOC,PSSXML,.PSSWS) ;cloned from ^PSSHRQ2
+ I +PSSRSLT=-1 S PSSRSLT="-1^An exception has occurred",PSSFDBFG=2
+ ;I +PSSRSLT'=1 S PSSRSLT="-1^An exception has occurred",PSSFDBFG=2
+ I +$G(PSSDOC),$$NAME^MXMLDOM(PSSDOC,1)="exception" S PSSRSLT="-1^An exception has occurred",PSSFDBFG=2
+ I $G(^TMP("MXMLDOM",$J,1,1))'="PEPSResponse" S PSSFDBFG=1
+ I $G(^TMP("MXMLDOM",$J,1,1))="exception" S PSSFDBFG=2
+ K ^TMP("PSSPGXBS",$J),^TMP($J,"PSSXWARN")
+ M ^TMP("PSSPGXBS",$J)=^TMP("MXMLDOM",$J)
+ D:'+$G(PSSOPTFG) CHECK^PSSPGXPR ;PSSOPTFG is set when calling from the Test option (PGXOPT^PSSGPX)
+ D:+$G(PSSDOC) DELETE^MXMLDOM(+PSSDOC)
+ K:'+$G(PSSOPTFG) ^TMP("PSSPGXBS",$J) ;^TMP($J,"PSSXWARN")
+ Q
+BLDXML(PSSGENES,PSSDRUGS) ;
+ ; @DRIVER
+ ; @DESC Builds the PEPSRequest PSSXML element
+ ; @PSSDRUGS drug list
+ ; @RETURNS An xml string representing an entire PGX WARNING.
+ ;
+ ;PSSGENES - array consists of Genotype, Phenotype, ACTIVITY_SCORE
+ ;PSSGENES(GENE,"GENOTYPE")=VINCI_Genotype - ex: PSSGENES(CYP2D6,"GENOTYPE")="*>*9/*10"
+ ;PSSGENES(GENE,"PHENOTYPE")=VINCI_Phenotype - ex: PSSGENES(CYP2D6,"PHENOTYPE")="INTERMEDIATE/NORMAL/ULTRARAPID METABOLIZER"  
+ ;PSSGENES(GENE,"ACTIVITY_SCORE")=VINCI_ActivityScore - ex: PSSGENES(CYP2D6,"ACTIVITY_SCORE")="1-3"
+ ;PSSDRUGS - array of Drugs
+ ; PSSDRUGS(IEN)=IEN file 50
+ ; PSSDRUGS(IEN,"DRUGNAME")=drug name (DD, OI, additive, or solution name)
+ ; PSSDRUGS(IEN,"GCN")=GCN sequence number
+ ;
+ NEW PSS,PSSXML
+ ;
+ S PSS("PSSXMLHeader")=$$XMLHDR^MXMLUTL
+ S PSS("xmlns")=$$ATRIBUTE^PSSHRCOM("xmlns","gov/va/med/pharmacy/peps/external/common/preencapsulation/vo/drug/check/request")
+ S PSS("xmlnsxsi")=$$ATRIBUTE^PSSHRCOM("xmlns:xsi","http://www.w3.org/2001/XMLSchema-instance")
+ ;
+ S PSSXML=PSS("PSSXMLHeader")
+ S PSSXML=PSSXML_"<PEPSRequest"
+ S PSSXML=PSSXML_" "_PSS("xmlns")
+ S PSSXML=PSSXML_" "_PSS("xmlnsxsi")
+ S PSSXML=PSSXML_">"
+ S PSSXML=PSSXML_$$HEADER
+ S PSSXML=PSSXML_$$BODY(.PSSGENES,.PSSDRUGS)
+ S PSSXML=PSSXML_"</PEPSRequest>"
+ ;
+ Q PSSXML
+HEADER() ;
+ ; @DESC Builds the Header PSSXML element. A header is the section of the PSSXML
+ ; that includes time, server, and user.  This item holds no business logic, it
+ ; only records debugging information.
+ ; @RETURNS A the PSSXML string representing the header element.
+ ;
+ NEW PSSXML
+ S PSSXML="<Header>"
+ S PSSXML=PSSXML_$$HDRTIME^PSSHREQ
+ S PSSXML=PSSXML_$$HDRSERVR^PSSHREQ
+ S PSSXML=PSSXML_$$HDRMUSER^PSSHREQ
+ S PSSXML=PSSXML_"</Header>"
+ ;
+ ; Return composed header
+ Q PSSXML
+ ;
+BODY(PSSGENES,PSSDRUGS) ;
+ ; @DESC Builds the Body PSSXML element
+ ; @PSSDRUGS drug list
+ ; @RETURNS An PSSXML string representing the body element.
+ ;
+ NEW PSSXML,PSSDIEN
+ ;
+ S PSSXML="<Body><drugCheck>"
+ ;
+ S PSSXML=PSSXML_$$ATRIBUTE^PSSHRCOM("<checks prospectiveOnly","true")_" "_$$ATRIBUTE^PSSHRCOM("useCustomTables","false")_">"
+ S PSSXML=PSSXML_"<pgxDrugCheck>"
+ S PSSXML=PSSXML_$$GENES(.PSSGENES)
+ S PSSXML=PSSXML_"</pgxDrugCheck></checks>"
+ ;
+ I +$O(PSSDRUGS(0)) D
+ . S PSSXML=PSSXML_"<prospectiveDrugs>"
+ . ;get drug info
+ . S PSSXML=PSSXML_$$DRUGS(.PSSDRUGS)
+ . S PSSXML=PSSXML_"</prospectiveDrugs>"
+ ;
+ S PSSXML=PSSXML_"</drugCheck></Body>"
+ Q PSSXML
+ ;;
+GENES(PSSGENES) ;
+ ;PSSGENES(GENE,"GENOTYPE")=VINCI_Genotype - ex: PSSGENES(CYP2D6,"GENOTYPE")="*>*9/*10"
+ ;PSSGENES(GENE,"PHENOTYPE")=VINCI_Phenotype - ex: PSSGENES(CYP2D6,"PHENOTYPE")="INTERMEDIATE/NORMAL/ULTRARAPID METABOLIZER"  
+ ;PSSGENES(GENE,"ACTIVITY_SCORE")=VINCI_ActivityScore - ex: PSSGENES(CYP2D6,"ACTIVITY_SCORE")="1-3"
+ ;
+ NEW PSSXML,PSSGENE,PSSGENO,PSSPHENO,PSSASCRE,PSSGTEST
+ S (PSSXML,PSSGENO,PSSPHENO,PSSASCRE)=""
+ S PSSGENE="" F  S PSSGENE=$O(PSSGENES(PSSGENE)) Q:PSSGENE=""  D
+ . S PSSGENO=$G(PSSGENES(PSSGENE,"GENOTYPE"))
+ . S PSSPHENO=$G(PSSGENES(PSSGENE,"PHENOTYPE"))
+ . S PSSASCRE=$G(PSSGENES(PSSGENE,"ACTIVITY_SCORE"))
+ . S PSSGTEST=$S(PSSGENO]"":"true",PSSPHENO]"":"true",PSSASCRE]"":"true",1:"false")
+ . S PSSXML=PSSXML_"<genomicFinding>"
+ . S PSSXML=PSSXML_"<gene>"_$$VNGENE(PSSGENE)_"</gene>"
+ . S:PSSPHENO]"" PSSXML=PSSXML_"<phenoType>"_$$VNPHEN(PSSPHENO)_"</phenoType>"
+ . S:PSSGENO]"" PSSXML=PSSXML_"<genoType>"_PSSGENO_"</genoType>"
+ . S:PSSASCRE]"" PSSXML=PSSXML_"<activityScore>"_PSSASCRE_"</activityScore>"
+ . S PSSXML=PSSXML_"<geneTested>"_PSSGTEST_"</geneTested>"
+ . S PSSXML=PSSXML_"<testResultPending>"_"false"_"</testResultPending><tag/>"
+ . S PSSXML=PSSXML_"</genomicFinding>"
+ Q PSSXML
+ ;
+DRUGS(PSSDRUGS) ;constructing XML for drug info
+ NEW PSSGCN,PSSDNM,PSSXML,PSSADNM,PSSAGCN,PSSIEN,PSSAIEN,PSSVUID,PSSAVUID,PSSON
+ S PSSXML=""
+ F PSSIEN=0:0 S PSSIEN=$O(PSSDRUGS(PSSIEN)) Q:'PSSIEN  D
+ . S (PSSAGCN,PSSAIEN,PSSDNM)=""
+ . S PSSGCN=+$G(PSSDRUGS(PSSIEN,"GCN")) Q:'PSSGCN
+ . S PSSDNM=$G(PSSDRUGS(PSSIEN,"DRUGNAME"))
+ . S PSSVUID=$G(PSSDRUGS(PSSIEN,"VUID"))
+ . I +PSSGCN S PSSAGCN=$$ATRIBUTE^PSSHRCOM("gcnSeqNo",PSSGCN)
+ . I PSSDNM]"" S PSSADNM=$$ATRIBUTE^PSSHRCOM("drugName",PSSDNM)
+ . S PSSAIEN=$$ATRIBUTE^PSSHRCOM("ien",PSSIEN)
+ . S PSSAVUID=$$ATRIBUTE^PSSHRCOM("vuid",PSSVUID)
+ . S PSSON=$$ATRIBUTE^PSSHRCOM("orderNumber","Z;1;Prospect")
+ . S PSSXML=PSSXML_"<drug "_PSSADNM_" "_PSSAGCN_" "_PSSAVUID_" "_PSSAIEN_" "_PSSON_" "_"/>"
+ Q PSSXML
+ ;
+SETWEBS(PSSWS) ;Define server name and path
+ S PSSWS("SERVICE_NAME")="ORDER_CHECKS"
+ S PSSWS("PATH")="ordercheck"
+ S PSSWS("SERVER")="PEPS"
+ Q
+ ;
+VNGENE(PSSVNG) ;Find Vendor Gene
+ N PSSVNL,PSSVNGX,PSSVNIEN,PSSVNRS
+ S PSSVNIEN=0
+ S PSSVNGX=$$UP^XLFSTR(PSSVNG)
+ F PSSVNL="C","B","D" Q:PSSVNIEN  S PSSVNIEN=$O(^PS(51.26,PSSVNL,PSSVNGX,0))
+ I 'PSSVNIEN Q PSSVNG
+ S PSSVNRS=$P($G(^PS(51.26,PSSVNIEN,0)),"^",2) I PSSVNRS="" Q PSSVNG
+ Q PSSVNRS
+ ;
+VNPHEN(PSSVNP) ;Find Vendor Phenotype
+ N PSSVNL,PSSVNPX,PSSVNIEN,PSSVNRS
+ S PSSVNIEN=0
+ S PSSVNPX=$$UP^XLFSTR(PSSVNP)
+ F PSSVNL="C","B","D" Q:PSSVNIEN  S PSSVNIEN=$O(^PS(51.28,PSSVNL,PSSVNPX,0))
+ I 'PSSVNIEN Q PSSVNP
+ S PSSVNRS=$P($G(^PS(51.28,PSSVNIEN,0)),"^",2) I PSSVNRS="" Q PSSVNP
+ Q PSSVNRS

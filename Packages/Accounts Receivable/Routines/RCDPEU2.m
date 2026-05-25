@@ -1,5 +1,5 @@
 RCDPEU2 ;AITC/CJE - ELECTRONIC PAYER UTILITIES ;05-NOV-02
- ;;4.5;Accounts Receivable;**326,332,409,436**;Mar 20, 1995;Build 3
+ ;;4.5;Accounts Receivable;**326,332,409,436,439**;Mar 20, 1995;Build 29
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -202,3 +202,22 @@ ORIG(RCERA,RCOSEQ) ; Get the original claim from the EOB worklist
  I EEOBS["ADJ"!(EEOBS[",") Q ""  ; Don't proceed if this is not a split line.
  Q $$GET1^DIQ(344.41,(+EEOBS)_","_RCERA_",",.02,"I")
  ; PRCA*4.5*332 - End modified code block
+ ;
+ ; Next subroutine created for PRCA*4.5*439
+UPDMATCH(ERAIEN,EFTIEN,STATUS) ; Standardize update of ERA and EFT when matching. (EP)
+ ; EFT should be updated with pointer to ERA first to ensure audit is correctly updated when ERA match status is changed.
+ ; Inputs:
+ ;          ERAIEN - Pointer to file #344.4
+ ;          EFTIEN - Pointer to file #344.31
+ ;          STATUS - Match status - 1=MATCHED, -1=MATCHED WITH ERRORS
+ ; Output - None. Files are updated
+ N FDA,IENS
+ S IENS=EFTIEN_","
+ S FDA(344.31,IENS,.08)=STATUS
+ S FDA(344.31,IENS,.1)=ERAIEN
+ D FILE^DIE("","FDA")
+ K FDA
+ S IENS=ERAIEN_","
+ S FDA(344.4,IENS,.09)=STATUS
+ D FILE^DIE("","FDA")
+ Q

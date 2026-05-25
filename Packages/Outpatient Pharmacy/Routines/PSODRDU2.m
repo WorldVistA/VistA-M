@@ -1,5 +1,5 @@
 PSODRDU2 ;BHAM ISC/SAB - dup drug/class display for outpatient orders ;08/23/17  19:54
- ;;7.0;OUTPATIENT PHARMACY;**132,251,375,387,441**;DEC 1997;Build 208
+ ;;7.0;OUTPATIENT PHARMACY;**132,251,375,387,441,768**;DEC 1997;Build 12
  ;External reference ^PS(50.7 - 2223
  ;External reference ^PS(50.606 - 2174
  ;External reference ^PSDRUG( - 221
@@ -54,7 +54,7 @@ RDI ;RDI orders
  K RXREC,I
  Q
 PRSTAT(DA) ;Displays the prescription's status
- N PSOTRANS,PSOREL,PSOCMOP,RXPSTA,PSOX,RFLZRO,PSOLRD,PSORTS,CMOP
+ N PSOTRANS,PSOREL,PSOCMOP,RXPSTA,PSOX,RFLZRO,PSOLRD,PSORTS,CMOP,PSOMW,PSORFL
  D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)  S RXPSTA="Processing Status: ",PSOLRD=$P($G(^PSRX(RXREC,2)),"^",13)
  D ^PSOCMOPA I $G(PSOCMOP)]"" D  K CMOP,PSOTRANS,PSOREL
  .S PSOTRANS=$E($P(PSOCMOP,"^",2),4,5)_"/"_$E($P(PSOCMOP,"^",2),6,7)_"/"_$E($P(PSOCMOP,"^",2),2,3)
@@ -65,10 +65,16 @@ PRSTAT(DA) ;Displays the prescription's status
  .W !,RXPSTA_$S($P(PSOCMOP,"^")=0!($P(PSOCMOP,"^")=2):"Transmitted to CMOP on "_PSOTRANS,$P(PSOCMOP,"^")=1:"Released by CMOP on "_PSOREL,1:"Not Dispensed"),IOINORM_IORVOFF
  D HD^PSODDPR2():(($Y+5)'>IOSL) Q:$G(PSODLQT)
  I $G(PSOCMOP)']"" D
+ .S PSORFL=""
  .F PSOX=0:0 S PSOX=$O(^PSRX(RXREC,1,PSOX)) Q:'PSOX  D
+ ..S PSORFL=PSOX ;PSO*7*768
  ..S RFLZRO=$G(^PSRX(RXREC,1,PSOX,0))
  ..S:$P(RFLZRO,"^",18)'="" PSOLRD=$P(RFLZRO,"^",18) I $P(RFLZRO,"^",16) S PSOLRD=PSOLRD_"^R",PSORTS=$P(RFLZRO,"^",16)
  .I '$O(^PSRX(RXREC,1,0)),$P(^PSRX(RXREC,2),"^",15) S PSOLRD=PSOLRD_"^R",PSORTS=$P(^PSRX(RXREC,2),"^",15)
  .W !,RXPSTA I +$G(PSORTS) W "Returned to stock on "_$$FMTE^XLFDT(PSORTS,2) Q
- .W $S(PSOLRD="":"Not released locally",1:"Released locally on "_$$FMTE^XLFDT($P(PSOLRD,"^"),2)_" "_$P(PSOLRD,"^",2))_$S($P(^PSRX(RXREC,0),"^",11)="W":" (Window)",1:" (Mail)")
+ .;pso768
+ .S PSOMW=""
+ .I PSORFL S PSOMW=$S($P(^PSRX(RXREC,1,PSORFL,0),"^",2)="W":" (Window)",1:" (Mail)")
+ .I PSOMW="" S PSOMW=$S($P(^PSRX(RXREC,0),"^",11)="W":" (Window)",1:" (Mail)")
+ .W $S(PSOLRD="":"Not released locally",1:"Released locally on "_$$FMTE^XLFDT($P(PSOLRD,"^"),2)_" "_$P(PSOLRD,"^",2))_PSOMW
  Q

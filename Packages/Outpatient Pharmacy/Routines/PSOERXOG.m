@@ -1,5 +1,5 @@
 PSOERXOG ;ALB/BWF - eRx parsing Utilities ; 11/14/2019 3:46pm
- ;;7.0;OUTPATIENT PHARMACY;**581,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**581,746,770**;DEC 1997;Build 145
  ;
  Q
  ; GBL - Global location for XML storage
@@ -47,7 +47,7 @@ MEDS(GBL,CNT,ERXIEN,MTYPE,NOTEOVR) ;
  .S LFDATE=$G(MEDDAT(F,IENS,2.6,"I")) ; will convert in future with outbound date function, yet to be built
  .I $G(LFDATE) S LFDATE=$P($$EXTIME^PSOERXO1(LFDATE),"T")
  .S SUBS=$G(MEDDAT(F,IENS,2.7,"I"))
- .S NUMREF=$G(MEDDAT(F,IENS,2.8,"E"))
+ .S NUMREF=$G(MEDDAT(F,IENS,2.8,"E")) I MESTYPE="RE",NUMREF>0 S NUMREF=NUMREF-1
  .S PRAUTH=$G(MEDDAT(F,IENS,4.1,"E"))
  .S PRAUTHST=$G(MEDDAT(F,IENS,4.2,"I"))
  .S NOTE=$S($G(NOTEOVR)]"":$G(NOTEOVR),1:(MEDDAT(F,IENS,5,"E")))

@@ -1,5 +1,5 @@
 RCDPEWL0 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,252,269,298,317,321,326,332,409**;Mar 20, 1995;Build 17
+ ;;4.5;Accounts Receivable;**173,208,252,269,298,317,321,326,332,409,439,446**;Mar 20, 1995;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -32,7 +32,7 @@ PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for ERA Worklist
  ;          ^TMP("RCSCRATCH_PVW",$J)   - This global contains the sort/filters of the user's preferred view
  ;                                for the Scratch Pad.  See PARAMS^RCDPEWLA for the layout.
  ;
- ;         RCQUIT=1 if the user exited out, 0 otherwise
+ ;         RCQUIT=1 if user exited out, 0 otherwise
  ;
  N RCXPAR,USEPVW,X,XX,Y                ; PRCA*4.5*317 Added USEPVW,XX
  S RCQUIT=0
@@ -43,12 +43,12 @@ PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for ERA Worklist
  . S RCQUIT=$$DTR()  ; Set date range filter
  . Q:RCQUIT
  . ;
- . ;Retrieve user's saved preferred view (if any)
+ . ;Retrieve user's preferred view (if any)
  . D GETWLPVW(.RCXPAR)
  ;
- ;Only ask user if they want to use their preferred view in the following scenarios:
+ ;Only ask user if they want to use their preferred view when:
  ; a) Source is "MO" and user has a preferred view on file
- ; b) Source is "CV" (change view action), user has a preferred view but is
+ ; b) Source is "CV" (change view), user has a preferred view but is
  ;    not using the preferred view criteria at this time.
  S XX=$$PREFVW(SOURCE)
  I ((XX=1)&(SOURCE="MO"))!((XX=0)&(SOURCE="CV")) D  Q:USEPVW
@@ -58,16 +58,16 @@ PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for ERA Worklist
  . I USEPVW=-1 S RCQUIT=1 Q
  . Q:'USEPVW
  . ;
- . ; Set the Sort/Filtering Criteria from the preferred view 
+ . ; Set the Sort/Filtering Criteria from preferred view 
  . M ^TMP("RCERA_PARAMS",$J)=^TMP("RCERA_PVW",$J)
  ;
  W !!,"Select parameters for displaying the list of ERAs"
  S RCQUIT=$$PARAMS2^RCDPEWLD()
  Q:RCQUIT
- D SAVEPVW                                  ; Ask if they want to save as preferred view
+ D SAVEPVW                                  ; Ask to save as preferred view
  Q
  ;
-GETWLPVW(RCXPAR) ;  Retrieves the preferred view settings for the ERA worklist
+GETWLPVW(RCXPAR) ;  Retrieves preferred view settings for the ERA worklist
  ; for the user
  ; Input:   None
  ; Output:  RCXPAR()               - Array of preferred view sort/filter criteria
@@ -95,8 +95,7 @@ GETWLPVW(RCXPAR) ;  Retrieves the preferred view settings for the ERA worklist
  S ^TMP("RCERA_PARAMS",$J,"RCAPSTA")=$S(XX'="":XX,1:"A") ; PRCA*4.5*326
  Q
  ;
-PVWSAVE(RCXPAR) ; Save a copy of the preferred view on file
- ; PRCA*4.5*317 added subroutine
+PVWSAVE(RCXPAR) ; Save a copy of preferred view on file
  ; Input:   RCXPAR            - array of preferred view setting for the user
  ; Output:  ^TMP("RCERA_PVW") - a copy of the preferred settings
  ;
@@ -120,7 +119,6 @@ PVWSAVE(RCXPAR) ; Save a copy of the preferred view on file
  Q
  ;
 PREFVW(SOURCE) ; Checks to see if the user has a preferred view
- ; PRCA*4.5*317 added subroutine
  ; When source is 'CV', checks to see if the preferred view is being used
  ; Input:   SOURCE                  - 'MO' - When called from the Worklist menu
  ;                                           option
@@ -145,11 +143,10 @@ PREFVW(SOURCE) ; Checks to see if the user has a preferred view
  Q 1
  ;
 ASKUVW() ;EP from PARAMS^RCDPEWLA, PARAMS^RCDPEAA1
- ; Prompts the user to see if they want to use their preferred view
- ; PRCA*4.5*317 added function
+ ; Prompts the user to use their preferred view
  ; Input:   None
- ; Returns: 1 - User wants to use their preferred view
- ;          0 - User does not want to use their preferred view
+ ; Returns: 1 - Use preferred view
+ ;          0 - Don't use preferred view
  ;         -1 - User typed '^'
  N DIR,DTOUT,DUOUT
  S DIR(0)="Y"
@@ -164,7 +161,7 @@ ASKUVW() ;EP from PARAMS^RCDPEWLA, PARAMS^RCDPEAA1
 SAVEPVW ; Option to save as User Preferred View
  ; PRCA*4.5*317 added subroutine
  ; Input:   ^TMP("RCERA_PARAMS")    - Global array of current worklist settings
- ; Output   Current worklist settings set as preferred view (potentially)
+ ; Output   Current worklist settings - preferred view (potentially)
  N DIR,DTOUT,DUOUT,RCERROR,XX
  K DIR
  S DIR(0)="YA",DIR("B")="NO"
@@ -188,7 +185,7 @@ SAVEPVW ; Option to save as User Preferred View
  D EN^XPAR(DUZ_";VA(200,","RCDPE EDI LOCKBOX WORKLIST","AUTO-POST_STATUS",XX,.RCERROR) ; PRCA*4.5*326
  ;
  K ^TMP("RCERA_PVW",$J)
- M ^TMP("RCERA_PVW",$J)=^TMP("RCERA_PARAMS",$J)  ; capture new preferred settings for comparison
+ M ^TMP("RCERA_PVW",$J)=^TMP("RCERA_PARAMS",$J)  ; capture new preferred settings
  Q
  ;
 DTR() ; Date Range Selection
@@ -240,7 +237,7 @@ DTRANGE(DEFFROM,DEFTO) ; Asks for and returns a Date Range
  Q (RCDFR_"^"_Y)
  ;
 SPLIT ; Split line in ERA list
- ; input - RCSCR = ien of 344.49 and 344.4
+ ; input - RCSCR = ien of 344.49, 344.4
  N RCLINE,RCZ,RCDA,Q,Q0,Z,Z0,DIR,X,Y,CT,L,L1,RCONE,RCQUIT
  D FULL^VALM1
  I $S($P($G(^RCY(344.4,RCSCR,4)),U,2)]"":1,1:0) D NOEDIT^RCDPEWLP G SPLITQ   ;prca*4.5*298  auto-posted ERAs cannot enter Split/Edit action
@@ -280,9 +277,9 @@ SPLIT ; Split line in ERA list
 SPLITQ S VALMBCK="R"
  Q
  ;
-PRTERA ; EP from menu option View/Print ERA (VP) [RCDPE VIEW/PRINT ERA]
- ; View the selected ERA in a listman template
- ; Input: RCSCR - IEN of the ERA to be viewed
+PRTERA ; EP from menu option View/Print ERA
+ ; View the selected ERA in listman template
+ ; Input: RCSCR - IEN of ERA to be viewed
  N DIC,RCSCR,X,Y
  S DIC="^RCY(344.4,",DIC(0)="AEMQ"
  D ^DIC
@@ -294,35 +291,29 @@ PRTERA ; EP from menu option View/Print ERA (VP) [RCDPE VIEW/PRINT ERA]
 PRERA ; RCSCR is assumed to be defined
  D FULL^VALM1 ; Protocol entry
 PRERA1 ; Option entry
- N DIR,X,Y,RCERADET,RCLSTMGR,POP,ZTRTN,ZTSAVE,ZTDESC,%ZIS ; PRCA*4.5*332
+ N DIR,POP,RCAUDIT,RCERADET,RCLSTMGR,X,Y,ZTRTN,ZTSAVE,ZTDESC,%ZIS ; PRCA*4.5*332
  D EXCWARN^RCDPEWLP(RCSCR)
- S DIR("?",1)="Including expanded detail will significantly increase the size of this report",DIR("?",2)="IF YOU CHOOSE TO INCLUDE IT, ALL PAYMENT DETAILS FOR EACH EEOB WILL BE"
- S DIR("?")="listed.  If you want just summary data for each EEOB, do NOT include it."
- S DIR(0)="YA",DIR("A")="Do you want to include expanded EEOB detail?: ",DIR("B")="NO"
- W !
- D ^DIR
- K DIR
- I $D(DUOUT)!$D(DTOUT) G PRERAQ
- S RCERADET=+Y
+ S RCERADET=$$ERADET^RCDPEWLE() I RCERADET=-1 G PRERAQ ; PRCA*4.5*439
+ S RCAUDIT=$$AUDIT^RCDPEWLE() I RCAUDIT=-1 G PRERAQ ; PRCA*4.5*439
  S RCLSTMGR=$$ASKLM^RCDPEARL(1)          ; PRCA*4.5*332
  I RCLSTMGR=-1 G PRERAQ                  ; PRCA*4.5*332
- I RCLSTMGR D VPERA(RCSCR,RCERADET,1) Q  ; PRCA*4.5*332
+ I RCLSTMGR D VPERA(RCSCR,RCERADET,1,RCAUDIT) Q  ; PRCA*4.5*332, PRCA*4.5*439
  S %ZIS="QM" D ^%ZIS G:POP PRERAQ
  I $D(IO("Q")) D  G PRERAQ
- . S ZTRTN="VPERA^RCDPEWL0("_RCSCR_","_RCERADET_",0)",ZTDESC="AR - Print ERA From Worklist"
+ . S ZTRTN="VPERA^RCDPEWL0("_RCSCR_","_RCERADET_",0,"_RCAUDIT_")",ZTDESC="AR - Print ERA From Worklist"
  . D ^%ZTLOAD
  . W !!,$S($D(ZTSK):"Your task # "_ZTSK_" has been queued.",1:"Unable to queue this job.")
  . K ZTSK,IO("Q") D HOME^%ZIS
  U IO
- D VPERA(RCSCR,RCERADET,0) ; PRCA*4.5*332
+ D VPERA(RCSCR,RCERADET,0,RCAUDIT) ; PRCA*4.5*332
  Q
  ;
-VPERA(RCSCR,RCERADET,LSTMGR) ; Queued entry
+VPERA(RCSCR,RCERADET,LSTMGR,RCAUDIT) ; Queued entry
  ; Input: RCSCR - IEN of ERA to be viewed (#344.4)
  ; RCERADET - 1 if inclusion of all EOB details from file 361.1 is
  ; desired, 0 if not
  ; LSTMGR - 1 display in list manager, 0 otherwise
- N RC,RCDIQ,RCDIQ1,RCDIQ2,RCDOT,RCPG,RCSCR1,RC3611,RCXM1,RCZ,RC3611,XX,Z,Z0
+ N RC,RCDIQ,RCDIQ1,RCDIQ2,RCDOT,RCPG,RCSCR1,RCSTOP,RC3611,RCXM1,RCZ,RC3611,XX,Z,Z0,ZTSTOP   ; PRCA*4.5*439 Add RCSTOP, ZTSTOP
  K ^TMP($J,"RC_SUMRAW"),^TMP($J,"RC_SUMOUT"),^TMP($J,"RC_SUMALL")
  S (RCSTOP,RCPG)=0,RCDOT="",$P(RCDOT,".",79)=""
  D GETS^DIQ(344.4,RCSCR_",","*","IEN","RCDIQ")
@@ -333,8 +324,7 @@ VPERA(RCSCR,RCERADET,LSTMGR) ; Queued entry
  . D GETS^DIQ(344.42,RCSCR1_","_RCSCR_",","*","IEN","RCDIQ2")
  . D TXT2^RCDPEX31(RCSCR,RCSCR1,.RCDIQ2,.RCXM1,.RC) ; Get top level ERA adjs
  ;
- ; PRCA*4.5*409 - Add header and PLB information to print array so it will display
- ;                even when there are no claim lines.
+ ; PRCA*4.5*409 - Add header and PLB information to print array so it will always display
  I '$O(^RCY(344.4,RCSCR,1,0)) D
  . S RC=RC+1,RCXM1(RC)="  **NO ERA DETAIL PRESENT**"
  S Z0=+$O(^TMP($J,"RC_SUMALL"," "),-1)
@@ -354,8 +344,14 @@ VPERA(RCSCR,RCERADET,LSTMGR) ; Queued entry
  . I $L(PNAME4)>31 D
  . .S RC=RC+1,RCXM1(RC-1)=$J("",41)_"CLAIM #: "_$$BILLREF^RCDPESR0(RCSCR,RCSCR1)
  . .S RC=RC+1,RCXM1(RC-1)=$E("PATIENT: "_PNAME4,1,78),RCXM1(RC)=" "
+ . S RC3611=$P($G(^RCY(344.4,RCSCR,1,RCSCR1,0)),U,2)  ; PRCA*4.5*446, moved line higher up in code
+ . ; PRCA*4.5*446 - Begin, Add Statement from to dates
+ . I RC3611 D
+ . . N RCSFDT,RCSTDT
+ . . S RCSFDT=$$GET1^DIQ(361.1,RC3611_",",1.1,"E"),RCSTDT=$$GET1^DIQ(361.1,RC3611_",",1.11,"E")
+ . . S RC=RC+1,RCXM1(RC-1)=$E("STMT FROM DATE: "_RCSFDT_$J("",41),1,41)_"STMT TO DATE: "_RCSTDT,RCXM1(RC)=" "
+ . ; PRCA*4.5*446 - End
  . D PROV^RCDPEWLD(RCSCR,RCSCR1,.RCXM1,.RC)
- . S RC3611=$P($G(^RCY(344.4,RCSCR,1,RCSCR1,0)),U,2)
  . I RCERADET D
  .. I 'RC3611 D  Q
  ... D DISP^RCDPESR0("^RCY(344.4,"_RCSCR_",1,"_RCSCR1_",1)","^TMP($J,""RC_SUMRAW"")",1,"^TMP($J,""RC_SUMOUT"")",75,1)
@@ -367,6 +363,12 @@ VPERA(RCSCR,RCERADET,LSTMGR) ; Queued entry
  ... S Z=0 F  S Z=$O(^TMP("PRCA_EOB",$J,RC3611,Z)) Q:'Z  S RC=RC+1,^TMP($J,"RC_SUMOUT",RC)=$G(^TMP("PRCA_EOB",$J,RC3611,Z))
  ... S RC=RC+2,^TMP($J,"RC_SUMOUT",RC-1)=" ",^TMP($J,"RC_SUMOUT",RC)=" "
  ... K ^TMP("PRCA_EOB",$J)
+ . ; PRCA*4.5*439 Get audit data if requested
+ . I RCAUDIT D  ;
+ .. D GETAUD^RCDPEWLE(RCSCR,.RCAUDIT)
+ .. S Z=0 F  S Z=$O(RCAUDIT(Z)) Q:'Z  S RC=RC+1,^TMP($J,"RC_SUMOUT",RC)=RCAUDIT(Z)
+ .. S RC=RC+2,^TMP($J,"RC_SUMOUT",RC-1)=" ",^TMP($J,"RC_SUMOUT",RC)=" "
+ . ; 
  . I $D(RCDIQ1(344.41,RCSCR1_","_RCSCR_",",2)) D
  .. S RC=RC+1,RCXM1(RC)="  **EXCEPTION RESOLUTION LOG DATA**"
  .. S Z=0 F  S Z=$O(RCDIQ1(344.41,RCSCR1_","_RCSCR_",",2,Z)) Q:'Z  S RC=RC+1,RCXM1(RC)=RCDIQ1(344.41,RCSCR1_","_RCSCR_",",2,Z)
@@ -392,7 +394,7 @@ VPERA(RCSCR,RCERADET,LSTMGR) ; Queued entry
 PRERAQ K ^TMP($J,"RC_SUMRAW"),^TMP($J,"RC_SUMOUT"),^TMP($J,"SUMALL")
  S VALMBCK="R"
  Q
- ; PRCA*4.5*332 - Subroutine added
+ ;
 DOLSTMAN ; Display the ERA Detail in a listman format
  N HDR
  S HDR("TITLE")="VIEW ERA DETAIL"

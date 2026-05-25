@@ -1,5 +1,5 @@
-DGMTDD5 ;ALB/AMA - Executable Help Calls, CON'T ; 8/1/08 1:13pm
- ;;5.3;Registration;**688**;Aug 13, 1993;Build 29
+DGMTDD5 ;ALB/AMA,JAM - Executable Help Calls, CON'T ; 8/1/08 1:13pm
+ ;;5.3;Registration;**688,1143**;Aug 13, 1993;Build 36
  ;
 201 ;Executable Help for Cash, Amount in Bank Accounts (408.21/2.01)
  Q:(X="?")
@@ -90,11 +90,20 @@ DGMTDD5 ;ALB/AMA - Executable Help Calls, CON'T ; 8/1/08 1:13pm
  . W !?8,"family transportation.  Assets may include art, rare coins, or"
  . W !?8,"collectibles."
  Q
+ ; DG*5.3*1143 - Modified help text for Email.
 133 ;Executable Help for E-Mail Address (2/.133)
- W !?8,"Enter the applicant's email address [3-50 characters].  The entry must"
- W !?8,"contain at least 3 characters, then have an '@' in the format.  After"
- W !?8,"the '@', the entry must contain at least 1 character, then have a '.' in"
- W !?8,"the format.  After the '.', then the entry must contain at least 1"
- W !?8,"character.  For example:",!?16,"lastnamefirstname@yahoo.com"
- W !?16,"lastname@irs.gov",!?16,"name@college.org"
+ W !?5,"Enter the applicant's email address [6-72 characters]."
+ W !?5,"The Username (or local-part) is the part before the"
+ W !?5,"'@' symbol and must contain at least 1 and up to 64"
+ W !?5,"characters. The first character must be alpha-numeric only."
+ W !?5,"The '@' symbol follows the Username."
+ W !?5,"The Domain Name is the part after the '@' symbol and must"
+ W !?5,"contain at least 1 character and must end with a '.' (dot)"
+ W !?5,"followed by at least 2 characters up to a total length"
+ W !?5,"not to exceed the 72 character limit for the email address."
+ W !?5,"Besides letters and numbers, the username and domain may"
+ W !?5,"contain the following characters: ! # $ % & ' * + - / = ? _ { }"
+ W !?5,"The domain name must end with an alphanumeric character."
+ W !?5,"For example:",!?11,"Lastname_Firstname@yahoo.com"
+ W !?11,"lastname-firstname@domain.ext",!?11,"name@state-college.us"
  Q

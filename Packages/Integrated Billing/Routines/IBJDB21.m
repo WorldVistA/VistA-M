@@ -1,5 +1,5 @@
 IBJDB21 ;ALB/RB - REASONS NOT BILLABLE REPORT (COMPILE) ;19-JUN-00
- ;;2.0;INTEGRATED BILLING;**123,159,185,399,437,458,568**;21-MAR-94;Build 40
+ ;;2.0;INTEGRATED BILLING;**123,159,185,399,437,458,568,796**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;
 EN ; - Entry point from IBJDB2.
@@ -69,10 +69,12 @@ EN ; - Entry point from IBJDB2.
  ...W $E(IBPRV,1,25),U,$E(IBSPC,1,25),U,IBAMT,U
  ...I RELBILL>0 F X=2:1:$P(RELBILL,";",1)+1 W $P(RELBILL,";",X)_" "
  ...I RELBILL<0 W ""
- ...W U,$P(IBN1,U,8)
+ ...;W U,$P(IBN1,U,8) - 796 - Change to grab latest comment from new comments multiple
+ ...W U,$E($$GET1^DIQ(356.04,$O(^IBT(356,IB0,4,"A"),-1)_","_IB0_",",1),1,80)
  ..;
  ..S X=IBEPD_U_IBDEN_U_$P(IBN1,U,3)_U_IBCLK_U_IBRNB1
- ..S X=X_U_IBPRV_U_IBSPC_U_IBAMT_U_$E($P(IBN1,U,8),1,50)_U_IBADMDT_U_RELBILL
+ ..;S X=X_U_IBPRV_U_IBSPC_U_IBAMT_U_$E($P(IBN1,U,8),1,50)_U_IBADMDT_U_RELBILL - 796 - Change to grab latest comment from new comments multiple
+ ..S X=X_U_IBPRV_U_IBSPC_U_IBAMT_U_$E($$GET1^DIQ(356.04,$O(^IBT(356,IB0,4,"A"),-1)_","_IB0_",",1),1,50)_U_IBADMDT_U_RELBILL
  ..S ^TMP("IBJDB2",$J,IBDIV,IBEP,IBSORT1,IBPT_"@@"_$E(IBSSN,6,10))=$$INS^IBJD1(+$P(IBN0,U,2),IBEPD)
  ..S ^TMP("IBJDB2",$J,IBDIV,IBEP,IBSORT1,IBPT_"@@"_$E(IBSSN,6,10),+IBN0)=X
  ;

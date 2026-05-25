@@ -1,18 +1,16 @@
-XUIAMXML ;BHM/DLR,DRI - IAM ENTERPRISE NEW PERSON PROBABILISTIC SEARCH ; Dec 18, 2020@15:00
- ;;8.0;KERNEL;**731**;Jul 10, 1995;Build 0
+XUIAMXML ;BHM/DLR,DRI - IAM ENTERPRISE NEW PERSON PROBABILISTIC SEARCH ;1/20/23  10:39
+ ;;8.0;KERNEL;**731,799**;Jul 10, 1995;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  ;Utilizes SPML (Service Provisioning Markup Language) for IAM lookup to
  ;PSIM (Person Services Identity Management)
  ;
- ;**731, VAMPI-8214 (dri) - create api to lookup user by secid and retrieve user traits
-USER(RETURN,MPIARR) ; - query PSIM for USER traits
+ ;**731, VAMPI-8214 (dri) - create api to lookup user by secid and retrieve user traits **799 VAMPI-22625
+USER(RETURN,MPIARR) ; - query PSIM to find USER traits
  ; Input (one of the following):
  ;   MPIARR("samacctnm") = SECURITY ACCOUNT MANAGER/NETWORK USERNAME
- ;           or
- ;   MPIARR("VAemail") = ACTIVE DIRECTORY USER PRINCIPLE NAME/EMAIL ADDRESS
- ;           or
- ;   MPIARR("secId") = SECURITY ID
+ ;   or MPIARR("VAemail") = ACTIVE DIRECTORY USER PRINCIPLE NAME/EMAIL ADDRESS
+ ;   or MPIARR("secId") = SECURITY ID
  ;
  ; Output (array of traits):
  ;   RETURN("city")=CITY
@@ -38,170 +36,175 @@ USER(RETURN,MPIARR) ; - query PSIM for USER traits
  ;
  ; Example calling api:
  ;   S MPIARR("VAemail")="first.lastname@domain.ext"
- ;             or
- ;   S MPIARR("samacctnm")="VHAMOCLASTNAMEF"
- ;             or
- ;   S MPIARR("secId")=##########
+ ;   or S MPIARR("samacctnm")="VHAMOCLASTNAMEF"
+ ;   or S MPIARR("secId")=##########
  ;
  ;   D USER^XUIAMXML(.RETURN,.MPIARR)
  ;   ZW RETURN ;returns array of traits
  ;
- ;
- N MPIXML,MPIXMLR,MPID,MPIPAT
- K RETURN
+ N MPIXML,MPIXMLR,MPID,MPIPAT K RETURN
  S MPIXML=$$SXMLBLD(.MPIARR) ;build spml search request
  D POST(MPIXML,.MPIXMLR) ;send spml to psim
  I '$D(MPIXMLR) S RETURN="-1^Unable to communicate with the Enterprise Database." Q
  D SPARSE(.RETURN,.MPIXMLR) ;parse psim response of returned spml
- ;
- ;I $D(RETURN("dob")) S RETURN("dob")=$$HL7TFM^XLFDT(RETURN("dob")) ;leave dob in hl7 format
- ;
+ N MPIFLD F MPIFLD="firstName","middleName","lastName","gender" I $G(RETURN(MPIFLD))?.E1L.E S RETURN(MPIFLD)=$$UP^XLFSTR(RETURN(MPIFLD)) ;insure upper case
  Q
  ;
 SNDUSER(RETURN,MPIARR) ; - update PSIM with USER traits
- ; Input
- ;   MPIARR - Array of trait(s) to update
- ; Output
- ;   RETURN - Array of traits psim has
+ ; Input: MPIARR - Array of trait(s) to update
+ ; Output: RETURN - Array of traits psim has
  ;
- N MPIXML,MPIXMLR,MPID,MPIPAT
- K RETURN
+ N MPIXML,MPIXMLR,MPID,MPIPAT K RETURN
  S MPIXML=$$AXMLBLD(.MPIARR) ;build spml for psim
  D POST(MPIXML,.MPIXMLR) ;send spml to psim
  I '$D(MPIXMLR) S RETURN="-1^Unable to communicate with the Enterprise Database." Q
  D SPARSE(.RETURN,.MPIXMLR) ;parse psim response of returned spml
+ Q
  ;
- ;I $D(RETURN("dob")) S RETURN("dob")=$$HL7TFM^XLFDT(RETURN("dob")) ;leave dob in hl7 format
- ;I $D(RETURN("subjectOrg")) S RETURN("subjectOrg")=$$TITLE^XLFSTR($E(RETURN("subjectOrg"),1,50)) ;subject organization sometimes coming from adr improperly formatted
+QRYUSER(RETURN,MPIARR) ; - query PSIM with additional traits to find USER traits ;**663 - STORY 783347 (dri)
+ ; Input: MPIARR - Array of trait(s) to use for lookup
+ ; Output: RETURN - Array of traits psim has
  ;
+ N MPIXML,MPIXMLR,MPID,MPIPAT K RETURN
+ S MPIXML=$$QXMLBLD(.MPIARR) ;build spml for psim
+ D POST(MPIXML,.MPIXMLR) ;send spml to psim
+ I '$D(MPIXMLR) S RETURN="-1^Unable to communicate with the Enterprise Database." Q
+ D PARSE(.RETURN,.MPIXMLR) ;parse psim response of returned spml
+ I $O(RETURN(0)) D  ;massage returned person(s) data
+ .N L S L="RETURN" F  S L=$Q(@L) Q:L=""  S @L=$$STRIP^XLFSTR(@L,"""") ;strip out double quotes
+ .N CNT,MPIFLD S CNT=0 F  S CNT=$O(RETURN(CNT)) Q:'CNT  D
+ ..F MPIFLD="firstName","middleName","lastName","gender" I $G(RETURN(CNT,MPIFLD))?.E1L.E S RETURN(CNT,MPIFLD)=$$UP^XLFSTR(RETURN(CNT,MPIFLD)) ;insure upper case
+ Q
+ ;
+ORCHUSER(RETURN,MPIARR) ; - orchestrate USER so SECID is returned ;**663 - STORY 783347 (dri) **799 VAMPI-22625
+ ; Input: MPIARR - Array of trait(s) to use for lookup
+ ; Output: RETURN - Array of traits psim has
+ ;
+ N MPIXML,MPIXMLR,MPID,MPIPAT K RETURN
+ S MPIXML=$$OXMLBLD(.MPIARR) ;build spml for psim
+ D POST(MPIXML,.MPIXMLR) ;send spml to psim
+ I '$D(MPIXMLR) S RETURN="-1^Unable to communicate with the Enterprise Database." Q
+ D PARSE(.RETURN,.MPIXMLR) ;parse psim response of returned spml
+ I $O(RETURN(0)) D  ;massage returned person(s) data
+ .N L S L="RETURN" F  S L=$Q(@L) Q:L=""  S @L=$$STRIP^XLFSTR(@L,"""") ;strip out double quotes
+ .N CNT,MPIFLD S CNT=0 F  S CNT=$O(RETURN(CNT)) Q:'CNT  D
+ ..F MPIFLD="firstName","middleName","lastName","gender" I $G(RETURN(CNT,MPIFLD))?.E1L.E S RETURN(CNT,MPIFLD)=$$UP^XLFSTR(RETURN(CNT,MPIFLD)) ;insure upper case
  Q
  ;
 SXMLBLD(MPIARR) ; setup xml to search for user
- ; Input:
- ;   MPIARR - Array of traits for search
- ;
- ; Output:
- ;   XML for the search
- ;
+ ; Input: MPIARR - Array of traits to search
+ ; Output: XML for the search
  ; $$SITE^VASITE - IA #10112
  ;
  N MPIXML,MPISITE,QUOTE,MPITHRES,MPIDT,MPIDUZ,MPIPRID
- S QUOTE=""""
- S MPISITE=$P($$SITE^VASITE,"^",3)
- S MPIPRID=$P($$PARAM^HLCS2,"^",3)
- S MPIDT=$$FMTHL7^XLFDT($$NOW^XLFDT)
+ S QUOTE="""",MPISITE=$P($$SITE^VASITE,"^",3),MPIPRID=$P($$PARAM^HLCS2,"^",3),MPIDT=$$FMTHL7^XLFDT($$NOW^XLFDT),MPITHRES=80
  I $G(DUZ)>0 S MPIDUZ=$P(^VA(200,DUZ,0),"^") D STDNAME^XLFNAME(.MPIDUZ,"C")
- S MPITHRES=80
- ;
  ; heading
  S MPIXML="<spml:lookupRequest requestID="_QUOTE_516.2018053111223344_QUOTE_" returnData="_QUOTE_"data"_QUOTE_" xmlns:spml="_QUOTE_"urn:oasis:names:tc:SPML:2:0"_QUOTE_">"
  I $G(MPIARR("secId"))'="" S MPIXML=MPIXML_"<spml:psoID ID="_QUOTE_MPIARR("secId")_"^PN^200PROV^USDVA"_QUOTE_" targetID="_QUOTE_"not_used"_QUOTE_"/>" ;lookup secid
  I $G(MPIARR("secId"))="" S MPIXML=MPIXML_"<spml:psoID ID="_QUOTE_$S($G(MPIARR("VAemail"))'="":MPIARR("VAemail"),1:$G(MPIARR("samacctnm")))_"^PN^200AD^USDVA"_QUOTE_" targetID="_QUOTE_"not_used"_QUOTE_"/>" ;or lookup by vaemail or samacctnm
  S MPIXML=MPIXML_"</spml:lookupRequest>"
- ;
  K MPIARR("MPIVar")
  Q MPIXML
  ;
 MSGID() ;
- N XUNOW
- S XUNOW=$$NOW^XLFDT
+ N XUNOW S XUNOW=$$NOW^XLFDT
  Q $P($$SITE^VASITE,"^",3)_"."_$P(XUNOW,".",1)_$P(XUNOW,".",2)_$J_$R(999999)
  ;
 AXMLBLD(MPIARR) ; setup xml to add or modify a user
- ; Input:
- ;   MPIARR - Array of traits for IAM search
+ ; Input: MPIARR - Array of traits for add or modify
+ ; Output: XML for the add or modify
+ ; $$SITE^VASITE - IA #10112
  ;
- ; Output:
- ;   XML for the add or modify
+ N MPIXML
+ S MPIXML=$$AXMLBLD^XUIAMXML2(.MPIARR) ;MOVED DUE TO ROUTINE SIZE
+ Q MPIXML
  ;
+QXMLBLD(MPIARR) ;setup xml for enhanced query of PSIM for user
+ ; Input: MPIARR - Array of traits for enhanced search
+ ; Output: XML for the enhanced search
  ; $$SITE^VASITE - IA #10112
  ;
  N MPIPRID,MPISITE,MPIXML,QUOTE
- S QUOTE=""""
- S MPISITE=$P($$SITE^VASITE,"^",3) ;station number
+ S QUOTE="""",MPISITE=$P($$SITE^VASITE,"^",3) ;station number
  S MPIPRID=$P($$PARAM^HLCS2,"^",3) ;'p'roduction or 't'est
- ;
  ; heading
- S MPIXML="<spml:"_$S(MPIARR("REQTYPE")="ADD":"addRequest",1:"modifyRequest")_" xmlns:spml="_QUOTE_"urn:oasis:names:tc:SPML:2:0"_QUOTE_" requestID="_QUOTE_$$MSGID()_QUOTE_">"
- S MPIXML=MPIXML_"<spml:psoID ID="_QUOTE_MPIARR("vistaid")_QUOTE_"></spml:psoID>"
- I MPIARR("REQTYPE")="MODIFY" S MPIXML=MPIXML_"<spml:modification modificationMode="_QUOTE_"replace"_QUOTE_">"
+ S MPIXML="<spml:modifyRequest"_" xmlns:spml="_QUOTE_"urn:oasis:names:tc:SPML:2:0"_QUOTE_" requestID="_QUOTE_$$MSGID()_QUOTE_" targetID="_QUOTE_$P($$SITE^VASITE(),"^",3)_QUOTE_" executionMode="_QUOTE_"synchronous"_QUOTE_">"
+ S MPIXML=MPIXML_"<spml:psoID ID="_QUOTE_$S($G(MPIARR("VAemail"))'="":MPIARR("VAemail"),1:$G(MPIARR("samacctnm")))_"^PN^200AD^USDVA"_QUOTE_" targetID="_QUOTE_"not_used"_QUOTE_"/>" ;pass vaemail or samacctnm
+ S MPIXML=MPIXML_"<spml:modification"_" xmlns:spml="_QUOTE_"urn:oasis:names:tc:SPML:2:0"_QUOTE_" modificationMode="_QUOTE_"add"_QUOTE_">"
  S MPIXML=MPIXML_"<spml:data>"
  S MPIXML=MPIXML_"<spml:user>"
- S MPIXML=MPIXML_"<spml:environment>"_MPIPRID_"</spml:environment>"
- ;don't default in subjectOrg or orgId, should be returned by psim
- D IFADD("subjectOrg",.MPIARR,.MPIXML,"spml:subjectOrg") ;S MPIXML=MPIXML_"<spml:subjectOrg>Department Of Veterans Affairs</spml:subjectOrg>"
- D IFADD("orgId",.MPIARR,.MPIXML,"spml:orgId") ;S MPIXML=MPIXML_"<spml:orgId>urn:oid:2.16.840.1.113883.4.349</spml:orgId>"
- ;
  ; user data
  D IFADD("firstName",.MPIARR,.MPIXML,"spml:firstName")
- D IFADD("middleName",.MPIARR,.MPIXML,"spml:middleName")
+ ;D IFADD("middleName",.MPIARR,.MPIXML,"spml:middleName")
  D IFADD("lastName",.MPIARR,.MPIXML,"spml:lastName")
  ;
  D IFADD("gender",.MPIARR,.MPIXML,"spml:gender")
  D IFADD("dob",.MPIARR,.MPIXML,"spml:dob")
- D IFADD("adUPN",.MPIARR,.MPIXML,"spml:adUPN")
- D IFADD("email",.MPIARR,.MPIXML,"spml:email")
- D IFADD("disabled",.MPIARR,.MPIXML,"spml:disabled") ;disuser
- D IFADD("termDate",.MPIARR,.MPIXML,"spml:termDate") ;termination date
  D IFADD("pnid",.MPIARR,.MPIXML,"spml:ssn") ;ssn
- D IFADD("secId",.MPIARR,.MPIXML,"spml:secId")
- D IFADD("uid",.MPIARR,.MPIXML,"spml:uid")
- D IFADD("npi",.MPIARR,.MPIXML,"spml:npi")
- D IFADD("samAccountName",.MPIARR,.MPIXML,"spml:samAccountName")
- D IFADD("lastAccess",.MPIARR,.MPIXML,"spml:lastAccess")
  ;
  S MPIXML=MPIXML_"</spml:user>"
  S MPIXML=MPIXML_"</spml:data>"
- ;
  S MPIXML=MPIXML_"<spml:capabilityData>"
  S MPIXML=MPIXML_"<spml:operationData requestor="_QUOTE_MPIARR("WHO")_QUOTE_">"
  S MPIXML=MPIXML_"</spml:operationData>"
  S MPIXML=MPIXML_"</spml:capabilityData>"
- I MPIARR("REQTYPE")="MODIFY" S MPIXML=MPIXML_"</spml:modification>"
- S MPIXML=MPIXML_"</spml:"_$S(MPIARR("REQTYPE")="ADD":"addRequest",1:"modifyRequest")_">"
+ S MPIXML=MPIXML_"</spml:modification>"
+ S MPIXML=MPIXML_"</spml:"_"modifyRequest"_">"
+ Q MPIXML
  ;
+OXMLBLD(MPIARR) ;setup xml for PSIM to orchestrate user
+ ; Input: MPIARR - Array of traits for orchestration
+ ; Output:  XML for the orchestration (a secid should be returned)
+ ; $$SITE^VASITE - IA #10112
+ ;
+ N MPIPRID,MPISITE,MPIXML,QUOTE
+ S QUOTE="""",MPISITE=$P($$SITE^VASITE,"^",3) ;station number
+ S MPIPRID=$P($$PARAM^HLCS2,"^",3) ;'p'roduction or 't'est
+ ; heading
+ S MPIXML="<spml:addRequest"_" xmlns:spml="_QUOTE_"urn:oasis:names:tc:SPML:2:0"_QUOTE_" requestID="_QUOTE_$$MSGID()_QUOTE_" targetID="_QUOTE_$G(MPIARR("icn"))_QUOTE
+ S MPIXML=MPIXML_" returnData="_QUOTE_"Identifier"_QUOTE_" executionMode="_QUOTE_"synchronous"_QUOTE_">"
+ S MPIXML=MPIXML_"<spml:psoID ID="_QUOTE_$G(MPIARR("email"))_"^PN^200AD^USDVA"_QUOTE_" targetID="_QUOTE_$G(MPIARR("icn"))_QUOTE_"/>" ;pass email
+ S MPIXML=MPIXML_"<spml:data>"
+ S MPIXML=MPIXML_"<spml:user>"
+ S MPIXML=MPIXML_"<note>"_$G(MPIARR("note"))_"</note>"
+ ; user data
+ D IFADD("firstName",.MPIARR,.MPIXML,"spml:firstName")
+ D IFADD("lastName",.MPIARR,.MPIXML,"spml:lastName")
+ D IFADD("dob",.MPIARR,.MPIXML,"spml:dob")
+ D IFADD("pnid",.MPIARR,.MPIXML,"spml:ssn") ;ssn
+ ;
+ S MPIXML=MPIXML_"</spml:user>"
+ S MPIXML=MPIXML_"</spml:data>"
+ S MPIXML=MPIXML_"<spml:capabilityData>"
+ S MPIXML=MPIXML_"<spml:environment code="_QUOTE_MPIPRID_QUOTE_"/>"
+ S MPIXML=MPIXML_"<spml:operationData requestor="_QUOTE_MPIARR("WHO")_QUOTE_"/>"
+ S MPIXML=MPIXML_"</spml:capabilityData>"
+ S MPIXML=MPIXML_"</spml:"_"addRequest"_">"
  Q MPIXML
  ;
 IFADD(MPIVAR,MPIARR,MPIXML,MPIXMLN) ;check if there, if so add it to the XML
  ; MPIVAR is the MPIARR variable name
  ; MPIXMLN is the name of the XML to encase
  ; modifies MPIXML to add if it is there
- I $G(MPIARR(MPIVAR))'="" D
- . S MPIXML=MPIXML_"<"_MPIXMLN_">"_MPIARR(MPIVAR)_"</"_MPIXMLN_">"
+ I $G(MPIARR(MPIVAR))'="" S MPIXML=MPIXML_"<"_MPIXMLN_">"_MPIARR(MPIVAR)_"</"_MPIXMLN_">"
  Q
  ;
-CONV(FIELD) ;check for &, ', > and <
- I FIELD["&" S FIELD=$P(FIELD,"&")_"&amp;"_$P(FIELD,"&",2)
- I FIELD["'" S FIELD=$P(FIELD,"'")_"&apos;"_$P(FIELD,"'",2)
- S:(FIELD["<") FIELD=$$CONVA(FIELD,"<")
- S:(FIELD[">") FIELD=$$CONVA(FIELD,">")
- Q FIELD
- ;
-CONVA(FIELD,ENCHAR) ;handle <<pob city>>
- N I,X,VAL
- S VAL="",I=$L(FIELD,ENCHAR) F X=1:1:I S VAL=VAL_$P(FIELD,ENCHAR,X)
- Q VAL
- ;
-SPARSE(MPIDATA,MPIXML) ; - parse the data
- ;
+SPARSE(MPIDATA,MPIXML) ; - parse the data from user query or user update
  ; EN^MXMLPRSE - IA #4149
  ;
  K ^TMP($J,"XUIAMXML_PARSE")
  N MPICB,MPIUSE,MPIVAR,MPIPAT,MPIALIAS,MPILOC,MPIIDS
  S (MPIPAT,MPIIDS)=0
- S MPICB("STARTELEMENT")="SE^XUIAMXML"
- S MPICB("CHARACTERS")="VALUE^XUIAMXML"
+ S MPICB("STARTELEMENT")="SE^XUIAMXML",MPICB("CHARACTERS")="VALUE^XUIAMXML"
  S ^TMP($J,"XUIAMXML_PARSE",1)=MPIXML
  D EN^MXMLPRSE($NA(^TMP($J,"XUIAMXML_PARSE")),.MPICB)
  K ^TMP($J,"XUIAMXML_PARSE")
  Q
  ;
-SE(MPIN,MPIA) ; - used for the parser to call back with STARTELEMENT
- ;
+SE(MPIN,MPIA) ; - used by the parser for user query or user update to call back with STARTELEMENT
  ; just to protect the process
- S MPIN=$G(MPIN)
- S MPIVAR=""""_MPIN_""""
- S MPILOC="MPIDATA("
+ S MPIN=$G(MPIN),MPIVAR=""""_MPIN_"""",MPILOC="MPIDATA("
  S MPIA("error")=$G(MPIA("error"))
  S MPIA("lastName")=$G(MPIA("lastName"))
  S MPIA("middleName")=$G(MPIA("middleName"))
@@ -215,11 +218,27 @@ SE(MPIN,MPIA) ; - used for the parser to call back with STARTELEMENT
  ; my variable to protect
  ;I MPIN="user" S MPIPAT=MPIPAT+1,MPIALIAS=0,MPILOC="MPIDATA("_MPIPAT Q
  S MPIUSE=$G(MPIUSE)
- ;
  ; got a business rule error
  ;I MPIN="RESULT",MPIA("type")="AA",MPIA("subtype")="QE" S MPIDATA("Result")="QE" Q
  ; don't use these
+ Q
  ;
+PARSE(MPIDATA,MPIXML) ; - parse the data from additional traits user query
+ ; EN^MXMLPRSE - IA #4149
+ ;
+ K ^TMP($J,"XUIAMXML_PARSE")
+ N MPICB,MPIVAR,MPIPAT,MPILOC,MPIIDS
+ S (MPIPAT,MPIIDS)=0
+ S MPICB("STARTELEMENT")="SEQ^XUIAMXML",MPICB("CHARACTERS")="VALUE^XUIAMXML"
+ S ^TMP($J,"XUIAMXML_PARSE",1)=MPIXML
+ D EN^MXMLPRSE($NA(^TMP($J,"XUIAMXML_PARSE")),.MPICB)
+ K ^TMP($J,"XUIAMXML_PARSE")
+ Q
+ ;
+SEQ(MPIN,MPIA) ; - used by the parser for additional traits user query to call back with STARTELEMENT
+ I MPIN="user" S MPIPAT=MPIPAT+1,MPILOC="MPIDATA("_MPIPAT_"," ;Q
+ I '$D(MPILOC) S MPILOC="MPIDATA(" ;no 'user' traits,  an error being returned
+ S MPIVAR=""""_MPIN_""""
  Q
  ;
 VALUE(MPIT) ; - used by the parser to call back with CHARACTERS
@@ -229,12 +248,8 @@ VALUE(MPIT) ; - used by the parser to call back with CHARACTERS
 POST(MPIXML,MPIXMLR) ; - post XML to the execute server
  ; $$GETPROXY^XOBWLIB - IA #5421
  N $ETRAP,$ESTACK,SVC
- ; set error trap
- S $ETRAP="DO ERROR^XUIAMXML"
- ; test mode (outgoing)?
- I $D(^XTMP("XUIAMXML_EDIT")) D TEST("OUTGOING",.MPIXML)
- ; make the call
- ;**63 STORY 317469 HTTPS OR HTTP
+ S $ETRAP="DO ERROR^XUIAMXML"  ; set error trap
+ I $D(^XTMP("XUIAMXML_EDIT")) D TEST("OUTGOING",.MPIXML)  ; test mode (outgoing)?
  S SVC=$$GETPROXY^XOBWLIB("MPI_PSIM_NEW EXECUTE","MPI_PSIM_NEW EXECUTE")
  S MPIXMLR=SVC.execute(MPIXML)
  ; in case debugging needed, save both out and return
@@ -250,7 +265,6 @@ POST(MPIXML,MPIXMLR) ; - post XML to the execute server
  ;
 ERROR ; - catch errors
  ; Set ecode to empty to return to calling function
- ;
  ; $$EOFAC^XOBWLIB, ZTER^XOBWLIB - IA #5421
  ; UNWIND^%ZTER - IA #1621
  N MPIERR
@@ -265,7 +279,6 @@ TEST(TYPE,MPIXML) ; - call to possibly edit the xml string
  ; production NOT allowed
  I $$PROD^XUPROD Q
  I $E($G(IOST),1,2)'="C-" Q
- ;
  N DIC,X,L,T,C,%,%Y
  W !!,"Do you want to edit the "_TYPE_" XML"
  S %=2 D YN^DICN I %'=1 Q

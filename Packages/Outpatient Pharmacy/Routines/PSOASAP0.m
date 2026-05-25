@@ -1,10 +1,12 @@
 PSOASAP0 ;BIRM/MFR - American Society for Automation in Pharmacy (ASAP) Segments & Fields ;09/07/12
- ;;7.0;OUTPATIENT PHARMACY;**408,451,496,504,625,630,659,705**;DEC 1997;Build 5
- ;External reference to $$NATURE^ORUTL3 supported by DBIA 5890
- ;External reference to ^ORDEA is supported by DBIA 5709
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,496,504,625,630,659,705,772**;DEC 1997;Build 105
+ ;External reference to $$SITE^VASITE() supported by ICR 10112 
+ ;External reference to $$NATURE^ORUTL3 supported by ICR 5890
  ;External reference to PATIENT file (#2) supported by DBIA 5597
- ;External reference to $$NPI^XUSNPI supported by DBIA 4532
- ;External reference to $$DIV4^XUSER supported by DBIA 2533
+ ;External reference to VADM and VAPA array supported by ICR 10061
+ ;External reference to $$NPI^XUSNPI supported by ICR 4532
+ ;External reference to $$DIV4^XUSER supported by ICR 2533
+ ;External reference to $$RJ^XLFSTR supported by ICR 10104
  ;            
  ; ******************** ASAP 1995 Version ********************
 ASAP95(RXIEN,FILL) ;Returns the entire ASAP 1995 record for the Rx/Fill
@@ -61,10 +63,6 @@ TH05() ;ASAP 3.0 : Message Type (Not Used)
  I PSOASVER="3.0" Q ""
  Q $$FMTHL7^XLFDT($$HTFM^XLFDT($H)\1)
  ;
-TH06() ;ASAP 3.0 : Response ID (Not Used)
- ;      ASAP 4.0+: Creation Time. Format: HHMMSS or HHMM
- I PSOASVER="3.0" Q ""
- Q $E($P($$HTFM^XLFDT($H),".",2)_"000000",1,6)
  ;
 TH07() ;ASAP 3.0 : Project ID (Not Used)
  ;      ASAP 4.0+: File Type. Returns: "T" - Test or "P" - Production
@@ -154,12 +152,6 @@ PAT15() ;Patient State Address
  ; International State/Province
  Q $P($G(VAPA(23)),"^")
  ;
-PAT16() ;Patient ZIP Code
- ; US Zip Code
- I $$PAT22()="" Q $TR($P($G(VAPA(11)),"^",1),"-")
- ; International Postal Code
- Q $P($G(VAPA(24)),"^")
- ;
 PAT17() ;Patient Phone Number
  N PAT17
  ;PHONE NUMBER [RESIDENCE] (Home)
@@ -201,6 +193,7 @@ PAT22() ;ASAP 3.0 : Primary Prescription Coverage Type (Not Used)
  S CNTRYIEN=+$G(VAPA(25)) I 'CNTRYIEN Q ""
  S FIPSCODE=$$GET1^DIQ(779.004,CNTRYIEN,1.2)
  Q $S(FIPSCODE="US":"",FIPSCODE="CA":"CN",1:FIPSCODE)
+ ;
  ;
  ; *** RX Segment (ASAP 3.0 only) ***
 RX08() ;Date Rx Written (Format: YYYYMMDD)
@@ -264,15 +257,6 @@ DSP07() ;ASAP 3.0 : Unique System ID - Prescriber (Not Used)
  ;       ASAP 4.0+: Product ID Qualifier (Always return "01" for 'NDC')
  I PSOASVER="3.0" Q ""
  Q "01"
- ;
-DSP08() ;ASAP 3.0 : Unique System ID - Drug (Not Used)
- ;       ASAP 4.0+:Product ID (NDC - National Drug Code)
- I PSOASVER="3.0" Q ""
- N DSP08 S DSP08=""
- I RECTYPE="V",$G(RTSDATA("NDC"))'="" S DSP08=$$NUMERIC(RTSDATA("NDC"))
- I 'DSP08 S DSP08=$$NUMERIC($$GET1^DIQ(50,DRUGIEN,31))
- I 'DSP08 S DSP08=$$NUMERIC($$GETNDC^PSONDCUT(RXIEN,+FILLNUM))
- Q DSP08
  ;
 DSP09() ;ASAP 3.0 : Date Filled
  ;       ASAP 4.0+: Quantity Dispensed
@@ -419,6 +403,7 @@ PRE08() ;ASAP 3.0 : Prescriber's Last Name
  ;
 PRE09() ;ASAP 3.0: Prescriber' First Name
  ;       ASAP 4.2: Prescriber's DETOX Number if DETOX drug
+ ;  field has been decommissioned
  N DTXCHK,PRDEA S (DTXCHK,PRDEA)=""
  I PSOASVER="3.0" Q $P($P($$GET1^DIQ(200,PREIEN,.01),",",2)," ",1)
  I PSOASVER="4.2" D
@@ -428,6 +413,7 @@ PRE09() ;ASAP 3.0: Prescriber' First Name
  Q PRDEA
  ;
 PRE10() ;ASAP 3.0: Prescriber' Middle Name
+ ;  ASAP 4.2B+ : Jurisdiction or State Issuing Prescriber License Number  
  I PSOASVER'="3.0" Q ""
  Q $P($P($$GET1^DIQ(200,PREIEN,.01),",",2)," ",2)
  ;

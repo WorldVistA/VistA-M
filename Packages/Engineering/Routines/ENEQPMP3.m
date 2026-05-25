@@ -1,5 +1,5 @@
 ENEQPMP3 ;(WASH ISC)/DH-Display PMI Schedules ;6.5.97
- ;;7.0;ENGINEERING;**35,42**;Aug 17, 1993
+ ;;7.0;ENGINEERING;**35,42,108**;Aug 17, 1993;Build 1
 DDT ;  Display Equipment Category PM Data
  ;  Expects IEN of Equipment Category File as loc var ENDTYP
  I '$D(^ENG(6911,ENDTYP,4,0)) W !!,"There is no defined PM schedule for this Equipment Category.",! D HLD Q
@@ -33,12 +33,12 @@ DPM ;  Print data from File 6911 or 6914
  W !,?30 D W(ENSHOP_" SHOP") W !,"Tech: " D W(ENEMP) W ?50,"Starting Month: " D W(ENMNTH) W !,"Skip Months: " D W(ENSKP)
  W ?50,"Criticality: " D W(ENCRIT) W !,"Frequency (multiple):" S ENY=ENY+4
  S J=0 F  S J=$O(@("^ENG("_ENRT_","_ENDA_",4,"_I_",2,"_J_")")) Q:J'>0  S ENSBSCR=$P(@("^ENG("_ENRT_","_ENDA_",4,"_I_",2,"_J_",0)"),U) I ENSBSCR]"" S EN(ENSBSCR)=^(0)
- F J="TA","BA","A","S","Q","BM","M","BW","W","N" I $D(EN(J)) D DPM1
+ F J="TA","BA","A","S","Q","BM","M","BW","W","N","QA","PA" I $D(EN(J)) D DPM1
  K EN W !! S ENY=ENY+2 Q
  ;
 DPM1 I J="N" W !,?3 D W("NONE") S ENY=ENY+1 Q
  I $P(EN(J),U,2)]"",$P(EN(J),U,2)'["." S $P(EN(J),U,2)=$P(EN(J),U,2)_".0"
- W !,?5 D W($S(J="TA":"TRI-ANNUAL",J="BA":"BI-ANNUAL",J="A":"ANNUAL",J="S":"SEMI-ANNUAL",J="Q":"QUARTERLY",J="BM":"BI-MONTHLY",J="M":"MONTHLY",J="BW":"BI-WEEKLY",J="W":"WEEKLY",1:""))
+ W !,?5 D W($S(J="TA":"TRI-ANNUAL",J="BA":"BI-ANNUAL",J="A":"ANNUAL",J="S":"SEMI-ANNUAL",J="Q":"QUARTERLY",J="BM":"BI-MONTHLY",J="M":"MONTHLY",J="BW":"BI-WEEKLY",J="W":"WEEKLY",J="QA":"QUAD ANNUAL",J="PA":"PENT ANNUAL",1:""))
  W ?18 D W($J($P(EN(J),U,2),5,1)) W " hrs  "
  D W($J("$"_$S($P(EN(J),"^",3)]"":$P(EN(J),"^",3),1:0),6)) W " (est)  Level: " D W($S($P(EN(J),"^",4)]"":$P(EN(J),"^",4),1:"N/A")) S ENY=ENY+1
  I $P(EN(J),U,5)]"" W !,?5,"Proc Ref: " S ENA=$G(^ENG(6914.2,$P(EN(J),U,5),0)) D W($P(ENA,U)) W "  Title: " D W($P(ENA,U,2)) K ENA S ENY=ENY+1

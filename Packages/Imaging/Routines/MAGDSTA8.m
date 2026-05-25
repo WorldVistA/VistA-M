@@ -1,13 +1,10 @@
-MAGDSTA8 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Feb 15, 2022@10:50:15
- ;;3.0;IMAGING;**231,305**;Mar 19, 2002;Build 3
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTA8 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Sep 17, 2025@13:56:50
+ ;;3.0;IMAGING;**231,305,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -335,7 +332,7 @@ QRSCP() ; get the q/r scp for the consult
  . S MAG5831=$$MWLFIND^MAGDHOW1(TOSERVICE,GMRCIEN)
  . I MAG5831 D  ; get designated q/r scp for the worklist
  . . S X=$$GET1^DIQ(2006.5831,MAG5831,8,"E")
- . . I X'="" S QRSCP=X W !?20,"<<< Q/R SCP: ",QRSCP," >>>"
+ . . I X'="",X'=QRSCP S QRSCP=X W !?20,"<<< Q/R SCP: ",QRSCP," >>>" ; P333 PMK 09/17/2025
  . . Q
  . Q
  ;

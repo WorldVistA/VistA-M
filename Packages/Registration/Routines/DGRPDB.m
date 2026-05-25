@@ -1,5 +1,5 @@
 DGRPDB ;ALB/AAS,JAN,ERC,PHH,HM,JAM - VIEW ONLY SCREEN TO DETERMINE BILLING ELIGIBILITY ;24 Dec 2018  1:45 PM
- ;;5.3;Registration;**26,50,358,570,631,709,713,749,972,1064,1104**;Aug 13, 1993;Build 59
+ ;;5.3;Registration;**26,50,358,570,631,709,713,749,972,1064,1104,1117**;Aug 13, 1993;Build 32
  ; Reference to $$ASC^PXCOMPACT in ICR #7327
  ;
 % S:'$D(DGQUIT) DGQUIT=0
@@ -18,7 +18,7 @@ EN ;entry with DFN defined.
  Q
  ;
 ELIG ;eligibility code(s)
- W !,"Acute Suicidal Crisis: ",$$ASC^PXCOMPACT(DFN)
+ W !,"Acute Suicidal Crisis Open: ",$$ASC^PXCOMPACT(DFN)
  W !," Primary Elig. Code: ",$P(VAEL(1),"^",2),"  --  ",$S(VAEL(8)']"":"NOT VERIFIED",1:$P(VAEL(8),"^",2))
  I VAEL(8)]"" S Y=$S($D(^DPT(DFN,.361)):$P(^(.361),"^",2),1:"") W "  " D DT^DIQ
  W !,"Other Elig. Code(s): " I $D(VAEL(1))>9 S I1=0 F I=0:0 S I=$O(VAEL(1,I)) Q:'I  S I1=I1+1 W:I1>1 !?21 W $P(VAEL(1,I),"^",2)

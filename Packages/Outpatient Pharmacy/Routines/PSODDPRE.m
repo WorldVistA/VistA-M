@@ -1,5 +1,5 @@
 PSODDPRE ; BIR/SAB - Enhanced OP order checks ;09/20/06 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,411,518,568**;DEC 1997;Build 0
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,411,518,568,768,770**;DEC 1997;Build 145
  ;External reference to PSOL^PSSLOCK supported by DBIA 2789
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to ^PSSDSAPM supported by DBIA 5570
@@ -123,14 +123,14 @@ FDB ;build drug check input
  .S CT=CT+1
  .I STA="PENDING" N DDRG D
  ..Q:$G(^TMP("PSORXDC",$J,$P(PSOSD(STA,DNM),"^",10),0))]""
- ..Q:$G(PSODRUG("IEN"))=$P(^PS(52.41,$P(PSOSD(STA,DNM),"^",10),0),"^",9)
- ..Q:$P(^PS(52.41,$P(PSOSD(STA,DNM),"^",10),0),"^",3)="RF"
+ ..Q:$G(PSODRUG("IEN"))=$P($G(^PS(52.41,$P(PSOSD(STA,DNM),"^",10),0)),"^",9)
+ ..Q:$P($G(^PS(52.41,$P(PSOSD(STA,DNM),"^",10),0)),"^",3)="RF"
  ..Q:$G(^TMP("PSORXPO",$J,$P(PSOSD(STA,DNM),"^",10),0))
- ..S RXREC=$P(PSOSD(STA,DNM),"^",10),ORN=$P(^PS(52.41,RXREC,0),"^"),ODRG=$P(^(0),"^",9),ORTYP="P"
+ ..S RXREC=$P(PSOSD(STA,DNM),"^",10),ORN=$P($G(^PS(52.41,RXREC,0)),"^"),ODRG=$P($G(^(0)),"^",9),ORTYP="P"
  ..I ODRG D  K ODRG Q
  ...I $P($G(^PSDRUG(ODRG,0)),"^",3)["S"!($E($P($G(^PSDRUG(ODRG,0)),"^",2),1,2)="XA") Q 
  ...S PDNM=$P(^PSDRUG(ODRG,0),"^") D ID
- ..E  N PSOI,DDRG,ODRG,SEQN,DDRG S PSOI=$P(^PS(52.41,RXREC,0),"^",8) D
+ ..E  N PSOI,DDRG,ODRG,SEQN,DDRG S PSOI=+$P($G(^PS(52.41,RXREC,0)),"^",8) I PSOI D
  ...S PDNM=$P(^PS(50.7,PSOI,0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")
  ...S DDRG=$$DRG^PSSDSAPM(PSOI,"O") I '$P(DDRG,";") D:'$$NVATST(PSOI,"O") OIX Q
  ...I $P($G(^PSDRUG($P(DDRG,";"),0)),"^",3)["S"!($E($P($G(^PSDRUG($P(DDRG,";"),0)),"^",2),1,2)="XA") Q
@@ -183,7 +183,7 @@ ULRX ;
  Q
  ;
 PRSTAT(DA) ;Displays the prescription's status
- N PSOTRANS,PSOREL,PSOCMOP,RXPSTA,PSOX,RFLZRO,PSOLRD,PSORTS,CMOP
+ N PSOTRANS,PSOREL,PSOCMOP,RXPSTA,PSOX,RFLZRO,PSOLRD,PSORTS,CMOP,PSORFL,PSOMW
  D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)  ;PSO*7*411 to comment
  S RXPSTA="Processing Status: ",PSOLRD=$P($G(^PSRX(RXREC,2)),"^",13)
  ;
@@ -198,13 +198,20 @@ PRSTAT(DA) ;Displays the prescription's status
  .W:'$G(PSODUPF) IOINORM_IORVOFF
  D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)
  I $G(PSOCMOP)']"" D
+ .S PSORFL=0
  .F PSOX=0:0 S PSOX=$O(^PSRX(RXREC,1,PSOX)) Q:'PSOX  D
+ ..S PSORFL=PSOX ;PSO*7*768
  ..S RFLZRO=$G(^PSRX(RXREC,1,PSOX,0))
  ..S:$P(RFLZRO,"^",18)'="" PSOLRD=$P(RFLZRO,"^",18) I $P(RFLZRO,"^",16) S PSOLRD=PSOLRD_"^R",PSORTS=$P(RFLZRO,"^",16)
  .I '$O(^PSRX(RXREC,1,0)),$P(^PSRX(RXREC,2),"^",15) S PSOLRD=PSOLRD_"^R",PSORTS=$P(^PSRX(RXREC,2),"^",15)
  .S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1 W:'$G(PSODUPF) !,$J(RXPSTA,24)
  .I +$G(PSORTS) S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1 W:'$G(PSODUPF) "Returned to stock on "_$$FMTE^XLFDT(PSORTS,2) Q
- .S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1 W:'$G(PSODUPF) $S(PSOLRD="":"Not released locally",1:"Released locally on "_$$FMTE^XLFDT($P(PSOLRD,"^"),2)_" "_$P(PSOLRD,"^",2))_$S($P(^PSRX(RXREC,0),"^",11)="W":" (Window)",1:" (Mail)")
+ .S:$G(PSODUPF) PSODUPC(ZCT)=PSODUPC(ZCT)+1
+ .;PSO*7*768 
+ .S PSOMW=""
+ .I PSORFL S PSOMW=$S($P(^PSRX(RXREC,1,PSORFL,0),"^",2)="W":" (Window)",1:" (Mail)")
+ .I PSOMW="" S PSOMW=$S($P(^PSRX(RXREC,0),"^",11)="W":" (Window)",1:" (Mail)")
+ .W:'$G(PSODUPF) $S(PSOLRD="":"Not released locally",1:"Released locally on "_$$FMTE^XLFDT($P(PSOLRD,"^"),2)_" "_$P(PSOLRD,"^",2))_PSOMW
  Q
  ;
 DATACK ;check FDB returned data to determine whether to continue processing.

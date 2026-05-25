@@ -1,5 +1,5 @@
-GMTSPXIM ;SLC/SBW,KER - PCE Immunization component ;Sep 08, 2023@13:21
- ;;2.7;Health Summary;**8,10,28,56,89,114,115,144**;Oct 20, 1995;Build 17
+GMTSPXIM ;SLC/SBW,KER - PCE Immunization component ;Jul 18, 2024@16:25
+ ;;2.7;Health Summary;**8,10,28,56,89,114,115,144,147**;Oct 20, 1995;Build 5
  ;
  ; Reference to IMMUN^PXRHS03 and CONREF^PXRHS03 in ICR #1239
  ;
@@ -69,7 +69,8 @@ IMMDSP ; Display Immunization data
  I COMMENT]"" S GMNOTE("C")="",GMFOOTC="<C>"
  D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG SECTHDR,HDR
  W !,$$TRUNCATE($P(GMN0,U,1),33)
- W ?35,$P(GMN0,U,4),?42,GMTSDAT,?53,$$TRUNCATE(GMSITE,10),?65,GMFOOTR,?74,GMFOOTC
+ W ?35,$P(GMN0,U,4),?42,GMTSDAT,?65,GMFOOTR,?74,GMFOOTC,!
+ W ?53,$$TRUNCATE(GMSITE,25)
  ; Footer
  I GMFOOTR]"" D
  . S GMIX=$S('$D(GMIX):1,1:GMIX+1)
@@ -106,11 +107,11 @@ CRDSP(GMTSSUB) ; Display Contraindicated/Refusal data
  W !,$$TRUNCATE($P($G(^TMP("PXCRI",$J,GMTSSUB,GMTSSUB1,GMTSSUB2,GMTSIFN,0)),U,1),33)
  S X=$P($G(^TMP("PXCRI",$J,GMTSSUB,GMTSSUB1,GMTSSUB2,GMTSIFN,0)),U,2) D REGDT4^GMTSU S GMTSDAT=X
  W ?35,X
- S GMTSN1=$G(^TMP("PXCRI",$J,GMTSSUB,GMTSSUB1,GMTSSUB2,GMTSIFN,1))
- W ?46,$$TRUNCATE($$GETSITE(GMTSN1),10)
  S GMTSCOM=$P(^TMP("PXCRI",$J,GMTSSUB,GMTSSUB1,GMTSSUB2,GMTSIFN,"COM"),U)
  I GMTSCOM'="" W ?58,"<C>" S GMNOTE("C")=""
  E  W ?58,"<I>" S GMNOTE("I")=""
+ S GMTSN1=$G(^TMP("PXCRI",$J,GMTSSUB,GMTSSUB1,GMTSSUB2,GMTSIFN,1))
+ W !,?46,$$TRUNCATE($$GETSITE(GMTSN1),32)
  Q
 SECTHDR ; Section Header
  D CKP^GMTSUP Q:$D(GMTSQIT)
@@ -138,10 +139,10 @@ FOOT(GMNOTE) ;displays footnotes for reaction and comments
  I $D(GMNOTE("C")) D  Q:$D(GMTSQIT)
  . D CKP^GMTSUP Q:$D(GMTSQIT)
  . W !,"<C>  See the Detailed Immunizations Health Summary Component[DIM] for Comments"
- I $D(GMNOTE("I")) D
+ I $D(GMNOTE("I")) D  Q:$D(GMTSQIT)
  . D CKP^GMTSUP Q:$D(GMTSQIT)
  . W !,"<I>  See the Detailed Immunizations Health Summary Component[DIM] for Additional Information"
- I $D(GMNOTE("*")) D
+ I $D(GMNOTE("*")) D  Q:$D(GMTSQIT)
  . D CKP^GMTSUP Q:$D(GMTSQIT)
  . W !," *   Value is truncated; see the Detailed Immunizations Health Summary Component[DIM] for"
  . D CKP^GMTSUP Q:$D(GMTSQIT)
@@ -284,13 +285,14 @@ CRDET(GMTSSUB) ; Display Contraindicated/Refusal data in detailed format
  S GMTSCOUNT=GMTSCOUNT+1
  Q
 TRUNCATE(GMTSTEXT,GMTSLEN) ; Truncate the given text to the specified length
- N GMTSNEW
- S GMTSNEW=GMTSTEXT
- I $L(GMTSTEXT)>+GMTSLEN D
- .S GMTSNEW=$E(GMTSTEXT,1,(GMTSLEN-1))
- .I $E(GMTSNEW,"*")=" " S GMTSNEW=$E(GMTSNEW,1,$L(GMTSNEW)-1)
- .S GMTSNEW=GMTSNEW_"*"
- I '$D(GMTSF),GMTSNEW["*" S GMNOTE("*")=""
+ I ($L(GMTSTEXT)<=+$G(GMTSLEN))!(+$G(GMTSLEN)=0) Q $G(GMTSTEXT)
+ I GMTSTEXT'[" " S GMNOTE("*")="" Q $E(GMTSTEXT,1,$G(GMTSLEN)-1)_"*"
+ N GMTSCHAR,GMTSNEW
+ S GMTSCHAR=$E(GMTSTEXT,GMTSLEN),GMTSNEW=""
+ I GMTSCHAR=" " S GMNOTE("*")="" Q $$TRIM^XLFSTR($E(GMTSTEXT,1,$G(GMTSLEN)-1))_"*"
+ E  D
+ .F GMTSCHAR=GMTSLEN-1:-1:1  Q:$E(GMTSTEXT,GMTSCHAR)=" "
+ .S GMTSNEW=$$TRIM^XLFSTR($E(GMTSTEXT,1,GMTSCHAR-1))_"*",GMNOTE("*")=""
  Q GMTSNEW
 GETSITE(GMTSNODE) ; Return site name for display
  Q $S($P(GMTSNODE,U,3)]"":$P(GMTSNODE,U,3),$P(GMTSNODE,U,4)]"":$P(GMTSNODE,U,4),1:"No Site")

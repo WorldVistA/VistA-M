@@ -1,5 +1,5 @@
-PSSDSUTL ;BIR/MV-Dose Check utility routine (continued) ;27 Oct 2009  12:22 PM
- ;;1.0;PHARMACY DATA MANAGEMENT;**201,178,206,224,231**;9/30/97;Build 4
+PSSDSUTL ;BIR/MV - Dose Check utility routine (continued) ; Oct 27, 2009@12:22
+ ;;1.0;PHARMACY DATA MANAGEMENT;**201,178,206,224,231,254**;9/30/97;Build 109
  ;
 RANGE ;Evaluate free text dosages for range patterns
  N PSSRG1,PSSRG2,PSSRG3,PSSRG4,PSSRG5,PSSRG6,PSSRGAR,PSSRGDOS,PSSRGLT,PSSRGNM1,PSSRGNM2,PSSRGUN1,PSSRGUN2
@@ -139,16 +139,20 @@ UPCPRS ;Update CPRS global
  ;
  ;
 CFREQ ;Add customized Frequency
+ N DRGNAM,TSTVAL   ;254
  I $P(PSSDBCAR(PSSCPC5),"^",15)!($P(PSSDBCAR(PSSCPC5),"^",16))!($P(PSSCPC5,";",5)) Q
  S ^TMP($J,PSSDBASF,"OUT","CHECK",PSSCPCNM,PSSCPC5,PSSCPCAR(PSSCPC5),"ATYPE")="DOSE^INFORMATIONAL"
- S ^TMP($J,PSSDBASF,"OUT","CHECK",PSSCPCNM,PSSCPC5,PSSCPCAR(PSSCPC5),"MSG",1)=$G(^TMP($J,PSSDBASE,"OUT","DOSE",PSSCPC5,$P(PSSDBCAR(PSSCPC5),"^",2),"FREQ","FREQUENCYCUSTOMMESSAGE",$P(PSSDBCAR(PSSCPC5),"^",3)))
+ S TSTVAL=$G(^TMP($J,PSSDBASE,"OUT","DOSE",PSSCPC5,$P(PSSDBCAR(PSSCPC5),"^",2),"FREQ","FREQUENCYCUSTOMMESSAGE",$P(PSSDBCAR(PSSCPC5),"^",3))),DRGNAM="Recommended frequency of "_$P(PSSDBCAR(PSSCPC5),"^",2)
+ S ^TMP($J,PSSDBASF,"OUT","CHECK",PSSCPCNM,PSSCPC5,PSSCPCAR(PSSCPC5),"MSG",1)=$S(TSTVAL'="":DRGNAM_": "_TSTVAL,1:"")
  Q
  ;
  ;
 PEROR ;Per Orifice check
  N PSSCPCO9
- S PSSCPCO9=$P(PSSDBCAR(PSSCPC5),"^",9) I PSSCPCO9="OTIC"!(PSSCPCO9="OPHTHALMIC")!(PSSCPCO9="INTRANASAL") D
- .S PSSCPCO2="Dosing Information provided is PER "_$S(PSSCPCO9="OTIC":"EAR:",PSSCPCO9="OPHTHALMIC":"EYE:",1:"NOSTRIL:"),PSSCPCO3=1
+ ;*254 FDB 4.5 upgrade route changes for otic and opthalmic
+ S PSSCPCO9=$P(PSSDBCAR(PSSCPC5),"^",9)
+ I PSSCPCO9="OTIC (EAR)"!(PSSCPCO9="OPHTHALMIC (EYE)")!(PSSCPCO9="INTRANASAL") D
+ .S PSSCPCO2="Dosing Information provided is PER "_$S(PSSCPCO9="OTIC (EAR)":"EAR:",PSSCPCO9="OPHTHALMIC (EYE)":"EYE:",1:"NOSTRIL:"),PSSCPCO3=1
  Q
  ;
  ;
@@ -194,39 +198,52 @@ ORDFREQ(PSSDADF) ; -- in 2.1 get order frequency by converting FDB frequency pat
  ;
  ;Return: Order Frequency or 0
  ;
- N PSSDADL,PSSDADN,PSSDADTM,PSSDADS
+ N PSSDADL,PSSDADN,PSSDADTM
+ S PSSDADF=$G(PSSDADF)
  ; -- check for missing variable, exit if not defined
- I $G(PSSDADF)']"" Q 0
+ I PSSDADF="" Q 0
  ; -- check for number
- I $G(PSSDADF) Q $G(PSSDADF)
+ I PSSDADF?.N Q PSSDADF
+ ; -- #XD (X times a Day) Schedules
+ I PSSDADF?1N.N1"XD" Q +PSSDADF
  ; -- every other day
  I PSSDADF="QOD" Q .5
+ ; -- every day, in morning, at bed time, in evening
+ I PSSDADF="QD"!(PSSDADF="QAM")!(PSSDADF="QHS")!(PSSDADF="QPM")!(PSSDADF="QDAY") Q 1
+ ; -- twice a day
+ I PSSDADF="BID" Q 2
+ ; -- three times per day
+ I PSSDADF="TID" Q 3
+ ; -- four times per day
+ I PSSDADF="QID" Q 4
+ ; -- Once Weekly
+ I PSSDADF="QWEEK" Q 1/7
+ ; -- Once Monthly
+ I PSSDADF="QMONTH" Q 1/30
  ; -- set PSSDADL=Frequency Length, exit if not equal to 3 or 4
  S PSSDADL=$L(PSSDADF) I PSSDADL'=3,PSSDADL'=4 Q 0
- ; -- set PSSDADS=Action associated with frequency Q=every, X=times
- S PSSDADS=$E(PSSDADF)
  ; -- check action associated with frequency, exit if not "Q" or "X"
- I PSSDADS'="Q",PSSDADS'="X" Q 0
+ I PSSDADF'["Q",PSSDADF'["X" Q 0
  ; -- set PSSDADN=Frequency Number
- S PSSDADN=$E(PSSDADF,2,$L(PSSDADF)-1)
+ I PSSDADF["Q" D
+ . S PSSDADN=+$E(PSSDADF,2,$L(PSSDADF)-1)
+ E  S PSSDADN=+PSSDADF
  ; -- check if PSSDADN is numeric, exit if it is not
  I PSSDADN'?.N Q 0
  ; -- set PSSDADTM=period of time associated with frequency H=hour, D=day, W=week, L=month
  S PSSDADTM=$E(PSSDADF,PSSDADL)
  ; -- calculate order frequency every # hour(s)
- I PSSDADS="Q",PSSDADTM="H" Q 24/PSSDADN
+ I PSSDADF["Q",PSSDADTM="H" Q 24/PSSDADN
  ; -- calculate order frequency every # days(s)
- I PSSDADS="Q",PSSDADTM="D" Q 1/PSSDADN
+ I PSSDADF["Q",PSSDADTM="D" Q 1/PSSDADN
  ; -- calculate order frequency every # week(s)
- I PSSDADS="Q",PSSDADTM="W" Q 1/(PSSDADN*7)
+ I PSSDADF["Q",PSSDADTM="W" Q 1/(PSSDADN*7)
  ; -- calculate order frequency every # month(s)
- I PSSDADS="Q",PSSDADTM="L" Q 1/(PSSDADN*30)
- ; -- calculate order frequency # times per day
- I PSSDADS="X",PSSDADTM="D" Q PSSDADN
+ I PSSDADF["Q",PSSDADTM="L" Q 1/(PSSDADN*30)
  ; -- calculate order frequency # times per week
- I PSSDADS="X",PSSDADTM="W" Q PSSDADN/7
+ I PSSDADF["XW" Q PSSDADN/7
  ; -- calculate order frequency # times per month
- I PSSDADS="X",PSSDADTM="L" Q PSSDADN/30
+ I PSSDADF["XL" Q PSSDADN/30
  Q 0
  ;
  ;

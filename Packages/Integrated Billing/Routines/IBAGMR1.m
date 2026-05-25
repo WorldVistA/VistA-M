@@ -1,16 +1,16 @@
 IBAGMR1 ;WOIFO/AAT-GMT SINGLE PATIENT REPORT;12-JUL-02
- ;;2.0;INTEGRATED BILLING;**183**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**183,746**;21-MAR-94;Build 8
  ;; Per VHA Directive 10-93-142, this routine should not be modified
  Q
  ;
  ; Prints report to the current device
  ;
  ; Input:
- ;   IBDFN - Patient IEN
- ;   IBBDT - Beginning date
- ;   IBEDT - Ending date
+ ;   IBDFN - Patient IEN (Newed in calling routine IBAGMR)
+ ;   IBBDT - Beginning date (Newed in calling routine IBAGMR)
+ ;   IBEDT - Ending date (Newed in calling routine IBAGMR)
  ; Output:
- ;   IBQUIT = 1, if user entered "^" (Devices starting with "C-" only)
+ ;   IBQUIT = 1, if user entered "^" (Devices starting with "C-" only) (Newed in calling routine IBAGMR)
 REPORT ;
  N IBDT,IBDTE,IBDTH,IBCR,IBDA,IBAT,IBTMP,IBZ,IBCL,IBDTBF,IBDTBT
  S IBQUIT=0
@@ -54,7 +54,7 @@ PRINT ; Print report from the temp. global
  S IBLINE="",$P(IBLINE,"=",IOM+1)="",(IBPAG,IBTOT,IBTOTS,IBQUIT,IBCHG)=0
  S IBPT=$$PT^IBEFUNC(IBDFN)
  S IBCIS=0
- S IBH="GMT Single Patient Report for "_$P(IBPT,U)_"  "_$P(IBPT,U,2) D HDR
+ S IBH="GMT Single Patient Report for "_$P(IBPT,U)_"  "_"DOB: "_$P(VADM(3),U,2) D HDR ;IB*2.0*746 (Newed in calling routine IBAGMR)
  I '$D(@IBTMP) W !!,"The patient has no MT/GMT bills within the specified period" D PAUSE(1) Q
  ; - first, print detail lines
  S IBD="" F  S IBD=$O(@IBTMP@(IBD)) Q:'IBD  D  Q:IBQUIT

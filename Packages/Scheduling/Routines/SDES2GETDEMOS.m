@@ -1,10 +1,11 @@
-SDES2GETDEMOS ;ALB/BLB,BWF - SDES2 GET DEMOGRAPHICS ;MAY 20,2024
- ;;5.3;Scheduling;**877,878**;Aug 13, 1993;Build 11
+SDES2GETDEMOS ;ALB/BLB,BWF,MCB - SDES2 GET DEMOGRAPHICS ;July 28,2025
+ ;;5.3;Scheduling;**877,878,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
  ;---------------------------------------------------------------
  ; Reference to DGUTL4 in ICR #3799
  ; Reference to MARITAL STATUS in ICR #428
  ; Reference to RELIGION in ICR #1414
+ ; Reference to DUZ^XUP is supported by IA #7487
  ;
  Q
  ;
@@ -13,6 +14,7 @@ GETDEMOGRAPHICS(JSON,SDCONTEXT) ;
  ;
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("Demographics")="" D BUILDJSON^SDES2JSON(.JSON,.ERRORS) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  ;
  D BUILDRACE(.DEMOGRAPHICS)
  D BUILDRELIGION(.DEMOGRAPHICS)

@@ -1,9 +1,9 @@
 PSOERPT0 ;BIRM/MFR - eRx Single Patient Queue - ListManager ; 12/10/22 9:53am
- ;;7.0;OUTPATIENT PHARMACY;**700,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**700,746,770**;DEC 1997;Build 145
  ;
 EN ;Menu option entry point
  N PSNPINST,PSOSRTBY,PSORDER,PSODETDP,PSOSTSGP,PSOSTORD,PSORDCNT,PSOSTSEQ,PSORDSEQ,PSOCHNG
- N GRPLN,DIC,Y,DFN,HIGHLN,LASTLINE,VALMCNT,NPALERT,PSOCSGRP
+ N GRPLN,DIC,Y,DFN,HIGHLN,LASTLINE,VALMCNT,NPALERT,PSOCSGRP,PSOIEN,ERXIEN
  ;
  ;Division selection
  I '$G(PSOSITE) D FULL^VALM1 D ^PSOLSET I '$D(PSOPAR) W $C(7),!!,"Pharmacy Division Must be Selected!",! G EXIT
@@ -25,14 +25,14 @@ LST(EPATIEN) ; ListMan Action Entry point
  ;
  G EXIT
  ;
-LMHDR ; ListMan Header Code
- D SHOW^VALM,HDR^PSOERPT0
+LMHDR ; Menu Protocol Header Code
+ D SHOW^VALM,HDR
  S:($G(PSOSTFLT)="WP") XQORM("B")="NP"
  S XQORM("#")=$O(^ORD(101,"B","PSO ERX SINGLE PATIENT SELECT",""))_"^1:"_VALMCNT
  S XQORM("??")="D HELP^VALM2,HDR^PSOERPT0"
  Q
  ;
-HDR      ;Header
+HDR ; ListMan Header Code
  N POS,LINE1,LINE2
  S LINE1="eRx PATIENT: "_IOINHI_$E($$GET1^DIQ(52.46,EPATIEN,.01),1,40)_IOINORM
  S $E(LINE1,63)="SEX: "_IOINHI_$$GET1^DIQ(52.46,EPATIEN,.07,"I")_IOINORM
@@ -52,13 +52,13 @@ HDR      ;Header
  Q
  ;
 INIT ;Populates the Body section for ListMan
- K ^TMP("PSOERPT0",$J),^TMP("PSOERPTS",$J)
+ K PSOIEN,^TMP("PSOERPT0",$J),^TMP("PSOERPTS",$J)
  D SETSORT^PSOERPT1(PSOSRTBY),SETLINE
  S VALMSG="Select the entry # to view or ?? for more actions"
  Q
  ;
 SETLINE ;Sets the line to be displayed in ListMan
- N SORT,TYPE,STS,SUB,SEQ,LINE,Z,TOTAL,I,X,X1,ORDCNT,LBL,LN,GROUP,QTYL,ORNUM1,ERXIEN1
+ N SORT,TYPE,STS,SUB,SEQ,LINE,Z,TOTAL,I,X,X1,ORDCNT,LBL,LN,GROUP,QTYL,ORNUM1,ERXIEN1,SORTORD
  N X,POS,HIGHLN,GRPLN,UNDLN,PTMTCHLN,PRMTCHLN,PRVALLN,DRMTCHLN
  K ^TMP("PSOERPT0",$J)
  I '$D(^TMP("PSOERPTS",$J)) D  Q
@@ -81,7 +81,7 @@ SETLINE ;Sets the line to be displayed in ListMan
  . . S Z=$G(^TMP("PSOERPTS",$J,GROUP,SORT)),SEQ=SEQ+1
  . . S ERXIEN=+$G(^TMP("PSOERPTS",$J,GROUP,SORT,"ERXIEN"))
  . . S X1=SEQ_$S($$GET1^DIQ(52.49,ERXIEN,95.1,"I"):"]",1:".")
- . . S $E(X1,5)=$$GET1^DIQ(52.49,ERXIEN,.01),$E(X1,19)=$E($P(Z,"^"),1,22)
+ . . S $E(X1,5)=$$GET1^DIQ(52.49,ERXIEN,.01) I '$G(PSODETDP) S $E(X1,19)=$E($P(Z,"^"),1,22)
  . . ; Abbreviating REM## status to R## for MbM sites (VA Sites only have RM)
  . . I $G(MBMSITE),$E($P(Z,"^",4),1,3)="REM" S $P(Z,"^",4)="R"_$E($P(Z,"^",4),4,9)
  . . S $E(X1,42)=$P(Z,"^",2),$E(X1,59)=$P(Z,"^",3),$E(X1,68)=$P(Z,"^",4)
@@ -107,6 +107,8 @@ SETDET(ERXIEN,LINE,NMPSC) ; Set the Details lines
  ;       NMSPC  - Namespace for the ^TMP global (Listman)
  N L,X,DIWL,DIWR,Z
  K ^UTILITY($J,"W") S Z=$G(^PS(52.49,ERXIEN,5))
+ S X="    eRx Drug: "_$$GET1^DIQ(52.49,ERXIEN,3.1,"E")_" "_$P($$ERXDRSCH^PSOERXUT(ERXIEN),"^",2)
+ S LINE=LINE+1,^TMP(NMPSC,$J,LINE,0)=X,HIGHLN(LINE)=""
  S X="    eRx Qty: "_$P(Z,"^")
  S $E(X,29)="eRx # of Refills: "_$P(Z,"^",6)
  S $E(X,57)="   eRx Days Supply: "_$P(Z,"^",5)
@@ -267,15 +269,20 @@ BU ; Batch Un-Hold Hidden action
  D REF
  Q
  ;
-SEL ;Process selection of one entry
+SEL      ;Process selection of one entry
  N PSOSEL,ERXIEN
  S VALMBCK="R"
- S PSOSEL=+$P(XQORNOD(0),"=",2) I 'PSOSEL S VALMSG="Invalid selection!",VALMBCK="R" Q
+ S PSOSEL=+$P(XQORNOD(0),"=",2) I 'PSOSEL S VALMSG="Invalid selection!" Q
  S ERXIEN=$G(^TMP("PSOERPT0",$J,PSOSEL,"ERXIEN")) I 'ERXIEN S VALMSG="Invalid selection!",VALMBCK="R" Q
  ; - Entering the eRx Record
  D  ; Protecting variables
- . N EPATIEN
- . D EN^PSOERX1(ERXIEN) K ERXIEN
+ . D FULL^VALM1
+ . N EPATIEN,DIR,ERXLOCK S EPATIEN=$$GETPAT^PSOERXU5(ERXIEN)
+ . S ERXLOCK=$$L^PSOERX1A(EPATIEN,1)
+ . I 'ERXLOCK S DIR(0)="E" D ^DIR K DIR Q
+ . D EN^PSOERX1(ERXIEN)
+ . ;Not using D UL^PSOERX1A on purpose as it will kill the ^XTMP entry
+ . L -^XTMP("PSOERXLOCK",EPATIEN)
  D REF
  Q
  ;
@@ -284,7 +291,7 @@ NP ; Automatically Selects the Next Patient
  S VALMBCK="Q",NPALERT=0
  ; Prevents MbM users from moving to the next patient if current patient still has New eRx recrods
  I $G(PSOSTFLT)="WP",$D(^XUSEC("PSO ERX WORKLOAD TECH",DUZ)),$$HASACTRX^PSOERPT2(EPATIEN) D  Q
- . I PSOLKBKD'=+$$GET1^DIQ(59,PSOSITE,10.2) S PSOLKBKD=+$$GET1^DIQ(59,PSOSITE,10.2) D INIT,HDR
+ . I PSOLKBKD'=+$$GET1^DIQ(59,PSOSITE,10.2),$$GET1^DIQ(59,PSOSITE,10.2)'="" S PSOLKBKD=+$$GET1^DIQ(59,PSOSITE,10.2) D INIT,HDR
  . S NPALERT=1,VALMBCK="R"
  W ?50,"Loading Next Patient..."
  S (SUCCESS)=0,NEXTPAT=EPATIEN
@@ -306,18 +313,3 @@ EXIT ; - Exit point
  Q
  ;
 HELP Q
- ;
-J2EP(DFN) ; Jump to eRx Patient (From Backdoor)
- N EPATIEN,PSNPINST,PSOJUMP,PATSTAT,VALMCNT
- S VALMBCK="R",PSOJUMP=1,MBMSITE=$S($$GET1^DIQ(59.7,1,102,"I")="MBM":1,1:0)
- S PSNPINST=$$GET1^DIQ(59,+$G(PSOSITE),101,"I")
- S (EPATIEN,HASACTRX)=0
- F  S EPATIEN=+$O(^PS(52.49,"AVPAT",+$G(PSODFN),EPATIEN)) Q:'EPATIEN  D  I HASACTRX Q
- . S PATSTAT=$$PATSTATS^PSOERPC1(EPATIEN) F I=2:1:6 I $P(PATSTAT,"^",I) S HASACTRX=1 Q
- I 'EPATIEN S EPATIEN=$O(^PS(52.49,"AVPAT",+$G(DFN),9999999999),-1)
- I '$G(EPATIEN) D  Q
- . S VALMSG="No corresponding eRx Patient found"
- D LST(EPATIEN)
- D RESET^PSOERUT0()
- D ^PSOBUILD,BLD^PSOORUT1,K3^PSOORNE6
- Q

@@ -1,5 +1,5 @@
 MAGDQR21 ;WOIFO/EDM,NST,MLH,JSL,SAF,BT,ZEB - RPCs for Query/Retrieve SetUp ; 07 DEC,2023@1:22 PM
- ;;3.0;IMAGING;**83,104,123,119,221,348**;Mar 19, 2002;Build 6;Apr 19, 2013
+ ;;3.0;IMAGING;**83,104,123,119,221,348,365**;Mar 19, 2002;Build 19;Apr 19, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -90,7 +90,8 @@ TMPOUT(NAME) ; Return name of the temp
  Q X
  ;
  ;*zeb *348 add Series Description as optional return
-STUDY2(OUT,GROUPS,REQDFN,IMGLESS,FLAGS) ; RPC = MAG DOD GET STUDIES IEN
+ ;*zeb *365 add RADIEN param to support returning Rad Report Text
+STUDY2(OUT,GROUPS,REQDFN,IMGLESS,FLAGS,RADIEN) ; RPC = MAG DOD GET STUDIES IEN
  ; CR, 5-28-09
  ; IMGLESS is a new flag to speed up queries: if=1 (true), just get study-level 
  ;            data, if null or zero get everything. This new flag is optional.
@@ -98,7 +99,7 @@ STUDY2(OUT,GROUPS,REQDFN,IMGLESS,FLAGS) ; RPC = MAG DOD GET STUDIES IEN
  ; FLAGS is ""  - Exclude Deleted records (default)
  ;          "D" - Include Deleted records
  ;          "S" - Include Series Description for DICOM Q/R
- ;       
+ ; RADIEN is IEN of Rad/Nuc Med Report (#74), passing will include report text     
  ;
  N STUDY,INCDEL,INCSERD
  ;
@@ -114,7 +115,7 @@ STUDY2(OUT,GROUPS,REQDFN,IMGLESS,FLAGS) ; RPC = MAG DOD GET STUDIES IEN
  ;
  D GETSTUDY^MAGDQR21(.GROUPS,.STUDY,INCDEL) ; read IENS in GROUPS and sort into STUDY by UID,IEN
  ;
- D GENOUT^MAGDQR21(.STUDY,REQDFN,IMGLESS,INCDEL,INCSERD) ; generate OUT based on STUDY
+ D GENOUT^MAGDQR21(.STUDY,REQDFN,IMGLESS,INCDEL,INCSERD,$G(RADIEN)) ; generate OUT based on STUDY ;*zeb *365 pass on RADIEN
  ;
  ;update last counter
  S @OUT@(1)=@OUT@(1)-1
@@ -162,23 +163,26 @@ SRTUID2(IEN,STUDY) ; Sort group by UID, IEN (include Deleted Images)
  Q
  ;
  ;*zeb *348 pass on INCSERD to code that would actually include the series description
-GENOUT(STUDY,REQDFN,IMGLESS,INCDEL,INCSERD) ; Generate output in ^TMP based on STUDY array
+ ;*zeb *365 pass on RADIEN to support returning rad report text
+GENOUT(STUDY,REQDFN,IMGLESS,INCDEL,INCSERD,RADIEN) ; Generate output in ^TMP based on STUDY array
  N UID,IEN
  S INCSERD=$G(INCSERD)
+ S RADIEN=$G(RADIEN)
  ;
  S UID=""
  F  S UID=$O(STUDY(UID)) Q:UID=""  D
  . I UID="?" D  Q
  . . S IEN=""
- . . F  S IEN=$O(STUDY(UID,IEN)) Q:IEN=""  D STUDY^MAGDQR21("",IEN,REQDFN,IMGLESS,INCDEL,INCSERD)
+ . . F  S IEN=$O(STUDY(UID,IEN)) Q:IEN=""  D STUDY^MAGDQR21("",IEN,REQDFN,IMGLESS,INCDEL,INCSERD,RADIEN)
  . . Q
  . ;ELSE
- . D STUDY^MAGDQR21(UID,"",REQDFN,IMGLESS,INCDEL,INCSERD)
+ . D STUDY^MAGDQR21(UID,"",REQDFN,IMGLESS,INCDEL,INCSERD,RADIEN)
  . Q
  Q
  ; 
  ;*zeb *348 pass on INCSERD to code that would actually include the series description
-STUDY(UID,IEN,REQDFN,IMGLESS,INCDEL,INCSERD) ; Generate output in ^TMP based on parameters
+ ;*zeb *365 use RADIEN to return rad report text
+STUDY(UID,IEN,REQDFN,IMGLESS,INCDEL,INCSERD,RADIEN) ; Generate output in ^TMP based on parameters
  N STUDY
  N SERIESARRAY ; array of series numbers for this study
  N TOTIMAGES ; total number of images for all series in this study
@@ -188,6 +192,7 @@ STUDY(UID,IEN,REQDFN,IMGLESS,INCDEL,INCSERD) ; Generate output in ^TMP based on 
  N D0
  N STUMO ;Procedure array
  N TDCMIMG ; total number of DICOM images
+ N REPL ;Replacement spec for $$REPLACE^XLFSTR ;*zeb *365
  S INCSERD=$G(INCSERD)
  ;
  D WRTOUT^MAGDQR21("NEXT_STUDY|"_UID_"|"_IEN)
@@ -201,6 +206,9 @@ STUDY(UID,IEN,REQDFN,IMGLESS,INCDEL,INCSERD) ; Generate output in ^TMP based on 
  ;
  S I0=$O(PAT(REQDFN,"")) ;include the first Image when writing out the STUDY section
  Q:'$$WRTIEN^MAGDQR21(UID,I0,TOTIMAGES,TDCMIMG,REQDFN)
+ I $G(RADIEN) D  ;*zeb *365 output report text if requested
+ . S REPL($C(10))="%0A"
+ . D WRTOUT^MAGDQR21("REPORT_TEXT|"_$$REPLACE^XLFSTR($$RPTTEXT^MAGNTRAI(RADIEN),.REPL))
  ;
  Q:'$$INTEGDFN^MAGDQR21(I0,REQDFN,INCDEL)
  ;

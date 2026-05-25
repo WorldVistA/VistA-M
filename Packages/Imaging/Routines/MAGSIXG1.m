@@ -1,5 +1,5 @@
-MAGSIXG1 ;WOIFO/EdM/GEK/SEB/SG/NST - LIST OF IMAGES RPCS ; JUN 11, 2018@11:43 AM
- ;;3.0;IMAGING;**8,48,59,93,117,221**;Mar 19, 2002;Build 2238;Jul 15, 2011
+MAGSIXG1 ;WOIFO/EDM/GEK/SEB/SG/NST/ZEB - LIST OF IMAGES RPCS ; JUN 11, 2018@11:43 AM
+ ;;3.0;IMAGING;**8,48,59,93,117,221,365**;Mar 19, 2002;Build 19;Jul 15, 2011
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -55,6 +55,9 @@ ERRORS(RESULTS,RC) ;
  ;                    If the G flag is not set then only the status of the 
  ;                    Group entry will be checked and the group will be 
  ;                    returned if it passes.
+ ;                    
+ ;                 O  Omit non-printable and delimiter characters from the
+ ;                    SHORT DESCRIPTION field
  ;
  ;                    See description of the MAG4 IMAGE LIST remote
  ;                    procedure for details.
@@ -137,7 +140,8 @@ GETIMGS(MAGOUT,FLAGS,FROMDATE,TODATE,MAXNUM,MISCPRMS) ;RPC [MAG4 IMAGE LIST]
  ;=== Query the image file(s)
  S MAGDATA("FLAGS")=FLAGS,MAGDATA("MAXNUM")=MAXNUM
  S TMP=$S(TODATE<9999999:$$FMADD^XLFDT(TODATE,1),1:TODATE)
- S QF=$$TRFLAGS^MAGUTL05(FLAGS,"CDEG")
+ ;*zeb *365 add support for O flag
+ S QF=$$TRFLAGS^MAGUTL05(FLAGS,"CDEGO")
  S RC=$$QUERY^MAGGI13("$$QRYCBK^MAGSIXG3",QF,.MAGDATA,FROMDATE,TMP,+$G(MAGDATA("IDFN")))
  I RC<0  D ERRORS(.MAGOUT,RC)  Q
  ;
@@ -179,6 +183,7 @@ GETIMGS(MAGOUT,FLAGS,FROMDATE,TODATE,MAXNUM,MISCPRMS) ;RPC [MAG4 IMAGE LIST]
  ;
  ;                 D  Include only deleted images (file #2005.1)
  ;                 E  Include only existing images (file #2005)
+ ;                 O  Omit non-printable and delimiter characters from SHORT DESCRIPTION
  ;
  ;               By default ($G(FLAGS)=""), the "E" value is assumed.
  ; 
@@ -194,8 +199,10 @@ PGI(MAGOUT,DFN,PKG,CLASS,TYPE,EVENT,SPEC,FROMDATE,TODATE,ORIGIN,DATA,FLAGS) ;RPC
  I $G(DFN)'>0  D ERRORS(.MAGOUT,$$IPVE^MAGUERR("DFN"))  Q
  S I=I+1,MISCPRMS(I)="IDFN^^"_(+DFN)
  ;--- Check the flags
- S:$G(FLAGS)="" FLAGS="E"
- I $TR(FLAGS,"DE")'=""  D ERRORS(.MAGOUT,$$IPVE^MAGUERR("FLAGS"))  Q
+ ;*zeb *365 add support for O flag
+ S FLAGS=$G(FLAGS)
+ I (FLAGS'["D"),(FLAGS'["E") S FLAGS="E"_FLAGS
+  I $TR(FLAGS,"DEO")'=""  D ERRORS(.MAGOUT,$$IPVE^MAGUERR("FLAGS"))  Q
  ;--- Pass the filter parameters through
  S:$G(PKG)'="" I=I+1,MISCPRMS(I)="IXPKG^^"_$TR(PKG,",","^")
  S:$G(CLASS)'="" I=I+1,MISCPRMS(I)="IXCLASS^^"_$TR(CLASS,",","^")
@@ -212,7 +219,8 @@ VALPARAM(MAGDATA,FLAGS,FROMDATE,TODATE,MAXNUM,MISCPRMS)  ; Validate input parame
  ;--- Control flags
  S ERROR=0
  S FLAGS=$G(FLAGS)
- I $TR(FLAGS,"CDESG")'=""  D  S ERROR=1
+ ;*zeb *365 add support for O flag
+ I $TR(FLAGS,"CDESGO")'=""  D  S ERROR=1
  . D IPVE^MAGUERR("FLAGS")     ; Unknown/Unsupported flag(s)
  . Q
  I $TR(FLAGS,"DE")=FLAGS  D  S ERROR=1

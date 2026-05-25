@@ -1,5 +1,5 @@
 ONCOEDC2 ;HINES OIFO/RTK - ABSTRACT STATUS (165.5,91) Input Transform ;4/29/19
- ;;2.2;ONCOLOGY;**10,12,17,18,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**10,12,17,18,20,22**;Jul 31, 2013;Build 6
  ;
 OBS2018 ;Remove data in fields that are obsolete for 2018+ cases
  D OBS2023
@@ -13,7 +13,7 @@ FLDS ;Check if data in any of these obsolete (for 2018+) fields
  ;I $$GET1^DIQ(165.5,PRM,361,"I")="" S FDNUM=361 D CMPLT
  F FDNUM=24,35,29.2,30.2,29.1,31.1,32.1,34.3,34.4,44.1,44.2,44.3,44.4,44.5,44.6,44.7,44.8,44.9,44.101,44.11,44.12,44.13,44.14,44.15,44.16,44.17,44.18,44.19,44.201,44.21,44.22,44.23,44.24,44.25  D
  .I $$GET1^DIQ(165.5,PRM,FDNUM,"I")'="" D OLDTA
- F FDNUM=160,161,162,163,164,165,166,160.7,161.7,162.7,163.7,164.7,165.7,166.7,167,168,169,169.1,37.1,37.2,37.3,38,85,86,87,88,241,242,363,363.1,442,443,56,125,34,34.1,34.2  D
+ F FDNUM=160,161,162,163,164,165,166,160.7,161.7,162.7,163.7,164.7,165.7,166.7,167,168,169,169.1,37.1,37.2,37.3,38,85,86,87,88,241,242,363,363.1,442,443,56,125,34,34.1,34.2,51.2  D
  .I $$GET1^DIQ(165.5,PRM,FDNUM,"I")'="" D OLDTA
  Q
 OLDTA ;Set ONCOBSO=1 and add field to list of obsolete fields with data
@@ -37,6 +37,7 @@ DELETE ;
  S $P(^ONCO(165.5,PRM,24),"^",9)=""
  S $P(^ONCO(165.5,PRM,"THY1"),"^",43)=""
  S $P(^ONCO(165.5,PRM,"THY1"),"^",44)=""
+ S $P(^ONCO(165.5,PRM,3),"^",6)=""
  S $P(^ONCO(165.5,PRM,3),"^",20)=""
  S $P(^ONCO(165.5,PRM,3),"^",21)=""
  S $P(^ONCO(165.5,PRM,2),"^",5)=""
@@ -105,6 +106,13 @@ DELETE ;
  S $P(^ONCO(165.5,PRM,2),"^",15)=""
  S $P(^ONCO(165.5,PRM,2),"^",16)=""
  S $P(^ONCO(165.5,PRM,2),"^",17)=""
+ Q
+ ;
+OBS2025 ;Ensure field #11132 = "XX" for 2025+ cases and NULL for older cases
+ I $P($G(^ONCO(165.5,D0,0)),U,16)<3250000 D  Q
+ .S $P(^ONCO(165.5,D0,"SSD5"),"^",18)="" Q
+ I $P($G(^ONCO(165.5,D0,0)),U,16)>3241231 D  Q
+ .S $P(^ONCO(165.5,D0,"SSD5"),"^",18)="XX" Q
  Q
  ;
 OBS2023 ;Remove data in data flag fields that are obsolete for 2023+ cases

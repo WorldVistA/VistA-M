@@ -1,5 +1,5 @@
-DGREGCP2 ;ALB/CLT - ADDRESS UTILITIES ;23 May 2017  1:33 PM
- ;;5.3;Registration;**941**;Aug 13, 1993;Build 73
+DGREGCP2 ;ALB/CLT,JAM - ADDRESS UTILITIES ;23 May 2017  1:33 PM
+ ;;5.3;Registration;**941,1143**;Aug 13, 1993;Build 36
  ;
 POBOXRES(DGADDL1,STATE,CNTRY) ;TEST FOR UNALLOWED PO BOX AND GENERAL DELIVERY FOR RESIDENTIAL ADDRESS
  ; DGADDL1 - The address [LINE 1] text
@@ -15,17 +15,16 @@ POBOXRES(DGADDL1,STATE,CNTRY) ;TEST FOR UNALLOWED PO BOX AND GENERAL DELIVERY FO
  I $$ISPO(DGADDL1) S DGCCHK=1
  Q DGCCHK
  ;
-POBOXPM(DFN) ;Check for PO Box/General Delivery in Permanent Mailing Address
+ ; DG*5.3*1143 - Modify function to accept Mailing line 1, state and county instead of looking at the database values
+POBOXPM(DGLINE1,DGST,DGCNTRY) ;Check for PO Box/General Delivery in Permanent Mailing Address
+ ; DGLINE1 - Line 1 of the Mailing address
+ ; DGST - State code
+ ; DGCNTRY - Country
  ; Returns 1 if Perm address contains PO Box or General delivery (allowing for exceptions)
- I '$D(^DPT(DFN,.11)) Q 0
- N DGRESADD,DGADDL1
- S DGRESADD=^DPT(DFN,.11)
  ; allow certain exceptions for countries/states that allow PO Box
- I $$OKPO($P(DGRESADD,U,5),$P(DGRESADD,U,10)) Q 0
- ; get address line 1
- S DGADDL1=$P(DGRESADD,U,1)
+ I $$OKPO(DGST,DGCNTRY) Q 0
  ; return result from checking for PO/General Delivery
- Q $$ISPO(DGADDL1)
+ Q $$ISPO(DGLINE1)
  ;
 OKPO(STATE,CNTRY) ;PO BOX CHECK FOR CERTAIN COUNTRIES AND STATES
  ; Returns 1 if the country/state allows for PO box/general delivery

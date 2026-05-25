@@ -1,5 +1,5 @@
-ORMPS3 ;SLC/MKB - Process Pharmacy ORM msgs cont ;Jun 18, 2021@08:44:23
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**213,243,413,547,405**;Dec 17, 1997;Build 211
+ORMPS3 ;SLC/MKB - Process Pharmacy ORM msgs cont ;May 13, 2025@10:28:55
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**213,243,413,547,405,508**;Dec 17, 1997;Build 39
  ;
 PTR(X) ; -- Return ptr to prompt OR GTX X
  Q +$O(^ORD(101.41,"AB","OR GTX "_X,0))
@@ -109,7 +109,8 @@ UPD ; -- Compare ORMSG to order, update responses [from SC^ORMPS]
  .. S CNT=1,^OR(100,ORDER,4.5,SIG,2,1,0)=$$UNESC^ORMPS2($P(@ORMSG@(NTE),"|",4))
  .. S I=0 F  S I=$O(@ORMSG@(NTE,I)) Q:I<1  S CNT=CNT+1,^OR(100,ORDER,4.5,SIG,2,CNT,0)=$$UNESC^ORMPS2(@ORMSG@(NTE,I))
  .. S ^OR(100,ORDER,4.5,SIG,2,0)="^^"_CNT_U_CNT_U_DT_U
- S ZSC=$$ZSC I ZSC,$P(ZSC,"|",2)'?2.3U S ^OR(100,ORDER,5)=$TR($P(ZSC,"|",2,7),"|","^") ;1 or 0 instead of [N]SC
+ I $G(ORCAT)="O" D GETHL7^ORSPECAUTH(.ORMSG,+ORIFN)
+ ;S ZSC=$$ZSC I ZSC,$P(ZSC,"|",2)'?2.3U S ^OR(100,ORDER,5)=$TR($P(ZSC,"|",2,7),"|","^") ;1 or 0 instead of [N]SC
  Q
  ;
 CLNUPD ;-- Update, if Clinic order ;p413

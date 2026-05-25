@@ -1,5 +1,5 @@
-ORMPS2 ;SLC/MKB - Process Pharmacy ORM msgs cont; June 5, 2023@15:28:03
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,129,134,186,190,195,215,265,243,280,363,350,462,413,405,577,602,604**;Dec 17, 1997;Build 11
+ORMPS2 ;SLC/MKB - Process Pharmacy ORM msgs cont; Dec 11, 2024@14:00
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,129,134,186,190,195,215,265,243,280,363,350,462,413,405,577,602,604,508**;Dec 17, 1997;Build 39
  ;
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
@@ -138,7 +138,7 @@ RO2 ; -Update responses, get/save new order text:
  S ^OR(100,ORIFN,4)=PKGIFN,$P(^(8,ORDA,0),U,14)=ORDA
  S ORIFN=ORIFN_";"_ORDA,ORDCNTRL="SN" ;to send NA msg back
  I $G(ORL) S ORP(1)=ORIFN_"^1" D PRINTS^ORWD1(.ORP,+ORL)
- I $G(ORCAT)="O" S ZSC=$$ZSC^ORMPS3 I ZSC,$P(ZSC,"|",2)'?2.3U S ^OR(100,+ORIFN,5)=$TR($P(ZSC,"|",2,9),"|","^") ;1 or 0 instead of [N]SC in #100
+ I $G(ORCAT)="O" D GETHL7^ORSPECAUTH(.ORMSG,+ORIFN)    ;508 Get ZSC
  Q
 IVLIM(IVDUR) ;
  I $L(IVDUR) D

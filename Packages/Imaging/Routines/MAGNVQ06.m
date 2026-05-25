@@ -1,5 +1,5 @@
-MAGNVQ06 ;WOIFO/NST - List images for Reports ; 05 Feb 2018 3:59 PM
- ;;3.0;IMAGING;**185,197**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGNVQ06 ;OIT/NST - List images for Reports ; 05 Feb 2018 3:59 PM
+ ;;3.0;IMAGING;**185,197,365**;Mar 19, 2002;Build 19;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -27,6 +27,7 @@ MAGNVQ06 ;WOIFO/NST - List images for Reports ; 05 Feb 2018 3:59 PM
  ;                or
  ;               RPT^CPRS^4658^TIU^2243408^^^^^^^^1~2
  ; [IMGLESS]  flag to speed up queries: if=1 (true), just get study-level data
+ ; [INCRT] - set to 1 to return radiology report text
  ;           
  ; Return Values
  ; =============
@@ -36,7 +37,8 @@ MAGNVQ06 ;WOIFO/NST - List images for Reports ; 05 Feb 2018 3:59 PM
  ;            MAGRY(1..n) = CONTEXTID | 0 or 1 | images in format defined in
  ;                        RPC [MAGG CPRS RAD EXAM] or [MAG3 CPRS TIU NOTE]
  ;
-IMAGEL(MAGRY,DATA,IMGLESS) ;called by RPC [MAGN CPRS IMAGE LIST]
+ ;*zeb *365 add INCRT parameter to include radiology report text
+IMAGEL(MAGRY,DATA,IMGLESS,INCRT) ;called by RPC [MAGN CPRS IMAGE LIST]
  N MAGNCXT,MAGNI,MAGNCNT,MAGNX,REFIEN,REFTYPE
  N MAGZRY,MAGRYNEW
  N $ETRAP,$ESTACK S $ETRAP="D AERRA^MAGGTERR"
@@ -55,7 +57,7 @@ IMAGEL(MAGRY,DATA,IMGLESS) ;called by RPC [MAGN CPRS IMAGE LIST]
  . . Q
  . S REFTYPE=$S(MAGNX="RA":"RAD",MAGNX="TIU":"TIU",1:"")
  . I REFTYPE="RAD" D
- . . D IMAGEC(.MAGZRY,MAGNCXT,IMGLESS,.REFIEN)          ; Get image list for a single contextID
+ . . D IMAGEC(.MAGZRY,MAGNCXT,IMGLESS,.REFIEN,$G(INCRT)) ; Get image list for a single contextID ;*zeb *365 pass along INCRT
  . . Q
  . I REFTYPE="TIU" D
  . . S REFIEN=$P(MAGNCXT,"^",5)
@@ -63,7 +65,7 @@ IMAGEL(MAGRY,DATA,IMGLESS) ;called by RPC [MAGN CPRS IMAGE LIST]
  . . Q
  . K @MAGZRY@(1)  ; delete counter node
  . D GSTUDY^MAGNVQ01(MAGZRY,REFTYPE,REFIEN,MAGNCXT,IMGLESS)  ; Get imagage from new image data structure (P34) 
- . D APPEND(MAGRY,.MAGNCNT,MAGNCXT,MAGZRY,REFTYPE,REFIEN)  ; Append individual contextID image list to final list
+ . D APPEND(MAGRY,.MAGNCNT,MAGNCXT,MAGZRY,REFTYPE,REFIEN,$G(INCRT))  ; Append individual contextID image list to final list ;*zeb *365 pass along INCRT
  . Q
  S @MAGRY@(0)=1
  Q
@@ -89,7 +91,8 @@ IMAGETIU(MAGZRY,DATA,IMGLESS) ; Get 2005 Images by TIU Note
  ;
  Q
  ;
-IMAGEC(MAGZRY,DATA,IMGLESS,RARPT) ;A copy from MAGGTRAI
+ ;*zeb *365 added INCRT param to return rad report text
+IMAGEC(MAGZRY,DATA,IMGLESS,RARPT,INCRT) ;A copy from MAGGTRAI
  ; Call to list Images for a Rad Exam that was selected from CPRS 
  ; and Imaging Window was notified via windows messaging
  ;   INPUT :  DATA is in format of Windows message received from CPRS
@@ -110,10 +113,11 @@ IMAGEC(MAGZRY,DATA,IMGLESS,RARPT) ;A copy from MAGGTRAI
  I 'RARPT S @MAGZRY@(0)="1^No Report for selected Exam" Q
  ; MAGQI 8/22/01
  I $P($G(^RARPT(RARPT,0)),U,2)'=DFN S @MAGZRY@(0)="-2^Patient Mismatch. Radiology File" Q
- D GETSTUDY(.MAGZRY,RARPT,IMGLESS)  ; Pass input parameters
+ D GETSTUDY(.MAGZRY,RARPT,IMGLESS,$G(INCRT))  ; Pass input parameters ;*zeb *365 pass along INCRT
  Q
  ;
-GETSTUDY(MAGZRY,RARPT,IMGLESS) ; Private call. From other points in this routine, when RARPT is defined
+ ;*zeb *365 add INCRT param to allow returning rad report text
+GETSTUDY(MAGZRY,RARPT,IMGLESS,INCRT) ; Private call. From other points in this routine, when RARPT is defined
  ; RARPT -- Radiology report IEN
  ; and returns a list in MAGZRY(1..n). 
  ; We'll make a tmp list of just the image IEN's
@@ -150,20 +154,22 @@ GETSTUDY(MAGZRY,RARPT,IMGLESS) ; Private call. From other points in this routine
  . Q
  ;
  S REQDFN=$P($G(^RARPT(RARPT,0)),U,2)
- D STUDY2^MAGDQR21(.OUT,.GROUPS,REQDFN,IMGLESS)  ; MAG DOD GET STUDIES IEN
+ D STUDY2^MAGDQR21(.OUT,.GROUPS,REQDFN,IMGLESS,"",$S(INCRT:RARPT,1:""))  ; MAG DOD GET STUDIES IEN ;*zeb *365 pass on rad report IEN if text was requested
  ;
  S MAGZRY=OUT
  S @MAGZRY@(0)=1
  ;
  Q
  ;
-APPEND(MAGOUT,MAGNCNT,MAGNCXT,MAGIN,REFTYPE,REFIEN)  ;
+ ;*zeb *365 added INCRT parameter to include report text
+APPEND(MAGOUT,MAGNCNT,MAGNCXT,MAGIN,REFTYPE,REFIEN,INCRT)  ;
  ; Append individual contextID image list to final list
  ; and add more data 
  ; MAGOUT  - destination image list array 
  ; .MAGNCNT -- Start position in the array
  ; MAGNCXT -- context ID
  ; MAGIN  -- Image list to be appended - reference to a global
+ ; INCRT -- set to 1 to include rad report text
  ;
  N I,IMGIEN,MAGNCNTN,MAGSTUDY,OLDSTUDY
  S @MAGIN@(0)=$G(@MAGIN@(0))
@@ -174,6 +180,9 @@ APPEND(MAGOUT,MAGNCNT,MAGNCXT,MAGIN,REFTYPE,REFIEN)  ;
  ;
  S MAGNCNTN=MAGNCNT
  S MAGNCNT=MAGNCNT+1
+ ;I $G(INCRT),(REFTYPE="RAD"),(REFIEN]"") D  ;*zeb *365 include rad report text if requested
+ ;. S MAGNCNT=MAGNCNT+1
+ ;. S @MAGOUT@(MAGNCNT)="REPORT_TEXT|"_$$RPTTEXT^MAGNTRAI(REFIEN)
  ;
  S OLDSTUDY=0
  S I=0

@@ -1,5 +1,5 @@
 ONCOPA1 ;HINES OIFO/GWB - [PA Print Complete Abstract (132c)] ;09/22/11
- ;;2.2;ONCOLOGY;**1,5,6,9,10,12,13,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,5,6,9,10,12,13,20,21**;Jul 31, 2013;Build 6
  ;
  ;Replaces print templates ONCOX1-X11.
  ;
@@ -111,7 +111,7 @@ CI ;Cancer Identification
  .W !,"Grade Post Therapy Path(yp): ",ONCAB(165.5,IEN,24.5,"E") D P Q:EX=U
  W !,"        AFIP/JPC Submission: ",ONCAB(165.5,IEN,83) D P Q:EX=U
  W !,"    Diagnostic Confirmation: ",ONCAB(165.5,IEN,26) D P Q:EX=U
- W:TOP=67220 !,"                Hepatitis C: ",ONCAB(165.5,IEN,1010)
+ ;W:TOP=67220 !,"                Hepatitis C: ",ONCAB(165.5,IEN,1010)
  I DATEDX<3040000 D
  .S TM1=$$PRINT^ONCOTM(IEN,1)
  .I TM1["UMOR" S $E(TM1,2,5)="umor" I TM1["ARKER" S $E(TM1,8,12)="arker"

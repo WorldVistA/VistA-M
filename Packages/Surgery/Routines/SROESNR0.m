@@ -1,5 +1,5 @@
 SROESNR0 ;BIR/ADM - NURSE REPORT E-SIG UTILITY ;11/01/2011
- ;;3.0;Surgery;**100,129,147,153,175,176,182,184,200**;24 Jun 93;Build 9
+ ;;3.0;Surgery;**100,129,147,153,175,176,182,184,200,223**;24 Jun 93;Build 2
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -40,6 +40,7 @@ REVRS ; restore before-edit data
  Q
 TR S SRP=SRI,SRP=$TR(SRP,"1234567890.,","ABCDEFGHIJPK")
  Q
+ ; SR*3*223 add Wound Sweep Comments KFCCC
 FIELD ; list of fields (^field name on report-file,field^node;piece)
 KPJB ;;^Operating Room Procedure Performed-130,.02^0;2
 KPJCE ;;^Surgical Priority-130,.035^0;10
@@ -95,7 +96,9 @@ KDE ;;^Sharps Final Count Correct-130,45^25;2
 KDF ;;^Instrument Final Count Correct-130,46^25;3
 KFCJ ;;^Possible Item Retention-130,630^25;6
 KFCC ;;^Wound Sweep-130,633^25;7
+KFCCC ;;^Wound Sweep Comments-130,635;W^53;0
 KFCF ;;^Intraoperative XRay-130,636^25;8
+KFCFC ;;^Intraoperative XRay Comments-130,637;W^54;0
 KAPAC ;;^ASA Class-130,1.13^1.1;3
 KDG ;;^Person Responsible for Final Counts-130,47^25;4
 KDH ;;^Count Verifier-130,48^25;5

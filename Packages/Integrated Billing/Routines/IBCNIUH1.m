@@ -1,5 +1,5 @@
 IBCNIUH1 ;AITC/TAZ - IIU RECEIVE AND PROCESS INSURANCE TRANSMISSIONS ; 04/06/21 12:46p.m.
- ;;2.0;INTEGRATED BILLING;**687,702**;21-MAR-94;Build 53
+ ;;2.0;INTEGRATED BILLING;**687,702,804**;21-MAR-94;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; ICR #2171 for the usage of $$IEN^XUAF4
@@ -193,7 +193,11 @@ FILEBUF ;File IIU data file #365.19 into the Buffer file #355.33
  S IBBUFDA=+$$ADD^IBCNBEE(SOURCE)
  ;There was an error saving the Buffer, set IIU RECEIVER STATUS to 'B' ERROR SAVING TO BUFFER
  I (IDUZ="")!('IBBUFDA) D STATB Q
- ; 
+ ;
+ ;IB*804/DTG lock buffer entry
+ ; Lock the buffer entry
+ S BUFLOCK=$$BUFLOCK^IBCNEHL6(IBBUFDA,1)
+ ;
  S IBDATA(.02)=IDUZ       ; Entered By
  ; Source of Information was set above in $$ADD^IBCNBEE
  S IBDATA(.14)=SITE       ; Remote Location (the site that sent the IIU record)
@@ -223,6 +227,10 @@ FILEBUF ;File IIU data file #365.19 into the Buffer file #355.33
  D EDITSTF^IBCNBES(IBBUFDA,.IBDATA)
  ;Set buffer symbol to the buffer
  D BUFF^IBCNEUT2(IBBUFDA,+$$INSERROR^IBCNEUT3("B",IBBUFDA))
+ ;
+ ;IB*804/DTG un-lock buffer entry
+ ; remove Lock on the buffer entry
+ N BUFLOCK S BUFLOCK=$$BUFLOCK^IBCNEHL6(IBBUFDA,0)
  ;
  ;Add BUFFER IEN to the IIU file
  N DATA,ERROR,UPD

@@ -1,5 +1,5 @@
 RCDPEM0 ;ALB/TMK - ERA MATCHING TO EFT (cont) ;Jun 11, 2014@13:04:03
- ;;4.5;Accounts Receivable;**173,208,220,298,304,345,375,349,409,424**;Mar 20, 1995;Build 11
+ ;;4.5;Accounts Receivable;**173,208,220,298,304,345,375,349,409,424,439**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -73,10 +73,7 @@ MATCH(RCZ,RCPROC) ;EP from RCDPEM
  ; Many checks done by this are also done AUTOCHK2^RCDPEAP1 so if these are changed, 
  ; AUTOCHK2 may also need to be changed
  I RCMATCH D
- . S DIE="^RCY(344.31,",DA=RCZ,DR=".08////"_RCMATCH_";.1////"_RCRZ
- . D ^DIE
- . S DIE="^RCY(344.4,",DA=RCRZ,DR=".09////"_RCMATCH
- . D ^DIE
+ . D UPDMATCH^RCDPEU2(RCRZ,RCZ,RCMATCH) ; PRCA*4.5*439
  . S ^TMP($J,"RCTOT","MATCH")=$G(^TMP($J,"RCTOT","MATCH"))+1
  . ;
  . ; Lines below are added for Auto-posting - PRCA*4.5*298

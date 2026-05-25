@@ -1,5 +1,5 @@
 IBCNBLE1 ;DAOU/ESG - Ins Buffer, Expand Entry, con't ;25-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,435,467,516,601,668,737**;21-MAR-94;Build 19
+ ;;2.0;INTEGRATED BILLING;**184,271,416,435,467,516,601,668,737,822**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -56,7 +56,8 @@ BLD ; Continuation of Expand Entry list build procedure
  I $$SYMBOL^IBCNBLL(IBBUFDA)="*" S IBY="Manually verified, No eIV activity at this time"
  ;
  ; esg - 10/12/10 - check for epharmacy entries
- I +$P($G(^IBA(355.33,IBBUFDA,0)),U,17) S IBY="N/A for e-Pharmacy buffer entries"
+ ;IB*822/CKB - changed 'e-Pharmacy' to 'ePharmacy'
+ I +$P($G(^IBA(355.33,IBBUFDA,0)),U,17) S IBY="N/A for ePharmacy buffer entries"
  ;
  S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,18,80)
  D SET^IBCNBLE(IBLINE) S IBLINE=""

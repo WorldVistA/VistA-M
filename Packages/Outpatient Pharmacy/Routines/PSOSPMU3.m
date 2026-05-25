@@ -1,34 +1,60 @@
 PSOSPMU3 ;BIRM/MFR - State Prescription Monitoring Program Utility #3 - Customization ;10/07/15
- ;;7.0;OUTPATIENT PHARMACY;**451,625**;DEC 1997;Build 42
+ ;;7.0;OUTPATIENT PHARMACY;**451,625,772,797**;DEC 1997;Build 7
  ;
 CLONEVER(FROMVER,NEWVER,DEFTYPE) ; Create an exact copy of another ASAP version 
  ;Input: (r) FROMVER - Source ASAP Version to be cloned (3.0, 4.0, 4.1, 4.2)
  ;       (r) NEWVER  - New ASAP Version to be created (4.3, 4.4, 5.0, etc...)
  ;       (r) DEFTYPE - ASAP Definition Type (S: Standard Only; C: Customized Only, B: Both) 
  I $G(FROMVER)=""!($G(NEWVER)="") Q
- N CUSIEN,ASAPVER,ASAPDEF,NWVERIEN,SEGID,SEGIEN,ELMPOS,ELMID,ELMIEN
- S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",0))
+ N CUSIEN,ASAPVER,ASAPDEF,NWVERIEN,SEGID,SEGIEN,ELMPOS,ELMID,ELMIEN,ASAPSHDR,ASAPCHDR,ASAPCIEN
+ S CUSIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",0))   ; PSO*7*772-Store custom ASAP versions in standard node
  ; New ASAP Version already exists
  I $D(^PS(58.4,CUSIEN,"VER","B",NEWVER)) Q
- D LOADASAP^PSOSPMU0(FROMVER,DEFTYPE,.ASAPDEF)
- S NWVERIEN=$$SAVEVER(NEWVER,.ASAPDEF) I NWVERIEN'>0 Q
+ D LOADASAP^PSOSPMU0(FROMVER,"S",.ASAPDEF)  ; First clone standard definitions - PSO*7*772
+ S $P(ASAPDEF,"^",6)=FROMVER    ; Capture COPIED FROM ASAP VERSION
+ S NWVERIEN=$$SAVEVER(NEWVER,.ASAPDEF,1) I NWVERIEN'>0 Q
  ;
  S SEGID="999"
  F  S SEGID=$O(ASAPDEF(SEGID)) Q:SEGID=""  D
- . S SEGIEN=$$COPYSEG(FROMVER,.ASAPDEF,NEWVER,SEGID) I SEGIEN'>0 Q
+ . S SEGIEN=$$COPYSEG(FROMVER,.ASAPDEF,NEWVER,SEGID,1) I SEGIEN'>0 Q
  . S ELMPOS=""
  . F  S ELMPOS=$O(ASAPDEF(SEGID,ELMPOS)) Q:ELMPOS=""  D
  . . S ELMID=$P(ASAPDEF(SEGID,ELMPOS),"^")
- . . S ELMIEN=$$COPYELM(FROMVER,.ASAPDEF,NEWVER,ELMID)
+ . . S ELMIEN=$$COPYELM(FROMVER,.ASAPDEF,NEWVER,ELMID,1)    ; Save custom ASAP version in standard node
+ ; PSO*7*772 Begin
+ Q:$G(DEFTYPE)="S"    ;; If DEFTYPE is "C" (custom) or "B" (both), move customizations PSO*7*772
+ ;
+ S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",0))  ; Reset CUSIEN to custom node
+ S ASAPSHDR=$G(ASAPDEF)                                 ; Save ASAP Standard Header
+ K ASAPDEF                                              ; Reset ASAP array
+ ; New ASAP Version already exists
+ I $D(^PS(58.4,CUSIEN,"VER","B",NEWVER)) Q
+ D LOADASAP^PSOSPMU0(FROMVER,"C",.ASAPDEF)
+ S ASAPCIEN=$O(^PS(58.4,CUSIEN,"VER","B",FROMVER,0))
+ Q:'$G(ASAPCIEN)
+ S ASAPCHDR=$G(^PS(58.4,CUSIEN,"VER",ASAPCIEN,0))
+ S ASAPDEF=$S($L(ASAPCHDR):ASAPCHDR,1:ASAPSHDR)         ; Use custom header values if they exist
+ S $P(ASAPDEF,"^",6)=FROMVER                            ; Set COPIED FROM ASAP VERSION
+ S NWVERIEN=$$SAVEVER(NEWVER,.ASAPDEF,0) I NWVERIEN'>0 Q   ; Save custom ASAP Version in custom node
+ ;
+ S SEGID="999"
+ F  S SEGID=$O(ASAPDEF(SEGID)) Q:SEGID=""  D
+ . S SEGIEN=$$COPYSEG(FROMVER,.ASAPDEF,NEWVER,SEGID,0) I SEGIEN'>0 Q
+ . S ELMPOS=""
+ . F  S ELMPOS=$O(ASAPDEF(SEGID,ELMPOS)) Q:ELMPOS=""  D
+ . . S ELMID=$P(ASAPDEF(SEGID,ELMPOS),"^")
+ . . S ELMIEN=$$COPYELM(FROMVER,.ASAPDEF,NEWVER,ELMID,0)   ; Save individual customizations in custom node PSO*7*772 End
  Q
  ;
-SAVEVER(ASAPVER,VERDATA) ; Save an ASAP Version
+SAVEVER(ASAPVER,VERDATA,CLONE) ; Save an ASAP Version
  ;Input: (r) ASAPVER - ASAP Version ("3.0", "4.0", etc.)
  ;       (r) VERDATA - ASAP Version Data
+ ;       (o) CLONE   - Standard Clone ASAP Version PSO*7*772
  ;Output: SAVVER - ASAP Version IEN
  I $G(ASAPVER)=""!($G(VERDATA)="") Q "-1^Invalid Input Parameters"
  N SAVEVER,CUSIEN,VERIEN,VERDEF
  S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",0)) I 'CUSIEN Q "-1^Invalid Custom ASAP Data Definition"
+ I $G(CLONE) S CUSIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",0))   ;PSO*7*772
  ; If Custom ASAP Version entry does not exist, create it
  S VERIEN=$O(^PS(58.4,CUSIEN,"VER","B",ASAPVER,0)) I 'VERIEN S VERIEN="+1"
  ;
@@ -37,23 +63,26 @@ SAVEVER(ASAPVER,VERDATA) ; Save an ASAP Version
  S VERDEF(58.4001,VERIEN_","_CUSIEN_",",.03)=$P(VERDATA,"^",3)
  S VERDEF(58.4001,VERIEN_","_CUSIEN_",",.04)=$P(VERDATA,"^",4)
  S VERDEF(58.4001,VERIEN_","_CUSIEN_",",.05)=$P(VERDATA,"^",5)   ;Denotes Zero Report Version
+ S VERDEF(58.4001,VERIEN_","_CUSIEN_",",.06)=$P(VERDATA,"^",6)
  D UPDATE^DIE("","VERDEF","SAVEVER","")
  S:VERIEN="+1" VERIEN=+$G(SAVEVER(1))
  ; Necessary to force the '@' as a delimiter/terminator
  I $P(VERDATA,"^",2)="@",VERIEN S $P(^PS(58.4,CUSIEN,"VER",VERIEN,0),"^",2)="@"
  I $P(VERDATA,"^",3)="@",VERIEN S $P(^PS(58.4,CUSIEN,"VER",VERIEN,0),"^",3)="@"
  Q VERIEN
- ;
-COPYSEG(FROMVER,ASAPDEF,TOVER,SEGID) ; Copy a Segment
+ ; 
+COPYSEG(FROMVER,ASAPDEF,TOVER,SEGID,CLONE) ; Copy a Segment
  ; Input: (r) FROMVER - Source ASAP Version ("3.0", "4.0", etc.)
  ;        (r) ASAPDEF - Array containig the ASAP Definition to be copied
  ;        (r) TOMVER  - Detin ASAP Version ("3.0", "4.0", etc.)
  ;        (r) SEGID   - Segment ID ("PHA", "DSP", etc.)
+ ;        (o) CLONE   - Standard Clone ASAP Version Flag PSO*7*772
  ;Output: SAVESEG - New Segment IEN
  I $G(FROMVER)=""!($G(TOVER)="")!($G(SEGID)="") Q "-1^Invalid Input Parameters"
  N STDIEN,CUSIEN,TOVERIEN,SEGDEF,SEGIEN
  S STDIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",0))
  S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",0))
+ I $G(CLONE) S CUSIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",0))   ;PSO*7*772
  ; From ASAP Version must exist (Standard or Custom)
  I '$D(^PS(58.4,STDIEN,"VER","B",FROMVER)),'$D(^PS(58.4,CUSIEN,"VER","B",FROMVER)) Q "-1^Source ASAP Version does not exist."
  ; To ASAP Version must exist (Custom) - If not, try to create it
@@ -62,17 +91,19 @@ COPYSEG(FROMVER,ASAPDEF,TOVER,SEGID) ; Copy a Segment
  ; Segment ID already on file (cannot be copied again)
  I $O(^PS(58.4,CUSIEN,"VER",TOVERIEN,"SEG","B",SEGID,0)) Q "-1^Segment ID already on file"
  I '$D(ASAPDEF(SEGID)) Q "-1^Missing new segment data"
- Q $$SAVESEG(TOVER,"+1",ASAPDEF(SEGID),ASAPDEF)
+ Q $$SAVESEG(TOVER,"+1",ASAPDEF(SEGID),ASAPDEF,$G(CLONE))
  ;
-SAVESEG(ASAPVER,SEGID,SEGDATA,VERDATA) ; Saves a Segment
+SAVESEG(ASAPVER,SEGID,SEGDATA,VERDATA,CLONE) ; Saves a Segment
  ; Input: (r) ASAPVER - ASAP Version ("3.0", "4.0", etc.)
  ;        (r) SEGID   - Segment ID ("PHA", "DSP", etc.) or "+1" to add a new Segment
  ;        (r) SEGDATA - Segment Data
  ;        (o) VERDATA - Version Data (Only needed for 1st custom segment)
+ ;        (o) CLONE   - Standard Clone ASAP Version Flag PSO*7*772
  ;Output: SAVESEG - Segment IEN
  I $G(ASAPVER)=""!($G(SEGID)="")!($G(SEGDATA)="") Q "-1^Invalid Input Parameters"
  N SAVESEG,CUSIEN,VERIEN,SEGIEN,SEGDEF
  S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",0)) I 'CUSIEN Q "-1^Invalid Custom ASAP Data Definition"
+ I $G(CLONE) S CUSIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",0))   ;PSO*7*772
  ; Custom ASAP Version must exist - If not, create it
  S VERIEN=$O(^PS(58.4,CUSIEN,"VER","B",ASAPVER,9999),-1)
  I 'VERIEN S VERIEN=$$SAVEVER(ASAPVER,VERDATA) I VERIEN<0 Q "-1^Invalid Custom ASAP Version"
@@ -88,16 +119,18 @@ SAVESEG(ASAPVER,SEGID,SEGDATA,VERDATA) ; Saves a Segment
  I SEGIEN="+1" S SEGIEN=+$G(SAVESEG(1))
  Q SEGIEN
  ;
-COPYELM(FROMVER,ASAPDEF,TOVER,ELMID) ; Copy a Data Element
+COPYELM(FROMVER,ASAPDEF,TOVER,ELMID,CLONE) ; Copy a Data Element
  ;Input: (r) FROMVER - Source ASAP Version ("3.0", "4.0", etc.)
  ;       (r) ASAPDEF - Array containig the ASAP Definition to be copied
  ;       (r) TOMVER  - Detin ASAP Version ("3.0", "4.0", etc.)
  ;       (r) ELMID  - Data Element ID ("PHA01", "DSP02", etc.)
+ ;       (o) CLONE  - Standard Clone ASAP Version Flag PSO*7*772
  ;Output: SAVESEG - Segment IEN
  I $G(FROMVER)=""!'$D(ASAPDEF)!($G(TOVER)="")!($G(ELMID)="") Q "-1^Invalid Input Parameters"
  N STDIEN,CUSIEN,TOVERIEN,TOSEGIEN,ELMDEF,ELMIEN,ELMDATA
  S STDIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",0))
  S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",0))
+ I $G(CLONE) S CUSIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",0))   ;PSO*7*772
  ; From ASAP Version must exist (Standard or Custom)
  I '$D(^PS(58.4,STDIEN,"VER","B",FROMVER)),'$D(^PS(58.4,CUSIEN,"VER","B",FROMVER)) Q "-1^Source ASAP Version does not exist."
  ; To ASAP Version must exist (Custom) - If not, create it
@@ -106,22 +139,24 @@ COPYELM(FROMVER,ASAPDEF,TOVER,ELMID) ; Copy a Data Element
  S SEGID=$$GETSEGID(ELMID) I SEGID="" Q "-1^Invalid Segment ID "_SEGID_"."
  ; Custom ASAP Segment must exist - If not, create it
  S TOSEGIEN=$O(^PS(58.4,CUSIEN,"VER",TOVERIEN,"SEG","B",SEGID,9999),-1)
- I 'TOSEGIEN S TOSEGIEN=$$SAVESEG(TOVER,SEGID,ASAPDEF(SEGID),ASAPDEF) I 'TOSEGIEN Q "-1^Segment ID does not exist in the destin ASAP Version."
+ I 'TOSEGIEN S TOSEGIEN=$$SAVESEG(TOVER,SEGID,ASAPDEF(SEGID),ASAPDEF) I TOSEGIEN<0 Q "-1^Segment ID does not exist in the destin ASAP Version."
  ; Segment ID already on file (cannot be copied again)
  I $O(^PS(58.4,CUSIEN,"VER",TOVERIEN,"SEG",TOSEGIEN,"DAT","B",ELMID,9999),-1) Q "-1^Data Element already on file"
  I '$D(ASAPDEF(SEGID,ELMPOS)) Q "-1^Data Element does not exist in the source ASAP Version."
  K ELMDATA M ELMDATA=ASAPDEF(SEGID,ELMPOS)
- Q $$SAVEELM(TOVER,SEGID,"+1",.ELMDATA)
+ Q $$SAVEELM(TOVER,SEGID,"+1",.ELMDATA,$G(CLONE))
  ;
-SAVEELM(ASAPVER,SEGID,ELMID,ELMDATA) ; Saves a Data Element
+SAVEELM(ASAPVER,SEGID,ELMID,ELMDATA,CLONE) ; Saves a Data Element
  ;Input: (r) ASAPVER - ASAP Version ("3.0", "4.0", etc.)
  ;       (r) SEGID   - Segment ID ("PHA", "DSP", etc.)
  ;       (r) ELMID   - Data Element ID ("PHA01", "DSP05", etc.) or "+1" to add a new Data Element
  ;       (r) ELMDATA - Data Element Data
+ ;       (o) CLONE   - Standard Clone ASAP Version
  ;Output: SAVEELM - Data Element IEN
  I $G(ASAPVER)=""!($G(SEGID)="")!($G(ELMID)="")!($G(ELMDATA)="") Q "-1^Invalid Input Parameters"
- N SAVEELM,CUSIEN,VERIEN,ELMIEN,ELMDEF,SEGIEN
+ N SAVEELM,CUSIEN,VERIEN,ELMIEN,ELMDEF,SEGIEN,ELMERR
  S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",0)) I 'CUSIEN Q "-1^Invalid Custom ASAP Data Definition"
+ I $G(CLONE) S CUSIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",0))   ;PSO*7*772
  ; Custom ASAP Version must exist
  S VERIEN=$O(^PS(58.4,CUSIEN,"VER","B",ASAPVER,9999),-1) I 'VERIEN Q "-1^Invalid Custom ASAP Version"
  ; Custom ASAP Segment must exist
@@ -137,7 +172,7 @@ SAVEELM(ASAPVER,SEGID,ELMID,ELMDATA) ; Saves a Data Element
  S ELMDEF(58.400111,ELMIEN_","_SEGIEN_","_VERIEN_","_CUSIEN_",",.06)=$P(ELMDATA,"^",6) ;Requirement
  S ELMDEF(58.400111,ELMIEN_","_SEGIEN_","_VERIEN_","_CUSIEN_",",.07)="ELMDATA(""DES"")" ;Description
  S ELMDEF(58.400111,ELMIEN_","_SEGIEN_","_VERIEN_","_CUSIEN_",",.08)="ELMDATA(""VAL"")" ;Value
- D UPDATE^DIE("","ELMDEF","SAVEELM","")
+ D UPDATE^DIE("","ELMDEF","SAVEELM","ELMERR")
  I ELMIEN="+1" S ELMIEN=+$G(SAVEELM(1))
  Q ELMIEN
  ;
@@ -153,17 +188,19 @@ CUSSEG(ASAPVER,SEGID) ; Customized Segment?
  I $G(STDASAP(SEGID))=$G(CUSASAP(SEGID)) Q 0
  Q 1
  ;
-DELCUS(ASAPVER,SEGID,ELMID) ; Delete/Reset a Customization
+DELCUS(ASAPVER,SEGID,ELMID,DELSTDV) ; Delete/Reset a Customization
  ;Input: (r) ASAPVER - ASAP Version ("3.0", "4.0", etc.)
  ;       (o) SEGID   - Segment ID ("PHA", "DSP", etc.)
- ;       (o) ELMID  - Data Element ID ("PHA01", "DSP02", etc.)
+ ;       (o) ELMID   - Data Element ID ("PHA01", "DSP02", etc.)
+ ;       (o) DELSTDV - Delete Standard Clone ASAP Version?
  I $G(ASAPVER)="" Q
- N STDASAP,CUSASAP,CUSIEN,VERIEN,SEGIEN,ELMIEN,DIK,DA
+ N STDASAP,CUSASAP,CUSIEN,VERIEN,SEGIEN,ELMIEN,DIK,DA,DELVERIEN,STDIEN
  D LOADASAP^PSOSPMU0(ASAPVER,"S",.STDASAP) ; Standard ASAP Definition
  D LOADASAP^PSOSPMU0(ASAPVER,"C",.CUSASAP) ; Custom ASAP Definition
  ;
  S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",9999),-1)
- S VERIEN=$O(^PS(58.4,CUSIEN,"VER","B",ASAPVER,9999),-1) I 'VERIEN Q
+ S VERIEN=$O(^PS(58.4,CUSIEN,"VER","B",ASAPVER,9999),-1)
+ I '$P($G(DELSTDV),"^"),'VERIEN Q
  I $G(SEGID)'="" D
  . S SEGIEN=$O(^PS(58.4,CUSIEN,"VER",VERIEN,"SEG","B",SEGID,9999),-1)
  I $G(ELMID)'="" D
@@ -174,9 +211,7 @@ DELCUS(ASAPVER,SEGID,ELMID) ; Delete/Reset a Customization
  I $G(ELMID)'="",'$G(ELMIEN) Q
  ;
  ; Deleting/Resetting a Custom Data Element
- I $G(ELMID)'="" D  Q
- . S DIK="^PS(58.4,"_CUSIEN_",""VER"","_VERIEN_",""SEG"","_SEGIEN_",""DAT"","
- . S DA(3)=CUSIEN,DA(2)=VERIEN,DA(1)=SEGIEN,DA=ELMIEN D ^DIK
+ I $G(ELMID)'="" D RESETELM^PSOSPMU0(CUSIEN,VERIEN,SEGIEN,SEGID,ELMIEN,ELMID,ELMPOS,.CUSASAP,.STDASAP) Q
  ;
  ; Deleting/Resetting an Entire Custom Segment
  I $G(SEGID)'="" D  Q
@@ -184,6 +219,9 @@ DELCUS(ASAPVER,SEGID,ELMID) ; Delete/Reset a Customization
  . S DA(2)=CUSIEN,DA(1)=VERIEN,DA=SEGIEN D ^DIK
  ;
  ; Deleting/Resetting an Entire Custom ASAP Version
+ I $G(DELSTDV) S STDIEN=$P(DELSTDV,"^",2) I STDIEN D  Q
+ . S DIK="^PS(58.4,"_CUSIEN_",""VER"",",DA(1)=CUSIEN,DA=VERIEN D ^DIK     ; Remove standard clone ASAP customizations PSO*7*772
+ . S DIK="^PS(58.4,"_STDIEN_",""VER"",",DA(1)=STDIEN,DA=+DELSTDV D ^DIK   ; Remove standard clone ASAP definition PSO*7*772
  S DIK="^PS(58.4,"_CUSIEN_",""VER"","
  S DA(1)=CUSIEN,DA=VERIEN D ^DIK
  Q
@@ -278,3 +316,21 @@ ERROR ; Error Trap to test ASAP Data Retrieval
  E  W !,"The code will throw a <",$P($P(ZE,"<",2),">"),"> error for this expression.",$C(7) S ERROR=1
  ; Continue on
  W ! G UNWIND^%ZTER
+ ;
+DELSTDV(ASAPVER,SEGID,ELMID) ; Delete 'Standard' Custom ASAP Version - PSO*7*772
+ ;Input: (r) ASAPVER - ASAP Version ("3.0", "4.0", etc.)
+ ;       (o) SEGID   - Segment ID ("PHA", "DSP", etc.)
+ ;       (o) ELMID  - Data Element ID ("PHA01", "DSP02", etc.)
+ I $G(ASAPVER)="" Q
+ K DELVIEN,STDIEN
+ N STDASAP,CUSASAP,CUSIEN,VERIEN,SEGIEN,ELMIEN,DIK,DA
+ D LOADASAP^PSOSPMU0(ASAPVER,"S",.STDASAP) ; Standard ASAP Definition
+ D LOADASAP^PSOSPMU0(ASAPVER,"C",.CUSASAP) ; Custom ASAP Definition
+ ;
+ S CUSIEN=$O(^PS(58.4,"B","CUSTOM ASAP DEFINITION",9999),-1)
+ I ($G(ELMID)'="")!($G(SEGID)'="") Q ""    ; Not performing a Version Deletion
+ I '$L($P($G(STDASAP),"^",6)) Q ""         ; Version is not a 'Standard Clone' 
+ S STDIEN=$O(^PS(58.4,"B","STANDARD ASAP DEFINITION",9999),-1)
+ S DELVIEN=$O(^PS(58.4,STDIEN,"VER","B",ASAPVER,9999),-1)
+ I '($G(STDIEN)&$G(DELVIEN)) Q ""
+ Q $G(DELVIEN)_"^"_$G(STDIEN)

@@ -1,5 +1,5 @@
 IBTRED0 ;ALB/AAS - EXPAND/EDIT CLAIMS TRACKING ENTRY - CONT. ;01-JUL-1993
- ;;2.0;INTEGRATED BILLING;**160,210,317,276,458,461,598**;21-MAR-94;Build 28
+ ;;2.0;INTEGRATED BILLING;**160,210,317,276,458,461,598,796**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % I '$G(IBTRN)!($G(IORVON)="") G ^IBTRED
@@ -56,7 +56,7 @@ BILL ; -- billing information region
  I IBECME D SET^IBCNSP(START+6,OFFSET,"         ECME Number: "_IBECMEN)
  D SET^IBCNSP(START+6+IBECME,OFFSET,"         Bill Status: "_$E($$EXPAND^IBTRE(399,.13,$P(IBDGCR,"^",13)),1,14))
  ;S IBCOMM="" I +$P(IBTRND,"^",19) ; removed 'IF' for displaying the comment
- S IBCOMM=$E($P(IBTRND1,"^",8),1,60)
+ S IBCOMM=$E($$GET1^DIQ(356.04,$O(^IBT(356,IBTRN,4,"A"),-1)_","_IBTRN_",",1),1,60)
  I IBCOMM'="" D SET^IBCNSP(START+7+IBECME,OFFSET,"  Additional Comment: "_IBCOMM)
  I $P($G(^IBT(356,IBTRN,3,0)),"^",3) D
  . N IBX,IBY

@@ -1,5 +1,5 @@
 PXCOMPACT ;ALB/BPA,CMC - Routine for COMPACT Act APIs;05/06/2024@12:01
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**240**;Aug 12, 1996;Build 55
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**240,241**;Aug 12, 1996;Build 31
  ; *240* APIs for Episode of Care APIs (^PXCOMP(818))
  ; Reference to $$ELIG^DGCOMPACTELIG in ICR #7462
  ; Reference to SETPTFFLG^DGCOMPACT and SETPTFMVMT^DGCOMPACT in ICR #7463
@@ -7,12 +7,10 @@ PXCOMPACT ;ALB/BPA,CMC - Routine for COMPACT Act APIs;05/06/2024@12:01
  ; 
  Q
 GETSTDT(DFN) ;
- ; Retrieve the start date from the zero level of the most current episode sequence
- ; DFN is the Patient ID
+ ; Retrieve the start date
  ;
  N PXEOCNUM,PXEOCSEQ,PXSTDT
  S (PXEOCNUM,PXEOCSEQ,PXERRMSG,PXSTDT)=""
- ;D VALDFN(DFN,.PXERRMSG) I PXERRMSG'="" Q PXERRMSG
  I $D(^PXCOMP(818,"B",DFN)) D
  . S PXEOCNUM=$$GETEOC(DFN),PXEOCSEQ=$$GETEOCSEQ(DFN),PXSTDT=$P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",1)
  Q PXSTDT
@@ -27,7 +25,7 @@ GETIPDT(DFN) ;
  Q IPENDDT
  ;
 GETEOC(DFN) ;
- ; Get the Episode of Care number assigned to the patient
+ ; Get the Episode of Care number
  N PXEOCNUM
  I DFN="" S PXEOCNUM=""
  E  S PXEOCNUM=$O(^PXCOMP(818,"B",DFN,""))
@@ -35,28 +33,31 @@ GETEOC(DFN) ;
  ;
 GETEOCSEQ(DFN) ;
  ; Get the current/last Episode of Care sequence
- N PXEOCNUM,PXEOCSEQ
+ N PXEOCNUM,PXEOCSEQ,PXSEQCHK
  S PXEOCSEQ="",PXEOCNUM=$$GETEOC(DFN)
- I $G(PXEOCNUM)'="",$D(^PXCOMP(818,PXEOCNUM,10,0)) S PXEOCSEQ=$O(^PXCOMP(818,PXEOCNUM,10,"B"),-1)
+ I $G(PXEOCNUM)'="",$D(^PXCOMP(818,PXEOCNUM,10,0)) D
+ . S PXSEQCHK="B"
+ . F  S PXSEQCHK=$O(^PXCOMP(818,PXEOCNUM,10,PXSEQCHK),-1)  Q:(PXSEQCHK="")!(PXSEQCHK=0)!(PXEOCSEQ)  D
+ . . I $P(^PXCOMP(818,PXEOCNUM,10,PXSEQCHK,0),"^",6)'="E" S PXEOCSEQ=PXSEQCHK
+ . I PXEOCSEQ="" S PXEOCSEQ=1
  Q PXEOCSEQ
  ;
 GETPOINTRSEQ(DFN,PXENC,PXTY) ;
  ; Get the pointer sequence from the episode of care
- ; DFN - Internal Patient ID *required
- ; PXENC - Internal Encounter ID (VISIT or PTF) *required
- ; PXTY - Inpatient or Outpatient
  N PXEOCNUM,PXEOCSEQ,PXPONTRNUM
  S PXPONTRNUM=""
  I $G(PXTY)="" S PXTY=$$GETBENTYP(DFN)
  S PXEOCNUM=$$GETEOC(DFN),PXEOCSEQ=$$GETEOCSEQ(DFN)
- I PXEOCNUM'="",PXTY'="" D
+ I PXEOCNUM'="",PXTY'="",PXEOCSEQ'="" D
  . I PXTY="O" S PXPONTRNUM=$O(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,41,"B",PXENC,""))
  . E  S PXPONTRNUM=$O(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,40,"B",PXENC,""))
  Q PXPONTRNUM
  ;
 GETBENTYP(DFN) ;
  N PXBENTYP,PXEOCNUM,PXEOCSEQ
+ S PXBENTYP=""
  S PXEOCNUM=$$GETEOC(DFN)
+ I PXEOCNUM="" Q PXBENTYP
  I PXEOCNUM'="" S PXBENTYP=$P(^PXCOMP(818,PXEOCNUM,0),"^",3)
  ; If there is no value in the benefit type field for a closed episode of care, 
  ; look at the benefit end date history
@@ -70,15 +71,13 @@ GETBENTYP(DFN) ;
  ;
 SETSTDT(DFN,PXNWSTDT) ;
  ; Set a new start date for the current / most recent episode of care
- ; DFN      - Patient ID
- ; PXNWSTDT - New start date (VA format)
  ; 
  N CDATA,CMPMSG,PXBENTYP,PXEOCNUM,PXEOCSEQ,PXERRMSG,PXFNDOBI,PXFNDOBO,PXIENS
  S (CDATA,CMPMSG,PXBENTYP,PXEOCNUM,PXEOCSEQ,PXERRMSG,PXFNDOBI,PXFNDOBO,PXIENS)=""
  ;
- ; Check to see if date is less than seven digits in length
+ ; Check to see if date is less than seven digits
  I $L(PXNWSTDT)<7 S PXERRMSG="The start date value "_PXNWSTDT_" is less than seven digits in length." D COMPACTERR^PXCOMPACT1(PXERRMSG,DFN) Q
- ; Check to see if date is more than seven digits in length
+ ; Check to see if date is more than seven digits
  I $L(PXNWSTDT)>7 S PXERRMSG="The start date value "_PXNWSTDT_" is greater than seven digits in length." D COMPACTERR^PXCOMPACT1(PXERRMSG,DFN) Q
  ; Check to see if the start date is prior to January 17th, 2023
  I PXNWSTDT<3230117 S PXERRMSG="The start date "_PXNWSTDT_" is prior to January 17th, 2023." D COMPACTERR^PXCOMPACT1(PXERRMSG,DFN) Q
@@ -117,7 +116,7 @@ SETENDDT(DFN,PXENDDT,PXENDSRC,PXAUTH,PXCOMM) ;
  I $P(^PXCOMP(818,PXEOCNUM,0),"^",3)="O" S $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",5)=PXENDDT
  I $G(PXAUTH)'="" S $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,1),"^",1)=PXAUTH
  I $G(PXCOMM)'="" S $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,1),"^",2)=PXCOMM
- ; Set the ACUTE SUICIDAL CRISIS FLAG to zero and benefit type flag to NULL
+ ; Set the EOC OPEN/CLOSE FLAG to zero and benefit type flag to NULL
  S $P(^PXCOMP(818,PXEOCNUM,0),"^",2)=0,$P(^PXCOMP(818,PXEOCNUM,0),"^",3)=""
  Q
  ;
@@ -135,7 +134,7 @@ NEWEOC(DFN,PXENC,PXTY,PXSTDT,PXSRC) ;
  . S PXEOCNUM=$$GETEOC(DFN)
  . I $P(^PXCOMP(818,PXEOCNUM,0),"^",2)=1 S PXERRMSG="Patient has an open episode" D COMPACTERR^PXCOMPACT1(PXERRMSG,DFN)
  I PXERRMSG'="" Q
- ; If the start date is not passed in, use the start date of the encounter
+ ; If the start date is not passed in, use encounter start date
  I $D(^DGPT(PXENC)),$G(PXSTDT)="",$G(PXTY)="I" S PXSTDT=$P($P(^DGPT(PXENC,0),"^",2),".")
  I $D(^AUPNVSIT(PXENC)),$G(PXSTDT)="",$G(PXTY)="O" S PXSTDT=$P($P(^AUPNVSIT(PXENC,0),"^"),".")
  I $G(PXSTDT)="" S PXSTDT=DT
@@ -182,8 +181,13 @@ CHGTYPSTAT(DFN,PXTY,PXCHNGDT) ;
  S (PXFNDOBI,PXFNDOBO)=""
  S PXEOCNUM=$$GETEOC(DFN),PXEOCSEQ=$$GETEOCSEQ(DFN)
  I PXEOCNUM="" Q
+ I PXEOCSEQ="" Q
  ;
  I $$GETBENTYP(DFN)=PXTY Q
+ ;if EOC Open/Close flag is No, quit
+ I $P(^PXCOMP(818,PXEOCNUM,0),"^",2)=0 Q
+ ;if episode is Entered in Error, quit
+ I $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",6)="E" Q
  I $G(PXCHNGDT)="" S PXCHNGDT=DT
  S $P(^PXCOMP(818,PXEOCNUM,0),"^",3)=PXTY
  ; Set the updated benefit end dates based on the type of change
@@ -198,6 +202,8 @@ VISIT(ENC,PXTY,PXEOCNUM,DFN) ;
  ;
  N CDATA,CMPMSG,PXIENS,PXEOCSEQ
  S (PXIENS)=""
+ I PXEOCNUM="" S PXEOCNUM=$$GETEOC(DFN)
+ I PXEOCNUM="" Q
  S PXEOCSEQ=$$GETEOCSEQ(DFN)
  I PXTY="I" D
  . S (CMPMSG,CDATA(818.04))=""
@@ -220,9 +226,15 @@ VISIT(ENC,PXTY,PXEOCNUM,DFN) ;
  Q
  ;
 SETVSTFLG(DFN,PXENC,PXVAL) ;
- N PXEOCNUM,PXEOCSEQ,PXPOINTRSEQ
+ N PXIENS,PXEOCNUM,PXEOCSEQ,PXPOINTRSEQ,VDATA,VMPMSG
+ S (PXIENS,VDATA,VMPMSG)=""
  S PXEOCNUM=$$GETEOC(DFN),PXEOCSEQ=$$GETEOCSEQ(DFN),PXPOINTRSEQ=$$GETPOINTRSEQ(DFN,PXENC,"O")
- I PXPOINTRSEQ'="" S $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,41,PXPOINTRSEQ,0),"^",2)=PXVAL
+ I PXPOINTRSEQ'="" D
+ . S PXIENS=PXPOINTRSEQ_","_PXEOCSEQ_","_PXEOCNUM_","
+ . S VDATA(818.141,PXIENS,2)=PXVAL
+ . D UPDATE^DIE("","VDATA","","VMPMSG")
+ . I $D(VMPMSG("DIERR")) D FILEMANERR^PXCOMPACT1(DFN,.VDATA,.VMPMSG)
+ . K VDATA,VMPMSG
  Q
  ;
 VALDFN(DFN,PXERRMSG) ;
@@ -240,24 +252,36 @@ VALUSR(PXAUTH,PXERRMSG) ;
  I '$D(^VA(200,PXAUTH,0)) S PXERRMSG="Invalid user "_PXAUTH_", not in the new person file #200" D COMPACTERR^PXCOMPACT1(PXERRMSG,DFN) Q
  Q
  ;
-ASC(DFN) ;
- ; Determine if patient is currently in an acute suicidal crisis
- N PXEOCNUM,ASC
- S PXEOCNUM="",PXEOCNUM=$$GETEOC(DFN),ASC="N"
- I PXEOCNUM,$P(^PXCOMP(818,PXEOCNUM,0),"^",2)>0 S ASC="Y"
+ASC(DFN,DATE) ;
+ ; Determine if patient is currently in an acute suicidal crisis OR was in a crisis on the date provided
+ N ASC,ENDDATE,LASTSEQ,PXEOCNUM,PXLASTSEQ,STARTDATE
+ S ASC="N",PXEOCNUM=$$GETEOC(DFN),LASTSEQ=$$GETEOCSEQ(DFN)
+ I (PXEOCNUM="")!(LASTSEQ="") Q ASC
+ ;if no date provided, get current status
+ I $G(DATE)="" D  Q ASC
+ . I PXEOCNUM,$P(^PXCOMP(818,PXEOCNUM,0),"^",2)>0 S ASC="Y"
+ ;otherwise, check each episode sequence
+ S PXEOCSEQ=0
+ F  S PXEOCSEQ=+$O(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ)) Q:(ASC="Y")!(PXEOCSEQ=0)  D
+ . I $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",6)="E" Q
+ . S STARTDATE=$P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^")
+ . S ENDDATE=$P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",2)
+ . ;if no end date, episode is still open
+ . I (DATE'<STARTDATE),(ENDDATE=""),(PXEOCSEQ=LASTSEQ) S ASC="Y" Q
+ . I (DATE'>ENDDATE),(DATE<STARTDATE) S ASC="Y"
  Q ASC
  ;
-DISPLAY(DFN) ;
- ;before calling this tag, verify eligibility by calling ELIG^DGCOMPACTELIG(DFN)
- ;if ELIGIBLE or UNDETERMINED, call this tag
+DISPLAY(DFN,PXEOCSEQ) ;
  N DISPLAY,ELIGSEQ,ENDDT,EOCTYP,IPBENEND,OPBENEND,OPEXT,PXIEN,PXLASTSEQ,PXNUMOPX,PXSEQ,STARTDT
  S (ENDDT,EOCTYP,IPBENEND,OPBENEND,OPEXT,PXIEN,PXLASTSEQ,PXNUMOPX,PXSEQ,STARTDT,ELIGSEQ,DISPLAY)=""
  ;get Compact Act sequence
  I $D(^PXCOMP(818,"B",DFN)) S PXSEQ=$$GETEOC(DFN)
  I PXSEQ'="" D
- . ;find the latest sequence in the episode
- . S PXLASTSEQ=$$GETEOCSEQ(DFN)
- . ;get the start date and format it
+ . ;find the latest sequence in the episode OR use sequence provided in parameter 2
+ . I $G(PXEOCSEQ) S PXLASTSEQ=PXEOCSEQ
+ . I $G(PXEOCSEQ)="" S PXLASTSEQ=$$GETEOCSEQ(DFN) I PXLASTSEQ="" Q
+ . I '$D(^PXCOMP(818,PXSEQ,10,PXLASTSEQ)) Q
+ . I $P(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,0),"^",6)="E" Q
  . S STARTDT=$P(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,0),"^",1),STARTDT=$$FMTE^XLFDT(STARTDT)
  . S EOCTYP=$P(^PXCOMP(818,PXSEQ,0),"^",3)
  . ;check if the episode has ended. If so, only display Episode Start and End Date
@@ -266,53 +290,55 @@ DISPLAY(DFN) ;
  . S OPBENEND=$P($G(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,0)),"^",5) I OPBENEND'="" S OPBENEND=$$FMTE^XLFDT(OPBENEND)
  . I ENDDT'="" D
  . . S ENDDT=$$FMTE^XLFDT(ENDDT)
- . . ;check for extensions
- . . S OPEXT=$D(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,30))
- . . I OPEXT=0 D
- . . . S DISPLAY="COMPACT Act Start Date^"_STARTDT_"^End Date^"_ENDDT_"^IP Benefit End Date^"_IPBENEND_"^OP Benefit end date^"_OPBENEND
- . . . ; if there's an extension, display extension start and episode end date
- . . I OPEXT D
- . . . S STARTDT=$P($G(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,30,1,0)),"^",1),STARTDT=$$FMTE^XLFDT(STARTDT)
- . . . S DISPLAY="Extension Start Date^"_STARTDT_"^Episode End Date^"_ENDDT
- . ;if not ended, display Episode Start Date and Remaining Days (if no extensions)
+ . . S DISPLAY="COMPACT Act Start Date^"_STARTDT_"^End Date^"_ENDDT_"^IP Benefit End Date^"_IPBENEND_"^OP Benefit end date^"_OPBENEND
  . E  D
- . . ;check for extensions
- . . S OPEXT=$D(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,30))
- . . I OPEXT=0 D 
- . . . S PXIEN=PXLASTSEQ_","_PXSEQ
- . . . I EOCTYP="I",$P(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,0),"^",4)'="" D
- . . . . S DISPLAY="COMPACT Act Start Date^"_STARTDT_"^Remaining Days^"_$$GET1^DIQ(818.01,PXIEN,42)_"^Inpatient Benefit End Date^"_IPBENEND
- . . . E  S DISPLAY="COMPACT Act Start Date^"_STARTDT_"^Remaining Days^"_$S(EOCTYP="O":$$GET1^DIQ(818.01,PXIEN,43),1:$$GET1^DIQ(818.01,PXIEN,42))
- . . I OPEXT D
- . . . S STARTDT=$P($G(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,30,1,0)),"^",1),STARTDT=$$FMTE^XLFDT(STARTDT)
- . . . S PXNUMOPX=$P(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,30,0),"^",3),PXIEN=PXNUMOPX_","_PXLASTSEQ_","_PXSEQ
- . . . S DISPLAY="Extension Start Date^"_STARTDT_"^Remaining Days^"_$S(EOCTYP="O":$$GET1^DIQ(818.01,PXIEN,43),1:$$GET1^DIQ(818.01,PXIEN,42))
+ . . S PXIEN=PXLASTSEQ_","_PXSEQ
+ . . I EOCTYP="I",$P(^PXCOMP(818,PXSEQ,10,PXLASTSEQ,0),"^",4)'="" D
+ . . . S DISPLAY="COMPACT Act Start Date^"_STARTDT_"^Remaining Days^"_$$GET1^DIQ(818.01,PXIEN,42)_"^Inpatient Benefit End Date^"_IPBENEND
+ . . E  S DISPLAY="COMPACT Act Start Date^"_STARTDT_"^Remaining Days^"_$S(EOCTYP="O":$$GET1^DIQ(818.01,PXIEN,43),1:$$GET1^DIQ(818.01,PXIEN,42))
  Q DISPLAY
  ;
 ADMIT(DFN,STARTDT,ADMIT,PTF) ;
  ;called from DGPM ADMIT input template
  ;first, close the episode of care IF it's outpatient
- N EOCNUM,EOCSEQ,LTD,REOPNFLG
+ N EOCNUM,EOCSEQ,LTD,REOPNFLG,SEQCHK
  S (EOCNUM,EOCSEQ)="",REOPNFLG=0
  S EOCNUM=$$GETEOC(DFN)
  I EOCNUM="" D NEWEOC(DFN,PTF,"I",STARTDT,"V") I ADMIT="F" D SETPTFMVMT^DGCOMPACT(PTF,"Y")
- ;Processing complete, new episode of care created
  I EOCNUM="" Q
- S EOCSEQ=$$GETEOCSEQ(DFN) I EOCSEQ="" Q
+ S EOCSEQ=$$GETEOCSEQ(DFN)
  ;
  ;checking for scenario where patient is discharged but admitted same day
- I $P(^PXCOMP(818,EOCNUM,0),"^",3)="O",$P(^PXCOMP(818,EOCNUM,0),"^",2)=1 D
+ I $P(^PXCOMP(818,EOCNUM,0),"^",3)="O",$P(^PXCOMP(818,EOCNUM,0),"^",2)=1,$P(^PXCOMP(818,EOCNUM,10,EOCSEQ,0),"^",6)'="E" D
  . ; - get the last discharge date
  . S LTD=+$O(^DGPM("ATID3",DFN,"")) S:LTD LTD=9999999.9999999-LTD\1
  . ;Processing for patient that has been discharged/admitted the same day
- . I DT=LTD D REOPNEOC(EOCNUM,EOCSEQ,"") S REOPNFLG=1
- . I REOPNFLG=0 D SETENDDT(DFN,DT,"PR",DUZ,"admitting")
+ . I $$GETSTDT(DFN)=LTD D REOPNEOC(EOCNUM,EOCSEQ,"") S REOPNFLG=1 Q
+ . I ($$GETSTDT(DFN)=STARTDT),(REOPNFLG=0) D REOPNEOC(EOCNUM,EOCSEQ,"") S REOPNFLG=1 Q
+ . I REOPNFLG=0 D SETENDDT(DFN,STARTDT,"PR",DUZ,"admitting")
+ ;if an admission is flipped back to Yes (and has the same date), just reopen the episode
+ I $D(^PXCOMP(818,EOCNUM,10,"B",STARTDT)) D  Q
+ . S EOCSEQ=$O(^PXCOMP(818,EOCNUM,10,"B",STARTDT,"")) I EOCSEQ="" Q
+ . D REOPNEOC(EOCNUM,EOCSEQ,""),VISIT^PXCOMPACT(PTF,"I",PXEOCNUM,DFN),SETPTFMVMT^DGCOMPACT(PTF,"Y")
+ . ;need to end the prior episode
+ . S SEQCHK="B"
+ . F  S SEQCHK=$O(^PXCOMP(818,PXEOCNUM,10,SEQCHK),-1) Q:SEQCHK=0  D
+ . . I SEQCHK=EOCSEQ Q
+ . . I $P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",1)'="",$P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",2)="" D
+ . . . S $P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",2)=STARTDT,$P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",5)=STARTDT
+ I $P(^PXCOMP(818,EOCNUM,0),"^",3)="O",$P(^PXCOMP(818,EOCNUM,0),"^",2)=1,$P(^PXCOMP(818,EOCNUM,10,EOCSEQ,0),"^",6)="E" D  Q
+ . ;need to end the prior episode (non error) and then start a new IP episode
+ . S SEQCHK="B"
+ . F  S SEQCHK=$O(^PXCOMP(818,PXEOCNUM,10,SEQCHK),-1) Q:SEQCHK=0  D
+ . . I SEQCHK=EOCSEQ Q
+ . . I $P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",1)'="",$P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",2)="" D
+ . . . S $P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",2)=STARTDT,$P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",5)=STARTDT,$P(^PXCOMP(818,PXEOCNUM,0),"^",2)=0
+ . . . D NEWEOC(DFN,PTF,"I",STARTDT,"V")
  ;if a current inpatient EOC exists do the following:
  ;link both PTF records to the episode
- I $P(^PXCOMP(818,EOCNUM,0),"^",3)="I",$P(^PXCOMP(818,EOCNUM,0),"^",2)=1 D
- . D VISIT(PTF,"I",EOCNUM,DFN)
- . D SETPTFMVMT^DGCOMPACT(PTF,"Y")
- ;if no current EOC inpatient record
+ I $P(^PXCOMP(818,EOCNUM,0),"^",3)="I",$P(^PXCOMP(818,EOCNUM,0),"^",2)=1,$P(^PXCOMP(818,EOCNUM,10,EOCSEQ,0),"^",6)'="E" D
+ . D VISIT(PTF,"I",EOCNUM,DFN),SETPTFMVMT^DGCOMPACT(PTF,"Y")
+  ;if no current EOC inpatient record
  I $P(^PXCOMP(818,EOCNUM,0),"^",2)=0 D 
  . D NEWEOC(DFN,PTF,"I",STARTDT,"V")
  . ;set movement for Full admit
@@ -340,3 +366,8 @@ REOPNEOC(PXEOCNUM,PXEOCSEQ,STARTDT) ;
  S $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",8)=$S(ELIG="ELIGIBLE":"E",ELIG="NOT ELIGIBLE":"N",1:"U") ;Reset the patient eligibility
  Q
  ;
+RESET(PXEOCNUM) ;
+ ;called from DGPMV3 to handle deletions of admissions and transfers that have an associated Episode of Care
+ S $P(^PXCOMP(818,PXEOCNUM,0),"^",2)=0 ;Reset the episode of care open/close flag
+ S $P(^PXCOMP(818,PXEOCNUM,0),"^",3)="" ;Reset the Benefit Type
+ Q

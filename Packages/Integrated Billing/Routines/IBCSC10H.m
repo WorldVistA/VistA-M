@@ -1,5 +1,5 @@
 IBCSC10H ;ALB/ARH - MCCR SCREEN 10 (BILL SPECIFIC INFO) CMS-1500 ;4/21/92
- ;;2.0;INTEGRATED BILLING;**432,488,547,592,759**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**432,488,547,592,759,770**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ; CMS-1500 screen 10
  ;
@@ -21,7 +21,8 @@ EN ;
  S:IBV IBV1="1111111111"   ; uneditable if view only
  ;
  ;JWS;IB*2.0*592 US1108 - Dental form 7
- I $$FT^IBCU3(IBIFN)=7 S IBV1="1001100010" S:IBV IBV1="11111111"
+ ;JWS;IB*2.0*770;EBILL-4042;add ability to enter Non-VA facility on Dental claim
+ I $$FT^IBCU3(IBIFN)=7 S IBV1="1000100010" S:IBV IBV1="11111111"
  ;F I="U","U1","UF2","UF3","UF32","U2","M","TX",0,"U3" S IB(I)=$G(^DGCR(399,IBIFN,I))
  F I="U","U1","UF2","UF3","UF32","U2","M","M2","TX",0,"U3" S IB(I)=$G(^DGCR(399,IBIFN,I))
  ;

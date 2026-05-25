@@ -1,5 +1,5 @@
 PSOPRKA ;BIR/EJW - PARK/UNPARK functionality (cont.) ; Apr 24, 2023@08:17:57
- ;;7.0;OUTPATIENT PHARMACY;**441,712**;DEC 1997;Build 20
+ ;;7.0;OUTPATIENT PHARMACY;**441,712,763**;DEC 1997;Build 3
  ;
  ; Reference to $$L^PSSLOCK,PSOL^PSSLOCK,PSOUL^PSSLOCK,UL^PSSLOCK in ICR #2789
  ;(modified from hold rtn PSOHLDA)
@@ -141,12 +141,20 @@ UPKSUSP ; Update routing and date fields for latest fill and put on suspense
  S (RXN,DA)=PSODA
  S SD=FILLDATE
  I '$G(PSOSITE) N PSOSITE S PSOSITE=$$RXSITE^PSOBPSUT(RXN,$G(RXF))
- S RXP=+$G(RXPR(DA)),DIC="^PS(52.5,",DIC(0)="L",X=RXN,DIC("DR")=".02///"_SD_";.03////"_$P(^PSRX(DA,0),"^",2)_";.04///M;.05///"_RXP_";.06////"_PSOSITE_";2///0" K DD,DO D FILE^DICN D  I +Y,'$G(RXP),$G(RXRP(RXN)) S $P(^PS(52.5,+Y,0),"^",12)=1
+ N DRADD S DRADD="" I 'RXF,$G(^PSDRUG($P(PSOX("RX0"),"^",6),3)) S DRADD=";3////Q" ;p763
+ S RXP=+$G(RXPR(DA)),DIC="^PS(52.5,",DIC(0)="L",X=RXN
+ S DIC("DR")=".02///"_SD_";.03////"_$P(^PSRX(DA,0),"^",2)_";.04///M;.05///"_RXP_";.06////"_PSOSITE_";2///0"_$G(DRADD) K DD,DO D FILE^DICN D  I +Y,'$G(RXP),$G(RXRP(RXN)) S $P(^PS(52.5,+Y,0),"^",12)=1
  .K DD,DO I +Y,$G(PSOEXREP) S $P(^PS(52.5,+Y,0),"^",12)=1
  .I +Y S $P(^PS(52.5,+Y,0),"^",13)=$G(RXF)
  S $P(^PSRX(RXN,"STA"),"^")=5,LFD=$E(SD,4,5)_"-"_$E(SD,6,7)_"-"_$E(SD,2,3)
  S PSOARR("UPKSUSPCOMM")=$G(RXF)_" Susp. until "_$TR(LFD,"-","/")
- D ACT^PSORXL1
+ ;D ACT^PSORXL1 p763
+ S RXF=0 F I=0:0 S I=$O(^PSRX(DA,1,I)) Q:'I  S RXF=I S:I>5 RXF=I+1 ;p763
+ S IR=0 F FDA=0:0 S FDA=$O(^PSRX(DA,"A",FDA)) Q:'FDA  S IR=FDA
+ S IR=IR+1,^PSRX(DA,"A",0)="^52.3DA^"_IR_"^"_IR
+ N SUSPCOM S SUSPCOM="Placed on Suspense until " I PRKMW="M",$L($G(DRADD)) S SUSPCOM="Placed on Suspense for CMOP until "
+ D NOW^%DTC S ^PSRX(DA,"A",IR,0)=%_"^S^"_DUZ_"^"_RXF_"^"_$S(RXP:"Partial ",1:"")_"RX "_$S($G(RXRP(DA))&('$G(RXP)):"Reprint ",1:"")_SUSPCOM_LFD K RXF,I,FDA,DIC,DIE,DR,Y,X,%,%H,%I
+ ;eoc p763
  S COMM=$S(RXP:"Partial ",1:"")_"Rx# "_$P(^PSRX(RXN,0),"^")_" Has Been Suspended Until "_LFD_"."_$S($G(RXRP(RXN))&('$G(RXP)):" (Reprint)",1:"")
  D EN^PSOHLSN1(RXN,"SC","ZS",COMM)
  Q

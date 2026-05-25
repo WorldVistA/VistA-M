@@ -1,21 +1,5 @@
-ORKPS ; SLC/CLA - Order checking support procedures for medications ;Oct 27, 2023@10:53:17
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,94,123,141,190,232,316,272,346,345,382,469,535**;Dec 17, 1997;Build 20
- ;Reference to CPRS^PSODDPR4 in ICR #5366
- ;Reference to CPRS^PSODDPR8 in ICR #5784
- ;Reference to OCL^PSOORRL in ICR #2400
- ;Reference to $$PRE^PSSDSAPK in ICR #5497
- ;Reference to $$DRG^PSSDSAPM in ICR #5570
- ;Reference to ADM^VADPT2 in ICR #325
- ;Reference to ^DIC(42 in ICR #10039 (Field 44)
- ;Reference to NOW^%DTC in ICR #10000
- ;Reference to NDF^PSS50 in ICR #4533
- ;Reference to DRGIEN^PSS52P7 in ICR #4550
- ;Reference to OERR^VADPT in ICR #10061
- ;Reference to ADM^VADPT2 in ICR #325
- ;Reference to $$FMADD^XLFDT,$$FMTE^XLFDT in ICR #10103
- ;Reference to $$UP^XLFSTR in ICR #10104
- ;Reference to $$GET^XPAR in ICR #2263
- ;
+ORKPS ; slc/CLA - Order checking support procedures for medications ;12/29/17  11:58
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,94,123,141,190,232,316,272,346,345,382,469**;Dec 17, 1997;Build 0
  Q
 CHECK(YY,DFN,MED,OI,ORKDG,OROIL,ORSUPPLY,ORIVTYPE,ORIVRAN,ORDODSG) ; return drug order checks
  ;YY:    returned array of data
@@ -293,66 +277,3 @@ OI2DD(OROI,ORPSPKG,ORCHKTYP)       ;rtn dispense drugs for a PS OI
  S ORRET=$$DRG^PSSDSAPM(PSOI,ORPSPKG,ORCHKTYP)
  I ORCHKTYP=1,(+$P(ORRET,";",4)) S $P(ORRET,";",4)=PSOI
  Q ORRET
-GLEGFR(DFN) ;extrinsic function returns patient's (DFN) most recent eGFR
- ; within # of days from parameter ORK METFORMIN EGFR
- ; results format: test id^result units flag ref range collect d/t^result
- ; used by order check METFORMIN EGFR-LAB RESULTS
- N ORLOC,ORPAR,ORDAYS,ORRSLT
- N BDT,CDT,ORY,ORX,ORX1,ORZ,TEST,ORI,ORJ,EGFRRSLT,LABFILE,SPECFILE,SPECFILE1,SPECIMEN,VAIN,VADM,RSLTS
- Q:'$L(DFN) "0^"
- S ORDAYS=$$GEDAYS(DFN)
- Q:'$L(ORDAYS) "0^"
- D NOW^%DTC
- S BDT=$$FMADD^XLFDT(%,"-"_ORDAYS,"","","")
- K %
- Q:'$L($G(BDT)) "0^"
- S LABFILE=$$TERMLKUP^ORB31(.ORY,"EGFR")
- Q:'$D(ORY) "0^" ;no link between EGFR and local lab test
- Q:$G(LABFILE)'=60 "0^"
- S SPECFILE=$$TERMLKUP^ORB31(.ORX,"SERUM SPECIMEN")
- S SPECFILE1=$$TERMLKUP^ORB31(.ORX1,"PLASMA SPECIMEN")
- I $D(ORX1) D
- .N CNT,I
- .S CNT=+$O(ORX(""),-1)
- .S I=0 F  S I=$O(ORX1(I)) Q:I=""  D
- ..S CNT=CNT+1
- ..S ORX(CNT)=$G(ORX1)
- Q:'$D(ORX) "0^" ;no link between SERUM SPECIMEN/PLASMA SPECIMEN and local specimen
- Q:(($G(SPECFILE)'=61)&($G(SPECFILE1)'=61)) "0^"
- F ORI=1:1:ORY D
- .S TEST=$P(ORY(ORI),U)
- .Q:+$G(TEST)<1
- .F ORJ=1:1:ORX D
- ..S SPECIMEN=$P(ORX(ORJ),U)
- ..Q:+$G(SPECIMEN)<1
- ..S ORZ=$$LOCL^ORQQLR1(DFN,TEST,SPECIMEN)
- ..Q:'$L($G(ORZ))
- ..S CDT=$P(ORZ,U,7)
- ..I CDT'<BDT S RSLTS(CDT)=ORZ,EGFRRSLT=1  ;*SMT Use RSLTS as array.
- Q:+$G(EGFRRSLT)<1 "0^"
- S CDT=$O(RSLTS(0)),ORZ=RSLTS(CDT)  ;*SMT
- S ORRSLT=$P(ORZ,U,3) I $L(+ORRSLT)'=$L(ORRSLT) S ORRSLT=$$RSLTCALC(ORRSLT)
- Q $P(ORZ,U)_U_$P(ORZ,U,3)_" "_$P(ORZ,U,4)_" "_$P(ORZ,U,5)_" ("_$P(ORZ,U,6)_")  "_$$FMTE^XLFDT(CDT,"2P")_U_ORRSLT
-GEDAYS(DFN) ;extrinsic function to return number of days to look for
- ; Metformin eGFR result
- Q:'$L(DFN) ""
- N ORLOC,ORENT,ORDAYS
- ;get patient's location flag (INPATIENT ONLY - outpt locations cannot be
- ;reliably determined, and many simultaneous outpt locations can occur):
- S VA200="" D OERR^VADPT
- S ORLOC=+$G(^DIC(42,+VAIN(4),44))
- K VA200,VAIN
- S ORENT=+$G(ORLOC)_";SC(^DIV^SYS^PKG"
- S ORDAYS=$$GET^XPAR(ORENT,"ORK METFORMIN EGFR",1,"I")
- Q:$L(ORDAYS) ORDAYS
- Q ""
-RSLTCALC(ORRSLT) ;Recalculate results
- N RMVCHAR
- S RMVCHAR="ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_-+~?/:;""'{[}]|\<>=` "
- I (ORRSLT["NOT GREATER THAN"!(ORRSLT["NOT LESS THAN")!(ORRSLT["EQUAL")!(ORRSLT["=")!(ORRSLT["'>")!(ORRSLT["'<")) D  Q ORRSLT
- . S ORRSLT=+$TR(ORRSLT,RMVCHAR)
- I (ORRSLT["GREATER"!(ORRSLT[">")) D  Q ORRSLT
- . S ORRSLT=+$TR(ORRSLT,RMVCHAR)+.00001
- I (ORRSLT["LESS"!(ORRSLT["<")) D  Q ORRSLT
- . S ORRSLT=+$TR(ORRSLT,RMVCHAR)-.00001
- Q +$TR(ORRSLT,RMVCHAR)

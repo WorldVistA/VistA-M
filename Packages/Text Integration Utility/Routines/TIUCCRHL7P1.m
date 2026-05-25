@@ -1,5 +1,5 @@
 TIUCCRHL7P1 ; CCRA/PB - TIU CCRA HL7 Msg Processing; January 6, 2006
- ;;1.0;TEXT INTEGRATION UTILITIES;**337,344,348,349,352,356,366**;Sep 27, 2023;Build 2
+ ;;1.0;TEXT INTEGRATION UTILITIES;**337,344,348,349,352,356,366,371,375**;Sep 27, 2023;Build 7
  ;
  ;PB - Patch 344 to modify how the note and addendum text is formatted
  ;PB - Patch 348 modification to parse the note text from NTE segments rather than the OBX segment
@@ -8,18 +8,16 @@ TIUCCRHL7P1 ; CCRA/PB - TIU CCRA HL7 Msg Processing; January 6, 2006
  ;$C(160), remove it.
  ;PB - Patch 352 removes the text CF#: from the CFNOTE
  ;PB - Patch 356 modifications to file the note as a stand-alone note and not linked to a consult
+ ;PB - Patch 371 removes unused code
  Q
 PROCMSG ;
  N DFN,DUZ,CONSULTID,MSGID,TIU,TIUDA,TIUDPRM,TIUDT,TIUERR,TIUI,TIUJ,TIUMSG,TIUELS,STOP,TIUIEN,NOTEDATE,NOTENUM
  N TIUEMAIL,TIUNAME,TIUTMP,TIUFS,TIUCS,TIURS,TIUES,TIUSS,TIUZ,VNUM,MSGTEXT,ADDENDUM,CFNOTE,ORIGSTAT,CONSULTID
  S ADDENDUM=""
- ;
  ; remove HL7 message entries7 days or older
  D CLEAN^TIUHL7U1
- ;
  S U="^"
- S TIUDT=$$NOW^XLFDT    ;3200319.131747
- ;
+ S TIUDT=$$NOW^XLFDT
  ; sets field, component and repetition separators from HL7 Message
  S TIUFS=$G(HL("FS")),TIUJ=0 F TIUI="TIUCS","TIURS","TIUES","TIUSS" S TIUJ=TIUJ+1 S @TIUI=$E(HL("ECH"),TIUJ,TIUJ)
  ; initializes variables and ^XTMP expiration
@@ -39,16 +37,8 @@ PROCMSG ;
  . I $P(@TIUNAME@(TIUI),TIUFS)'=TIUJ D ERR^TIUCCHL7UT("MSG",1,"000.000","Improper/missing message format: "_TIUJ_" segment.")
  ; get consult id
  S CONSULTID=$$REMESC^TIUHL7U1($P($G(@TIUNAME@(4)),TIUFS,20))
- ;S CONID=$$REMESC^TIUHL7U1($P($G(@TIUNAME@(4)),TIUFS,20))
- ;S (TIU("VNUM"),VNUM)=+TIU("VNUM")
- ;S STOP=0
- ;I '$G(VNUM) D  Q
- ;.S MSGTEXT="HL7 message missing Consult Number.",STOP=1 D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,$G(MSGTEXT),$G(CONSULTID))
- ;Q:$G(STOP)=1
- ;Q:$G(VNUM)'>0
  ; get patient name [required]
  S TIU("PTNAME")=$$UPPER^HLFNC($$FMNAME^HLFNC($P($P($G(@TIUNAME@(3)),TIUFS,6),TIUCS,1,4),TIUCS)),TIU("PTNAME")=$$REMESC^TIUHL7U1(TIU("PTNAME"))
- ;
  ; get patient ICN/SSN/DFN - order may vary [conditionally required]
  S (TIU("DFN"),TIU("ICN"),TIU("SSN"))="" F TIUI=1:1:$L($P($G(@TIUNAME@(3)),U,4),TIURS) S TIUJ=$P($P($G(@TIUNAME@(3)),TIUFS,4),TIURS,TIUI) I +TIUJ>0 D
  . S TIU("ICN")=+$P(TIUJ,U,1)
@@ -60,12 +50,6 @@ PROCMSG ;
  I +TIU("DFN")=-1 S MSGTEXT="Patient not found on VistA ",STOP=1 D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,$G(MSGTEXT),$G(CONSULTID))
  Q:$G(STOP)=1
  Q:+TIU("DFN")=-1
- ; get dfn from consult in file 123 and compare to HL7 dfn
- ;I $G(VNUM)>0 N CDFN S CDFN=$$GET1^DIQ(123,VNUM_",",.02,"I") I CDFN'=TIU("DFN") D
- ;. ;S MSGTEXT="PATIENT NAME "_$G(TIU("PTNAME"))_" mismatch between HL7 message and CONSULT",STOP=1
- ;. ;D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,$G(MSGTEXT),$G(CONSULTID))
- ;Q:$G(STOP)=1
- ;Q:$G(CDFN)'=$G(TIU("DFN"))
  ; get DOCUMENT TITLE (#8925.1) [required] & set IEN, document title is in TIU("TITLE")
  S TIU("TITLE")=$$UPPER^HLFNC($P($G(@TIUNAME@(5)),TIUFS,17)),TIU("TITLE")=$$REMESC^TIUHL7U1(TIU("TITLE"))
  S TIU("TITLEB")=$$UPPER^HLFNC($P($G(@TIUNAME@(5)),TIUFS,3)),TIU("TITLEB")=$$REMESC^TIUHL7U1(TIU("TITLEB")),TIU("TITLEB")=$P(TIU("TITLEB"),"^",2)
@@ -73,16 +57,12 @@ PROCMSG ;
  I $G(TIU("TITLEB"))["ADDENDUM" D
  .K T2 S T2(" - ")="-" S TIU("TITLEB")=$$REPLACE^XLFSTR(TIU("TITLEB"),.T2) K T2
  .S:$G(TIU("TITLEB"))["ADDENDUM" ADDENDUM=$P(TIU("TITLEB"),"-",2)
- .;S TIU("TITLE")=$P(TIU("TITLEB"),"-",1)
  S TIU("TDA")=$$LU^TIUHL7U1(8925.1,TIU("TITLE"),"X","I $P(^TIU(8925.1,+Y,0),U,4)=""DOC""") I $L(TIU("TITLE"))'>0 S TIU("TITLE")="[UNKNOWN]"
  ; get VISIT # [optional]
  S:$G(TIU("VNUM"))'="" TIU("AVAIL")="AV",TIU("COMP")="LA"
  ;line of code added below to test filing a note but not linking it to a consult
  S TIU("AVAIL")="AV",TIU("COMP")="LA"
  S TIU("SIGNED")=$$NOW^TIULC,TIU("CSIGNED")=""
- ;I '$G(VNUM) D  Q
- ;.;S MSGTEXT="HL7 message missing Consult Number.",STOP=1 D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,$G(MSGTEXT),$G(CONSULTID))
- ;Q:$G(STOP)=1
  S TIUEMAIL=$$LOW^XLFSTR($P($G(@TIUNAME@(5)),TIUFS,10))
  I $L(TIUEMAIL)'>0 S MSGTEXT="Missing or invalid VA Email Address.",STOP=1 D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,$G(MSGTEXT),$G(CONSULTID))
  Q:$G(STOP)=1
@@ -117,7 +97,6 @@ PROCMSG ;
  I '$D(@TIUNAME@(7)) D
  .D:$G(ADDENDUM)="" WORD
  .D:$G(ADDENDUM)'="" WORD^TIUCCRHL7P4
- ;S:$G(ADDENDUM)'="" TIUIEN=$$TIULKUP^TIUCCHL7UT(VNUM,TIU("TITLE"),$G(NOTEDATE),$G(NOTEUM)) ;Patch 344 lookup the note in the consult to file the addendum with
  ; begin data verification
  ; PATIENT IDENTIFICATION
  D
@@ -152,7 +131,10 @@ PROCMSG ;
  I $G(ADDENDUM)'="" D
  .N N1 S N1=0 F  S N1=$O(TIUZ("TEXT",N1)) Q:N1'>0  D
  ..I $G(TIUZ("TEXT",N1,0))["Original CCP Note Date (mm/dd/yyyy):" S NOTEDATE=$P(TIUZ("TEXT",N1,0),": ",2)
- ..I $G(TIUZ("TEXT",N1,0))["CCPN Number:" S NOTENUM=$P(TIUZ("TEXT",N1,0),": ",2)
+ ..I $G(TIUZ("TEXT",N1,0))["CCPN Number:" S NOTENUM=$P(TIUZ("TEXT",N1,0),":",2)
+ ..;patch 375 - get ccpn number based on a colon and not space and a colon then a space. 
+ ..;S:$G(NOTENUM)'>0&$G(TIUZ("TEXT",N1,0))["CCPN Number:" NOTENUM=$P(TIUZ("TEXT",N1,0),":",2)
+ ..I $G(NOTENUM)=""&$G(TIUZ("TEXT",N1,0))["CCPN Number: " S NOTENUM=$P(TIUZ("TEXT",N1,0),": ",2)
  .S:$G(NOTENUM)'="" TIUIEN=$$TIULKUP^TIUCCHL7UT(CONSULTID,TIU("TDA"),$G(NOTEDATE),NOTENUM)
  ;
  D CONTINUE^TIUCCRHL7P2
@@ -183,17 +165,11 @@ WORD ;
  .S NOTEDATE=$$GETDATE^TIUCCRHL7P4
  .S NOTENUM=$$NOTENUM^TIUCCRHL7P4
  .S:$G(NOTENUM)'="" TIUIEN=$$TIULKUP^TIUCCHL7UT(CONSULTID,TIU("TDA"),NOTEDATE,NOTENUM) ;Patch 344 lookup the note in the consult to file the addendum with
- ;S T2("VETERAN'S"_$C(160)_"CAREGIVER"_$C(160)_"CONTACT")="VETERAN'S CAREGIVER CONTACT"
- ;S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  F TEST1=1:1:WORDSLEN S LASTWORDS=$E(TIUZ("TEXT",1,0),WORDSLEN,(WORDSLEN-25))
  K T2 S T2("PROVIDER"_$C(160)_"CONTACT ADDENDUM")="PROVIDER CONTACT ADDENDUM"
  S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;TEST CODE ADDED DEC 3
  K T2 S T2("CCP Note Create Date:")=$C(10)_"CCP Note Create Date:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("CCPN Number:")=$C(10)_"CCPN Number:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2 S T2("Basic*")="Basic*"_$C(10) S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2 S T2("Navigation")=$C(10)_"Navigation" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2 S T2("Scheduling")=$C(10)_"Scheduling" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Veteran Last Name:")=$C(10)_"Veteran Last Name:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Veteran First Name:")=$C(10)_"Veteran First Name:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Veteran Social:")=$C(10)_"Veteran Social:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
@@ -223,7 +199,6 @@ WORD ;
  K T2 S T2("FACILITY COMMUNITY CARE OFFICE CONTACT")=$C(10)_"FACILITY COMMUNITY CARE OFFICE CONTACT" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Care Coordination Point of Contact:")=$C(10)_"Care Coordination Point of Contact:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("  Phone Number:")=$C(10)_"Phone Number:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2 S T2("VETERAN'S CAREGIVER CONTACT INFO")=$C(10)_"X1 VETERAN'S CAREGIVER CONTACT INFO" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Is Veteran's caregiver same as next of kin listed in the demographic section of CPRS (Yes/No)?:" D
  .S T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("If no, provide the following:")=$C(160)_"If no, provider the following:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
@@ -242,7 +217,6 @@ WORD ;
  ..S:XX=1 LINES("TEXT",XX,0)=$$TRIM^XLFSTR($E(WORDS,1,63),"LR"),XX=XX+1,I=64,LCNT=0,I1=I
  ..Q:XX=1
  ..S LINES("TEXT",XX,0)=$TR($E(WORDS,I1,I-1),$C(160)," "),LINES("TEXT",XX,0)=$$TRIM^XLFSTR(LINES("TEXT",XX,0),"LR"),XX=XX+1,LCNT=0  ;,I1=I
- ..;W !,$G(LINES("TEXT",XX-1,0)),"  ",XX-1_"^"_I1_"^"_I_"^"_LCNT
  ..S I1=I
  I I1'=LEN N LASTLINES S LASTLINES=$E(WORDS,I1,I) K T2 S T2($C(160)_" ")="" S LINES("TEXT",XX,0)=$$REPLACE^XLFSTR(LASTLINES,.T2)
  M TIUZ("TEXT")=LINES("TEXT")

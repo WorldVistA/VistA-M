@@ -1,5 +1,5 @@
-RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge; Sep 05, 2024@08:48:49
- ;;5.0;Radiology/Nuclear Medicine;**47,114,129,141,144,157,195,207,218**;Mar 16, 1998;Build 1
+RAHLTCPX ;HIRMFO/RTK,RVD,GJC - Rad/Nuc Med HL7 TCP/IP Bridge; Jan 06, 2025@07:25 ; 1/10/25 7:08am
+ ;;5.0;Radiology/Nuclear Medicine;**47,114,129,141,144,157,195,207,218,220**;Mar 16, 1998;Build 3
  ;
  ; this is a modified copy of RAHLTCPB for HL7 v2.4
  ;
@@ -23,6 +23,11 @@ INIT ; -- initialize
  S ^TMP("RARPT-REC",$J,RASUB,"VENDOR")=$G(HL("SAN"))
  S:$D(HL("ESIG")) ^TMP("RARPT-REC",$J,RASUB,"RAESIG")=HL("ESIG") ;Save off E-Sig information (if it exists)
  S:'$$GETSFLAG^RAHLRU($G(HL("SAN")),$G(HL("MTN")),$G(HL("ETN")),$G(HL("VER"))) RANOSEND=$G(HL("SAN"))
+ ;p220/KLM - Return to sender on reprocessing for PSCRIBE
+ I $D(RAOPT("REPROC")) D
+ .N RASAP S RASAP=$G(HL("SAP")) Q:RASAP=""
+ .I $D(^RA(79.7,RASAP)),$$GET1^DIQ(79.7,RASAP,1.7)="YES" K RANOSEND
+ .Q
  ;
  S HLDTM=HL("DTM")
  S HLFS=HL("FS")
@@ -282,6 +287,7 @@ DEESC(RASTR) ;Replace escape sequences with their field separator and escape cha
  ;
 GENACK ; Compile the 'ACK' segment, generate the 'ACK' message.
  Q:'$G(RACKYES)
+ Q:$D(RAOPT("REPROC"))  ;p220/KLM - Suppress ACK on reprocess
  N HLFORMAT,HLARYTYP,RESULT
  S MSA1="AA"
  Q:$E($G(HL("SAN")),1,3)'="RA-"  ; Don't allow non RA namespaced interfaces

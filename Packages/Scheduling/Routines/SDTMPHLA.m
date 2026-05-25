@@ -1,5 +1,5 @@
 SDTMPHLA ;MS/PB - TMP HL7 Routine;May 29, 2018
- ;;5.3;Scheduling;**704,733,773,780,798,812,821**;SEP 26, 2018;Build 9
+ ;;5.3;Scheduling;**704,733,773,780,798,812,821,911**;Aug 13, 1993;Build 15
  Q
  ;        ;
 EN(DFN,APTTM) ; Entry to the routine to build an HL7 message
@@ -7,7 +7,7 @@ EN(DFN,APTTM) ; Entry to the routine to build an HL7 message
  ;
  Q:$G(DFN)=""
  Q:$G(APTTM)=""
- N PARMS,SEG,WHOTO,SNODE,ANODE,CNODE,CLINODE,ERROR,MSG,ANODE1
+ N ANODE,ANODE1,CLINODE,CNODE,ERROR,MSG,PARMS,RTN,SEG,SNODE,WHOTO
  S (SSTOP,PSTOP,STOP)=0
  K CLINID
  S RTN=0,CAN=0
@@ -264,14 +264,16 @@ CHKINST(INST) ;Derives the parent institution if the passed-in institution does 
  I TZ Q INST
  Q ""  ;Never found an institution with a timezone
  ;
-STATION(CLNC) ;Derives the station number from the clinic - 780
+STATION(CLNC) ;Derives the station number from the clinic
  ;Inputs:
- ; CLNC = Clinic IEN from the Hospital Location (#44) file
+ ;   CLNC = Clinic IEN from the Hospital Location (#44) file
  ;Output:
- ; STATN = Station number from the Institution (#4) file. Null indicates an error.
- I CLNC="" Q ""
- N INST,MCD,MCD0,STATN,Z
- S MCD0=$G(^SC(CLNC,0)) I MCD0="" Q ""  ;No entry in the Hospital Location (#44) file
- S INST=$P(MCD0,U,4) I INST]"" S STATN=$P($G(^DIC(4,INST,99)),U,1) I STATN Q STATN        ;quit if found Stn#
- S MCD=$P(MCD0,U,15) I MCD]"" S Z=$G(^DG(40.8,MCD,0)) S STATN=$P(Z,U,2) I STATN Q STATN   ;quit if found Stn#
- Q ""  ;Could not locate station number
+ ;   STATN = Station number from the Institution (#4) file. Null indicates an error
+ ;
+ I '$G(CLNC) Q ""
+ N DIV,INST,NODE0,STATN
+ S (INST,STATN)=""
+ S NODE0=$G(^SC(CLNC,0)) I NODE0="" Q ""  ;No entry in the Hospital Location (#44) file
+ S DIV=$P(NODE0,U,15) I $G(DIV) S INST=$P($G(^DG(40.8,DIV,0)),U,7)
+ S:$G(INST) STATN=$$GET1^DIQ(4,INST_",",99,"E")
+ Q STATN

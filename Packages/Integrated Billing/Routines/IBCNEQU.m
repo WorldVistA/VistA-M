@@ -1,10 +1,15 @@
 IBCNEQU ;DAOU/BHS - eIV REQUEST ELECTRONIC INSURANCE INQUIRY ; 24-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582,601,631,668,702,732,737**;21-MAR-94;Build 19
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582,601,631,668,702,732,737,822**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; eIV - Insurance Verification Interface
+ ; Reference to ^DILF   in ICR #2054
+ ; Reference to ^XLFDT  in ICR #10103 
+ ; Reference to ^XLFSTR in ICR #10104
+ ; Reference to ^VADPT  in ICR #10061
+ ; Reference to ^VALM   in ICR #10118
+ ; Reference to ^VALM1  in ICR #317
  ;
- ; Must call from EN
+ ; eIV - Insurance Verification Interface
  ;
  ; IB*737/TAZ - Remove References to ~NO PAYER
  Q
@@ -19,6 +24,15 @@ EN1 I $G(IBFASTXT) G ENX
  G EN1
  ;
 ENX ; EN exit pt
+ Q
+ ;
+PI ; Entry point for Patient Insurance Info View/Edit (PI)
+ Q   ;IB*822/CKB - this tag will be implemented as part of IB*827
+ N IBFASTXT
+ I '$G(DFN) G PIX
+ D EN^VALM("IBCNE REQUEST INS INQUIRY LIST")
+PIX ;
+ S VALMBCK="R"
  Q
  ;
 INIT ; -- set up initial variables
@@ -78,9 +92,10 @@ PAT() ; Prompt user to select a patient
  N DIC,X,Y,DISYS,%H,%I,DUOUT,DTOUT
  ;
  W !
- ; Exclude non-Veterans
+ ;IB*822/CKB - allow the selection of non-Veterans, only exclude Test patients ; Exclude non-Veterans
  S DIC(0)="AEQMN"
- S DIC("S")="I $G(^(""VET""))=""Y"",('$P($G(^(0)),U,21))",DIC="^DPT("
+ ;S DIC("S")="I $G(^(""VET""))=""Y"",('$P($G(^(0)),U,21))",DIC="^DPT("
+ S DIC("S")="I '$P($G(^(0)),U,21)",DIC="^DPT("
  D ^DIC
  I $D(DUOUT)!$D(DTOUT)!(Y<1) Q ""
  ;
@@ -279,14 +294,35 @@ HELPSTC2 ; Text to display in response to '??' entry
  Q
  ;
 ELIGDT() ; Prompt user for eligibility date
- N DIR,X,Y,DIRUT,DUOUT,STARTDT,ENDDT,ELIGDT
+ ;IB*822/CKB - modify the allowable DOS value within Request Electronic
+ N DIR,X,Y,DIRUT,DUOUT,EADT,ENDDT,ELIGDT,INSIEN
+ N PAYERSTR,PEDT,PIEN,PSDT,PYRAPP,PYRFUTURE,PYRPAST,SADT,STARTDT
  S ELIGDT=""
- D DT^DILF(,"T-12M",.STARTDT) ; start date within the last 12 months
+ ;D DT^DILF(,"T-12M",.STARTDT) ; start date within the last 12 months
  ; allow end date up to the end of the current month
- S ENDDT=$$SCH^XLFDT("1M(L@1A)",DT)\1 ; ICR#10103 this call returns the last day of the current month at 1 AM.  If not time was sent, it would actually return the next to last day at 2400 hours.
- S DIR(0)="DA^"_STARTDT_":"_ENDDT_":"_"EX",DIR("A")="Enter Eligibility Date: ",DIR("B")="TODAY"
- S DIR("?",1)="Select an eligibility date to be sent in the inquiry."
- S DIR("?")="Date must be within the last 12 months or up to the end of the current month."
+ ;S ENDDT=$$SCH^XLFDT("1M(L@1A)",DT)\1 ; ICR#10103 this call returns the last day of the current month at 1 AM.  If not time was sent, it would actually return the next to last day at 2400 hours.
+ ; 
+ ; From the Payer, get the number of FUTURE SERVICE DAYS and PAST SERVICE DAYS
+ D GETPYR
+ ; set the Payer Start & End date
+ I PYRPAST'=0 D DT^DILF(,"T-"_PYRPAST_"D",.PSDT) ; ICR #2054
+ I PYRPAST=0 S PSDT=DT
+ I PYRFUTURE'=0 D DT^DILF(,"T+"_PYRFUTURE_"D",.PEDT)
+ I PYRFUTURE=0 S PEDT=DT
+ ; set the "allowable" Start & End dates
+ D DT^DILF(,"T-72M",.SADT)     ; 6 years or 72 months in the Past
+ D DT^DILF(,"T+4M",.EADT)      ; 4 months in the Future
+ ; compare ALLOWABLE dates against PAYER dates, select whichever is closest to today
+ S STARTDT=$S(SADT<PSDT:PSDT,1:SADT)
+ S ENDDT=$S(EADT>PEDT:PEDT,1:EADT)
+ ;
+ W !!,"For this policy,",!,"the allowable eligibility dates are between "
+ W $$FMTE^XLFDT(STARTDT,2)_" and "_$$FMTE^XLFDT(ENDDT,2)_", inclusive.",!
+ ;
+ S DIR(0)="DA^"_STARTDT_":"_ENDDT_":"_"EX"
+ S DIR("A")="Enter Eligibility Date: ",DIR("B")="TODAY"
+ S DIR("?",1)="Enter an eligibility date to be sent in the inquiry."
+ S DIR("?")="Date must be within the range "_$$FMTE^XLFDT(STARTDT,2)_" and "_$$FMTE^XLFDT(ENDDT,2)_", inclusive."
  D ^DIR
  I $D(DIRUT)!$D(DUOUT)!('Y) G ELIGDTX
  S ELIGDT=Y
@@ -357,3 +393,17 @@ MBIREQX ;
  S VALMBCK="R"
  Q
  ;
+GETPYR ;IB*822/CKB - Get the Insurance Company Payer and payer info
+ S INSIEN=$P(IBSELN,U,4)
+ ;Get Payer info
+ S PAYERSTR=$$INSERROR^IBCNEUT3("I",INSIEN)
+ S PIEN=$P(PAYERSTR,U,2)
+ S PYRAPP=$$PYRAPP^IBCNEUT5("EIV",PIEN)
+ ;
+ ;Get FUTURE SERVICE DAYS
+ S PYRFUTURE=$$GET1^DIQ(365.121,PYRAPP_","_PIEN_",",4.03,"I")
+ I PYRFUTURE="" S PYRFUTURE=9999
+ ;Get PAST SERVICE DAYS
+ S PYRPAST=$$GET1^DIQ(365.121,PYRAPP_","_PIEN_",",4.04,"I")
+ I PYRPAST="" S PYRPAST=9999
+ Q

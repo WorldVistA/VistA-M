@@ -1,5 +1,5 @@
 YTQRQAD8 ;BAL/KTL - RESTful Calls to set/get MHA Note ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**199,207,202,204,208,250**;Dec 30, 1994;Build 26
+ ;;5.01;MENTAL HEALTH;**199,207,202,204,208,250,236**;Dec 30, 1994;Build 25
  ;
  ; Reference to TIUCNSLT in ICR #5546
  ; Reference to TIUPUTU in ICR #3351
@@ -45,6 +45,11 @@ FILPNOT(ASGN,ADMIN,CONSULT,DATA,TMPYS,FRMDEL) ;File the aggregate Progress Note
  I CONSULT S YS("CON")=CONSULT D CCREATE^YTQCONS(.YSDATA,.YS) I 1
  E  D PCREATE^YTQTIU(.YSDATA,.YS)
  I YSDATA(1)'="[DATA]" D SETERROR^YTQRUTL(500,"Note not saved") Q 3
+ ;Mark ADMINS that contributed to the PNOTE with PROGRESS NOTE GENERATED=1
+ N ADMCNT,YSADD
+ S ADMCNT=0 F  S ADMCNT=$O(^XTMP(NOD,2,"PNOTE","ADMINS",ADMCNT)) Q:ADMCNT=""  D
+ . S YSADD=$P(^XTMP(NOD,2,"PNOTE","ADMINS",ADMCNT),U)
+ . I $$ALWNOTE^YTQRQAD3(YSADD)="true" S $P(^YTT(601.84,YSADD,0),U,18)=1  ;PROGRESS NOTE GENERATED
  ;Saved progress note for all completed instruments. If last instrument, Delete Assignment
  K ^XTMP(NOD,2)  ;Kill Aggregate Progress Note
  S REMAIN=""

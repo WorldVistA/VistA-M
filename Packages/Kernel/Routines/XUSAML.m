@@ -1,5 +1,5 @@
 XUSAML ;ISD/HGW - Kernel SAML Token Implementation ; Apr 18, 2022@15:39
- ;;8.0;KERNEL;**655,659,630,701,731,771,779**;Jul 10, 1995;Build 5
+ ;;8.0;KERNEL;**655,659,630,701,731,771,779**;Jul 10, 1995;Build 0
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Implements the Kernel SAML Token message framework for the Identification and

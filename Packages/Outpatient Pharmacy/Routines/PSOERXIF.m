@@ -1,5 +1,5 @@
 PSOERXIF ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**581,635**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**581,635,770**;DEC 1997;Build 145
  ;
  Q
  ; ERXIEN - ERX IEN
@@ -27,7 +27,7 @@ SIG(ERXIEN,MIEN,MTYPE,MEDTYPE,I) ;
  S SNOV=$G(@GL@("CodeSystem",0,"SNOMEDVersion",0)),FDA(MSF,MIEN_","_ERXIEN_",",9.1)=SNOV
  S FMT=$G(@GL@("CodeSystem",0,"FMTVersion",0)),FDA(MSF,MIEN_","_ERXIEN_",",9.2)=FMT
  D CFDA^PSOERXIU(.FDA)
- D FILE^DIE(,"FDA") K FDA
+ I $D(FDA) D FILE^DIE(,"FDA") K FDA
  D IFU^PSOERXII(ERXIEN,MIEN,MTYPE,MEDTYPE)
  S INS=-1 F  S INS=$O(@GLINS@(INS)) Q:INS=""  D
  .; The multiple instruction modifier will be at the INS-1 subscript, since the modifier comes _after_ the instruction and
@@ -106,9 +106,10 @@ SIG(ERXIEN,MIEN,MTYPE,MEDTYPE,I) ;
  .S ICFT=$G(@GLINS@(INS,"IndicationClarifyingFreeText",0)),FDA(INSF,INSIENS,70)=ICFT
  .N NINSIEN,NEWIEN
  .D CFDA^PSOERXIU(.FDA)
- .D UPDATE^DIE(,"FDA","NEWIEN") K FDA S NEWIEN=$O(NEWIEN(0)),NINSIEN=$G(NEWIEN(NEWIEN))
- .;PSO*7*635 - add handling of 'IndicationForUse' when it appears under the 'Instruction' segment
- .D INSIFU^PSOERXII(ERXIEN,MIEN,MTYPE,MEDTYPE,INS,NINSIEN)
+ .I $D(FDA) D
+ ..D UPDATE^DIE(,"FDA","NEWIEN") K FDA S NEWIEN=$O(NEWIEN(0)),NINSIEN=$G(NEWIEN(NEWIEN))
+ ..;PSO*7*635 - add handling of 'IndicationForUse' when it appears under the 'Instruction' segment
+ ..D INSIFU^PSOERXII(ERXIEN,MIEN,MTYPE,MEDTYPE,INS,NINSIEN)
  .;PSO*7*635 - end change
  .S INS2=-1 F  S INS2=$O(@GLINS@(INS,"TimingAndDuration",INS2)) Q:INS2=""  D
  ..; frequency - note dual FrequencyNumericValue components. need to see how that gets stored. incrementor?
@@ -168,7 +169,7 @@ SIG(ERXIEN,MIEN,MTYPE,MEDTYPE,I) ;
  ..S TADSCT=$G(@GLINSTAD@("StopCode",0,"Text",0)),FDA(INSFTAD,INS2IENS,43)=TADSCT
  ..S TADSCQ=$G(@GLINSTAD@("StopCode",0,"Qualifier",0)),FDA(INSFTAD,INS2IENS,42)=TADSCQ
  ..D CFDA^PSOERXIU(.FDA)
- ..D UPDATE^DIE(,"FDA") K FDA
+ ..I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  ..;D MDRSF^PSOERXII(GLINS,ERXIEN,MIEN,NINSIEN)
  D MDR^PSOERXII(ERXIEN,MIEN,MTYPE,MEDTYPE)
  Q

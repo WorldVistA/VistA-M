@@ -1,13 +1,10 @@
-MAGDSTV2 ;WOIFO/PMK - Process a Q/R Client RPC; Mar 31, 2020@13:00:30
- ;;3.0;IMAGING;**231**;Mar 19, 2002;Build 9;Sep 03, 2013
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTV2 ;WOIFO/PMK - Process a Q/R Client RPC; Jul 05, 2022@13:48:58
+ ;;3.0;IMAGING;**231,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -28,6 +25,7 @@ ENTRY(RESULT,REQUEST) ; RPC = MAG DICOM Q/R CLIENT
  N DATETIME ;- fileman date/time of the study
  N DCMPID ;--- DICOM patient id
  N DFN ;------ VistA's internal patient identifier
+ N DIVISION ;- user's location
  N ERRCODE ;-- code for an error, if encountered
  N IREQUEST ;- pointer to item in REQUEST array
  N MSG ; ----- error message array
@@ -35,25 +33,27 @@ ENTRY(RESULT,REQUEST) ; RPC = MAG DICOM Q/R CLIENT
  N RETURN ;--- intermediate return code
  N J ;-------- scratch variable
  ;
+ S DIVISION=$G(DUZ(2),0) ; user's logon division  -- P333 PMK 07/05/2022
+ ;
  ; pass the request list and determine what has to be done
  F IREQUEST=2:1:$G(REQUEST(1)) D
  . S OPCODE=$P(REQUEST(IREQUEST),"|")
  . S ARGS=$P(REQUEST(IREQUEST),"|",2,999)
  . ;
  . I OPCODE="NEXT" D  Q
- . . S NEXTIEN=$G(^MAGDSTT(2006.541,"ACOUNT"))+1
- . . I '$D(^MAGDSTT(2006.541,NEXTIEN)) D RESULT("QR-REQUEST","NONE") Q
+ . . S NEXTIEN=$G(^MAGDSTT(2006.541,DIVISION,1,"ACOUNT"))+1
+ . . I '$D(^MAGDSTT(2006.541,DIVISION,1,NEXTIEN)) D RESULT("QR-REQUEST","NONE") Q
  . . ; if another RPC is already processing this request, skip it
- . . L +^MAGDSTT(2006.541,"ACOUNT"):0 E  D RESULT("QR-REQUEST","NONE") Q
- . . S VALUE=^MAGDSTT(2006.541,NEXTIEN,0)_"^"_NEXTIEN
+ . . L +^MAGDSTT(2006.541,DIVISION,1,"ACOUNT"):0 E  D RESULT("QR-REQUEST","NONE") Q
+ . . S VALUE=^MAGDSTT(2006.541,DIVISION,1,NEXTIEN,0)_"^"_NEXTIEN
  . . D RESULT("QR-REQUEST",VALUE)
  . . S J=0
- . . F  S J=$O(^MAGDSTT(2006.541,NEXTIEN,1,J)) Q:'J  D
- . . . S VALUE=^MAGDSTT(2006.541,NEXTIEN,1,J,0)
+ . . F  S J=$O(^MAGDSTT(2006.541,DIVISION,1,NEXTIEN,1,J)) Q:'J  D
+ . . . S VALUE=^MAGDSTT(2006.541,DIVISION,1,NEXTIEN,1,J,0)
  . . . D RESULT("KEY",VALUE)
  . . . Q
- . . S ^MAGDSTT(2006.541,"ACOUNT")=NEXTIEN
- . . L -^MAGDSTT(2006.541,"ACOUNT")
+ . . S ^MAGDSTT(2006.541,DIVISION,1,"ACOUNT")=NEXTIEN
+ . . L -^MAGDSTT(2006.541,DIVISION,1,"ACOUNT")
  . . Q
  . ;
  . I OPCODE="QUERY RESULT" D  Q  ; save query results in ^XTMP
@@ -94,7 +94,14 @@ ENTRY(RESULT,REQUEST) ; RPC = MAG DICOM Q/R CLIENT
  . . S IEN2006541=$P(ARGS,"|",5) ; IEN2006541 is not used here
  . . S ACNUMB=$P(ARGS,"|",6),X=$P(ARGS,"|",7,999)
  . . S ^XTMP(MAGXTMP,HOSTNAME,VISTAJOB,QRSTACK,"Q/R RETRIEVE STATUS",ACNUMB)=X
+ . . ;
+ . . ; only store this if the monitor is running - P333 PMK 03/15/2022
+ . . I $$ENABLED^MAGDSTV1 D
+ . . . S (J,^(0))=$G(^XTMP(MAGXTMP,"Q/R RETRIEVE STATUS",0),0)+1
+ . . . S ^XTMP(MAGXTMP,"Q/R RETRIEVE STATUS",J)=$P(ARGS,"|",6,999)
+ . . . Q
  . . Q
+ . . ;
  . I OPCODE="CRASH" D  Q
  . . S I=1/0 ; generate an error on the server to test error trapping
  . . Q

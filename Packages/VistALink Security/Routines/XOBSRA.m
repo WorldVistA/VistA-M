@@ -1,11 +1,27 @@
-XOBSRA ;mjk,esd/alb - VistALink Reauthentication Code ; 05/22/2003  07:00
- ;;1.6;VistALink Security;**2**;May 08, 2009;Build 3
+XOBSRA ;MJK/ESD/ALB - VistALink Reauthentication Code ; 05/22/2003  07:00
+ ;;1.6;VistALink Security;**2,6**;May 08, 2009;Build 4
  ;;Per VA Directive 6402, this routine should not be modified
+ ;;BACKUP FROM 3251208
  QUIT
  ;
  ; ------------------------------------------------------------------------
  ;             RPC Server: Reauthentication based on VPID, DUZ, and AV
  ; ------------------------------------------------------------------------
+ ;
+SAML(XOBID,XOBERR) ; rtw ADDED FOR XOBS*1.6*6
+ ;The RTN array must be preserved to return to VistaLink
+ S XOBID=0
+ S SAML=$G(XOBDATA("XOB RPC","SECURITY","TYPE","SAML"))
+ D SETUP^XUSRB
+ D SAML^XOBVSAML(.RTN,SAML)
+ I $G(RTN(0)) S XOBID=RTN(0)
+ E  I $D(RTN(3)),RTN(3)'="" S XOBERR=RTN(3) D
+ . D GETDUZ(SAML,.XOBERR)
+ . I XOBERR[182308 D FINAL S DUZ=$G(XOBOK) Q
+ . I XOBERR["No access allowed for this user" S XOBID=0,XOBERR=182304_"^"_DUZ_"^"_"DISUSERED" D FINAL S DUZ=$G(XOBOK) Q
+ K SAML,^TMP("DUZ_XUS",$J)
+ Q XOBID
+ ;
  ;
 SETUPDUZ() ; -- get DUZ context and division
  ;
@@ -25,7 +41,7 @@ SETUPDUZ() ; -- get DUZ context and division
  ;
  ; -- reauthenticate user based on type
  SET XOBTYPE=$GET(XOBDATA("XOB RPC","SECURITY","TYPE")),XOBTYPE=$$UP^XLFSTR(XOBTYPE)
- IF XOBTYPE="DUZ"!(XOBTYPE="AV")!(XOBTYPE="VPID")!(XOBTYPE="CCOW")!(XOBTYPE="APPPROXY") DO
+ IF XOBTYPE="DUZ"!(XOBTYPE="AV")!(XOBTYPE="VPID")!(XOBTYPE="CCOW")!(XOBTYPE="APPPROXY")!(XOBTYPE="SAML") DO  ;RTW ADD SAML XOBS*1.6*6
  . DO @(XOBTYPE_"(.XOBID,.XOBERR)")
  ELSE  DO
  . SET XOBERR=182301_U_XOBTYPE_U_"  [Erroneous reauthentication type]"
@@ -103,7 +119,7 @@ APPPROXY(XOBID,XOBERR) ; -- application proxy reauth type
  QUIT
  ;
 CCOW(XOBID,XOBERR) ; -- CCOW reauth type
- ; 
+ ;
  ; Very few checks performed here; assume heavier duty checks done by application when originally
  ; authenticated and created Kernel CCOW token. User would need to be reauthenticated (and perform
  ; heavier-duty checks) upon Kernel CCOW token expiration.
@@ -272,3 +288,25 @@ SITECHK(XOBSTATN) ; check if valid division for this site
  QUIT:'+XOBSTIEN "0^STATION '"_XOBSTATN_"' is not a known station number."
  QUIT:'$$ACTIVE^XUAF4(XOBSTIEN) "0^STATION '"_XOBSTATN_"' is not active on this M system."
  QUIT XOBSTIEN
+GETDUZ(SAML,XOBERR) ; if new SAML user is disusered give the DUZ to complete the return information
+ N I,IEND,ISTART,ISTOP,DOC
+ ;K RTN
+ K ^TMP("DUZ_XUS",$J)
+ S ISTOP=$L(SAML),IEND=0
+ F I=1:1  Q:IEND>ISTOP  D
+ . S ISTART=IEND+1
+ . S IEND=IEND+200
+ . S ^TMP("DUZ_XUS",$J,I)=$E(SAML,ISTART,IEND)
+ .Q
+ D SECID(SAML,.XOBERR,.DUZ)
+ I '$G(DUZ) S XOBERR=182308_U_1_U_"SAML"_U_XOBERR_"SECID NOT FOUND IN UCI"
+ ;K X,XQVOL,XUCI,XUENV,XUOSVER,Y
+ Q XOBERR
+SECID(SAML,XOBERR,DUZ) ;TO CHECK IF a SECID exists in the UCI
+ N SECID,SECIDL
+ S SECIDL=0,DUZ=""
+ S ^XTMP("SAML CHECK",$J)=SAML
+ S SECID=$P($P(^XTMP("SAML CHECK",$J),"urn:va:vrm:iam:secid"">",2),"<",1) D
+ . F  S SECIDL=$O(^VA(200,"ASECID",SECIDL)) Q:'SECIDL  D
+ . . I SECID=SECIDL S DUZ=$O(^VA(200,"ASECID",SECID,"")) Q
+ Q XOBERR

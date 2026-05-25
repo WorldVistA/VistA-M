@@ -1,6 +1,8 @@
-SDES2SRCHCLNBYSC ;ALB/JAS - SDES2 SEARCH CLIN BY STOP CODE ;JUL 19, 2024
- ;;5.3;Scheduling;**886**;Aug 13, 1993;Build 13
+SDES2SRCHCLNBYSC ;ALB/JAS,JDJ,LAB - SDES2 SEARCH CLIN BY STOP CODE ;JUN 18, 2025
+ ;;5.3;Scheduling;**886,907,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
+ ;
+ ; Reference to DUZ^XUP is supported by IA #7487
  ;
  Q
  ;
@@ -22,7 +24,7 @@ SEARCHCLIN(SDRETURN,SDCONTEXT,SDSEARCH) ;Search for clinics
  ;  SDSEARCH("STATION") (Opt) = Station Number: If present, the search would be limited to matching clinics at the given institution.
  ;    If absent, the search would take place across all divisions/institutions. Example values: 534, 534GB.
  ;    If "STARTING STOP CODE" is not populated, "STATION" will be REQUIRED.
- ;  SDSEARCH("STARTING STOP CODE") (Opt) = The beginning range of Stop Codes to be included in the search. If "ENDING STOP CODE" is 
+ ;  SDSEARCH("STARTING STOP CODE") (Opt) = The beginning range of Stop Codes to be included in the search. If "ENDING STOP CODE" is
  ;    not populated, this will be the only Stop Code to be included in the search. If "STATION" is not populated, "STARTING STOP
  ;    "CODE" is REQUIRED.
  ;  SDSEARCH("ENDING STOP CODE") (Opt) = The ending range of Stop Codes to be included in the search.
@@ -45,6 +47,8 @@ SEARCHCLIN(SDRETURN,SDCONTEXT,SDSEARCH) ;Search for clinics
  I $D(SDERRORS) D  Q
  . S SDERRORS("ClinicAudit",1)="" M @CLINLIST=SDERRORS
  . D ENCODE^XLFJSON(.CLINLIST,.SDRETURN) K @CLINLIST,CLINLIST,SDSEARCH("SDDATETIME")
+ ;
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  ;
  D VALSRCHFLDS(.SDERRORS,.SDSEARCH)
  I $D(SDERRORS) D  Q
@@ -98,7 +102,7 @@ GETCLINICLIST(CLINLIST,SDSEARCH) ; pull matching clinics using the first input p
  . I $L(STOPCODESTART) Q:$$WRONGSTOPCODE(CLNIEN,STOPCODESTART,STOPCODEEND)
  . S SDCLINCNT=SDCLINCNT+1
  . D BUILDRETURN(CLNIEN,SDCLINCNT,.CLINLIST,.SDDATETIME)
- I SDCLINCNT=0 S @CLINLIST@("ClinicAudit",1)=""
+ I SDCLINCNT=0 S @CLINLIST@("ClinicAudit",1)="No Clinics returned for the criteria entered"
  Q
  ;
 BUILDRETURN(SDCLINICIEN,SDCLINCNT,CLINLIST,SDDATETIME) ;Build return array with clinic data

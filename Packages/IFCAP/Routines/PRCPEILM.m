@@ -1,12 +1,38 @@
 PRCPEILM ;WISC/RFJ-edit inventory items (list manager)              ;01 Dec 93
-V ;;5.1;IFCAP;**1,171**;Oct 20, 2000;Build 3
+V ;;5.1;IFCAP;**1,171,244**;Oct 20, 2000;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; This routine provides the core functionalities for editing inventory 
+ ; items within a list manager setup (ListManager). It allows users to 
+ ; interactively select and edit items by providing protocols for managing 
+ ; descriptive information, issue units, levels, quantities, costs, due-ins, 
+ ; special parameters, procurement sources, and drug accountability parameters.
+ ; The routine also includes necessary functions to handle exiting and 
+ ; cleaning up temporary data.
+ ;
+ ; Key Entry Points:
+ ;   EN       - Entry point for the routine, typically from a protocol.
+ ;   HDR      - Builds the header displayed in the List Manager.
+ ;   INIT     - Initializes and builds the display array for the List Manager.
+ ;   DESCRIP  - Builds the descriptive portion of the display array.
+ ;   EXIT     - Cleans up temporary data at exit.
+ ;   DIQ      - Retrieves data for specified fields using FileMan.
+ ;   CHECK    - Screens for manager access to the option.
+ ;
+ ; Integration Control Registrations (ICRs)
+ ; ICR #10116 - FULL^VALM1
+ ; ICR #10103 - $$FMTE^XLFDT
+ ; ICR #10141 - EN^DDIOL
+ ; ICR #10101 - DIC/DIQ^DIC
+ ; ICR #10063 - DDGLIBR^DIALOG
+ ; ICR #10075 - L +^DIC(1)
+ ;
  D ^PRCPUSEL Q:'$G(PRCP("I"))
 EN ;  called from protocol file from within another protocol
  N CLREND,COLUMN,ITEMDA,LINE,PRCPINPT,PRCPDATA,PRCPTYPE
  S PRCPINPT=PRCP("I"),PRCPTYPE=PRCP("DPTYPE")
  F  W !! S ITEMDA=$$ITEM^PRCPUITM(PRCP("I"),1,"","") Q:'ITEMDA  D
- .   L +^PRCP(445,PRCPINPT,1,ITEMDA):1 I '$T D SHOWWHO^PRCPULOC(445,PRCPINPT_"-1",0) Q
+ .   L +^PRCP(445,PRCPINPT,1,ITEMDA):DILOCKTM I '$T D SHOWWHO^PRCPULOC(445,PRCPINPT_"-1",0) Q
  .   D ADD^PRCPULOC(445,PRCPINPT_"-1",0,"Enter/Edit Inventory Item Data")
  .   D FULL^VALM1,EN^VALM("PRCP EDIT ITEMS"),FULL^VALM1   ;PRC*5.1*171 Clear screen protect area from PRCP EDIT ITEMS Listman call
  .   I $D(^PRCP(445,PRCPINPT,1,ITEMDA)) D BLDSEG^PRCPHLFM(3,ITEMDA,PRCPINPT) ; send supply station an update of any changes to the item
@@ -41,8 +67,9 @@ DESCRIP ;  build descriptive array
  D SET^PRCPEIL0("Descriptive",LINE,COLUMN,CLREND,0,IORVON,IORVOFF)
  D SET^PRCPEIL0("-445",LINE,12,CLREND,.7)
  D SET^PRCPEIL0("Description-441: "_$P($G(^PRC(441,ITEMDA,0)),"^",2),LINE+1,COLUMN,CLREND)
- D SET^PRCPEIL0("NSN            : "_$$NSN^PRCPUX1(ITEMDA),LINE+2,COLUMN,CLREND)
- D SET^PRCPEIL0("Group Category ",LINE+3,COLUMN,CLREND,.5)
+ ;D SET^PRCPEIL0("NSN            : "_$$NSN^PRCPUX1(ITEMDA),LINE+2,COLUMN,CLREND) ; 244 - Replace NSN with ABC Classification
+ D SET^PRCPEIL0("Group Category ",LINE+2,COLUMN,CLREND,.5)
+ D SET^PRCPEIL0("ABC Classification",LINE+3,COLUMN,CLREND,.45) ; 244 - Replace NSN with ABC Classification
  D SET^PRCPEIL0("Main Storage Lo",LINE+4,COLUMN,CLREND,5)
  S X="",%=0 F  S %=$O(^PRCP(445,PRCP("I"),1,ITEMDA,1,%)) Q:'%  S X=X_$$STORELOC^PRCPESTO(%)_"  " Q:$L(X)>240
  D SET^PRCPEIL0("Add Storage Loc: "_X,LINE+5,COLUMN,CLREND)

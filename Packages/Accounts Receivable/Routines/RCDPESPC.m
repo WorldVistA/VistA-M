@@ -1,5 +1,5 @@
 RCDPESPC ;AITC/MBS - ePayment Lockbox Site Parameter Reports ; 4/23/19 8:52am
- ;;4.5;Accounts Receivable;**349,424**;Mar 20, 1995;Build 11
+ ;;4.5;Accounts Receivable;**349,424,450**;Mar 20, 1995;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -14,7 +14,7 @@ APOST(AUPSTYP,ONOFF) ;EP from RCDPESP Turn Auto-Posting On/Off for Medical,RX,TR
  ; Output: ONOFF passed by ref. 1 - Auto-Posting, 0 otherwise
  ; Returns: 1 - User '^' or timed out, 0 otherwise
  N APCT,DIR,DIROUT,DIRUT,DTOUT,DUOUT,FLD,FDAEDI,RCAUDVAL
- S FLD=$S(AUPSTYP=0:.02,AUPSTYP=1:1.01,AUPSTYP=2:1.05,1:1.11) ; PRCA*4.5*349 - Add TRICARE, PRCA*4.5*424 - Add ZERO PAY
+ S FLD=$S(AUPSTYP=0:.02,AUPSTYP=1:1.01,AUPSTYP=2:1.05,1:1.11) ; PRCA*4.5*349 Add TRICARE, PRCA*4.5*424 Add ZERO PAY
  S APCT=$$GET1^DIQ(344.61,"1,",FLD,"I")
  S DIR(0)="YA",DIR("B")=$S((APCT=1)!(APCT=""):"Yes",1:"No")
  S DIR("A")=$$PADPRMPT^RCDPESPB($$GET1^DID(344.61,FLD,,"TITLE"))
@@ -33,7 +33,7 @@ APOST(AUPSTYP,ONOFF) ;EP from RCDPESP Turn Auto-Posting On/Off for Medical,RX,TR
  . ; Changed D AUDIT to D AUDIT^RCDPESP
  . D AUDIT^RCDPESP(.RCAUDVAL)
  Q 0
- ; PRCA*4.5*349 - New subroutine to display parameter settings by category
+ ; PRCA*4.5*349 - New - display parameter settings by category
 SPRPT ; EP from RCDPESP1
  ; Site parameter report entry point updated to select categories
  ; Input: RCTYPE - Type of report (Medical/Rx/TRICARE/All)
@@ -61,7 +61,7 @@ SPRPT ; EP from RCDPESP1
  S RCHDR("PGNMBR")=0  ; page number
  ;
  ; AR SITE PARAMETER file (#342)
- D GETS^DIQ(342,"1,",".01;.14;.15;7.02;7.03;7.04;7.05;7.06;7.07;7.08;7.09","E",RCGLB(342)) ; PRCA*4.5*345
+ D GETS^DIQ(342,"1,",".01;.14;.15;.17;7.02;7.03;7.04;7.05;7.06;7.07;7.08;7.09","E",RCGLB(342)) ; PRCA*4.5*345, PRCA*4.5*450
  ; RCDPE PARAMETER file (#344.61),  *future build*, add Tricare auto-decrease fields
  S Y=".02;.03;.04;.05;.06;.07;.1;.11;.12;.13;1.01;1.02;1.03;1.04"  ; PRCA*4.5*345
  S Y=Y_";1.05;1.06;1.07;1.08;1.09;1.1"  ; PRCA*4.5*349 - Add TRICARE
@@ -120,8 +120,9 @@ RPTGN ; Display General EDI Lockbox Site Parameters
  ;
 RPTFP ; Display First Party Parameters
  D AD2RPT^RCDPESP1($C(12)_"### First Party Parameters ###")
- ; .14:.15 - First Party
- F RCFLD=.14,.15 D
+ ; PRCA*4.5*450 add field .17 for first party auto-decrease, manual
+ ; .14,.15,.17 - First Party
+ F RCFLD=.14,.15,.17 D
  . S Y=$$GET1^DID(342,RCFLD,,"TITLE")_": "_@RCGLB(342)@(342,"1,",RCFLD,"E")
  . D AD2RPT^RCDPESP1(Y)
  Q
@@ -222,7 +223,7 @@ SRTCATS(CATS) ; If user selected both Auto-Post and Auto-Decrease, ensure AD dis
  . S CATS=$TR(CATS,";",U)
  Q CATS
  ;
- ; PRCA*4.5*349 - Added new subroutine to present parameters by category
+ ; PRCA*4.5*349 - New - present parameters by category
 ENCATS ; EP from RCDPESP
  ; Filter questions by category
  ; Input: CATS - List of categories to display
@@ -306,7 +307,7 @@ LSTCATS(CATS,SHORT) ; Return list of categories
  S CATS("LK")="EFT Lock-Out"_$S('SHORT:" Parameters",1:"")
  Q
  ; 
- ; PRCA*4.5*349 - New function to prompt for categories
+ ; PRCA*4.5*349 - Prompt for categories
 CATS() ; Get categories to display
  N CATS,CTLST,DIR
  S CTLST=""
@@ -321,7 +322,7 @@ CATS() ; Get categories to display
  S:Y=U CTLST=""
 QCATS Q CTLST
  ;
- ; PRCA*4.5*349 - New function to support CATS()
+ ; PRCA*4.5*349 - New - support CATS()
 BLDCATS(CUR) ; Build set of code string for categories question
  N I,OUT
  S OUT=""
@@ -329,7 +330,7 @@ BLDCATS(CUR) ; Build set of code string for categories question
  . S:CUR'[(I) OUT=OUT_I_":"_CATS(I)_";"
  Q OUT
  ;
- ; PRCA*4.5*349 - New function to display "general" questions (including bulletin day)
+ ; PRCA*4.5*349 - New - display "general" questions (including bulletin day)
  ;                as separate from First Party questions
 GEN() ; General Questions
  N RSLT S RSLT=""
@@ -345,7 +346,7 @@ GEN() ; General Questions
  I 'RSLT Q $$BULLDAY^RCDPESP
  Q RSLT
  ;
- ; PRCA*4.5*349 - New function to ask First Party questions as their own category
+ ; PRCA*4.5*349 - New - ask First Party questions as their own category
 FIRSTP() ; First Party questions
  N RSLT S RSLT=""
  I '$D(^RC(342,1,0)) D BEG^RCMSITE
@@ -357,7 +358,7 @@ FIRSTP() ; First Party questions
  S RSLT=$S($D(Y):"^user aborted",1:1)  ; if Y remains from ^DIE call
  Q 'RSLT
  ;
- ; PRCA*4.5*349 - New function to ask only Medical Auto-Decrease questions if Auto-Post enabled
+ ; PRCA*4.5*349 - New - ask only Medical Auto-Decrease questions if Auto-Post enabled
 MAUTOD() ; Medical Claims Auto-Decrease Questions
  ; Returns: 1 - User '^' or timed out, 0 otherwise
  N ONOFF,RCQUIT
@@ -382,7 +383,7 @@ MAUTOD() ; Medical Claims Auto-Decrease Questions
  ;
  Q 0
  ;
- ; PRCA*4.5*349 - New function to ask only Pharmacy Auto-Decrease questions if Auto-Post enabled
+ ; PRCA*4.5*349 - New - ask only Pharmacy Auto-Decrease questions if Auto-Post enabled
 RXAUTOD() ; Enable/disable Auto-Decrease of pharmacy claims with payments
  ; Returns: 1 - User '^' or timed out, 0 otherwise
  N ONOFF,RETURN
@@ -402,7 +403,7 @@ RXAUTOD() ; Enable/disable Auto-Decrease of pharmacy claims with payments
  D EXCLLIST^RCDPESP(4) ; Display the exclusion list
  Q 0
  ;
- ; PRCA*4.5*349 - New function to ask only TRICARE Auto-Decrease questions if Auto-Post enabled
+ ; PRCA*4.5*349 - New - ask only TRICARE Auto-Decrease questions if Auto-Post enabled
 TAUTOD() ; Enable/disable Auto-Decrease of TRICARE claims with payments
  ; Returns: 1 - User '^' or timed out, 0 otherwise
  N ONOFF,RETURN
@@ -478,7 +479,7 @@ TPARAMS(RCPARM) ; Display TRICARE Parameters for Report
  ;
 LMHDR(HDR,RCTYPE,RCCATS) ; EP from RCDPESP1
  ; HDR passed by ref.
- ; PRCA*4.5*349 - New subroutine to build ListMan Header
+ ; PRCA*4.5*349 - New - build ListMan Header
  ; Inputs: RCTYPE - M - Medical, P - Pharmacy, T - TRICARE, A - ALL
  ;         RCCATS - GN - General EDI Lockbox Site
  ;                  AA - Auto-Audit Site

@@ -1,8 +1,9 @@
 TIUCCHL7UT ; CCRA/PB - TIUCCRA HSRM Msg Processing; November 3, 2020
- ;;1.0;TEXT INTEGRATION UTILITIES;**337,344,356**;Sep 27, 2023;Build 26
+ ;;1.0;TEXT INTEGRATION UTILITIES;**337,344,356,375**;Sep 27, 2023;Build 7
  ;
  ;PB - Patch 344 to modify how the note and addendum text is formatted
  ;PB - Patch 356 modifications to file the note as a stand-alone note and not linked to a consult
+ ;PB - Patch 375 modifications to file any addendum. 
  Q
  ;
 TIUC(X) ; Check each segment of the CCRA TIU notes for HL7 control characters
@@ -79,20 +80,29 @@ TIULKUP(CONSULTID,TITLE,NOTEDATE,NOTENUM) ;
  ;NOTEDATE = date of the original note, use to look up the note in 8925, if the original note date
  ; is not available, use the date of the consult to begin the lookup for the note
  ;NOTNUM = CCP Note number from the HL7 message for this addendum
- S:$G(NOTEDATE)="" NOTEDATE=$$GET1^DIQ(123,CONSULTID_",",.01,"I"),NOTEDATE=$$FMADD^XLFDT(NOTEDATE,,-1)
+ I $G(NOTEDATE)'="" N X,Y S X=NOTEDATE D ^%DT S NOTEDATE=Y
+ ;D APPERROR^%ZTER("TIUCCHL7UT 85")
+ S:$G(NOTEDATE)="" NOTEDATE=$$GET1^DIQ(123,CONSULTID_",",.01,"I")
+ S NOTEDATE=$$FMADD^XLFDT(NOTEDATE,-1)
  N TIUIEN,IEN,CCPNUMBER,TIUIEN1
+ S CNT=1
  S XX=NOTEDATE,TIUIEN1=0 F  S NOTEDATE=$O(^TIU(8925,"F",NOTEDATE)) Q:NOTEDATE'>0  S IEN=0 F  S IEN=$O(^TIU(8925,"F",NOTEDATE,IEN)) Q:IEN'>0  D
+ .Q:$P(^TIU(8925,IEN,0),"^",2)'=$G(DFN)
  .Q:$P(^TIU(8925,IEN,0),"^")'=TITLE
  .N CONSULT
+ .Q:TIUIEN1>0
  .S TIUIEN1=0
  .K YY
  .S YY=0 F  S YY=$O(^TIU(8925,IEN,"TEXT",YY)) Q:YY'>0  D
  ..Q:TIUIEN1>0
+ ..; patch 375 - PB - check for ccpn number based on formatting from HSRM HL7 message. Some messages have a colon and a space and others have just the colon.
  ..I $G(^TIU(8925,IEN,"TEXT",YY,0))["Unique Consult ID: " S CONSULT=$P(^TIU(8925,IEN,"TEXT",YY,0),"_",2)
- ..I $G(^TIU(8925,IEN,"TEXT",YY,0))["CCPN Number: " S CCPNUMBER=$P(^TIU(8925,IEN,"TEXT",YY,0)," ",3)
- ..I $G(CONSULT)>0,(CONSULT=CONSULTID),($G(CCPNUMBER)=NOTENUM) S TIUIEN1=IEN ;W !,"TIUIEN= ",TIUIEN Q
- ..Q:$G(TIUIEN1)>0
- ;W !,"TIUIEN1= ",TIUIEN1
+ ..I $G(^TIU(8925,IEN,"TEXT",YY,0))["CCPN Number:" S CCPNUMBER=$P(^TIU(8925,IEN,"TEXT",YY,0),":",2)
+ ..S:$G(CCPNUMBER)=""&$G(^TIU(8925,IEN,"TEXT",YY,0))["CCPN Number: " CCPNUMBER=$P(^TIU(8925,IEN,"TEXT",YY,0),": ",3)
+ ..I $G(CONSULT)>0,(CONSULT=CONSULTID),($G(CCPNUMBER)=NOTENUM) S TIUIEN1=IEN
+ ..;d APPERROR^%ZTER("TIUCCHL7UT 102")
+ ..;Q:$G(TIUIEN1)>0
+ ;W !,"LAST TIUIEN1= ",TIUIEN1
  Q TIUIEN1
  ;added CHECKLST and LIST to lookup the clinic associated with the consult service
 CHECKLST(SERVICENAME) ;

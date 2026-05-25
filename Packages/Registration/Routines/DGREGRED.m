@@ -1,5 +1,5 @@
-DGREGRED ;ALB/JAM - Residential Address Edit API ;1/6/21  10:30
- ;;5.3;Registration;**941,1010,1014,1040**;Aug 13, 1993;Build 15
+DGREGRED ;ALB/JAM,ARF,JAM - Residential Address Edit API ;1/6/21  10:30
+ ;;5.3;Registration;**941,1010,1014,1040,1127,1143**;Aug 13, 1993;Build 36
  ;;
  ;
 EN(DFN,FLG) ;Entry point
@@ -10,11 +10,21 @@ EN(DFN,FLG) ;Entry point
  ;    FLG(2) - if 1 display before & after address (and phone if FLG(1)=1) for user confirmation
  N DGINPUT,DGCMP,ICNTRY,CNTRY,FORGN,PSTR,OLDC,FSTR,BAD
  N I,X,Y
+ ;
  I $G(DFN)="" Q
+ ;
+ ; DG*5.3*1143 - If not already set, set variables to be used during editing and flag that real-time address update is active or inactive
+ I +$G(DGRTAON)=0 N DGRTAON S DGRTAON=$$ISRTAUON^DGRTAUPD() I DGRTAON=1 N DGADDGRP1,DGADDEDIT
+ ;
  S FLG(1)=$G(FLG(1)),FLG(2)=$G(FLG(2))
 RETRY  ; Entry point if address must be re-entered
  D GETOLD(.DGCMP,DFN)
+ ; DG*5.3*1143 - Merge any current values being entered with the old values 
+ I $D(DGADDGRP1) M DGCMP=DGADDGRP1
  S CNTRY="",ICNTRY=$S(DFN:$P($G(^DPT(DFN,.115)),"^",10),1:"")
+ ; DG*5.3*1143 - Overwrite the Country with what is in the local array for Country 
+ I $D(DGADDGRP1) S ICNTRY=DGADDGRP1(.11573)
+ ;
  I ICNTRY="" S ICNTRY=1  ;default country is USA if NULL
  ; DG*5.3*1040 - Set variable DGTMOT to 1 to track timeout
  S OLDC=DGCMP("OLD",.11573),FORGN=$$FOREIGN^DGADDUTL(DFN,ICNTRY,2,.11573,.CNTRY) I FORGN=-1 S DGTMOT=1 Q
@@ -26,8 +36,9 @@ RETRY  ; Entry point if address must be re-entered
  ; **** DG*5.3*1014; jam;  Start changes ****
  ;
  ; DG*5.3*1014; jam; If required fields are missing, we can't call the validation service - force user to correct the address
- I DGINPUT(.1151)=""!(DGINPUT(.1154)="")!(($G(DGINPUT(.1156))="")&('FORGN)) D  G RETRY
- . I 'FORGN W !!?3,*7,"RESIDENTIAL ADDRESS [LINE 1], CITY, and ZIP CODE fields are required."
+ ; DG*5.3*1143 - for domestic address, require State
+ I DGINPUT(.1151)=""!(DGINPUT(.1154)="")!(($G(DGINPUT(.1156))="")!($G(DGINPUT(.1155))="")!($G(DGINPUT(.1155))="^")&('FORGN)) D  G RETRY
+ . I 'FORGN W !!?3,*7,"RESIDENTIAL ADDRESS [LINE 1], CITY, STATE and ZIP CODE fields are required."
  . I FORGN W !!?3,*7,"RESIDENTIAL ADDRESS [LINE 1] and CITY fields are required."
  ; DG*5.3*1014; Display the address entered
  N DGNEWADD
@@ -45,13 +56,18 @@ CHK ; DG*5.3*1014; Prompt user and allow them to correct the address or continue
  D ^DIR K DIR
  ; DG*5.3*1040 - Set variable DGTMOT=1, if timeout and QUIT
  I $D(DTOUT) S DGTMOT=1 Q
+ ; DG*5.3*1143 - for RTA, if user quit with ^, clean out edit data and exit
+ I $G(DGRTAON)=1 I $D(DUOUT) W !,"Changes not saved." D EOP Q
  ; DG*5.3*1040 - Remove the DTOUT check and Quit if EOP timeout
  I $D(DUOUT) W !,"Address changes not saved." D EOP Q:+$G(DGTMOT)  G PHONE    ;Exiting - Not saving address - go to phone saving process
  I X="E"!(X="e") G RETRY  ; re-enter address
  I X'="" G CHK  ; at this point, any response but <RET> will not be accepted
  ; DG*5.3*1014; jam; Add call to Address Validation service
- N DGADVRET
+ N DGADVRET,DGOVERKEY ;DG*5.3*1127 - Added DGOVERKEY variable
  S DGADVRET=$$EN^DGADDVAL(.DGINPUT,"R")
+ ; DG*5.3*1127 - Get the override key. DGINPUT("overrideKey") will contain the value of the 
+ ;               override key set in DGADDLST which is called when validating the address
+ S DGOVERKEY=$G(DGINPUT("overrideKey"))
  ; DG*5.3*1040; if return is -1 timeout occurred
  I DGADVRET=-1 S DGTMOT=1 Q
  ; if return is 0 - address was not validated
@@ -60,10 +76,18 @@ CHK ; DG*5.3*1014; Prompt user and allow them to correct the address or continue
  ;
  ; **** DG*5.3*1014; jam; End changes ****
  ;
+ ; DG*5.3*1143 - If Real-time address (RTA) update is active, and hold flag is set, skip over the confirmation and handle saving the data for RTA updates.
+ I $G(DGRTAON)=1,$G(DGRTAHOLD)=1 D SAVERTA G:BAD=1 RETRY  Q
+ ;
  ; if flag is set, show old and new address
  I FLG(2)=1 D COMPARE(.DGINPUT,.DGCMP)
  ; DG*5.3*1040 - Use variable DGCONFIRM to hold value of $$CONFIRM("ADDRESS")
  N DGCONFIRM S DGCONFIRM=$$CONFIRM("ADDRESS") I DGCONFIRM=-1 S DGTMOT=1 Q
+ ;
+ ; DG*5.3*1143 - After confirmation, if Real-time address (RTA) update is active, handle saving the data for RTA updates.
+ I $G(DGRTAON)=1 I 'DGCONFIRM W !,"Changes not saved." D CLEAN D EOP Q
+ I $G(DGRTAON)=1 D SAVERTA G:BAD=1 RETRY  Q
+ ;
  ; DG*5.3*1040 - Check variable DGCONFIRM
  I 'DGCONFIRM W !,"Address changes not saved." G PHONE    ;Not saving address - go to phone saving process
  ; Validate the address fields and set BAD=1 if not valid
@@ -74,8 +98,10 @@ CHK ; DG*5.3*1014; Prompt user and allow them to correct the address or continue
  ;    Pass in LINE 1, State and Country codes
  I $$POBOXRES^DGREGCP2(DGINPUT(.1151),$P($G(DGINPUT(.1155)),"^",2),$P(DGINPUT(.11573),"^",2)) D  S BAD=1 G PHONE
  . W !!?3,*7,"You cannot enter 'P. O. Box' or 'General Delivery' for a Residential Address."
+ ;
  ; If all Validations passed - save the address
  D SAVE(.DGINPUT,DFN,FSTR,FORGN) Q:+$G(DGTMOT)
+ ;
 PHONE ; Process the phone number changes IF FLG(1) = 1
  I $G(FLG(1))=1 D
  . ; if compare flag is set, display old/new values
@@ -88,6 +114,91 @@ PHONE ; Process the phone number changes IF FLG(1) = 1
  ; Phone number process is completed - go to RETRY if address validation failed
  I BAD G RETRY
  Q
+ ;
+CLEAN ; DG*5.3*1143 - Clear out edit data when the user saves or discards the changes
+ K DGADDGRP1,DGADDEDIT(1)
+ Q
+ ;
+SAVERTA ; DG*5.3*1143 - Save the address edits with RTA updates active
+ ; Validate the address fields and set BAD=1 if not valid
+ I DGINPUT(.1151)=""!(DGINPUT(.1154)="")!(($G(DGINPUT(.1156))="")&('FORGN)) D  S BAD=1 Q
+ . I 'FORGN W !!?3,*7,"RESIDENTIAL ADDRESS [LINE 1], ZIP CODE and CITY fields are required."
+ . I FORGN W !!?3,*7,"RESIDENTIAL ADDRESS [LINE 1] and CITY fields are required."
+ ; If address is valid, next check is for PO Box and General Delivery -
+ ;    Pass in LINE 1, State and Country codes
+ I $$POBOXRES^DGREGCP2(DGINPUT(.1151),$P($G(DGINPUT(.1155)),"^",2),$P(DGINPUT(.11573),"^",2)) D  S BAD=1 Q
+ . W !!?3,*7,"You cannot enter 'P. O. Box' or 'General Delivery' for a Residential Address."
+ ;
+ ; Hold the data in local array DGADDGRP1
+ D SAVETOLOCAL
+ ; Set the Address Edit flag (for group 1) so in ^DGRPP the user will be prompted to save or discard the changes
+ S DGADDEDIT(1)=1
+ ; If RTA Hold flag is set (set in DGRPCADD) edits to fields are held for filing later - quit
+ I +$G(DGRTAHOLD)=1 Q
+ ; Otherwise data should be sent to ES via RTA webservice and saved if valid response
+ ; At the time of this patch the only way Residential address is edited is via screen 1.1 which sets DGRTAHOLD=1
+ ;  so this code will not actually run.  If another path to editing is written which does not set DGRTAHOLD
+ ;  this code below would execute.
+ I $$SENDRTAU() D  Q
+ . D SAVEFROMLOCAL
+ . W !,"Change saved."
+ . D EOP
+ ; Address saved failed - this code should be updated to handle unsuccesful response and allow the user the option to quit or retry edits (see ^DGREGAED)
+ S BAD=1
+ Q
+ ;
+SAVETOLOCAL ; DG*5.3*1143  Save user input to local array
+ ; Hold the data in the DGADDGRP1 array and save to the DB later
+ K DGADDGRP1
+ ; This code mimics the SAVE logic except the data is stored in the local array
+ S FSTR=FSTR_$S('FORGN:",.1154,.1155,.1157,.11573",1:",.11573")
+ F L=1:1:$L(FSTR,",") S DGN=$P(FSTR,",",L) D
+ . N DGCODE,DGNAME
+ . S DGCODE=$P($G(DGINPUT(DGN)),U,2)
+ . S DGNAME=$P($G(DGINPUT(DGN)),U)
+ . S DGADDGRP1(DGN)=$S(DGCODE:DGCODE,1:DGNAME)
+ ; Store the override key and the CASS indicator
+ S DGADDGRP1(.11591)=$G(DGOVERKEY)
+ S DGADDGRP1(.1159)="NC"
+ Q
+ ;
+SENDRTAU() ; DG*5.3*1143 - send edited address data to ES via webservice
+ N DGRTARET,DGERRS
+ S DGRTARET=$$EN^DGRTAUPD(DFN,.DGERRS,.DGADDGRP1)
+ I 'DGRTARET D
+ . N X,Z,DGI,DGLINE,DIWR,DGL,DIWL,DIWF
+ . S DIWL=0,DIWR=75,DIWF=""
+ . ; Print out the message attached to the return
+ . S X=$P(DGRTARET,"^",2)
+ . K ^UTILITY($J,"W")
+ . D ^DIWP
+ . M DGLINE=^UTILITY($J,"W",0)
+ . W !!,"** Webservice call failed:" F DGL=1:1:DGLINE W DGLINE(DGL,0),!
+ . ; Print out the DGERRS text
+ . S DGI="" F  S DGI=$O(DGERRS(DGI)) Q:'DGI  D
+ . . W !,"("_DGI_") "
+ . . S X=DGERRS(DGI)
+ . . K ^UTILITY($J,"W")
+ . . D ^DIWP
+ . . M DGLINE=^UTILITY($J,"W",0)
+ . . F DGL=1:1:DGLINE W DGLINE(DGL,0),!
+ . D EOP
+ Q DGRTARET
+ ;
+SAVEFROMLOCAL ; DG*5.3*1143 Save data to the DB from the local DGADDGRP1 array
+ N DGN,DGVALUE,FDA
+ S DGN=0
+ F  S DGN=$O(DGADDGRP1(DGN)) Q:'DGN  D
+ . S DGVALUE=DGADDGRP1(DGN)
+ . S FDA(2,DFN_",",DGN)=DGVALUE
+ . ; for home and office phone number, if there is an extension, store it
+ . I DGN=.131 I DGADDGRP1(DGN)["X" S FDA(2,DFN_",",.13211)=$P(DGADDGRP1(DGN),"X",2)
+ . I DGN=.132 I DGADDGRP1(DGN)["X" S FDA(2,DFN_",",.13213)=$P(DGADDGRP1(DGN),"X",2)
+ D FILE^DIE("","FDA","MSG")
+ ; Clean out the edit data
+ D CLEAN
+ Q
+ ;
 INPUT(DGINPUT,DFN,FSTR,CNTRY) ;Let user input address changes
  ; Output: DGINPUT(field#)=external^internal(if any)
  N DIR,X,Y,DA,DGR,DTOUT,DUOUT,DIROUT,DGN,L
@@ -196,6 +307,7 @@ SAVE(DGINPUT,DFN,FSTR,FORGN) ;Save changes
  ; need to get the country code into the DGINPUT array
  ; if it's a domestic address, we have to add in CITY,STATE & COUNTY
  S FSTR=FSTR_$S('FORGN:",.1154,.1155,.1157,.11573",1:",.11573")
+ S FSTR=FSTR_",.11591",DGINPUT(.11591)=DGOVERKEY  ;DG*5.3*1127 - Store the override Key returned from address validation
  F L=1:1:$L(FSTR,",") S DGN=$P(FSTR,",",L) D
  . ; Phone numbers saved separately - skip over here
  . I (DGN=.131)!(DGN=.132) Q
@@ -237,14 +349,20 @@ SAVEPH(DGINPUT,DFN) ;Save phone changes
  Q
  ;
 READ(DFN,DGN,Y) ;Read input, return success
- N SUCCESS,DIR,DA,DTOUT,DUOUT,DIROUT,L,POP
+ N SUCCESS,DIR,DA,DTOUT,DUOUT,DIROUT,L,POP,DGVAL
  S SUCCESS=1,POP=0
  F L=0:0 D  Q:POP
  . S DIR(0)=2_","_DGN
+ . ; DG*5.3*1143 - use the value in the local array for the field default
+ . I $D(DGADDGRP1(DGN)) S DIR("B")=DGADDGRP1(DGN)
  . I DFN S DA=DFN
  . D ^DIR
  . I $D(DTOUT) S POP=1,SUCCESS=0 Q
  . I $D(DUOUT)!$D(DIROUT) D UPCT Q
+ . ; DG*5.3*1143 - Check the format of the phone number fields since the user may have accepted the default value which would not be checked by Fileman
+ . S DGVAL=Y
+ . I DGN=.131!(DGN=.132) I DGVAL'="" D  I '$D(DGVAL)  W !,*7,"Answer must be 10 numbers in length with an optional 'X' and 1-6 digit",!,"extension number allowed.",!! Q
+ . . S DGVAL=$TR(DGVAL,"x","X") K:$L(DGVAL)>17 DGVAL I $D(DGVAL) K:'(DGVAL?10N!(DGVAL?10.N1"X"1.6N)) DGVAL
  . S POP=1
  Q SUCCESS
 INPT1(FORGN,PSTR) ; first address input prompts
@@ -258,13 +376,14 @@ INPT1(FORGN,PSTR) ; first address input prompts
 ZIPINP(DGINPUT,DFN) ; get ZIP+4 input
  ; This subroutine calls existing code to prompt for zip code and return corresponding city, state and county
  ; DFN must be the patient internal ID.  
- ; DGINPUT - passed by reference - the array containing the resulting county, city, and state for the zipcode.
+ ; DGINPUT - passed by reference - the array containing the resulting county, city, and state for the zip code.
  N FCITY,FZIP,FSTATE,FCOUNTY,TYPE,DGR
  ; Set the necessary variables for the Residential Address
  ; The variable TYPE is used for Confidential and temporary address types. 
  ; Here for the Residential Address we clear this variable.
  S FZIP=".1156",FCITY=".1154",FSTATE=".1155",FCOUNTY=".1157",TYPE=""
- D EN^DGREGTZL(.DGR,DFN)
+ ; DG*5.3*1143 - Pass the local array value for FZIP and FCITY (if defined) to use as the default values
+ D EN^DGREGTZL(.DGR,DFN,$G(DGADDGRP1(FZIP)),$G(DGADDGRP1(FCITY)))
  M DGINPUT=DGR
  Q
 SKIP(DGN,DGINPUT,FLG) ; determine whether or not to skip this step

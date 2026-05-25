@@ -1,5 +1,5 @@
-RAREG3 ;HISC/CAH,DAD,FPT,GJC-Register Rad/NM Patient (cont.) ;24 Jul 2019 9:18 AM
- ;;5.0;Radiology/Nuclear Medicine;**8,137,144,154,157**;Mar 16, 1998;Build 2
+RAREG3 ;HISC/CAH,DAD,FPT,GJC-Register Rad/NM Patient (cont.) ; Sep 27, 2024@16:52:17
+ ;;5.0;Radiology/Nuclear Medicine;**8,137,144,154,157,221**;Mar 16, 1998;Build 1
  ;Supported IA #10076 ^XUSEC(
  ;
 RSBIT ; renumber selections by imaging type
@@ -91,17 +91,16 @@ LABEL ; *** Print labels
  Q
  ;
 PRNRQ ;Print Request at Registration - P137/KLM
+ ;Print Request at Registration - P221/Ski
  I '$D(RAORDS) Q  ;no order array
  N RAJ,RAOIFN,RAILOC,RAION,RAARY,RAIENS
+ ;Active order(s) may have differing modalities. Get i-loc
+ ;for each exam & check for a REGISTERED REQUEST PRINTER.
+ ;RAJ = seq # RAORDS(1), RAORDS(2), etc...
  S RAJ=0 F  S RAJ=$O(RAORDS(RAJ)) Q:RAJ=""  D
  .S RAOIFN=$G(RAORDS(RAJ)) Q:RAOIFN=""
- .S RAIENS=RADTI_","_RADFN_"," ;P144/KLM 
- .S RAILOC=$$GET1^DIQ(70.02,RAIENS,4,"I") Q:RAILOC=""  ;get i-loc from registered exam **changed from order /p144
- .S RAION=$$GET1^DIQ(79.1,RAILOC,28) Q:RAION=""  ;Registered Request printer defined?
- .;Orders for registered exams may span modalities
- .;order status is active/registered - build RAARY(DEVICE NAME,ORDER IEN)
- .I $$GET1^DIQ(75.1,RAOIFN,5,"I")=6 S RAARY(RAION,RAOIFN)=""
- .;End RAJ loop on RAORDS
+ .D:$$GET1^DIQ(75.1,RAOIFN,5,"I")=6 REGQPRT(RAOIFN,RADFN)
+ .Q
  ;Setup task vars for each reg req device with orders
  I $D(RAARY) D
  .S RAION="" F  S RAION=$O(RAARY(RAION)) Q:RAION=""  D
@@ -126,3 +125,21 @@ PRNRQ1 ;task entry point - P137
  .U IO D ^RAORD5
  K RAPAGE,RAX,RAOIFN
  Q
+ ;
+REGQPRT(RAOIFN,RADFN) ;return registered/request printer for each exam record
+ ;input 
+ ; RAOIFN = RIS (#75.1) order IEN
+ ; RADFN = DFN of patient
+ ;return
+ ; RAARY = local array set iff reg'd req printers exist
+ N RADTI S RADTI=0
+ F  S RADTI=$O(^RADPT("AO",RAOIFN,RADFN,RADTI)) Q:RADTI'>0  D
+ .S RAIENS=RADTI_","_RADFN_"," ;P144/KLM 
+ .S RAILOC=$$GET1^DIQ(70.02,RAIENS,4,"I") Q:RAILOC=""  ;get i-loc from registered exam **changed from order /p144
+ .S RAION=$$GET1^DIQ(79.1,RAILOC,28) Q:RAION=""  ;Registered Request printer defined?
+ .;Orders for registered exams may span modalities
+ .;order status is active/registered - build RAARY(DEVICE NAME,ORDER IEN)
+ .S RAARY(RAION,RAOIFN)=""
+ .Q
+ Q
+ ;

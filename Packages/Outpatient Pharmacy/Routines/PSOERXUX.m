@@ -1,5 +1,5 @@
 PSOERXUX ;BIRM/MFR - eRx Un Process action ;07/19/23
- ;;7.0;OUTPATIENT PHARMACY;**700,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**700,746,770**;DEC 1997;Build 145
  ;
 UNPROC ; Un-Process
  I '$D(PSOIEN) D MSG("No eRx IEN found") Q
@@ -9,7 +9,7 @@ UNPROC ; Un-Process
  ;
  ; #1 - Check if status is "Processed"
  S ERXSTAT=$$GET1^DIQ(52.49,PSOIEN,1,"E")
- I ",PR,RXP,CXP,"'[(","_ERXSTAT_",") D MSG("eRx status must be 'PR','RXP', or 'CXP' to Un-Process") Q
+ I ",PR,RXP,CXP,RXC,"'[(","_ERXSTAT_",") D MSG("eRx status must be 'PR','RXP', 'RXC' or 'CXP' to Un-Process") Q
  ;
  ; #2 - Check if user hold the KEY "PSDRPH"
  S UKEY=$O(^DIC(19.1,"B","PSDRPH",0))
@@ -26,26 +26,20 @@ UNPROC ; Un-Process
  S MTYPE=$$GET1^DIQ(52.49,PSOIEN,.08,"I")
  I ",N,RE,CX,"'[(","_MTYPE_",") D MSG("Cannot Un-Process Message Types other than 'N','RE', or 'CX'") Q 
  ;
- ; #6 - Check Message Type RXRENEWALRESPONSE, it must have a Response Value of "REPLACE"
- I MTYPE="RE" D
- . S RVALUE=$$GET1^DIQ(52.49,PSOIEN,52.1,"I")
- . I RVALUE'="R" S RVFLAG=1
- I $G(RVFLAG) D MSG("RXRENEWALRESPONSE does not have a Response Value of 'REPLACE'") Q
+ ; #6 - Check 52/100 if value is 5 (Suspended) or 3 (Hold)
+ S STAT=+$G(^PSRX(PSRXNUM,"STA"))
+ I STAT'=5,STAT'=3,STAT'=13 D MSG("Prescription status is not SUSPENDED, HOLD or DELETED") Q
  ;
- ; #7 - Check if original fill, check if partial entered, check if transmitted to CMOP
- I $D(^PSRX(PSRXNUM,1)) D MSG("Refill(s) already entered, cannot Un-Process") Q      ;Refill request
- I $D(^PSRX(PSRXNUM,"P")) D MSG("Partial(s) already entered, cannot Un-Process") Q   ;At least 1 partial has been entered
+ ; #7 - Check if original fill, check if partial entered, check if transmitted to CMOP (Rx not DELETED)
+ I $D(^PSRX(PSRXNUM,1)),STAT'=13!(STAT=13&$$CSRX^PSOUTL(PSRXNUM)) D MSG("Refill(s) already entered, cannot Un-Process") Q      ;Refill request
+ I $D(^PSRX(PSRXNUM,"P")),STAT'=13!(STAT=13&$$CSRX^PSOUTL(PSRXNUM)) D MSG("Partial(s) already entered, cannot Un-Process") Q   ;At least 1 partial has been entered
  ;
- ; #8 - CMOP logic - check if original fill and if not dispensed
- I $D(^PSRX(PSRXNUM,4)) D
+ ; #8 - CMOP logic - check if original fill and if not dispensed (Rx not DELETED)
+ I $D(^PSRX(PSRXNUM,4)),STAT'=13!(STAT=13&$$CSRX^PSOUTL(PSRXNUM)) D
  . S SEQ=0
  . F  S SEQ=$O(^PSRX(PSRXNUM,4,SEQ)) Q:'SEQ  D
  . . I ($P($G(^PSRX(PSRXNUM,4,SEQ,0)),"^",3)'=0),($P($G(^PSRX(PSRXNUM,4,SEQ,0)),"^",4)'=3) S CMFLAG=1
  I $G(CMFLAG) D MSG("Already transmitted to CMOP, cannot Un-Process") Q
- ;
- ; #9 - Check 52/100 if value is 5 (Suspended) or 3 (Hold)
- S STAT=+$G(^PSRX(PSRXNUM,"STA"))
- I STAT'=5,STAT'=3 D MSG("Prescription status is not SUSPENDED or HOLD") Q
  ;
  ; User comments, to both 52 and 52.49
  S DIR("A")="Comments",DIR("B")="Un-Process for correction",DIR(0)="F^5:100" D ^DIR K DIR
@@ -58,7 +52,8 @@ UNPROC ; Un-Process
  ;
  ; Once the user confirms the Un-Process, then put a lock/unlock on the patient
  S PSODFN=+$P(^PSRX(PSRXNUM,0),"^",2)
- S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) Q
+ S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D  Q
+ . W !,"Patient is locked by another user. Please, try again later.",$C(7) Q
  ;
 CANCEL ; Requirement - DC - discontinue prescription (PSO CANCEL)
  N DA
@@ -86,6 +81,10 @@ ERX ; Change eRx status to "Wait"
  S FDA(52.4919,"+1,"_PSOIEN_",",.03)=$G(DUZ)
  S FDA(52.4919,"+1,"_PSOIEN_",",1)=HCOMM
  D UPDATE^DIE(,"FDA","NEWSTAT","ERR") K FDA
+ ;
+ ; Killing the VistA Rx suggestion for this record
+ I $$DRUGHASH^PSOERUT(PSOIEN) K ^PS(52.49,"ADRGVRX",$$DRUGHASH^PSOERUT(PSOIEN))
+ ;
  S VALMBCK="R"
  Q
  ;

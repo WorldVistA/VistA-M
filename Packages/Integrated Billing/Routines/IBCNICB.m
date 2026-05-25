@@ -1,8 +1,8 @@
 IBCNICB ;ALB/SBW - Update utilities for the ICB interface ;1 SEP 2009
- ;;2.0;INTEGRATED BILLING;**413,416,528,549,687,737**;21-MAR-94;Build 19
+ ;;2.0;INTEGRATED BILLING;**413,416,528,549,687,737,822**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
-ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNEWGRP,IBNEWPOL,IVMREPTR,IBELIG) ;
+ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNEWGRP,IBNEWPOL,IVMREPTR,IBELIG,IBE1) ;
  ;Provides API to be called by the Insurance Capture Buffer (ICB) 
  ;application to move buffer data in Insurance Files then cleanup
  ;
@@ -26,7 +26,9 @@ ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNE
  ;  IBNEWGRP - Add new GROUP INSURANCE PLAN flag (non-zero means add)
  ;  IBNEWPOL - Add new patient insurance policy (non-zero means add)
  ;  IVMREPTR - IVM REASONS FOR NOT UPLOADING (#301.91) IEN (Optional)
- ;
+ ;  IBELIG   - Eligibility/Benefit data (Optional)
+ ;  IBE1     - E1 Pharmacy Eligibility data (Optional)
+ ; 
  ;OUTPUT
  ;  RESULT   - Returned Parameter Array with IENS of new entries and/or errors/warning.
  ;     RESULT(0) = -1^error message
@@ -52,6 +54,8 @@ ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNE
  ;IB*687/ckb - added IBCNICB
  N IBCNICB,IBSUPRES,IBUFSTAT,IBX
  I '$D(IBELIG) S IBELIG=0
+ ;IB*822/CKB - added IBE1 for E1 Pharmacy Eligibility
+ I '$D(IBE1) S IBE1=0
  ;Set IBSUPRES to suppress screen I/O within ACCEPT
  S IBSUPRES=1,IBUFSTAT=$P($G(^IBA(355.33,$G(IBBUFDA),0)),U,4)
  ;IB*687/ckb - add set of IBCNICB. It will be used to set the ICB PROCESSED BUFFER field #1.08, in the

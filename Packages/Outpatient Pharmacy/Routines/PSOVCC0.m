@@ -1,5 +1,5 @@
 PSOVCC0 ;ORLFO/FJF/WC - PSO Activity Logs ; Mar 20, 2023@12:57:56
- ;;7.0;OUTPATIENT PHARMACY;**707**;DEC 1997;Build 18
+ ;;7.0;OUTPATIENT PHARMACY;**707,776**;DEC 1997;Build 56
  ; 
  ; External calls:
  ;
@@ -16,9 +16,15 @@ PSOVCC0 ;ORLFO/FJF/WC - PSO Activity Logs ; Mar 20, 2023@12:57:56
  ; Reference to ^%DT in #10003
  ;
  ;
-PSOVPADDR(PSOVRTN,PSOVICN,PSOVADDR,PSOVATYP) ; Update temporary address in Patient file (#2)
+PSOVPADDR(PSOVRTN,PSOVICN,PSOVADDR,PSOVATYP) ;
+ ;  Update addresses in Patient file
+ ;
+ ; This RPC updates an address in the patient file #2.
+ ; The address to be updated is identified by PSOVATYP parameter
+ ;   documented below.
+ ;
  ; Input:  PSOVICN     (required) - Patient ICN
- ;         PSOVADDR   (required) - Address
+ ;         PSOVADDR    (required) - Address
  ;           - format ARRAY(fieldname)=field_value
  ;           - e.g. addr("City")="Alexandria"
  ;                  addr("Country")="Canada"
@@ -36,55 +42,108 @@ PSOVPADDR(PSOVRTN,PSOVICN,PSOVADDR,PSOVATYP) ; Update temporary address in Patie
  ;                  addr("Zip+4")="95739-0001"
  ;          PSOVATYP   (required) - Indicator of which address is to be updated
  ;                  T - temporary address
+ ;                  M - mailing address
  ;                  O - Other, yet to be determined
  ;         
  ; Output: PSOVRTN - Return Value
  ;                1 for success
+ ;                or
  ;               -1 - error message for failure
  ;
  ; check for required input parameters
+ ;
  I $G(PSOVICN)="" S PSOVRTN="-1 - ICN is required" Q
  I '$D(PSOVADDR) S PSOVRTN="-1 - Address is required" Q
  I '$D(PSOVATYP) S PSOVRTN="-1 - Address type is required" Q
  ;
  ; check ICN is valid
+ S PSOVRTN=1
  N DFN
  S DFN=$$GETADFN^MPIFAPI($P(PSOVICN,"V"))
  ;
  I +DFN=-1 S PSOVRTN="-1 - ICN not recognised" Q
  ;
+ I PSOVATYP'="T",PSOVATYP'="M" S PSOVRTN="-1 - address type not recognised" Q
+ ;
  ; convert input json to M array PSOVM
  D J2MAR(.PSOVADDR,.PSOVM)
  ;
- N FDA,PSOVERR
- S FDA(.1211)=$G(PSOVM("StreetL1"))
- S FDA(.1212)=$G(PSOVM("StreetL2"))
- S FDA(.1213)=$G(PSOVM("StreetL3"))
- S FDA(.1214)=$G(PSOVM("City"))
- I $D(PSOVM("State")) D
+ ; Check start date and end date
+ I PSOVATYP="T",$G(PSOVM("StartDate"))'="",$G(PSOVM("EndDate"))'="" D
+ .N STRT,END
+ .S STRT=$$EX2FM(PSOVM("StartDate")),END=$$EX2FM(PSOVM("EndDate"))
+ .I END'>STRT S PSOVRTN="-1 - EndDate must be after than StartDate"
+ I +$G(PSOVRTN)=-1 Q
+ ;
+ ;
+ ; build FDA array for address type
+ N FDA
+ I PSOVATYP="T" D TEMPFDA
+ I PSOVATYP="M" D MAILFDA
+ ;
+ ; update patient file
+ N PSOVERR
+ S PSOVRTN=$$UPD^DGENDBS(2,DFN,.FDA,.PSOVERR)
+ I +PSOVRTN'=1 S PSOVRTN=-1_" - "_PSOVERR Q
+ S PSOVRTN="1 - Address Updated"
+ Q
+ ;
+TEMPFDA ; create FDA array for temporary address
+ ;
+ I $D(PSOVM("StreetL1")) S FDA(.1211)=PSOVM("StreetL1")
+ I $D(PSOVM("StreetL2")) S FDA(.1212)=PSOVM("StreetL2")
+ I $D(PSOVM("StreetL3")) S FDA(.1213)=PSOVM("StreetL3")
+ I $D(PSOVM("City")) S FDA(.1214)=PSOVM("City")
+ I $G(PSOVM("State"))'="" D
  .N PSOVSTATE
  .S PSOVSTATE=$$UP^XLFSTR(PSOVM("State"))
  .S FDA(.1215)=$O(^DIC(5,"B",PSOVSTATE,""))
- S FDA(.1216)=$G(PSOVM("Zip"))
- S FDA(.1217)=$$EX2FM($G(PSOVM("StartDate")))
- S FDA(.1218)=$$EX2FM($G(PSOVM("EndDate")))
- S FDA(.1219)=$G(PSOVM("PhoneNumber"))
- S FDA(.1221)=$G(PSOVM("Province"))
- S FDA(.1222)=$G(PSOVM("PostCode"))
+ I $G(PSOVM("State"))="" S FDA(.1215)=""
+ I $D(PSOVM("Zip")) S FDA(.1216)=PSOVM("Zip")
+ I $D(PSOVM("StartDate")) S FDA(.1217)=$$EX2FM(PSOVM("StartDate"))
+ I $D(PSOVM("EndDate")) S FDA(.1218)=$$EX2FM(PSOVM("EndDate"))
+ I $D(PSOVM("PhoneNumber")) S FDA(.1219)=PSOVM("PhoneNumber")
+ I $D(PSOVM("Province")) S FDA(.1221)=PSOVM("Province")
+ I $D(PSOVM("PostCode")) S FDA(.1222)=PSOVM("PostCode")
  N CNTRY
- S CNTRY=$$CNTCHK($G(PSOVM("Country")))
- I CNTRY=0 S CNTRY=""
- S FDA(.1223)=CNTRY
- I $D(PSOVADDR("County")) D
+ I $D(PSOVM("Country")) D
+ .S CNTRY=$$CNTCHK^PSOVCC0(PSOVM("Country"))
+ .I CNTRY=0 S CNTRY=""
+ .S FDA(.1223)=CNTRY
+ I $D(PSOVM("County")) D
  .N PSOVCOUNTY
  .S PSOVCOUNTY=$$UP^XLFSTR(PSOVM("County"))
  .S FDA(.12111)=PSOVCOUNTY
- S FDA(.12112)=$G(PSOVM("Zip+4"))
- ;
- S PSOVRTN=$$UPD^DGENDBS(2,DFN,.FDA,.PSOVERR)
- I +PSOVRTN'=1 S PSOVRTN=-1_" - "_PSOVERR
- S PSOVRTN="1 - Temporary Address Updated"
+ I $D(PSOVM("Zip+4")) S FDA(.12112)=$TR($G(PSOVM("Zip+4")),"-")
  Q
+ ;
+MAILFDA ; create FDA array for mailing address
+ ;
+ I $D(PSOVM("StreetL1")) S FDA(.111)=PSOVM("StreetL1")
+ I $D(PSOVM("StreetL2")) S FDA(.112)=PSOVM("StreetL2")
+ I $D(PSOVM("StreetL3")) S FDA(.113)=PSOVM("StreetL3")
+ I $D(PSOVM("City")) S FDA(.114)=PSOVM("City")
+ I $G(PSOVM("State"))'="" D
+ .N PSOVSTATE
+ .S PSOVSTATE=$$UP^XLFSTR(PSOVM("State"))
+ .S FDA(.115)=$O(^DIC(5,"B",PSOVSTATE,""))
+ I $G(PSOVM("State"))="" S FDA(.115)=""
+ I $D(PSOVM("Zip")) S FDA(.1216)=PSOVM("Zip")
+ I $D(PSOVM("PhoneNumber")) S FDA(.1219)=PSOVM("PhoneNumber")
+ I $D(PSOVM("Province")) S FDA(.1171)=PSOVM("Province")
+ I $D(PSOVM("PostCode")) S FDA(.1172)=PSOVM("PostCode")
+ N CNTRY
+ I $D(PSOVM("Country")) D
+ .S CNTRY=$$CNTCHK^PSOVCC0(PSOVM("Country"))
+ .I CNTRY=0 S CNTRY=""
+ .S FDA(.1173)=CNTRY
+ I $D(PSOVM("County")) D
+ .N PSOVCOUNTY
+ .S PSOVCOUNTY=$$UP^XLFSTR(PSOVM("County"))
+ .S FDA(.117)=PSOVCOUNTY
+ I $D(PSOVM("Zip+4")) S FDA(.1112)=$TR($G(PSOVM("Zip+4")),"-")
+ Q
+ ;
  ;
 J2MAR(JARR,PSOVM) ; convert passed json into M array
  ; Input:
@@ -102,29 +161,72 @@ EX2FM(X) ; Conversion
  ;   X - external date or FileMan Date 
  ;
  ; Output:
- ;   Y - FileMan Date or -1 
+ ;   Y - FileMan Date or null 
  ;
  N Y
  S X=$G(X)
  D ^%DT
  K X,%DT
+ S:Y=-1 Y=""
  Q Y
  ;
  ;
-PSOVGTADDR(PSOVRTN,PSOVICN,PSOVATYP) ; Retrieve address in Patient file (#2)
+PSOVDELAD(PSOVRTN,PSOVICN) ; delete temporary address
+ ;
+ ; Delete temporary address from patient file
+ ;
+ ; Input:  PSOVICN     (required) - Patient ICN
+ ;
+ ; Output: PSOVRTN  -  Return Value
+ ;                1 - Temporary Address Deleted 
+ ;               or
+ ;               -1 - error message for failure
+ ;                                        
+ I $G(PSOVICN)="" S PSOVRTN="-1 - ICN is required" Q
+ ; check ICN is valid
+ S PSOVRTN=1
+ N DFN
+ S DFN=$$GETADFN^MPIFAPI($P(PSOVICN,"V"))
+ ;
+ I +DFN=-1 S PSOVRTN="-1 - ICN not recognised" Q
+ ;
+ ; check that address that is about to be deleted exists
+ N PSOVTMP
+ D GET^DDE("PSO TEMPORARY ADDRESS",DFN,,0,,"PSOVTMP")
+ S PSOVRTN=$G(PSOVTMP(1))
+ I PSOVRTN="" D  Q
+ .S PSOVRTN="0 - there is no temporary address to delete for ICN "_PSOVICN
+ ;
+ K FDA
+ F I=.1211:.0001:.1219 S FDA(I)="@"
+ F I=.1221:.0001:.1223 S FDA(I)="@"
+ F I=.12111,.12112,.12105 S FDA(I)="@"
+ ; update patient file
+ N PSOVERR
+ S PSOVRTN=$$UPD^DGENDBS(2,DFN,.FDA,.PSOVERR)
+ I +PSOVRTN'=1 S PSOVRTN=-1_" - "_PSOVERR Q
+ S PSOVRTN="1 - Temporary Address Deleted"
+ ;
+ Q
+ ;
+PSOVRETADDR(PSOVRTN,PSOVICN,PSOVATYP) ; Retrieve address from Patient file (#2)
  ;
  ; Input:  PSOVICN   (required) - Patient ICN
  ;         PSOVATYP  (required) - Indicator of which address is to be retrieved
  ;                  T - temporary address
+ ;                  M - mailing address
  ;                  O - Other, yet to be determined
+ ;                    
  ; Output: PSOVRTN - Return Value
- ;                temporary address in json format
- ;               -1 - error message for failure
+ ;                address in json format
+ ;                or
+ ;                -1 - error message for failure
  ;
  ;
  ; check for required input parameters
  I $G(PSOVICN)="" S PSOVRTN="-1 - ICN is required" Q
  I '$D(PSOVATYP) S PSOVRTN="-1 - Address type is required" Q
+ I PSOVATYP'="T",PSOVATYP'="M" S PSOVRTN="-1 - address type not recognised" Q
  ;
  ; check ICN is valid
  N DFN
@@ -134,9 +236,11 @@ PSOVGTADDR(PSOVRTN,PSOVICN,PSOVATYP) ; Retrieve address in Patient file (#2)
  ;
  N QUERY
  S QUERY("PATIENT")=DFN
- N PSOVTMP D GET^DDE("PSO TEMPORARY ADDRESS",DFN,,0,,"PSOVTMP")
+ N PSOVTMP
+ I PSOVATYP="T" D GET^DDE("PSO TEMPORARY ADDRESS",DFN,,0,,"PSOVTMP")
+ I PSOVATYP="M" D GET^DDE("PSO MAILING ADDRESS",DFN,,0,,"PSOVTMP")
  S PSOVRTN=$G(PSOVTMP(1))
- I PSOVRTN="" S PSOVRTN="0 - No data - there is no temporary address data for ICN "_PSOVICN
+ I PSOVRTN="" S PSOVRTN="0 - No data - there is no relevant address data for ICN "_PSOVICN
  Q
  ;
 CNTCHK(CNTRY) ;
@@ -146,6 +250,55 @@ CNTCHK(CNTRY) ;
  I COUNTRY=0 D
  .S COUNTRY=$$FIND1^DIC(779.004,"","MX",CNTRY,"B","","ERROR")
  Q COUNTRY
+ ;
+ ; 
+PSOVTAAF(PSOVRTN,PSOVICN,PSOVSTA,PSOVSTRT,PSOVEND) ; Activation Flag
+ ;
+ ; Update Temporary Address Activation Flag
+ ;
+ ; Input:  PSOVICN   (required) - Patient ICN
+ ;         PSOVXSTA  (required) - Temporary address activation flag
+ ;                                  Y or N
+ ;         PSOVSTRT  (optional) - Temporary address start date
+ ;         PSOVEND   (optional) - Temporary address end date
+ ;
+ ; Output: PSOVRTN - Return Value
+ ;                1 for success
+ ;                or
+ ;               -1 - error message for failure
+ ;
+ S PSOVRTN=1
+ I $G(PSOVICN)="" S PSOVRTN="-1 - ICN is required" Q
+ I $G(PSOVSTA)="" S PSOVRTN="-1 - Temporary address activation flag is required" Q
+ ;
+ N DFN
+ S DFN=$$GETADFN^MPIFAPI($P(PSOVICN,"V"))
+ ;
+ I +DFN=-1 S PSOVRTN="-1 - ICN not recognised" Q 
+ ;
+ I $G(PSOVSTA)'="Y",$G(PSOVSTA)'="N" D  Q
+ .S PSOVRTN="-1 - temporary address active flag must be 'Y' or 'N'"
+ ;
+ ; Check start date and end date
+ I $G(PSOVSTRT)'="",$$EX2FM(PSOVSTRT)="" S PSOVRTN="-1 - Invalid StartDate" Q
+ I $G(PSOVEND)'="",$$EX2FM(PSOVEND)="" S PSOVRTN="-1 - Invalid EndDate" Q
+ I $G(PSOVSTRT)'="",$G(PSOVEND)'="" D
+ .N STRT,END
+ .S STRT=$$EX2FM(PSOVSTRT),END=$$EX2FM(PSOVEND)
+ .I END'>STRT S PSOVRTN="-1 - EndDate must be after the StartDate"
+ I +$G(PSOVRTN)=-1 Q
+ ;
+ S FDA(.12105)=PSOVSTA
+ I $D(PSOVSTRT) S FDA(.1217)=$$EX2FM(PSOVSTRT)
+ I $D(PSOVEND) S FDA(.1218)=$$EX2FM(PSOVEND)
+ ;
+ ; update patient file
+ N PSOVERR
+ S PSOVRTN=$$UPD^DGENDBS(2,DFN,.FDA,.PSOVERR)
+ I +PSOVRTN'=1 S PSOVRTN=-1_" - "_PSOVERR Q
+ S PSOVRTN="1 - Active Flag Updated"
+ Q
+ ;
  ;
  ; --------
  ; 
@@ -234,7 +387,7 @@ NORXNER(ERROR) ; handle messages for input parameter issue or no data
  ;
 TRNSFRM(X,SEP,BRC) ; remove extra quotes from string
  ;
- ; X   - string processes
+ ; X   - string processed
  ; SEP - delimiter on which string is parsed
  ; BRC - opening or closing curly brace
  ;

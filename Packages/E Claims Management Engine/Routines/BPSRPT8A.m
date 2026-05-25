@@ -1,5 +1,5 @@
 BPSRPT8A ;AITC/CKB - ECME REPORTS ;3/9/2020
- ;;1.0;E CLAIMS MGMT ENGINE;**28**;JUN 2004;Build 22
+ ;;1.0;E CLAIMS MGMT ENGINE;**28,41**;JUN 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -151,6 +151,7 @@ HDR(BPRTYPE) ;
  . W "NDC",U
  . W "GROUP ID",U
  . W "$BILLED",U
+ . W "DOS",U
  . W "CLOSE DATE/TIME",U
  . W "CLOSED BY",U
  . W "CLOSE REASON",U

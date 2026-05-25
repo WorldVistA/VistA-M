@@ -1,5 +1,5 @@
-RARTR ;HISC/CAH COLUMBIA/REB AISC/MJK,RMO - Queue/print Reports ; Jun 17, 2024@12:00:07
- ;;5.0;Radiology/Nuclear Medicine;**5,13,16,27,43,55,75,92,99,210,216**;Mar 16, 1998;Build 2
+RARTR ;HISC/CAH COLUMBIA/REB AISC/MJK,RMO - Queue/print Reports ; Feb 28, 2025@09:47:59
+ ;;5.0;Radiology/Nuclear Medicine;**5,13,16,27,43,55,75,92,99,210,216,224**;Mar 16, 1998;Build 1
  ;Supported IA #2056 reference to GET1^DIQ
 PRT ; Begin print/build of e-mail message
  ;
@@ -29,8 +29,8 @@ PRT ; Begin print/build of e-mail message
  ;p210/KLM - Add Facility Contact Data for FDA mammograpgy requirement
  I '$D(RAUTOE) D
  .N RADIVDA,RACRM S RADIVDA=$P(^RADPT(RADFN,"DT",RADTI,0),U,3)
- .S RACRM=$P($G(^RA(79.1,$P(^RADPT(RADFN,"DT",RADTI,0),U,4),0)),U,21) ;p216/KLM - data check
- .I $G(RAST)'="EF",(RACRM'=2) D HDRFAC^RARTR0(RADIVDA)
+ .I $G(RADIVDA)]"" S RACRM=$P($G(^RA(79.1,$P(^RADPT(RADFN,"DT",RADTI,0),U,4),0)),U,21) ;p224 - data check division
+ .I $G(RAST)'="EF",($G(RACRM)'=2) D HDRFAC^RARTR0(RADIVDA) ;p216/KLM - data check
  .Q  ;end 210
  ;start p99
  I $$PTSEX^RAUTL8(RADFN)="F",'$D(RAUTOE) D

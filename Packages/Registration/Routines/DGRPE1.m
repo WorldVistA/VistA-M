@@ -1,5 +1,5 @@
-DGRPE1 ;ALB/MRL,RTK,BRM,RGL,ERC,TDM,ARF,JAM,ARF - REGISTRATIONS EDITS (CONTINUED) ;4/2/09 11:26am
- ;;5.3;Registration;**114,327,451,631,688,808,804,909,952,1085,1093,1111**;Aug 13, 1993;Build 18
+DGRPE1 ;ALB/MRL,RTK,BRM,RGL,ERC,TDM,ARF,JAM,ARF,JAM - REGISTRATIONS EDITS (CONTINUED) ;4/2/09 11:26am
+ ;;5.3;Registration;**114,327,451,631,688,808,804,909,952,1085,1093,1111,1143**;Aug 13, 1993;Build 36
  ; Reference to DO^DIC1 in ICR #10007
  ;
  ;***CONTAINS ISM SPECIFIC CODE TO AVOID STORE ERRORS WITH ELIG.***
@@ -91,6 +91,10 @@ DR207 ; DG*5.3*1085 - Prompt for PREFERRED LANGUAGE (#2.07,.02)
 DR104() ;DG*5.3*1111-Prompt for the PAGER NUMBER (#.135) field of the PATIENT file #2 only if currently populated
  ;Returns:  1 - processing of fields beyond the PAGER NUMBER should continue
  ;          0 - processing should not continue (e.g. the user is exiting or a timeout occurred)
+ ;
+ ;DG*5.3*1143 - The PAGE NUMBER field (#.135) of the PATIENT file (#2) is no longer displayed
+ ;                  or edited in VistA. This is obsolete code.
+ Q 1
  ; Quit if PAGER NUMBER field is not currently populated
  Q:$$GET1^DIQ(2,DFN,.135)="" 1
  ;
@@ -151,3 +155,93 @@ P1316 ;
  S IENS=DFN_",",FDA(2,IENS,.1316)=RSLT
  D FILE^DIE("","FDA")
  Q RSLT
+ ;
+DR115(DGEDIT) ; DG*5.3*1143 - Editing for cell phone and email
+ ; This tag is called when Real-time updates are enabled  from 115^DGRPE and from PSOPAT^DGADDUTL for PSO PAT option
+ ; Input:  DGEDIT (optional) - if NULL both cell and email are prompted
+ ;                           - "C" - edit cell phone
+ ;                           - "E" - edit email (not coded at this time since no need for it.)
+ ; Output: - Array DGADDGRP5 (must be NEW'd in the calling program - e.g. screen 1.1 logic) will contain updated email or phone
+ ;         - DGADDEDIT(5) (must be NEW'd in the calling program) is a flag to indicate thar an edit has occurred
+ ;
+ ; DGEDIT, if defined, must be a C or E (E is not currently coded.  For future use.)
+ I $D(DGEDIT) I DGEDIT'="C"&(DGEDIT'="E") Q
+ N X,Y,DIR,DA,DTOUT,DUOUT,DIROUT,DGVAL
+ASKPH S DIR(0)="2,.134"
+ ; Use the value in the local array for the field default if defined
+ I $D(DGADDGRP5(.134)) S DIR("B")=DGADDGRP5(.134)
+ I DFN S DA=DFN
+ D ^DIR
+ I $D(DTOUT) S DGTMOT=1 Q
+ I $D(DUOUT)!$D(DIROUT) Q
+ K DIR
+ ; Check the format of the phone number since the user may have accepted the default value which would not be checked by Fileman
+ S DGVAL=Y
+ I DGVAL'="" D  I '$D(DGVAL)  W !,*7,"Answer must be 10 numbers in length with an optional 'X' and 1-6 digit",!,"extension number allowed.",!! G ASKPH
+ . S DGVAL=$TR(DGVAL,"x","X") K:$L(DGVAL)>17 DGVAL I $D(DGVAL) K:'(DGVAL?10N!(DGVAL?10.N1"X"1.6N)) DGVAL
+ ; Initialize the group 5 edit flag
+ K DGADDEDIT(5)
+ ; Set the phone value in the local array
+ S DGADDGRP5(.134)=Y
+ ; If the phone is different from what is in the DB, set flag that an edit has occurred in group 5
+ I Y'=$P($G(^DPT(DFN,.13)),"^",4) S DGADDEDIT(5)=1
+ ; Quit if editing cell phone only
+ I $G(DGEDIT)="C" Q
+ ;
+EMI  ; Email Y/N indicator
+ S X=$$YN1316^DGRPE1(DFN) I +$G(DGTMOT) QUIT
+ ; If No, set NULL email in the local array
+ I X["N" S DGADDGRP5(.133)=""
+ ; If Yes, prompt for the email address, and return to Y/N prompt if they didn't enter anything
+ I X["Y" D EMAIL Q:+$G(DGTMOT)  I $G(DGADDGRP5(.133))="" G EMI
+ ; If the Email value has changed, set the EMAIL ADDRESS INDICATOR DT/TM and flag that an edit has occurred in group 5
+ I $G(DGADDGRP5(.133))'=$P($G(^DPT(DFN,.13)),"^",3) S DGADDGRP5(.1317)=$$NOW^XLFDT(),DGADDEDIT(5)=1
+ ; If group 5 edit flag not set, no change has been made, delete the group 5 data and the edit flag
+ I +$G(DGADDEDIT(5))=0 K DGADDGRP5,DGADDEDIT(5)
+ Q
+ ;
+EMAIL ; DG*5.3*1143 Enter email address
+ N X,Y,DIR,DA,DTOUT,DUOUT,DIROUT
+ S DIR(0)="2,.133"
+ ; Use the value in the local array for the field default if defined
+ I $G(DGADDGRP5(.133))'="" S DIR("B")=DGADDGRP5(.133)
+ I DFN S DA=DFN
+ D ^DIR
+ I $D(DTOUT) S DGTMOT=1 Q
+ I $D(DUOUT)!$D(DIROUT) W !,"   Exit not allowed" G EMAIL
+ ; Check the format of the email since the user may have accepted the default value which would not be checked by Fileman
+ S DGVAL=Y
+ I DGVAL'="" D  I '$D(DGVAL)  W !!,*7,"Enter the applicant's email address [6-72 characters].",! D 133^DGMTDD5 G EMAIL
+ . ; Email format:  6-72 chars, ".." not allowed, more than 1 "@" not allowed,
+ . ; Must start with 1 AN followed by up to 63 chars, followed by "@" and 1 or more chars, followed by "." and at least 2 AN chars
+ . K:$L(DGVAL)>72!($L(DGVAL)<6)!(DGVAL["..")!($P(DGVAL,"@",2,99)["@")!'(DGVAL?1AN.63E1"@"1.E1"."2.AN.E) DGVAL
+ . ; Some combinations of chars are not allowed
+ . I $D(DGVAL) K:(DGVAL[".@")!(DGVAL["@.") DGVAL
+ . ; last char must be alpha-numeric
+ . I $D(DGVAL) I $E(DGVAL,$L(DGVAL))'?1AN K DGVAL
+ . ; Only alpha-numerc and certain accepted chars are allowed
+ . I $D(DGVAL) N DGX S DGX=$TR(DGVAL,"!#$%&'*+-/=?_{}`@.","") K:DGX'?.AN DGVAL
+ ; hold value in local array
+ S DGADDGRP5(.133)=$G(Y)
+ Q
+ ;
+ ; DG*5.3*1143 - Tags DR11 and DR111 moved here from DGRPE
+DR11 ;clt; DG*5.3*941 - Called from line tag 112 if Perm address in the patient file is empty
+ ; Check if the user wants to copy Residential Address to Perm
+ ; DG*5.3*1143 - Quit if we already have data in the Mailing Address local array (when RTA updates are ON)
+ I $G(DGADDGRP2(.111))'="" Q
+ ; DG*5.3*1143 - Add check for a Residential Address in the local array.
+ ; If no residential address exists, quit.  Nothing to copy from
+ I $G(DGADDGRP1(.1151))="" Q:$G(^DPT(DFN,.115))=""
+ ; DG*5.3*1040 - Quit if timeout from previous field
+ Q:$D(DTOUT)
+ Q:+$G(DGTMOT)
+ ;DG*5.3*1056 removed Permanent from the following comment and message
+ ; Residential Address exists, give user the option of copying residential to mailing address
+ W !,"The Patient has no Mailing Address."
+ D RESMVQ^DGREGCP1(DFN)
+ Q
+DR111 ; Set DR string for Confidential Address categories
+ ; DG*5.3*1143 - this tag no longer used. This code is now done in DGREGTE2 when editing Confidential Address
+ S DR(2,2.141)=".01;1//YES;"
+ Q

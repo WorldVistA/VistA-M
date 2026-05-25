@@ -1,5 +1,5 @@
 PSOERXOI ;ALB/BWF - eRx parsing Utilities ; 11/14/2019 3:46pm
- ;;7.0;OUTPATIENT PHARMACY;**581,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**581,746,770**;DEC 1997;Build 145
  ;
  Q
 SIG(GL,CNT,ERXIEN,MIEN) ;
@@ -16,13 +16,14 @@ SIG(GL,CNT,ERXIEN,MIEN) ;
  .S SIGTEXT=SIGTEXT_$G(^PS(52.49,ERXIEN,311,MIEN,8,SIGL,0))_" "
  S $E(SIGTEXT,$L(SIGTEXT))=""
  D BL(GL,.CNT,"SigText",SIGTEXT)
- D C S @GL@(CNT,0)="<CodeSystem>"
- D BL(GL,.CNT,"SNOMEDVersion",SNOMED),BL(GL,.CNT,"FMTVersion",FMTVER)
- D C S @GL@(CNT,0)="</CodeSystem>"
- D MEDINST^PSOERXOJ(GL,.CNT,ERXIEN,MIEN)
- D SIGI4USE(GL,.CNT,ERXIEN,MIEN)
- D SIGMDR(GL,.CNT,ERXIEN,MIEN)
- D BL(GL,.CNT,"ClarifyingFreeText",SIGCFT)
+ ; Commented out in PSO*7*770 because it was causing an error at the Hub (NCPDP_MSG_INVALID)
+ ;D C S @GL@(CNT,0)="<CodeSystem>"
+ ;D BL(GL,.CNT,"SNOMEDVersion",SNOMED),BL(GL,.CNT,"FMTVersion",FMTVER)
+ ;D C S @GL@(CNT,0)="</CodeSystem>"
+ ;D MEDINST^PSOERXOJ(GL,.CNT,ERXIEN,MIEN)
+ ;D SIGI4USE(GL,.CNT,ERXIEN,MIEN)
+ ;D SIGMDR(GL,.CNT,ERXIEN,MIEN)
+ ;D BL(GL,.CNT,"ClarifyingFreeText",SIGCFT)
  D C S @GL@(CNT,0)="</Sig>"
  Q
  ; sig level maximum dose restriction

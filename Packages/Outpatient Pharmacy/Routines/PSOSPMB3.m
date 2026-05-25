@@ -1,10 +1,11 @@
 PSOSPMB3 ;BIRM/MFR - ASAP Definitions Listman Actions Handler (Cont.) ;11/11/15
- ;;7.0;OUTPATIENT PHARMACY;**451**;DEC 1997;Build 114
+ ;;7.0;OUTPATIENT PHARMACY;**451,772**;DEC 1997;Build 105
  ;
-DELCUS ; Handles the 'Delete Customizatoin' Action
+DELCUS ; Handles the 'Delete Customization' Action
  N CUSTYPE,DIR,DTOUT,DIRUT,VERLST,X,Y,STDASAP,CUSASAP,SEGID,ELMID,ELMPOS,SEG,ELM,DONE,STOP,I,J
- N CNT,CHILDREN,STDVDLMS,ALLVDLMS
+ N CNT,CHILDREN,STDVDLMS,ALLVDLMS,DELSTDV   ; PSO*7*772
  I PSOASVER="1995" S VALMSG="ASAP 1995 Version cannot be customized" W $C(7) G EXIT^PSOSPMA3
+ I $$VERSIONLOCKED^PSOSPMU0(PSOASVER) S VALMSG=">>> DC not available for Locked Version" G EXIT^PSOSPMA3  ;pso*7*772
  I '$$SECKEY^PSOSPMA3() G EXIT^PSOSPMA3
  I '$$LOCK^PSOSPMA3() G EXIT^PSOSPMA3
  S CUSTYPE=0
@@ -20,8 +21,8 @@ DELCUS ; Handles the 'Delete Customizatoin' Action
  ;
  ; Restore ASAP Version Delimiters
  I CUSTYPE="D" D  G BACK^PSOSPMA3
- . W !!,"The customization for the ASAP Version '",PSOASVER,"' delimiters will be deleted and the"
- . W !,"standard delimiters will be restored to the following:",!
+ . W !!,"The customization for the ASAP Version '",PSOASVER,"' delimiters will be deleted"
+ . W !,"and the standard delimiters will be restored to the following:",!
  . W:$P(STDVDLMS,"^",2)'=$P(ALLVDLMS,"^",2) !?3,"Element Delimiter ('",$P(STDVDLMS,"^",2),"')"
  . W:$P(STDVDLMS,"^",3)'=$P(ALLVDLMS,"^",3) !?3,"Segment Terminator ('",$P(STDVDLMS,"^",3),"')"
  . W:$P(STDVDLMS,"^",4)'=$P(ALLVDLMS,"^",4) !?3,"End Of Line Escape (",$S($P(STDVDLMS,"^",4)="":"<NULL>",1:"'"_$P(STDVDLMS,"^",4)_"'"),")"
@@ -32,28 +33,33 @@ DELCUS ; Handles the 'Delete Customizatoin' Action
  I CUSTYPE="V" D  G BACK^PSOSPMA3
  . D LOADASAP^PSOSPMU0(PSOASVER,"S",.STDASAP) ; Standard ASAP Definition
  . D LOADASAP^PSOSPMU0(PSOASVER,"C",.CUSASAP) ; Custom ASAP Definition
- . I $G(STDASAP)="",$$VERINUSE(PSOASVER) D  Q
+ . I ($G(STDASAP)=""!($L($P($G(STDASAP),"^",6))))&$$VERINUSE(PSOASVER) D  Q    ; PSO*7*772
  . . W !!,"ASAP Version ",PSOASVER," is being used by ",$$GET1^DIQ(5,$$VERINUSE(PSOASVER),.01)," and cannot be deleted.",$C(7)
  . . D PAUSE^PSOSPMU1
  . W !!," ASAP Version: ",PSOASVER
+ . S DELSTDV=$$DELSTDV^PSOSPMU3(PSOASVER)    ; PSO*7*772
  . I $G(STDASAP)'="" D
+ . . Q:$G(DELSTDV)   ; Deleting 'custom standard' ASAP version PSO*7*772
  . . W !!,"The customization for the ASAP Version '",PSOASVER,"' and all of its custom Segments,"
  . . W !,"Data Elements and Delimiters will be deleted and the standard definition"
  . . W !,"will be restored.",!
- . E  D
- . . W !!,"The custom ASAP Version '",PSOASVER,"' and all of its Segments and Data Elements"
- . . W !,"will be deleted.",!
- . I STDVDLMS'="" D
- . . W:$P(STDVDLMS,"^",2)'=$P(ALLVDLMS,"^",2) !?3,"Element Delimiter ('",$P(ALLVDLMS,"^",2),"')"
- . . W:$P(STDVDLMS,"^",3)'=$P(ALLVDLMS,"^",3) !?3,"Segment Terminator ('",$P(ALLVDLMS,"^",3),"')"
- . . W:$P(STDVDLMS,"^",4)'=$P(ALLVDLMS,"^",4) !?3,"End Of Line Escape (",$S($P(ALLVDLMS,"^",4)="":"<NULL>",1:"'"_$P(ALLVDLMS,"^",4)_"'"),")"
- . S (STOP,CNT)=3,SEG="999" F  S SEG=$O(CUSASAP(SEG)) Q:SEG=""  D  I STOP="^" Q
+ . I $G(STDASAP)=""!($G(DELSTDV))  D      ; PSO*7*772
+ . . W !!,"The custom ASAP Version '",PSOASVER,"' and all of its Segments, Data Elements and"
+ . . W !,"Delimiters will be deleted.",!
+ . . S STOP=$$ASKFLD^PSOSPMA3("E",,"Enter <RET> to continue"),CNT=0
+ . I STDVDLMS'=""!$G(DELSTDV) D          ; PSO*7*772  - always display delimiters when deleting std custom version
+ . . W:$G(DELSTDV) !
+ . . W:$P(STDVDLMS,"^",2)'=$P(ALLVDLMS,"^",2)!$G(DELSTDV) !?3,"Element Delimiter ('",$P(ALLVDLMS,"^",2),"')"
+ . . W:$P(STDVDLMS,"^",3)'=$P(ALLVDLMS,"^",3)!$G(DELSTDV) !?3,"Segment Terminator ('",$P(ALLVDLMS,"^",3),"')"
+ . . W:$P(STDVDLMS,"^",4)'=$P(ALLVDLMS,"^",4)!$G(DELSTDV) !?3,"End Of Line Escape (",$S($P(ALLVDLMS,"^",4)="":"<NULL>",1:"'"_$P(ALLVDLMS,"^",4)_"'"),")"
+ . I $G(DELSTDV) D LISTASAP(PSOASVER)   ; PSO*7*772 List segments and elements before deleting ASAP Version
+ . I '$G(DELSTDV) S (STOP,CNT)=3,SEG="999" F  S SEG=$O(CUSASAP(SEG)) Q:SEG=""  D  I STOP="^" Q   ; PSO*7*772
  . . I $$CUSSEG^PSOSPMU3(PSOASVER,SEG) W !?3,$P(CUSASAP(SEG),"^",1),?12,$P(CUSASAP(SEG),"^",2) S CNT=CNT+1
  . . S ELM=0 F  S ELM=$O(CUSASAP(SEG,ELM)) Q:'ELM  D  I STOP="^" Q
  . . . W !?3,$P(CUSASAP(SEG,ELM),"^",1),?12,$P(CUSASAP(SEG,ELM),"^",2) S CNT=CNT+1
  . . . I (CNT>22) S STOP=$$ASKFLD^PSOSPMA3("E",,"Enter <RET> to continue or '^' to STOP"),CNT=0
  . W ! S X=$$ASKFLD^PSOSPMA3("Y","NO","Confirm Deletion") I X'=1 Q
- . W ?40,"Deleting..." D DELCUS^PSOSPMU3(PSOASVER) H 1 W "OK",$C(7)
+ . W ?40,"Deleting..." D DELCUS^PSOSPMU3(PSOASVER,,,$G(DELSTDV)) H 1 W "OK",$C(7)    ; PSO*7*772
  ;
  ; Delete ASAP Segment
  I CUSTYPE="S" D  G BACK^PSOSPMA3
@@ -100,7 +106,7 @@ DELCUS ; Handles the 'Delete Customizatoin' Action
  . . I '$D(CUSASAP($$GETSEGID^PSOSPMU3(X))) S X=$$UP^XLFSTR(X)
  . . S SEGID=$$GETSEGID^PSOSPMU3(X),ELMPOS=+$P(X,SEGID,2)
  . . I '$D(CUSASAP(SEGID,ELMPOS)) W !,"Custom Data Element not found!",$C(7) Q
- . . I $D(CUSASAP(SEGID,ELMPOS+1)),'$D(STDASAP(SEGID,ELMPOS+1)) D  Q
+ . . I $D(CUSASAP(SEGID,ELMPOS+1)),'$D(STDASAP(SEGID,ELMPOS)) D  Q
  . . . W !,"Only the last Custom Data Element in the Segment can be deleted.",$C(7)
  . . W "   ",$P(CUSASAP(SEGID),"^",2) S DONE=1
  . I 'DONE Q
@@ -113,10 +119,25 @@ DELCUS ; Handles the 'Delete Customizatoin' Action
  . W ?40,"Deleting..." D DELCUS^PSOSPMU3(PSOASVER,SEGID,$P(CUSASAP(SEGID,ELMPOS),"^",1)) H 1 W "OK",$C(7)
  G BACK^PSOSPMA3
  ;
-VERINUSE(PSOASVER) ; Verify whether the ASAP Version is in use or not
+VERINUSE(PSOASVER) ; Verify whether the ASAP Version is in use or not - PSO*7*772
  ; Input: (r) PSOASVER - Source ASAP Version to be cloned (3.0, 4.0, 4.1, 4.2)
  ;Output: $$VERINUSE - Pointer to first the STATE file (#5) that is using the ASAP Version
  N STATE,VERINUSE
   S (STATE,VERINUSE)=0 F  S STATE=$O(^PS(58.41,STATE)) Q:'STATE  D  I VERINUSE Q
- . I $$GET1^DIQ(58.41,STATE,1,"I")=PSOASVER S VERINUSE=STATE
+ . I $$GET1^DIQ(58.41,STATE,1,"I")=PSOASVER S VERINUSE=STATE Q
+ . I $$GET1^DIQ(58.41,STATE,20,"I")=PSOASVER S VERINUSE=STATE
  Q VERINUSE
+ ;
+LISTASAP(PSOASVER) ; List entire ASAP version from standard node and any custom nodes
+ ; PSOASVER - ASAP Version
+ ;
+ N ALLASAP
+ D LOADASAP^PSOSPMU0(PSOASVER,"B",.ALLASAP) ; Combined ASAP Definition
+ ;
+ S (STOP,CNT)=3,SEG="999" F  S SEG=$O(ALLASAP(SEG)) Q:SEG=""  D  I STOP="^" Q
+ . W !?3,$P(ALLASAP(SEG),"^",1),?12,$P(ALLASAP(SEG),"^",2) S CNT=CNT+1
+ . I (CNT>19) S STOP=$$ASKFLD^PSOSPMA3("E",,"Enter <RET> to continue or '^' to STOP"),CNT=1 W !
+ . S ELM=0 F  S ELM=$O(ALLASAP(SEG,ELM)) Q:'ELM  D  I STOP="^" Q
+ . . W !?3,$P(ALLASAP(SEG,ELM),"^",1),?12,$P(ALLASAP(SEG,ELM),"^",2) S CNT=CNT+1
+ . . I (CNT>21) W ! S STOP=$$ASKFLD^PSOSPMA3("E",,"Enter <RET> to continue or '^' to STOP"),CNT=1 W !
+ Q

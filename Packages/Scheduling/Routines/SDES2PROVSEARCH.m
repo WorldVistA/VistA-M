@@ -1,5 +1,5 @@
-SDES2PROVSEARCH ;ALB/JAS - Get Provider based on Search String ;Sept 5, 2024
- ;;5.3;Scheduling;**890**;Aug 13, 1993;Build 5
+SDES2PROVSEARCH ;ALB/JAS,JHC - Get Provider based on Search String ;JULY 1, 2025
+ ;;5.3;Scheduling;**890,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  ;External References
@@ -7,6 +7,7 @@ SDES2PROVSEARCH ;ALB/JAS - Get Provider based on Search String ;Sept 5, 2024
  ; Reference to $$ACTIVPRV^PXAPI is supported by IA #2349
  ; Reference to $$ACTIVE^XUSER is supported by IA #2343
  ;
+ ; Reference to DUZ^XUP is supported by IA #7487
  Q
  ;
 PROVIDERSEARCH(JSONRETURN,SDCONTEXT,SDINPUT) ; rpc = SDES2 SEARCH PROVIDERS
@@ -29,6 +30,7 @@ PROVIDERSEARCH(JSONRETURN,SDCONTEXT,SDINPUT) ; rpc = SDES2 SEARCH PROVIDERS
  ; Validate SDCONTEXT
  D VALCONTEXT^SDES2VALCONTEXT(.SDERRORS,.SDCONTEXT)
  I $D(SDERRORS) M SDRETURN=SDERRORS S SDRETURN("Provider",1)="" D BUILDJSON^SDES2JSON(.JSONRETURN,.SDRETURN) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  ;
  ; Validate SDINPUT
  S SEARCHSTRING=$G(SDINPUT("SEARCHSTRING"))

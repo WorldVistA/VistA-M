@@ -1,5 +1,5 @@
-YTSCOREX ;SLC/KCM - Score tests without admins ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**223,224**;Dec 30, 1994;Build 17
+YTSCOREX ;SLC/KCM - Score tests without admins ;Mar 04, 2025@09:06
+ ;;5.01;MENTAL HEALTH;**223,224,236**;Dec 30, 1994;Build 25
  ;
 CALC(TEST,ANSWERS,SCORES) ; Calculate and return .SCORES given ANSWERS
  ;  TEST=name or IEN of instrument
@@ -65,14 +65,16 @@ COMPLEX(TEST,ANSWERS,SCORES) ; score by calling routine
  S YSRTN="DLLSTR^"_YSRTN_"(.YSDATA,.YS,1)"
  D @YSRTN  ; call complex scoring routine
  I '$D(^TMP($J,"YSCOR")) S SCORES("error")="Complex scoring failed" QUIT
- N I,X,NMLIST,SNAME,RAW,TSCORE,SEQ,ID
+ N I,X,NMLIST,SNAME,RAW,TSCORE,SEQ,ID,TSCORE2,TSCORE3
  D NSCALES(.NMLIST) ; create name lookup for scale sequence and id
  S I=1 F  S I=$O(^TMP($J,"YSCOR",I)) Q:'I  D  ; iterate named scores
  . S X=^TMP($J,"YSCOR",I)
- . S SNAME=$P(X,"="),RAW=$P($P(X,"=",2),U),TSCORE=$P($P(X,"=",2),U,2)
+ . S SNAME=$P(X,"="),RAW=$P($P(X,"=",2),U),TSCORE=$P($P(X,"=",2),U,2),TSCORE2=$P($P(X,"=",2),U,3),TSCORE3=$P($P(X,"=",2),U,4)
  . S SEQ=+$P(NMLIST(SNAME),U),ID=$P(NMLIST(SNAME),U,2)
  . S SCORES(SEQ,"name")=SNAME,SCORES(SEQ,"raw")=RAW,SCORES(SEQ,"id")=ID
  . I $L(TSCORE) S SCORES(SEQ,"tscore")=TSCORE
+ . I $L(TSCORE2) S SCORES(SEQ,"tscore2")=TSCORE2
+ . I $L(TSCORE3) S SCORES(SEQ,"tscore3")=TSCORE3
  Q
 MKYSDATA(TEST,ANSWERS,YSDATA) ; Convert "tree" array of answers to YSDATA format
  N I,N,QSTN,CTNT,QSEQ,SSEQ,RTYP,CHOICE,VAL
@@ -102,17 +104,16 @@ MKYSDATA(TEST,ANSWERS,YSDATA) ; Convert "tree" array of answers to YSDATA format
  Q
 NSCALES(NMLIST) ; build scale NMLIST(name)=sequence^scaleId
  ; expects: ^TMP($J,"YSG",n) from CALC
- N I,N,X,GSEQ,SEQ,ALIST,ID,NM
+ N I,ID,NM,SEQ,X
+ S SEQ=0
  S I=1 F  S I=$O(^TMP($J,"YSG",I)) Q:'I  D
- . S X=^TMP($J,"YSG",I)
- . I $E(X,1,5)="Group" S N=$P(X,U,4) S:'N N=I S GSEQ=N*1000 QUIT
+ . S X=$G(^TMP($J,"YSG",I))
  . I $E(X,1,5)'="Scale" QUIT
- . S N=+$P(X,U,3) S:'N N=I S SEQ=GSEQ+N
- . S ID=+$P($P(X,"=",2),U),NM=$P(X,U,4)
- . S ALIST(SEQ)=ID_U_NM
- S (I,SEQ)=0 F  S I=$O(ALIST(I)) Q:'I  D
+ . S ID=+$P($P(X,"=",2),U)
+ . S NM=$P(X,U,4)
+ . I NM="" QUIT
  . S SEQ=SEQ+1
- . S NMLIST($P(ALIST(I),U,2))=SEQ_U_+ALIST(I)
+ . S NMLIST(NM)=SEQ_U_ID
  Q
 SPLITWP(IN,OUT) ; split WP into 240 char segments and use | as newline
  N I
@@ -149,7 +150,7 @@ LEGACY(TESTNM,ADFN,AUSER,ANSWERS,SCORES) ; return .SCORES for legacy test
  ; - save a backup copy in ^TMP of the day's data for the DFN
  ; - add this result set to 601.2 and call the scoring algorithm
  ; - generate the report for this administration
- ; - replace the day's data for the DFN in 601.2 with what was in ^TMP 
+ ; - replace the day's data for the DFN in 601.2 with what was in ^TMP
  N CNT,INC,X,YSCODEN,YSET,ZTREQ
  D LEGCR^YTQAPI9(.YSDATA,.YS)
  ; Find the scores in the returned YSDATA beginning with line 5 and

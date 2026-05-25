@@ -1,5 +1,5 @@
 PSONEW2 ;BIR/DSD - displays new rx information for edit ;Jun 09, 2021@15:21:03
- ;;7.0;OUTPATIENT PHARMACY;**32,37,46,71,94,124,139,157,143,226,237,239,225,251,375,372,504,441**;DEC 1997;Build 208
+ ;;7.0;OUTPATIENT PHARMACY;**32,37,46,71,94,124,139,157,143,226,237,239,225,251,375,372,504,441,770**;DEC 1997;Build 145
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to ^DPT supported by DBIA 10035
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
@@ -79,6 +79,7 @@ DCORD ;dc rxs and pending orders after new order is entered
  K RORD,PSOTECCK H 2
  Q
 PEN ;pending ^tmp("psorxdc",$j,rord,0)="p^"_rord_"^"_msg
+ I '$D(^PS(52.41,RORD,0)) D PSOUL^PSSLOCK(RORD_"S") K ^TMP("PSORXDC",$J,RORD,0) Q
  N PSOR,DNM S PSOR=^PS(52.41,RORD,0) S $P(^PS(52.41,RORD,0),"^",3)="DC",^PS(52.41,RORD,4)=$P(^TMP("PSORXDC",$J,RORD,0),"^",3)
  K ^PS(52.41,"AOR",PSODFN,+$P($G(^PS(52.41,RORD,"INI")),"^"),RORD)
  S DNM=$S($P(PSOR,"^",9):$P($G(^PSDRUG($P(PSOR,"^",9),0)),"^"),1:$P(^PS(50.7,$P(PSOR,"^",8),0),"^")_" "_$P(^PS(50.606,$P(^PS(50.7,$P(PSOR,"^",8),0),"^",2),0),"^"))

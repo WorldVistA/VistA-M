@@ -1,6 +1,10 @@
 IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432,447,488,554,577,592,608,623,641,665,702,759**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**27,52,80,93,106,51,151,148,153,137,232,280,155,320,343,349,363,371,395,384,432,447,488,554,577,592,608,623,641,665,702,759,770**;21-MAR-94;Build 119
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to $$STA^PRCAFN(IBIFN) in ICR #2024 (Pending)
+ ; Reference to DIC(40.8 in ICR #417
+ ; Reference to DIC(4 in ICR #NEW (Pending)
  ;
  ; *** Begin IB*2.0*488 VD  (Issue 46 RBN)
  N I
@@ -67,7 +71,7 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  I IBRU]"",'$D(^VA(200,IBRU,0)) S IBER=IBER_"IB060;"
  I IBAU]"",'$D(^VA(200,IBAU,0)) S IBER=IBER_"IB041;"
  ;
- I IBER="",+$$STA^PRCAFN(IBIFN)=104 S IBER=IBER_"IB040;"
+ I IBER="",+$$STA^PRCAFN(IBIFN)=104 S IBER=IBER_"IB040;"  ;ICR #2024 (Private) (Pending
  ; If ins bill, must have valid COB sequence
  I $P(IBND0,U,11)="i",$S($P(IBND0,U,21)="":1,1:"PST"'[$P(IBND0,U,21)) S IBER=IBER_"IB324;"
  ;
@@ -138,8 +142,8 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  ; Division address must be defined in institution file
  I $P(IBND0,U,22) D
  . N Z,Z0,Z1
- . S Z0=$G(^DIC(4,+$P($G(^DG(40.8,+$P(IBND0,U,22),0)),U,7),0))
- . S Z1=$G(^DIC(4,+$P($G(^DG(40.8,+$P(IBND0,U,22),0)),U,7),1))
+ . S Z0=$G(^DIC(4,+$P($G(^DG(40.8,+$P(IBND0,U,22),0)),U,7),0))  ;ICR #417 (Controlled) (40.8) ;ICR #NEW (4)
+ . S Z1=$G(^DIC(4,+$P($G(^DG(40.8,+$P(IBND0,U,22),0)),U,7),1))  ;ICR #417 (Controlled) (40.8) ;ICR #NEW (4)
  . I $P(Z0,U,2)="" S IBER=IBER_"IB097;" Q
  . F Z=1,3,4 I $P(Z1,U,Z)="" S IBER=IBER_"IB097;" Q
  ;
@@ -309,20 +313,20 @@ IBCBB1 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE ;2-NOV-89
  ;
  ;IB*2.0*759;JWS;5/22/23;EBILL-2923;Prevent claims going out via EDI with NOEXC Payer ID
  ; check COB TOTAL NON-COVERED AMOUNT exist and claim is secondary 
- ;IB*2.0*759;v11;WCJ;2/14/24;EBILL-3841;commented out check - see defect for more information
- ;I $P($G(^DGCR(399,IBIFN,"U4")),"^")'="",$$COBN^IBCEF(IBIFN)=2 D
- ;. N IBP
- ;. ; if there is a primary bill#, use it to determine if an MRA was requested
- ;. S IBP=$P($G(^DGCR(399,IBIFN,"M1")),U,5) I IBP="" S IBP=IBIFN
- ;. ; if primary insurance is Medicare and MRA was not requested, and FORCE CLAIM TO PRINT is not true, and Payer ID is not approved for excluded services EDI submission
- ;. I $$WNRBILL^IBEFUNC(IBIFN,1),$P($G(^DGCR(399,IBP,"S")),U,7)="",$P($G(^DGCR(399,IBIFN,"TX")),U,8)'=1,$$SW^IBCE837Q(IBIFN) S IBER=$G(IBER)_"IB400;IB401;"
- ;. Q
+ I $P($G(^DGCR(399,IBIFN,"U4")),"^")'="",$$COBN^IBCEF(IBIFN)=2 D
+ . N IBP
+ . ; if there is a primary bill#, use it to determine if an MRA was requested
+ . S IBP=$P($G(^DGCR(399,IBIFN,"M1")),U,5) I IBP="" S IBP=IBIFN
+ . ; if primary insurance is Medicare and MRA was not requested, and FORCE CLAIM TO PRINT is not true, and Payer ID is not approved for excluded services EDI submission
+ . I $$WNRBILL^IBEFUNC(IBIFN,1),$P($G(^DGCR(399,IBP,"S")),U,7)="",$P($G(^DGCR(399,IBIFN,"TX")),U,8)'=1,$$SW^IBCE837Q(IBIFN) S IBER=$G(IBER)_"IB400;IB401;"
+ . Q
  ;
 END ;Don't kill IBIFN, IBER, DFN
  I $O(^TMP($J,"BILL-WARN",0)),$G(IBER)="" S IBER="WARN" ;Warnings only
  K IBBNO,IBEVDT,IBLOC,IBCL,IBTF,IBAT,IBWHO,IBST,IBFDT,IBTDT,IBTC,IBFY,IBFY1,IBAU,IBRU,IBEU,IBARTP,IBFYC,IBMRA,IBTOB,IBTOB12,IBNDU2,IBNDUF3,IBNDUF31,IBNDTX
  K IBNDS,IBND0,IBNDU,IBNDM,IBNDMP,IBNDU1,IBFFY,IBTFY,IBFT,IBRTCHV,IBPICHV,IBXDATA,IBOK
- I $D(IBER),IBER="" W !,"No Errors found for National edits"
+ ;IB*2.0*770;JWS;EBILL-3551;don't write message if called by ACC rpc.
+ I $D(IBER),IBER="",'$D(IBACCRPC) W !,"No Errors found for National edits"
  Q
  ;
 ARRAY ;Build PRCASV(array)

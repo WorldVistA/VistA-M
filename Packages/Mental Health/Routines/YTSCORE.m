@@ -1,5 +1,5 @@
 YTSCORE ;SLC/KCM - Scoring for complex instruments ;Feb 28, 2024@15:02:07
- ;;5.01;MENTAL HEALTH;**119,123,142,141,217,234,244,240**;Dec 30, 1994;Build 10
+ ;;5.01;MENTAL HEALTH;**119,123,142,141,217,234,244,240,236**;Dec 30, 1994;Build 25
  ;
  ;
  Q
@@ -22,7 +22,6 @@ LOADANSW(YSDATA,YS) ; patch 123, loads answers, builds YSDATA array
  ; QUESTION #^seq^ANSWER
  ;
  N G,G1,N,YSQN,YSTSTN,YSEQ,YSICON
- N IEN71
  S YSAD=$G(YS("AD"))
  I YSAD'?1N.N S YSDATA(1)="[ERROR]",YSDATA(2)="Bad ADMIN num, admin is "_YSAD Q  ;-->out
  I '$D(^YTT(601.85,"AC",YSAD)) S YSDATA(1)="[ERROR]",YSDATA(2)="No entry in MH ANSWERS" Q  ;-->out

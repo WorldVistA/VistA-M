@@ -1,6 +1,11 @@
 IBAUTL4 ;ALB/CPM-MEANS TEST BILLING UTILITIES (CON'T.) ;10-OCT-91
- ;;2.0;INTEGRATED BILLING;**45,153,171,176,179,183,202**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**45,153,171,176,179,183,202,803**;21-MAR-94;Build 3
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;External References:
+ ; Reference to ^%DTC in ICR #10000
+ ; Reference to $$BIL^DGMTUB in ICR #643
+ ; Reference to IN5^VADPT in ICR #10061
  ;
 EN ; Calculate inpatient co-pay, per diem charges for a date range
  ;  Input:  DFN, IBBDT, IBEDT, IBCLDA, IBEVDA, IBY, IBAFY
@@ -17,6 +22,22 @@ CALC ; Find charges for one day
  . D CANCVIS^IBAECU5(DFN,IBDT) ;cancel OPT charges for this date
  . Q:$$CLOCK^IBAECU(DFN,IBDT)  ; - increment clock
  I IBCLDA S IBCLCT=IBCLCT+1 I IBCLCT>365 S IBWHER=2 D PASS^IBAUTL5:IBEVDA,CLOCKCL^IBAUTL3:IBY>0 G:IBY<1 CALCQ
+ ;
+ ; - IB*2*803 Is it Hospice?
+ ;Patch IB*2*598 2018 was released in compliance with public law 110-387
+ ;which exempts veterans receiving hospice care from receiving first party
+ ;bills (copays/per diem). The patch added treating specialties HOSPICE FOR
+ ;ACUTE CARE and NH HOSPICE to the MCCR UTILITY file [#399.1] but
+ ;intentionally left the IB ACTION TYPE fields blank which prevents
+ ;copays/per diem charges from being generated. However, since a bill can't 
+ ;be generated the nightly process is generating an IB ERROR ENCOUNTERED 
+ ;email each night. The process needs to quit if the treating specialty is 
+ ;HOSPICE FOR ACUTE CARE. The NH HOSPICE treating specialty is flagged
+ ;as LTC and is handled above in the LTC code.
+ S VAIP("D")=IBDT_.2359 D IN5^VADPT I $P($G(^DIC(45.7,+VAIP(8),0)),U,2)=105 D  G CALCQ
+ .D CANCVIS^IBAECU5(DFN,IBDT) ;cancel OPT charges for this date
+ .Q:'IBCLDA  D:$G(IBCLDT)'="" CLOCKCL^IBAUTL3  ;Close the current clock
+ ;
  ; - Means Test billable?
  I '$$BIL^DGMTUB(DFN,IBDT+.2359) G:'IBCLDA CALCQ S IBWHER=3 D PASS^IBAUTL5:IBEVDA,CLOCKCL^IBAUTL3:IBY>0 G CALCQ
  ; - GMT Status?

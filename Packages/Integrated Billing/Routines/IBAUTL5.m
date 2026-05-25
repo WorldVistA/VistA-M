@@ -1,11 +1,12 @@
 IBAUTL5 ;ALB/CPM - MEANS TEST BILLING UTILITIES (CON'T.) ; 02-JAN-92
- ;;Version 2.0 ; INTEGRATED BILLING ;**15**; 21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**15,769**;21-MAR-94;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PASS ; Find unbilled charges for an event and pass to Accounts Receivable.
  ;  Input:  IBEVDA, IBY    Output:  IBCHCDA, IBCHPDA are reset to 0.
  N IBNOS,IBACTN
  S IBACTN=0 F  S IBACTN=$O(^IB("AF",IBEVDA,IBACTN)) Q:'IBACTN!(IBY<1)  I IBACTN'=IBEVDA,$P($G(^IB(IBACTN,0)),"^",5)=1 S IBNOS=IBACTN D FILER
+ I $G(IBNOS)="",$G(IBDISDT),$G(IBCLDA),$G(DFN) D EN^IBECECU1(DFN,IBCLDA,1) ;IB*2.0*769 - Update clock version updated on discharge
  S (IBCHCDA,IBCHPDA)=0 Q
  ;
 FILER ; Pass charge to Accounts Receivable.   Input:  IBNOS

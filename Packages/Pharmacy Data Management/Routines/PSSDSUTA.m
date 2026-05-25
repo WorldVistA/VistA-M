@@ -1,20 +1,14 @@
-PSSDSUTA ;BIR/RTR-Dosing Utility Routine ;11/24/14
- ;;1.0;PHARMACY DATA MANAGEMENT;**178,224**;9/30/97;Build 3
+PSSDSUTA ;BIR/RTR - Dosing Utility Routine ; Nov 24, 2014@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,224,254**;9/30/97;Build 109
  ;
 FCY() ;Validate Frequency, leading and trailing spaces already stripped off, and uppercase conversion done
- N PSSFCYF,PSSFCYL,PSSFCY1,PSSFCY2,PSSFCYA,PSSFCYB
+ N PSSFCYF,PSSFCYL
  S PSSFCYF=$P(PSSDBEB2,"^",8)
  I $D(PSSDBCAZ(PSSDBEB1,"FRQ_ERROR"))!(PSSFCYF="")!(PSSFCYF[".") Q 1
  I PSSFCYF?.N Q 0
- I PSSFCYF="QD"!(PSSFCYF="BID")!(PSSFCYF="TID")!(PSSFCYF="QID")!(PSSFCYF="QAM")!(PSSFCYF="QSHIFT")!(PSSFCYF="QOD")!(PSSFCYF="QHS")!(PSSFCYF="QPM") Q 0
+ I (" QD BID TID QID QAM QSHIFT QOD QHS QPM QDAY QWEEK QMONTH "[(" "_PSSFCYF_" ")) Q 0
  S PSSFCYL=$L(PSSFCYF) I PSSFCYL'=3,PSSFCYL'=4 Q 1
- S PSSFCY1=$E(PSSFCYF),PSSFCY2=$E(PSSFCYF,PSSFCYL)
- I PSSFCY1'="Q",PSSFCY1'="X" Q 1
- I PSSFCY1="Q","DWLH"'[PSSFCY2 Q 1
- I PSSFCY1="X","DWL"'[PSSFCY2 Q 1
- S PSSFCYA=$E(PSSFCYF,2) I PSSFCYA'?1N Q 1
- I PSSFCYL=3 Q 0
- S PSSFCYB=$E(PSSFCYF,3) I PSSFCYB'?1N Q 1
+ I $$FREQCHK^PSSJSV(PSSFCYF)="" Q 1
  Q 0
  ; 
 MAXD(PSSDADO,PSSDADB,PSSDADNM,PSSDADI,PSSDBCAR) ; -- in 2.1 Perform Max Daily Dose check when Frequency is Out of Range - called from PSSHRQ24
@@ -29,7 +23,11 @@ MAXD(PSSDADO,PSSDADB,PSSDADNM,PSSDADI,PSSDBCAR) ; -- in 2.1 Perform Max Daily Do
  ;        If unable to complete max daily dose check, set frequency flag to 0
  ;        $P(PSSDBCAR(PSSDADO),"^",4)=0
  ;
- N PSSCMDDF,PSSDADD,PSSDADZ,PSSDADU,PSSDADH,PSSDADC1,PSSDADE,PSSDADF,PSSDADFF,PSSFDBU
+ ;254 - Most of this has been commented out incase the logic is needed again in the future.
+ ;      The upgrade to FDB 4.5 now returns a Max Daily message and no longer needs to be built
+ ;      here.  The exceptions for the weight and BSA based dosing is still needed.
+ ;
+ N PSSCMDDF,PSSDADD,PSSDADZ,PSSDADU,PSSDADH,PSSDADC1,PSSDADE,PSSDADF,PSSDADFF,PSSFDBU,PSSDMSG
  ; -- check for missing variables, exit if not defined
  I $G(PSSDADO)']""!($G(PSSDADB)']"")!($G(PSSDADNM)']"")!($G(PSSDADI)'>0) Q
  I $G(PSSDADO)]"",'$D(PSSDBCAR(PSSDADO)) Q
@@ -40,57 +38,67 @@ MAXD(PSSDADO,PSSDADB,PSSDADNM,PSSDADI,PSSDBCAR) ; -- in 2.1 Perform Max Daily Do
  ; -- set PSSDADD=Dose Amount, PSSDADU=FDB Dose Unit, PSSDADF=Frequency
  S PSSDADD=$P(PSSDADZ,"^",5),PSSDADU=$P(PSSDADZ,"^",6),PSSDADF=$P(PSSDADZ,"^",8)
  ; -- check key variables, exit if not defined
- I PSSDADD=""!(PSSDADU="")!(PSSDADF="") G MAXDQ
+ ;I PSSDADD=""!(PSSDADU="")!(PSSDADF="") G MAXDQ
  ; -- get dose form unit flag
  S PSSDADFF=$P(PSSDADZ,"^",14)
  ; -- Calculated Daily Dose or Dose Form Amount
  ;    -- if numeric PSSDADH=frequency*dose amount, otherwise call function to determine
- S PSSDADH=$S(PSSDADF?.N:PSSDADF*PSSDADD,1:$$CALCDDA(PSSDADF,PSSDADD))
+ ;S PSSDADH=$S(PSSDADF?.N:PSSDADF*PSSDADD,1:$$CALCDDA(PSSDADF,PSSDADD))
  ;    -- exit if not defined
- I 'PSSDADH G MAXDQ
+ ;I 'PSSDADH G MAXDQ
  ; -- set PSSDADE=FDB Max Daily Dose or Dose Form Unit
  S PSSDADE=$G(^TMP($J,PSSDADB,"OUT","DOSE",PSSDADO,PSSDADNM,"DAILYMAX",$S(PSSDADFF:"DOSEFORMUNIT",1:"DOSEUNIT"),PSSDADI))
  ; -- set PSSDADC1=FDB Max Daily Dose or Dose Form Amount
- S PSSDADC1=$G(^TMP($J,PSSDADB,"OUT","DOSE",PSSDADO,PSSDADNM,"DAILYMAX",$S(PSSDADFF:"DOSEFORM",1:"DOSE"),PSSDADI))
+ ;S PSSDADC1=$G(^TMP($J,PSSDADB,"OUT","DOSE",PSSDADO,PSSDADNM,"DAILYMAX",$S(PSSDADFF:"DOSEFORM",1:"DOSE"),PSSDADI))
  ; -- exit if not defined
- I PSSDADE=""!(PSSDADC1="") G MAXDQ
+ ;I PSSDADE=""!(PSSDADC1="") G MAXDQ
+ I PSSDADE="" Q        ;254
  ;
  ; -- FDB not sending FDB Max Daily Dose or Dose Form Unit in Standard format try and derive
- S PSSFDBU=$$GETUNIT(PSSDADE,PSSDADU)
+ ;S PSSFDBU=$$GETUNIT(PSSDADE,PSSDADU)
  ; -- exit if not defined
- I PSSFDBU="" G MAXDQ
+ ;I PSSFDBU="" G MAXDQ
  ;
  ; -- if FDB Dose Unit is different than FDB Max Daily Dose or Dose Form Unit see if FDB Max Daily Dose or Dose Form Amount can be converted, exit if not defined
- I PSSDADU'=PSSFDBU S PSSDADC1=$$CONVMDDA(PSSDADU,PSSFDBU,PSSDADC1) I PSSDADC1="" G MAXDQ
+ ;I PSSDADU'=PSSFDBU S PSSDADC1=$$CONVMDDA(PSSDADU,PSSFDBU,PSSDADC1) I PSSDADC1="" G MAXDQ
  ;
- ; -- if FDB Max Daily Dose or Dose Form Unit Value contains "PER KILOGRAM"
+ ;254 - FDB now returns messaging in the max daily dose on weight and BSA dosing in 4.5
+ ; Using original logic, consolidated; message checks should be sufficient
+ ; Including WT and BSA values on the PSSDMSG conditionals; message should be sufficient
+ ; -- if FDB Max Daily Dose or Dose Form Unit Value contains "PER KILOGRAM" -- 254: now /kg 
  ;    weight is required to derive the maximum daily dose, exit if not defined
- I $$UP^XLFSTR(PSSDADE)["PER KILOGRAM" D  G MAXDQ:PSSDADC1=""
- . ; -- check weight
- . I $G(^TMP($J,PSSDADB,"IN","DOSE","WT"))>0 D
- . . ; -- Calculate FDB Max Daily Dose or Dose Form as PSSDADC1=PSSDADC1*patient weight (in kg)
- . . S PSSDADC1=PSSDADC1*$G(^TMP($J,PSSDADB,"IN","DOSE","WT"))
- . ELSE  D
- . . ; -- if unable to calculate set FDB Max Daily Dose or Dose Form Unit=""
- . . S PSSDADC1=""
- . . ; -- update max daily dose error message if weight missing
- . . D ERRMSG(PSSDADO,PSSDADB,"Weight")
+ I $$UP^XLFSTR(PSSDADE)["/KILOGRAM",$G(^TMP($J,PSSDADB,"IN","DOSE","WT"))'>0 G MAXDQ
+ I $$UP^XLFSTR(PSSDADE)["/METER SQUARED",$G(^TMP($J,PSSDADB,"IN","DOSE","BSA"))'>0 G MAXDQ
+ S PSSDMSG=$G(^TMP($J,PSSDADB,"OUT","DOSE",PSSDADO,PSSDADNM,"DAILYMAX","MESSAGE",PSSDADI))
+ I PSSDMSG="Weight is required.",$G(^TMP($J,PSSDADB,"IN","DOSE","WT"))'>0 G MAXDQ
+ I PSSDMSG="Body surface area is required.",$G(^TMP($J,PSSDADB,"IN","DOSE","BSA"))'>0 G MAXDQ
  ;
- ; -- if FDB Max Daily Dose or Dose Form Unit Value contains "PER METER SQUARED"
+ ;I $$UP^XLFSTR(PSSDADE)["/KILOGRAM" D  G MAXDQ:PSSDADC1=""
+ ;. ; -- check weight
+ ;. I $G(^TMP($J,PSSDADB,"IN","DOSE","WT"))>0 D
+ ;. . ; -- Calculate FDB Max Daily Dose or Dose Form as PSSDADC1=PSSDADC1*patient weight (in kg)
+ ;. . S PSSDADC1=PSSDADC1*$G(^TMP($J,PSSDADB,"IN","DOSE","WT"))
+ ;. ELSE  D
+ ;. . ; -- if unable to calculate set FDB Max Daily Dose or Dose Form Unit=""
+ ;. . S PSSDADC1=""
+ ;. . ; -- update max daily dose error message if weight missing
+ ;. . D ERRMSG(PSSDADO,PSSDADB,"Weight")
+ ;
+ ; -- if FDB Max Daily Dose or Dose Form Unit Value contains "PER METER SQUARED" -- 254: now /meter squared
  ;    BSA is required to derive the maximum daily dose, exit if not defined
- I $$UP^XLFSTR(PSSDADE)["PER METER SQUARED" D  G MAXDQ:PSSDADC1=""
- . ; -- check BSA
- . I $G(^TMP($J,PSSDADB,"IN","DOSE","BSA"))>0 D
- . . ; -- Calculate FDB Max Daily Dose or Dose Form as PSSDADC1=PSSDADC1*patient BSA (in m2)
- . . S PSSDADC1=PSSDADC1*$G(^TMP($J,PSSDADB,"IN","DOSE","BSA"))
- . ELSE  D
- . . ; -- if unable to calculate set FDB Max Daily Dose or Dose Form Unit=""
- . . S PSSDADC1=""
- . . ; -- update max daily dose error message if BSA missing
- . . D ERRMSG(PSSDADO,PSSDADB,"Body surface area")
+ ;I $$UP^XLFSTR(PSSDADE)["/METER SQUARED" D  G MAXDQ:PSSDADC1=""
+ ;. ; -- check BSA
+ ;. I $G(^TMP($J,PSSDADB,"IN","DOSE","BSA"))>0 D
+ ;. . ; -- Calculate FDB Max Daily Dose or Dose Form as PSSDADC1=PSSDADC1*patient BSA (in m2)
+ ;. . S PSSDADC1=PSSDADC1*$G(^TMP($J,PSSDADB,"IN","DOSE","BSA"))
+ ;. ELSE  D
+ ;. . ; -- if unable to calculate set FDB Max Daily Dose or Dose Form Unit=""
+ ;. . S PSSDADC1=""
+ ;. . ; -- update max daily dose error message if BSA missing
+ ;. . D ERRMSG(PSSDADO,PSSDADB,"Body surface area")
  ;
  ; -- build customized max daily dose message, kill FDB message, set message flag 
- D MAXDMSG(PSSDADO,PSSDADB,PSSDADNM,PSSDADI,PSSDADH,PSSDADU,PSSDADC1,PSSDADFF,.PSSDBCAR)
+ ;D MAXDMSG(PSSDADO,PSSDADB,PSSDADNM,PSSDADI,PSSDADH,PSSDADU,PSSDADC1,PSSDADFF,.PSSDBCAR)  ;254 disabled
  ; -- set custom max daily dose check flag completed=1
  S PSSCMDDF=1
 MAXDQ ; -- set frequency flag=0 if unable to complete max daily dose check
@@ -103,11 +111,11 @@ CALCDDA(PSSDADF,PSSDADD) ; -- in 2.1 calculate daily dose amount by converting F
  ;
  ;Return: Calculated Daily Dose Amount or 0
  ;
- N PSSDADL,PSSDADN,PSSDADTM,PSSDADS
+ N PSSDADL,PSSDADN,PSSDADTM
  ; -- check for missing variables, exit if not defined
  I $G(PSSDADF)']""!($G(PSSDADD)'>0) Q 0
  ; -- every day, in morning, at bed time, in evening
- I PSSDADF="QD"!(PSSDADF="QAM")!(PSSDADF="QHS")!(PSSDADF="QPM") Q PSSDADD
+ I PSSDADF="QD"!(PSSDADF="QAM")!(PSSDADF="QHS")!(PSSDADF="QPM")!(PSSDADF="QDAY") Q PSSDADD
  ; -- every other day
  I PSSDADF="QOD" Q .5*PSSDADD
  ; -- twice a day
@@ -116,20 +124,24 @@ CALCDDA(PSSDADF,PSSDADD) ; -- in 2.1 calculate daily dose amount by converting F
  I PSSDADF="TID" Q $$CALCDDAT("D",3,PSSDADD)
  ; -- four times per day
  I PSSDADF="QID" Q $$CALCDDAT("D",4,PSSDADD)
+  ; -- Once Weekly
+ I PSSDADF="QWEEK" Q (1/7)*PSSDADD
+ ; -- Once Monthly
+ I PSSDADF="QMONTH" Q (1/30)*PSSDADD
  ; -- set PSSDADL=Frequency Length, exit if not equal to 3 or 4
  S PSSDADL=$L(PSSDADF) I PSSDADL'=3,PSSDADL'=4 Q 0
- ; -- set PSSDADS=Action associated with frequency Q=every, X=times
- S PSSDADS=$E(PSSDADF)
- ; -- check action associated with frequency, exit if not "Q" or "X"
- I PSSDADS'="Q",PSSDADS'="X" Q 0
+ ; -- check action associated with frequency, exit if not "Q#?" or "#X?"
+ I PSSDADF'["Q",PSSDADF'["X" Q 0
  ; -- set PSSDADN=Frequency Number
- S PSSDADN=$E(PSSDADF,2,$L(PSSDADF)-1)
+ I PSSDADF["Q" D
+ . S PSSDADN=+$E(PSSDADF,2,$L(PSSDADF)-1)
+ E  S PSSDADN=+PSSDADF
  ; -- check if PSSDADN is numeric, exit if it is not
- I PSSDADN'?.N Q 0
+ I 'PSSDADN Q 0
  ; -- set PSSDADTM=period of time associated with frequency H=hour, D=day, W=week, L=month
  S PSSDADTM=$E(PSSDADF,PSSDADL)
  ; -- calculate times per day, week, month
- I PSSDADS="X" Q $$CALCDDAT(PSSDADTM,PSSDADN,PSSDADD)
+ I PSSDADF["X" Q $$CALCDDAT(PSSDADTM,PSSDADN,PSSDADD)
  ; -- check for period of time, exit if not defined
  I PSSDADTM'="H",PSSDADTM'="D",PSSDADTM'="W",PSSDADTM'="L" Q 0
  ; -- calculate 24 hours/Frequency Number*Dose Amount
@@ -168,13 +180,18 @@ GETUNIT(PSSDADE,PSSDADU) ; -- in 2.1 FDB not sending Dose Unit in Standard forma
  ;
  ; -- check for missing variables, exit if not defined
  I $G(PSSDADE)']""!($G(PSSDADU)']"") Q ""
+ ;
+ I PSSDADU=$$UP^XLFSTR($P(PSSDADE,"/")) Q PSSDADU   ;254
+ ;
  ; -- parse PSSDADE string to get text for Dose Unit before first space
- N PSSDADL,PSSDUIEN,PSSFDBU
- I PSSDADE[" " D  I PSSDADE="" Q ""
+ N I,PSSDADL,PSSDUIEN,PSSFDBU,PSSDL,PSSFND,X
+ S PSSFND=0
+ F I=1:1:$L(PSSDADE) S X=$E(PSSDADE,I) S:X?1P PSSDL=X,PSSFND=1 Q:PSSFND   ;254
+ I PSSDADE[PSSDL D  I PSSDADE="" Q ""
  . F PSSDADL=1:1:$L(PSSDADE) Q:$E(PSSDADE,PSSDADL)'=" "
  . I $L(PSSDADE)=PSSDADL S PSSDADE="" Q
  . S PSSDADE=$E(PSSDADE,PSSDADL,$L(PSSDADE))
- . S PSSDADE=$P(PSSDADE," ")
+ . S PSSDADE=$P(PSSDADE,PSSDL)
  ; -- convert text to upper case
  S PSSDADE=$$UP^XLFSTR(PSSDADE)
  ; -- if text matches FDB Dose Unit, return FDB Dose Unit and exit
@@ -303,6 +320,7 @@ ERRMSG(PSSDADO,PSSDADB,PSSERRT) ; -- in 2.1 update max daily dose error message 
  ;PSSDADO - Order Number
  ;PSSDADB - Base
  ;PSSERRT - Type of Error [Weight or Body surface area]
+ ;
  N PSSDWL1,PSSERRN,PSSERRM
  ; -- check for missing variables, exit if not defined
  I $G(PSSDADO)']""!($G(PSSDADB)']"")!($G(PSSERRT)']"") Q
@@ -341,5 +359,5 @@ CHKCFREQ(PSSDADO,PSSDBASE,PSSDBASG,PSSDBCAR) ; -- in 2.1 check for custom freque
  S PSSDADNM=$P(PSSDBCAR(PSSDADO),"^",2),PSSDWIEN=+$P(PSSDBCAR(PSSDADO),"^",3),PSSCNTR=$P(PSSDADO,";",4)
  ; -- check for custom frequency
  I $G(^TMP($J,PSSDBASE,"OUT","DOSE",PSSDADO,PSSDADNM,"FREQ","FREQUENCYCUSTOMMESSAGE",PSSDWIEN))]"" S PSSCFMSG=$G(^(PSSDWIEN)) D
- .S ^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"MESSAGE","4_TRAIL")=PSSCFMSG
+ .S ^TMP($J,PSSDBASG,"OUT",PSSCNTR,PSSDADO,"MESSAGE","4_TRAIL")="Recommended frequency of "_PSSDADNM_": "_PSSCFMSG   ;254
  Q

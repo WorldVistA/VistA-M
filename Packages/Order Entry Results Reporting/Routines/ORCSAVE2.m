@@ -1,6 +1,11 @@
-ORCSAVE2 ;SLC/MKB-Utilities to update an order ;Jun 03, 2020@15:21:13
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,27,56,70,94,116,190,157,215,265,243,293,280,346,269,421,382,377,405**;Dec 17, 1997;Build 211
+ORCSAVE2 ;SLC/MKB-Utilities to update an order ;Jun 18, 2025@14:43:58
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**4,27,56,70,94,116,190,157,215,265,243,293,280,346,269,421,382,377,405,508**;Dec 17, 1997;Build 39
  ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Referenece to COMP^EDPFMON in ICR #5503
+ ; Referenece to VER^EDPFMON in ICR #5503
+ ; Reference to $$FINDBYCODE^PXSPECAUTH in ICR #7506
+ ; Reference to $$RESOLVE^PSJORPOE in ICR #3167
  ;
  ;Nov 12, 2015 PB - modified to do a sync for a saved order
  ;
@@ -218,11 +223,18 @@ VALUE(IFN,ID,INST) ; -- Returns value of prompt by identifier ID
  F  S I=$O(^OR(100,IFN,4.5,"ID",ID,I)) Q:I'>0  I $P($G(^OR(100,IFN,4.5,+I,0)),U,3)=INST S Y=$G(^(1)) Q
  Q Y
  ;
-SC(ORX,ORIFN) ; -- save responses to SC questions
+SC(ORX,ORIFN) ; -- save responses to SC questions  (from an older rpc that after 33CON will not be used by CPRS)
  Q:'$G(ORIFN)  Q:'$D(^OR(100,+ORIFN,0))  ;invalid order number
  N OR5,I,P S OR5=$G(^OR(100,+ORIFN,5)),P=0
  F I="SC","MST","AO","IR","EC","HNC","CV","SHD" S P=P+1 S:$D(ORX(I)) $P(OR5,U,P)=ORX(I)
- S ^OR(100,+ORIFN,5)=OR5
+ ;;S ^OR(100,+ORIFN,5)=OR5 ;no longer set 5 node after 33CON          ;508
+ ; if this tag called then is an older RPC making he call so update newer SA 112 mult with OR5 string       ;508
+ N ERROR,IENS,FDA,PXIEN,PXNM,QQ,VALUE
+ F QQ=1:1:8 S VALUE=$P(OR5,U,QQ) D
+ .S PXNM=$$OLDCODE^ORSPECAUTH(QQ),PXIEN=$$FINDBYCODE^PXSPECAUTH(PXNM)
+ .I VALUE="" N DA,DIK S DA=$O(^OR(100,ORIFN,112,"B",PXIEN,"")),DA(1)=ORIFN,DIK="^OR(100,"_DA(1)_","_112_"," D:DA ^DIK Q    ;kill an entry with null value and quit
+ .S IENS="?+"_PXIEN_","_ORIFN_",",FDA(100.0112,IENS,.01)=PXIEN,FDA(100.0112,IENS,1)=VALUE                                  ;add/update the .01 (PXIEN) via fda array
+ D UPDATE^DIE("","FDA","","ERROR")
  Q
  ;
 CANCEL(ORDER) ; -- cancel order [action]

@@ -1,5 +1,5 @@
-GMRCIBKG ;SLC/JFR - IFC BACKGROUND ERROR PROCESSOR; Jun 18, 2024@15:09:24
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,30,35,58,92,154,189**;DEC 27, 1997;Build 54
+GMRCIBKG ;SLC/JFR - IFC BACKGROUND ERROR PROCESSOR; Jan 09, 2025@09:43:28
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,30,35,58,92,154,189,201**;DEC 27, 1997;Build 7
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ; This routine invokes IA# 3335
@@ -35,6 +35,51 @@ EN ;process file 123.6 and take action
  . I $P(GMRCLOG0,U,6),$P(GMRCLOG0,U,8)=203 D  Q  ;
  .. ;
  .. I $P(GMRCLOG0,U,1)<$$FMADD^XLFDT($$NOW^XLFDT,-1) D TRIGR^GMRCIEVT($P(GMRCLOG0,U,4),$P(GMRCLOG0,U,5)) ;re-send activity
+ . ;
+ . ;  wait an hour for 204 errors (Waiting for IFC order to be processed in Cerner) - p201 wtc 12/1/23
+ . ;
+ . I $P(GMRCLOG0,U,6),$P(GMRCLOG0,U,8)=204 D  Q  ;
+ .. ;
+ .. I $P(GMRCLOG0,U,1)<$$FMADD^XLFDT($$NOW^XLFDT,,-1) D  ;
+ ... I $P(^GMR(123,$P(GMRCLOG0,U,4),0),U,22)'="" D TRIGR^GMRCIEVT($P(GMRCLOG0,U,4),$P(GMRCLOG0,U,5)) ;re-send activity
+ . ;
+ . ;  wait a day for 206 errors (ICN missing from incoming order). P201 WTC 5/6/24 
+ . ;
+ . I $P(GMRCLOG0,U,6),$P(GMRCLOG0,U,8)=206 D  Q  ;
+ .. ;
+ .. I $P(GMRCLOG0,U,1)'<$$FMADD^XLFDT($$NOW^XLFDT,-1) Q  ;
+ .. I $P(GMRCLOG0,U,1)<$$FMADD^XLFDT($$NOW^XLFDT,-7) D  Q  ;  Mark complete if not resolved in 7 days.
+ ... ;
+ ... ;  Clear do not purge flag for incoming order.
+ ... ;
+ ... N MSGID,HLMTIENS S MSGID=$P(GMRCLOG0,U,3),HLMTIENS=$O(^HLMA("C",MSGID,0)) ;
+ ... I $G(HLMTIENS) N RTNCODE S RTNCODE=$$SETPURG^HLUTIL(0) ;
+ ... ;
+ ... N DIE,DA,DR ;
+ ... S DIE="^GMR(123.6,",DA=GMRCLOG,DR=".06///@" D ^DIE ;
+ .. ;
+ .. ;  Determine of ICN has been entered for the patient.  If so, insert into PID segment of HL7 message then re-process.
+ .. ;
+ .. N GMRCICN,IEN772,IEN773,MSGID,PID,N,EDIPI,DGKEY,DGOUT ;
+ .. S MSGID=$P(GMRCLOG0,U,3) Q:MSGID=""  ;
+ .. S IEN773=$O(^HLMA("C",MSGID,0)) Q:'IEN773  ;
+ .. S IEN772=$P($G(^HLMA(IEN773,0)),U,1) Q:'IEN772  ;
+ .. ;
+ .. S PID="" F N=1:1 Q:'$D(^HL(772,IEN772,"IN",N,0))  I $P(^(0),"|",1)="PID" S PID=^(0) Q  ;
+ .. Q:PID=""  ;
+ .. S EDIPI=$P($P($P(PID,"|",4),"~",2),U,1),DGKEY=EDIPI_"^NI^USDOD^200DOD" D TFL^VAFCTFU2(.DGOUT,DGKEY) ;
+ .. S GMRCICN="" F N=1:1 Q:'$D(DGOUT(N))  I $P(DGOUT(N),U,2,5)="NI^USVHA^200M^A" S GMRCICN=$P(DGOUT(N),U,1) Q  ;
+ .. Q:GMRCICN=""  ;
+ .. S PID=$$ADDICN(PID,GMRCICN),^HL(772,IEN772,"IN",N,0)=PID ;
+ .. ;
+ .. N RTNCODE S RTNCODE=$$REPROC^HLUTIL(IEN773,"IN^GMRCIMSG") Q:RTNCODE<0  ;
+ .. ;
+ .. N DIE,DA,DR ;
+ .. S DIE="^GMR(123.6,",DA=GMRCLOG,DR=".06///@" D ^DIE ;
+ .. ;
+ .. ;  Clear do not purge flag from incoming order.
+ .. ;
+ .. N HLMTIENS S HLMTIENS=IEN773,RTNCODE=$$SETPURG^HLUTIL(0) ;
  . ;
  . ;  v-- wait at least 1 hour on all other errors
  . I $P(GMRCLOG0,U)>GMRCTIM Q
@@ -177,3 +222,12 @@ GONOGO() ; determine if background job should run or not
  .. Q
  . Q
  Q GMRCQT
+ ;
+ADDICN(PID,ICN) ;
+ ;
+ ;  Insert ICN into PID-3 and ICN sub-field into PID-4.
+ ;
+ N X ;
+ S X=$P(PID,"|",4),X=ICN_U_U_U_"ICN"_U_"VETID"_X,$P(PID,"|",3)=ICN,$P(PID,"|",4)=X ;
+ Q PID ;
+ ;

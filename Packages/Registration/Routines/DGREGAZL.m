@@ -1,8 +1,9 @@
-DGREGAZL ;ALB/DW - ZIP LINKING UTILITY ; 5/27/04 10:54am
- ;;5.3;Registration;**522,560,581,730,760,915**;Aug 13, 1993;Build 6
+DGREGAZL ;ALB/DW,JAM - ZIP LINKING UTILITY ; 5/27/04 10:54am
+ ;;5.3;Registration;**522,560,581,730,760,915,1143**;Aug 13, 1993;Build 36
  ;
-EN(RESULT,DFN) ;Let user edit zip+4, city, state, county based on zip-linking
- ; DFN optional for defauls
+EN(RESULT,DFN,DGDEFZIP,DGDEFCITY) ;Let user edit zip+4, city, state, county based on zip-linking
+ ; DFN optional for defaults
+ ; DG*5.3*1143 - Added 3rd and 4th input parameters - If RTA is active, these are the default values to display for zip code and city
  ; Output: RESULT(field#) = User Input External ^ Internal
  K RESULT
  N DGIND,DGTOT
@@ -34,6 +35,8 @@ EN(RESULT,DFN) ;Let user edit zip+4, city, state, county based on zip-linking
 ZIP(DFN) ;Let user input zip+4
 ZAGN N DIR,DTOUT,DUOUT,DIROUT,DGDATA
  S DIR(0)="2,.1112"
+ ; DG*5.3*1143 - use default value if defined
+ I $G(DGDEFZIP)'="" S DIR("B")=DGDEFZIP
  S:DFN DA=DFN
  D ^DIR
  I $D(DTOUT) Q -1
@@ -48,10 +51,10 @@ ZAGN N DIR,DTOUT,DUOUT,DIROUT,DGDATA
  I $D(DGDATA("ERROR")) D  G ZAGN
  . W $C(7)," ??"
  Q DGZIP
-CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#.114)
+CITY(RESULT,ZIP,DFN) ;Based on zip, let user input city(#.114)
  ; Input:
  ;   ZIP - user input zip for the patient primary address
- ;   DFN - Interal entry number of Patient File (#2)
+ ;   DFN - Internal entry number of Patient File (#2)
  ;         (optional, used for default)
  ; Output:RESULT=-1 (input error or timed or ^ out) 
  ;        or    =user input city
@@ -69,7 +72,8 @@ CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#.114)
  D FIELD^DID(2,.114,"N","LABEL","DGCITY")
  S DGN=""
  I '$D(DGDATA("ERROR")) D
- . S DOLDCITY=$S(DFN:$$GET1^DIQ(2,DFN_",",.114),1:"")
+ . ; DG*5.3*1143 - Use default city passed in if it exists
+ . S DOLDCITY=$S($G(DGDEFCITY)'="":DGDEFCITY,DFN:$$GET1^DIQ(2,DFN_",",.114),1:"")
  . S DGSAME=0
  . F  S DGN=$O(DGDATA(DGN)) Q:DGN=""  D
  .. S DGCITI=$P($G(DGDATA(DGN,"CITY")),"*",1)
@@ -96,7 +100,9 @@ CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#.114)
  . S DIR(0)="SO^"_$G(DGSOC)
  . ;if zip '= zip on file, default = ""; else default=city on file
  . ;I ($G(DFN)'="")&($E(ZIP,1,5)=$$GET1^DIQ(2,DFN_",",.116)) D
- . S:DFN DIR("B")=$$GET1^DIQ(2,DFN_",",.114)
+ . ; DG*5.3*1143 - use default city if passed in
+ . ;S:DFN DIR("B")=$$GET1^DIQ(2,DFN_",",.114)
+ . S DIR("B")=$S($G(DGDEFCITY)'="":DGDEFCITY,DFN:$$GET1^DIQ(2,DFN_",",.114),1:"")
  . S DIR("A")=$G(DGCITY("LABEL"))
 CAGN1 . D ^DIR
  . I $D(DTOUT) S RESULT=-1 Q
@@ -106,6 +112,8 @@ CAGN1 . D ^DIR
  I ($G(Y)=99)!($D(DGDATA("ERROR"))) D
 CAGN2 . I '$D(^XUSEC("EAS GMT COUNTY EDIT",+DUZ)) Q
  . N DIR,X,Y
+ . ; DG*5.3*1143 - use default city if passed in
+ . S DIR("B")=$S($G(DGDEFCITY)'="":DGDEFCITY,DFN:$$GET1^DIQ(2,DFN_",",.114),1:"")
  . S DIR(0)="2,.114"
  . S:DFN DA=DFN
  . D ^DIR

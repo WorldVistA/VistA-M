@@ -1,5 +1,5 @@
 RCDMCR4B ;ALB/YG - 0 - 40 Percent SC Change Reconciliation Report - Collect Data; Apr 9, 2019@21:06
- ;;4.5;Accounts Receivable;**347,414**;Mar 20, 1995;Build 2
+ ;;4.5;Accounts Receivable;**347,414,454**;Mar 20, 1995;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; See RCDMCR4A for detailed description
@@ -179,8 +179,8 @@ GETIB(IBIEN,IBMODE) ; Get all Outpatient Dates, Inpatient Dates and RX Dates/dru
  . I $P(RESULT,";",2)]"" D
  . . N RXIEN,RXFIEN
  . . S RXFIEN=$P($P(RESULT,";",2),":",2),RXIEN=$P($P(RESULT,";",1),":",2)
- . . S RXDT=$P($G(^PSRX(RXIEN,1,RXFIEN,0)),U,18) ; released data
- . . S:RXDT="" RXDT=$P($G(^PSRX(RXIEN,1,RXFIEN,0)),U) ; refill date
+ . . S RXDT=$P($G(^PSRX(RXIEN,1,RXFIEN,0)),U) ; refill date  PRCA*4.5*454
+ . . S:RXDT="" RXDT=$P($G(^PSRX(RXIEN,1,RXFIEN,0)),U,18) ; released date  PRCA*4.5*454
  . . S RXNUM=$P($G(^PSRX(RXIEN,0)),U)
  . . S RXNAM=$P($G(^PSRX(RXIEN,0)),U,6) S:RXNAM RXNAM=$P($G(^PSDRUG(RXNAM,0)),U)
  . . I RXDT S OUT=1_U_U_U_RXDT_U_U_RXNUM_U_RXNAM
@@ -188,12 +188,13 @@ GETIB(IBIEN,IBMODE) ; Get all Outpatient Dates, Inpatient Dates and RX Dates/dru
  . I $P(RESULT,";",2)']"" D
  . . N RXIEN
  . . S RXIEN=$P(RESULT,":",2)
- . . S RXDT=$P($G(^PSRX(RXIEN,2)),U,13) ; released date
- . . S:RXDT="" RXDT=$P($G(^PSRX(RXIEN,2)),U,2) ; fill date
+ . . S RXDT=$P($G(^PSRX(RXIEN,2)),U,2) ; fill date  PRCA*4.5*454
+ . . S:RXDT="" RXDT=$P($G(^PSRX(RXIEN,2)),U,13) ; released date PRCA*4.5*454
  . . S:RXDT="" RXDT=$P($G(^PSRX(RXIEN,2)),U,5) ; dispensed date
  . . S RXNUM=$P($G(^PSRX(RXIEN,0)),U)
  . . S RXNAM=$P($G(^PSRX(RXIEN,0)),U,6) S:RXNAM RXNAM=$P($G(^PSDRUG(RXNAM,0)),U)
  . . I RXDT S OUT=1_U_U_U_RXDT_U_U_RXNUM_U_RXNAM
+ I BILGROUP=5,'OUT S OUT=1_U_U_U_DTBILLFR_U_U_U  ; manually added Rx  PRCA*4.5*454
  I 'OUT Q OUT
  S $P(OUT,U,5)=STATUS
  S $P(OUT,U,8)=CHGAMT

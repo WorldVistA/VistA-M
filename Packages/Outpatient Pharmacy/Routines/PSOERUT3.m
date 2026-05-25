@@ -1,11 +1,11 @@
 PSOERUT3 ;ALB/MFR - eRx Listman Allergy Utilities; 06/25/2022 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**700,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**700,746,770**;DEC 1997;Build 145
  ;
-ALLERGY(MODE,NPSPC,ERXIEN,DFN) ; Sets Allergy and Adverse Reaction information
- ; Input: MODE   - Display Mode: "RS": Roll & Scroll | "LM": ListMan
- ;        NMSPC  - ListMan Temp Global Namespace (e.g., "PSOERXP1")
- ;        ERXIEN - Pointer to ERX HOLDING QUEUE file (#52.49)
- ;        DFN    - Pointer to PATIENT File(#2)
+ALLERGY(MODE,NMSPC,ERXIEN,DFN) ; Sets Allergy and Adverse Reaction information
+ ; Input: MODE      - Display Mode: "RS": Roll & Scroll | "LM": ListMan
+ ;        NMSPC     - ListMan Temp Global Namespace (e.g., "PSOERXP1")
+ ;        ERXIEN    - Pointer to ERX HOLDING QUEUE file (#52.49)
+ ;        DFN       - Pointer to PATIENT File(#2)
  ;
  N IEN,X,XE,XV,LDAT,GMRAL,PSONOAL,LN,TYPE,VANOASS,VANKA,VERALLST,NOVALLST,REMALLST,VERARLST,NOVARLST,EALLDATA,ALLLN
  N VALIST,ERXLIST,VA1ALL,VAALLS,ERX1ALL,ERXALLS,I,HDRLN,EALLLST,ENKA
@@ -17,17 +17,18 @@ ALLERGY(MODE,NPSPC,ERXIEN,DFN) ; Sets Allergy and Adverse Reaction information
  . I GMRAL="" S VANOASS=1 Q      ; No Allergy Assessment
  . I GMRAL=0 S VANKA=1 Q         ; No Known Allergies
  . I GMRAL D                     ; Allergies Found
- . . N ALL,Z,ALLLIST,VERIF,ALORAR,AGENT,FILE
+ . . N ALL,Z,ALLLIST,VERIF,ALORAR,AGENT,AGENTX,FILE
  . . S ALL=0 F  S ALL=$O(GMRAL(ALL)) Q:'ALL  D
  . . . S Z=GMRAL(ALL),ALLLIST($S($P(Z,"^",4):"V",1:"NV"),$S('$P(Z,"^",5):"AL",1:"AR"),$P(Z,"^",2))=""
  . . S (VERIF,ALORAR,AGENT)=""
  . . F  S VERIF=$O(ALLLIST(VERIF)) Q:VERIF=""  D
  . . . F  S ALORAR=$O(ALLLIST(VERIF,ALORAR)) Q:ALORAR=""  D
  . . . . F  S AGENT=$O(ALLLIST(VERIF,ALORAR,AGENT)) Q:AGENT=""  D
- . . . . . I VERIF="V",ALORAR="AL" S VERALLST=VERALLST_","_AGENT
- . . . . . I VERIF="NV",ALORAR="AL" S NOVALLST=NOVALLST_","_AGENT
- . . . . . I VERIF="V",ALORAR="AR" S VERARLST=VERARLST_","_AGENT
- . . . . . I VERIF="NV",ALORAR="AR" S NOVARLST=NOVARLST_","_AGENT
+ . . . . . S AGENTX=AGENT I $L(AGENTX)>38 S AGENTX=$E(AGENTX,1,35)_"..."
+ . . . . . I VERIF="V",ALORAR="AL" S VERALLST=VERALLST_","_AGENTX
+ . . . . . I VERIF="NV",ALORAR="AL" S NOVALLST=NOVALLST_","_AGENTX
+ . . . . . I VERIF="V",ALORAR="AR" S VERARLST=VERARLST_","_AGENTX
+ . . . . . I VERIF="NV",ALORAR="AR" S NOVARLST=NOVARLST_","_AGENTX
  . . . . . S VALIST($$UP^XLFSTR(AGENT))=""
  . ; Remote Allergies
  . I $T(HAVEHDR^ORRDI1)'="" D
@@ -56,8 +57,8 @@ ALLERGY(MODE,NPSPC,ERXIEN,DFN) ; Sets Allergy and Adverse Reaction information
  D ALRGDATA^PSOERXU9(.EALLDATA,ERXIEN,1)
  S EALLLST=",",SEQ=0 F  S SEQ=$O(EALLDATA(SEQ)) Q:'SEQ  D
  . I $P(EALLDATA(SEQ),"^",7)="" Q
- . S EALLLST=EALLLST_$E($P(EALLDATA(SEQ),"^",7),1,38)_","
- . S ERXLIST($P(EALLDATA(SEQ),"^",7))=""
+ . S EALLLST=EALLLST_$E($$UP^XLFSTR($P(EALLDATA(SEQ),"^",7)),1,38)_","
+ . S ERXLIST($$UP^XLFSTR($P(EALLDATA(SEQ),"^",7)))=""
  S $E(EALLLST)=""
  ;
  K ERXLINES,VALINES
@@ -126,7 +127,6 @@ ALLERGY(MODE,NPSPC,ERXIEN,DFN) ; Sets Allergy and Adverse Reaction information
  . S XE=" "_$G(ERXLINES(ALLLN,0))
  . S XV="|"_$G(VALINES(ALLLN,0))
  . D ADDLINE^PSOERUT0(MODE,NMSPC,XE,XV)
- D BLANKLN^PSOERUT0(MODE),VIDEO^PSOERUT0()
  Q
  ;
 ADDALLS ; Add Alergies to the Screen (Reverses or Highlights Video for each Allergy)
@@ -154,25 +154,55 @@ ADDALLS ; Add Alergies to the Screen (Reverses or Highlights Video for each Alle
  . D ADDLINE^PSOERUT0(MODE,NMSPC,XE,XV)
  Q
  ;
-SETDIAGS(MODE,NPSPC,ERXIEN) ; Sets Diagnosis information
+SETDIAGS(MODE,NMSPC,ERXIEN,CALLER) ; Sets Diagnosis and Indication For Use information
  ; Input: MODE   - Display Mode: "RS": Roll & Scroll | "LM": ListMan
  ;        NMSPC  - ListMan Temp Global Namespace (e.g., "PSOERXP1")
  ;        ERXIEN - Pointer to ERX HOLDING QUEUE file (#52.49)
- N DIAGS,DIAG,DIAGZ,XE
- D GETDIAGS(ERXIEN,.DIAGS)
- S DIAG=0 F  S DIAG=$O(DIAGS(DIAG)) Q:'DIAG  D
- . S DIAGZ=DIAGS(DIAG)
- . S XE=$S($P(DIAGZ,"^")="P":"Primary",1:"Secondary")_" Dx:" D ADDLINE^PSOERUT0(MODE,NMSPC,XE,"|")
- . S XE=$P(DIAGZ,"^",2)_" "_$P(DIAGZ,"^",3)
- . F  Q:$E(XE,1,38)=""  D
- . . S HIGUNDLN(LINE,2)=$L($E(XE,1,38))
- . . D ADDLINE^PSOERUT0(MODE,NMSPC," "_$E(XE,1,38),"|")
- . . S XE=$E(XE,39,9999)
- . S XE=$P(DIAGZ,"^",4)
- . F  Q:$E(XE,1,38)=""  D
- . . D ADDLINE^PSOERUT0(MODE,NMSPC," "_$$COMPARE^PSOERUT0(MODE,$E(XE,1,38),$E(XE,1,38),2),"|")
- . . S XE=$E(XE,39,9999)
- I $O(DIAGS(0)) D BLANKLN^PSOERUT0(MODE)
+ ;        CALLER - Functionality calling this API ("SE":Single eRx View/Display;"VD":Validate Drug;"VP":Validate Patient;"PEN":Pending Order)
+ ;
+ N DIAGS,DIAG,DIAGZ,XE,XV,INDCTN,OINDCTN,INDLBL,OINDLBL,INDLNE,XE,XEI,LMLINE,ERXLINES,XVI,VALINES,ALLLN
+ ;Diagnosis
+ D GETDIAGS(ERXIEN,.DIAGS) S CALLER=$G(CALLER)
+ S XEI=0,LMLINE=LINE-1
+ I '$O(DIAGS(0)) D
+ . S XEI=XEI+1,LMLINE=LMLINE+1,ERXLINES(XEI)="Primary Dx:"
+ E  D
+ . S DIAG=0 F  S DIAG=$O(DIAGS(DIAG)) Q:'DIAG  D
+ . . S DIAGZ=DIAGS(DIAG)
+ . . S XEI=XEI+1,LMLINE=LMLINE+1,ERXLINES(XEI)=$S($P(DIAGZ,"^")="P":"Primary",1:"Secondary")_" Dx:"
+ . . S XE=$P(DIAGZ,"^",2)_" "_$P(DIAGZ,"^",3)
+ . . F  Q:$E(XE,1,38)=""  D
+ . . . S XEI=XEI+1,LMLINE=LMLINE+1,ERXLINES(XEI)=" "_$E(XE,1,38)
+ . . . S HIGUNDLN(LMLINE,2)=$L($E(XE,1,38))
+ . . . S XE=$E(XE,39,9999)
+ . . S XE=$P(DIAGZ,"^",4)
+ . . F  Q:$E(XE,1,38)=""  D
+ . . . S XEI=XEI+1,LMLINE=LMLINE+1,ERXLINES(XEI)=" "_$$COMPARE^PSOERUT0(MODE,$E(XE,1,38),$E(XE,1,38),2,,LMLINE)
+ . . . S XE=$E(XE,39,9999)
+ ;Indications
+ I CALLER="VD"!(CALLER="SE") D
+ . S INDCTN=$$GET1^DIQ(52.49,ERXIEN,29)
+ . S OINDCTN=$$GET1^DIQ(52.49,ERXIEN,29.2)
+ . S XVI=0,LMLINE=LINE-1
+ . ;I CALLER="SE" S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "
+ . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=$S(CALLER="VD"!(CALLER="SE"):"11)",1:"")_"Indications:"
+ . I MODE="LM",CALLER="VD"!(CALLER="SE") S UNDERLN(LMLINE,41)=3
+ . I $G(INDCTN)'="" D
+ . . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$E(INDCTN,1,38),$E(INDCTN,1,38),42,,LMLINE)
+ . . I $L(INDCTN)>38 D
+ . . . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$E(INDCTN,39,99),$E(INDCTN,39,99),42,,LMLINE)
+ . I $G(OINDCTN)'="" D
+ . . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)="Other Indications:"
+ . . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$E(OINDCTN,1,38),$E(OINDCTN,1,38),42,,LMLINE)
+ . . I $L(OINDCTN)>38 D
+ . . . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$E(OINDCTN,39,99),$E(OINDCTN,39,99),42,,LMLINE)
+ ;Setting Diagnosis and Indications For Use
+ F ALLLN=1:1 Q:('$D(ERXLINES(ALLLN))&'$D(VALINES(ALLLN)))  D
+ . S ERXALLS=$G(ERXLINES(ALLLN)),VAALLS=$G(VALINES(ALLLN))
+ . S XE=$G(ERXLINES(ALLLN))
+ . S XV="|"_$G(VALINES(ALLLN))
+ . D ADDLINE^PSOERUT0("LM",NMSPC,XE,XV)
+ ;I ($D(VALINES)!$D(ERXLINES)) D BLANKLN^PSOERUT0(MODE)
  Q
  ;
 GETDIAGS(ERXIEN,ICDARR) ; Returns the diagnosis codes for the eRx order

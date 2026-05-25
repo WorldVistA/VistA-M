@@ -1,5 +1,5 @@
-PSSHRQ24 ;WOIFO/AV,TS,SG,CF - Parses out drugsNotChecked and DrugDoseCheck XML (cont) ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**178,206,224**;9/30/97;Build 3
+PSSHRQ24 ;WOIFO/AV,TS,SG,CF - Parses out drugsNotChecked and DrugDoseCheck XML (cont) ; Sep 20, 2007@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,206,224,254**;9/30/97;Build 109
  ;
  ; @authors - Alex Vazquez, Tim Sabat, Steve Gordon, Chris Flegel
  ; @date    - June 23, 2014
@@ -99,6 +99,8 @@ DOSEWRIT(HASH,BASE) ;
 CSTMFREQ(HASH,I,NODE,IEN) ;; build customized frequency message
  N MSG,LOW,LOWI,LOWS,LOWR,LOWSWAP,HIGH,HIGHI,HIGHS,HIGHR,HIGHSWAP
  Q:$D(@NODE@("FREQ","FREQUENCYCUSTOMMESSAGE",IEN))
+ S MSG=$G(@NODE@("FREQ","FREQUENCYMESSAGE",IEN))
+ I HASH(I,"frequencyStatusCode")'<3,MSG'="" S @NODE@("FREQ","FREQUENCYCUSTOMMESSAGE",IEN)=MSG Q
  S (LOWS,HIGHS)=0
  S MSG="Recommended frequency of "_$G(HASH(I,"drugName"))
  S LOW=$G(HASH(I,"frequencyLow"))

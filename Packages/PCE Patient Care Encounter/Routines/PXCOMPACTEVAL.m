@@ -1,6 +1,7 @@
-PXCOMPACTEVAL ;ALB/BPA,CMC - COMPACT Act evaluation / protocol entry routine;12/26/2023@10:58am
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**240**;Aug 12, 1996;Build 55
+PXCOMPACTEVAL ;ALB/BPA,CMC - COMPACT Act evaluation / protocol entry routine;1/8/2025@10:58am
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**240,241**;Aug 12, 1996;Build 31
  ; *240* COMPACT Act evaluation / protocol entry routine
+ ; *241* Remove K ZTQUEUED,ZTREQ to get to SAC standards
  ; Reference to $$ELIG^DGCOMPACTELIG in ICR #7462
  Q
  ;
@@ -130,7 +131,6 @@ EVALQUE ; RUNS IN BACKGROUND
  . I PXUPDTEOC=1 D CHNGEVAL(DFN,PXVSTIEN)
  ;
  I $D(ZTQUEUED) S ZTREQ="@"   ;SAC convention to keep taskman log clean.
- K ZTQUEUED,ZTREQ
  Q
  ;
 CHNGEVAL(DFN,PXVSTIEN) ;

@@ -1,5 +1,5 @@
 VPRDGMV ;SLC/MKB -- Vitals extract ;8/2/11  15:29
- ;;1.0;VIRTUAL PATIENT RECORD;**1,4**;Sep 01, 2011;Build 6
+ ;;1.0;VIRTUAL PATIENT RECORD;**1,4,36**;Sep 01, 2011;Build 23
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External References          DBIA#
@@ -30,16 +30,17 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's vitals
  S (IDT,CNT)=0 F  S IDT=$O(^UTILITY($J,"GMRVD",IDT)) Q:IDT<1  D  Q:CNT'<MAX
  . K VIT S VIT("taken")=9999999-IDT,CNT=CNT+1,N=0
  . S TYPE="" F  S TYPE=$O(^UTILITY($J,"GMRVD",IDT,TYPE)) Q:TYPE=""  D
- .. N NAME,VUID,RESULT,UNIT,MRES,MUNT,HIGH,LOW,BMI,QUAL
+ .. N NAME,VUID,RESULT,UNIT,UCUM,MRES,MUNT,HIGH,LOW,BMI,QUAL
  .. S IFN=+$O(^UTILITY($J,"GMRVD",IDT,TYPE,0)),X0=$G(^(IFN))
  .. S X=+$P(X0,U,3),NAME=$$FIELD^GMVGETVT(X,1)
  .. S VUID=$$FIELD^GMVGETVT(X,4),RESULT=$P(X0,U,8),UNIT=$$UNIT(TYPE)
+ .. S UCUM=$S(UNIT="F":"[degF]",UNIT="in":"[in_us]",UNIT="lb":"[lb_av]",UNIT="cmH2O":"cm[H2O]",1:UNIT)
  .. S (MRES,MUNT)="" I $L($P(X0,U,13)) D
  ... S X=$S(TYPE="T":"C",TYPE="HT":"cm",TYPE="WT":"kg",TYPE="CG":"cm",1:"")
  ... S MRES=$P(X0,U,13) S:$L(X) MUNT=X
  .. S X=$$RANGE(TYPE),(HIGH,LOW)="" I $L(X) S HIGH=$P(X,U),LOW=$P(X,U,2)
  .. S BMI=$S(TYPE="WT":$P(X0,U,14),1:"")
- .. S N=N+1,VIT("measurement",N)=IFN_U_VUID_U_NAME_U_RESULT_U_UNIT_U_MRES_U_MUNT_U_HIGH_U_LOW_U_BMI
+ .. S N=N+1,VIT("measurement",N)=IFN_U_VUID_U_NAME_U_RESULT_U_UNIT_U_UCUM_U_MRES_U_MUNT_U_HIGH_U_LOW_U_BMI
  .. S QUAL=$P(X0,U,17) I $L(QUAL) F I=1:1:$L(QUAL,";") D
  ... S X=$P(QUAL,";",I),Y=$$GETIEN^GMVGETQL(X,1)
  ... I Y S VIT("measurement",N,"qualifier",I)=X_U_$$FIELD^GMVGETQL(Y,3)
@@ -52,7 +53,7 @@ EN(DFN,BEG,END,MAX,IFN) ; -- find patient's vitals
  ;
 EN1(ID,VIT) ; -- return a vital/measurement in VIT("attribute")
  K VIT S ID=+$G(ID) Q:ID<1  ;invalid ien
- N VPRY,X0,DFN,TYPE,X,Y,NAME,VUID,RESULT,UNIT,MRES,MUNT,HIGH,LOW,I
+ N VPRY,X0,DFN,TYPE,X,Y,NAME,VUID,RESULT,UNIT,UCUM,MRES,MUNT,HIGH,LOW,I
  D GETREC^GMVUTL(.VPRY,ID,1) S X0=$G(VPRY(0))
  S DFN=+$P(X0,U,2) Q:DFN<1
  S TYPE=$$FIELD^GMVGETVT(+$P(X0,U,3),2)
@@ -60,13 +61,14 @@ EN1(ID,VIT) ; -- return a vital/measurement in VIT("attribute")
  S VIT("facility")=$$FAC^VPRD(X)
  S NAME=$$FIELD^GMVGETVT($P(X0,U,3),1),VUID=$$FIELD^GMVGETVT($P(X0,U,3),4)
  S X=$P(X0,U,8),RESULT=X,UNIT=$$UNIT(TYPE),(MRES,MUNT)=""
+ S UCUM=$S(UNIT="F":"[degF]",UNIT="in":"[in_us]",UNIT="lb":"[lb_av]",UNIT="cmH2O":"cm[H2O]",1:UNIT)
  I TYPE="T"  S MUNT="C",MRES=$J(X-32*5/9,0,1) ;EN1^GMRVUTL
  I TYPE="HT" S MUNT="cm",MRES=$J(2.54*X,0,2)  ;EN2^GMRVUTL
  I TYPE="WT" S MUNT="kg",MRES=$J(X/2.2,0,2)   ;EN3^GMRVUTL
  I TYPE="CG" S MUNT="cm",MRES=$J(2.54*X,0,2)
  S VIT("taken")=+X0,VIT("entered")=+$P(X0,U,4),(HIGH,LOW)=""
  S X=$$RANGE(TYPE) I $L(X) S HIGH=$P(X,U),LOW=$P(X,U,2)
- S VIT("measurement",1)=ID_U_VUID_U_NAME_U_RESULT_U_UNIT_U_MRES_U_MUNT_U_HIGH_U_LOW
+ S VIT("measurement",1)=ID_U_VUID_U_NAME_U_RESULT_U_UNIT_U_UCUM_U_MRES_U_MUNT_U_HIGH_U_LOW
  F I=1:1:$L(VPRY(5),U) S X=$P(VPRY(5),U,I),VIT("measurement",1,"qualifier",I)=$$FIELD^GMVGETQL(X,1)_U_$$FIELD^GMVGETQL(X,3) ;name^VUID
  I $G(VPRY(2)) D  ;entered in error/reasons
  . S X=$P(VPRY(2),U,3)
@@ -74,16 +76,16 @@ EN1(ID,VIT) ; -- return a vital/measurement in VIT("attribute")
  Q
  ;
 UNIT(X) ; -- Return unit for vital type X
- N Y S Y=""
- I TYPE="BP"  S Y="mm[Hg]"
- I TYPE="T"   S Y="F"
- I TYPE="R"   S Y="/min"
- I TYPE="P"   S Y="/min"
- I TYPE="HT"  S Y="in"
- I TYPE="WT"  S Y="lb"
- I TYPE="CVP" S Y="cmH2O"
- I TYPE="CG"  S Y="in"
- I TYPE="PO2" S Y="%"
+ N Y S Y="",X=$G(X)
+ I X="BP"  S Y="mm[Hg]"
+ I X="T"   S Y="F"
+ I X="R"   S Y="/min"
+ I X="P"   S Y="/min"
+ I X="HT"  S Y="in"
+ I X="WT"  S Y="lb"
+ I X="CVP" S Y="cmH2O"
+ I X="CG"  S Y="in"
+ I X="PO2" S Y="%"
  Q Y
  ;
 USER(X) ; -- Return ien^name for person# X
@@ -123,7 +125,7 @@ XML(VIT) ; -- Return vital measurement as XML in @VPR@(#)
  S ATT="" F  S ATT=$O(VIT(ATT)) Q:ATT=""  D
  . I ATT="measurement" D  Q
  .. D ADD("<measurements>")
- .. S NAMES="id^vuid^name^value^units^metricValue^metricUnits^high^low^bmi^Z"
+ .. S NAMES="id^vuid^name^value^units^ucumUnits^metricValue^metricUnits^high^low^bmi^Z"
  .. S I=0 F  S I=$O(VIT(ATT,I)) Q:I<1  D
  ... S X=$G(VIT(ATT,I)),Y="<"_ATT_" "
  ... F P=1:1 S TAG=$P(NAMES,U,P) Q:TAG="Z"  I $L($P(X,U,P)) S Y=Y_TAG_"='"_$$ESC^VPRD($P(X,U,P))_"' "

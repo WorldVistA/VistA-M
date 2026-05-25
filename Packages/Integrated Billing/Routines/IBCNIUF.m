@@ -1,5 +1,5 @@
 IBCNIUF ;AITC/TAZ - IIU FILER ;01/14/21 2:23p.m.
- ;;2.0;INTEGRATED BILLING;**687**;21-MAR-94;Build 88
+ ;;2.0;INTEGRATED BILLING;**687,822**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;IA/ICR #2990 and #10112 Used in tag TFL
@@ -70,12 +70,19 @@ LOCQ ;Exit Local processing
  Q
  ;====================================
 OKTOFILE() ; Confirm that we can/should send to remote facilities
- N OK
+ N IBBINSEL,IBVU,IBF,OK  ;IB*822/DTG added new var's IBBINSEL,IBVU,IBF
  S OK=0
  K SITES  ;array of sites that will receive the verified active policy
  ;
+ ;IB*822/DTG Check if the verified user is AUTOINS, if so do not file
+ S IBBINSEL=+$$FIND1^DIC(200,,"MX","IB,AUTOINS FILEUPDATE")  ; IB*822/DTG IB Selected Insurances User
+ S IBF=0 I IBBINSEL D  I IBF G OKTOFILEQ ; was verified by AUTOINS not ok
+ . I IENS S IBVU=$$GET1^DIQ(2.312,IENS,1.04,"I") I IBVU=IBBINSEL S IBF=1
+ ;
  ;Check Insurance Co
- I "^VACAA-WNR^CAMPLEJEUNE-WNR^IVF-WNR^VHADIRECTIVE1029WNR"[$TR($$GET1^DIQ(36,INSCOIEN_",",.01,"E")," ","") G OKTOFILEQ
+ ;IB*822/DTG correct CAMP LEJEUNE (WNR)
+ ;I "^VACAA-WNR^CAMPLEJEUNE-WNR^IVF-WNR^VHADIRECTIVE1029WNR"[$TR($$GET1^DIQ(36,INSCOIEN_",",.01,"E")," ","") G OKTOFILEQ
+ I "^VACAA-WNR^CAMPLEJEUNE(WNR)^IVF-WNR^VHADIRECTIVE1029WNR"[$TR($$GET1^DIQ(36,INSCOIEN_",",.01,"E")," ","") G OKTOFILEQ
  ;
  ;Check Payer
  I '$$PYRAPP^IBCNEUT5("IIU",PIEN) G OKTOFILEQ ;Payer is not IIU

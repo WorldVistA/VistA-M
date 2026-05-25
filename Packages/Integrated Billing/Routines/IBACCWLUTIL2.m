@@ -1,0 +1,400 @@
+IBACCWLUTIL2 ;EDE/TPF - ACC (Automated Community Care) Encounters utility APIs (Cont.) ; 12-SEP-2023
+ ;;2.0;INTEGRATED BILLING;**770**;21-MAR-2024;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ Q
+ ;
+ ;CALLED FROM PULLLIST^IBACCWL1
+ADDFILTERS(SCREEN,IBSORTFIL) ;EP - ;ADD USER SCREENs TO BASIC SCREENS
+ ;
+ ;INPUT
+ ;SCREEN    = BASIC DIC("S")  WORKLIST SCREEN
+ ;I $P(^(0),U,16)'=2,($P(^(0),U,16)'=3) I $$DAYSSCREEN^IBACCWLUTIL(DT,$P(^(0),U),0)
+ ;
+ ;IBSORTFIL = SORT FILTERS ASKED FOR FILTERING EACH SORT USER WISHES TO SORT BY
+ ;IBSORTFIL(1,"P")=" I $$GET1^DIQ(364.9,Y_"","",""PRIMARY INS"",""I"")=7170300"
+ ;
+ ;OUTPUT
+ ;SCREEN UDATED TO INCLUDE THE BASIC SORTSCREEN PLUS ALL THE USER SORT FILTERS
+ ;
+ ;SORTTYP = MATCHES THE SORT MNEUMONIC THE USER CHOSE AT THE SORT PROMPTS, E.G.  P=PAYER
+ ;
+ N SORTTYP,LEVEL
+ S LEVEL=0
+ F  S LEVEL=$O(IBSORTFIL(LEVEL)) Q:'LEVEL  D
+ .S SORTTYP=""
+ .F  S SORTTYP=$O(IBSORTFIL(LEVEL,SORTTYP)) Q:SORTTYP=""  D
+ ..S SCREEN=SCREEN_IBSORTFIL(LEVEL,SORTTYP)
+ ;
+ Q
+ ;
+ ;TPF;IB*2*770v18;EBILL-4631;FOR "FILTERS"
+ ;CALLED BY IBSORTOR^IBACCWLSORT1
+SORTFILTER(FILE,FIELDNAME) ;EP
+ ;
+ N FIELDNUM,RETURNCODE,SORTTYPE,TAGCALL
+ ;
+ I FIELDNAME="REASONS" D
+ .S FIELDNAME="REASONS NOT AUTOBILLED"
+ ;
+ I FIELDNAME="PATIENT NAME" D
+ .S FIELDNAME="PATIENT LAST NAME"
+ ;
+ S SORTTYPE=$TR($$GET1^DID(FILE,FIELDNAME,"","TYPE")," ")
+ ;
+ ;POINTER FOR FIELD #5 REASONS NOT AUTOBILLED, #.17 PRIMARY INSURANCE  (PAYER)
+ ;
+ I SORTTYPE="COMPUTED",(FIELD="DAYS ON GROUP WORKLIST") S SORTTYPE="NUMERIC"
+ ;
+ ;S FIELDNUM=$O(^DD(364.9,"B",FIELDNAME,""))
+ S FIELDNUM=$$FLDNUM^DILFD(364.9,FIELDNAME)  ;MJL fix
+ ;
+ ;THIS SECTION FOR SPECIAL PROMPTS FOR NON STANDARD FIELD TYPE PROMPTS
+ I (FIELDNAME="PATIENT LAST NAME") S SORTTYPE="STRRANGE"
+ I FIELDNAME="PATIENT SSN" S SORTTYPE="LASTSSN"
+ ;
+ I FIELDNAME="PRIMARY DX" S SORTTYPE="PRIMDX"   ;TPF;IB*2*770v38;EBILL-5505  I AM SETTING UP A SPECIAL LOOKUP FOR DX AND BYPASSING THE GENERIC PTR TAG BECAUSE IT WAS GETTING MESSY AND NOT REALLY GENERIC
+ ;
+ S (TAGCALL,SORTTYPE)=$TR(SORTTYPE," /")
+ S TAGCALL=SORTTYPE_"("""_FILE_""","""_FIELDNUM_""","""_FIELDNAME_""",.RETURNCODE)"
+ D @TAGCALL
+ ;
+ Q RETURNCODE
+ ;
+STRRANGE(FILE,FIELDNUM,FIELDNAME,RETURNCODE) ;EP - STRING RANGE - THIS IS THE FUNTIONALITY ASKED BY THE USER
+ ;
+ I $G(FILE)=""!(FIELD)=""!(FIELDNAME)="" S RETURNCODE="Invalid Parameters!" Q
+ ;
+ N DIR,DUOUT,DIROUT,DTOUT,GETFIELDCODE,FROMVALUE,LOGIC,TOVALUE
+ ;
+ S GETFIELDCODE="$$GET1^DIQ("_FILE_",Y_"","","""_FIELDNAME_""",""E"")"
+ ;
+ W !!,"For field "_$G(FIELDNAME)_", you may enter one or several characters"
+ W !,"to filter by or a range separated by a '-' to filter by a range alphabetically."
+ W !!
+ ;
+REDOSR ;REDO RANGE FROM/TO ASK
+ ;
+ S DIR(0)="FO^1:40^K:X'?.AP.1""-"".APA X"
+ S DIR("?",1)="You may enter one or several characters to search for"
+ S DIR("?",2)="or a range separated by a '-'"
+ S DIR("?",3)=" "
+ S DIR("?",4)="For example:"
+ S DIR("?",5)="Enter SMITH to filter for Patient Last Names beginning with SMITH."
+ S DIR("?",6)="Enter FR to filter for Patient Last Names beginning with FR."
+ S DIR("?",7)="or enter SMITH-SMOTH to filter for Patient Last Names"
+ S DIR("?")="beginning with SMITH and ending with SMOTHER, e.g. SMITH-SMOTHER"
+ ;
+ S DIR("A")=$$TITLE^XLFSTR(FIELDNAME)_" begins with"
+ D ^DIR
+ I X=U S VALMQUIT=1  ;TPF;IB*2*770v27;EBILL-5297
+ I $D(DUOUT)!$D(DTOUT)!(X="") S RETURNCODE="" Q
+ ;
+ I Y[("-") D  Q
+ .S FROMVALUE=$P(Y,"-")
+ .S TOVALUE=$P(Y,"-",2)
+ .I TOVALUE=FROMVALUE!(FROMVALUE]TOVALUE) W !!,"Please enter a valid range of alphanumeric strings." G REDOSR
+ .; 
+ .S RETURNCODE="I "_GETFIELDCODE_"]"""_FROMVALUE_"""&("_GETFIELDCODE_"']"""_TOVALUE_""")!(($E("_GETFIELDCODE_",1,$L("""_$G(FROMVALUE)_"""))="""_$G(FROMVALUE)_""")!($E("_GETFIELDCODE_",1,$L("""_$G(TOVALUE)_"""))="""_$G(TOVALUE)_"""))"
+ .S LOGIC="For field "_$G(FIELDNAME)_", the values that sort aplhabetically between '"_$G(FROMVALUE)_"' and '"_$G(TOVALUE)_"' will be displayed."
+ .S RETURNCODE=RETURNCODE_"|"_LOGIC
+ E  D
+ .S FROMVALUE=Y
+ .S RETURNCODE="I $E("_GETFIELDCODE_",1,$L("""_$G(FROMVALUE)_"""))="""_$G(FROMVALUE)_""""
+ .S LOGIC="For field "_$G(FIELDNAME)_", the values that sort aplhabetically after '"_$G(FROMVALUE)_"' will be displayed."
+ .S RETURNCODE=RETURNCODE_"|"_LOGIC
+ ;
+ Q
+ ;
+ ;D NUMERIC^IBACCWLUTIL2(364.9,.27,"AMOUNT PAID",.RETURN)
+NUMERIC(FILE,FIELDNUM,FIELDNAME,RETURNCODE) ;EP - DO NUMERIC SUBSORT PROMPTS
+ ;
+ I $G(FILE)=""!(FIELD)=""!(FIELDNAME)="" S RETURNCODE="Invalid Parameters!" Q
+ ;
+ N DIR,DIROUT,DUOUT,DTOUT,FROM,TO
+ ;
+ I FIELDNAME="PAID AMOUNT" S FIELDNAME=$$TITLE^XLFSTR("AMOUNT PAID")
+ ;
+ S DIR("A")="Choose "_$G(FIELDNAME)_" filter type"
+ S DIR("?")="Enter a filter type to perform."
+ S DIR("??")="Enter the filter type you wish to perform on the data."
+ S DIR(0)="SO^N:No Filter;=:Equal to;>:Greater than;<:Less than;>=:Greater than or Equal to;<=:Less than or equal to;R:Range"
+ S DIR("B")="N"
+ D ^DIR
+ I X=U S VALMQUIT=1  ;TPF;IB*2*770v27;EBILL-5297
+ ;
+ I $D(DIROUT)!$D(DUOUT)!$D(DTOUT)!(X="N") S RETURNCODE="" Q
+ ;
+ I Y=">" S RETURNCODE=$$GREATERTHAN^IBACCWLUTIL3(FILE,FIELDNUM,FIELDNAME) Q
+ I Y=">=" S RETURNCODE=$$GREATTHANEQUALTO^IBACCWLUTIL3(FILE,FIELDNUM,FIELDNAME) Q
+ I Y="<" S RETURNCODE=$$LESSTHAN^IBACCWLUTIL3(FILE,FIELDNUM,FIELDNAME) Q
+ I Y="<=" S RETURNCODE=$$LESSTHANEQUALTO^IBACCWLUTIL3(FILE,FIELDNUM,FIELDNAME) Q
+ I Y="=" S RETURNCODE=$$EQUALTO^IBACCWLUTIL3(FILE,FIELDNUM,FIELDNAME) Q
+ ;
+ S RETURNCODE=$$NUMRANGE^IBACCWLUTIL3(FILE,FIELDNUM,FIELDNAME)
+ ;
+ Q
+ ;
+POINTER(FILE,FIELDNUM,FIELDNAME,RETURNCODE) ;EP ; POINTER NEEDS A LOOKUP TO ALLOW
+ ;
+ I $G(FILE)=""!(FIELD)=""!(FIELDNAME)="" S RETURNCODE="Invalid Parameters!" Q
+ ;
+ N X,Y
+ N DIR,DUOUT,DIROUT,DTOUT,ERRORDESC,FROMVALUENAME,GETFIELDCODE,LOGIC,PTRFILE,PTRFILE,ROOT,VALUE,VALUENAME,X,Y  ;TPF XINDEX
+ N TOVALUE,TOVALUENAME,SUBILE  ;TPF XINDEX
+ ;
+ I FIELDNAME="REASONS NOT AUTOBILLED" D
+ .S FIELDNAME="REASON NOT AUTOBILLED"
+ .S PTRFILE=364.91
+ .S SUBFILE=364.95  ;ONLY DIFFERENT THAN FILE IF POINTER IS A MULTIPLE
+ .S DIR("A")="Display encounters that contain error code" ;EBILL-5846;v39
+ .S DIR("?")="Enter the Error Code or partial error code description to display"
+ .;
+ .W !!,"For Error Code Text, enter the numeric Error Code or partial Error Code"       ;TPF;IB*2*770v25;EBILL-5033
+ .W !,"Description you wish to include in your worklist. All encounters displayed"  ;TPF;IB*2*770v25;EBILL-5033
+ .W !,"will contain the error code selected, even if additional error codes"  ;EBILL-5846;v39
+ .W !,"are present. You may need to expand the entry to see all codes."  ;EBILL-5846;v39
+ ;
+ I FIELDNAME="PRIMARY INS" D
+ .S PTRFILE=36
+ .S SUBFILE=364.9
+ .S DIR("A")="Enter the Payer FROM Filter"
+ .S DIR("?")="Enter the Payer FROM Filter"
+ .W !!,"For field "_$G(FIELDNAME)_", enter the first Payer you wish to include in your worklist alphabetically."
+ ;
+ S GETFIELDCODE="$$GET1^DIQ("_SUBFILE_",Y_"","","""_FIELDNAME_""",""E"")"
+ ;
+ W !
+ S ROOT=$$ROOT^DILFD(PTRFILE)
+ S DIR(0)="PO"_ROOT_":QEM"
+ D ^DIR
+ I X=U S VALMQUIT=1  ;TPF;IB*2*770v27;EBILL-5297
+ I $D(DUOUT)!$D(DTOUT)!(X="") S RETURNCODE="" Q
+ ;
+ S FROMVALUE=$P(Y,U)
+ S FROMVALUENAME=$P(Y,U,2)
+ I FIELDNAME="REASON NOT AUTOBILLED" D
+ .S FROMVALUENAME=$$GET1^DIQ(PTRFILE,+Y_",",.02,"E")
+ ;
+ I FIELDNAME="PRIMARY INS" D
+ .W !!,"For field "_$G(FIELDNAME)_", enter the last Payer you wish to include in your worklist."  ;TPF;IB*2*770v36;EBILL-5775
+ .S ROOT=$$ROOT^DILFD(PTRFILE)
+ .S DIR("A")="Enter the Payer TO Filter"
+ .S DIR("?")="Enter the Payer TO Filter"
+ .S DIR(0)="PO"_ROOT_":QEM"
+ .D ^DIR
+ .I X=U S VALMQUIT=1 ;TPF;IB*2*770v27;EBILL-5297
+ .I $D(DUOUT)!$D(DTOUT)!(X="") S RETURNCODE="" Q
+ .S TOVALUE=$P(Y,U)
+ .S TOVALUENAME=$P(Y,U,2)
+ ;
+ ;LOOK FOR ENTRIES FOLLOWING FROMVALUE
+ I FIELDNAME="REASON NOT AUTOBILLED" D
+ .S ERRORDESC=$$GET1^DIQ(364.91,+Y_",","DESCRIPTION","E")
+ .S RETURNCODE="I $$ERRORCODE^IBACCWLUTIL2(Y,"""_ERRORDESC_""")"
+ ;
+ E  I FROMVALUE,($G(TOVALUE)="") S RETURNCODE="I "_GETFIELDCODE_"]"""_FROMVALUENAME_"""!("_GETFIELDCODE_"="""_FROMVALUENAME_""")"
+ ;
+ ;LOOK FOR ALL ENTRIES THAT EQUAL FROMVALUE
+ I FROMVALUE=$G(TOVALUE) S RETURNCODE="I "_GETFIELDCODE_"="""_FROMVALUENAME_""""
+ ;
+ ;LOOK FOR ENTRIES THAT FOLLOW FROMVALUE AND DO NOT FOLLOW TOVALUE
+ I FROMVALUE,$G(TOVALUE),(FROMVALUE'=$G(TOVALUE)) D
+ .S FROMVALUENAME=FROMVALUENAME
+ .S TOVALUENAME=TOVALUENAME
+ .S RETURNCODE="I "_GETFIELDCODE_"]"""_FROMVALUENAME_"""&("_GETFIELDCODE_"']"""_TOVALUENAME_""")!("_GETFIELDCODE_"="""_FROMVALUENAME_""")"
+ ;
+ I FIELDNAME="PRIMARY INS" D
+ .S LOGIC="For field "_$G(FIELDNAME)_", you entered the Payer "_$G(FROMVALUENAME)_" to include in your worklist."
+ ;
+ I FIELDNAME="REASON NOT AUTOBILLED" D
+ .S LOGIC="For field "_$G(FIELDNAME)_", you entered the Reason not Autobilled Code "_$G(FROMVALUENAME)_" to include in your worklist."
+ ;
+ S RETURNCODE=RETURNCODE_"|"_LOGIC
+ ;
+ Q
+ ;
+ERRORCODE(IBENCIFN,ERRORDESC) ;EP - LOOK FOR ERRO CODE
+ ;
+ N FOUND,REASDESC,REASIEN,REASIENS,REASPTR  ;TPF XINDEX
+ ;
+ S FOUND=0
+ S REASIEN=0
+ F  S REASIEN=$O(^IBA(364.9,IBENCIFN,5,REASIEN)) Q:'REASIEN!(FOUND)  D
+ .S REASIENS=REASIEN_","_IBENCIFN_","
+ .S REASPTR=$$GET1^DIQ(364.95,REASIENS,.01,"I")
+ .S REASDESC=$$GET1^DIQ(364.91,REASPTR_",",.02,"E")
+ .I REASDESC[ERRORDESC S FOUND=1
+ ;
+ Q FOUND
+ ;
+ ;K RETURNCODE D DATETIME^IBACCWLUTIL2(364.9,.12,"SERVICE DATE",.RETURNCODE)
+ ;TPF;IB*2*770v25;BEGIN EBILL-4705
+DATETIME(FILE,FIELDNUM,FIELDNAME,RETURNCODE) ;EP - DO DATE FILTER PROMPTS
+ ;
+ N DIR,DIROUT,DUOUT,DTOUT,GETFIELDCODE,FROMDT,NEWLASTDAY,TODT,TYPE
+ ;
+ S GETFIELDCODE="$$GET1^DIQ("_FILE_",Y_"","","""_FIELDNAME_""",""I"")"
+ ;
+ W !
+ASKFRDT ;ASK STARTING DATE AGAIN
+ K DIR,DIROUT,DUOUT,DTOUT
+ S DIR(0)="DO"
+ S DIR("A")="Include Service Dates from this date"
+ I '$D(FROMDT) S DIR("B")=$$FMTE^XLFDT(DT,"2ZD")
+ E  S DIR("B")=$$FMTE^XLFDT(FROMDT,"2ZD")
+ S DIR("?",1)="If you do not wish to enter a Service Date filter enter ^ to exit."
+ S DIR("?",2)=" "
+ S DIR("?",3)="Examples of Valid Dates:"
+ S DIR("?",4)="  JAN 20 1957 or 20 JAN 57 or 1/20/57 or 012057  (omitting punctuation)"
+ S DIR("?",5)="  T   (for TODAY),  T+1 (for TOMORROW),  T+2,  T+7, etc."
+ S DIR("?",6)="  T-1 (for YESTERDAY),  T-3W (for 3 WEEKS AGO), etc."
+ S DIR("?",7)="If the year is omitted, the computer uses CURRENT YEAR."
+ S DIR("?")="A 2-digit year means no more than 20 years in the future, or 80 years in the past."
+ D ^DIR
+ I X=U S VALMQUIT=1  ;TPF;IB*2*770v27;EBILL-5297
+ I $D(DIROUT)!$D(DUOUT)!$D(DTOUT)!(X="") S RETURNCODE="" Q
+ S FROMDT=Y
+ I $E(FROMDT,6,7)="00" S $E(FROMDT,6,7)="01"
+ W "  "_$$FMTE^XLFDT($G(FROMDT),"2ZD")
+ ;
+ ;ASK ENDING DATE
+ K DIR,DIROUT,DUOUT,DTOUT
+ S DIR(0)="DO"
+ S DIR("A")="and up to this Service Date date"
+ ;
+ S TODT=FROMDT
+ I $E(FROMDT,6,7)="01" D
+ .S $E(TODT,6,7)=$$DOM^IBACCWLUTIL3(TODT)
+ ;
+ S DIR("B")=$$FMTE^XLFDT(TODT,"2ZD")
+ S DIR("?",1)="If you do not wish to enter a ending Service Date enter ^ to return to the previous prompt."
+ S DIR("?",2)=" "
+ S DIR("?",3)="Examples of Valid Dates:"
+ S DIR("?",4)="  JAN 20 1957 or 20 JAN 57 or 1/20/57 or 012057  (omitting punctuation)"
+ S DIR("?",5)="  T   (for TODAY),  T+1 (for TOMORROW),  T+2,  T+7, etc."
+ S DIR("?",6)="  T-1 (for YESTERDAY),  T-3W (for 3 WEEKS AGO), etc."
+ S DIR("?",7)="If the year is omitted, the computer uses CURRENT YEAR."
+ S DIR("?")="A 2-digit year means no more than 20 years in the future, or 80 years in the past."
+ D ^DIR
+ I X=U S VALMQUIT=1  ;TPF;IB*2*770v27;EBILL-5297
+ I $D(DIROUT)!$D(DUOUT)!$D(DTOUT)!(X="") G ASKFRDT
+ S TODT=Y
+ ;
+ I $E(TODT,6,7)="00" S $E(TODT,6,7)=$$DOM^IBACCWLUTIL3(TODT)
+ W "  "_$$FMTE^XLFDT($G(TODT),"2ZD")
+ ;
+ I FROMDT>TODT D  G ASKFRDT
+ .W !!,"You have entered an invalid date range."
+ .W !,"The start date should be ealier than the end date."
+ .W !
+ .N DIR,DIROUT,DUOUT,DTOUT
+ .S DIR(0)="EO"
+ .D ^DIR
+ ;
+ S RETURNCODE="I "_GETFIELDCODE_">="_FROMDT_",("_GETFIELDCODE_"<="_TODT_")"
+ ;
+ S RETURNCODE=RETURNCODE  ;_"|"_$G(LOGIC)
+ ;
+ Q
+ ;TPF;IB*2*770v25;END EBILL-4705
+ ;
+ ;D LASTSSN^IBACCWLUTIL2(364.9,.29,"PATIENT LAST NAME",.RETURN)
+LASTSSN(FILE,FIELDNUM,FIELDNAME,RETURNCODE) ;EP - DO ALPHA FILTER PROMPTS
+ ;
+ I $G(FILE)=""!(FIELD)=""!(FIELDNAME)="" S RETURNCODE="Invalid Parameters!" Q
+ ;
+ N DIR,DIROUT,DUOUT,DTOUT,GETFIELDCODE,LOGIC,TYPE,VALUE,X,Y,SSNTEXT
+ ;
+ S GETFIELDCODE="$$GET1^DIQ("_FILE_",Y_"","","""_FIELDNAME_""",""E"")"
+ ;
+ S SSNTEXT=$S(SESSIONKEY="IBACCPTF":", enter the full SSN",1:", enter the last four digits of the SSN")  ;MJL;IB*2*802v1;EBILL-5932
+ W !!,"For field "_$G(FIELDNAME)_SSNTEXT
+ W !,"you wish to include in your worklist."
+ ;
+ASKSSN ;EP ASK SSN AGAIN
+ ;
+ W !
+ N DIR
+ I SESSIONKEY="IBACCPTF" D   ;MJL;IB*2*802v1;EBILL-5932
+ . S DIR("A")="Enter the full SSN or 'N' for no filter"
+ . S DIE("?")="Enter the full SSN or 'N' for no filter"
+ . S DIR("B")="N"
+ . S DIR(0)="FO^1:9"
+ . D ^DIR
+ I SESSIONKEY'="IBACCPTF" D  ;MJL;IB*2*802v1;EBILL-5932
+ . S DIR("A")="Enter last four SSN or 'N' for no filter"
+ . S DIE("?")="Enter last four SSN or 'N' for no filter"
+ . S DIR("B")="N"
+ . S DIR(0)="FO^1:4"
+ . D ^DIR
+ I X=U S VALMQUIT=1  ;TPF;IB*2*770v27;EBILL-5297
+ I $D(DIROUT)!$D(DUOUT)!$D(DTOUT)!(X="N") S RETURNCODE="" Q
+ ;
+ I SESSIONKEY="IBACCPTF",X'?9N W !!,"SSN must be nine numerals!" G ASKSSN
+ I SESSIONKEY'="IBACCPTF",X'?4N W !!,"Last 4 SSN must be four numerals!" G ASKSSN
+ ;
+ S VALUE=$P(Y,U)
+ ;
+ I VALUE="" S RETURNCODE="" Q
+ ;
+ S GETFIELDCODE="$E("_GETFIELDCODE_",$L("_GETFIELDCODE_")-$L("""_VALUE_""")+1,$L("_GETFIELDCODE_"))"
+ S RETURNCODE="I "_GETFIELDCODE_"="""_VALUE_""""
+ ;
+ S:SESSIONKEY'="IBACCPTF" LOGIC="For field "_$G(FIELDNAME)_", you entered the last four SSN of "_$G(VALUE)_" to be included on your worklist."
+ S:SESSIONKEY="IBACCPTF" LOGIC="For field "_$G(FIELDNAME)_", you entered the SSN of "_$G(VALUE)_" to be included on your worklist."
+ S RETURNCODE=RETURNCODE_"|"_LOGIC
+ ;
+ Q
+ ;
+ ;THIS IS A MORE POWERFULL LOOKUP THAN TAG STRANGE BUT NOT WHAT THE USER ASKED FOR
+ ;FREE TEXT TYPE FIELDS WILL DEFAULT TO THIS UNLESS OTHERWISE DIVERTED IN TAG SORTFILTER
+ ;D FREETEXT^IBACCWLUTIL2(364.9,.29,"PATIENT LAST NAME",.RETURN)
+FREETEXT(FILE,FIELDNUM,FIELDNAME,RETURNCODE) ;EP - DO ALPHA FILTER PROMPTS
+ ;
+ I $G(FILE)=""!(FIELD)=""!(FIELDNAME)="" S RETURNCODE="Invalid Parameters!" Q
+ ;
+ N DIR,DIROUT,DUOUT,DTOUT,GETFIELDCODE,LENGTH,LOGIC,TARGET,TYPE,X,Y
+ ;
+ S GETFIELDCODE="$$GET1^DIQ("_FILE_",Y_"","","""_FIELDNAME_""",""E"")"
+ ;
+ W !!,"For field "_$G(FIELDNAME)_", enter a "_$G(FIELDNAME)_" or partial "_$G(FIELDNAME)
+ W !,"you wish to include in your worklist."
+ ;
+ S DIR("A")="Choose a filter type"
+ S DIR(0)="SO^N:No Filter;B:Begins with;E:Ends with;C:Contains"
+ S DIR("B")="N"
+ D ^DIR
+ I X=U S VALMQUIT=1  ;TPF;IB*2*770v27;EBILL-5297
+ I $D(DIROUT)!$D(DUOUT)!$D(DTOUT)!(X="N") S RETURNCODE="" Q
+ ;
+ S TYPE=$P(Y,U)
+ ;
+ K DIR
+ S DIR("A")="Choose filter value"
+ S DIR("?")="Enter a value to filter."
+ S DIR(0)="FO^1:20"
+ D ^DIR
+ I $D(DIROUT)!$D(DUOUT)!$D(DTOUT)!(X="") S RETURNCODE="" Q
+ ;
+ S TARGET=$P(Y,U)
+ S LENGTH=$L(TARGET)
+ ;
+ I TYPE="B" S GETFIELDCODE="$E("_GETFIELDCODE_",1,"_LENGTH_")" S RETURNCODE="I "_GETFIELDCODE_"="""_TARGET_"""" Q
+ I TYPE="E" D  Q
+ .S GETFIELDCODE="$E("_GETFIELDCODE_",$L("_GETFIELDCODE_")-$L("""_TARGET_""")+1,$L("_GETFIELDCODE_"))"
+ .S RETURNCODE="I "_GETFIELDCODE_"="""_TARGET_""""
+ ;
+ I TYPE="C" D
+ .S RETURNCODE="I "_GETFIELDCODE_"["""_TARGET_""""
+ ;
+ S LOGIC="For field "_$G(FIELDNAME)_", you entered a "_$G(FIELDNAME)_" or partial "_$G(FIELDNAME)_" value of "_$G(TARGET)_" to be included in your worklist."
+ S RETURNCODE=RETURNCODE_"|"_LOGIC
+ ;
+ Q
+ ;
+PRIMDX(FILE,FIELDNUM,FIELDNAME,RETURNCODE) ;EP - PROMPT FOR PRIM DX FILTERS ;TPF;IB*2*770v44;EBILL-5505,EBILL-5941
+ ;
+ D PRIMDXTEXT^IBACCWLUTIL5(FILE,FIELDNUM,FIELDNAME,.RETURNCODE)  ;TPF;IB*2*770v44*EBILL-5941
+ ;
+ Q

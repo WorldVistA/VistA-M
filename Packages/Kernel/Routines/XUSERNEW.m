@@ -1,5 +1,5 @@
-XUSERNEW ;SF/RWF - ADD NEW USER ;5/13/08  17:19
- ;;8.0;KERNEL;**16,49,134,208,157,313,351,419,467,480**;Jul 10, 1995;Build 0
+XUSERNEW ;SF/RWF - ADD NEW USER ;11/1/22  14:04
+ ;;8.0;KERNEL;**16,49,134,208,157,313,351,419,467,480,799**;Jul 10, 1995;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;In the call to NEW^XM for new users the variable XMZ must be undef.
  ;on a reactivation XMZ should be set to the current max message number.
@@ -61,9 +61,12 @@ ADD(NP1,KEYS,NONC) ;Common point to do DIC call for adding a new person.
  ;KEYS is a list of Keys to give the new person
  N DA,DR,DLAYGO,XUITNAME,XUS1,XUS2,DIC,DIE,DIK,NP2,Y
  I $G(^XTV(8989.3,1,"NPI"))]"" X ^("NPI") S NP2=DR
- S:'$D(NP2) NP2="1;"_$S($D(^XUSEC("XUSPF200",DUZ)):9,1:"9R~")_";4;41.99"
- ;";41.99" is for adding National Provider Identifier
- S DIC="^VA(200,",DIC(0)="AELMQ",DLAYGO=200,DIC("A")="Enter NEW PERSON's name (Family,Given Middle Suffix): ",DIC("DR")="",XUITNAME=1
+ S:'$D(NP2) NP2="1;"_$S($D(^XUSEC("XUSPF200",DUZ)):9,1:"9R~")_";4;41.99" ;";41.99" is for adding National Provider Identifier
+ ;
+ I $S($P($G(XQY0),"^",1)="XUSERNEW":1,$P($G(XQY0),"^",1)="XUSERBLK":1,1:0) S XUS1=$$ENTERPRISE^XUIAMPR("ADD",$G(XUTERMDT)) I XUS1'=0 Q XUS1
+ ;iam enterprise new person search and add to VistA ;**663 - STORY 783347 (dri) **799 VAMPI-22625
+ ;
+ W ! S DIC="^VA(200,",DIC(0)="AELMQ",DLAYGO=200,DIC("A")="Enter NEW PERSON's name (Family,Given Middle Suffix): ",DIC("DR")="",XUITNAME=1
  D ^DIC S XUS1=Y G AX:(Y'>0)!($P(Y,U,3)'>0)
  S DA=+$G(^VA(200,+XUS1,3.1)) I DA,'$G(NONC) D
  . W !,"Name components."
@@ -102,7 +105,7 @@ REPRINT ;Reprint letter
  ;
 LETTER(XUN,ASK) ;Print access letter
  Q:'$G(XUN)
- N DIWF,FR,TO,BY,DIR,XUTEXT
+ N DIWF,FR,TO,BY,DIR,XUTEXT,XUU,XUU2
  S XUTEXT=$$GET^XUPARAM("XUSER COMPUTER ACCOUNT","N"),XUTEXT=$O(^DIC(9.2,"B",XUTEXT,0))
  S DIR(0)="Y",DIR("A")="Print User Account Access Letter"
  I XUTEXT>0 S Y=1 D:$G(ASK) ^DIR I Y=1 D

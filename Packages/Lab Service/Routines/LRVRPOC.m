@@ -1,5 +1,5 @@
-LRVRPOC ;DALOI/JMC - POINT OF CARE VERIFICATION; Sept 06, 2024@14:50
- ;;5.2;LAB SERVICE;**290,350,468,454,568,575**;Sep 27, 1994;Build 1
+LRVRPOC ;DALOI/JMC - POINT OF CARE VERIFICATION; DEC 13, 2024@11:21
+ ;;5.2;LAB SERVICE;**290,350,468,454,568,575,580**;Sep 27, 1994;Build 1
  ;
  ;Reference to DIVSET^XUSRB2 in ICR #4055
  ;Reference to ADM^VADPT2 in by ICR #325
@@ -169,7 +169,10 @@ DPT(DFN) ;
  I 'LRPRAC S LRPRAC=+$$OUTPTPR^SDUTL3(DFN,LRCDT)
  ;
  ;LR*5.2*575: Check whether provider holds the PROVIDER security key.
- I LRPRAC,'$D(^XUSEC("PROVIDER",LRPRAC)) S LRPRAC=""
+ ;LR*5.2*580: Set invalid provider DUZ and name in error message.
+ N LRXPRAC
+ S LRXPRAC=0
+ I LRPRAC,'$D(^XUSEC("PROVIDER",LRPRAC)) S LRXPRAC=LRPRAC,LRPRAC=""
  ;
  ; If no provider - none in message, no primary care and no provider on
  ; outpatient encounter then log error.

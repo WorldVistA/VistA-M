@@ -1,0 +1,24 @@
+PSS262PR ;BIR/RTR-Pre-init routine for patch PSS*1*262 ;4/2/2025
+ ;;1.0;PHARMACY DATA MANAGEMENT;**262**;9/30/97;Build 66
+ ;
+ Q
+ ;
+EN ;Delete 51.26 and 51.28 file entries
+ D BMES^XPDUTL("Deleting entries in File 51.26 and 51.28...")
+ N PSSDEL
+ I $D(^PS(51.26)) D  S ^PS(51.26,0)="PHARMACOGENOMIC GENES^51.26^0^0"
+ .S PSSDEL=0 F  S PSSDEL=$O(^PS(51.26,PSSDEL)) Q:'PSSDEL  K ^PS(51.26,PSSDEL)
+ .K ^PS(51.26,"B")
+ .K ^PS(51.26,"C")
+ .K ^PS(51.26,"D")
+ I $D(^PS(51.28)) D  S ^PS(51.28,0)="PHARMACOGENOMIC PHENOTYPES^51.28^0^0"
+ .S PSSDEL=0 F  S PSSDEL=$O(^PS(51.28,PSSDEL)) Q:'PSSDEL  K ^PS(51.28,PSSDEL)
+ .K ^PS(51.28,"B")
+ .K ^PS(51.28,"C")
+ .K ^PS(51.28,"D")
+ I $D(^PS(51.29)) D  S ^PS(51.29,0)="PHARMACOGENOMIC EMAIL LOG^51.29P^0^0"
+ .S PSSDEL=0 F  S PSSDEL=$O(^PS(51.29,PSSDEL)) Q:'PSSDEL  K ^PS(51.29,PSSDEL)
+ .K ^PS(51.29,"B")
+ .K ^PS(51.29,"C")
+ D BMES^XPDUTL("Entries successfully deleted...")
+ Q

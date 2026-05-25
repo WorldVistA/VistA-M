@@ -1,10 +1,12 @@
-ORQQPL ; ISL/CLA,REV,JER,TC - RPCs to return problem list data ;11/20/14  13:37
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,10,85,173,306,361,385,350**;Dec 17, 1997;Build 77
+ORQQPL ;ISL/CLA,REV,JER,TC,GN - RPCs to return problem list data ;Sep 24, 2025@10:10:12
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,10,85,173,306,361,385,350,508**;Dec 17, 1997;Build 39
  ;
  ;  External References:
- ;  $$CODECS^ICDEX          ICR #5747
- ;  $$STATCHK^ICDXCODE      ICR #5699
- ;  $$STATCHK^LEXSRC2       ICR #4083
+ ;  Reference to $$CODECS^ICDEX in ICR #5747
+ ;  Reference to $$STATCHK^ICDXCODE in ICR #5699
+ ;  Reference to $$STATCHK^LEXSRC2 in ICR #4083
+ ;  Reference to DETAIL, LIST^GMPLUTL2 in ICR #2741
+ ;  Reference to $$SHOWSA^GMPLSPECAUTH in ICR #7586
  ;
 LIST(ORPY,DFN,STATUS)  ;return pt's problem list in format: ien^description^
  ; ICD^onset^last modified^SC^SpExp
@@ -58,10 +60,11 @@ DETAIL(Y,DFN,PROBIEN,ID)  ; RETURN DETAILED PROBLEM DATA
  .S Y(I)="        Onset: "_ORGMPL("ONSET"),I=I+1
  .S Y(I)="       Status: "_ORGMPL("STATUS")
  .S Y(I)=Y(I)_$S(ORGMPL("PRIORITY")="ACUTE":"/ACUTE",ORGMPL("PRIORITY")="CHRONIC":"/CHRONIC",1:""),I=I+1
- .S Y(I)="      SC Cond: "_ORGMPL("SC"),I=I+1
- .S Y(I)="     Exposure: "_$S($G(ORGMPL("EXPOSURE"))>0:ORGMPL("EXPOSURE",1),1:"None"),I=I+1
- .I $G(ORGMPL("EXPOSURE"))>1 F J=2:1:ORGMPL("EXPOSURE")  D
- ..S Y(I)="               "_ORGMPL("EXPOSURE",J),I=I+1
+ .I $$SHOWSA^GMPLSPECAUTH D                     ;508 exposures (SA) only if PROBLEM code switch is ON
+ ..S Y(I)="      SC Cond: "_ORGMPL("SC"),I=I+1
+ ..S Y(I)="     Exposure: "_$S($G(ORGMPL("EXPOSURE"))>0:ORGMPL("EXPOSURE",1),1:"None"),I=I+1
+ ..I $G(ORGMPL("EXPOSURE"))>1 F J=2:1:ORGMPL("EXPOSURE")  D
+ ...S Y(I)="               "_ORGMPL("EXPOSURE",J),I=I+1
  .S Y(I)=" ",I=I+1
  .S Y(I)="     Provider: "_ORGMPL("PROVIDER"),I=I+1
  .S Y(I)="       Clinic: "_ORGMPL("CLINIC"),I=I+1

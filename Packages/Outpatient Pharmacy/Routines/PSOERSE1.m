@@ -1,13 +1,13 @@
 PSOERSE1 ;ALB/RM - Single eRx View/Display ;Jan 30, 2024@12:43:34
- ;;7.0;OUTPATIENT PHARMACY;**746,769**;DEC 16, 1997;Build 26
+ ;;7.0;OUTPATIENT PHARMACY;**746,769,770**;DEC 16, 1997;Build 145
  ;
- ;
- Q  ;No Direct Call
  ;
 EN(PSOIEN) ; -- main entry point for PSO ERX SINGLE ERX DISPLAY
  N ERXIEN,MBMSITE,ERXSTATSD,ERXMTYPE,SDERXFLG,HGHLIGHT
  Q:'$G(PSOIEN)
  S ERXIEN=PSOIEN
+ ; Saving VistA Patient for Fileman Recall (via space bar)
+ I $$GET1^DIQ(52.49,ERXIEN,.05,"I") D RECALL^DILFD(2,$$GET1^DIQ(52.49,ERXIEN,.05,"I")_",",DUZ)
  S ERXSTATSD="" ;this variable is used to hold the eRx status
  S SDERXFLG=1
  S MBMSITE=$S($$GET1^DIQ(59.7,1,102,"I")="MBM":1,1:0)
@@ -29,6 +29,12 @@ HDR ; -- header code
  I ",RR,RE,IE,OE,CA,CN,CX,CR,"'[(","_$$GET1^DIQ(52.49,ERXIEN,.08,"I")_",") D
  . S HDR="",$E(HDR,20)="ERX",$E(HDR,40)="|",$E(HDR,58)="VISTA"
  S $E(HDR,81)="" D INSTR^VALM1(IORVON_IOUON_HDR_IORVOFF_IOINORM,1,5)
+ ;
+ I $$GET1^DIQ(59.7,1,102,"I")="MBM",$$MISSINGPI^PSOERSE3(ERXIEN) D
+ . N POS S POS=21 I $G(VALM("LINES")) S POS=VALM("LINES")+6
+ . D INSTR^VALM1(IOBON_IORVON_"Type VSR to view Suggested Rx PATIENT INSTRUCTIONS field"_IOBOFF,10,POS) W $C(7)
+ . S NPALERT=0
+ ;
  Q
  ;
 GETMTYPE(ERXIEN) ;Retrieve the eRx Message Type
@@ -41,11 +47,10 @@ GETMTYPE(ERXIEN) ;Retrieve the eRx Message Type
  S CHGMESRQ=$$GET1^DIQ(52.49,ERXIEN,315.1,"I")
  S CHGMESRI=$$GET1^DIQ(52.45,CHGMESRQ,.01,"I")
  I (",RE,CN,"[(","_MTYPE_","))!((MTYPE="CX")&$$CHGMTYPE^PSOERX1D(ERXIEN,MTYPE,RESPVAL,CHGMESRI)) S MTYPEE=$G(MTYPEE)_"-"_$$GET1^DIQ(52.49,ERXIEN,52.1,"E")
- ;I $$GET1^DIQ(52.49,ERXIEN,95.1,"I") S $E(MTYPEE,63)="EPCS DEA VALIDATED" ;controlled substance indicator - commenting this because this will be overwritten with the Written date
  Q $G(MTYPEE)
  ;
 INIT ;
- N DDASH,MODE,NMSPC,ERXDATA,EPRVIEN,ERXDRGID,S2017,ERXRDT,XE,ERXHLDARY,ERXHLD,ERXHLDRSN
+ N DDASH,MODE,NMSPC,ERXDATA,EPRVIEN,ERXDRGID,S2017,ERXRDT,XE,ERXHLDARY,ERXHLD,ERXHLDRSN,HIGHLN,HIGUNDLN,REVLN,BLINKLN
  ;determine the message type of this transaction to decide whether to display the side-by-side format or retain it as is.
  S ERXMTYPE=$P($$ERXMTYPE(ERXIEN),"^")
  S NMSPC="PSOERSE1",MODE="LM"
@@ -81,17 +86,23 @@ INIT ;
  D ERXDATA^PSOERXU9(.ERXDATA,ERXIEN)
  S ERXDRGID=""
  I $D(ERXDATA) S ERXDRGID=$P(ERXDATA(1),"^",4)
- D SETDRUG^PSOERUT2(MODE,NMSPC,ERXIEN,0,0,1) ;Display Drug Data
+ D SETDRUG^PSOERUT2(MODE,NMSPC,ERXIEN,0,0,"SE") ;Display Drug Data
  ;
  S S2017=$$GET1^DIQ(52.49,PSOIEN,312.1,"I") ;display erx written and issue/effective date
  D S2017(MODE,NMSPC,ERXIEN,S2017)
+ D SETDIAGS^PSOERUT3(MODE,NMSPC,ERXIEN,"SE") ;display diagnosis and indications for use
  D ALLERGY^PSOERUT3(MODE,NMSPC,ERXIEN,+$$GET1^DIQ(52.49,ERXIEN,.05,"I"))
- D SETDIAGS^PSOERUT3(MODE,NMSPC,ERXIEN)
+ D BLANKLN^PSOERUT0(MODE)
  ;
  D ERXRCVDT(ERXIEN) ;display the eRx Received Date time stamp
  ; DEA Note for CS Digitally Signed eRx records
  I $$GET1^DIQ(52.49,PSOIEN,95.1,"I") S LINE=LINE-1 D DEANOTE(.LINE)
  S VALMCNT=LINE-1
+ ;
+ ; - Saving NORMAL video attributes to be reset later
+ I LINE>$G(LASTLINE) D
+ . F I=($G(LASTLINE)+1):1:LINE D SAVE^VALM10(I)
+ . S LASTLINE=LINE
  D VIDEO^PSOERUT0() ; Changes the Video Attributes for the list
  ;
 HELP ; -- help code
@@ -178,7 +189,7 @@ GETERXRDT(ERXIEN) ;Retrieve the eRx Received Date time stamp
  ; Output: ERXRADT - eRx Recieved Date time stamp^accepted by^date accepted
  ;                   Example: 1/19/24@14:05^LASTNAME,FIRSTNAME^9/26/24@10:30
  N ACCDTBY,ERXRADT
- Q:'$G(ERXIEN)
+ Q:'$G(ERXIEN) ""
  S ACCDTBY=$$ACCDTBY^PSOERUT4(ERXIEN)
  S ERXRADT=$P($$FMTE^XLFDT($$GET1^DIQ(52.49,ERXIEN,.03,"I"),"2Y"),":",1,2)
  S ERXRADT=ERXRADT_"^"_$E($P(ACCDTBY,"^",2),1,17)_"^"_$P($P(ACCDTBY,"^",1),":",1,2)
@@ -220,22 +231,24 @@ RELERX(ERXIEN,MSGTYPE) ; Returns the Selected Related eRx IEN
  N ERX,ERXARR,TMPARR,X,Y,DTOUT,DIROUT,SEQ,DIR,XX,RERX,REQIEN,RESIEN,ORIGIEN,MTYPE
  S (SEQ,ERX)=0
  F  S ERX=$O(^PS(52.49,ERXIEN,201,"B",ERX)) Q:'ERX  D
- . I '$D(TMPARR(ERX)),","_MSGTYPE_","[(","_$$GET1^DIQ(52.49,ERX,.08,"I")_",") D
+ . I ERX'=ERXIEN,'$D(TMPARR(ERX)),","_MSGTYPE_","[(","_$$GET1^DIQ(52.49,ERX,.08,"I")_",") D
  . . S SEQ=SEQ+1,ERXARR(SEQ)=ERX,TMPARR(ERX)=""
  . E  S RERX=0 F  S RERX=$O(^PS(52.49,ERX,201,"B",RERX)) Q:'RERX  D
- . . I '$D(TMPARR(RERX)),","_MSGTYPE_","[(","_$$GET1^DIQ(52.49,RERX,.08,"I")_",") D
+ . . I RERX'=ERXIEN,'$D(TMPARR(RERX)),","_MSGTYPE_","[(","_$$GET1^DIQ(52.49,RERX,.08,"I")_",") D
  . . . S SEQ=SEQ+1,ERXARR(SEQ)=RERX,TMPARR(RERX)=""
  ;
  I '$D(ERXARR) D
  . S MTYPE=$$GET1^DIQ(52.49,ERXIEN,.08,"I")
  . S (ORIGIEN,REQIEN,RESIEN)=0
- . I ",RR,CA,CR,"[(","_MTYPE_",") D
+ . I ",RR,CR,"[(","_MTYPE_",") D
  . . S REQIEN=ERXIEN,RESIEN=$$GETRESP^PSOERXU2(ERXIEN)
  . I ",RE,CN,CX,"[(","_MTYPE_",") D
  . . S RESIEN=ERXIEN,REQIEN=$$RESOLV^PSOERXU2(ERXIEN)
+ . I MTYPE="CA",MSGTYPE="N" D
+ . . S ORIGIEN=$$RESOLV^PSOERXU2(ERXIEN)
  . I MTYPE="IE" D
  . . S RESIEN=ERXIEN,REQIEN=$$RESOLV^PSOERXU2(ERXIEN)
- . I $G(REQIEN) D
+ . I $G(REQIEN),$$GET1^DIQ(52.49,REQIEN,.14) D
  . . S ORIGIEN=+$O(^PS(52.49,"B",+$$GET1^DIQ(52.49,REQIEN,.14),0))
  . I MSGTYPE="N",$G(ORIGIEN),ORIGIEN'=ERXIEN S SEQ=SEQ+1,ERXARR(SEQ)=ORIGIEN
  . I MSGTYPE="RR,CR,CA",$G(REQIEN) S SEQ=SEQ+1,ERXARR(SEQ)=REQIEN
@@ -263,4 +276,20 @@ DEANOTE(LINE) ;DEA Note for CS Digitally Signed eRx records
  S LINE=LINE+1,LINETXT=" 1304, 1306, & 1311)."
  D SET^VALM10(LINE,LINETXT),CNTRL^VALM10(LINE,2,$L(LINETXT),IOINHI,IOINORM)
  S LINE=LINE+1
+ Q
+ ;
+VSR ; View Suggested eRx
+ N SUGRX,RXIEN,DIR,DIRUT,DIROUT,Y,X,XX,PSODFN,DFN
+ S VALMBCK="R"
+ I '$D(^PS(52.49,+$G(ERXIEN),0)) S VALMSG="There are no suggested VistA Rx for this eRx" Q
+ S SUGRX=$$GET1^DIQ(52.49,ERXIEN,.15,"I") I 'SUGRX S VALMSG="There are no suggested VistA Rx for this eRx" Q
+ D FULL^VALM1 W !
+ S $P(XX,$S($D(IOUON):" ",1:"-"),81)="",$E(XX,37,42)="NOTICE" W !,$G(IOUON),XX,$G(IOUOFF)
+ W !,"You will be taken to the VistA prescription that was used to pre-populate the"
+ W !,"Drug fields (Product/SIG/Qty/Days Supply/# of Refills/Substitution) for this"
+ W !,"eRx (aka,'Suggested VistA Rx'). This VistA Rx may or may not be for the same"
+ W !,"patient in this eRx being processed."
+ S XX="",$P(XX,$S($D(IOUON):" ",1:"-"),81)="" W !,$G(IOUON),XX,$G(IOUOFF)
+ K DIR S DIR(0)="E" D ^DIR I $D(DIRUT)!$D(DIROUT) Q
+ S RXIEN=SUGRX,XQORNOD(0)="" D VIEW^PSOSPML4 D FULL^VALM1
  Q

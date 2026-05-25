@@ -1,5 +1,5 @@
 DGPMV36 ;ALB/MIR - TREATING SPECIALTY TRANSFER, CONTINUED ; 8/6/04 10:17am
- ;;5.3;Registration;**1104**;Aug 13, 1993;Build 59
+ ;;5.3;Registration;**1104,1117**;Aug 13, 1993;Build 32
  ; Reference to NEWEOC^PXCOMPACT, $$ASC^PXCOMPACT, $$GETEOCSEQ^PXCOMPACT, and $$GETSTDT^PXCOMPACT in ICR #7327
  ;
  I '$P(DGPMA,"^",9) S DGPMA="",DIK="^DGPM(",DA=DGPMDA D ^DIK K DIK W !,"Incomplete Treating Specialty Transfer...Deleted"
@@ -41,34 +41,114 @@ ASK ; -- ask user if they want to make a special mvt also
  Q
  ;
 COMPACT ; -- ask user if the treatment for the movement was for Acute Suicidal Crisis
- N %,DGVAL,MVMTVAL,PXEOCNUM,PXEOCSEQ,STARTDT
- W !,"Was Treatment for Acute Suicidal Crisis" S %=2 D YN^DICN I %=-1 W !,"Answer must be 'Yes' or 'No'" G COMPACT
- I %=1 W !,"THIS ADMISSION WILL BEGIN THE COMPACT ACT BENEFIT. ARE YOU SURE" S %=2 D YN^DICN I %'=1 G COMPACT
- S DGVAL=$S(%=1:1,1:0),MVMTVAL=$S(%=1:"Y",1:"N")
+ N %,CDATA,CMPMSG,DGVAL,ERROR,FIRSTMOVE,FLIP,MOVEDT,MOVESEQ,MVMTVAL,PTFPOINT,PXEOCNUM,PXEOCSEQ,PXIENS,SEQCHK,STARTDT,X,Y
+ W !,"Was Treatment for Acute Suicidal Crisis" S %=$S($$ASC^PXCOMPACT(DFN)="Y":1,1:2) D YN^DICN I %=-1 W !,"Answer must be 'Yes' or 'No'" G COMPACT
+ S PXEOCNUM=$$GETEOC^PXCOMPACT(DFN),CDATA=""
+ ; get EOC sequence number
+ S PXEOCSEQ=$$GETEOCSEQ^PXCOMPACT(DFN)
+ S PTFPOINT=$$GETPOINTRSEQ^PXCOMPACT(DFN,PTF,"I")
+ I (%=2),$$ASC^PXCOMPACT(DFN)="Y" D  Q
+ . ;before marking an episode as an error, determine if this movement is the last one in the multiple
+ . I $$CHKMVMT^DGCOMPACT(DFN,PTF)=1,$D(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,40,PTFPOINT,1,"B",DGPMDA)) D
+ . . I $$GETBENTYP^PXCOMPACT(DFN)="I" W !,"This action will end COMPACT Act benefit. Are you sure" S %=2 D YN^DICN I %'=1 G COMPACT
+ . . ;set PTF 101 to a No
+ . . D SETPTFFLG^DGCOMPACT(PTF,0)
+ . . ;set 501 to No
+ . . I DGPMY'="" D
+ . . . S MOVESEQ=$O(^DGPT(PTF,"M","AM",DGPMY,"")) I MOVESEQ="" Q
+ . . . D SETPTFMVMT^DGCOMPACT(PTF,"N",MOVESEQ)
+ . . D REVERT^DGCOMPACT(DFN,PTF)
+ . . ;I $$GETBENTYP^PXCOMPACT(DFN)="I" D REVERT^DGCOMPACT(DFN,PTF)
+ . I $$CHKMVMT^DGCOMPACT(DFN,PTF)>1 D
+ . . ;Remove movement from multiple in EOC file
+ . . S PXEOCNUM=$$GETEOC^PXCOMPACT(DFN)
+ . . S PXEOCSEQ=$$GETEOCSEQ^PXCOMPACT(DFN)
+ . . S PTFPOINT=$$GETPOINTRSEQ^PXCOMPACT(DFN,PTF,"I")
+ . . S DA(3)=PXEOCNUM,DA(2)=PXEOCSEQ,DA(1)=PTFPOINT,DA=$$GETMVMT^DGCOMPACT(DFN,PTF,DGPMDA)
+ . . S DIK="^PXCOMP(818,"_DA(3)_",10,"_DA(2)_",40,"_DA(1)_",1,"
+ . . D ^DIK
+ . . K DA,DIK
+ . . I DGPMY'="" D
+ . . . S MOVESEQ=$O(^DGPT(PTF,"M","AM",DGPMY,"")) I MOVESEQ="" Q
+ . . . D SETPTFMVMT^DGCOMPACT(PTF,"N",MOVESEQ)
+ . . ;reset start date (potentially) to earliest movement date
+ . . S FIRSTMOVE=$O(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,40,PTFPOINT,1,"B","")) I FIRSTMOVE="" Q
+ . . S MOVEDT=$P($P($G(^DGPM(FIRSTMOVE,0)),"^"),"."),STARTDT=$$GETSTDT^PXCOMPACT(DFN)
+ . . I MOVEDT'=STARTDT D
+ . . . ;check if there is a prior OP episode whose end date matches this episode's start date
+ . . . S SEQCHK="B"
+ . . . F  S SEQCHK=$O(^PXCOMP(818,PXEOCNUM,10,SEQCHK),-1) Q:SEQCHK=0  D
+ . . . . I SEQCHK=PXEOCSEQ Q
+ . . . . I $P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",2)=STARTDT D
+ . . . . . S $P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",2)=MOVEDT,$P(^PXCOMP(818,PXEOCNUM,10,SEQCHK,0),"^",5)=MOVEDT
+ . . . I $$GETBENTYP^PXCOMPACT(DFN)="O" D  Q
+ . . . . ;update start date ONLY
+ . . . . S PXIENS=PXEOCSEQ_","_PXEOCNUM_","
+ . . . . I $G(MOVEDT)'="" S CDATA(818.01,PXIENS,.01)=MOVEDT
+ . . . . D FILE^DIE("","CDATA")
+ . . . D SETSTDT^PXCOMPACT(DFN,MOVEDT)
+ ;if yes AND there's a current inpatient episode, add the movement to the episode and set the 501 to Yes
+ I ($$ASC^PXCOMPACT(DFN)="Y"),($$GETBENTYP^PXCOMPACT(DFN)="I") D  Q
+ . S (CMPMSG,CDATA(818.41))=""
+ . ;Set the movement multiple
+ . S PTFPOINT=$$GETPOINTRSEQ^PXCOMPACT(DFN,PTF,"I")
+ . S PXIENS="?+1,"_PTFPOINT_","_PXEOCSEQ_","_PXEOCNUM_","
+ . I $G(DGPMDA)'="" D
+ . . S CDATA(818.41,PXIENS,.01)=DGPMDA
+ . . D UPDATE^DIE("","CDATA","","CMPMSG")
+ . ;set 501 to Yes
+ . I DGPMY'="" D
+ . . S MOVESEQ=$O(^DGPT(PTF,"M","AM",DGPMY,"")) I MOVESEQ="" Q
+ . . D SETPTFMVMT^DGCOMPACT(PTF,"Y",MOVESEQ)
+ . S ^UTILITY($J,"PXCOMPACT-TRANS")=""
  I %=1 D
- . S PXEOCNUM=$$GETEOC^PXCOMPACT(DFN)
- . S PXEOCSEQ=$$GETEOCSEQ^PXCOMPACT(DFN)
+ . W !,"THIS MOVEMENT WILL BEGIN THE COMPACT ACT BENEFIT. ARE YOU SURE" S %=2 D YN^DICN I %'=1 G COMPACT
+ . S DGVAL=$S(%=1:1,1:0),MVMTVAL=$S(%=1:"Y",1:"N"),STARTDT="",ERROR="",FLIP=""
+ . ;get start date of last valid episode
  . S STARTDT=$$GETSTDT^PXCOMPACT(DFN)
  . ;handle scenario where current episode is Outpatient
- . I $$ASC^PXCOMPACT(DFN)="Y",$P(^PXCOMP(818,PXEOCNUM,0),"^",3)="O" D
+ . I $$ASC^PXCOMPACT(DFN)="Y",$P(^PXCOMP(818,PXEOCNUM,0),"^",3)="O",$$CHKMVMT^DGCOMPACT(DFN,PTF)="" D
+ . . ;first check if date belongs to a different sequence (that possibly errored)
+ . . S PXEOCSEQ=$O(^PXCOMP(818,PXEOCNUM,10,"B",$P(DGPMY,"."),""))
+ . . I PXEOCSEQ'="",$P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",6)="E" S ERROR=1
  . . ;same day processing, flip episode to Inpatient
- . . I $P(DGPMY,".")=STARTDT D
+ . . I $P(DGPMY,".")=STARTDT,'ERROR D
  . . . S $P(^PXCOMP(818,PXEOCNUM,0),"^",3)="I"
  . . . S $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",4)=$$FMADD^XLFDT($P(DGPMY,"."),29)
  . . . S $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",5)=""
  . . . S $P(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,0),"^",7)="A"
  . . . D VISIT^PXCOMPACT(PTF,"I",PXEOCNUM,DFN)
+ . . . S FLIP=1
  . . ;non-same day processing, end OP episode and create new IP episode using the date provided
- . . I $P(DGPMY,".")'=STARTDT D
+ . . I $P(DGPMY,".")'=STARTDT,'ERROR D
  . . . D SETENDDT^PXCOMPACT(DFN,$P(DGPMY,"."),"PR")
  . . . D NEWEOC^PXCOMPACT(DFN,PTF,"I",$P(DGPMY,"."))
+ . . . S FLIP=1
+ . ;reopen episode of care if the transfer date is on the same date as an Entered in Error episode
+ . I PXEOCNUM'="",$D(^PXCOMP(818,PXEOCNUM,10,"B",$P(DGPMY,"."))),'FLIP D
+ . . D SETENDDT^PXCOMPACT(DFN,$P(DGPMY,"."),"PR")
+ . . S PXEOCSEQ=$O(^PXCOMP(818,PXEOCNUM,10,"B",$P(DGPMY,"."),"")) I PXEOCSEQ="" Q
+ . . D REOPNEOC^PXCOMPACT(PXEOCNUM,PXEOCSEQ,""),VISIT^PXCOMPACT(PTF,"I",PXEOCNUM,DFN)
  . ;Reopen episode of care if the PTF is already associated with an episode and not currently in a crisis
  . I PXEOCNUM'="",PXEOCSEQ'="",$D(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,40,"B",PTF)),$$ASC^PXCOMPACT(DFN)="N" D
  . . D REOPNEOC^PXCOMPACT(PXEOCNUM,PXEOCSEQ,STARTDT)
  . ;otherwise start a new episode
  . I $$ASC^PXCOMPACT(DFN)="N" D NEWEOC^PXCOMPACT(DFN,PTF,"I",$P(DGPMY,"."))
  . D SETPTFFLG^DGCOMPACT(PTF,DGVAL)
+ . S PXEOCNUM=$$GETEOC^PXCOMPACT(DFN)
+ . S PXEOCSEQ=$$GETEOCSEQ^PXCOMPACT(DFN)
+ . S (CMPMSG,CDATA(818.41))=""
+ . ;Set the movement multiple
+ . S PTFPOINT=$$GETPOINTRSEQ^PXCOMPACT(DFN,PTF,"I")
+ . S PXIENS="?+1,"_PTFPOINT_","_PXEOCSEQ_","_PXEOCNUM_","
+ . I $G(DGPMDA)'="" D
+ . . S CDATA(818.41,PXIENS,.01)=DGPMDA
+ . . D UPDATE^DIE("","CDATA","","CMPMSG")
  . S ^UTILITY($J,"PXCOMPACT-TRANS")=""
+ . ;set 501 to Yes
+ . I DGPMY'="" D
+ . . S MOVESEQ=$O(^DGPT(PTF,"M","AM",DGPMY,"")) I MOVESEQ="" Q
+ . . D SETPTFMVMT^DGCOMPACT(PTF,"Y",MOVESEQ)
  Q
  ;
 NEW ; -- add a specialty mvt

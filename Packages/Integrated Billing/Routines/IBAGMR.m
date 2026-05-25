@@ -1,14 +1,18 @@
 IBAGMR ;WOIFO/AAT-GMT SINGLE PATIENT REPORT;11-JUL-02
- ;;2.0;INTEGRATED BILLING;**183**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**183,746**;21-MAR-94;Build 8
  ;; Per VHA Directive 10-93-142, this routine should not be modified
  ;
  N IBQUIT
  F  S IBQUIT=0 D  Q:IBQUIT
- . N IBDFN,IBBDT,IBEDT,%DT,X,Y,DIC
+ . N IBDFN,IBBDT,IBEDT,%DT,X,Y,DIC,DFN
  . W !
  . S IBDFN=$$ASKPAT() I IBDFN=-1 S IBQUIT=1 Q
+ . S DFN=IBDFN ;IB*2.0*746
+ . K VADM ;IB*2.0*746
+ . D DEM^VADPT ;IB*2.0*746 Used to get DOB
  . D DATE I IBBDT<0 Q  ;S IBQUIT=1 Q  ;Enter date range (defaults are begin/end of the clock)
  . D ASKDEV ;Choose device and run/schedule printing
+ D KVAR^VADPT ;IB*2.0*746
  Q
  ;
 ASKDEV ; Ask about output device and print the report (or run task)

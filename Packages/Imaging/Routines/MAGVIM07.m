@@ -1,6 +1,6 @@
-MAGVIM07 ;;WOIFO/PMK/MLS/SG/DAC/MAT/BT - Imaging RPCs for Importer II; 29 Nov 2011 4:28 PM ; 12 Apr 2012 6:02 PM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGVIM07 ;WOIFO/PMK/MLS/SG/DAC/MAT/BT - Imaging RPCs for Importer II; 29 Nov 2011 4:28 PM ; 12 Apr 2012 6:02 PM
+ ;;3.0;IMAGING;**118,375**;Mar 19, 2002;Build 3
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -105,7 +105,8 @@ ORDERS(ARRAY,DFN) ; RPC = MAG DICOM GET RAD ORDERS ** Modified for MAG*3.0*118 o
  . F I=1:1:MODCOUNT D
  . . S:$L(MODIFIER) MODIFIER=MODIFIER_"~"
  . . S MODIEN=@MODDATA@(2,I)
- . . S MODIFIER=MODIFIER_@MODDATA@("ID",MODIEN,.01,"E")_"|"_^("I")
+ . . ;S MODIFIER=MODIFIER_@MODDATA@("ID",MODIEN,.01,"E")_"|"_^("I") P375 - when modifier deleted from order, missing ien causes error
+ . . S MODIFIER=MODIFIER_@MODDATA@("ID",I,.01,"E")_"|"_^("I")
  . . Q
  . S $P(ORDER,"^",3)=MODIFIER
  . ;

@@ -1,5 +1,5 @@
 DGPTFM4 ;ALB/MTC/ADL/PLT - PTF ENTRY/EDIT-2 ;12/18/07 11:37am
- ;;5.3;Registration;**114,195,397,510,565,775,664,759,850,884,1104**;Aug 13, 1993;Build 59
+ ;;5.3;Registration;**114,195,397,510,565,775,664,759,850,884,1104,1117**;Aug 13, 1993;Build 32
  ;;Per VA Directive 6402, this routine should not be modified.
  ; Reference to $$DRGD^ICDGTDRG in ICR #4052
  ; Reference to DIS^EASECU in ICR #6771
@@ -20,26 +20,30 @@ M S L=+$P(M1,U,10),Y=L D D^DGPTUTL W !! S Z=1 D Z W "Date of Move: " S Z=Y,Z1=20
  W !,"     Leave days: ",$P(M1,U,3),?44,"Pass days: ",$P(M1,U,4)
  W !,"Treated for SC Condition: ",$S($P(M3,U,18)=1:"Yes",1:"No")
  W !,"Treated for Acute Suicidal Crisis: ",$S($P(^DGPT(PTF,"M",+M(DGZM0),0),"^",33)="Y":"Yes",1:"No")
- ;check for COMPACT Act information
- N DISPLAY
- S DISPLAY=$$DISPLAY^PXCOMPACT(DFN)
- ;DISPLAY will contain one of the following groups of information:
- ;  If end date exists (episode has ended) and there are no extensions,
- ;     "COMPACT Act Start Date"^EPISODE START DATE^"End Date"^EPISODE END DATE^"IP Benefit End Date"^INPATIENT BENEFIT END DATE^"OP Benefit end date"^OUTPATIENT BENEFIT END DATE
- ;  If end date exists (episode has ended) and an extension exists,
- ;     "Extension Start Date"^EXTENSION START DATE^"Episode End Date"^EPISODE END DATE
- ;  If end date does not exist (episode is ongoing) and there are no extensions,
- ;     For an inpatient with an INPATIENT BENEFIT END DATE,
- ;         "COMPACT Act Start Date"^EPISODE START DATE^"Remaining Days"^REMAINING INPATIENT DAYS^"Inpatient Benefit End Date"^INPATIENT BENEFIT END DATE
- ;     Otherwise,
- ;         "COMPACT Act Start Date"^EPISODE START DATE^"Remaining Days"^REMAINING INPATIENT DAYS or REMAINING OUTPATIENT DAYS
- ;  If end date does not exist (episode is ongoing) and an extension exists,
- ;     "Extension Start Date"^EXTENSION START DATE^"Remaining Days"^REMAINING INPATIENT DAYS or REMAINING OUTPATIENT DAYS
- ;
- I $P(DISPLAY,U)="COMPACT Act Start Date" W ?42,"COMPACT Start Date: ",$P(DISPLAY,U,2)
- I $P(DISPLAY,U)="Extension Start Date" W ?40,"Extension Start Date: ",$P(DISPLAY,U,2)
- I $P(DISPLAY,U,3)["End Date" W !,"                                            COMPACT End Date: ",$S($P(DISPLAY,U,6)]"":$P(DISPLAY,U,6),1:$P(DISPLAY,U,4))
- I $P(DISPLAY,U,3)="Remaining Days" W !,"                                              Remaining Days: ",$P(DISPLAY,U,4)
+ ;check for COMPACT Act information (only show if related to PTF)
+ N DISPLAY,PXEOCNUM,PXEOCSEQ
+ S DISPLAY="",PXEOCNUM=$$GETEOC^PXCOMPACT(DFN)
+ I PXEOCNUM'="" D
+ . S PXEOCSEQ=0
+ . F  S PXEOCSEQ=$O(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ)) Q:(PXEOCSEQ>$P(^PXCOMP(818,PXEOCNUM,10,0),"^",3))!(DISPLAY'="")!(PXEOCSEQ'?1N)  D
+ . . I $D(^PXCOMP(818,PXEOCNUM,10,PXEOCSEQ,40,"B",PTF)) S DISPLAY=$$DISPLAY^PXCOMPACT(DFN,PXEOCSEQ)
+ . ;DISPLAY will contain one of the following groups of information:
+ . ;  If end date exists (episode has ended) and there are no extensions,
+ . ;     "COMPACT Act Start Date"^EPISODE START DATE^"End Date"^EPISODE END DATE^"IP Benefit End Date"^INPATIENT BENEFIT END DATE^"OP Benefit end date"^OUTPATIENT BENEFIT END DATE
+ . ;  If end date exists (episode has ended) and an extension exists,
+ . ;     "Extension Start Date"^EXTENSION START DATE^"Episode End Date"^EPISODE END DATE
+ . ;  If end date does not exist (episode is ongoing) and there are no extensions,
+ . ;     For an inpatient with an INPATIENT BENEFIT END DATE,
+ . ;         "COMPACT Act Start Date"^EPISODE START DATE^"Remaining Days"^REMAINING INPATIENT DAYS^"Inpatient Benefit End Date"^INPATIENT BENEFIT END DATE
+ . ;     Otherwise,
+ . ;         "COMPACT Act Start Date"^EPISODE START DATE^"Remaining Days"^REMAINING INPATIENT DAYS or REMAINING OUTPATIENT DAYS
+ . ;  If end date does not exist (episode is ongoing) and an extension exists,
+ . ;     "Extension Start Date"^EXTENSION START DATE^"Remaining Days"^REMAINING INPATIENT DAYS or REMAINING OUTPATIENT DAYS
+ . ;
+ . I $P(DISPLAY,U)="COMPACT Act Start Date" W ?42,"COMPACT Start Date: ",$P(DISPLAY,U,2)
+ . I $P(DISPLAY,U)="Extension Start Date" W ?40,"Extension Start Date: ",$P(DISPLAY,U,2)
+ . I $P(DISPLAY,U,3)["End Date" W !,"                                            COMPACT End Date: ",$S($P(DISPLAY,U,6)]"":$P(DISPLAY,U,6),1:$P(DISPLAY,U,4))
+ . I $P(DISPLAY,U,3)="Remaining Days" W !,"                                              Remaining Days: ",$P(DISPLAY,U,4)
  N NL S NL=1 ; Changed from 0 to accommodate new COMPACT line
  I $P(M3,U,31)'="" W @($S(NL#2:"!",1:"?37")),"Potentially Related to Combat: ",$S($P(M3,U,31)="Y":"Yes",1:"No") S NL=NL+1
  I $P(M3,U,26)'="" W @($S(NL#2:"!",1:"?37")),"Treated for AO Condition: ",$S($P(M3,U,26)="Y":"Yes",1:"No") S NL=NL+1

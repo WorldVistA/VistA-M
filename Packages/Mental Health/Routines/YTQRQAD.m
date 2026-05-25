@@ -1,5 +1,5 @@
 YTQRQAD ;SLC/KCM - RESTful Calls for Instrument Admin ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**130,141,158,181,187,199,204,208,223,238**;Dec 30, 1994;Build 25
+ ;;5.01;MENTAL HEALTH;**130,141,158,181,187,199,204,208,223,238,255**;Dec 30, 1994;Build 13
  ;
  ; Reference to ^DIC(3.1) in ICR #1234
  ; Reference to ^DIC(49) in ICR #10093
@@ -11,6 +11,7 @@ YTQRQAD ;SLC/KCM - RESTful Calls for Instrument Admin ; 1/25/2017
  ; Reference to XLFSTR in ICR #10104
  ; Reference to XQCHK in ICR #10078
  ; Reference to TFL^VAFCFTU2 in ICR #4648
+ ; Reference to GCRNSITE^VAFCCRNR in ICR #7360
  ;
  ;; -- GETs  all return M object that is transformed to JSON
  ;; -- POSTs all return a path to the created/updated object
@@ -30,7 +31,10 @@ PID(ARGS,RESULTS) ; get patient identifiers
  . ;
  . ; Get EDIPI and get Treating Facilities
  . N EDIPI S EDIPI=$E(DFN,2,99),DFN=""
- . N YTTFL D TFL^VAFCTFU2(.YTTFL,EDIPI_"^PI^USVHA^200CRNR") ; ICR #4648 (private IA)
+ . ;*219 - set cerner station id using api to account for cert/mock domains
+ . N YTCERNID S YTCERNID=$$GCRNSITE^VAFCCRNR
+ . N YTTFL D TFL^VAFCTFU2(.YTTFL,EDIPI_"^PI^USVHA^"_YTCERNID) ; ICR #4648 
+ . ;N YTTFL D TFL^VAFCTFU2(.YTTFL,EDIPI_"^PI^USVHA^200CRNR") ; ICR #4648 (private IA)
  . ;
  . ; Did we fail to get any treating facilities?
  . I $P(YTTFL(1),U)=-1 D SETERROR^YTQRUTL(404,"EDIPI Not Found: "_EDIPI) QUIT

@@ -1,18 +1,21 @@
-DGMTDEL ;ALB/TET,RMO,CAW,LD,SCG - DELETE MEANS TEST for a Patient ;5/11/92  09:40
- ;;5.3;Registration;**33,45,182,344,407,433**;Aug 13, 1993
+DGMTDEL ;ALB/TET,RMO,CAW,LD,SCG,SJD - DELETE MEANS TEST for a Patient ;5/11/92  09:40
+ ;;5.3;Registration;**33,45,182,344,407,433,1149**;Aug 13, 1993;Build 4
  ;
-EN ;Entry point to delete means test
+EN ;Entry point to delete means test.
+ N DGCFLG,DIR,Y
  I '$D(^XUSEC("DG MTDELETE",+DUZ)) W !!,"ACCESS TO THIS OPTION IS RESTRICTED!!",*7 G EXIT
  F I=1:1 S J=$P($T(TXT+I),";;",2) Q:J="END"  W !,J
  ; - if type of test = means test, diplay MT text
  I DGMTYPT=1 F I=1:1 S J=$P($T(MTTXT+I),";;",2) Q:J="END"  W !,J
  ; - if type of test = copay test, display CT text
  I DGMTYPT=2 F I=1:1 S J=$P($T(CTTXT+I),";;",2) Q:J="END"  W !,J
- ; - if type of test = LTC copay exemption test, display LTC text
- I DGMTYPT=4 F I=1:1 S J=$P($T(LTCTXT+I),";;",2) Q:J="END"  W !,J
+ ; - if type of test = LTC copay exemption test, display LTC text. DG*5.3*1149 - Add additional warning and continue logic
+ I DGMTYPT=4 D  I $G(DGCFLG) D EXIT Q
+ .F I=1:1 S J=$P($T(LTCTXT+I),";;",2) Q:J="END"  W !,J
+ .D WARN
  ;
 LKP ;Patient lookup
- N DGMDOD,DGFLG
+ N DGMDOD,DGFLG,DGCFLG
  D HOME^%ZIS S DIC="^DPT(",DIC(0)="AEQMZ" D ^DIC G:$D(DTOUT)!($D(DUOUT))!(+Y<0) EXIT
  I '$O(^DGMT(408.31,"AD",DGMTYPT,+Y,0)) W !?5,$P(Y(0),U)," has no "_$S(DGMTYPT=1:"means",DGMTYPT=2:"copay",DGMTYPT=4:"LTC copay exemption",1:"")_" tests on file." K DIC,Y G LKP
  S DFN=+Y,DGNAM=$P(Y(0),U),DG0=Y(0) K DIC,Y
@@ -36,7 +39,9 @@ LKM ;Means test lookup
  . I '$P($G(^DG(408.34,+$P(Y(0),"^",23),0)),U,2) W !,?5,*7,"This LTC Copay Exemption Test is uneditable and cannot be deleted." S DGFLG=1
  S DGMTI=+Y,DGMT0=Y(0) D VAR^DGMTDEL1 K DIC,Y
  S DIR("A")="Are you sure you want to delete the "_$$DATE^DGMTDEL1(DGMTD)_" test date",DIR(0)="Y",DIR("B")="NO"
- D ^DIR K DIR G LKP:$D(DIRUT)!('Y) D DEL^DGMTDEL1 W !,$S(DGMTYPT=1:"Means",DGMTYPT=2:"Copay",DGMTYPT=4:"LTC copay exemption",1:"")_" test deleted."
+ D ^DIR K DIR G LKP:$D(DIRUT)!('Y)
+ I DGMTYPT=4 D WARN G:$G(DGCFLG) LKP  ;DG*5.3*1149 - Add second chance warning and continue message, LTC only
+ D DEL^DGMTDEL1 W !,$S(DGMTYPT=1:"Means",DGMTYPT=2:"Copay",DGMTYPT=4:"LTC copay exemption",1:"")_" test deleted."
  S DGMT=$$LST^DGMTU(DFN,"",DGMTYPT) I DGMTYPT=1,DGMT]"",$P(DGMT,U,2)<DGMTD D
  .Q:$P(DGMT,U,4)=$P(DGCAT,U,2)
  .W !,"Previous Means Test Category of '",$P(DGCAT,U),"'",!,"  has been changed to '",$P(DGMT,U,3),"'"
@@ -46,13 +51,29 @@ EXIT K DFN,DGCAT,DGCT,DGI,DGN,DGNAM,DGNVET,DGP,DG0,DGMT,DGMTA,DGMTACT,DGMTD,DGMT
  K D,DA,DIC,DIE,DIK,DIR,DIRUT,DTOUT,DUOUT,DGMTA,DGMTP,I,J,VA,VADAT,VADATE,X,Y
  Q
  ;
+WARN  ;DG*5.3*1149 - Warning message and continue logic for LTC copay
+ N DIR,Y,J
+ S DGCFLG=0
+ F I=1:1 S J=$P($T(WARNTXT+I),";;",2) Q:J="END"  W !,J
+ S DIR("A")="ARE YOU SURE YOU WANT TO CONTINUE",DIR(0)="Y",DIR("B")="NO"
+ D ^DIR I Y'=1 S DGCFLG=1
+ Q
+ ;
 TXT ;informational text displayed to user
  ;;
  ;;This option is used to delete financial test data which may have been
- ;;inadvertantly entered.  Under normal circumstances only individual
- ;;dates of test may be deleted using this option.  The exception is
- ;;non-veterans.  All financial tests found for a non-veteran may be
- ;;deleted.
+ ;;inadvertently entered. Under normal circumstances only individual
+ ;;dates of test may be deleted using this option.
+ ;;END
+WARNTXT ;DG*5.3*1149 - Additional warning text 
+ ;;
+ ;;************************WARNING***************************
+ ;;Deleting this LTC Copay Exemption Test will result in the
+ ;;DELETION of this Veteran's Primary Means Test as well. 
+ ;;This will require the Veteran to submit a new Financial
+ ;;Means Test to restore eligibility.  
+ ;;************************WARNING***************************
+ ;;
  ;;END
 MTTXT ;informational text displayed to user if type of test = means test
  ;;
@@ -70,6 +91,6 @@ CTTXT ;informational text displayed to user if type of test = copay test
  ;;END
 LTCTXT ;informational text displayed to user if type of test = LTC copay test
  ;;
- ;;A LTC copay exemption test may not be deleted under the following conditions:
+ ;;An LTC copay exemption test may not be deleted under the following conditions:
  ;;  1) The LTC copay exemption test is an uploaded test from the IVM Center.
  ;;END

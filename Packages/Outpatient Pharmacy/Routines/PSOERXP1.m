@@ -1,9 +1,10 @@
 PSOERXP1 ;ALB/BWF - eRx Patient Validation - ListMan ; 06 Apr 2023  1:00 PM
- ;;7.0;OUTPATIENT PHARMACY;**467,520,527,551,581,700,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**467,520,527,551,581,700,746,770**;DEC 1997;Build 145
  ;
 EN ; -- main entry point for PSO ERX HOLDING QUEUE
- N MBMSITE
+ N MBMSITE,PRINTFLG
  S MBMSITE=$S($$GET1^DIQ(59.7,1,102,"I")="MBM":1,1:0)
+ S PRINTFLG="VP"
  D EN^VALM("PSO ERX PATIENT VALIDATION")
  Q
  ;
@@ -58,7 +59,7 @@ ELIG(DFN) ; Eligibility Label (Different between VA Site and MbM)
  ; Input: DFN    - Pointer to PATIENT File(#2)
  ;
  ;Eligibility Information
- N ELIG S ELIG=""
+ N ELIG,VAEL S ELIG=""
  I $G(DFN) D
  . I $$GET1^DIQ(59.7,1,102,"I")'="MBM" D
  . . D ELIG^VADPT S ELIG=$P(VAEL(1),"^",2)_$S(+VAEL(3):" (SC%: "_$P(VAEL(3),"^",2)_")",1:"")

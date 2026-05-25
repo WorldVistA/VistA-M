@@ -1,13 +1,13 @@
-GMPLEDT3 ; ISL/MKB,KER,JER,TC -- Problem List edit utilities ;08/07/14  13:28
- ;;2.0;Problem List;**26,35,36,42,45**;Aug 25, 1994;Build 53
+GMPLEDT3 ; ISL/MKB,KER,JER,TC -- Problem List edit utilities ; Dec 11, 2024@14:00
+ ;;2.0;Problem List;**26,35,36,42,45,58**;Aug 25, 1994;Build 33
  ;
  ; External References
- ;   DBIA   872  ^ORD(101
- ;    ICR  5747  $$CODECS^ICDEX
- ;   DBIA 10026  ^XUSEC("GMPL ICD CODE"
- ;   DBIA 10015  EN^DIQ1
- ;   DBIA 10026  ^DIR
- ;   DBIA 10104  $$UP^XLFSTR
+ ;   Reference to ^ORD(101 in ICR #872
+ ;   Reference to $$CODECS^ICDEX in ICR #5747
+ ;   Reference to ^XUSEC("GMPL ICD CODE" in ICR #10026
+ ;   Reference to EN^DIQ1 in ICR #10015
+ ;   Reference to ^DIR in ICR #10026
+ ;   Reference to $$UP^XLFSTR in ICR #10104
  ;
 MSG() ; List Manager Message Bar
  Q "Enter the number of the item(s) you wish to change"
@@ -62,6 +62,7 @@ GETFLDS(DA) ; Define GMPFLD(#) and GMPORIG(#) Arrays with Current Values
  . . S GMPFLD(10,CNT)=GMPORIG(10,CNT)
  S (GMPORIG(10,0),GMPFLD(10,0))=CNT
  S I=80000 F  S I=$O(GMPORIG(I)) Q:I'>0  S GMPFLD(I)=GMPORIG(I)
+ D EDIT^GMPLSPECAUTH(DA,.GMPORIG,.GMPFLD)    ;58 SA structure
  Q
  ;
 FLDS ; Define GMPFLD("FLD") Array for Editing

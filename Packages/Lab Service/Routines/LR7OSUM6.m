@@ -1,5 +1,5 @@
-LR7OSUM6 ;DALOI/STAFF - Silent Patient cum cont. ;Nov 12, 2008
- ;;5.2;LAB SERVICE;**121,201,187,286,356,372,350**;Sep 27, 1994;Build 230
+LR7OSUM6 ;DALOI/STAFF - Silent Patient cum cont.; Mar 25, 2025@11:15
+ ;;5.2;LAB SERVICE;**121,201,187,286,356,372,350,584**;Sep 27, 1994;Build 1
  ;
 LRUDT(LRDATE,LREAL) ;Get output date/time
  ; Call with LRDATE = FileMan date/time
@@ -69,8 +69,9 @@ MSG D LINE^LR7OSUM4,LINE^LR7OSUM4
  G LRMIT
  ;
  ;
-COMM D LN
- I LRVAL'="" S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"COMMENT: "_LRVAL)
+COMM ;
+ ;LR*5.2*584: Move D LN to only set counter if LRVAL is not null.
+ I LRVAL'="" D LN S ^TMP("LRC",$J,GCNT,0)=$$S^LR7OS(1,CCNT,"COMMENT: "_LRVAL)
  G LRMIT
  ;
  ;

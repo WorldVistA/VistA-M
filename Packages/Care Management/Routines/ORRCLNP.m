@@ -1,12 +1,5 @@
-ORRCLNP ; SLC/JER - Person functions for CM ;Oct 27, 2023@12:14:13
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**535**;Dec 17, 1997;Build 20
- ;Reference to ^XUSEC("PROVIDER" in ICR #10076
- ;Reference to $$GET1^DIQ in ICR #2056
- ;Reference to $$ISA^USRLM in ICR #1544
- ;Reference to $$NETNAME^XMXUTIL in ICR #2734
- ;Reference to $$PROD^XUPROD in ICR #4440
- ;Reference to $$NAME^XUSER in ICR #2343
- ;
+ORRCLNP ; SLC/JER - Person functions for CM ; 9/23/04 14:30
+ ;;1.0;CARE MANAGEMENT;**1**;Jul 15, 2003;Build 0
 EMAIL(USER) ; e-mail address
  Q $$NETNAME^XMXUTIL(USER)
 NAME(USER) ; Person Name

@@ -23,4 +23,5 @@ ZWR
 ^DIC(49,"%D",7,0)="change, do not delete the old section.  Instead, change the fields under"
 ^DIC(49,"%D",8,0)="the multiple field called ""DATE CLOSED"" to identify which sections are"
 ^DIC(49,"%D",9,0)="no longer in use."
+^DIC(49,"%MSC")=3250709.094032
 ^DIC(49,"B","IRM",1)=""

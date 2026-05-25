@@ -1,5 +1,5 @@
 PSOERXA5 ;ALB/BWF - eRx Utilities/RPC's ; 1/20/2018 10:28am
- ;;7.0;OUTPATIENT PHARMACY;**508,581,631,617,651**;DEC 1997;Build 30
+ ;;7.0;OUTPATIENT PHARMACY;**508,581,631,617,651,770**;DEC 1997;Build 145
  ;
  Q
  ; ERXIEN - IEN to file 52.49
@@ -127,17 +127,17 @@ CANRX(ERXIEN,MTYPE,DNB,VAINST) ;
  S NRXSTAT=$$GET1^DIQ(52.49,NRXIEN,1,"E")
  ;generate automated cancel response on rejected and new status eRxs in the holding queue
  I ",RJ,N,"[NRXSTAT D  Q
- .I NRXSTAT="RJ" D
- ..S ORESP="Rx was never dispensed. Rejected at Pharmacy"
- ..D POST^PSOERXO1(ERXIEN,.PSSRET,,,,3,VAINST,ORESP)
+ . I NRXSTAT="RJ" D
+ . . S ORESP="Rx was never dispensed. Rejected at Pharmacy"
+ . . D POST^PSOERXO1(ERXIEN,.PSSRET,,,,3,VAINST,ORESP)
  .I NRXSTAT'="RJ" D POST^PSOERXO1(ERXIEN,.PSSRET,,,,3,VAINST)
-  .; if there was an error, quit. we do not want to override the CAX status
- .I $D(PSSRET("errorMessage")) D UPDSTAT^PSOERXU1(NRXIEN,"CAN") Q
- .D UPDSTAT^PSOERXU1(NRXIEN,"CAN")
- .D UPDSTAT^PSOERXU1(ERXIEN,"CAO")
+ . ; if there was an error, quit. we do not want to override the CAX status
+ . I $D(PSSRET("errorMessage")) D UPDSTAT^PSOERXU1(NRXIEN,"CAN") Q
+ . D UPDSTAT^PSOERXU1(NRXIEN,"CAN")
+ . D UPDSTAT^PSOERXU1(ERXIEN,"CAO") I $G(MBMSITE) D UPDSTAT^PSOERXU1(ERXIEN,"CAA") ; Auto-acknowledging CAO's for MbM
  ;generate automated cancel response on processed eRx's
- I NRXSTAT="PR" D  Q
- .D CANDC^PSOERXU6(ERXIEN,VAINST,.PSSRET)
+ I NRXSTAT="PR"!(NRXSTAT="CXP")!(NRXSTAT="RXP") D  Q
+ . D CANDC^PSOERXU6(ERXIEN,VAINST,.PSSRET)
  ; Do we not build a response for the other canceled items?
  D UPDSTAT^PSOERXU1(ERXIEN,"CAH")
  D UPDSTAT^PSOERXU1(NRXIEN,"CAN")

@@ -1,5 +1,5 @@
-SDAMUTDT ;BPOIFO/JFW,TAW,KML,LAB -Scheduling Encapsulation Utilities ;DEC 7,2023
- ;;5.3;Scheduling;**266,805,809,813,867**;13 Aug 1993;Build 8
+SDAMUTDT ;BPOIFO/JFW,TAW,KML,LAB,TAW/JAS -Scheduling Encapsulation Utilities ;JAN 16,2026
+ ;;5.3;Scheduling;**266,805,809,813,867,907,928**;13 Aug 1993;Build 5
  ;
  ;*****************************************************************
  ;              CHANGE LOG
@@ -18,9 +18,15 @@ FMTISO(SDFMDT,SDCLINIC) ;convert internal fileman format to extended GMT
  ;OUTPUT -1 error occurred in translation
  ;       GMT date/time in ISO 8601 extended format (No Errors)
  ;*****************************************************************
- N SDDTM,SDGMT,SDTIME,SDOFFSET,HH,MM
+ N SDDTM,SDGMT,SDTIME,SDOFFSET
  I +$G(SDFMDT)=0 Q ""
- S SDDTM=$$FMTHL7^XLFDT(SDFMDT)
+ S SDTIME=$P(SDFMDT,".",2)
+ I $E(SDTIME)>2 Q -1
+ I $E(SDTIME,1,2)>24 Q -1
+ I $E(SDTIME,1,2)=24,+$E(SDTIME,3,6)>0 Q -1
+ I $E(SDTIME,3,4)>59 Q -1
+ I $E(SDTIME,5,6)>59 Q -1
+ D FILEMANTOHL7^SDES2UTIL(.SDFMDT,.SDDTM)
  Q:SDDTM<0 -1
  S SDCLINIC=$G(SDCLINIC)
  ;If clinic offset is differnt from system, adjust SDFMDT
@@ -74,13 +80,16 @@ ISOTFM(SDGMTDT,SDCLINIC) ;convert ISO 8601 extended GMT date/time to fileman for
  .S SDTIME=$$REMOVEOFFSET(SDTIME)
  .S SDTIME=$P(SDTIME,".")  ;No ractional seconds
  .S SDTIME=$TR(SDTIME,":")
- .I +SDTIME=0 Q
+ .I SDGMTDT'["00:00Z",+SDTIME=0 Q
  .;Get the correct offset
  .S TMPFM=$$CVTTOFM(SDGMTDT)  ;Need a FM format of the ISO date that is passed in
  .Q:TMPFM=-1  ;vse-2645 date is invalid so leave do dot logic and quit below
+ .S TMPFM=TMPFM_"."_SDTIME
  .; IF ZULU reset SDGMTDT to match system time
  .I SDGMTDT["Z"!(SDGMTDT["+0000") D
  ..S SDOFFSET=$$GETOFFSET(TMPFM,SDCLINIC)
+ ..I SDOFFSET="BAD OFFSET" S SDOFFSET=-9999 Q
+ ..D ADJUSTOFFSET(TMPFM,.SDOFFSET,SDCLINIC)
  .E  D
  ..S SDISOOFFSET=$$GETISOOFFSET(SDGMTDT)
  ..S SDOFFSET=$$GETOFFSETDIFF(TMPFM,SDCLINIC,SDISOOFFSET)
@@ -223,3 +232,22 @@ SDAPIERR() ; SDAPI Error Messages.
  I +SDERR=101 Q "Error 101: The Appointment Database is not currently available.  Please try again later."
  I +SDERR=115 Q "Error 115: Appointment request contains invalid values.  Please contact National Help Desk."
  Q "Error 117: An error has occurred, check the RSA Error Log."
+ADJUSTOFFSET(FMDTTM,OFFSET,CLINIC) ;
+ N MONTH,TZDATA,YEAR,TIME,TIMEDIFF,DSTADJUST,DSTDATE
+ S MONTH=$E(FMDTTM,4,5)
+ I +MONTH'=3,MONTH'=11 Q
+ S CLINIC=$G(CLINIC)
+ S TZDATA=$$TIMEZONEDATA^SDES2UTIL(CLINIC)
+ I $P(TZDATA,"^",6)'="DST" Q
+ S YEAR=$E(FMDTTM,2,3)
+ I +MONTH=3 S DSTDATE=$$DSTSTART^SDES2UTIL(YEAR,"DST"),DSTADJUST=4
+ I +MONTH=11 S DSTDATE=$$DSTEND^SDES2UTIL(YEAR,"DST"),DSTADJUST=5
+ I $P(FMDTTM,".",1)'=DSTDATE Q
+ S TIME=$P(FMDTTM,".",2)
+ S TIME=$E(TIME_"0000",1,4)
+ S TIMEDIFF=TIME+OFFSET
+ ; TIME=0600 OFFSET=-0500
+ I (DSTADJUST=5)&(TIMEDIFF>59) Q
+ I (DSTADJUST=4)&(TIMEDIFF>259) Q
+ S OFFSET=$P(TZDATA,"^",DSTADJUST)
+ Q

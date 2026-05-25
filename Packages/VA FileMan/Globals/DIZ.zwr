@@ -1,9 +1,8 @@
 OSEHRA ZGO Export: ^DIZ
 ZWR
 ^DIZ("ZMIRROR","EEMAIL")="stewart.fife@domain.ext; brett.krimminger@domain.ext; jonathan.mcgrauth@domain.ext; kenny.roberts2@domain.ext; gerald.powers@domain.ext; daniel.wilkinson@domain.ext"
-^DIZ("ZMIRROR","EMAIL")="stewart.fife@domain.ext; brett.krimminger@domain.ext; jonathan.mcgrauth@domain.ext; kenny.roberts2@domain.ext; gerald.powers@domain.ext; daniel.wilkinson@domain.ext"
-^DIZ("ZNVSDBMON","ENABLED")=1
-^DIZ("ZNVSDBMON","JOB","PLAR0PSVR")="530559^67210,64792^6851387791.36^ OSE^ v.2023.6"
+^DIZ("ZMIRROR","EMAIL")="stewart.fife@domain.ext; jonathan.mcgrauth@domain.ext; shane.miller; kenny.roberts2@domain.ext; gerald.powers@domain.ext; daniel.wilkinson@domain.ext"
+^DIZ("ZNVSDBMON","JOB","PLAR0PSVR")="N/A^0^N/A^N/A^ v.2023.6"
 ^DIZ("ZNVSDBMON","JOB","PLAR0TSVR")="N/A^0^N/A^N/A"
 ^DIZ("ZNVSDBMON","REACT","PLAR0TSVR")=500000000
 ^DIZ("ZNVSDBMON","WARN","PLAR0TSVR")=1000000000

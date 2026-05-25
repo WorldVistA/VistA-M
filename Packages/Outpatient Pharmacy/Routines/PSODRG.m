@@ -1,5 +1,5 @@
 PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ;10/23/18 8:47am
- ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390,427,411,458,504,517,457,574,524,747**;DEC 1997;Build 7
+ ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390,427,411,458,504,517,457,574,524,747,737**;DEC 1997;Build 52
  ; Reference to ^PSDRUG( in ICR #221
  ; Reference to ^PS(50.7 in ICR #2223
  ; Reference to $$PROMPT^PSSDIN in ICR #3166
@@ -17,7 +17,7 @@ START ;
  S (PSONEW("DFLG"),PSONEW("FIELD"),PSODRG("QFLG"))=0 K PSORX("DFLG")
  D @($S(+$G(PSOEDIT)=1&('$D(DA)):"SELECT^PSODRGN",1:"SELECT"))
  G:$G(PSORXED("DFLG")) END ; Select Drug
- ;PATCH PSO*7*517 - Blocking action FN if issuing a controlled substance to a patient without a zipcode
+ ;PATCH PSO*7*517 - Blocking action FN if issuing a controlled substance to a patient without a zip code
  N DRGIEN S DRGIEN=$P($G(PSOY),U)
  I $$CSBLOCK^PSOORNEW(PSODFN,DRGIEN) D  S DIR(0)="E" W ! D ^DIR K DIR,Y  G END
  .W !,"Controlled substance prescriptions require a patient address. Please update"
@@ -86,7 +86,7 @@ TRADEX I $G(PSORXED("DFLG")),$D(DIRUT) S PSORXED("DFLG")=1
  K DIRUT,DTOUT,DUOUT,X,Y,DA,DR,DIE
  Q
 SET ;
- N PSOHZ S PSOHZ=0    ;init haz alert shown to user=no *524
+ N PSOHZ S PSOHZ=0    ;initialize hazard alert shown to user=no *524
  N STAT S PSODRUG("IEN")=+PSOY,PSODRUG("VA CLASS")=$P(PSOY(0),"^",2)
  S PSODRUG("NAME")=$P(PSOY(0),"^")
  S PSODRUG("OI")=+$$GET1^DIQ(50,+PSOY,2.1,"I"),PSODRUG("OIN")=$$GET1^DIQ(50,+PSOY,2.1)
@@ -193,6 +193,8 @@ POST ;order checks
  ;enhanced OC
  D HD^PSODDPR2():(($Y+5)'>IOSL)
  W ! D @$S($G(COPY):"OBX^PSOCPPRE",1:"OBX^PSODDPRE") ; Set PSORX("DFLG")=1 if process to stop new enhanced order checks
+ ;*** PGx OC ***  Perform the PGx Order Checks if the user wishes to continue (PSONEW("DFLG") or PSORX("DFLG") will not be set)
+ I '$G(PSORX("DFLG")) D GETPGX^PSOOCPGX(PSODFN,.PSODRUG)
 POSTX ;
  K IT,^TMP($J,"DI"),PSORX("INTERVENE"),DA,^TMP($J,"PSODRDI"),ZDGDG,ZTHER,^TMP($J,"DI"_PSODFN),PSZZQUIT
  I '$G(PSORXED),'$G(PSOREINS) K PSOQUIT

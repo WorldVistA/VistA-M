@@ -1,5 +1,5 @@
-PSSDSEXD ;BIR/CMF-Exceptions for Dose call Continuation ;02/24/09
- ;;1.0;PHARMACY DATA MANAGEMENT;**178,206,224**;9/30/97;Build 3
+PSSDSEXD ;BIR/CMF - Exceptions for Dose call Continuation ; Feb 24, 2009@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,206,224,254**;9/30/97;Build 109
  ;
  ;Called from PSSDSEXC, this routine takes the results from the call to First DataBank and creates displayable TMP
  ;globals for the calling applications. Typically, PSSDBASA indicates a CPRS call, and PSSDBASB indicates a pharmacy call
@@ -37,7 +37,7 @@ TWEAK01(PSSDWLP,PSSDWL1) ;; remove dummy and duplicate weight required errors
  N REASON,MESSAGE,FLAG,PSSDWLX,PSSDWE2,PSSREPL
  S REASON=$P($G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"TEXT")),".",1)
  S (FLAG,FLAG(1))=0
- D:REASON="Weight required"
+ D:REASON="Weight is required"
  .;; first, wipe out if obtained from dummy data
  .I $P(PSSDBCAR(PSSDWLP),U,6)=1 K ^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1) S FLAG=1 Q
  .;; then, look for & scrub duplicates
@@ -60,7 +60,7 @@ TWEAK01(PSSDWLP,PSSDWL1) ;; remove dummy and duplicate weight required errors
  ...S MESSAGE=$$REPLACE^XLFSTR(MESSAGE,.PSSREPL)_"."
  ...S PSSREPL(":.")="."
  ...S MESSAGE=$$REPLACE^XLFSTR(MESSAGE,.PSSREPL)
- ..S REASON=$S(+$G(PSSDSWHE)=0:"Weight required.",1:"No weight documented for patient.")
+ ..S REASON=$S(+$G(PSSDSWHE)=0:"Weight is required.",1:"No weight documented for patient.")
  ..S ^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"MSG")=MESSAGE
  ..S ^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"TEXT")=REASON
  ..D:PSSDBASA 
@@ -80,7 +80,7 @@ TWEAK02(PSSDWLP,PSSDWL1) ;; massage BSA required errors
  N REASON,MESSAGE,FLAG,PSSDWLX,PSSDWE2
  S REASON=$P($G(^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"TEXT")),".",1)
  S (FLAG,FLAG(1))=0
- D:REASON="Body surface area required"
+ D:REASON="Body surface area is required"
  .;; first, wipe out if obtained from dummy data
  .I $P(PSSDBCAR(PSSDWLP),U,6)=1 K ^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1) S FLAG=1 Q
  .;; then, look for & scrub duplicates
@@ -103,7 +103,7 @@ TWEAK02(PSSDWLP,PSSDWL1) ;; massage BSA required errors
  ...S MESSAGE=$$REPLACE^XLFSTR(MESSAGE,.PSSREPL)_"."
  ...S PSSREPL(":.")="."
  ...S MESSAGE=$$REPLACE^XLFSTR(MESSAGE,.PSSREPL)
- ..S REASON=$S(+$G(PSSDSWHE)=0:"Body surface area required.",1:"No weight and/or height documented for patient.")
+ ..S REASON=$S(+$G(PSSDSWHE)=0:"Body surface area is required.",1:"No weight and/or height documented for patient.")
  ..S ^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"MSG")=MESSAGE
  ..S ^TMP($J,PSSDBASE,"OUT","DOSE","ERROR",PSSDWLP,PSSDWL1,"TEXT")=REASON
  ..D:PSSDBASA 

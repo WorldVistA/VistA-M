@@ -1,5 +1,5 @@
-DGADDLST ;ALB/JAM - List Manager Screen for Address Validation ;Jun 12, 2020@12:34
- ;;5.3;Registration;**1014,1040**;AUG 13, 1993;Build 15
+DGADDLST ;ALB/JAM,ARF - List Manager Screen for Address Validation ;Jun 12, 2020@12:34
+ ;;5.3;Registration;**1014,1040,1127**;AUG 13, 1993;Build 11
  ;
 EN(DFN,DGFLDS,DGADDR,DGSELADD,DGTMOT) ;Main entry point to invoke the "DGEN ADDR VALID" list - called by DGADDVAL
  ; Input:  DFN - Patient IEN
@@ -138,7 +138,16 @@ ACT(DGACT) ; Entry point for menu action selection
  I DGACT="SEL" S DGSEL=$$SEL()
  ; DG*5.3*1040; If timeout, set flag and quit
  I DGSEL=-1 S DGTMOT=1 Q
- I DGSEL M DGSELADD=DGADDR(DGSEL) Q
+ ; DG*5.3*1127 - If a user selects the user-entered address (array entry 1) take the validation key from the
+ ;               Universal Address Module(UAM) address in array entry 2 and pass it back as the override key.
+ ;               This will flag that the address selected was an override of what UAM suggested.
+ I DGSEL D  Q
+ . ; move the selected address into the return array
+ . M DGSELADD=DGADDR(DGSEL)
+ . ; init the override key value
+ . S DGSELADD("overrideKey")=""
+ . ; if user selected the user-entered address, store the validation key returned from UAM entry
+ . I DGSEL=1 S DGSELADD("overrideKey")=DGADDR(2,"validationKey")
  ;
  S VALMBCK="R"
  S XQORM("B")="SEL"

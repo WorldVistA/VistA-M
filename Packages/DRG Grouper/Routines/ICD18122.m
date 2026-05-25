@@ -1,0 +1,18 @@
+ICD18122 ;ALB/RFS - REPLACE VERBIAGE IN THE DISABILITY CONDITION(#31) FILE ; 01/06/2025
+ ;;18.0;DRG GROUPER;**122**;Aug 13, 1993;Build 4
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ Q
+ ;
+EN ; ENTRY POINT
+ N DGDA,DGDX
+ F DGDA=0:0 S DGDA=+$O(^DIC(31,DGDA)) Q:DGDA=0  S DGDX=$P(^DIC(31,DGDA,0),U,3) D
+ .I DGDX=8045 D
+ ..S DIE="^DIC(31,",DA=DGDA,DR=".01///RESIDUALS OF TRAUMATIC BRAIN INJURY (TBI)"
+ ..D ^DIE
+ ..K DIE,DA,DR
+ ..D BMES^XPDUTL("Verbiage for Dx 8045 "_DGDA_" in the DISABILITY CONDITION(#31) file has been updated.")
+ ..Q
+ .Q
+ Q
+ ;

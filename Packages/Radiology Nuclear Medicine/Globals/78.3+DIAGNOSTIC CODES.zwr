@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: DIAGNOSTIC CODES
 ZWR
-^RA(78.3,0)="DIAGNOSTIC CODES^78.3I^1110^84"
+^RA(78.3,0)="DIAGNOSTIC CODES^78.3I^1425^85"
 ^RA(78.3,1,0)="NORMAL^There were no problems for this exam!^N"
 ^RA(78.3,2,0)="MINOR ABNORMALITY^There was a slight abnormality in this exam!^N"
 ^RA(78.3,3,0)="MAJOR ABNORMALITY, NO ATTN. NEEDED^There was a major problem, but no attention was needed! ^N"
@@ -73,6 +73,7 @@ ZWR
 ^RA(78.3,1422,0)="LI-RADS TR NONVIABLE^Treated, probably or definitely not viable^Y^y"
 ^RA(78.3,1423,0)="LI-RADS TR EQUIVOCAL^Treated, equivocally viable^Y^y"
 ^RA(78.3,1424,0)="LI-RADS TR VIABLE^Treated, probably or definitely viable^Y^y"
+^RA(78.3,1425,0)="LI-RADS TR NONPROGRESSING^Treated, stable or decreased in size over time after LRT^Y^y"
 ^RA(78.3,1450,0)="US LI-RADS 1A^No/Benign Observation(s) -- no/minimal visualization limitations^Y^n"
 ^RA(78.3,1451,0)="US LI-RADS 1B^No/Benign Observation(s) -- moderate visualization limitations^Y^y"
 ^RA(78.3,1452,0)="US LI-RADS 1C^No/Benign Observation(s) -- severe visualization limitations^Y^y"
@@ -124,6 +125,7 @@ ZWR
 ^RA(78.3,"B","LI-RADS TIV",1416)=""
 ^RA(78.3,"B","LI-RADS TR EQUIVOCAL",1423)=""
 ^RA(78.3,"B","LI-RADS TR NONEVALUABLE",1421)=""
+^RA(78.3,"B","LI-RADS TR NONPROGRESSING",1425)=""
 ^RA(78.3,"B","LI-RADS TR NONVIABLE",1422)=""
 ^RA(78.3,"B","LI-RADS TR VIABLE",1424)=""
 ^RA(78.3,"B","LUNGRADS 0: INCOMPLETE",1210)=""

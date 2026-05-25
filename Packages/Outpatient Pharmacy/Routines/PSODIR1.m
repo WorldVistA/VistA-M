@@ -1,5 +1,5 @@
 PSODIR1 ;IHS/DSD - ASKS DATA FOR RX ORDER ENTRY CONT. ;7 Jan 2020 16:58:09
- ;;7.0;OUTPATIENT PHARMACY;**23,46,78,102,121,131,146,166,184,222,268,206,266,340,391,444,446,505,543,457,574,612,686,700,769**;DEC 1997;Build 26
+ ;;7.0;OUTPATIENT PHARMACY;**23,46,78,102,121,131,146,166,184,222,268,206,266,340,391,444,446,505,543,457,574,612,686,700,769,770**;DEC 1997;Build 145
  ;External reference ^PS(55 supported by DBIA 2228
  ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference $$MXDAYSUP^PSSUTIL1 supported by DBIA 6229
@@ -191,7 +191,7 @@ REFILL(PSODIR) ;
  ;/RBN - Integration of 457 end
  ;
  ;PSO*7*266 make sure PSOX is greater than RFTT
- S DIR(0)="N^"_$S($G(RFTT):RFTT,1:0)_":"_$S(+$G(RFTT)>PSOX:RFTT,1:PSOX),DIR("A")="# OF REFILLS"
+ S DIR(0)="N^"_$S($G(RFTT):RFTT,1:0)_":"_$S(+$G(RFTT)>PSOX:RFTT,$G(PSOX):PSOX,1:11),DIR("A")="# OF REFILLS"
  ;PSO*7*340 Correct Default Value
  S DIR("B")=$S($G(COPY)&('$G(PSOTITRX)):$G(PSODIR("# OF REFILLS")),$G(PSODIR("N# REF"))]"":PSODIR("N# REF"),$G(PSODIR("# OF REFILLS"))]"":PSODIR("# OF REFILLS"),$G(RFTT)>PSOX:RFTT,1:PSOX)
  S DIR("?",1)="Enter a whole number. The maximum number of refills is based on"

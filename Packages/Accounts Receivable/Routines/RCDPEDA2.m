@@ -1,5 +1,5 @@
 RCDPEDA2 ;AITC/DW - ACTIVITY REPORT ;Feb 17, 2017@10:37:00
- ;;4.5;Accounts Receivable;**318,321,326,380,432**;Mar 20, 1995;Build 16
+ ;;4.5;Accounts Receivable;**318,321,326,380,432,439**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -197,7 +197,7 @@ DETLN(INPUT,IEN3443,TOTDEP) ; Display detail line
  ;                                      A6 - Stop Flag
  ;                                      A8 - Updated Line Counter
  ;
- N DEPDT,DEPNUM,DETL,DTADD,LSTMAN,MULT,NJ,X,XX,YY
+ N DEPDT,DEPNUM,DETL,DTADD,LSTMAN,MULT,NJ,RCDBAL,X,XX,YY
  S LSTMAN=$P(INPUT,"^",2),NJ=$P(INPUT,"^",1)
  S DETL=$P(INPUT,"^",3)
  ;PRCA*4.5*380 - Check for multiple mail messages on this deposit
@@ -214,8 +214,13 @@ DETLN(INPUT,IEN3443,TOTDEP) ; Display detail line
  ;PRCA*4.5*380 - Include multi-mail message indicator with date
  S X=$$SETSTR^VALM1($$FMTE^XLFDT(YY\1,"2Z")_$G(MULT),X,12,10)
  ;
- S X=$$SETSTR^VALM1("",X,23,8)
- S X=$$SETSTR^VALM1("",X,32,10)
+ ; Is deposit in balance with EFT totals, PRCA*4.5*439
+ S RCDBAL=$$DEPBAL^RCDPEDA4(IEN3443),RCDBAL=$S(RCDBAL:"",1:"**UNBALANCED**")
+ ;
+ ;S X=$$SETSTR^VALM1("",X,23,8)
+ ;S X=$$SETSTR^VALM1("",X,32,10)
+ S X=$$SETSTR^VALM1(RCDBAL,X,23,14)    ; PRCA*4.5*439
+ S X=$$SETSTR^VALM1("",X,38,4)         ; PRCA*4.5*439
  S XX=^TMP($J,"TOTALS","FMS")
  S X=$$SETSTR^VALM1($E($J(TOTDEP,"",2)_$J("",20),1,20)_XX,X,43,37)
  S ^TMP($J,"ONEDEP",0,1)=X    ; PRCA*4.5*321
@@ -349,29 +354,6 @@ EFTDTL(INPUT,IEN3443,IEN34431,RCFMS1,EFTCTR)   ; Display EFT Detail
  S ^TMP($J,"ONEDEP",EFTCTR)=EFTLN
  S ^TMP($J,"ONEDEP",EFTCTR,EFTLN)=X
  D EFTERRS^RCDPEDA4(.INPUT,IEN34431,EFTCTR)     ; Display any EFT Errors
- D DUP(.INPUT,IEN34431,EFTCTR)                  ; Display any Duplicate Errors
- Q
- ;
-DUP(INPUT,IEN34431,EFTCTR) ; Check to see if the EFT was a duplicate
- ; Input:   IEN34431                - Internal IEN for file 344.31
- ;          INPUT                   - See RPT2 for details
- ;          EFTCTR                  - Used to store lines for EFT
- ;          ^TMP($J,ONEDEP,EFTCTE)  - Current # of lines for EFT
- ;          ^TMP($J,ONEDEP,EFTCTR,xx)- Current Deposit Lines
- ; Output:  ^TMP($J,ONEDEP,EFTCTR)  - Updated # of lines for EFT
- ;          ^TMP($J,ONEDEP,EFTCTR,xx)- Updated EFT Lines
- ;
- ;PRCA*4.5*321 capture display to ^TMP($J,"ONEDEP",EFTRCR) including line cnt
- N EFTLN,XX,YY
- Q:'$D(^RCY(344.31,IEN34431,3))                 ; Not a duplicate
- S XX=$$GET1^DIQ(344.31,IEN34431,.18,"I")       ; Date/Time Removed
- S YY=$$GET1^DIQ(344.31,IEN34431,.17,"I")       ; User who removed it
- S X="   MARKED AS DUPLICATE: "_$$FMTE^XLFDT(XX)_" "_$$EXTERNAL^DILFD(344.31,.17,,YY)
- S EFTLN=$G(^TMP($J,"ONEDEP",EFTCTR))+1
- S ^TMP($J,"ONEDEP",EFTCTR)=EFTLN
- S ^TMP($J,"ONEDEP",EFTCTR,EFTLN)=X
- S EFTLN=EFTLN+1
- S ^TMP($J,"ONEDEP",EFTCTR)=EFTLN
- S ^TMP($J,"ONEDEP",EFTCTR,EFTLN)=" "
+ D DUP^RCDPEDA4(.INPUT,IEN34431,EFTCTR)                  ; Display any Duplicate Errors
  Q
  ;

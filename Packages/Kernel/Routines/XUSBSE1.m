@@ -1,5 +1,5 @@
-XUSBSE1 ;ISF/JLI,ISD/HGW - MODIFICATIONS FOR BSE ;03/24/2020
- ;;8.0;KERNEL;**404,439,523,595,522,638,659,630,727**;Jul 10, 1995;Build 4
+XUSBSE1 ;ISF/JLI,ISD/HGW - MODIFICATIONS FOR BSE ;2/5/2025
+ ;;8.0;KERNEL;**404,439,523,595,522,638,659,630,727,759**;Jul 10, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -79,7 +79,7 @@ BSEUSER(ENTRY,TOKEN,STR) ; Intrinsic. Returns internal entry number for authenti
  ;   STR   - input - remainder of input string (station #^TCP/IP port for station-based authentication)
  ;   returns - IEN for authenticated user, or 0 if not authenticated
  ; ZEXCEPT: XWBSEC - Kernel exemption, contains error message returned to GUI application
- N X,XUIEN,XUCONTXT,XUDEMOG,XCNT,XVAL,ARRAY,XUCACHE,XUCONTXT
+ N X,XUIEN,XUCONTXT,XUDEMOG,XCNT,XVAL,ARRAY,XUCACHE,XUCONTXT,XURACADD,XURAAUTH,XURADABL
  S XUIEN=0,XUDEMOG="",XUCONTXT=0
  ; Check for cached user authentication (p638)
  I $D(^XTMP("XUSBSE1",TOKEN)) D
@@ -104,6 +104,12 @@ BSEUSER(ENTRY,TOKEN,STR) ; Intrinsic. Returns internal entry number for authenti
  I +XUDEMOG=-1 S XWBSEC="BSE ERROR - "_$P(XUDEMOG,"^",2)
  I $L(XUDEMOG,"^")>2 D
  . S XUCONTXT=$P($G(^XWB(8994.5,ENTRY,0)),U,2)
+ . ;p759 CEP start
+ . S XURAAUTH=$G(^XWB(8994.5,ENTRY,2))
+ . S XURADABL=+$P(XURAAUTH,U,2)
+ . I XURADABL D  Q  ;If the RA is disabled, set the XWBSEC for an error and Quit
+ ..  S XWBSEC="BSE LOGIN ERROR - "_$P($G(^XWB(8994.5,ENTRY,0)),U)_" remote application disabled."
+ . ;P759 End
  . S XUIEN=$$SETUP(XUDEMOG,XUCONTXT)
  S:(XUIEN>0) ^XTMP("XUSBSE1",TOKEN)=$$NOW^XLFDT()_"^"_$G(XUCONTXT)_"^"_XUDEMOG ; p638 Cache user authentication
  Q $S(XUIEN'>0:0,1:XUIEN)

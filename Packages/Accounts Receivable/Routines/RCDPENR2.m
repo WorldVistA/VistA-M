@@ -1,5 +1,5 @@
 RCDPENR2 ;ALB/SAB - EPay National Reports - ERA/EFT Trending Report ; 7/1/19 2:02pm
- ;;4.5;Accounts Receivable;**304,321,326,349,432**;Mar 20, 1995;Build 16
+ ;;4.5;Accounts Receivable;**304,321,326,349,432,446,450**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Read ^DGCR(399) via Private IA 3820
@@ -12,9 +12,10 @@ RCDPENR2 ;ALB/SAB - EPay National Reports - ERA/EFT Trending Report ; 7/1/19 2:0
  ;
 EFTERA()  ;  EFT/ERA TRENDING REPORT
  ;
- N DIRUT,DIROUT,DTOUT,DUOUT,X,Y,POP
- N RCBGDT,RCDATA,RCDATE,RCDISP,RCENDDT,RCPYRLST,RCSDT,RCEDT,RCRQDIV,RCRPT
- N RCCLM,RCDIV,RCEXCEL,RCEX,RCPAR,RCPAY,RCPAYR,RCTIN,RCTINR,RCTYPE,RCWHICH
+ N DIRUT,DIROUT,DTOUT,DUOUT,X,XX,Y,POP
+ N RCBGDT,RCAUTO,RCDATA,RCDATE,RCDISP,RCENDDT,RCPYRLST,RCSDT,RCEDT,RCRQDIV,RCRPT
+ N RCCLM,RCDIV,RCEXCEL,RCEX,RCPAR,RCPAY,RCPAYR,RCPUZ,RCTIN,RCTINR
+ N RCRATE,RCTYPE,RCWHICH
  ;
  ; Alert software to display to screen
  S RCDISP=1
@@ -23,7 +24,9 @@ EFTERA()  ;  EFT/ERA TRENDING REPORT
  S RCRQDIV=$$GETDIV^RCDPENR4(.RCDIV)
  Q:RCRQDIV=-1
  ;
- S RCAUTO=$$ASKAUTO^RCDPEU1() Q:RCAUTO=-1         ; PRCA*4.5*349 
+ S RCAUTO=$$ASKAUTO^RCDPEU1() Q:RCAUTO=-1         ; PRCA*4.5*349
+ ;
+ S RCPUZ=$$ASKPUZ^RCDPENR4() Q:RCPUZ=-1           ; PRCA*4.5*446 Payment, Unmatched, Zero, All
  ;
  S RCTYPE=$$RTYPE^RCDPEU1() Q:RCTYPE=-1
  S RCWHICH=$$NMORTIN^RCDPEAPP() Q:RCWHICH=-1
@@ -40,7 +43,7 @@ EFTERA()  ;  EFT/ERA TRENDING REPORT
  . S XX=$$SELPAY^RCDPEU1(.RCPAR)
  ;
  ; Ask the user for rate type
- S RCRATE=$$GETRATE()
+ S RCRATE=$$GETRATE^RCDPENR4()  ;PRCA*4.5*446 moved subroutine to RCDPENR4
  Q:RCRATE=-1
  ;
  ; PRCA*4.5*349 - Add Closed Claims filter
@@ -51,12 +54,18 @@ EFTERA()  ;  EFT/ERA TRENDING REPORT
  S RCRPT=$$GETRPT(1)
  Q:RCRPT=-1
  ;
+ ; Ask the user for sort type if Main report is selected. Options: by Payer, by Amount of Payment
+ ; PRCA*4.5*446
+ S RCSORT="P"
+ S:RCRPT="M" RCSORT=$$ASKSORT^RCDPENR5()
+ Q:$G(RCSORT)=-1
+ ;
  ; Retrieve start date
- S RCBGDT=$$GETSDATE()
+ S RCBGDT=$$GETSDATE^RCDPENR4()  ;PRCA*4.5*446 moved subroutine to RCDPENR4
  Q:RCBGDT=-1
  ;
  ; Retrieve end date.  Send user start date as the lower bound.
- S RCENDDT=$$GETEDATE(RCBGDT)
+ S RCENDDT=$$GETEDATE^RCDPENR4(RCBGDT)  ;PRCA*4.5*446 moved subroutine to RCDPENR4
  Q:RCENDDT=-1
  ;
  ;If the user is running the main report, ask if they wish to export to Excel
@@ -64,10 +73,12 @@ EFTERA()  ;  EFT/ERA TRENDING REPORT
  S:RCRPT="M" RCEXCEL=$$DISPTY^RCDPRU()
  D:RCEXCEL INFO^RCDPRU
  I 'RCEXCEL,(RCRPT="M") W !!,"This report requires 132 columns.",!!
- D AUTO(1,RCBGDT,RCENDDT,.RCPYRLST,RCRQDIV,RCRPT,RCEXCEL,RCRATE,.RCDIV,RCAUTO)
+ D AUTO(1,RCBGDT,RCENDDT,.RCPYRLST,RCRQDIV,RCRPT,RCEXCEL,RCRATE,.RCDIV,RCAUTO,RCPUZ)
  Q
  ;
-AUTO(RCDISP,RCBGDT,RCENDDT,RCPYRLST,RCRQDIV,RCRPT,RCEXCEL,RCRATE,RCDIV,RCAUTO) ;
+AUTO(RCDISP,RCBGDT,RCENDDT,RCPYRLST,RCRQDIV,RCRPT,RCEXCEL,RCRATE,RCDIV,RCAUTO,RCPUZ) ;
+ ;*NOTE* $G is needed for param, Called from AR Nightly Process. AUTO^RCDPENR2
+ ;
  ; Inputs: RCAUTO (Optional) - A - Auto-Post, N-Non-Auto-Post, B-Both (Defaults to B)
  ;         RCDISP - Display results to screen or archive file flag
  ;         RCBGDT - begin date of the report
@@ -81,9 +92,12 @@ AUTO(RCDISP,RCBGDT,RCENDDT,RCPYRLST,RCRQDIV,RCRPT,RCEXCEL,RCRATE,RCDIV,RCAUTO) ;
  ;         RCPAY - Payers to report on (All, range, or single payer)
  ;         RCTYPE - Types of payers to include (M - Medical, P - Pharmacy, T - Tricare C - CHAMPVA)
  ;         RCWHICH - select payers by name or TIN (1 - Name, 2 - TIN)
+ ;         RCPUZ - P: Payment EEOBs, U: Unmatched EEOBs, Z: Zero Payment EEOBs, A: All       ;PRCA*4.5*446
  ;
  ;Select output device
  W !
+ I $G(RCPUZ)="" S RCPUZ="A"         ; PRCA*4.5*450
+ I $G(RCSORT)="" S RCSORT="P"       ; PRCA*4.5*450
  I $G(RCAUTO)="" S RCAUTO="B"       ; PRCA*4.5*349
  I $G(RCCLM)="" S RCCLM="A"         ; PRCA*4.5*349
  I $G(RCPAY)="" S RCPAY="A"         ; PRCA*4.5*349
@@ -120,8 +134,8 @@ REPORT   ; Trace the ERA file for the given date range
  ;
  ; Gather raw data
  ; PRCA*4.5*349 - Add Closed Claims filter
- D GETEFT^RCDPENR3(RCBGDT,RCENDDT,RCRATE,RCCLM)
- D GETERA^RCDPENR4(RCBGDT,RCENDDT,RCRATE,RCCLM)
+ D GETEFT^RCDPENR3(RCBGDT,RCENDDT,RCRATE,RCCLM,RCPUZ,RCSORT)
+ D GETERA^RCDPENR4(RCBGDT,RCENDDT,RCRATE,RCCLM,RCPUZ,RCSORT)
  ;
  ;Check for data captures
  I '$D(^TMP("RCDPENR2",$J,"MAIN")) D  Q
@@ -131,7 +145,7 @@ REPORT   ; Trace the ERA file for the given date range
  D COMPILE^RCDPENR3
  ;
  ; Print out the results
- D PRINT(RCRPT)
+ D PRINT(RCRPT,RCPUZ)  ; PRCA*4.5*446 Add RCPUZ
  ;
  ;Clean up temp array afterwards
  K ^TMP("RCDPENR2",$J)
@@ -139,7 +153,7 @@ REPORT   ; Trace the ERA file for the given date range
  Q 
  ;
  ;Print the results.
-PRINT(RCSUMFLG) ;Print the results
+PRINT(RCSUMFLG,RCPUZ) ;Print the results
  ;
  ; Temp Array format
  ;   ^TMP("RCDPENR1",$J,"TOT")=# Medical 835's ^ # Pharmacy 835's ^
@@ -161,12 +175,12 @@ PRINT(RCSUMFLG) ;Print the results
  I 'RCDISP D  Q:'RCRPIEN
  . S RCRPIEN=$$INITARCH^RCDPENR1("EFT/ERA TRENDING")
  ;
- ; Display Header
  D HEADER
  ;
  ; Display the Main Level report 
  I RCSUMFLG="M" D
- .  S RCSTOP=$$MAIN()
+ . I RCSORT="A" S RCSTOP=$$MAINAMT^RCDPENR5(RCPUZ,RCAUTO,RCEXCEL)  ; PRCA*4.5*446 Add RCPUZ, new sort by amount
+ . I RCSORT="P" S RCSTOP=$$MAIN(RCPUZ)  ; PRCA*4.5*446 Add RCPUZ, old sort by payer
  Q:RCSTOP
  ;
  S SECTION="S"
@@ -177,12 +191,12 @@ PRINT(RCSUMFLG) ;Print the results
  I RCSTOP Q
  ;
  ; Display the Payer/TIN summary information
- I RCSUMFLG="S" S RCSTOP=$$SUMMARY()
+ I RCSUMFLG="S" S RCSTOP=$$SUMMARY(RCPUZ)   ; PRCA*4.5*446 Add RCPUZ
  Q:RCSTOP
  ;
  ; Display the grand total at the end
  S SECTION="G"
- S RCSTOP=$$GRAND()
+ S RCSTOP=$$GRAND(RCPUZ)  ;  PRCA*4.5*446 Add RCPUZ
  Q:RCSTOP
  ;
  ; If not displaying to screen, send
@@ -204,7 +218,7 @@ HEADER ;Print the results
  ;
  ; Undeclared Parameters - RCDISP and RCRPIEN
  ;
- N RCAUTOT,RCDIVTXT,RCPYRTXT,RCSTR,RCTYPTXT,RCCLMTXT
+ N RCAUTOT,RCDIVTXT,RCPYRTXT,RCSTR,RCTYPTXT,RCCLMTXT,RCPUZT
  ;
  S RCDIVTXT=$$DIVTXT^RCDPENR1()
  S RCPYRTXT=$S(RCPAY="S":"SELECTED",RCPAY="R":"RANGE",1:"ALL")_" "
@@ -213,6 +227,7 @@ HEADER ;Print the results
  S RCTYPTXT=RCTYPTXT_$S(RCTYPE="M":"MEDICAL",RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",RCTYPE="C":"CHAMPVA",1:"ALL")  ;PRCA*4.5*432 Add CHAMPVA
  S RCAUTOT="MANUAL/AUTOPOST: "_$S(RCAUTO="N":"MANUAL",RCAUTO="A":"AUTOPOST",1:"BOTH")
  S RCCLMTXT="Claims: "_$S(RCCLM="C":"CLOSED",1:"ALL")              ; PRCA*4.5*349
+ S RCPUZT="PAYMENT/UNMATCHED/ZERO PAY: "_$S(RCPUZ="P":"PAYMENT",RCPUZ="U":"UNMATCHED",RCPUZ="Z":"ZERO PAY",1:"ALL")
  ;
  S RCPAGE=RCPAGE+1
  I '+RCDISP D  Q
@@ -220,7 +235,7 @@ HEADER ;Print the results
  . D SAVEDATA^RCDPENR1(RCSTR,RCRPIEN)
  . S RCSTR="^"_RCDIVTXT_"^"_RCPYRTXT_"^"_RCTYPTXT
  . D SAVEDATA^RCDPENR1(RCSTR,RCRPIEN)
- . S RCSTR="^"_"DATE RANGE: "_$$FMTE^XLFDT(RCBGDT,2)_" - "_$$FMTE^XLFDT(RCENDDT,2)_"^"_"RUN DATE: "_RCRUNDT
+ . S RCSTR="^"_"DATE RANGE: "_$$FMTE^XLFDT(RCBGDT,2)_" - "_$$FMTE^XLFDT(RCENDDT,2)_"^"_"RUN DATE: "_RCRUNDT_"^"_RCPUZT  ; PRCA*4.5*446
  . D SAVEDATA^RCDPENR1(RCSTR,RCRPIEN)
  . D SAVEDATA^RCDPENR1(RCLINE,RCRPIEN)
  W @IOF,"EFT/ERA TRENDING REPORT"
@@ -229,7 +244,8 @@ HEADER ;Print the results
  . W " "_$E(RCDIVTXT,1,23),?25,$E(RCPYRTXT,1,20),?46,$E(RCTYPTXT,1,43)  ;PRCA*4.5*432 35 -> 43
  . W ?90,RCAUTOT,?118,RCCLMTXT,! ;PRCA*4.5*432 80 -> 90, 108 -> 118
  . W ?5,"DATE RANGE: ",$$FMTE^XLFDT(RCBGDT,2)," - ",$$FMTE^XLFDT(RCENDDT,2)
- . W ?51,"RUN DATE: ",RCRUNDT,!
+ . W ?51,"RUN DATE: ",RCRUNDT,?90,RCPUZT,!                              ;PRCA*4.5*446, add RCPUZT
+ . W:RCSORT="P" "PAYER NAME/TIN",!  ;PRCA*4.5*446 Move label to header
  . W RCLINE,!
  I +$G(RCEXCEL) D
  . W "^PAGE ",$J(RCPAGE,5)
@@ -238,15 +254,21 @@ HEADER ;Print the results
  . W "^","RUN DATE: ",RCRUNDT
  . W "^",RCAUTOT,"^",RCCLMTXT,!
  ;
+ ;On the first page of the Main report, display the payer name and TIN above the column headers
+ ;I RCFIRST S RCSTOP=$$PRINTINS($S(RCINSTIN["^":$P(RCINSTIN,U,2),1:RCINSTIN)),RCFIRST=0 ; PRCA*4.5*349 add "." to this and every subsequent line
+ ;
  ; Re-display the column headers
  I '$G(RCEXCEL),(SECTION="M") D COLHEAD
  I $G(RCEXCEL),(RCPAGE=1) D COLHEAD
  Q
  ;
- ;Print the Detailed portion of the report
-MAIN() ;
+ ;Print the Detailed portion of the report, sort by payer
+MAIN(RCPUZ) ;
+ ; ***** IMPORTANT ***** If this section needs to be modified, also check MAINAMT^RCDPENR5
  ;
- N RCERATYP,RCDATA,RCERATXT,RCSTRING,RCEFTTXT,RCEFT,RCERA,RCINSTIN,RCCLAIM,RCBILL
+ S:'$L($G(RCPUZ)) RCPUZ="A"  ; PRCA*4.5*446
+ ;
+ N I,I1,I2,I3,RCERATYP,RCDATA,RCERATXT,RCSTRING,RCEFTTXT,RCEFT,RCERA,RCINSTIN,RCCLAIM,RCCLAIM2,RCBILL  ; PRCA*4.5*446 I1,I2,I3,RCCLAIM2
  N RCAMTBL,RCPAID,RCBILLDT,RCERADT,RCEFTDT,RCPOSTDT,RCTRACE,RCATPST,RCIDX,RCAMTPD
  N RCETRAN,RCERA,RCEOB,RCEFTNO,RCBEDY,RCEEDY,RCEPDY,RCBPDY,RCMETHOD,RCTOTDY,RCTMP,RCSTOP,RCIDX
  ;
@@ -256,23 +278,44 @@ MAIN() ;
  . S RCMETHOD=""
  . F  S RCMETHOD=$O(^TMP("RCDPENR2",$J,"MAIN",RCINSTIN,RCMETHOD)) Q:RCMETHOD=""  D  Q:RCSTOP
  . . I (RCAUTO="A"&(RCMETHOD="MANUAL"))!(RCAUTO="N"&(RCMETHOD="AUTOPOST")) Q  ; PRCA*4.5*349
- . . S RCSTOP=$$PRINTINS(RCINSTIN) ; PRCA*4.5*349 add "." to this and every subsequent line
+ . . ;
+ . . I RCPUZ="U" I RCMETHOD'="UNPOSTED" Q
+ . . I RCPUZ="Z" I RCMETHOD'="UNPOSTED" Q
+ . . I RCPUZ="P" I RCMETHOD="UNPOSTED" Q
+ . . ;
+ . . ; PRCA*4.5*446, add I1,I2,I3
+ . . S I1=1,I2=1,I3=5   ; default for RCPUZ="A", ALL
+ . . I RCPUZ="U" S I1=4,I3=4
+ . . I RCPUZ="Z" S I1=5,I3=5
+ . . I RCPUZ="P" S I3=3
+ . . I RCPUZ="P" I RCMETHOD="AUTOPOST" S I3=1   ; Must be EFT/ERA(1) for autopost. Exclude Paper Check(2), Paper EOB(3)
+ . . ;If RCPUZ="A" for all and user selected AUTOPOST, exclude 2, 3 but keep 1, 4, 5. This case is handled inside next for loop.
+ . . ;
+ . . S RCSTOP=$$PRINTINS($S(RCINSTIN["^":$P(RCINSTIN,U,2),1:RCINSTIN)) ; PRCA*4.5*349 add "." to this and every subsequent line
  . . Q:RCSTOP
- . . F I=1:1:3 D  Q:RCSTOP
+ . . ;
+ . . F I=I1:I2:I3 D  Q:RCSTOP  ; PRCA*4.5*446 use I1,I2,I3
+ . . . ;
+ . . . I RCMETHOD="MANUAL",I>3 Q    ; Unmatched and Zero pay are Unposted
  . . . I RCMETHOD="AUTOPOST",I>1 Q  ; Only EFT/ERA can be auto-posted - PRCA*4.5*349
- . . . S RCERATYP=$S(I=1:"EFT/ERA",I=2:"PAPER CHECK/ERA",1:"EFT/PAPER EOB")
- . . . S RCEFTTXT=$P(RCERATYP,"/")
- . . . S RCERATXT=$P(RCERATYP,"/",2)
- . . . S RCEFT=$S(RCEFTTXT="EFT":"AN EFT",1:"A PAPER CHECK")
- . . . S RCSTRING=RCERATXT_" MATCHED TO "_RCEFT_" - "_RCMETHOD ; PRCA*4.5*349
- . . . S RCSTOP=$$PRINTHDR(RCSTRING)
+ . . . I RCMETHOD="UNPOSTED",I<4 Q  ; Unmatched and Zero pay are Unposted
+ . . . S RCERATYP=$S(I=1:"EFT/ERA",I=2:"PAPER CHECK/ERA",I=3:"EFT/PAPER EOB",I=4:"UNMATCHED EOB",1:"ZERO PAYMENTS")  ; PRCA*4.5*446 Add types for UNMATCHED EOB and ZERO PAYMENTS
+ . . . I I<4 D   ; PRCA*4.5*446 Logic for types 1-3
+ . . . . S RCEFTTXT=$P(RCERATYP,"/")
+ . . . . S RCERATXT=$P(RCERATYP,"/",2)
+ . . . . S RCEFT=$S(RCEFTTXT="EFT":"AN EFT",1:"A PAPER CHECK")
+ . . . . S RCSTRING=RCERATXT_" MATCHED TO "_RCEFT_" - "_RCMETHOD ; PRCA*4.5*349
+ . . . I I>3 D   ; PRCA*4.5*446 Logic for types 4 and 5
+ . . . . S RCSTRING=$S(I=4:"UNMATCHED ERA - UNPOSTED",1:"ZERO PAYMENTS")
+ . . . S RCSTOP=$$PRINTHDR^RCDPENR5(RCSTRING,131)  ;PRCA*4.5*446  131=line length
  . . . Q:RCSTOP
  . . . I '$G(RCEXCEL),$O(^TMP("RCDPENR2",$J,"MAIN",RCINSTIN,RCMETHOD,I,""))="" D      ; PRCA*4.5*349
  . . . . W "No data captured for this section during the specified time period.",!   ; PRCA*4.5*349
- . . . S RCCLAIM=""
- . . . F  S RCCLAIM=$O(^TMP("RCDPENR2",$J,"MAIN",RCINSTIN,RCMETHOD,I,RCCLAIM)) Q:RCCLAIM=""  D  Q:RCSTOP
+ . . . S RCCLAIM2=""
+ . . . F  S RCCLAIM2=$O(^TMP("RCDPENR2",$J,"MAIN",RCINSTIN,RCMETHOD,I,RCCLAIM2)) Q:RCCLAIM2=""  D  Q:RCSTOP    ; PRCA*4.5*446 Add RCCLAIM2
  . . . . I $Y>(IOSL-5) D ASK^RCDPEADP(.RCSTOP,0) Q:RCSTOP  D HEADER
- . . . . S RCDATA=$G(^TMP("RCDPENR2",$J,"MAIN",RCINSTIN,RCMETHOD,I,RCCLAIM))
+ . . . . S RCDATA=$G(^TMP("RCDPENR2",$J,"MAIN",RCINSTIN,RCMETHOD,I,RCCLAIM2))
+ . . . . S RCCLAIM=$P(RCCLAIM2,"/",1)   ; PRCA*4.5*446
  . . . . I RCDATA="" D  Q
  . . . . . W !,"No data captured for this section during the specified time period.",!
  . . . . ;
@@ -284,63 +327,44 @@ MAIN() ;
  . . . . S RCIDX=$S($$FMTH^XLFDT($P(RCDATA,U,10),1)>$$FMTH^XLFDT($P(RCDATA,U,10),1):10,1:9)  ; Find the latest date between ERA and EFT
  . . . . I $P(RCDATA,U,11),$P(RCDATA,U,RCIDX) S RCEPDY=$$FMTH^XLFDT($P(RCDATA,U,11),1)-$$FMTH^XLFDT($P(RCDATA,U,RCIDX),1)  ; Use latest date to determ days btw ERA/EFT and Posting
  . . . . I $P(RCDATA,U,11),$P(RCDATA,U,8) S RCBPDY=$$FMTH^XLFDT($P(RCDATA,U,11),1)-$$FMTH^XLFDT($P(RCDATA,U,8),1)
+ . . . . I (I=4)!(I=5) S RCEPDY="N/A",RCBPDY="N/A" I I=4 S RCEEDY="N/A"  ;PRCA*4.5*446 some fields are N/A for Unmatched and Zero Pay
  . . . . I RCEXCEL D
- . . . . .  S RCTMP=RCBILL_"^"_$$FMTE^XLFDT($P(RCDATA,U,5),2)_"^"_$P(RCDATA,U,6)_"^"_$P(RCDATA,U,7)_"^"_$$FMTE^XLFDT($P(RCDATA,U,8),2)
+ . . . . . S RCTMP=RCBILL_"^"_$$FMTE^XLFDT($P(RCDATA,U,5),2)_"^"_$P(RCDATA,U,6)_"^"_$P(RCDATA,U,7)_"^"_$$FMTE^XLFDT($P(RCDATA,U,8),2)
  . . . . . S RCTMP=RCTMP_"^"_$$FMTE^XLFDT($P(RCDATA,U,9),2)_"^"_$$FMTE^XLFDT($P(RCDATA,U,10),2)_"^"_$$FMTE^XLFDT($P(RCDATA,U,11),2)_"^"_$P(RCDATA,U,12)_"^"_$P(RCDATA,U,13)
  . . . . . S RCTMP=RCTMP_"^"_$P(RCDATA,U,14)_"^"_$P(RCDATA,U,2)_"^"_$P(RCDATA,U,15)_"^"_$P(RCDATA,U,3)_"^"
  . . . . . S RCTMP=RCTMP_RCBEDY_"^"_RCEEDY_"^"_RCEPDY_"^"_RCBPDY
+ . . . . . I I=4 S $P(RCTMP,"^",8)="N/A" ;PRCA*4.5*446 posted date is N/A for Unmatched and Zero Pay
  . . . . . W RCTMP,!
  . . . . I 'RCEXCEL D
  . . . . . W RCBILL,?21,$$FMTE^XLFDT($P(RCDATA,U,5),2),?30,$J($P(RCDATA,U,6),10,2),?41,$J($P(RCDATA,U,7),10,2),?52,$$FMTE^XLFDT($P(RCDATA,U,8),2)
  . . . . . W ?61,$$FMTE^XLFDT($P(RCDATA,U,9),2),?75,$$FMTE^XLFDT($P(RCDATA,U,10),2),?89,$$FMTE^XLFDT($P(RCDATA,U,11),2),?98,$P(RCDATA,U,12),?109,$P(RCDATA,U,13),!
  . . . . . W ?5,$P(RCDATA,U,14),?17,$P(RCDATA,U,2),?28,$J($P(RCDATA,U,15),6),?39,$P(RCDATA,U,3),?50,$J(RCBEDY,8)
  . . . . . W ?67,$J(RCEEDY,8),?83,$J(RCEPDY,8),?106,$J(RCBPDY,8),!
- . . . I '$G(RCEXCEL) W RCLINE,!
+ . . . ;I '$G(RCEXCEL) W RCLINE,!  ; PRCA*4.5*466, Remove line of "-"
  ;
  I RCSTOP Q RCSTOP
  ; Section break - ask user if they wish to continue...
  ;
  Q RCSTOP
  ;
-SUMMARY() ;Print the Payer Summary portion of the report
+SUMMARY(RCPUZ) ;Print the Payer Summary portion of the report
  ;
+ S:'$L($G(RCPUZ)) RCPUZ="A"  ; PRCA*4.5*446
  I $G(RCEXCEL) Q 0
  N RCSTOP ; PRCA*4.5*349
+ N RCINSTIN ; PRCA*4.5*446
  ;
  ; Print ERA/EFT combinations for each Insurance Company/Tin combination
  S RCINSTIN="",RCSTOP=0
  F  S RCINSTIN=$O(^TMP("RCDPENR2",$J,"PAYER",RCINSTIN)) Q:RCINSTIN=""  D  Q:RCSTOP
- . D PAYSUM^RCDPENR4(RCINSTIN)
+ . D PAYSUM^RCDPENR4(RCINSTIN,RCPUZ)
  Q RCSTOP
  ;
  ;Total for all payers in report
-GRAND() ;
- I $G(RCEXCEL) Q 0
- ;
- N I,J,RCDATA,RCEFT,RCERA,RCERAFLG,RCEFTTXT,RCERATXT,RCERATYP,RCSTRING,RCSTOP ; PRCA*4.5*349
- ;
- S RCSTOP=0
- ; Print the Grand Total Banner
- I $Y>(IOSL-7),RCDISP D ASK^RCDPEADP(.RCSTOP,0) Q:RCSTOP  D HEADER
- I RCSUMFLG'="G",RCDISP D
- . W !,"GRAND TOTALS ALL PAYERS",!!
- . W RCLINE,!
- ;
- ; Print all 3 EOB/Payment combinations
- F J="AUTOPOST","MANUAL","TOTAL" Q:RCSTOP  F I=1:1:3 D  Q:RCSTOP  ; PRCA*4.5*349
- . I J="AUTOPOST",I>1 Q  ; Only EFT/ERA can be auto-posted - PRCA*4.5*349
- . I (RCAUTO="A"&(J="MANUAL"))!(RCAUTO="N"&(J="AUTOPOST"))!(RCAUTO'="B"&(J="TOTAL")) Q  ; PRCA*4.5*349
- . S RCDATA=$G(^TMP("RCDPENR2",$J,"GTOT",J,I)) ; PRCA*4.5*349
- . S RCERATYP=$S(I=1:"EFT/ERA",I=2:"PAPER CHECK/ERA",1:"EFT/PAPER EOB")
- . S RCERAFLG=0
- . S RCEFTTXT=$P(RCERATYP,"/")
- . S RCERATXT=$P(RCERATYP,"/",2)
- . S RCEFT=$S(RCEFTTXT="EFT":"AN EFT",1:"A PAPER CHECK")
- . S RCSTRING=RCERATXT_" MATCHED TO "_RCEFT_" - "_J ; PRCA*4.5*349
- . I (RCEFTTXT="EFT"),(RCERATXT["ERA") S RCERAFLG=1
- . D PRINTGT^RCDPENR3(RCSTRING,RCDATA,RCDISP,RCERAFLG,RCEXCEL)
- ;
- Q RCSTOP
+GRAND(RCPUZ) ;
+ ; PRCA*4.5*446 - Moved to RCDPENR5 for size
+ S:'$L($G(RCPUZ)) RCPUZ="A"  ; PRCA*4.5*446
+ Q $$GRAND^RCDPENR5(RCPUZ)
  ;
 PRINTINS(RCINS) ; Print the insurance header line
  ; Input:   RCINS   - Payer Name/TIN to be displayed
@@ -355,105 +379,25 @@ PRINTINS(RCINS) ; Print the insurance header line
  . Q:RCSTOP
  . D HEADER
  I RCSTOP Q RCSTOP
- W "PAYER NAME/TIN",!
+ W:(RCPAGE>1) ! W RCLINE,!
  W " ",$$PAYTIN^RCDPRU2(RCINS,78),!
  W RCLINE,!
  Q RCSTOP
  ;
  ;Print the Payment Method header lines
-PRINTHDR(RCTITLE) ;
- ; Undeclared parameters
- ;   RCLINE - line of "-" for report formating
- ;   RCSUMFLG - Type of report (M=Main,S=Summary,G=Grand Total)
- ;   RCDISP - Is the report being email (0) or Printed (1)
- ;   RCRPIEN - IEN to store the report if emailing
- ;
- I $G(RCEXCEL) Q 0
- N RCBORDER,RCSTOP,RCSTR
- ;
- S RCBORDER="",$P(RCBORDER,"*",20)="",RCSTOP=0
- I $Y>(IOSL-7),RCDISP D
- . D ASK^RCDPEADP(.RCSTOP,0)
- . Q:RCSTOP
- . D HEADER
- I RCSTOP Q RCSTOP
- ;
- ; Display report type being displayed
- I 'RCDISP D  Q
- . S RCSTR=RCBORDER_"     "_RCTITLE_"     "_RCBORDER
- . D SAVEDATA^RCDPENR1(RCSTR,RCRPIEN)
- . D SAVEDATA^RCDPENR1(RCLINE,RCRPIEN)
- I RCDISP D
- . W RCBORDER,"     ",RCTITLE,"     ",RCBORDER,!
- . W RCLINE,!
- ;
- Q RCSTOP
+PRINTHDR(RCTITLE,RCLL) ;
+ ; PRCA*4.5*446 - Moved to RCDPENR5 for size
+ Q $$PRINTHDR^RCDPENR5(RCTITLE,RCLL)
  ;
 GETDIV(RCDIV) ; Retrieve the Division
  ; PRCA*4.5*349 - Moved to RCDPENR4 for size
  Q $$GETDIV^RCDPENR4(.RCDIV)
  ;
  ;Retrieve the Report Type
-GETRATE() ;
- ;
- ;RCMNFLG - Ask to print the Main report (Detailed) report.  0=No, 1=Yes
- N X,Y,DIC,DTOUT,DUOUT
- ;
- S DIC="^DGCR(399.3,",DIC(0)="AEQMN"
- S DIC("S")="I $P(^(0),U,7)=""i"""
- D ^DIC K DIC
- Q +Y
- ;
- ;Retrieve the Report Type
 GETRPT(RCMNFLG) ;
+ ; PRCA*4.5*446 - Moved to RCDPENR5 for size
+ Q $$GETRPT^RCDPENR5(RCMNFLG)
  ;
- ;RCMNFLG - Ask to print the Main report (Detailed) report.  0=No, 1=Yes
- N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
- ;
- ; Prompt with Main (EFT/ERA Trending report (from RCDPENR2))
- I $G(RCMNFLG) D
- . S DIR("A")="Print (M)AIN Report, (S)UMMARY by Payer or (G)RAND TOTALS ONLY: "
- . S DIR(0)="SA^M:MAIN;S:SUMMARY;G:GRAND TOTAL"
- ;
- ; Prompt w/o main (Volume Statistics report (from RCDPENR1))
- I '$G(RCMNFLG) D
- . S DIR("A")="(S)UMMARY by Payer or (G)RAND TOTALS ONLY: "
- . S DIR(0)="SA^S:SUMMARY;G:GRAND TOTAL"
- ;
- S DIR("?")="Select the type of report to Generate."
- S DIR("B")="G"
- D ^DIR K DIR
- I $D(DTOUT)!$D(DUOUT)!(Y="")  Q -1
- Q Y
- ;
- ;
-GETSDATE()  ;
- N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT,RCTODAY
- ;
- ;Assume the start date is 45 days prior to the end date
- ;
- ;Get the start date.  
- S RCTODAY=$P($$NOW^XLFDT,".")
- S DIR("?")="ENTER THE EARLIEST DATE TO INCLUDE ON THE REPORT"
- S DIR(0)="DA^:"_RCTODAY_":APE",DIR("A")="Start with DATE: "
- D ^DIR K DIR
- I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
- Q Y
- ;
- ; Retrieve the end date of the report from the user.
-GETEDATE(RCBDATE)  ;
- ; RCBDATE - Begin date of the report.  Used as a lower bound
- ;
- N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT,RCTODAY
- ;
- ; Get the End date first.  Assume the end date is today.
- S RCTODAY=$P($$NOW^XLFDT,".")
- S DIR("?")="ENTER THE LATEST DATE TO INCLUDE ON THE REPORT"
- S DIR("B")=$$FMTE^XLFDT(RCTODAY,2)
- S DIR(0)="DAO^"_$G(RCBDATE)_":"_RCTODAY_":APE",DIR("A")="Go to DATE: " D ^DIR K DIR
- I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
- Q Y
- ; 
 GETARPYR(RCTIN,RCPAY) ; Retrieve the Payer IEN from the RCDPE AUTO-PAY EXCLUSION file (#344.6)
  ; Input: RCTIN - Payer ID
  ;        RCPAY - Payer Name (optional)
@@ -525,6 +469,7 @@ COLHEAD ;
  I 'RCEXCEL D
  . W "CLAIM#",?21,"DOS",?30,"AMT BILLED",?41,"AMT PAID",?52,"BILLED",?61,"ERA/EOB REC'D",?75,"EFT/PMT REC'D",?89,"POSTED",?98,"TRACE #",?109,"AUTOPOST/MANUAL",!
  . W ?5,"ETRANS TYPE",?17,"ERA#",?28,"#EEOBS",?39,"EFT#",?50,"#DAYS:(BILL/ERA)",?67,"#DAYS:(ERA/EFT)",?83,"#DAYS:(ERA+EFT/POSTED)",?106,"TOTAL #DAYS(BILL/POSTED)",!
+ . W:RCSORT="A" ?10,"PAYER NAME/TIN",!
  . W RCLINE,!
  Q
  ;
@@ -565,3 +510,10 @@ RPTHDR(RCIEN,PAGE) ; Reprint the header
  . I I=2 W ?5,$P(RCDATA,U,2),! Q
  . I I=3!(I=4) W ?5,$P(RCDATA,U,2),?45,$P(RCDATA,U,3),! Q
  Q
+ ;
+GETSDATE() ;PRCA*4.5*446 moved subroutine to RCDPENR4
+ Q $$GETSDATE^RCDPENR4()
+ ;
+GETEDATE() ;PRCA*4.5*446 moved subroutine to RCDPENR4
+ Q $$GETEDATE^RCDPENR4(RCBGDT)
+ ;

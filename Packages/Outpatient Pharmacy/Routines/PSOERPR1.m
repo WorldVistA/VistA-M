@@ -1,5 +1,5 @@
 PSOERPR1 ;BIRM/MFR - eRx Holding Queue Preferences - Rx List View Queue ;08/29/22
- ;;7.0;OUTPATIENT PHARMACY;**700,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**700,746,770**;DEC 1997;Build 145
  ;
 EN ; - Entry Point
  N DIR,DIRUT,DIROUT,PSOPRIEN,DA,Y,X
@@ -63,7 +63,7 @@ GRPCS ; - Group By CS/Non-CS
  ;
 ALLST ; - Display All Statuses
  K DIR,DIRUT,DIROUT,X,Y
- S DIR(0)="52.353,5",DIR("B")=$S(PSOALLST:"YES",1:"NO")
+ S DIR(0)="52.353,5",DIR("B")=$S($G(PSOALLST):"YES",1:"NO")
  D ^DIR I $D(DIRUT)!$D(DIROUT) G @$$GOTO(X,"ALLST")
  S PSOALLST=Y D CHANGED("ALLST",PSOALLST)
  ;
@@ -129,7 +129,7 @@ GOTO(INPUT,HOME) ; - Directed up-arrow
  ;
  Q GOTO
  ;
-LOAD ; Loading Factory/Division/User preferences for Single Patient View
+LOAD ; Loading Factory/Division/User preferences for Rx Medication View
  ;Output: PSOLKBKD - Look Back Days
  ;        PSOSRTBY - Sort By
  ;        PSORDER - Sort Order ("A":Asc,"D":Desc)
@@ -137,13 +137,13 @@ LOAD ; Loading Factory/Division/User preferences for Single Patient View
  ;        PSOCSERX - Include CS/Non-CS (C:CS Only/N:Non-CS Only/B:Both)
  ;        PSOSCSCH - CS Schedule (1:II Only/2:III-V/3:II-V)
  ;        PSOCSGRP - Group by CS/Non-CS (1:YES/0:NO)
- ;        PSOALLST - Include All Statuses (1:YES/0:NO)
+ ;        PSOALLST - Include All Statuses (1:YES/0:NO) (May be defined, pre-set by Jump 2 eRx Patient - won't override)
  ;        PSOMAXQS - Maximum Queue Size
  ; - 'Factory' Defaults
- I $G(RESETLBD)!'$G(PSOLKBKD) D
+ I $G(RESETLBD)!($G(PSOLKBKD)="") D
  . S PSOLKBKD=365
  . I $$GET1^DIQ(59,PSOSITE,10.2) S PSOLKBKD=$$GET1^DIQ(59,PSOSITE,10.2)
- S PSOSRTBY="RE",PSORDER="A",PSOCSERX="B",PSOCSSCH=3,(PSOCSGRP,PSOALLST,PSODETDP)=0,PSOMAXQS=999
+ S PSOSRTBY="RE",PSORDER="A",PSOCSERX="B",PSOCSSCH=3,(PSOCSGRP,PSODETDP)=0,PSOMAXQS=999
  ; 
  N PSOPRIEN
  S PSOPRIEN=+$O(^PS(52.35,"B","ERX HOLDING QUEUE PREFERENCES",0)) I 'PSOPRIEN Q
@@ -188,7 +188,7 @@ SET ; Sets Preferences Variables
  S X=$G(PREFS(8,"I")) I X'="" S PSOCSERX=X
  S X=$G(PREFS(9,"I")) I X'="" S PSOCSSCH=X
  S X=$G(PREFS(4,"I")) I X'="" S PSOCSGRP=X
- S X=$G(PREFS(5,"I")) I X'="" S PSOALLST=X
+ S X=$G(PREFS(5,"I")) I X'="",'$D(PSOALLST) S PSOALLST=X
  S X=$G(PREFS(7,"I")) I X'="" S PSOMAXQS=X
  S X=$G(PREFS(10,"I")) I X'="" S PSODETDP=X
  Q

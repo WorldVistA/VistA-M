@@ -1,5 +1,5 @@
 TIUCCRHL7P3 ; CCRA/PB - TIUHL7 Msg Processing; March 23, 2005
- ;;1.0;TEXT INTEGRATION UTILITIES;**337,344,349,356,366**;Sep 27, 2023;Build 2
+ ;;1.0;TEXT INTEGRATION UTILITIES;**337,344,349,356,366,371**;Sep 27, 2023;Build 4
  ; Documented API's and Integration Agreements
  ; ----------------------------------------------
  ; IA #3473I  GET^GMRCTIU
@@ -8,26 +8,20 @@ TIUCCRHL7P3 ; CCRA/PB - TIUHL7 Msg Processing; March 23, 2005
  ;PB - Patch 344 to modify how the note and addendum text is formatted
  ;PB - Patch 349 modification to parse and file the consult factor from the note and file as a comment with the consult
  ;PB - Patch 356 modifications to file the note as a stand-alone note and not linked to a consult
+ ;PB - Patch 371 removes unused code
  Q
 CONTINUE ;
- ;
  S TIUDA=$G(TIUIEN)
  ; get document parameters
  D DOCPRM^TIUHL7U2(TIU("TDA"),.TIUDPRM)
- ;
  I +TIU("EC") D ACK^TIUCCHL7UT(HL("MID"),TIUNAME,-1) Q
- ;
 MAKEADD ;
  ; validate CONSULT title
- ;S TIU("CNCN")=VNUM
- ;I $$MEMBEROF^TIUHL7U1(TIU("TITLE"),"CONSULTS") S TIUZ(1405)=TIU("CNCN")_";GMR(123,"
- ;
  ; set appropriate DOCUMENT STATUS from document parameters
  S DUZ=$G(TIU("AUDA")),DUZ(2)=$$GETDIV^TIUHL7U1(DUZ),TIU("DIVISION")=DUZ(2)
  I $P(TIUDPRM(0),U,2)=1 S TIUZ(.05)=3
  I '+$G(TIUZ(.05)),$P(TIUDPRM(0),U,3)>0,$P(TIUDPRM(0),U,3)'>2 S TIUZ(.05)=4
  I '+$G(TIUZ(.05)) S TIUZ(.05)=5
- ;
  S TIUZ(.07)=$S(+$G(TIU("EPDT")):TIU("EPDT"),+$G(TIU("RFDT")):TIU("RFDT"),1:$$NOW^XLFDT)
  S TIUZ(1201)=$$NOW^XLFDT
  S TIUZ(1202)=$G(TIU("AUDA"))
@@ -55,7 +49,6 @@ MAKEADD ;
  . S $P(^TIU(8925,+SUCCESS,13),U,3)="U",$P(^TIU(8925,+SUCCESS,13),U,2)=$S(+$G(TIU("EBDA")):TIU("EBDA"),1:TIU("AUDA"))
  . D SIGNDOC^TIUHL7U1(+SUCCESS) I +TIU("EC") D ACK^TIUCCHL7UT(HL("MID"),TIUNAME,+SUCCESS) Q
  . ; does the ack method below work for CCRA?
- . ;D ACK^TIUHL7U1("AA",TIUNAME,SUCCESS),SEND^TIUALRT(SUCCESS),SENDADD^TIUALRT(+TIUDA)
  ; if editable, make changes to document
  I +$G(TIUDA),$$CANEDIT^TIUHL7U1(TIUDA),'+TIU("EC") D  Q
  . N SUCCESS
@@ -66,40 +59,26 @@ MAKEADD ;
  . D FILE^TIUSRVP(.SUCCESS,+TIUDA,.TIUZ)
  . I '+SUCCESS S MSGTEXT=$P(SUCCESS,U,2),STOP=1 D MESSAGE(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,$G(MSGTEXT),$G(CONSULTID)) ;D ERR^TIUCCHL7UT("TIU",1,"0000.000",$P(SUCCESS,U,2))
  . Q:$G(STOP)=1
- . ;I +TIU("EC") D ACK^TIUHL7U1("AR",TIUNAME,-1) Q
  . S $P(^TIU(8925,+SUCCESS,13),U,3)="U",$P(^TIU(8925,+SUCCESS,13),U,2)=$S(+$G(TIU("EBDA")):TIU("EBDA"),1:TIU("AUDA"))
  . D SIGNDOC^TIUHL7U1(+SUCCESS) I +TIU("EC") ;I +TIU("EC") D ACK^TIUHL7U1("AR",TIUNAME,+SUCCESS) Q
- . ;D ACK^TIUHL7U1("AA",TIUNAME,TIUDA),SEND^TIUALRT(TIUDA) Q
- ;
  I +TIU("EC") D ACK^TIUCCHL7UT(HL("MID"),TIUNAME,-1) Q
- ;
  ; document creation
  N SDCNT,TIUDIV1,TIUFPRIV,TIUPRM0,TIUPRM1,ORIGSTAT
  S ORIGSTAT=$$GET1^DIQ(123,CONSULTID_",",8,"I")   ;ICR 3983 - save the status of the consult before adding the note. PB - Sep 23 - patch 356 changes for lookup by by CONSULTID
- ;D MAKE^TIUSRVP(.TIUDA,DFN,TIU("TDA"),,,,.TIUZ,TIU("VSTR"))  ; This calls the FILE^TIUSRVP code which also calls the code to set the status of the consult
- ;;may need to copy the MAKE^TIUSRVP code to another routine and call our new code and suppress changing the status of the consult.
  D MAKE^TIUCCRHL7P2(.TIUDA,DFN,TIU("TDA"),,,,.TIUZ,$G(TIU("VSTR")))
- ;I $G(TIUDA)>0 D SIGNDOC^TIUHL7U1(+TIUDA) I +TIU("EC") D ACK^TIUHL7U1("AE",TIUNAME,+TIUDA) Q
  I $G(TIUDA)>0 D SIGNDOC^TIUCCRHL7P2(+TIUDA) I +TIU("EC") D ACK^TIUCCHL7UT(HL("MID"),TIUNAME,+TIUDA) Q
- ;
  ; verify creation & and set capture method to UPLOAD & ENTERED BY (if applicable)
  I '+TIUDA S MSGTEXT=$P(TIUDA,U,2) D MESSAGE(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,$G(MSGTEXT),$G(CONSULTID)) Q  ;D ERR^TIUCCHL7UT("TIU",1,"0000.00",$P(TIUDA,U,2)),ACK^TIUHL7U1("AR",TIUNAME,-1) Q
  S $P(^TIU(8925,+TIUDA,13),U,3)="U",$P(^TIU(8925,+TIUDA,13),U,2)=$S(+$G(TIU("EBDA")):TIU("EBDA"),1:TIU("AUDA"))
  S $P(^TIU(8925,+TIUDA,0),U,7)=$S(+$G(TIU("EPDT")):TIU("EPDT"),+$G(TIU("RFDT")):TIU("RFDT"),1:$$NOW^XLFDT)
- ;
  ; update the consult as necessary
  I $$MEMBEROF^TIUHL7U1(TIU("TITLE"),"CONSULTS") D
  . N TIUSTAT S TIUSTAT=$P($G(^TIU(8925,+TIUDA,0)),U,5)
- . ;S TIUSTAT=$S(TIUSTAT>4:"COMPLETED",1:"INCOMPLETE")    ;CHANGED TIUSTAT>6 TO TIUSTAT>4  ; Dec 28 changed by Phil B. to set TIUSTAT = INCOMPLETE
  . S TIUSTAT="INCOMPLETE"
- . ;D GET^GMRCTIU(TIU("CNCN"),+TIUDA,TIUSTAT,TIU("AUDA"))
- ;
  D ACK^TIUCCHL7UT(HL("MID"),TIUNAME,+TIUDA)
  D SEND^TIUALRT(+TIUDA)
  D AUDIT^TIUHL7U1(+TIUDA,0,$$CHKSUM^TIULC("^TIU(8925,"_+TIUDA_",""TEXT"")"))
- ;
  Q
- ;
 MESSAGE(MSGID,VNUM,MSGTEXT) ; Send a MailMan Message with the errors
  N DUZ,XMDUZ,XMSUB,XMTEXT,XMY,XMMG,XMSTRIP,XMROU,DIFROM,XMYBLOB,XMZ,XMMG,DATE,J,FLG1,MID
  S DATE=$$FMTE^XLFDT($$FMDATE^HLFNC($P(HL("DTM"),"-",1)))
@@ -115,4 +94,3 @@ MESSAGE(MSGID,VNUM,MSGTEXT) ; Send a MailMan Message with the errors
  S XMY("G.TIU HSRM CONSULT HL7 MESSAGES")=""
  D ^XMD
  Q
- ;

@@ -1,5 +1,5 @@
 RCDPEDA3 ;AITC/DW - ACTIVITY REPORT ;Feb 17, 2017@10:37:00
- ;;4.5;Accounts Receivable;**318,321,326,432**;Mar 20, 1995;Build 16
+ ;;4.5;Accounts Receivable;**318,321,326,432,439**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -16,17 +16,21 @@ HDR(INPUT) ;EP from RCDPEDAR
  ;                         A9 - Current line count
  ;                         A10- 1 - Only Display EFTs with a debit flag of 'D'
  ;                              0 - Display all EFTs
+ ;                         A11- A - All, Display all EFTs
+ ;                              B - Balanced, Only display EFTs for deposits that are balanced
+ ;                              U - Unbalanced, Only display EFTs for deposits that are unbalanced
  ; Output:  INPUT       - A1^A2^A3^...^An - The following pieces may be updated
  ;                         A4 - Current Page Number
  ;                         A5 - Stop Flag
  ;                         A8 - Updated line count
- N CTR,CURPG,DETL,DONLY,DTST,DTEND,NJ,NOJUST,PLN,STOP,X,XX,Y,Z,Z0,Z1
+ N CTR,CURPG,DETL,DONLY,DTST,DTEND,NJ,NOJUST,PLN,RCUNBAL,STOP,X,XX,Y,Z,Z0,Z1
  S DETL=$P(INPUT,"^",3)
  S CURPG=$P(INPUT,"^",4)
  S STOP=$P(INPUT,"^",5)
  S DTST=$P(INPUT,"^",6)                     ; Date Range Start
  S DTEND=$P(INPUT,"^",7)                    ; Date Range Ends
  S DONLY=$P(INPUT,"^",10)                   ; EFTs with Debits Only  ;PRCA*4.5*321 add debit logic
+ S RCUNBAL=$P(INPUT,"^",11)                 ; (B)Balanced/)U)Unblanced/(A)All filter selection for deposits  ;PRCA*4.5*439 add deposit balance logic
  S NJ=$P(INPUT,"^",1)
  Q:NJ&(CURPG)
  I CURPG!($E(IOST,1,2)="C-") D
@@ -83,6 +87,14 @@ HDR(INPUT) ;EP from RCDPEDAR
  S Z=Z_$S(DONLY:"YES",1:"NO")
  S Z=$J("",80-$L(Z)\2)_Z
  D SL(.INPUT,Z)
+ ;
+ ; PRCA*4.5*439 Add Deposit Balance/Unbalance/All filter to header
+ S Z="",$P(Z," ",60)=""  ;Add 60 spaces
+ S Z=Z_"DEPOSITS: "
+ S Z=Z_$S(RCUNBAL="U":"UNBALANCED",RCUNBAL="B":"BALANCED  ",1:"ALL       ")
+ S Z=$J("",80-$L(Z)\2)_Z
+ D SL(.INPUT,Z)
+ ;
  I DETL D
  . ;
  . ; PRCA*4.5*283 - Add 3 more spaces between DEP # and DEPOSIT DT 

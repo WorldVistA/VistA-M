@@ -1,5 +1,5 @@
-VADPT4 ;ALB/MRL,MJK,ERC,DIC,PWC,ARF,JMM - PATIENT VARIABLES ;12 DEC 1988 ;10/13/10 4:43pm
- ;;5.3;Registration;**343,342,528,689,688,790,797,935,952,1007,1018,1090,1103,1118,1121**;Aug 13, 1993;Build 14
+VADPT4 ;ALB/MRL,MJK,ERC,DIC,PWC,ARF,JMM,JAM - PATIENT VARIABLES ;12 DEC 1988 ;10/13/10 4:43pm
+ ;;5.3;Registration;**343,342,528,689,688,790,797,935,952,1007,1018,1090,1103,1118,1121,1149**;Aug 13, 1993;Build 4
 7 ;Eligibility [ELIG]
  F I=.15,.3,.31,.32,.36,.361,"INE","TYPE","VET" S VAX(I)=$S($D(^DPT(DFN,I)):^(I),1:"")
  S VAZ=$P(VAX(.36),"^",1) S:$D(^DIC(8,+VAZ,0)) VAZ=VAZ_"^"_$P(^(0),"^",1) S @VAV@($P(VAS,"^",1))=VAZ
@@ -15,6 +15,44 @@ VADPT4 ;ALB/MRL,MJK,ERC,DIC,PWC,ARF,JMM - PATIENT VARIABLES ;12 DEC 1988 ;10/13/
  S @VAV@($P(VAS,"^",7))=$P(VAX(.31),"^",3),VAZ=$P(VAX(.361),"^",1) S:VAZ]"" VAZ=VAZ_"^"_$S(VAZ="V":"VERIFIED",VAZ="P":"PENDING VERIFICATION",VAZ="R":"PENDING RE-VERIFICATION",1:"") S @VAV@($P(VAS,"^",8))=VAZ
  I $D(^DPT(DFN,0)) S VAX=$P(^(0),"^",14),VAX=$G(^DG(408.32,+VAX,0)) I VAX]"" S @VAV@($P(VAS,"^",9))=$P(VAX,"^",2)_"^"_$P(VAX,"^",1)
  S VAX=$G(^DPT(DFN,.55)) S @VAV@($P(VAS,"^",10))=VAX_$S(VAX]"":"^",1:"")_$$GET1^DIQ(2,DFN_",",.5501,"E")
+ ; DG*5.3*1149 - Add Health Benefit Plan HBP data from ^DPT(DFN,"HPB")
+ N HBP,VAHBP,VASRCP,VAPACTIVE,VACNT,VAIEN,Y
+ ; ^VAER(11)=count of active plans
+ ; ^VAER(11,1-n,1)=IEN^NAME
+ ; ^VAER(11,1-n,2)=ACTIVE_FLAG
+ ; ^VAER(11,1-n,3)=ASSIGNED_DATE_TIME_INTERNAL^ASSIGNED_DATE_TIME_EXTERNAL
+ ; ^VAER(11,1-n,4)=CURRENT_SOURCE
+ ; ^VAER(11,1-n,5)=^EFFECTIVE_DATE_INTENAL^EFFECTIVE_DATE_EXTERNAL
+ ; Put all plans in local array HBP
+ D GETHBP^DGHBPUTL(DFN)
+ S VAHBP=0,VACNT=0
+ ; Step through current plans only
+ F  S VAHBP=$O(HBP("CUR",VAHBP)) Q:VAHBP=""  D
+ . S VACNT=VACNT+1
+ . ; Get IEN
+ . S VAIEN=+HBP("CUR",VAHBP)
+ . ; IEN^NAME
+ . S @VAV@($P(VAS,"^",11),VACNT,1)=VAIEN_"^"_VAHBP
+ . ; Active flag 
+ . S VAPACTIVE=$P($G(^DGHBP(25.11,VAIEN,0)),"^",4)
+ . I VAPACTIVE="" S VAPACTIVE="N"
+ . S @VAV@($P(VAS,"^",11),VACNT,2)=VAPACTIVE
+ . ; Assigned Date/time
+ . S Y=$P(HBP("CUR",VAHBP),"^",2)
+ . S VAZ=Y_"^"
+ . D DD^%DT
+ . S VAZ=VAZ_Y
+ . S @VAV@($P(VAS,"^",11),VACNT,3)=VAZ
+ . ; Get Source
+ . S VASRCP=$P(HBP("CUR",VAHBP),"^",5)
+ . S @VAV@($P(VAS,"^",11),VACNT,4)=VASRCP
+ . ; Effective Date
+ . S Y=$P(HBP("CUR",VAHBP),"^",6)
+ . S VAZ=Y_"^"
+ . D DD^%DT
+ . S VAZ=VAZ_Y
+ . S @VAV@($P(VAS,"^",11),VACNT,5)=VAZ
+ S @VAV@($P(VAS,"^",11))=VACNT
  Q
  ;
 8 ;Monetary Benefits [MB]

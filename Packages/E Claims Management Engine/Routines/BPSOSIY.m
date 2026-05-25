@@ -1,5 +1,5 @@
 BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/7/07  17:29
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,10,11,20,26,29,36**;JUN 2004;Build 16
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,10,11,20,26,29,36,40,41**;JUN 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -12,17 +12,20 @@ BPSOSIY ;BHAM ISC/FCS/DRS/DLF - Updating BPS Transaction record ;11/7/07  17:29
  ;   BPSNB - Flag indicating a Non-Billable Entry
  ; Returns
  ;   ERROR - 0 or error number
+ ;
 INIT(IEN59,BP77,BPSNB) ;EP - from BPSOSIZ
- N BPCOB,BPSTIME
+ ;
  S BPSNB=+$G(BPSNB)
  ;
  ; Update the BPS Request with the Transaction IEN
  I $G(BP77)>0 D UPD7759^BPSOSRX4(BP77,IEN59)
  ;
- ; Initialize variables
- N FDA,MSG,FN,IENS,REC,B1,X1,X2,X3,ERROR,SEQ,X4
- N DIV,RXI,RXR
- S FN=9002313.59,REC=IEN59_",",ERROR=0
+ N B1,BPCOB,BPSTIME,DIV,DUR,DURREC,ERROR,EXPDATE,FDA,FN,IENS
+ N MSG,REC,RXI,RXR,SEQ,X1,X2,X3,X4
+ ;
+ S FN=9002313.59
+ S REC=IEN59_","
+ S ERROR=0
  ;
  ; Change status to 0% (Waiting to Start), which will reset START TIME,
  ;   and then to 10% (Building transaction)
@@ -31,20 +34,29 @@ INIT(IEN59,BP77,BPSNB) ;EP - from BPSOSIZ
  ;
  ; Get the Outpatient Site
  S DIV=MOREDATA("DIVISION")
- I 'DIV,MOREDATA("REQ TYPE")="C" S RXI=$P(IEN59,".",1),RXR=+$E($P(IEN59,".",2),1,4),DIV=$$GETDIV^BPSOSQC(RXI,RXR)
+ I 'DIV,MOREDATA("REQ TYPE")="C" D
+ . S RXI=$P(IEN59,".",1)
+ . S RXR=+$E($P(IEN59,".",2),1,4)
+ . S DIV=$$GETDIV^BPSOSQC(RXI,RXR)
  ;
- ; If there are Prior Auth or Sub Clar Code override, create override
- ;   record.  Note that setting of MOREDATA("BPOVRIEN") in this routine
- ;   will not conflict with prior setting of this value of BPOVRIEN
- ;   since BPOVRIEN and BPSAUTH/BPSCLARF are mutually exclusive
- I $G(MOREDATA("BPSAUTH"))]""!($G(MOREDATA("BPSCLARF"))]"")!($G(MOREDATA("BPSDELAY"))]"") S MOREDATA("BPOVRIEN")=$$OVERRIDE(IEN59)
+ ; Create an override record if one of these values exists:
+ ;   o Prior Authorization Code/Number
+ ;   o Submission Clarification Code(s)
+ ;   o Delay Reason Code
+ ;   o Diagnosis Code
+ ;   o Pregnancy Indicator
+ ; Note that setting of MOREDATA("BPOVRIEN") in this routine will not
+ ; conflict with prior setting of this value of BPOVRIEN since BPOVRIEN
+ ; and BPSAUTH/BPSCLARF are mutually exclusive.
+ I $G(MOREDATA("BPSAUTH"))]""!($G(MOREDATA("BPSCLARF"))]"")!($G(MOREDATA("BPSDELAY"))]"")!($G(MOREDATA("BPSDX"))]"")!($G(MOREDATA("BPSPREG"))]"") S MOREDATA("BPOVRIEN")=$$OVERRIDE(IEN59)
  ;
  ; Set BPSDATA into local variable
  S B1=$G(MOREDATA("BPSDATA",1))
  ;
- ; Get first record from MOREDATA("IBDATA") as there are some
- ;   non-multiple fields that need it
- S X2="",SEQ=$O(MOREDATA("IBDATA",""))
+ ; Get first record from MOREDATA("IBDATA"), as there are some
+ ; non-multiple fields that need it.
+ S X2=""
+ S SEQ=$O(MOREDATA("IBDATA",""))
  I SEQ S X2=$G(MOREDATA("IBDATA",SEQ,2))
  ;
  ; Set non-multiple fields
@@ -82,7 +94,6 @@ INIT(IEN59,BP77,BPSNB) ;EP - from BPSOSIZ
  ; service from the initial claim sent for this transaction.
  ;
  S FDA(FN,REC,1202)=$G(MOREDATA("DATE OF SERVICE")) ;Date of Service
- N EXPDATE
  S EXPDATE=$$GET1^DIQ(52,MOREDATA("RX"),26,"I")
  I EXPDATE'="",EXPDATE'>MOREDATA("DATE OF SERVICE") D
  . ; Determine DOS from initial submission.
@@ -97,6 +108,7 @@ INIT(IEN59,BP77,BPSNB) ;EP - from BPSOSIZ
  ;
  ; File secondary billing fields
  I $$COB59^BPSUTIL2(IEN59)=2 D SECBIL59^BPSPRRX6(.MOREDATA,IEN59)
+ ;
  ; File non-multiple fields - Record is already defined
  D FILE^DIE("","FDA","MSG")
  I $D(MSG) D  Q ERROR
@@ -111,9 +123,16 @@ INIT(IEN59,BP77,BPSNB) ;EP - from BPSOSIZ
  S SEQ=""
  F  S SEQ=$O(MOREDATA("IBDATA",SEQ)) Q:SEQ=""  D  I ERROR Q
  . I $G(MOREDATA("NON-BILLABLE REASON"))="NOT INSURED" Q
+ . ;
  . K FDA,MSG,IENS
- . S FN=9002313.59902,IENS="+1,"_REC,IENS(1)=SEQ
- . S X1=$G(MOREDATA("IBDATA",SEQ,1)),X2=$G(MOREDATA("IBDATA",SEQ,2)),X3=$G(MOREDATA("IBDATA",SEQ,3)),X4=$G(MOREDATA("IBDATA",SEQ,4))
+ . S FN=9002313.59902
+ . S IENS="+1,"_REC
+ . S IENS(1)=SEQ
+ . ;
+ . S X1=$G(MOREDATA("IBDATA",SEQ,1))
+ . S X2=$G(MOREDATA("IBDATA",SEQ,2))
+ . S X3=$G(MOREDATA("IBDATA",SEQ,3))
+ . S X4=$G(MOREDATA("IBDATA",SEQ,4))
  . ;
  . ; Update fields
  . S FDA(FN,IENS,.01)=$P(X1,U,1)    ;Plan ID
@@ -149,58 +168,67 @@ INIT(IEN59,BP77,BPSNB) ;EP - from BPSOSIZ
  . S FDA(FN,IENS,902.34)=$P(X1,U,19) ;E1 Payer Sheet (Eligibility)
  . S FDA(FN,IENS,902.35)=$P(X3,U,7)  ;Policy Number
  . S FDA(FN,IENS,902.36)=$P(X3,U,8)  ;Max Transactions/Transmission
- . ;the following fields are used only for secondary billing and for primary Tricare billing
- . ;in both cases only entry = 1 in the multiple will be created EVEN if the sequence is 2 (for secondary)
- . ;Note: actually only the entry = 1 is used for primary billing as well, others are never used
+ . ;
+ . ; The following fields are used only for secondary billing and for
+ . ; primary Tricare billing.  In both cases, only entry = 1 in the
+ . ; multiple will be created even if the sequence is 2 (for secondary).
+ . ; Note:  Only the entry = 1 is used for primary billing as well,
+ . ; others are never used.
  . I SEQ=1 D
  . . S FDA(FN,IENS,902.29)=$G(MOREDATA("RTYPE"))  ;Rate Type
  . . S FDA(FN,IENS,902.3)=$G(MOREDATA("PRIMARY BILL"))  ;Primary bill ien
  . . S FDA(FN,IENS,902.31)=$G(MOREDATA("PRIOR PAYMENT"))  ;Prior payment amount
+ . . Q
  . ;
  . ; File the data
  . D UPDATE^DIE("","FDA","IENS","MSG")
  . I $D(MSG) D
- .. S ERROR=13
- .. D LOG^BPSOSL(IEN59,$T(+0)_"-Multiple fields did not file, SEQ="_SEQ)
- .. D LOG^BPSOSL(IEN59,"MSG Array:")
- .. D LOGARRAY^BPSOSL(IEN59,"MSG")
- .. D LOG^BPSOSL(IEN59,"IENS Array:")
- .. D LOGARRAY^BPSOSL(IEN59,"IENS")
- .. D LOG^BPSOSL(IEN59,"FDA Array:")
- .. D LOGARRAY^BPSOSL(IEN59,"FDA")
+ . . S ERROR=13
+ . . D LOG^BPSOSL(IEN59,$T(+0)_"-Multiple fields did not file, SEQ="_SEQ)
+ . . D LOG^BPSOSL(IEN59,"MSG Array:")
+ . . D LOGARRAY^BPSOSL(IEN59,"MSG")
+ . . D LOG^BPSOSL(IEN59,"IENS Array:")
+ . . D LOGARRAY^BPSOSL(IEN59,"IENS")
+ . . D LOG^BPSOSL(IEN59,"FDA Array:")
+ . . D LOGARRAY^BPSOSL(IEN59,"FDA")
+ . . Q
+ . Q
  ;
  ; Quit if there was an error filing the Insurance multiple
  I ERROR Q ERROR
  ;
  ; Store DUR multiple if it exists
- N DUR,DURREC
- S FN=9002313.5913,DUR=0
+ S FN=9002313.5913
+ S DUR=0
  F  S DUR=$O(MOREDATA("DUR",DUR)) Q:DUR=""  D  I ERROR Q
  . K FDA,MSG,IENS
  . S DURREC=$G(MOREDATA("DUR",DUR,0))
- . S IENS="+1,"_REC,IENS(1)=DUR
+ . S IENS="+1,"_REC
+ . S IENS(1)=DUR
  . S FDA(FN,IENS,.01)=DUR  ; DUR Counter
  . S FDA(FN,IENS,1)=$P(DURREC,U,2)    ; DUR Professional Service Code
  . S FDA(FN,IENS,2)=$P(DURREC,U,1)    ; DUR Reason for Service Code
  . S FDA(FN,IENS,3)=$P(DURREC,U,3)    ; DUR Result of Service Code
  . D UPDATE^DIE("","FDA","IENS","MSG")
  . I $D(MSG) D
- .. S ERROR=15
- .. D LOG^BPSOSL(IEN59,$T(+0)_"-DUR fields did not file, DUR="_DUR)
- .. D LOG^BPSOSL(IEN59,"DURREC="_DURREC)
- .. D LOG^BPSOSL(IEN59,"MSG Array:")
- .. D LOGARRAY^BPSOSL(IEN59,"MSG")
- .. D LOG^BPSOSL(IEN59,"IENS Array:")
- .. D LOGARRAY^BPSOSL(IEN59,"IENS")
- .. D LOG^BPSOSL(IEN59,"FDA Array:")
- .. D LOGARRAY^BPSOSL(IEN59,"FDA")
+ . . S ERROR=15
+ . . D LOG^BPSOSL(IEN59,$T(+0)_"-DUR fields did not file, DUR="_DUR)
+ . . D LOG^BPSOSL(IEN59,"DURREC="_DURREC)
+ . . D LOG^BPSOSL(IEN59,"MSG Array:")
+ . . D LOGARRAY^BPSOSL(IEN59,"MSG")
+ . . D LOG^BPSOSL(IEN59,"IENS Array:")
+ . . D LOGARRAY^BPSOSL(IEN59,"IENS")
+ . . D LOG^BPSOSL(IEN59,"FDA Array:")
+ . . D LOGARRAY^BPSOSL(IEN59,"FDA")
+ . . Q
+ . Q
  ;
  Q ERROR
  ;
  ; OVERRIDE - Function to create override record
 OVERRIDE(IEN59) ;
  ;Save values into BPS NCPDP OVERRIDES (#9002313.511)
- N BPSFDA,BPSFLD,BPOVRIEN,BPSMSG,BPSQ,BPSVALUE
+ N BPOVRIEN,BPSFDA,BPSFLD,BPSMSG,BPSQ,BPSVALUE
  ;
  ; Set Name (.01) to transaction number
  S BPSFDA(9002313.511,"+1,",.01)=IEN59
@@ -220,12 +248,22 @@ OVERRIDE(IEN59) ;
  . S BPSFLD=$O(^BPSF(9002313.91,"B",462,""))
  . I BPSFLD]"" S BPSFDA(9002313.5111,"+4,+1,",.01)=BPSFLD,BPSFDA(9002313.5111,"+4,+1,",.02)=$E($P(MOREDATA("BPSAUTH"),U,2),1,11)
  ;
- ; Delay Reason Code - This is the IEN of the database
+ ; Delay Reason Code (IEN to file #9002313.29, not external)
  I $G(MOREDATA("BPSDELAY"))]"" D
  . S BPSVALUE=$P($G(^BPS(9002313.29,MOREDATA("BPSDELAY"),0)),U,1)
  . I BPSVALUE="" Q
  . S BPSFLD=$O(^BPSF(9002313.91,"B",357,""))
  . I BPSFLD]"" S BPSFDA(9002313.5111,"+5,+1,",.01)=BPSFLD,BPSFDA(9002313.5111,"+5,+1,",.02)=$E(MOREDATA("BPSDELAY"),1,2)
+ ;
+ ; Diagnosis Code
+ I $G(MOREDATA("BPSDX"))]"" D
+ . S BPSFLD=$O(^BPSF(9002313.91,"B",424,""))
+ . I BPSFLD]"" S BPSFDA(9002313.5111,"+6,+1,",.01)=BPSFLD,BPSFDA(9002313.5111,"+6,+1,",.02)=MOREDATA("BPSDX")
+ ;
+ ; Pregnancy Indicator
+ I $G(MOREDATA("BPSPREG"))]"" D
+ . S BPSFLD=$O(^BPSF(9002313.91,"B",335,""))
+ . I BPSFLD]"" S BPSFDA(9002313.5111,"+7,+1,",.01)=BPSFLD,BPSFDA(9002313.5111,"+7,+1,",.02)=MOREDATA("BPSPREG")
  ;
  ; Create the record
  D UPDATE^DIE("","BPSFDA","BPOVRIEN","BPSMSG")

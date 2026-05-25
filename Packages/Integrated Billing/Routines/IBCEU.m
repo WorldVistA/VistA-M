@@ -1,5 +1,5 @@
 IBCEU ;ALB/TMP - EDI UTILITIES ;02-OCT-96
- ;;2.0;INTEGRATED BILLING;**51,137,207,232,349,432,592,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**51,137,207,232,349,432,592,608,770**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ; DBIA SUPPORTED REF: GET^XUA4A72 = 1625
  ; DBIA SUPPORTED REF: $$ESBLOCK^XUSESIG1 = 1557
@@ -223,11 +223,15 @@ BCLASS(IBIFN) ; Returns actual bill classif. code from ptr fld
  Q $P($G(^DGCR(399.1,+$P($G(^DGCR(399,IBIFN,0)),U,25),0)),U,2)
  ;
 ADMHR(IBIFN,IBDTTM) ; Extract admit hr from admit dt/tm
- ;  Default 00 if no time and bill is 11X or 18X
+ ;  Default 0000 if no time and bill is 11X or 18X
  N TM
  S TM=$P(IBDTTM,".",2)
- I TM="","18"[$$BCLASS(IBIFN),$P($G(^DGCR(399,IBIFN,0)),U,24)=1 S TM="00"
- I TM'="",TM'="00" S TM=$E(TM_"0000",1,4)
+ ;IB*770/TAZ - US 3967 - Always send HHMM as time. ; bad Tim
+ ;S TM=$E($P(IBDTTM,".",2)_"0000",1,4)   ; bad Tim
+ ;I TM="","18"[$$BCLASS(IBIFN),$P($G(^DGCR(399,IBIFN,0)),U,24)=1 S TM="00"
+ I TM="","18"[$$BCLASS(IBIFN),$P($G(^DGCR(399,IBIFN,0)),U,24)=1 S TM="0000"   ;wcj;v35+;IB770
+ ;I TM'="",TM'="00" S TM=$E(TM_"0000",1,4)
+ I TM'="",$L(TM)<4 S TM=$E(TM_"0000",1,4)  ;wcj;v35+;IB770
  Q TM
  ;
 OLAB(IBIFN) ; Returns 1 if bill IBIFN is outside lab

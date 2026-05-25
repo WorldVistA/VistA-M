@@ -1,21 +1,21 @@
-GMPLX ; ISL/MKB,AJB,JER,TC,PKR -- Problem List Problem Utilities ;03/30/2020
- ;;2.0;Problem List;**7,23,26,28,27,36,42,40,49,53**;Aug 25, 1994;Build 159
+GMPLX ; ISL/MKB,AJB,JER,TC,PKR -- Problem List Problem Utilities ; Aug 14, 2025@15:12
+ ;;2.0;Problem List;**7,23,26,28,27,36,42,40,49,53,58**;Aug 25, 1994;Build 33
  ;
- ; External References
- ;  DBIA   446 ^AUTNPOV(
- ;   ICR  5679 $$IMPDATE^LEXU
- ;   ICR  5747 $$CSI/SAB^ICDEX
- ;   ICR  6953 $$PROVNARR^PXAPI
- ;  DBIA 10060 ^VA(200
- ;  DBIA 10006 ^DIC
- ;  DBIA 10009 FILE^DICN
- ;  DBIA 10013 EN^DIK
- ;  DBIA 10013 IX1^DIK
- ;  DBIA 10026 ^DIR
- ;  DBIA  1609 CONFIG^LEXSET
- ;  DBIA 10103 $$FMTE^XLFDT
- ;  DBIA 10104 $$UP^XLFSTR
- ;  DBIA  2742 GMPLX
+ ; External References:
+ ;
+ ; Reference to ^AUTNPOV( in ICR #446
+ ; Reference to $$IMPDATE^LEXU in ICR #5679 
+ ; Reference to $$CSI/SAB^ICDEX in ICR #5747 
+ ; Reference to $$PROVNARR^PXAPI in ICR #6953 
+ ; Reference to ^VA(200 in ICR #10060 
+ ; Reference to ^DIC in ICR #10006
+ ; Reference to FILE^DICN in ICR #10009
+ ; Reference to EN^DIK in ICR #10013 
+ ; Reference to IX1^DIK in ICR #10013 
+ ; Reference to ^DIR in ICR #10026
+ ; Reference to CONFIG^LEXSET in ICR #1609 
+ ; Reference to $$FMTE^XLFDT in ICR #10103 
+ ; Reference to $$UP^XLFSTR in ICR #10104
  ;
 SEARCH(X,Y,PROMPT,UNRES,VIEW) ; Search Lexicon for Problem X
  N DIC S:'$L($G(VIEW)) VIEW="CLF" D CONFIG^LEXSET("GMPX",VIEW,DT)
@@ -27,6 +27,7 @@ SEARCH(X,Y,PROMPT,UNRES,VIEW) ; Search Lexicon for Problem X
  .S X=$P(Y,U,2)
  .D EXP2CODE(+Y,.SRC,.CODE)
  .I (SRC["SNOMED")!(SRC["VHAT") S (X,$P(Y,U,2))=X_" ("_$S(SRC["SNOMED":"SCT",1:"VHAT")_" "_CODE_")",Y(1)=$$GETDX(CODE,SRC)
+ K:'$G(UNRES) LEXUN
  Q
  ;
 PROVNARR(X,CL) ; Returns IFN^Text of Narrative (#9999999.27)
@@ -63,8 +64,8 @@ CS(X) ; Problem Codes
  F GMPLSAB="DORLAND","DXPLAIN","HHCC","MCMASTER","META","MTF","MeSH","RVC","TITLE 38","UMDNS","UWA" S:$G(X)[("("_GMPLSAB) GMPLSO="("_GMPLSAB_$P(X,("("_GMPLSAB),2,299) Q:$L(GMPLSO)
  I $L(GMPLSO) S X=GMPLSO Q X
  Q ""
-EP(X) ; Exposures
- N GMPLSC S X=+($G(X)) D SCS^GMPLX1(+X,.GMPLSC) S X=$G(GMPLSC(1)) Q X
+EP(IFN) ; Exposures
+ Q $$EP^GMPLSPECAUTH(IFN)    ;58
 PT(X,C) ; Problem Text (only)
  N GMPLTERM,GMPLSO S GMPLTERM=$G(X),GMPLSO=$G(C)
  S:$L(GMPLSO)&(GMPLTERM[GMPLSO) GMPLTERM=$P(GMPLTERM,GMPLSO,1) S GMPLTERM=$$TRIM(GMPLTERM)

@@ -1,5 +1,5 @@
-PXRHS04 ; SLC/SBW - PCE Visit Skin Test Data Extract ;Apr 09, 2018@11:14
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,206,217**;Aug 12, 1996;Build 134
+PXRHS04 ; SLC/SBW - PCE Visit Skin Test Data Extract ;08/02/2024
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,206,217,247**;Aug 12, 1996;Build 5
 SKIN(DFN) ; Control branching
  ;INPUT  : DFN      - Pointer to PATIENT file (#2)
  ;OUTPUT :
@@ -46,6 +46,11 @@ SKIN(DFN) ; Control branching
  . . . D EN^DIQ1
  . . . Q:'$D(REC)
  . . . S VDATA=$$GETVDATA^PXRHS03(+REC(9000010.12,DA,.03,"I"))
+ . . .;If the VISIT file entry does not exist, skip this entry.
+ . . . I VDATA=-1 D  Q
+ . . . . N VISITIEN
+ . . . . S VISITIEN=+REC(9000010.12,DA,.03,"I")
+ . . . . D NONEXISTENTVISIT^PXRHS02(9000010.12,DA,VISITIEN)
  . . . I REC(9000010.12,DA,1208,"I") D
  . . . . S PXPLACEIEN=REC(9000010.12,DA,1208,"I")
  . . . . S PXPLACE12=$G(^AUPNVSK(PXPLACEIEN,12))
@@ -81,6 +86,11 @@ SKIN(DFN) ; Control branching
  . . . . S PSOURCE=$P($G(^AUPNVSK(PXPLACEIEN,812)),U,3)
  . . . . S PSOURCE=$P($G(^PX(839.7,+PSOURCE,0)),U,1)
  . . . . S PVDATA=$$GETVDATA^PXRHS03(+PXPLACEVST)
+ . . . . ;If the VISIT file entry does not exist, skip this entry.
+ . . . . I PVDATA=-1 D  Q
+ . . . . . N VISITIEN
+ . . . . . S VISITIEN=+PXPLACEVST
+ . . . . . D NONEXISTENTVISIT^PXRHS02(9000010.12,PXPLACEIEN,VISITIEN)
  . . . . S ^TMP("PXS",$J,SKIN,IDT,DA,"P")=$P(PVDATA,U,5)_U_$P(PVDATA,U,6)_U_$P(PVDATA,U,2)_U_$P(PVDATA,U,4)_U_PSOURCE
  . . . S ^TMP("PXS",$J,SKIN,IDT,DA,0)=SKIN_U_SKDT_U_RESULTC_U_RESULT_U_READING_U_RDT_U_OPROV_U_EPROV
  . . . S ^TMP("PXS",$J,SKIN,IDT,DA,1)=HLOC_U_HLOCABB_U_$P(VDATA,U,2)_U_$P(VDATA,U,4)

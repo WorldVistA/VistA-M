@@ -1,5 +1,6 @@
 RCXVSRV ;DAOU/ALA-AR Data Extract Server Program
- ;;4.5;Accounts Receivable;**201**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**201,447**;Mar 20, 1995;Build 4
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This program will parse an incoming message
@@ -7,6 +8,8 @@ RCXVSRV ;DAOU/ALA-AR Data Extract Server Program
  ;  for a historical extract
  ;
 EN ;  Entry point
+ Q  ; PRCA*4.5*447 Extract has been sunsetted
+ ;
  K ^TMP("ARCXV")
  S RCXMZ=XMZ,VJOB=$J K ^TMP("RCXVSRV",VJOB)
  S CT=0 F  D  Q:XMER'=0

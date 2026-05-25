@@ -1,5 +1,5 @@
 VAFCPTAD ;ISA/RJS,ZOLTAN - Add an entry to the PATIENT (#2) file; 26-Apr-2023 4:26 PM
- ;;5.3;Registration;**149,800,876,944,950,955,1033,1042,1050,1099**;Aug 13, 1993;Build 1
+ ;;5.3;Registration;**149,800,876,944,950,955,1033,1042,1050,1099,1131**;Aug 13, 1993;Build 4
  ;
 ADD(RETURN,PARAM) ;Entry point for VAFC VOA ADD PATIENT remote procedure
  ;Input  PARAM array = List of data to be used for the creation of a VistA PATIENT (#2) record at the Preferred Facility.
@@ -35,8 +35,10 @@ EN1 ;Check value of all required fields
  ;PREFERRED FACILITY
  I $G(PARAM("PRFCLTY"))="" S RETURN(1)="-1^PREFERRED FACILITY is a required field." G END
  ;**955 (cmc) Story 699475 don't require perferred facility to be this site if this is station 200
- I $P($$SITE^VASITE(),"^",3)'=200 I $G(PARAM("PRFCLTY"))'=$P($$SITE^VASITE(),"^",3) S RETURN(1)="-1^PREFERRED FACILITY is not the station to which the RPC was sent." G END
- I $G(PARAM("PRFCLTY"))'="" S VAL=$G(PARAM("PRFCLTY")) D CHK^DIE(2,27.02,,VAL,.RESULT) I RESULT="^" S RETURN(1)="-1^"_^TMP("DIERR",$J,1,"TEXT",1) G END
+ ;**1131 (cmc) VAMPI-26434 allow 741MM to be a perferred facility
+ I $P($$SITE^VASITE(),"^",3)'=200&(PARAM("PRFCLTY")'="741MM") I $G(PARAM("PRFCLTY"))'=$P($$SITE^VASITE(),"^",3) S RETURN(1)="-1^PREFERRED FACILITY is not the station to which the RPC was sent." G END
+ I $G(PARAM("PRFCLTY"))'=""&(PARAM("PRFCLTY")'="741MM") S VAL=$G(PARAM("PRFCLTY")) D CHK^DIE(2,27.02,,VAL,.RESULT) I RESULT="^" S RETURN(1)="-1^"_^TMP("DIERR",$J,1,"TEXT",1) G END
+ I $G(PARAM("PRFCLTY"))'="" S VAL=$G(PARAM("PRFCLTY"))
  S VAFCPF=VAL,FLG=1
  ;
  ;INTEGRATION CONTROL NUMBER and ICN CHECKSUM

@@ -1,5 +1,5 @@
 ONCOEDC ;HINES OIFO/GWB - ABSTRACT STATUS (165.5,91) Input Transform ;10/19/11
- ;;2.2;ONCOLOGY;**1,5,6,10,19,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,5,6,10,19,20,21,22**;Jul 31, 2013;Build 6
  ;p20 -Abstract Status change
 CHECK ;Required field check
  ;CLASS OF CASE   = 00-22
@@ -18,6 +18,7 @@ CHECK ;Required field check
  S SQN=$P(NODE0,U,6),DTDX=$P(NODE0,U,16)
  S ABSTAT=$P($G(^ONCO(165.5,D0,7)),U,2)
  I DTDX>3171231 D OBS2018^ONCOEDC2
+ D OBS2025^ONCOEDC2  ;field #11132 ="XX" for 2025+ cases, NULL for all others
  I CC="" D  S ONCTYP="" K X Q
  .W !
  .W !?5,"CLASS OF CLASS is blank."
@@ -30,7 +31,7 @@ CHECK ;Required field check
  S ONCFOLDT=$O(^ONCO(160,PTN,"F","B",9999999),-1)
  I '$G(ONCAUDT) D
  .I (ONCFOLDT="")!(ONCFOLDT<DTDX) S LIST("DATE OF LAST CONTACT OR DEATH")="" S CMPLT=0
- I (DTDX>3091231),($$GET1^DIQ(165.5,PRM,234,"I")="") S CMPLT=0,LIST($P($G(^DD(165.5,234,0)),U,1))=""
+ ;I (DTDX>3091231),($$GET1^DIQ(165.5,PRM,234,"I")="") S CMPLT=0,LIST($P($G(^DD(165.5,234,0)),U,1))=""
  ;
  I CMPLT=0 S ONCTYP="A" K X Q
  I CMPLT=1 D
@@ -55,7 +56,7 @@ CHKFLDS ;Check ONCOLOGY PRIMARY (165.5) and ONCOLOGY PATIENT (160)
  Q
  ;
 F160 ;ONCOLOGY PATIENT (160)
- F FDNUM=2,3,7,8,9,10,38,43  D
+ F FDNUM=2,3,7,8,9,10,43  D
  .D:$$GET1^DIQ(160,PTN,FDNUM,"I")="" CMPLT
  Q
  ;
@@ -94,9 +95,7 @@ PCHK ;Enter RETURN to continue or '^' to exit:
  Q
  ;
 EDITS ;Call to EDITS API
- ; p20 do not allow completion of 2024+ cases. These comments and
- ; the following line will be removed in p21. X=2 because its Input Transform
- I DATEDX>3231231 W !!,"THIS CASE HAS A DATE DX OF 2024 AND CANNOT BE COMPLETED YET",! S $P(^ONCO(165.5,D0,7),U,2)=2 S X=2 R !?1,"  press RETURN to continue->",ANSWER:DTIME Q
+ ;
  S ERRFLG=0
  ;Q:($G(ONCOEDIT)=1)
  W !," Calling EDITS API..."

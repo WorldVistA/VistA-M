@@ -1,5 +1,5 @@
 PSOERXU4 ;ALB/BLB - eRx utilities ; 12/21/2020
- ;;7.0;OUTPATIENT PHARMACY;**520,508,551,581,635,617,651,700,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**520,508,551,581,635,617,651,700,746,770**;DEC 1997;Build 145
  ;
  Q
 DERX1(PSOIEN,PSOIENS,DFLAG) ;
@@ -94,8 +94,15 @@ HLD W !
  S DIC="^PS(52.45,",DIC(0)="AEMQ",DIC("S")="I $E($P(^PS(52.45,+Y,0),U))=""H""",DIC("B")="HUR"
  S DIC("A")="Select HOLD reason code: " D ^DIC K DIC
  I $P(Y,U)<1 Q  ;if user ^
- S REMIEN=$P(Y,U)
- I +$G(REMIEN)<0 W !,"HOLD reason code required!" S DIR(0)="E" D ^DIR K DIR G HLD
+ I +$G(Y)<0 W !,"HOLD reason code required!" S DIR(0)="E" D ^DIR K DIR G HLD
+ S REMIEN=+Y
+ I $P(Y,"^",2)="HFF" D  I $D(DIRUT)!$D(DIROUT) W !,"eRx NOT placed on hold." K DIR S DIR(0)="E" D ^DIR Q
+ . W !!,$G(IOINHI),"The eRx will be un-held automatically on the date you enter below and placed"
+ . W !,"in 'IN PROCESS' status.",$G(IOINORM)
+ . K DIR W ! S DIR(0)="DA^"_$$FMADD^XLFDT(DT,1)_":"_$$FMADD^XLFDT($$GET1^DIQ(52.49,PSOIEN,5.9,"I"),$S($$GET1^DIQ(52.49,PSOIEN,95.1,"I"):184,1:366))_":EX"
+ . I $$EFFDATE^PSOERXU5(PSOIEN,1)'="" S DIR("B")=$$FMTE^XLFDT($$EFFDATE^PSOERXU5(PSOIEN,1))
+ . S DIR("A")="Future Fill Hold Date: " D ^DIR I $D(DIRUT)!$D(DIROUT) Q
+ . S HFFDT=Y
  ; Add comment in 52.4919
  S DIR(0)="52.4919,1",DIR("A")="Additional Comments (Optional)" D ^DIR K DIR
  I Y="^" Q
@@ -103,9 +110,9 @@ HLD W !
  S DIR(0)="YO",DIR("A")="Would you like to 'Un-Remove' eRx #"_$$GET1^DIQ(52.49,PSOIEN,.01,"E")
  S DIR("B")="Y" D ^DIR K DIR
  Q:'Y
- D UPDSTAT^PSOERXU1(PSOIEN,$$GET1^DIQ(52.45,REMIEN,.01),HCOMM)
+ D UPDSTAT^PSOERXU1(PSOIEN,$$GET1^DIQ(52.45,REMIEN,.01),HCOMM,,,$G(HFFDT))
  S DR="1///"_REMIEN,DIE="^PS(52.49,",DA=PSOIEN D ^DIE
- D BATCHREM^PSOERX1H(PSOIEN,REMIEN,HCOMM,"U") ; "U" - Un-remove
+ I '$G(HFFDT) D BATCHREM^PSOERX1H(PSOIEN,REMIEN,HCOMM,"U") ; "U" - Un-remove
  K @VALMAR D REF^PSOERSE1 ;Refresh screen
  Q
 CHKSTA ; check if status is RM or type is "REM"
@@ -165,18 +172,19 @@ QTYDSRFL(ERXIEN,EDTYP) ;
  D SET^PSODRG
  S PSODRG=ERXDRUG
  ; set quanity, days supply, refill, and patient information
- S PSODFN=$$GET1^DIQ(52.49,ERXIEN,.05,"I")
+ S PSODFN=+$$GET1^DIQ(52.49,ERXIEN,.05,"I")
  S PSODIR("QTY")=$$GET1^DIQ(52.49,ERXIEN,20.1,"E")
  S PSODIR("DAYS SUPPLY")=$$GET1^DIQ(52.49,ERXIEN,20.2,"E")
  S PSODIR("# OF REFILLS")=$$GET1^DIQ(52.49,ERXIEN,20.5,"E")
+ I $G(PSODIR("# OF REFILLS"))="" S PSODIR("# OF REFILLS")=+$$GET1^DIQ(52.49,PSOIEN,5.6)
  ; Decrement # of refills if this is a RxRenewalResponse with a response type of 'Replace'
  ; only decrement if field 20.5 and 5.6 are the same.
  I PSODIR("# OF REFILLS")>0,$$GET1^DIQ(52.49,ERXIEN,.08,"I")="RE",$$GET1^DIQ(52.49,ERXIEN,52.1,"I")="R" D
- .I PSODIR("# OF REFILLS")=$$GET1^DIQ(52.49,ERXIEN,5.6,"E") D
+ .I PSODIR("# OF REFILLS")=+$$GET1^DIQ(52.49,ERXIEN,5.6) D
  ..S PSODIR("# OF REFILLS")=$G(PSODIR("# OF REFILLS"))-1
  S PSODIR("DFLG")=0
- S PATSTAT=$$GET1^DIQ(55,PSODFN,3,"E")
- I '$L(PATSTAT) D
+ S PATSTAT=$$GET1^DIQ(55,+PSODFN,3,"E")
+ I '$L(PATSTAT),PSODFN D
  .S DONE=0
  .F  D  Q:DONE
  ..W !,"This is a required response. Enter '^' to exit"
@@ -186,13 +194,13 @@ QTYDSRFL(ERXIEN,EDTYP) ;
  .S ANS=$P(Y,"^",1)
  .S FDA(55,PSODFN_",",3)=ANS
  .D FILE^DIE(,"FDA","ERR") K FDA,ERR
- S PSODIR("PATIENT STATUS")=$P($G(^PS(55,PSODFN,"PS")),U)
+ S PSODIR("PATIENT STATUS")=$P($G(^PS(55,+PSODFN,"PS")),U)
  S X=$G(PSODIR("PATIENT STATUS"))
  I X D
  .S DIC=53,DIC(0)="QXZ" D ^DIC K DIC
  .S:+Y>0 PSODIR("PTST NODE")=Y(0)
  I $P($G(^PSDRUG(PSODRG,"CLOZ1")),"^")="PSOCLO1" D
- .S CLOZPAT=$O(^YSCL(603.01,"C",PSODFN,0)) Q:'CLOZPAT
+ .S CLOZPAT=$O(^YSCL(603.01,"C",+PSODFN,0)) Q:'CLOZPAT
  .S CLOZPAT=$P(^YSCL(603.01,CLOZPAT,0),"^",3)
  .S CLOZPAT=$S(CLOZPAT="M":2,CLOZPAT="B":1,1:0)
  I EDTYP=1 D

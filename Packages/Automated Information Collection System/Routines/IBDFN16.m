@@ -1,10 +1,12 @@
 IBDFN16 ;ALB/DHH - ENCOUNTER FORM - (entry points for gaf project) ;3/20/2001
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**37**;APR 24, 1997
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**37,72**;APR 24, 1997;Build 1
  ;
+ Q  ;IBD*3*72 removes GAF functionality from AICS
 GAFPROV ;Enter GAF Score Provider
  ;
  ; -- @IBARY should be defined
  ;
+ Q  ;IBD*3*72 removes GAF functionality from AICS
  N DIC,Y,DIROUT,DIRUT,DTOUT,DUOUT
  S DIC=200,DIC(0)="AEQM"
  S DIC("S")="I $$OKPROV^IBDFDE23(Y)"
@@ -17,12 +19,14 @@ GAFPROV ;Enter GAF Score Provider
 OKPROV(IEN) ; Screen for provider lookup using person class
  ; provider for gaf must have the sd gaf score security key
  ;
+ Q  ;IBD*3*72 removes GAF functionality from AICS
  Q ($D(^XUSEC("SD GAF SCORE",IEN)))
  ;
 GAFRET ;Previous GAF information returned from Mental Health
  ;
  ; -- this is to be used by PREVIOUS GAF SCORE package interface
  ;
+ Q  ;IBD*3*72 removes GAF functionality from AICS
  N GAFDAT,Y,GAFPROV,X,X1,X2,IBX
  S IBX=$$RET^YSGAF($G(DFN))
  I +IBX=-1 S @IBARY="" Q
@@ -37,6 +41,7 @@ RULE(GAFDAT) ;check for greater than 90 days
  ;
  ; -- gafdat is the internal date of the last gaf score
  ;
+ Q  ;IBD*3*72 removes GAF functionality from AICS
  N RULE
  S RULE="NO"
  S X1=DT,X2=GAFDAT D ^%DTC

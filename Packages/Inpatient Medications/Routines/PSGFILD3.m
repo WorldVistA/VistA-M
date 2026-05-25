@@ -1,5 +1,5 @@
-PSGFILD3 ;BIR/CML3 - RETURN OF VARIOUS FILES' UPKEEP ;Apr 16, 2019@11:42:55
- ;;5.0;INPATIENT MEDICATIONS ;**279,319**;16 DEC 97;Build 31
+PSGFILD3 ;BIR/CML - RETURN OF VARIOUS FILES UPKEEP ; Sep 14, 2023@10:14:49
+ ;;5.0;INPATIENT MEDICATIONS ;**279,319,445**;16 DEC 97;Build 20
  ; ;
  ;*279 - add fields #4, #5 to Clinic Def file maint (missing dose device and pre-exchange device)
  ;
@@ -47,6 +47,6 @@ ENIUH ;
 ENCD ;edit Clinic Definitions file
  N CLINICS,CLINFLG S CLINICS=""
  F  K DIC S DIC="^PS(53.46,",DIC(0)="AELMQ",DIC("A")="Select CLINIC: ",DLAYGO=53.46 D ^DIC K DIC Q:Y<0  D
- . S DIE="^PS(53.46,",DA=+Y,CLINICS(DA)="",DR="1;2;3;4;5;6;8;9" D ^DIE K DIE,DA,DR Q
+ . S DIE="^PS(53.46,",DA=+Y,CLINICS(DA)="",DR="1;2;3;4;5;6;8;9;10;11" D ^DIE K DIE,DA,DR Q
  I ($T(IMO^PSJIMO1)]"") D IMO^PSJIMO1(.CLINICS)
  Q

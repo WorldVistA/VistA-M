@@ -1,0 +1,67 @@
+RMPV0RMPROP ; OIT/JDA - Adapted from RMPROP; Dec 01, 2024@21:44:41
+ ;;1.0;PROSTHETICS VISION 4 SIGHT II;**2**;Jan 31, 2025;Build 38
+ ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;
+ ; Reference to ^RMPR(660, supported by ICR #6496
+ ; Reference to DEL^RMPRPCED supported by ICR #7539
+ ; Reference to routine ^RMPR21 supported by ICR #7545
+ ; Reference to routine ^RMPRD1 supported by ICR #7553
+ ; Reference to routine EN^RMPRDP supported by ICR #7565
+ ; Reference to routine TYP1^RMPRE29 supported by ICR #7568
+ ;
+RMPROP ;PHX/RFM,JLT,RVD-PURCHASING OPTIONS ;8/29/1994
+ ;;3.0;PROSTHETICS;**41,45,53,62,61**;Feb 09, 1996
+ ;
+ ;RVD   patch #53  only issue stock items from PIP
+ ;
+ ;RVD   patch #62 pce interface, delete transaction if 2319 is deleted.
+ ;
+ ;RVD   patch #61 PIP new files.
+ ;
+EN1 ;EACH OF THE BELOW ENTRY POINTS SETS THE FORM TYPE, SITE PARAMETERS
+ ;AND CALLS THE ROUTINE FOR PURCHASING TRANSACTIONS
+ S RMPRF=1 D DIV4^RMPV0RMPRSIT G:$D(X) EXIT D ^RMPR21 G EXIT
+ ;
+EN2 ;Create 10-2421
+ S RMPRF=2 D DIV4^RMPV0RMPRSIT G:$D(X) EXIT D ^RMPR21 G EXIT
+ ;
+EN3 ;2520 Transaction without printing
+ S RMPRF=10 D DIV4^RMPV0RMPRSIT G:$D(X) EXIT D ^RMPR21 K RMPRAMT G EXIT
+ ;
+EN4 ;2914 EYEGLASS RECORD
+ ;SETS FORM TYPE CODE FOR 2914
+ ;VARIABLES REQUIRED: NONE
+ S RMPRF=8 D DIV4^RMPV0RMPRSIT G:$D(X) EXIT D ^RMPR21 G EXIT
+ ;
+EN5 ;CLOSE-OUT
+ S RMPRF="E" D DIV4^RMPV0RMPRSIT G:$D(X) EXIT D ^RMPRE21 G EXIT
+ ;
+EN6 ;NO-FORM DAILY RECORD
+ S RMPRF=9 D DIV4^RMPV0RMPRSIT G:$D(X) EXIT D ^RMPR21 G EXIT
+ ;
+EN7 ;ISSUE FROM STOCK
+ K RMPRDFN,RMPR
+ ;patch #61 call rmprpiyi instead of rmprsti
+ S RMPRF=11 D ^RMPV0RMPRPIYI G EXIT
+ ;
+EN9 ;PICKUP AND DELIVERY
+ D DIV4^RMPV0RMPRSIT G:$D(X) EXIT S RMPRF=1 D EN^RMPRDP G EXIT
+ ;
+EN10 ;Edit 2319 Entry
+ S RMPREDT=1 ;set flag for the edit
+ D DIV4^RMPV0RMPRSIT G:$D(X) EXIT S DIC("S")="I $P(^(0),U,13)=3,$P(^(0),U,10)=RMPR(""STA"")" I RMPRSITE=1 S DIC("S")=DIC("S")_"!($P(^(0),U,10)="""")"
+ S DIC("W")="D EN^RMPRD1",DIC="^RMPR(660,",DIC(0)="AEQMZ",DIC("A")="Please Enter the 2319 Date or the Patient's Name: "
+ D %DIC^RMPVFM G:+Y'>0 EXIT L +^RMPR(660,+Y,0):1 I $T=0 D WRITECTL^RMPVIO("!"),WRITECTL^RMPVIO("?5"),WRITE^RMPVIO($C(7)),WRITE^RMPVIO("Someone else is Editing this entry!") G EXIT
+ ;S (RMPRDA,DA)=+Y,DIE=DIC,DR="[RMPRE2319]" D ^DIE
+ S (RMPRDA,DA)=+Y,DIE=DIC D TYP1^RMPRE29 K DIR
+ D WRITECTL^RMPVIO("!") S DIR(0)="Y",DIR("A")="Would You like to Delete this 2319 Entry (Y/N)" D %DIR^RMPVFM
+ I '$D(DTOUT)&(Y>0) D 
+ . ;added by patch #62.
+ . I $D(^RMPR(660,RMPRDA,10)),$P(^RMPR(660,RMPRDA,10),U,12) D 
+ .. S RMCHK=$$DEL^RMPRPCED(RMPRDA)
+ . S DA=RMPRDA,DIK="^RMPR(660," D ^DIK
+ L -^RMPR(660,RMPRDA,0)
+ D WRITECTL^RMPVIO("!") S DIR(0)="Y",DIR("A")="Would You like to Edit another Entry (Y/N)" D %DIR^RMPVFM
+ G:'$D(DTOUT)&(Y>0) EN10
+EXIT K I,%,DA,DIE,DIK,DR,J,X,Y,RMPRF,DIC,DIR
+ N RMPR,RMPRSITE D KILL^XUSCLEAN Q

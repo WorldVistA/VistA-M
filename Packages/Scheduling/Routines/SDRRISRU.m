@@ -1,6 +1,8 @@
-SDRRISRU ;ALB/MAH,BWF,JAS - Recall Reminder Utilities ;NOV 25, 2024
- ;;5.3;Scheduling;**536,627,648,799,818,866,895**;Aug 13, 1993;Build 11
+SDRRISRU ;ALB/MAH,BWF,JAS,JHC - Recall Reminder Utilities ;JAN 07, 2026
+ ;;5.3;Scheduling;**536,627,648,799,818,866,895,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
+ ;
+ ; Reference to DUZ^XUP is supported by IA #7487
  ;
 OPENSLOT(SDRRIEN,SDRRST,SDRRND) ; Function returns the number of open (available)
  ; slots at the clinic during the time period.
@@ -71,10 +73,7 @@ DELAPPT(SDRRIEN,APPT,CLIN1) ; Record deleted from Recall List because of appoint
 DELUSER(SDRRIEN) ; Record deleted by a user.
  N SDRRFDA
  S SDRRFDA(403.56,"+1,",201)=$E($$NOW^XLFDT(),1,12) ; delete date
- ; DELUSER is defined by SDES2DISPRECALL to ensure the correct user is defined as the delete clerk
- ; This will not be new'ed or killed in this routine. DELUSER is newed in SDES2DISPRECALL,
- ; which is firing off this trigger cross reference.
- S SDRRFDA(403.56,"+1,",202)=$S($G(DELUSER):$G(DELUSER),1:DUZ) ; delete clerk
+ S SDRRFDA(403.56,"+1,",202)=DUZ ; delete clerk
  S:$G(SDRRFTR) SDRRFDA(403.56,"+1,",203)=SDRRFTR ; delete reason:
  D DELSET(SDRRIEN,.SDRRFDA)
  Q

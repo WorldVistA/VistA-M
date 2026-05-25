@@ -1,5 +1,6 @@
-SDHL7 ;SLC/AGP - RTC Order HL7 receiver;11:53 AM  19 Jun 2017
- ;;5.3;Scheduling;**671,682**;Aug 13, 1993;Build 10
+SDHL7 ;SLC/AGP,TAW - RTC Order HL7 receiver;DEC 11 2025
+ ;;5.3;Scheduling;**671,682,928**;Aug 13, 1993;Build 5
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
  ;RESULT("REQ FILE IEN")=0 REQUEST IEN if defined then the user is trying to modify or discontinue the order before scheduling disposition it.
  ;RESULT("APPT TYPE")="followup" Generic HL7 type for appointment type.Should be modify in the future when VSE and CPRS have more time to work on it
@@ -244,10 +245,10 @@ SAVEREC(RESULT,ERROR) ;
  ..S ARINP(15)=$G(RESULT("INTERVAL"))
  ..S ARINP(16)=$G(RESULT("NUMBER APPT"))
  ..S DDDT=$G(RESULT("RTC DATE"))
- ..F I=1:1:$G(RESULT("NUMBER APPT")) D
- ...S X1=DDDT,X2=RESULT("INTERVAL") D C^%DTC S SDATE=X
- ...S MARDDS=MARDDS_$S(MARDDS="":SDATE,1:"|"_SDATE)
- ...S ARINP(20)=MARDDS
+ ..;F I=1:1:$G(RESULT("NUMBER APPT")) D
+ ..;.S X1=DDDT,X2=RESULT("INTERVAL") D C^%DTC S SDATE=X
+ ..;.S MARDDS=MARDDS_$S(MARDDS="":SDATE,1:"|"_SDATE)
+ ..;.S ARINP(20)=MARDDS
  ;SERVICE CONNECTED
  S SCPER=$P($G(^DPT(PTIEN,.3)),"^",2)
  I SCPER'="" D

@@ -1,5 +1,5 @@
 PRCABJ ;WASH-ISC@ALTOONA,PA/LDB,TJK - NIGHTLY PROCESS FOR ACCOUNTS RECEIVABLE ;11/8/96  3:54 PM
- ;;4.5;Accounts Receivable;**11,34,101,114,155,153,141,165,167,173,201,237,304,301,378,400**;Mar 20, 1995;Build 13
+ ;;4.5;Accounts Receivable;**11,34,101,114,155,153,141,165,167,173,201,237,304,301,378,400,447**;Mar 20, 1995;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;This routine is called by the PRCA NIGHTLY PROCESS option which should be run nightly to call the following tasks
@@ -16,7 +16,7 @@ PRCABJ ;WASH-ISC@ALTOONA,PA/LDB,TJK - NIGHTLY PROCESS FOR ACCOUNTS RECEIVABLE ;1
  ;11) Starts the Repayment Plan Monitor
  ;12) Generates Diagnostic Measures Workload Reports
  ;13) Matches EFT with ERA
- ;14) Generates CBO Data Extract files for Boston ARC
+ ;14) Generates CBO Data Extract files for Boston ARC - Removed by PRCA*4.5*447 (Extract sunsetted)
  ;15) Auto-audit of Paper Bills
  ;16) Generate the AR Diagnostic Measures Statistical Reports (for a defined period)
  ;17) Auto Updates Repayment Plans
@@ -36,7 +36,7 @@ DRIVER ;All processes are called from this point
  D CHK,RECALL,CHK,INT,CHK,RPP,CHK,EN^RCCPCBJ,CHK,STM,CHK,RECPT,CHK,TOP,CHK,TCSP,CHK,EVNT,CHK,BNUM  ; PRCA*4.5*400
  D CHK,ENUM,CHK,PURFMS,CHK,EN3^RCFMOBR,CHK,START^RCRJR,CHK,UB
  D CHK,STATMNT,CHK,UDLIST^PRCABJ1,CHK,LIST,CHK,COMMENT  ; PRCA*4.5*400 removed call to REPAY tag
- D CHK,WRKLD,CHK,EFT,CHK,CBO,CHK,ABAUDIT,CHK,ARDM,CHK,CLNMTR
+ D CHK,WRKLD,CHK,EFT,CHK,ABAUDIT,CHK,ARDM,CHK,CLNMTR  ; PRCA*4.5*447 removed call to CBO tag
  D NOW^%DTC S $P(^RC(342,1,0),"^",10)=%
  L -^RC("PRCABJ")
  K ^RC("PRCABJ")
@@ -175,6 +175,8 @@ ENUM ;Check event numbering series
  Q
  ;
 CBO ; Create Extract Files for ARC
+ Q  ; PRCA*4.5*447 Extract has been sunsetted
+ ;
  NEW ZTRTN,ZTIO,ZTDTH,ZTSK,ZTDESC
  S ZTIO="",ZTRTN="EN^RCXVTSK",ZTDESC="CBO DATA EXTRACT",ZTDTH=$H
  D ^%ZTLOAD

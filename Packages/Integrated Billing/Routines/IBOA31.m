@@ -1,5 +1,5 @@
 IBOA31 ;ALB/AAS - PRINT ALL BILLS FOR A PATIENT ;04/18/90
- ;;2.0;INTEGRATED BILLING;**95,199,433,451,669**;21-MAR-94;Build 20
+ ;;2.0;INTEGRATED BILLING;**95,199,433,451,669,746**;21-MAR-94;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;MAP TO DGCRA31
@@ -59,9 +59,11 @@ DQ ;
  ;S XRTL=$ZU(0),XRTN="IBOA31-2" D T0^%ZOSV ;start rt clock
  U IO S IBPAG=0 D NOW^%DTC S Y=% X ^DD("DD") S IBNOW=Y,$P(IBLINE,"-",IOM+1)=""
  S IBQUIT=0,IBN=$$PT^IBEFUNC(DFN)
+ K VADM ;IB*2.0*746
+ D DEM^VADPT ;IB*2.0*746 Used to get DOB
  D:IBFTP'="F" UTIL^IBCA3
  D:IBFTP'="T" UTIL^IBOA32
- I '$D(^UTILITY($J)) W !,"No Bills On File for ",$P(IBN,"^"),"  SSN: ",$P(IBN,"^",2),"." G ENQ
+ I '$D(^UTILITY($J)) W !,"No Bills On File for ",$P(IBN,"^"),"  DOB: ",$P(VADM(3),U,2),"." G ENQ  ;IB*2.0*746
  D HDR1 S (IBDT,IBIFN)=""
  ; - loop through all bills
  F  S IBDT=$O(^UTILITY($J,IBDT)) Q:IBDT=""!(IBQUIT)  D
@@ -110,7 +112,7 @@ HDR I $E(IOST,1,2)["C-" D PAUSE Q:IBQUIT
 HDR1 S IBPAG=IBPAG+1 W:$E(IOST,1,2)["C-"!(IBPAG>1) @IOF
  ;Screen output
  I 'IBEXCEL D  Q
- . W "List of all Bills for ",$P(IBN,"^"),"  SSN: ",$P(IBN,"^",2),"  ",?(IOM-31),IBNOW,"  PAGE ",IBPAG
+ . W "List of all Bills for ",$P(IBN,"^"),"  DOB: ",$P(VADM(3),U,2),"  ",?(IOM-31),IBNOW,"  PAGE ",IBPAG ;IB*2.0*746
  . W !,"BILL",?10,"DATE",?55,"DATE OF",?64,"STATEMENT  STATEMENT   AMOUNT"
  . W !,"NO.      PRINTED   ACTION/RATE TYPE   CLASSIFICATION   CARE   "
  . W $S(IBIBRX=1:"  FR/FL DT   TO/RL DT",1:"  FROM DATE  TO DATE")
@@ -118,7 +120,7 @@ HDR1 S IBPAG=IBPAG+1 W:$E(IOST,1,2)["C-"!(IBPAG>1) @IOF
  . W !,IBLINE
  . W:IBIBRX !,?53,"'*' = outpt visit on same day as Rx fill date",!,IBLINE
  ; Otherwise, Excel Output
- W "List of all Bills for ",$P(IBN,"^"),"^SSN: ",$P(IBN,"^",2),U,IBNOW,U,"PAGE ",IBPAG
+ W "List of all Bills for ",$P(IBN,"^"),"   DOB: ",$P(VADM(3),U,2),U,IBNOW,U,"PAGE ",IBPAG ;IB*2.0*746
  W !,"BILL NO.",U,"DATE PRINTED",U,"ACTION/RATE TYPE",U,"CLASSIFICATION",U,"DATE OF CARE"
  W:'IBIBRX U,"STATEMENT FROM DATE",U,"STATEMENT TO DATE"
  W:IBIBRX U,"STATEMENT FR/FL DT",U,"STATEMENT TO/RL DT"

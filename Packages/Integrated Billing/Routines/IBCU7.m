@@ -1,5 +1,5 @@
 IBCU7 ;ALB/AAS - INTERCEPT SCREEN INPUT OF PROCEDURE CODES ;29-OCT-91
- ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447,488,461,516,522,577,604,616,592,608,714,742**;21-MAR-94;Build 36
+ ;;2.0;INTEGRATED BILLING;**62,52,106,125,51,137,210,245,228,260,348,371,432,447,488,461,516,522,577,604,616,592,608,714,742,796,770**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRU7
@@ -98,6 +98,8 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV,IBCODE,IBPIEN  ;WCJ;2.0*432
  . ; WCJ;IB*2.0*742;change the modifier seq number prompt behavior
  . I IBPROCSV["ICPT" S DR=".01",DIE=DIC,(IBPROCP,DA)=$P(IBPROCSV,U) D ^DIE Q:'$D(DA)!($D(Y))  K DR  D  ; IB*2.0*447 BI ;WCJ;IB*2.0*742
  .. D EN^IBCU7C(IBPROCP)
+ .. ; IB*2.0*796 - Add QUANTITY field to input
+ .. S DR="92UNITS",DIE=DIC,DA=$P(IBPROCSV,U) D ^DIE
  . ;
  . S DR=""
  . ;
@@ -142,7 +144,9 @@ ASKCOD N Z,Z0,DA,IBACT,IBQUIT,IBLNPRV,IBCODE,IBPIEN  ;WCJ;2.0*432
  . I IBFT=2!(IBFT=7) D
  .. D DX^IBCU72(IBIFN,IBPROCP)
  .. ;JWS;IB*2.0*592 US1108 - Dental
- .. I IBFT'=7 S X=$$ADDTNL(IBIFN,.DA)
+ .. ;JWS;IB*2.0*770;EBILL-4042;add Purchased Cost prompt to Dental claim
+ .. ;I IBFT'=7
+ .. S X=$$ADDTNL(IBIFN,.DA)
  . Q:$$INPAT^IBCEF(IBIFN)  ;only outpatient bills
  . ;JWS;IB*2.0*592 US1108 - Dental input fields
  . I IBFT=7 D ORAL^IBCU72
@@ -206,7 +210,12 @@ DEFDIV(IBIFN) ; Find default division for bill IBIFN
 ADDTNL(IBIFN,DA) ;
  N DR,IBOK,X,Y,DIR
  S IBOK=1
- S DR="19T;50.09T;50.08T" D ^DIE  ; WCJ;IB*2.0*488 Added Ts
+ S DR="19T;50.09T;50.08T"
+ ;JWS;IB*2.0*770;EBILL-4042;add Purchased Cost prompt to Dental claim
+ I $$FT^IBCEF(IBIFN)=7 S DR="19T"
+ D ^DIE  ; WCJ;IB*2.0*488 Added Ts
+ I $$FT^IBCEF(IBIFN)=7 G ADDTNLQ
+ ;end IB*2.0*770
  ;I '($$FT^IBCEF(IBIFN)'=3&($$INPAT^IBCEF(IBIFN))) D ATTACH  ; DEM;432 - Prompt for Attachment Control Number.
  I '($$FT^IBCEF(IBIFN)=3&($$INPAT^IBCEF(IBIFN))) D ATTACH  ; DEM;432 - Prompt for Attachment Control Number.
  I $D(Y) S IBOK=0 G ADDTNLQ

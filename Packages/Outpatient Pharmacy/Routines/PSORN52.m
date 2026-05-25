@@ -1,5 +1,5 @@
 PSORN52 ;BIR/DSD - files renewal entries in prescription file ;Jan 20, 2022@11:20:47
- ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303,358,251,387,379,362,514,562,441**;DEC 1997;Build 208
+ ;;7.0;OUTPATIENT PHARMACY;**1,11,27,37,46,79,71,100,117,157,143,219,148,239,201,225,303,358,251,387,379,362,514,562,441,799**;DEC 1997;Build 2
  ;Ext ref to PSOUL^PSSLOCK sup by DBIA 2789
  ;Ext ref to SWSTAT^IBBAPI sup by DBIA 4663
 EN(PSOX) ;EP
@@ -85,7 +85,8 @@ FINISH ;
  ;
  ; - Submitting Rx to ECME for 3rd Party Billing
  N ACTION
- I $$SUBMIT^PSOBPSUT(PSOX("IRXN"),0) D  I ACTION="Q"!(ACTION="^") Q
+ ;PSO*7.0*799 do not submit a parked RX
+ I $G(PSOX("MAIL/WINDOW"))'="P",$$SUBMIT^PSOBPSUT(PSOX("IRXN"),0) D  I ACTION="Q"!(ACTION="^") Q
  . S ACTION="" D ECMESND^PSOBPSU1(PSOX("IRXN"),0,"","RN")
  .; Quit if there is an unresolved Tricare/CHAMPVA non-billable reject code, PSO*7*358
  . I $$PSOET^PSOREJP3(PSOX("IRXN"),0) S ACTION="Q" Q

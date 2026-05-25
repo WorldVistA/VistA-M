@@ -1,5 +1,5 @@
 YTQRQAD3 ;SLC/KCM - RESTful Calls to set/get MHA administrations ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**130,141,158,178,182,181,187,199,207,202,204,208,221,238,239,250**;Dec 30, 1994;Build 26
+ ;;5.01;MENTAL HEALTH;**130,141,158,178,182,181,187,199,207,202,204,208,221,238,239,250,236**;Dec 30, 1994;Build 25
  ;
  ; Reference to ^VA(200) in ICR #10060
  ; Reference to DIQ in ICR #2056
@@ -42,7 +42,7 @@ REPORT1(ADMIN,REPORT,TYPE) ; fill in the report text for ADMIN
  . S I="" F  S I=$O(BARR(I)) Q:I=""  D
  .. K REPORT(I)
  S RESULTS("text")=$G(REPORT(1))_CRLF
- D WRAPTLT^YTQRRPT(.REPORT,RM)  ;Added existing call so web Note display matches CPRS - WYSIWYG
+ ;D WRAPTLT^YTQRRPT(.REPORT,RM)  ;Added existing call so web Note display matches CPRS - WYSIWYG
  S I=1 F  S I=$O(REPORT(I)) Q:'I  S RESULTS("text","\",I-1)=REPORT(I)_CRLF
  D GETCOM(.COMMS,ADMIN)
  I $G(TYPE)'="NOTE",$D(COMMS) D
@@ -113,6 +113,7 @@ SETNOTE(ARGS,DATA) ; save note in DATA("text") using ARGS("adminId")
  I CONSULT S YS("CON")=CONSULT D CCREATE^YTQCONS(.YSDATA,.YS) I 1
  E  D PCREATE^YTQTIU(.YSDATA,.YS)
  I YSDATA(1)'="[DATA]" D SETERROR^YTQRUTL(500,"Note not saved") Q ""
+ S $P(^YTT(601.84,ADMIN,0),U,18)=1  ;PROGRESS NOTE GENERATED
  Q "/api/mha/instrument/note/"_$G(YSDATA(2))
  ;
 ALWNOTE(ADMIN) ; return "true" if note could/should be saved

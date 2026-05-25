@@ -1,5 +1,5 @@
 PSOERXH1 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,527,508,581,617,700,746,769**;DEC 1997;Build 26
+ ;;7.0;OUTPATIENT PHARMACY;**467,527,508,581,617,700,746,769,770**;DEC 1997;Build 145
  ;
  Q
  ; place eRx on Hold
@@ -23,21 +23,31 @@ HOLD ;
  I $E(CURSTAT,1)="H" D  Q
  . S DIR(0)="YO",DIR("B")="NO"
  . S DIR("A",1)="This eRx is already in a 'HOLD' status."
- . S DIR("A")="Would you like to change the hold status and comments?"
+ . S DIR("A")="Would you like to change the hold status and comments"
  . D ^DIR
  . Q:'Y
  . K DIR
- . S RESP=$$HDIR(1)
+ . W ! S RESP=$$HDIR(1)
  . I 'RESP D  Q
  . . W !!,"Hold Reason required. eRx not placed in a 'Hold' status."
  . . K DIR,DA S DIR(0)="E" D ^DIR
+ . I $D(^PS(52.45,"B","HFF",RESP)) D  I $D(DIRUT)!$D(DIROUT) W !,"eRx NOT placed on hold." K DIR S DIR(0)="E" D ^DIR Q
+ . . W !!,$G(IOINHI),"The eRx will be un-held automatically on the date you enter below and placed"
+ . . W !,"in '",$$GET1^DIQ(52.45,$$GET1^DIQ(52.49,PSOIEN,1,"I"),.02),"' status.",$G(IOINORM)
+ . . K DIR W ! S DIR(0)="DA^"_$$FMADD^XLFDT(DT,1)_":"_$$FMADD^XLFDT($$GET1^DIQ(52.49,PSOIEN,5.9,"I"),$S($$GET1^DIQ(52.49,PSOIEN,95.1,"I"):184,1:366))_":EX"
+ . . I $$EFFDATE^PSOERXU5(PSOIEN,1)'="" S DIR("B")=$$FMTE^XLFDT($$EFFDATE^PSOERXU5(PSOIEN,1))
+ . . S DIR("A")="Future Fill Hold Date: " D ^DIR I $D(DIRUT)!$D(DIROUT) Q
+ . . S HFFDT=Y
  . K DIR,DA S DIR(0)="52.4919,1",DIR("A")="Additional Comments (Optional)" D ^DIR
  . I Y="^" W !,"eRx NOT placed on hold." K DIR S DIR(0)="E" D ^DIR Q
  . S HCOMM=$G(Y)
  . S DIE="52.49",DA=PSOIEN,DR="1///"_RESP D ^DIE K DIE
- . S SUBFIEN=$$NSTAT(PSOIEN,RESP,HCOMM)
+ . D UPDSTAT^PSOERXU1(PSOIEN,$$GET1^DIQ(52.45,RESP,.01),HCOMM,,,$G(HFFDT))
  . K @VALMAR D REF^PSOERSE1 ;Refresh screen
  . S PSORFRSH=1
+ . ; Batch Hold (Not an option for Future Fill Hold (HFF))
+ . I '$D(^PS(52.45,"B","HFF",RESP)) D BATCHHLD^PSOERXH2(PSOIEN,RESP,HCOMM,"H")
+ . D REF^PSOERSE1
  K Y
  S RESP=$$HDIR(),HFFDT=""
  I 'RESP D  Q
@@ -54,7 +64,6 @@ HOLD ;
  I Y="^" Q
  S HCOMM=Y
  W !,"Updating..."
- I $G(HFFDT) K DIE S DIE="52.49",DA=PSOIEN,DR="6.7///"_HFFDT D ^DIE K DIE
  D UPDSTAT^PSOERXU1(PSOIEN,$$GET1^DIQ(52.45,RESP,.01),HCOMM,,,$G(HFFDT))
  H .5 W "done.",$C(7) H 1
  S PSORFRSH=1
@@ -82,11 +91,10 @@ HDIR(HTYP) ;
  Q $P(Y,U)
  ; remove hold from eRx
 UNHOLD ;
- N Y,DIR,DIE,DA,DR,NEWSIEN,RXSTAT,HFFHOLD,RXSTATI,MTYPE,QUIT,PEND,HOLDIEN
+ N Y,DIR,DIE,DA,DR,NEWSIEN,RXSTAT,HFFHOLD,RXSTATI,MTYPE,QUIT,HOLDIEN
  D FULL^VALM1 S VALMBCK="R"
  I $$DONOTFIL^PSOERXUT(PSOIEN) Q
  S MTYPE=$$GET1^DIQ(52.49,PSOIEN,.08,"I")
- S PEND=$$GET1^DIQ(52.49,PSOIEN,25.2,"I")
  S RXSTAT=$$GET1^DIQ(52.49,PSOIEN,1,"E") S HFFHOLD=0 I RXSTAT="HFF" S HFFHOLD=1
  I RXSTAT="RJ"!(RXSTAT="RM")!($G(MBMSITE)&($E(RXSTAT,1,3)="REM"))!(RXSTAT="PR") D  Q
  . W !!,"Cannot un-hold a prescription with a status of 'Rejected', 'Removed',",!,"or 'Processed",!
@@ -108,30 +116,6 @@ UNHOLD ;
  .K DIR S DIR(0)="Y",DIR("B")="Y" D ^DIR
  .I Y<1 S QUIT=1
  I $G(QUIT) Q
- ; return processed records to PR - processed, so they cannot be finished again.
- I PEND,RXSTAT="HC" D  Q
- .I PEND D
- ..S RXSTATI=$$PRESOLV^PSOERXA1("PR","ERX")
- ..D UPDSTAT^PSOERXU1(PSOIEN,"PR",UHCOMM)
- .I 'PEND D
- ..N LSFOUND,LSLOOP,STDAT,LSTAT,LKNOWN,LKNOWNE
- ..S LSFOUND=0
- ..I '$D(^PS(52.49,PSOIEN,19)) D
- ...I MTYPE="N" S LKNOWNE="I"
- ...I MTYPE="RE" S LKNOWNE="RXI"
- ...I MTYPE="CX" S LKNOWNE="CXI"
- ..S LSLOOP=99999 F  S LSLOOP=$O(^PS(52.49,PSOIEN,19,LSLOOP),-1) Q:'LSLOOP!(LSFOUND)  D
- ...S STDAT=$G(^PS(52.49,PSOIEN,19,LSLOOP,0))
- ...S LSTAT=$P(STDAT,U,2)
- ...I $$GET1^DIQ(52.45,LSTAT,.01,"E")="HC" D  S LSFOUND=1
- ....S LKNOWN=$O(^PS(52.49,PSOIEN,19,LSLOOP),-1)
- ....S LKNOWNE=$$GET1^DIQ(52.4919,LKNOWN_","_PSOIEN_",",.02,"E")
- ...I LKNOWNE="N"!(LKNOWNE="") S LKNOWNE="I"
- ..S RXSTATI=$$PRESOLV^PSOERXA1(LKNOWNE,"ERX")
- ..D UPDSTAT^PSOERXU1(PSOIEN,LKNOWNE,UHCOMM)
- .W !,"eRx removed from hold status, and moved to '"_$$SENTENCE^XLFSTR($$GET1^DIQ(52.45,RXSTATI,.02,"E"))_"'."
- .K DIR S DIR(0)="E" D ^DIR K DIR
- .K @VALMAR D REF^PSOERSE1
  S RXSTAT=$$UHSTS(PSOIEN),RXSTATI=$$PRESOLV^PSOERXA1(RXSTAT,"ERX")
  I $G(HFFHOLD) K DIE S DIE="52.49",DA=PSOIEN,DR="6.7///@" D ^DIE K DIE
  D UPDSTAT^PSOERXU1(PSOIEN,RXSTAT,UHCOMM)

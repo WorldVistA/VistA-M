@@ -1,5 +1,5 @@
 DIAU ;SFISC/XAK-AUDIT OPTIONS ; Apr 13, 2023@09:19:21
- ;;22.2;VA FileMan;**27**;Jan 05, 2016;Build 7
+ ;;22.2;VA FileMan;**27,29**;Jan 05, 2016;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
  ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
@@ -69,6 +69,7 @@ WUSR(Y) ;CALLED BY DHIT
  ;
  ;
 3 ;;PURGE DATA AUDITS
+ QUIT:$G(DUZ(0))'["@"  ;DI*22.2*29
  S DIC("S")="I $D(^DIA(+Y)),'$D(^DD(+Y,0,""AUDPURGEFORBID"")) S DIAC=""AUDIT"",DIFILE=+Y D ^DIAC I DIAC"
  S DIA="" D AU^DICRW K DIC("S") G Q2:$D(DTOUT),Q2:Y<0,Q2:'$D(DIC)
  S DDA="DATA" D ALL G Q2:$D(DIRUT)
@@ -101,6 +102,7 @@ DANGLE(DIA) ;CLEAN DANGLERS
  ;
  ;
 4 ;;PURGE DD AUDITS
+ QUIT:$G(DUZ(0))'["@"  ;DI*22.2*29
  S DIC("S")="I '$D(^DD(+Y,0,""DDAUDPURGEFORBID"")) S DIAC=""AUDIT"",DIFILE=+Y D ^DIAC I DIAC"
  S DIA="DDA",DDA="DD" D A^DICRW G Q:$D(DTOUT)!(Y<0)!'$D(DIC)
  D ALL G:$D(DIRUT) Q I Y S X=DIA D PR G Q

@@ -1,5 +1,5 @@
-XUSNPIE3 ;FO-OAKLAND/JLI - NATIONAL PROVIDER IDENTIFIER DATA CAPTURE ;4/8/08  18:18
- ;;8.0;KERNEL;**480**; July 10, 1995;Build 38
+XUSNPIE3 ;FO-OAKLAND/JLI - NATIONAL PROVIDER IDENTIFIER DATA CAPTURE ; 10/21/2024 09:47:33
+ ;;8.0;KERNEL;**480,811**; July 10, 1995;Build 1
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
@@ -65,7 +65,7 @@ EDITNPI(IEN) ; main entry of NPI value
  ; If user doesn't want to edit current NPI, quit.
  Q:OLDNPI="NOEDITNPI"
  ; If user is not a provider, and has no NPI, let them know.
- I $$CHEKNPI^XUSNPIED(IEN)=0,OLDNPI=0 W !,"Need for an NPI value isn't indicated - but you can enter an NPI",$C(7)
+ ;I $$CHEKNPI^XUSNPIED(IEN)=0,OLDNPI=0 W !,"Need for an NPI value isn't indicated - but you can enter an NPI",$C(7) ;remove p811
  I IEN'=DUZ D
  . W !,"Provider: ",PROVNAME,"   ","XXX-XX-"_$E($$GET1^DIQ(200,IEN_",",9),6,9),"   DOB: "
  . S XX=$P($G(^VA(200,IEN,1)),U,3) S:XX'="" XX=$$DATE10^XUSNPIED(XX) W XX Q
@@ -171,5 +171,4 @@ SNDMSG(XMDUZ,XUSTYPE,XUSRSLT) ;Sends msg when NPI is changed/deleted.
  D ^XMD
  I $D(XMMG) W !,XMMG,!
  Q
- ;
  ;

@@ -1,5 +1,9 @@
-PXBAPI ;ISL/JVS,ISA/KWP - PCE's API interview questions - encounter ;03/29/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**19,67,173,211**;Aug 12, 1996;Build 454
+PXBAPI ;ISL/JVS,ISA/KWP - PCE's API interview questions - encounter ;Aug 04, 2025@08:37:31
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**19,67,173,211,244**;Aug 12, 1996;Build 37
+ ;
+ ; Reference to UPDATE^GMPLUTL in ICR #928
+ ; Reference to ^DPT(D0,"S", in ICR #1301
+ ;
  Q
  ;
 INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
@@ -13,7 +17,7 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  ;+    "CODT" prompts for the Check Out Date/Time.
  ;+    "SCC"  prompts for the service connected conditions.
  ;+    "PRV"  prompts for the providers
- ;+    "CPT"  prompts for the provider and then the procedures that 
+ ;+    "CPT"  prompts for the provider and then the procedures that
  ;+           the provider did.
  ;+    "POV"  prompts for the diagnoses
  ;+    "STP"  prompts for the stop codes
@@ -29,8 +33,8 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  ;+             Location file (#44)
  ;+  PXBPAT   Pointer to the Patient file (#2)
  ;+             Required if there is no PXBVST and there is a PXBAPPT
- ;+             otherwise it is Optional (passed if known) 
- ;+  PXBAPPT  Optional (passed if known) pointer to the Apointment 
+ ;+             otherwise it is Optional (passed if known)
+ ;+  PXBAPPT  Optional (passed if known) pointer to the Apointment
  ;+             subfile (#2.98) of the Patient file (#2)
  ;+  PXLIMDT  Optional if passed then user cannot create an encounter
  ;+             (Visit file entry) before this date.
@@ -70,7 +74,7 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  N DIQ,TANA
  N PXBPXXX S PXBPXXX="1^1" ;--PROMPTING CONTROL VARIABLE
  ;
- N PXBSOURC,PXBEXIT,PXBVSTDT,PXELAP,PXBCODT,PXB800,PXBPRBON,DFN
+ N PXBSOURC,PXBEXIT,PXBVSTDT,PXELAP,PXBCODT,PXB800,PXB900,PXBPRBON,DFN
  N PXBEXIT,PAT,ITEM,NF,POP,PXBCNTPL,Q,TEST,UID,PXBPKG
  N VAL,VAR,PXBNCPTF,DXX,DYY
  S PXBEXIT=1
@@ -118,4 +122,3 @@ INTV(WHAT,PACKAGE,SOURCE,PXBVST,PXBHLOC,PXBPAT,PXBAPPT,PXLIMDT,PXALHLOC) ;
  K PXVDR
  I $G(PXVISIEN)>0 D UNLOCK^PXLOCK(PXVISIEN,DUZ,"PXBAPI")
  Q PXBEXIT
- ;

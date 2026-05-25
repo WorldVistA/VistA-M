@@ -1,4 +1,4 @@
-DVBAXA1 ; ;10/30/24
+DVBAXA1 ; ;05/14/26
  S X=DG(DQ),DIC=DIE
  X ^DD(2,.525,1,1,1.3) I X S X=DIV S Y(1)=$S($D(^DPT(D0,.52)):^(.52),1:"") S X=$S('$D(^DIC(22,+$P(Y(1),U,6),0)):"",1:$P(^(0),U,1)) S DIU=X K Y S X=DIV S X="" X ^DD(2,.525,1,1,1.4)
  S X=DG(DQ),DIC=DIE

@@ -1,5 +1,5 @@
 IBCNEUT1 ;DAOU/ESG - IIV MISC. UTILITIES ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,497,506,601**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**184,497,506,601,822**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
@@ -233,6 +233,9 @@ CODECK(VAL) ; validate the response for the output transforms on the CODE (.01) 
  S STR2="Problem Identified"
  S IP="Inactive Policy"
  S AP="Active Policy"
+ ;
+ ;IB*822/CKB - added IN="a" and IN="r" for ePharmacy Eligibility E1 transactions
+ I (IN="a")!(IN="r") S OUT=$S(IN="a":STR1_", Accepted Response",IN="r":STR1_", Rejected Response",1:"") G CODECKX
  ; IB*2*601/DM added IN="M"
  S OUT=$S(IN="D":STR1_", "_IP,IN="B":STR2,IN="A":STR1_", "_AP,IN="E":STR1_", "_AP_" (Escalated)",IN="Q":"Inquiry Sent, Awaiting Response",IN="U":STR1_", Ambiguous Answer",IN="C":STR2_", Communication Failure",IN="M":STR1_", MBI Received",1:"")
 CODECKX ;

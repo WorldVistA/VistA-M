@@ -1,5 +1,19 @@
-PXUTLSCC ;ISL/dee,ISA/KWP - Validates and corrects the Service Connected Conditions ;11/21/2019
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168,211**;Aug 12, 1996;Build 454
+PXUTLSCC ;ISL/DEE,ISA/KWP - Validates and corrects the Service Connected Conditions ;Dec 31, 2025@13:19:16
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**74,107,111,130,168,211,244**;Aug 12, 1996;Build 37
+ ;
+ ; Reference to $$EXAE^SDOE in ICR #2546
+ ; Reference to $$GETOE^SDOE in ICR #2546
+ ; Reference to CLOE^SDCO21 in ICR #1300
+ ; Reference to CL^SDCO21 in ICR #1300
+ ; Reference to $$REQ^SDM1A in ICR #1583
+ ; Reference to $$CLINIC^SDAMU in ICR #1580
+ ; Reference to $$INP^SDAM2 in ICR #1582
+ ; Reference to $$EXOE^SDCOU2 in ICR #1015
+ ; Reference to ^SCE("AVSIT" in ICR #2088
+ ; Reference to ^SCE( in ICR #2065
+ ; Reference to ^DPT( in ICR #1301
+ ; Reference to ^SD(409.41 in ICR #2083
+ ;
  Q
  ;
 CLEANMSG(ERRMSG) ;Cleanup the error message by removing fields with no error.
@@ -39,67 +53,13 @@ SCC(PXUPAT,PXUDT,PXUHLOC,PXUTLVST,PXUIN,PXUOUT,PXUERR) ;
  ;+     -2   ::= value must be null
  ;+     -3   ::= must be null because SC is yes
  ;
- N PXUCV,PXUITEM,PXUPSCC,PXUSC,PXUAO,PXUIR,PXUEC,PXUMST,PXUHNC,PXUSHAD
- D SCCOND(PXUPAT,PXUDT,PXUHLOC,$G(PXUTLVST),.PXUPSCC) ;Set up array of the patients SCC
- S PXUOUT=PXUIN
- S PXUERR="0^0^0^0^0^0^0^0"
- S PXUSC=$P(PXUIN,"^",1)
- I '(PXUSC=1!(PXUSC=0)!(PXUSC="")) S $P(PXUERR,"^",1)=-1 S $P(PXUOUT,"^",1)=""
- E  I PXUSC="" D  ;it is ok
- . I $P(PXUPSCC("SC"),"^",1) S $P(PXUERR,"^",1)=1,$P(PXUOUT,"^",1)=$P(PXUPSCC("SC"),"^",2) ;should have had a value
- E  I PXUSC]"" D
- . I '$P(PXUPSCC("SC"),"^",1) S $P(PXUERR,"^",1)=-2 S $P(PXUOUT,"^",1)="" ;it must be null
- . E  ;it is ok
- S PXUSC=$P(PXUOUT,"^",1)
- S PXUAO=$P(PXUIN,"^",2)
- I '(PXUAO=1!(PXUAO=0)!(PXUAO="")) S $P(PXUERR,"^",2)=-1 S $P(PXUOUT,"^",2)=""
- E  I PXUAO="" D  ;it is ok
- . I $P(PXUPSCC("AO"),"^",1),'PXUSC S $P(PXUERR,"^",2)=1,$P(PXUOUT,"^",2)=$P(PXUPSCC("AO"),"^",2) ;should have had a value
- E  I PXUAO]"" D
- . I '$P(PXUPSCC("AO"),"^",1) S $P(PXUERR,"^",2)=-2 S $P(PXUOUT,"^",2)="" ;it must be null
- . E  I PXUSC,PXUAO]"" S $P(PXUERR,"^",2)=-3 S $P(PXUOUT,"^",2)="" ;it is SC so it must be null
- . ;E  ;it is ok
- S PXUIR=$P(PXUIN,"^",3)
- I '(PXUIR=1!(PXUIR=0)!(PXUIR="")) S $P(PXUERR,"^",3)=-1 S $P(PXUOUT,"^",3)=""
- E  I PXUIR="" D  ;it is ok
- . I $P(PXUPSCC("IR"),"^",1),'PXUSC S $P(PXUERR,"^",3)=1,$P(PXUOUT,"^",3)=$P(PXUPSCC("IR"),"^",2) ;should have had a value
- E  I PXUIR]"" D
- . I '$P(PXUPSCC("IR"),"^",1) S $P(PXUERR,"^",3)=-2 S $P(PXUOUT,"^",3)="" ;it must be null
- . E  I PXUSC,PXUIR]"" S $P(PXUERR,"^",3)=-3 S $P(PXUOUT,"^",3)="" ;it is SC so it must be null
- . ;E  ;it is ok
- S PXUEC=$P(PXUIN,"^",4)
- I '(PXUEC=1!(PXUEC=0)!(PXUEC="")) S $P(PXUERR,"^",4)=-1 S $P(PXUOUT,"^",4)=""
- E  I PXUEC="" D  ;it is ok
- . I $P(PXUPSCC("EC"),"^",1),'PXUSC S $P(PXUERR,"^",4)=1,$P(PXUOUT,"^",4)=$P(PXUPSCC("EC"),"^",2) ;should have had a value
- E  I PXUEC]"" D
- . I '$P(PXUPSCC("EC"),"^",1) S $P(PXUERR,"^",4)=-2 S $P(PXUOUT,"^",4)="" ;it must be null
- . E  I PXUSC,PXUEC]"" S $P(PXUERR,"^",4)=-3 S $P(PXUOUT,"^",4)="" ;it is SC so it must be null
- . ;E  ;it is ok
- S PXUMST=$P(PXUIN,"^",5) ;MST not dependent on SC question
- I '(PXUMST=1!(PXUMST=0)!(PXUMST="")) S $P(PXUERR,"^",5)=-1 S $P(PXUOUT,"^",5)="" ;not valid data
- E  I PXUMST="" D  ;it is ok
- . I $P(PXUPSCC("MST"),"^",1) S $P(PXUERR,"^",5)=1,$P(PXUOUT,"^",5)=$P(PXUPSCC("MST"),"^",2) ;should have had a value
- E  I PXUMST]"" D
- .I '$P(PXUPSCC("MST"),"^",1) S $P(PXUERR,"^",5)=-2 S $P(PXUOUT,"^",5)="" ;it must be null, not MST status
- ;PX*1*111 - Add Head & Neck
- S PXUHNC=$P(PXUIN,"^",6) ;HNC not dependent on SC question
- I '(PXUHNC=1!(PXUHNC=0)!(PXUHNC="")) S $P(PXUERR,"^",6)=-1 S $P(PXUOUT,"^",6)="" ;not valid data
- E  I PXUHNC="" D  ;it is ok
- . I $P(PXUPSCC("HNC"),"^",1) S $P(PXUERR,"^",6)=1,$P(PXUOUT,"^",6)=$P(PXUPSCC("HNC"),"^",2) ;should have had a value
- E  I PXUHNC]"" D
- .I '$P(PXUPSCC("HNC"),"^",1) S $P(PXUERR,"^",6)=-2 S $P(PXUOUT,"^",6)="" ;it must be null, not HNC status
- S PXUCV=$P(PXUIN,"^",7) ;CV not dependent on SC question
- I '(PXUCV=1!(PXUCV=0)!(PXUCV="")) S $P(PXUERR,"^",7)=-1 S $P(PXUOUT,"^",7)="" ;not valid data
- E  I PXUCV="" D  ;it is ok
- . I $P(PXUPSCC("CV"),"^",1) S $P(PXUERR,"^",7)=1,$P(PXUOUT,"^",7)=$P(PXUPSCC("CV"),"^",2) ;should have had a value
- E  I PXUCV]"" D
- .I '$P(PXUPSCC("CV"),"^",1) S $P(PXUERR,"^",7)=-2 S $P(PXUOUT,"^",7)="" ;it must be null, not CV status
- S PXUSHAD=$P(PXUIN,"^",8) ;SHAD not dependent on SC question
- I '(PXUSHAD=1!(PXUSHAD=0)!(PXUSHAD="")) S $P(PXUERR,"^",8)=-1 S $P(PXUOUT,"^",8)="" ;not valid data
- E  I PXUSHAD="" D  ;it is ok
- . I $P(PXUPSCC("SHAD"),"^",1) S $P(PXUERR,"^",8)=1,$P(PXUOUT,"^",8)=$P(PXUPSCC("SHAD"),"^",2) ;should have had a value
- E  I PXUSHAD]"" D
- .I '$P(PXUPSCC("SHAD"),"^",1) S $P(PXUERR,"^",8)=-2 S $P(PXUOUT,"^",8)="" ;it must be null, not SHAD status
+ N CODE,PXAA,VALUE,X
+ S PXAA("PATIENT")=PXUPAT,PXAA("ENC D/T")=PXUDT,PXAA("HOS LOC")=PXUHLOC
+ F X=1:1:8 D
+ .S VALUE=$P(PXUIN,U,X)
+ .S CODE=$$NODETOCODE^PXSPECAUTH(X)
+ .S PXUOUT(CODE)=VALUE
+ D VALSA^PXAIVSTV(.PXUERR,$G(PXUTLVST),.PXAA,.PXUOUT)
  Q
  ;
  ;

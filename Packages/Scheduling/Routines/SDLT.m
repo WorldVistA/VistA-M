@@ -1,10 +1,9 @@
-SDLT ;ALB/LDB,GXT - CANCELLATION LETTERS ;17 JUL 2018
- ;;5.3;Scheduling;**185,213,281,330,398,523,441,555,622,641,680,705**;Aug 13, 1993;Build 11
- ;;PER VHA DIRECTIVE 2004-038, DO NOT MODIFY THIS ROUTINE
+SDLT ;ALB/LDB,GXT,TJB,TJB - CANCELLATION LETTERS ;OCT 20 2025
+ ;;5.3;Scheduling;**185,213,281,330,398,523,441,555,622,641,680,705,917,922**;Aug 13, 1993;Build 7
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
  ;**************************************************************************
  ;                          MODIFICATIONS
- ;                          
  ;   DATE      PATCH     DEVELOPER  DESCRIPTION OF CHANGES
  ; --------  ----------  ---------  ----------------------------------------
  ; 02/14/03  SD*5.3*281  SAUNDERS   Print letters to confidential address if
@@ -12,7 +11,7 @@ SDLT ;ALB/LDB,GXT - CANCELLATION LETTERS ;17 JUL 2018
  ; 12/2/03   SD*5.3*330  LUNDEN     Remove form feed from PRT+0
  ; 01/21/16  SD*5.3*641  HSI        Print 1st piece of 99 node
  ; 11/27/17  SD*5.3*680  JACKSON    Remove gender implications
- ; 06/13/18  SD*5.3*705  THOMAS     Add blank line between appointments in 
+ ; 06/13/18  SD*5.3*705  THOMAS     Add blank line between appointments in
  ;                                  letters
  ;**************************************************************************
  ;
@@ -45,7 +44,7 @@ FORM S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0=
  ; Add blank line between appointments in letters - Done with patch SD*5.3*705
  I $$ADLIN,'$D(B) W !
  W:'$D(B) !?5,"Date/Time: ",?17,DOW,?$L(DOW)+19,$J(SDDAT,12)
- I '$D(B),$D(SDC) W ?22,$J(SDT0,9),!?5,SDCL
+ I '$D(B),$D(SDC) W ?22,$J(SDT0,9)," ",$G(TIMEZONE),!?5,SDCL
  ; get default provider if defined for a given clinic, print it on the
  ; letter only if we have a YES on file, same for clinic location
  ; skip printing the provider label if the field is empty in file #44
@@ -108,8 +107,12 @@ ADDR K VAHOW S DFN=+A W !?12,$$FML^DGNFUNC(DFN)
  ;
 LAST4(DFN) ;Return patient "last four"
  N SDX
+ S SDX="     " Q SDX
+ ;
  S SDX=$G(^DPT(+DFN,0))
- Q $E(SDX)_$E($P(SDX,U,9),6,9)
+ ;Q $E(SDX)_$E($P(SDX,U,9),6,9)
+ S SDX="     "
+ Q SDX
  ;
 BADADD ;Print patients with a Bad Address Indicator
  I '$D(^TMP($J,"BADADD")) Q
@@ -134,8 +137,8 @@ TST ; SD*5.3*622 - handle scheduled tests
  Q  ; SD*5.3*622 - end of changes
  ;
 ADLIN() ;
- ; This API is checked to determine if the "ENABLE BLANK LINE?" (#1.1) 
- ; field in the SCHEDULING PARAMETERS (404.91) file is set to "YES" 
+ ; This API is checked to determine if the "ENABLE BLANK LINE?" (#1.1)
+ ; field in the SCHEDULING PARAMETERS (404.91) file is set to "YES"
  ; (internal value 1).
  ; Added with patch SD*5.3*705
  N DIQ,DIC,DA,DR

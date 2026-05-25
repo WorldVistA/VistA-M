@@ -1,5 +1,5 @@
 RCTOPD ;WASH IRMFO/ALTOONA,PA/TJK - TOP TRANSMISSION ;2/11/00 3:34 PM
-V ;;4.5;Accounts Receivable;**141,187,224,236,229,301,315,337,338,343**;Mar 20, 1995;Build 59
+V ;;4.5;Accounts Receivable;**141,187,224,236,229,301,315,337,338,343,421**;Mar 20, 1995;Build 10
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*337 Keep XTMP work file for 5 days
@@ -97,7 +97,7 @@ REFDOC ; refund, refund reversal documents
  ;
 COMPILE ;compiles documents into mail messages and transmits them
  ;builds message array
- N CNT,SEQ,REC,XMDUZ,DOCTYPE,LRTYPE,XMSUB,XMTEXT,XMY,TSEQ,DOCAMT
+ N CNT,SEQ,REC,XMDUZ,DOCTYPE,LRTYPE,XMSUB,XMTEXT,XMY,TSEQ,DOCAMT,I
  S (SEQ,TSEQ)=0
  F I=1,2,4 S TSEQ=TSEQ+($G(CNTR(I))\150)+$S($G(CNTR(I))#150:1,1:0)
  F DOCTYPE=1,2,4 D:$D(^XTMP("RCTOPD",$J,DOCTYPE)) COMPILE1(DOCTYPE,CNTR(DOCTYPE))
@@ -180,12 +180,13 @@ PROC(DEBTOR,QUIT,FILE,HOLD,EFFDT) ;process bills for a specific debtor
     .Q:'CAT
     .;Check the Refer to TOP field to see if this should be referred, based on AR Category
     .;S BILLDT=$P(B6,U,21) ; PRCA*4.5*343 - change BILLDT to LETTER1(#61) field
-    .Q:'$$RFCHK(CAT,"N",1.02,$P(B6,U,21))    ;PRCA*4.5*338
+    .S BILLDT=$P(B6,U,1) ;PRCA*4.5*421 Moved calc of BILLDT prior to call to $$RFCHK
+    .Q:'$$RFCHK(CAT,"N",1.02,$P(B6,U,21))  ;PRCA*4.5*338
     .;*** PRCA*4.5*338 end
     .Q:$D(^PRCA(430,"TCSP",BILL))  ;cross-serviced bills
     .;check for DOJ referral here
     .I $P(B6,U,4),($P(B6,U,5)="DOJ") Q
-    .S BILLDT=$P(B6,U,1) I (BILLDT<P10YDT)!(BILLDT>RC151DT)!(BILLDT<$P(DEBTOR6,U,3)) Q  ; PRCA*4.5*343 - change BILLDT from DATE ACCOUNT ACTIVATED (#60) to LETTER1(#61)
+    .I (BILLDT<P10YDT)!(BILLDT>RC151DT)!(BILLDT<$P(DEBTOR6,U,3)) Q  ; PRCA*4.5*343 - change BILLDT from DATE ACCOUNT ACTIVATED (#60) to LETTER1(#61)
     .I '$P(B6,U,3) D  Q
     ..;no 3rd letter being sent 
     ..N TDEB,TFIL
@@ -227,10 +228,11 @@ RFCHK(RCXCAT,RCIENFLG,RCXRFCD,RCXDT) ;Check to see if bill can be referred to re
  ;               1.03 - CS
  ;   RCXDT     - (Required) Date of service to be checked.
  ;
- N RCXFLG,RCXCTIEN,RCXSPDT
+ N RCXFLG,RCXCTIEN,RCXSPDT,RCXSPDT1
  ;
  ; Set the initial split date for the TOP and CS referral programs
  S RCXSPDT=3150801
+ S RCXSPDT1=3190801 ;PRCA*4.5*421
  ; Get the category IEN.
  S RCXCTIEN=RCXCAT  ;Initially assume it is an IEN
  ; Update to IEN if AR Category is the Category Number
@@ -244,4 +246,6 @@ RFCHK(RCXCAT,RCIENFLG,RCXRFCD,RCXDT) ;Check to see if bill can be referred to re
  I RCXFLG<2 Q RCXFLG
  I RCXFLG=2,(RCXDT<RCXSPDT) Q 1
  I RCXFLG=3,(RCXDT'<RCXSPDT) Q 1
+ I RCXFLG=4,(RCXDT<RCXSPDT1) Q 1 ;PRCA*4.5*421
+ I RCXFLG=5,(RCXDT'<RCXSPDT1) Q 1 ;PRCA*4.5*421
  Q 0

@@ -1,5 +1,5 @@
-PSOERX1E ;ALB/JSG - eRx Utilities ; 11/27/2019 11:02am
- ;;7.0;OUTPATIENT PHARMACY;**581,700,746**;DEC 1997;Build 106
+PSOERX1E ;ALB/JSG - eRx Utilities ; 11 Jul 2025  7:17 PM
+ ;;7.0;OUTPATIENT PHARMACY;**581,700,746,770**;DEC 1997;Build 145
  ;
 PHCHREQ(PSOIEN,RULE,LINE,PRTVIEW) ; Pharmacy Change Request Note
  S PRTVIEW=+$G(PRTVIEW)
@@ -17,7 +17,7 @@ PHCHREQ(PSOIEN,RULE,LINE,PRTVIEW) ; Pharmacy Change Request Note
  ..K NOTEARY
  ..D TXT2ARY^PSOERXD1(.NOTEARY,PHCHRQNT," ",80)
  ..S I=0 F  S I=$O(NOTEARY(I)) Q:'I  D
- ...S LINE=LINE+1 D SET^VALM10(LINE,NOTEARY(I)),CNTRL^VALM10(LINE,1,80,IOINHI,IOINORM)
+ ...S LINE=LINE+1 D SET^VALM10(LINE,NOTEARY(I)),CNTRL^VALM10(LINE,1,80,$G(IOINHI),$G(IOINORM))
  .I PHCHRQNT="" D
  ..S LINE=LINE+1 D SET^VALM10(LINE,PHCHRQNT)
  I PRTVIEW D
@@ -173,9 +173,11 @@ CXRES ;
  .S LINE=LINE+1 D SET^VALM10(LINE,"RxChange Response Comments:")
  S COMMBY=$$GET1^DIQ(52.49,RESIEN,50.1,"E")
  S COMMDTTM=$$GET1^DIQ(52.49,RESIEN,50.2,"E")
- S LINE=LINE+1 D SET^VALM10(LINE,"Comments By: "_COMMBY),CNTRL^VALM10(LINE,13,$L(COMMBY),IOINHI,IOINORM)
- S LINE=LINE+1 D SET^VALM10(LINE,"Comments Date/Time: "_COMMDTTM),CNTRL^VALM10(LINE,20,$L(COMMDTTM),IOINHI,IOINORM)
- S LINE=LINE+1 D SET^VALM10(LINE,"") S XLINE=LINE
+ S XLINE=LINE
+ I $G(COMMBY)'="" D
+ . S LINE=LINE+1 D SET^VALM10(LINE,"Comments By: "_COMMBY),CNTRL^VALM10(LINE,13,$L(COMMBY),IOINHI,IOINORM)
+ . S LINE=LINE+1 D SET^VALM10(LINE,"Comments Date/Time: "_COMMDTTM),CNTRL^VALM10(LINE,20,$L(COMMDTTM),IOINHI,IOINORM)
+ . S LINE=LINE+1 D SET^VALM10(LINE,"") S XLINE=LINE
  S I=0 F  S I=$O(^PS(52.49,RESIEN,55,I)) Q:'I  D
  .S ERESCODE=$$GET1^DIQ(52.4955,I_","_IENS,.01,"E")
  .S CODEIEN=$$GET1^DIQ(52.4955,I_","_IENS,.01,"I")
@@ -194,3 +196,46 @@ CXRES ;
  I XLINE<LINE S LINE=LINE+1 D SET^VALM10(LINE,"")
  Q
  ;
+PATWARN(ACTION,PSOIEN,SELPAT) ; Check whether the Patient Select is valid or not
+ ; Input:(r)ACTION - Ation being peformed ("EP": Edit Patient | "VP": Validate Patient)
+ ;       (r)PSOIEN - Pointer to the ERX HOLDING QUEUE file (#52.49)
+ ;       (r)SELPAT - Patient -Pointer to the PATIENT file (#2)
+ ;Output: 1 - No Issues Found with Patient Selected | 2 - Issues Found With Patient selected but Ok to proceed | 0 - Invalid Patient Selection
+ N MBMSITE,ERXPIEN,DFN,ERXSSN,ERXDOB,ERXGEN,ERXMMFLG,ERXMSG,EXPRVDEA,ERXCNT,I,VADM,GMRA,GMRAL
+ S MBMSITE=$S($$GET1^DIQ(59.7,1,102,"I")="MBM":1,1:0)
+ S ERXCNT=0,ERXMMFLG=1
+ S ERXPIEN=$$GET1^DIQ(52.49,PSOIEN,.04,"I"),DFN=$$GET1^DIQ(52.49,PSOIEN,.05,"I")
+ S ERXSSN=$$GET1^DIQ(52.46,ERXPIEN,1.4,"E"),ERXSSN=$TR(ERXSSN,"-","")
+ S ERXDOB=$$GET1^DIQ(52.46,ERXPIEN,.08,"I")
+ S ERXGEN=$$GET1^DIQ(52.46,ERXPIEN,.07,"I")
+ ; if the selected patient is not defined, use the va matched patient because we are doing this check
+ ; during accept validation
+ I '$G(SELPAT) S SELPAT=$$GET1^DIQ(52.49,PSOIEN,.05,"I") Q:'$G(SELPAT) 0
+  ;Patient DOB Check
+ I ERXDOB'=$$GET1^DIQ(2,SELPAT,.03,"I") D
+ . S ERXMMFLG=1,ERXCNT=ERXCNT+1
+ . S ERXMSG(ERXCNT)="Patient DOB mismatch (eRx: "_$$FMTE^XLFDT(ERXDOB,"5ZM")_" | VistA: "_$$FMTE^XLFDT($$GET1^DIQ(2,SELPAT,.03,"I"),"5ZM")_")"
+ I $G(MBMSITE) D
+ . N DUPPATS,DUP
+ . D DUPVPAT^PSOERX1E(SELPAT,.DUPPATS) I '$D(DUPPATS) Q
+ . S ERXMMFLG=2,ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="The following VistA Patient(s) has been identified as potential duplicate(s):"
+ . S DUP=0 F  S DUP=$O(DUPPATS(DUP)) Q:'DUP  S ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)=" "_DUP_"-"_DUPPATS(DUP)
+ S DFN=SELPAT D DEM^VADPT
+ ; Warning/Block for Patient w/out valid Address (CS prescriptions only)
+ I $$GET1^DIQ(52.49,ERXIEN,95.1,"I"),'$$VALPTADD^PSOERXUT(SELPAT) D
+ . S ERXMMFLG=1,ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="VistA Patient does not have a current mailing or residential address on file."
+ . S ERXMMFLG=$S(ACTION="EP":2,1:0)
+ ; Checking for ChampVA Eligibility (MBM Sites only)
+ I $G(MBMSITE),'$$CHVAELIG^PSOERXU9(DFN) D
+ . S ERXMMFLG=$S(ACTION="EP":2,1:0),ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="VistA Patient is not eligible for ChampVA Rx Benefit."
+ ; Checking on Allergies/Adverse Reactions
+ S GMRA="0^0^111" D EN1^GMRADPT I $G(GMRAL)="" D
+ . S ERXMMFLG=$S(ACTION="EP"!'$G(MBMSITE):2,1:0),ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="VistA Patient does not have an Allergy Assessment."
+ ;
+ I $O(ERXMSG(0)) D
+ . W !!,"*******************************",$S(ERXMMFLG:"   WARNING(S)  ",1:"INVALID PATIENT"),"*******************************"
+ . S I=0 F  S I=$O(ERXMSG(I)) Q:'I  D
+ . . W !,$G(ERXMSG(I))
+ . W !,"*****************************************************************************"
+ ;
+ Q ERXMMFLG

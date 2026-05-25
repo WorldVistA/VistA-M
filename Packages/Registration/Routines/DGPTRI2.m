@@ -1,10 +1,11 @@
-DGPTRI2 ;ALB/JDS/MJK/MTC/ADL/TJ/BOK,ISF/GJW,HIOFO/FT - PTF TRANSMISSION ;4/20/15 9:18am
- ;;5.3;Registration;**850,884**;Aug 13, 1993;Build 31
+DGPTRI2 ;ALB/JDS/MJK/MTC/ADL/TJ/BOK,ISF/GJW,HIOFO/FT/BA,CMC - PTF TRANSMISSION ;5/14/24 10:04am
+ ;;5.3;Registration;**850,884,1123**;Aug 13, 1993;Build 13
  ;;ADL;Update for CSV Project;;Mar 27,2003
  ;
  ; ^XMB(3.9) - #10113
  ; ICDXCODE APIs - #5699
  ; XLFSTR APIs - #10104
+ ; Reference to GET1^DIQ in ICR #2056
  ;
 501 ; -- setup 501 transactions
  ; DG*636
@@ -74,6 +75,8 @@ MOV ; build movement record
  ;BED STATUS (DISCHARGE MOVEMENT ONLY) - $E(Y,273)
  I T1 S Y=Y_$S(I=1:$E($P(DG70,U,14)_" "),$P(+DGTD,".")=$P(T2,"."):5,1:1)
  I 'T1 S Y=Y_$S(I=1:$E($P(DG70,U,14)_" "),1:" ")
+ ;Treatment For Acute Suicidal Crisis for COMPACT Act EOC data elements | 1/22/24 - decision made to just do ICD-10 branch | $E(Y,289)
+ S X=$$GET1^DIQ(45.02,I_","_J_",",33,"I") S $E(Y,289)=$S(X="Y":"Y",1:"N")
  ;[NOT ACTIVATED] - $E(Y,274,284)
  ;[RESERVED] - $E(Y,285,301)
  ;[NOT IN USE] - $E(Y,302,384)

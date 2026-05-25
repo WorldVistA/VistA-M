@@ -1,0 +1,303 @@
+IBACCWLEE1 ;EDE/TPF - ACC (Automated Community Care) Encounters - Action Item Expand Encounter Display Formats ; 12-SEP-2023 ; 12-SEP-2023
+ ;;2.0;INTEGRATED BILLING;**770**;21-MAR-2024;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to $$NABP^BPSBUTL(IBBPSRX,IBBPSFL) in ICR #4719
+ ; Reference to $$BILL^RCJIBFN2(IBK) in ICR# 1452
+ ; Reference to $$STNO^RCJIBFN2(+$P(IBY,U,2)),U,2) in ICR# 1452
+ Q
+ ;
+ ;CLONED FROM IBJTCA1 PER REQUEST OF SQA
+ ;CALLED FROM IBACCWLEE
+BLD(IBIFN,IBLN,VALMCNT) ; build array for Third Party Joint Inquiry Claims Info screen, IBIFN must be defined
+ ;
+ N I
+ K IBPOLICY F I="IBJTCA","IBJTBA","IBJTBB","IBJTBC","IBJTBD","IBJTEA","IBJTRA","IBJTTA","IBJTTB","IBJTTC","IBTRCD","IBTRDD","IBCNSA","IBCNSC","IBCNSVP" K ^TMP(I,$J)
+ ;
+ N X,IBY,IBZ,IBZ0,IBI,IBT,IBD,IBLR,IBD0,IBDI1,IBDM,IBDM1,IBDU,IBDS,IBDU2,IBID0,IBID13,IBNC,IBTC,IBTW,IBSW,IBGRPB,IBGRPE,IBWNR,IBDTX,IBBX19,IBPRVO,IBNABP,IBLVL,IBCNT,IBPRVTYP,IBVL
+ N IBXSAVE  ; IB*2.0*473 bi
+ N BPSBINFO,IBBPS,IBBPSRX,IBBPSFL
+ S X="",IBD0=$G(^DGCR(399,+$G(IBIFN),0)) I IBD0="" S VALMQUIT="" G BLDQ
+ F IBI="M","M1","U","S","U2","TX" S @("IBD"_IBI)=$G(^DGCR(399,+IBIFN,IBI))
+ S IBDI1=$P(IBD0,U,21),IBDI1=$S(IBDI1="S":2,IBDI1="T":3,1:1) S IBDI1=$$POLICY^IBCEF(IBIFN,,IBDI1)
+ S IBID0=$G(^DIC(36,+IBDI1,0)),IBID13=$G(^DIC(36,+IBDI1,.13))
+ ;
+ S IBNC(1)=2,IBTC(1)=2,IBTW(1)=15,IBSW(1)=23
+ S IBNC(2)=42,IBTC(2)=42,IBTW(2)=16,IBSW(2)=21
+ S IBNC(3)=35
+ S IBTC(4)=2,IBTW(4)=12,IBSW(4)=60
+ S IBTC(5)=78,IBTW(5)=1,IBSW(5)=1
+ S IBTC(6)=2,IBTW(6)=20,IBSW(6)=49
+ S IBTC(7)=2,IBTW(7)=20,IBSW(7)=58
+ ;
+ S IBLR=1
+ ;
+ S IBT="Insurance Demographics" S IBLN=$$SETN(IBT,IBLN,IBLR,1)
+ S IBWNR=$$WNRBILL^IBEFUNC(IBIFN)
+ S IBNABP=$$NABP^IBNCPDPU(IBIFN)
+ I IBNABP="" D
+ . S IBBPS=$$BILINF^IBNCPUT3(IBIFN,.BPSBINFO)
+ . S IBBPSRX=$G(BPSBINFO("PRESCRIPTION"))
+ . S IBBPSFL=$G(BPSBINFO("FILL NUMBER"))
+ . S IBNABP=$$NABP^BPSBUTL(IBBPSRX,IBBPSFL)   ; IA# 4719
+ S IBT=$S(IBWNR:" *",1:"  ")_"Bill Payer: ",IBD=$P(IBID0,U,1) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Claim Address: " D  S IBD=$P(IBDM,U,5) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ . I $P(IBID0,U,1)'=$P(IBDM,U,4) S IBD=$P(IBDM,U,4) S IBLN=$$SET(IBT,IBD,IBLN,IBLR) S IBT=""
+ I $P(IBDM,U,6)'="" S IBT="",IBD=$P(IBDM,U,6) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I $P(IBDM1,U,1)'="" S IBT="",IBD=$P(IBDM1,U,1) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="",IBD=$P(IBDM,U,7),IBD=IBD_$S(IBD'="":", ",1:"")_$P($G(^DIC(5,+$P(IBDM,U,8),0)),U,2)_" "_$P(IBDM,U,9),IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Claim Phone: ",IBD=$P($$BADD^IBJTU3(+IBIFN),U,2) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBLN=$$SET("","",IBLN,5)
+ ;
+ ; MRD;IB*2.0*516 - Use an IBLR of 7 for this section, then reset below.
+ S IBLR=7
+ S IBT="Subscriber Demographics" S IBLN=$$SETN(IBT,IBLN,1,1)
+ S IBT="Group Number: ",IBD=$P(IBDI1,U,3) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Group Name: ",IBD=$P(IBDI1,U,15) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Subscriber ID: ",IBD=$P(IBDI1,U,2) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Employer: ",IBD=$$EMPL^IBACCWLEE4(+DFN) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Insured's Name: ",IBD=$P(IBDI1,U,17) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Relationship: ",IBD=$$EXSET^IBJU1($P(IBDI1,U,16),2.312,16) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBLR=1
+ ;
+ S (IBNC(1),IBTC(1))=2,(IBNC(2),IBTC(2))=42,IBNC(3)=29,IBTW(1)=12,IBTW(2)=16,IBSW(1)=26,IBSW(2)=22
+ S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ ;JWS:IB*2.0*592:US131 - added dental claim #7
+ I $$FT^IBCEF(IBIFN)=2!($$FT^IBCEF(IBIFN)=7) D
+ . N IBXDATA,IBXSAVE K ^TMP("IBXSAVE",$J)
+ . D F^IBCEF("N-HCFA 1500 BOX 19",,,IBIFN)
+ . I IBXDATA'="" S IBBX19(1)=$E(IBXDATA,1,40) S:$E(IBXDATA,41,$L(IBXDATA))'="" IBBX19(2)=$E(IBXDATA,41,$L(IBXDATA))
+ ;
+ S IBGRPB=IBLN,IBLR=1
+ S IBT="Claim Information" S IBLN=$$SETN(IBT,IBLN,3,1)
+ S IBT="Bill Type: ",IBD=$$EXSET^IBJU1($P(IBD0,U,5),399,.05) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Time Frame: ",IBD=$$EXSET^IBJU1($P(IBD0,U,6),399,.06) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Rate Type: ",IBD=$P($G(^DGCR(399.3,+$P(IBD0,U,7),0)),U,1) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="AR Status: ",IBD=$P($$ARSTATA^IBJTU4(IBIFN),U,1) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT=" Sequence: ",IBD=$P($$EXSET^IBJU1($P(IBD0,U,21),399,.21)," ",1) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Purch Svc: ",IBD=$S($P(IBDU2,U,11)="":"NO",1:$$EXPAND^IBTRE(399,233,$P(IBDU2,U,11))),IBLN=$$SET(IBT,IBD,IBLN,4)
+ I $P(IBDM1,"^",8) S IBT="  ECME No: ",IBD=$P($P(IBDM1,"^",8),";",1),IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I $L($P(IBDM1,"^",9)) S IBT="ECME Ap No: ",IBD=$P(IBDM1,"^",9),IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I IBNABP'="" S IBT=$S(($L($TR(IBNABP," ",""))=7):"  NCPDP No: ",1:"       NPI: "),IBD=IBNABP,IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ ; IB*2.0*521 add Claim HPID to display
+ S IBD=$S($P(IBD0,U,21)="P":$P(IBDM1,U,13),$P(IBD0,U,21)="S":$P(IBDM1,U,14),$P(IBD0,U,21)="T":$P(IBDM1,U,15),1:"")
+ S:IBD="" IBD=$$HPD^IBCNHUT1(+IBDI1) S IBVL=$$HOD^IBCNHUT1(IBD,+IBDI1,IBD) S IBT=$P(IBVL,U,2)_": ",IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I IBWNR S IBT="MRA Status: ",IBD=$S($P(IBDTX,U,5):$P(IBDTX,U,5),1:"NOT RECEIVED"),IBLN=$$SET(IBT,$S(IBD:$$EXPAND^IBTRE(399,24,IBD),1:IBD),IBLN,IBLR)
+ I $G(IBBX19(1))'="" D
+ . S IBT="   Box 19: ",IBD=IBBX19(1),IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ . I $G(IBBX19(2))'="" S IBT=$J("",11),IBD=IBBX19(2),IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ ;
+ S IBLR=6,IBPRVO=""
+ S IBT="Providers: ",IBD="NONE"
+ ;IB*2.0*432/TAZ - Changed how providers are displayed to take line-level providers into account.
+ ;D F^IBCEF("N-ALL PROVIDERS","IBZ",,IBIFN)
+ D F^IBCEF("N-ALL PROVIDERS 1","IBZ",,IBIFN)
+ S IBZ0=0
+ S IBLVL=0
+ F  S IBLVL=$O(IBZ(IBLVL)) Q:'IBLVL  D
+ . S IBT=IBT_$S(IBLVL=1:"Claim: ",1:"Line: ")
+ . S IBPRVTYP="",IBCNT=0
+ . F  S IBCNT=$O(IBZ(IBLVL,IBCNT)) Q:'IBCNT  D
+ .. I IBLVL=1 S IBD=$J("",5)
+ .. I IBLVL=2 S IBD=$E("("_IBCNT_")"_$J("",5),1,5)
+ .. F  S IBPRVTYP=$O(IBZ(IBLVL,IBCNT,IBPRVTYP)) Q:'IBPRVTYP  D
+ ... S IBD=IBD_$E($$EXPAND^IBTRE(399.0222,.01,IBPRVTYP)_":"_$J("",15),1,15)
+ ... S IBD=IBD_$P(IBZ(IBLVL,IBCNT,IBPRVTYP),U)
+ ... I $L($P(IBZ(IBLVL,IBCNT,IBPRVTYP),U,4)) S IBD=IBD_" ("_$P(IBZ(IBLVL,IBCNT,IBPRVTYP),U,4)_")"
+ ... S IBLN=$$SET(IBT,IBD,IBLN,IBLR),IBT="",IBD=$J("",5)
+ ;
+ S IBGRPE=IBLN,IBLN=IBGRPB+1,IBLR=2
+ ;
+ S IBT="Charge Type: ",IBD=$$EXSET^IBJU1($P(IBD0,U,27),399,.27) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Service Dates: ",IBD=$$DATE^IBJU1($P(IBDU,U,1))_" - "_$$DATE^IBJU1($P(IBDU,U,2)) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ S IBT="Orig Claim: ",IBD=$$BILL^RCJIBFN2(+IBIFN) S IBLN=$$SET(IBT,$J($P(IBD,U,1),9,2),IBLN,IBLR) ;ICR #1452
+ S IBT="Balance Due: ",IBD=$J($P(IBD,U,3),9,2) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I +$P(IBDM,U,2) S IBX=$S($P(IBD0,U,21)="P":2,1:1) D  S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ . S IBT=$S(IBX=2:"Secondary",1:"Primary")_": ",IBD=$P($G(^DIC(36,+$P(IBDM,U,IBX),0)),U,1)
+ . S IBX=$P(IBDU2,U,(IBX+3)) I +IBX S IBX="("_$J(IBX,0,2)_")" S IBD=$E(IBD,1,(IBSW(IBLR)-$L(IBX)-2))_"  "_IBX
+ I +$P(IBDM,U,3) S IBX=$S($P(IBD0,U,21)="T":2,1:3) D  S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ . S IBT=$S(IBX=2:"Secondary",1:"Tertiary")_": ",IBD=$P($G(^DIC(36,+$P(IBDM,U,IBX),0)),U,1)
+ . S IBX=$P(IBDU2,U,(IBX+3)) I +IBX S IBX="("_$J(IBX,0,2)_")" S IBD=$E(IBD,1,(IBSW(IBLR)-$L(IBX)-2))_"  "_IBX
+ S IBLN=$$SET("","",IBLN,5)
+ I IBWNR S IBT="MRA Rec Date: " D  S IBLN=$$SET(IBT,IBD,IBLN,2)
+ . N Z
+ . ; find last MRA for receipt date
+ . S (IBD,Z)="" F  S Z=$O(^IBM(361.1,"B",IBIFN,Z),-1) Q:'Z  I $P($G(^IBM(361.1,Z,0)),U,4)=1 S IBD=$$DATE^IBJU1($P($P(^IBM(361.1,Z,0),U,6),".")) Q
+ F Z=IBLN:1:IBGRPE S IBLN=$$SET("","",IBLN,5)
+ ;
+ S (IBLN,VALMCNT)=$S(IBLN>IBGRPE:IBLN,1:IBGRPE)
+ ;
+ S IBGRPB=IBLN,IBLR=1
+ ;
+COPAY I $O(^IBA(362.4,"C",IBIFN,0)) D
+ . S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,IBLR)   ; blank line
+ . S IBNC(1)=21,IBT="Related Prescription Copay Information" S IBLN=$$SETN(IBT,IBLN,1,1)
+ . N IBZ,IBX,IBC,IBCAP
+ . S IBZ=0 F  S IBZ=$O(^IBA(362.4,"C",IBIFN,IBZ)) Q:'IBZ  D
+ .. K ^TMP("IBTPJI",$J)
+ .. S IBC=$G(^IBA(362.4,IBZ,0))
+ .. D:$P(IBC,"^",5) RX^PSO52API($P(IBD0,"^",2),"IBTPJI",$P(IBC,"^",5),"","I^") ;ICR #4820 (Supported)
+ .. ; original fill
+ .. I $P(IBC,"^",10)=0 D
+ ... S IBX=+$G(^TMP($J,"IBTPJI",$P(IBD0,"^",2),+$P(IBC,"^",5),106)),IBCAP=+$G(^(106.6))
+ .. ; refills
+ .. E  D
+ ... S IBX=+$G(^TMP($J,"IBTPJI",$P(IBD0,"^",2),+$P(IBC,"^",5),"IB",+$P(IBC,"^",10),9)),IBCAP=+$G(^(9.1))
+ .. I '$G(IBX),$G(IBCAP) S IBT="  <copay exceeded cap>",IBLN=$$SET(IBT,"",IBLN,4) Q
+ .. I '$G(IBX) S IBT="  <none found>",IBLN=$$SET(IBT,"",IBLN,4) Q
+ .. S IBX=$G(^IB(IBX,0))
+ .. S IBT="Rx: "_$P(IBC,"^")_"  Chg: $"_$FN($P(IBX,"^",7),",",2)_"   Status: "_$$TITLE^XLFSTR($$EXTERNAL^DILFD(350,.05,"",$P(IBX,"^",5)))_"   Bill: "_$P(IBX,"^",11)
+ .. S IBLN=$$SET(IBT,"",IBLN,4)
+ ;K ^TMP("IBTPJI",$J)
+ ;
+ S (IBLN,VALMCNT)=IBLN-1
+ ;
+BLDQ Q
+ ;
+ ;FOLLOWING CODE PULLED FROM
+ ;D CONT^IBJTCA2
+ ;CONT ; Continuation of Claim Information Screen Build
+ ; reason cancelled
+ I $P(IBD0,U,13)=7 D
+ . S (IBNC(1),IBTC(1))=2,(IBNC(2),IBTC(2))=0,IBNC(3)=28,IBTW(1)=29,IBTW(2)=0,IBSW(1)=49,IBSW(2)=0
+ . S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,1)
+ . ;
+ . S IBGRPB=IBLN,IBLR=1
+ . K IBY D RCANC^IBJTU2(IBIFN,.IBY,50)
+ . S IBT="Reason Cancelled by ("_$P(IBY,U,3)_"): "
+ . S IBI=0 F  S IBI=$O(IBY(IBI)) Q:'IBI  S IBD=IBY(IBI) S IBLN=$$SET(IBT,IBD,IBLN,IBLR),IBT=""
+ ;
+ S (IBLN,VALMCNT)=$S(IBLN>IBGRPE:IBLN,1:IBGRPE)
+ S (IBNC(1),IBTC(1))=2,IBTW(1)=16,IBSW(1)=50
+ S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ ;
+ S IBGRPB=IBLN,IBLR=1
+ ;
+ I +$P(IBDS,U,1) S IBT="Entered: ",IBD=$$EXT(IBDS,1,2) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I +$P(IBDS,U,4) S IBT="Initial Review: ",IBD=$$EXT(IBDS,4,5) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I +$P(IBDS,U,7) S IBT="MRA Request: ",IBD=$$EXT(IBDS,7,8) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I +$P(IBDS,U,10) S IBT="Authorized: ",IBD=$$EXT(IBDS,10,11) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I +$P(IBDS,U,12) S IBT="First Printed: ",IBD=$$EXT(IBDS,12,13) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I $P(IBDS,U,14)>$P(IBDS,U,12) S IBT="Last Printed: ",IBD=$$EXT(IBDS,14,15) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ I +$P(IBDS,U,17) S IBT="Cancelled: ",IBD=$$EXT(IBDS,17,18) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ ;
+ ; Patch 320 - added bill cloning history to TPJI report. 
+ N IBCCR,IBCURR,IBNEXT,IBBCH,IBINDENT
+ S IBINDENT=0
+ ;
+ D EN^IBCCR(IBIFN,.IBCCR)   ; utility to pull cloning history
+ ;
+ ; attempt to go one claim forward from the current claim
+ S IBCURR="IBCCR("_+$P(IBDS,U,1)_","_IBIFN_")"
+ S IBNEXT=$Q(@IBCURR)
+ I IBNEXT'="" D
+ . N IBX S IBX=@IBNEXT
+ . S IBT="Copied: "
+ . S IBD=$$FMTE^XLFDT($P(IBX,U,1),"2Z")_"  by  "_$P(IBX,U,3)
+ . S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ . S IBT="Copied To: ",IBD=$P(IBX,U,2),IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ . S IBINDENT=1
+ . Q
+ ;
+ ; now go backwards for claim cloning history all the way back
+ S IBBCH=IBCURR
+ F  S IBBCH=$Q(@IBBCH,-1) Q:IBBCH=""  D
+ . N IBX S IBX=@IBBCH
+ . S IBT="Copied: " I IBINDENT S IBT="                  "_IBT
+ . S IBD=$$FMTE^XLFDT($P(IBX,U,1),"2Z")_"  by  "_$P(IBX,U,3)
+ . S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ . S IBT="Copied From: " I IBINDENT S IBT="             "_IBT
+ . S IBD=$P(IBX,U,2),IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ . S IBT="Reason Copied: " I IBINDENT S IBT="           "_IBT
+ . S IBD=$P(IBX,U,4),IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ . S IBINDENT=1
+ . Q
+ ;
+ I $D(^DGCR(399,IBIFN,"R","AC",1)) S IBT="Returned to AR: ",X=0 F  S X=$O(^DGCR(399,IBIFN,"R","AC",1,X)) Q:'X  D
+ . S IBY=$G(^DGCR(399,IBIFN,"R",X,0)),IBD=$$EXT(IBY,1,2) S IBLN=$$SET(IBT,IBD,IBLN,IBLR)
+ ;
+ N IBCOB,IBX,IBY,IBI,IBJ,IBK D BCOB^IBCU3(IBIFN,.IBCOB) I $O(IBCOB(0)) D
+ . S IBTC(1)=2,IBTW(1)=12,IBSW(1)=68,IBLR=1,IBNC(1)=26,IBTW(0)=0
+ . S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,1)
+ . S IBT="Payers and Related Bills" S IBLN=$$SETN^IBJTCA1(IBT,IBLN,IBLR,1)
+ . S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,1)
+ . S IBTC(1)=0,IBTW(1)=0,IBSW(1)=68,IBLR=1,IBNC(1)=0
+ . S IBT="",IBD="Insurance Co.    Bill #     Status   Original  Collected    Balance"
+ . S IBLN=$$SET(IBT,IBD,IBLN,IBLR) D CNTRL^VALM10(IBLN-1,(IBTC(1)+IBTW(1)),IBSW(1),IOUON,IOUOFF)
+ . S IBI=0 F  S IBI=$O(IBCOB(IBI)) Q:'IBI  D
+ .. S IBT=$S(IBI=1:"Primary",IBI=2:"Secondary",IBI=3:"Tertiary",1:"Other")_":  "
+ .. S IBJ=0 F  S IBJ=$O(IBCOB(IBI,IBJ)) Q:'IBJ  S IBK="" F  S IBK=$O(IBCOB(IBI,IBJ,IBK)) Q:IBK=""  D
+ ... S IBD="",IBY=$$BILL^RCJIBFN2(IBK) ;ICR# 1452
+ ... S IBX=$P($G(^DIC(36,+IBJ,0)),U,1) S IBD=$$SLINE(IBD,IBX,0,15)
+ ... I +IBK D
+ .... S IBX=$P($G(^DGCR(399,+IBK,0)),U,1) S IBD=$$SLINE(IBD,IBX,17,10)
+ .... S IBX=$P($$STNO^RCJIBFN2(+$P(IBY,U,2)),U,2) ;bill status ;ICR# 1452
+ .... ; if MRA active & bill pyr seq >1 & dsply'g prmry & prmry ins is WNR
+ .... I $$EDIACTV^IBCEF4(2),$$COBN^IBCEF(+IBK)>1,IBI=1,$$MCRWNR^IBEFUNC(+IBJ) D
+ ..... S IBX=" ",IBY="0^^0^0^0" ;blank out status & reset WNR amounts
+ .... S IBD=$$SLINE(IBD,IBX,30,3)
+ .... S IBX=$J($P(IBY,U,1),10,2) S IBD=$$SLINE(IBD,IBX,35,10)
+ .... S IBX=$J($P(IBY,U,4),10,2) S IBD=$$SLINE(IBD,IBX,46,10)
+ .... S IBX=$J($P(IBY,U,3),10,2) S IBD=$$SLINE(IBD,IBX,57,10)
+ ... S IBLN=$$SET(IBT,IBD,IBLN,IBLR),IBT=""
+ ;
+ ;IB*2.0*516 - Display links from 3rd party bill to 1st party bill(s)
+ K ^TMP("IBRBF",$J)
+ D RELBILL^IBRFN(IBIFN)
+ N IBCIFN,IBCNT
+ S IBCNT=0,IBCIFN="" F  S IBCIFN=$O(^TMP("IBRBF",$J,IBIFN,IBCIFN)) Q:IBCIFN=""  D
+ . I $P(^TMP("IBRBF",$J,IBIFN,IBCIFN),"^",6)["RX COPAY" K ^TMP("IBRBF",$J,IBIFN,IBCIFN) Q
+ . S IBCNT=IBCNT+1
+ D HDR2
+ I IBCNT=0 S (IBT,IBD)="",IBX="No Links to 1st Party Bills Found",IBD=$$SLINE(IBD,IBX,0,35),IBLN=$$SET(IBT,IBD,IBLN,IBLR) Q
+ S (IBD,IBX,IBT)=""
+ S IBCIFN="" F  S IBCIFN=$O(^TMP("IBRBF",$J,IBIFN,IBCIFN)) Q:IBCIFN=""  D PRINT2^IBACCWLEE4
+ ;
+ K ^TMP("IBRBF",$J)
+ ;
+ Q
+ ;
+SET(IBT,IBD,IBLN,IBLR) ;
+ N LN S LN=$$SET2(IBT,IBD,IBLN,IBLR)  ;TPF
+ S VALMCNT=IBLN
+ Q LN
+ ;
+SET2(TTL,DATA,LN,LR) ;EP -
+ N IBY
+ S IBY=$J(TTL,IBTW(LR))_DATA D SET1(IBY,LN,IBTC(LR),(IBTW(LR)+IBSW(LR)))
+ S LN=LN+1
+ Q LN
+ ;
+SETN(TTL,LN,LR,RV) ;EP -
+ N IBY
+ S IBY=" "_TTL_" " D SET1(IBY,LN,IBNC(LR),$L(IBY),$G(RV))
+ S LN=LN+1
+ Q LN
+ ;
+SET1(STR,LN,COL,WD,RV) ; set up TMP array with screen data
+ N IBX S IBX=$G(@VALMAR@(LN,0))
+ S IBX=$$SETSTR^VALM1(STR,IBX,COL,WD)
+ D SET^VALM10(LN,IBX) I $G(RV)'="" D CNTRL^VALM10(LN,COL,WD,IORVON,IORVOFF)
+ Q
+ ;
+EXT(STR,DT,USER) ; returns external form of user and date, given their position in the string
+ N X,Y S Y="",STR=$G(STR),DT=+$G(DT),USER=+$G(USER)
+ S X=$P(STR,U,DT),DT="" I +X S DT=$E(X,4,5)_"/"_$E(X,6,7)_"/"_$E(X,2,3)
+ S X=$P(STR,U,USER),USER="" I +X S USER=$P($G(^VA(200,+X,0)),U,1) ;ICR #10060 (Supported)
+ S Y=DT_"  by  "_$S(USER="":"UNKNOWN",1:USER)
+ Q Y
+ ;
+SLINE(IBD,DATA,COL,WD) ; format a single line with multiple data fields
+ S IBD=$E(IBD,1,(COL-1)),IBD=IBD_$J("",(COL-$L(IBD))),IBD=IBD_$E(DATA,1,WD)
+ Q IBD
+ ;
+HDR2 ;Print the header for first party bills - IB*2*516
+ S (IBT,IBD)="",IBLR=1,IBNC(1)=26
+ S IBLN=$$SET(IBT,IBD,IBLN,1)
+ S IBT="Related First Party Charges" S IBLN=$$SETN^IBJTCA1(IBT,IBLN,IBLR,1)
+ S (IBT,IBD)="" S IBLN=$$SET(IBT,IBD,IBLN,1)
+ S IBTC(1)=0,IBTW(1)=1,IBSW(1)=80,IBLR=1,IBNC(1)=26
+ S IBT="Bill#         Charge Type  Status      Amt Billed     On Hold    Balance"
+ S IBLN=$$SET(IBT,IBD,IBLN,IBLR) D CNTRL^VALM10(IBLN-1,(IBTC(1)+IBTW(1)),IBSW(1),IOUON,IOUOFF)
+ Q
+ ;

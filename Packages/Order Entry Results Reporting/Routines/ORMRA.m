@@ -1,13 +1,6 @@
-ORMRA ; SLC/MKB/RV - Process Radiology ORM msgs ;Oct 27, 2023@12:13:58
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,53,92,110,136,153,174,195,228,243,296,535**;Dec 17, 1997;Build 20
- ;Reference to ^DIC(34 in ICR #2968
- ;Reference to ^RAMIS(71.2,"B" in ICR #2419
- ;Reference to ^VA(200 in ICR #4329
- ;Reference to ^DIE in ICR #10018
- ;Reference to $$SWSTAT^IBBAPI in ICR #4663
- ;Reference to $$NOW^XLFDT in ICR #10103
- ;Reference to $$UP^XLFSTR in ICR #10104
- ;
+ORMRA ; SLC/MKB/RV - Process Radiology ORM msgs ;2/21/02  15:44 [05/30/06 12:30pm]
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,53,92,110,136,153,174,195,228,243,296**;Dec 17, 1997;Build 0
+ ;DBIA 2968 allows for reading ^DIC(34
 EN ; -- entry point for RA messages
  I '$L($T(@ORDCNTRL)) Q  ;S ORERR="Invalid order control code" Q
  I ORDCNTRL'="SN",ORDCNTRL'="ZP",'ORIFN!('$D(^OR(100,+ORIFN,0))) S ORERR="Invalid OE/RR order number" Q
@@ -139,6 +132,7 @@ RE ; -- Completed, w/results
  S I=+ORC F  S I=$O(@ORMSG@(I)) Q:I<1  S SEG=$G(@ORMSG@(I)) Q:$E(SEG,1,3)="ORC"  I $E(SEG,1,3)="OBX" S OBX=I_U_SEG Q  ;first one
  S $P(^OR(100,+ORIFN,7),U,2)=$S($P(OBX,"|",9)="A":1,1:"")
  S:'$G(ORNP) ORNP=+$P($G(^OR(100,+ORIFN,0)),U,4)
+ I $L($T(ADD^ORRCACK)) D ADD^ORRCACK(+ORIFN,ORNP) ;Ack stub for prov
  Q
  ;
 OH ; -- Held

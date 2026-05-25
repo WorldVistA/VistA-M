@@ -1,5 +1,5 @@
 IBAMTED ;ALB/CPM,GN,PHH,EG - MEANS TEST EVENT DRIVER INTERFACE ; 11/30/05 1:48pm
- ;;2.0;INTEGRATED BILLING;**15,255,269,321,312,751**;21-MAR-94;Build 12
+ ;;2.0;INTEGRATED BILLING;**15,255,269,321,312,751,820**;21-MAR-94;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;IB*2*269 add IVM converted RX Copay Test update calls to a new API.
@@ -12,7 +12,7 @@ IBAMTED ;ALB/CPM,GN,PHH,EG - MEANS TEST EVENT DRIVER INTERFACE ; 11/30/05 1:48pm
  I '$D(EASZ06) D
  . ;this routine is called from the DG namespace and IB namespace
  . ;when coming in from the DG namespace, variable DGMTD and DGMTDT is
- . ;used to define the means test.  When coming in
+ . ;used to define the means test test.  When coming in
  . ;from the IB namespace, variable IBDT  OR IVMMTDT is used
  . I '$D(IBDT) N IBDT
  . S IBDT=$S($D(IBDT):IBDT,$D(IVMMTDT):IVMMTDT,$D(DGMTDT):DGMTDT,$D(DGMTD):DGMTD,1:0)
@@ -43,7 +43,7 @@ IBAMTED ;ALB/CPM,GN,PHH,EG - MEANS TEST EVENT DRIVER INTERFACE ; 11/30/05 1:48pm
  I DGMTACT="UPL"!(DGMTACT="DUP") D  G END
  .;
  .; - if IVM is uploading a verified test, create new MT charges
- .I $P(DGMTP,"^",23)<2,$P(DGMTA,"^",23)>1,'$$CK^DGMTUB(DGMTP),$$CK^DGMTUB(DGMTA) D ^IBAMTV Q
+ .I $P(DGMTA,"^",23)=2,$$CK^DGMTUB(DGMTA) D ^IBAMTV Q  ;RTW IB*2.0*820
  .;
  .; - if IVM is sending a 'Delete' transmission, cancel previous charges
  .I $P(DGMTP,"^",23)>1,$P(DGMTA,"^",23)<2,$$CK^DGMTUB(DGMTP),'$$CK^DGMTUB(DGMTA) D CANC^IBAMTV
@@ -67,7 +67,7 @@ IBAMTED ;ALB/CPM,GN,PHH,EG - MEANS TEST EVENT DRIVER INTERFACE ; 11/30/05 1:48pm
  .D MT^IBAMTBU2 ; create bulletin
  ;
 END K IBARR,IBCANCEL,IBCATCA,IBCATCP,IBDIQ,IBDUZ,IBEFDT,IBMT,IBI,IBC,IBPT,IBT
- K DIC,DIQ,DR,DA,VA,VAERR,VAEL,X,X1,X2,XMDUZ,XMTEXT,XMY,XMSUB,IBFLAG,IBMTYR,IBTHSH
+ K DIC,DIQ,DR,DA,VA,VAERR,VAEL,X,X1,X2,XMDUZ,XMTEXT,XMY,XMSUB
  ;***
  ;I $D(XRT0) S:'$D(XRTN) XRTN="IBAMTED" D T1^%ZOSV ;stop rt clock
  Q

@@ -1,0 +1,179 @@
+SDES907P ;ALB/JHV,JDJ,JAS - SD*5.3*907 Post Init Routine ; MAY 9, 2025
+ ;;5.3;SCHEDULING;**907**;AUG 13, 1993;Build 5
+ ;;Per VHA Directive 6402, this routine should not be modified
+ ;
+ ; Reference to NEW PERSON (200), KEY (200.051) in ICR #7054
+ ; Reference to SECURITY KEY (19.1) in ICR #505
+ ;
+ Q
+ ;
+EN ;
+ D TASK
+ D SDECSET
+ D TASK1,TASK2,TASK3
+ Q
+ ;
+SDECSET ; Update SDEC Help link text to that ISS reflects preferens set from IVC
+ N NATIEN,SUBIEN,FDA,FDAERR
+ S NATIEN=$O(^SDEC(409.98,"B","VS GUI NATIONAL",0))
+ S SUBIEN=$O(^SDEC(409.98,NATIEN,1,"B","Veterans Crisis Line - (800) 2",0)) Q:'SUBIEN
+ S FDA(409.981,SUBIEN_","_NATIEN_",",.01)="Veterans Crisis Line - 988 x1"
+ D FILE^DIE(,"FDA","FDAERR") K FDA
+ Q
+TASK ; tasks off process to remove null comment audit entries from Recall Reminders file
+ D MES^XPDUTL("")
+ D MES^XPDUTL(" SD*5.3*907 Post-Install to disposition open MTRC Parent nodes")
+ D MES^XPDUTL("when all child nodes have appointments scheduled.")
+ D MES^XPDUTL("")
+ N ZTDESC,ZTRTN,ZTIO,ZTSK,X,ZTDTH,ZTSAVE
+ S ZTDESC="SD*5.3*907 Post Install Routine Task 1"
+ D NOW^%DTC S ZTDTH=X,ZTIO="",ZTRTN="VSE9701^SDES907P",ZTSAVE("*")="" D ^%ZTLOAD
+ I $D(ZTSK) D
+ . D MES^XPDUTL(" >>>Task "_ZTSK_" has been queued.")
+ . D MES^XPDUTL("")
+ I '$D(ZTSK) D
+ . D MES^XPDUTL(" UNABLE TO QUEUE THIS JOB.")
+ . D MES^XPDUTL(" Please contact the National Help Desk to report this issue.")
+ Q
+ ;
+VSE9701 ;disposition open parent MTRC requests when all child requests have appointments scheduled
+ N SDCONTEXT,SDINPUT
+ K ^XTMP("SDES907P","VSE-9701")
+ D FIXMRTC(.SDCONTEXT,.SDINPUT)
+ D MAIL
+ Q
+ ;
+FIXMRTC(SDCONTEXT,SDINPUT) ;
+ N RECCNT,APPTIEN,NODENUM,APPT,CREATEDT,PARENTIEN,CREATEDTTX,NUMMRTC,MRTCAPPT,CHILDIEN,FOUND,DISP,CHILDCNT
+ S RECCNT=0
+ S ^XTMP("SDES907P","VSE-9701",1)="REQUEST IEN;CREATED DT"
+ S NODENUM=1
+ S CREATEDT=0
+ F  S CREATEDT=$O(^SDEC(409.85,"E","O",CREATEDT)) Q:'CREATEDT  D
+ . S CREATEDTTX=$P($$FMTISO^SDAMUTDT(CREATEDT),"-",1,3)
+ . S PARENTIEN=0 F  S PARENTIEN=$O(^SDEC(409.85,"E","O",CREATEDT,PARENTIEN)) Q:'PARENTIEN  D
+ .. I $$GET1^DIQ(409.85,PARENTIEN,41,"I")'=1 Q  ;Req is MRTC
+ .. I $$GET1^DIQ(409.85,PARENTIEN,43.8,"I")'="" Q  ;Req is parent req
+ .. S CHILDIEN="",FOUND=0,CHILDCNT=0
+ .. F  S CHILDIEN=$O(^SDEC(409.85,PARENTIEN,2,"B",CHILDIEN)) Q:(CHILDIEN="")!(FOUND)  D
+ ... S CHILDCNT=CHILDCNT+1
+ ... S DISP=$$GET1^DIQ(409.85,CHILDIEN_",",23,"E")
+ ... I DISP="OPEN" S FOUND=1
+ .. I 'FOUND,CHILDCNT'=0 D
+ ... S FDA(409.85,PARENTIEN_",",20)=.5
+ ... S FDA(409.85,PARENTIEN_",",21)=$$FIND1^DIC(409.853,,"B","MRTC PARENT CLOSED")
+ ... S FDA(409.85,PARENTIEN_",",23)="C"
+ ... S FDA(409.85,PARENTIEN_",",19)=$P($$NOW^XLFDT,".",1)
+ ... D FILE^DIE(,"FDA","ERROR") K FDA
+ ... S NODENUM=NODENUM+1,RECCNT=RECCNT+1
+ ... S ^XTMP("SDES907P","VSE-9701",NODENUM)=PARENTIEN_";"_CREATEDTTX
+ S NODENUM=NODENUM+1
+ S ^XTMP("SDES907P","VSE-9701",NODENUM)="TOTAL NUMBER RECORDS IMPACTED: "_RECCNT
+ Q
+ ;
+MAIL ;
+ N STANUM,MESS1,XMTEXT,XMSUB,XMY,XMDUZ,DIFROM,%,D,D0,D1,D2,DG,DIC,DICR,DIW,XMDUN,XMZ
+ S STANUM=$$KSP^XUPARAM("INST")_","
+ S STANUM=$$GET1^DIQ(4,STANUM,99)
+ S MESS1="Station: "_STANUM_" - "
+ S XMDUZ=DUZ
+ S XMTEXT="^XTMP(""SDES907P"",""VSE-9701"","
+ S XMSUB=MESS1_"SD*5.3*907 - Post Install Data Report VSE-9701"
+ S XMDUZ=.5,XMY(DUZ)="",XMY(XMDUZ)=""
+ S XMY("BARBER.LORI@DOMAIN.EXT")=""
+ S XMY("DUNNAM.DAVID@DOMAIN.EXT")=""
+ S XMY("VARNO.JOSEPH@DOMAIN.EXT")=""
+ D ^XMD
+ K ^XTMP("SDES907P","VSE-9701")
+ Q
+  ;
+TASK1 ; tasks off process to remove null comment audit entries from Recall Reminders file
+ D MES^XPDUTL("")
+ D MES^XPDUTL(" SD*5.3*907 Post-Install to remove null entries from the COMMENT")
+ D MES^XPDUTL(" AUDIT (#403.57) sub-file is being queued to run in the background.")
+ D MES^XPDUTL("")
+ N ZTDESC,ZTRTN,ZTIO,ZTSK,X,ZTDTH,ZTSAVE
+ S ZTDESC="SD*5.3*907 Post Install Routine Task 1"
+ D NOW^%DTC S ZTDTH=X,ZTIO="",ZTRTN="CLNRECREMS^SDES907P",ZTSAVE("*")="" D ^%ZTLOAD
+ I $D(ZTSK) D
+ . D MES^XPDUTL(" >>>Task "_ZTSK_" has been queued.")
+ . D MES^XPDUTL("")
+ I '$D(ZTSK) D
+ . D MES^XPDUTL(" UNABLE TO QUEUE THIS JOB.")
+ . D MES^XPDUTL(" Please contact the National Help Desk to report this issue.")
+ Q
+ ;
+CLNRECREMS ;
+ ;
+ N RECREQIEN,COMAUDIEN,COMMENT,COMMENTS,FDA
+ S RECREQIEN=0
+ F  S RECREQIEN=$O(^SD(403.5,RECREQIEN)) Q:'RECREQIEN  I $D(^SD(403.5,RECREQIEN,2)) D
+ . S COMAUDIEN=0
+ . F  S COMAUDIEN=$O(^SD(403.5,RECREQIEN,2,COMAUDIEN)) Q:'COMAUDIEN  D
+ . . Q:'$D(^SD(403.5,RECREQIEN,2,COMAUDIEN,0))
+ . . S COMMENT=$$GET1^DIQ(403.57,COMAUDIEN_","_RECREQIEN_",",2)
+ . . I COMMENT="" D
+ . . . S FDA(403.57,COMAUDIEN_","_RECREQIEN_",",.01)="@"
+ . . . D FILE^DIE("","FDA") K FDA
+ Q
+ ;
+TASK2 ; tasks off process to remove null comment audit entries from SDEC Appt Request file
+ D MES^XPDUTL("")
+ D MES^XPDUTL(" SD*5.3*907 Post-Install to remove null entries from the COMMENTS")
+ D MES^XPDUTL(" AUDIT (#409.8527) sub-file is being queued to run in the background.")
+ D MES^XPDUTL("")
+ N ZTDESC,ZTRTN,ZTIO,ZTSK,X,ZTDTH,ZTSAVE
+ S ZTDESC="SD*5.3*907 Post Install Routine Task 2"
+ D NOW^%DTC S ZTDTH=X,ZTIO="",ZTRTN="CLNAPREQS^SDES907P",ZTSAVE("*")="" D ^%ZTLOAD
+ I $D(ZTSK) D
+ . D MES^XPDUTL(" >>>Task "_ZTSK_" has been queued.")
+ . D MES^XPDUTL("")
+ I '$D(ZTSK) D
+ . D MES^XPDUTL(" UNABLE TO QUEUE THIS JOB.")
+ . D MES^XPDUTL(" Please contact the National Help Desk to report this issue.")
+ Q
+ ;
+CLNAPREQS ;
+ ;
+ N APREQIEN,COMAUDIEN,COMMENT,COMMENTS,FDA
+ S APREQIEN=0
+ F  S APREQIEN=$O(^SDEC(409.85,APREQIEN)) Q:'APREQIEN  I $D(^SDEC(409.85,APREQIEN,"COMAUD")) D
+ . S COMAUDIEN=0
+ . F  S COMAUDIEN=$O(^SDEC(409.85,APREQIEN,"COMAUD",COMAUDIEN)) Q:'COMAUDIEN  D
+ . . S COMMENT=$$GET1^DIQ(409.8527,COMAUDIEN_","_APREQIEN_",",2)
+ . . I COMMENT="" D
+ . . . S FDA(409.8527,COMAUDIEN_","_APREQIEN_",",.01)="@"
+ . . . D FILE^DIE("","FDA") K FDA
+ Q
+ ;
+TASK3 ; tasks off process to remove null note audit entries from SDEC Appointment file
+ D MES^XPDUTL("")
+ D MES^XPDUTL(" SD*5.3*907 Post-Install to remove null entries from the NOTE")
+ D MES^XPDUTL(" AUDIT (#409.847) sub-file is being queued to run in the background.")
+ D MES^XPDUTL("")
+ N ZTDESC,ZTRTN,ZTIO,ZTSK,X,ZTDTH,ZTSAVE
+ S ZTDESC="SD*5.3*907 Post Install Routine Task 3"
+ D NOW^%DTC S ZTDTH=X,ZTIO="",ZTRTN="CLNAPPTS^SDES907P",ZTSAVE("*")="" D ^%ZTLOAD
+ I $D(ZTSK) D
+ . D MES^XPDUTL(" >>>Task "_ZTSK_" has been queued.")
+ . D MES^XPDUTL("")
+ I '$D(ZTSK) D
+ . D MES^XPDUTL(" UNABLE TO QUEUE THIS JOB.")
+ . D MES^XPDUTL(" Please contact the National Help Desk to report this issue.")
+ Q
+ ;
+CLNAPPTS ;
+ ;
+ N APPTIEN,APREQIEN,COMAUDIEN,COMMARRAY,COMMENT,COMMENTS,COMMIEN,DATEIEN,EDITEDNOTE,FDA,REQREC
+ S DATEIEN=3231130.999999
+ F  S DATEIEN=$O(^SDEC(409.84,"B",DATEIEN)) Q:'DATEIEN  D
+ . S APPTIEN=0
+ . F  S APPTIEN=$O(^SDEC(409.84,"B",DATEIEN,APPTIEN)) Q:'APPTIEN  I $D(^SDEC(409.84,APPTIEN,"NOTEAUD")) D
+ . . S COMAUDIEN=0
+ . . F  S COMAUDIEN=$O(^SDEC(409.84,APPTIEN,"NOTEAUD",COMAUDIEN)) Q:'COMAUDIEN  D
+ . . . S COMMENT=$$GET1^DIQ(409.847,COMAUDIEN_","_APPTIEN_",",2)
+ . . . I COMMENT="" D
+ . . . . S FDA(409.847,COMAUDIEN_","_APPTIEN_",",.01)="@"
+ . . . . D UPDATE^DIE("","FDA") K FDA
+ Q
+ ;

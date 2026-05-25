@@ -1,12 +1,12 @@
 BPSECX1 ;BHAM ISC/FCS/DRS/VA/DLF - Create new Claim ID for Claim Submission file ;05/17/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,33,38**;JUN 2004;Build 7
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,2,5,33,38,40**;JUN 2004;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;----------------------------------------------------------------------
  ;Create new Claim ID for Claim Submission file (9002313.02)
  ;
  ;Function Returns:  VA<YYYY>=<Pharmacy ID>=<Plan ID>=<Sequence Number>
  ;                   Where: <YYYY> is the year
- ;                          <Pharmacy ID> NPI or NCPDP# of the BPS Pharmacy
+ ;                          <Pharmacy ID> NPI of the BPS Pharmacy
  ;                          <Plan ID> is the VA National Plan ID w/o leading alphas
  ;                          <Sequence #> is a unique counter stored in BPS SETUP
  ;----------------------------------------------------------------------
@@ -23,11 +23,7 @@ CLAIMID(IEN59) ;EP - Called from BPSOSCE (billing requests) and BPSECA8 (reversa
  ;
  S FIRST="VA"_($E(DT,1,3)+1700)
  ;
- ; Second piece of Transmission ID = NPI or NCPDP#
- ;   1. Try to get NPI first.
- ;   2. If we do not get the NPI, get the NCPDP and left-pad it with zeros
- ;      up to seven characters.
- ;   3. Right-pad the final ID with spaces up to 10 characters
+ ; Second piece of Transmission ID = NPI
  ;
  S PHARMACY=+$P($G(^BPST(IEN59,1)),U,7)
  S SECOND=$P($G(^BPS(9002313.56,PHARMACY,"NPI")),U,1)
@@ -37,14 +33,9 @@ CLAIMID(IEN59) ;EP - Called from BPSOSCE (billing requests) and BPSECA8 (reversa
  S RX=$$GET1^DIQ(9002313.59,IEN59,1.11,"I")
  S RFL=$$GET1^DIQ(9002313.59,IEN59,9)
  S BPSCS=$$CSNPI^BPSUTIL(RX,RFL)
- I $P(BPSCS,"^")'="-1" D
- . S SECOND=$P(BPSCS,"^",2)
- . I SECOND="" S SECOND=$P(BPSCS,"^")
+ I $P(BPSCS,"^")'="-1" S SECOND=$P(BPSCS,"^",2)
  ;
- I SECOND="" D
- . S SECOND=$P($G(^BPS(9002313.56,PHARMACY,0)),U,2)
- . S SECOND=$TR($J("",7-$L(SECOND))," ","0")_SECOND
- S SECOND=$RE($J($RE(SECOND),10))
+ I SECOND="" S SECOND="0000000000"
  ;
  ; Third piece of Transmission ID = National Plan ID
  ; Left-padded with zeros

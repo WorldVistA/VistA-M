@@ -1,7 +1,8 @@
-SDES2GETMEDLIST ;ALB/JAS,JAS - SDES2 GET PATIENT'S MEDICATIONS LIST ; 27 Sept 2024  12:27 PM
- ;;5.3;Scheduling;**853,861**;Aug 13, 1993;Build 17
+SDES2GETMEDLIST ;ALB/JAS,JAS,JHC - SDES2 GET PATIENT'S MEDICATIONS LIST ;  02 March 2025
+ ;;5.3;Scheduling;**853,861,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
+ ; Reference to DUZ^XUP is supported by IA #7487
  Q
  ;
  ; Documented API's and Integration Agreements
@@ -29,6 +30,7 @@ GETMEDLIST(JSONRETURN,SDCONTEXT,PARAMS) ; Get Patient's Medications List
  ;
  D VALCONTEXT^SDES2VALCONTEXT(.SDERRORS,.SDCONTEXT)
  I $D(SDERRORS) M SDRETURN=SDERRORS S SDRETURN("Medication",1)="" D BUILDJSON^SDES2JSON(.JSONRETURN,.SDRETURN) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  ;
  ; Validate PARAMS
  ;

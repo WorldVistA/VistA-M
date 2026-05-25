@@ -1,5 +1,5 @@
-RAHLEXF ;HIRMFO/BNT - RAD/NUC MED HL7 Exceptions filer;01/06/99
- ;;5.0;Radiology/Nuclear Medicine;**12,25,47**;Mar 16, 1998;Build 21
+RAHLEXF ;HIRMFO/BNT - RAD/NUC MED HL7 Exceptions filer; Jan 08, 2025@09:12:49
+ ;;5.0;Radiology/Nuclear Medicine;**12,25,47,220**;Mar 16, 1998;Build 3
  ;
  ;
  ; This routine is called from the bridge routine (^RAHLTCPB or TCPX)
@@ -8,7 +8,7 @@ RAHLEXF ;HIRMFO/BNT - RAD/NUC MED HL7 Exceptions filer;01/06/99
  ; And, if requested, sent to the HL7 MAIL GROUP for this application
  ; 
  Q
-ENX(HLRADT,RAMSG) ; Entry point called from Bridge routine.
+ENX(HLRADT,RAMSG) ; v2.4 Entry point called from Bridge routine.
  N RAEXFIL,RADT,RAPT,RAEX,RAERRX,SFAC,X,Y,RALNGCS,RAUSR
  ;
  ; File number of Exceptions File
@@ -34,13 +34,20 @@ ENX(HLRADT,RAMSG) ; Entry point called from Bridge routine.
  ;
  ; Name of Verifying Physician or Interpreting staff (COTS unit user)
  S RAUSR=$G(^TMP("RARPT-REC",$J,RASUB,"RAVERF"))
- I RAUSR]"" D
- . D FIND^DIC(200,"",".01","AX",RAUSR,"","","","","RAOUT")
- . Q:'$D(RAOUT("DILIST","ID",1,.01))
- . S RAUSR=RAOUT("DILIST","ID",1,.01)
+ S:RAUSR]"" RAUSR="`"_RAUSR ;p220-replace below with `DUZ to avoid filer errors on duplicate names
+ ;I RAUSR]"" D
+ ;. D FIND^DIC(200,"",".01","AX",RAUSR,"","","","","RAOUT")
+ ;. Q:'$D(RAOUT("DILIST","ID",1,.01))
+ ;. S RAUSR=RAOUT("DILIST","ID",1,.01)
  ;
  ; RAMSG = IEN of entry in file 773 - Message Administration file.
  ;
+ ; RA220/KLM - Set reprocess flag if it is a LOCK error
+ N RASAP S RASAP=$G(HL("SAP"))
+ I RASAP>0,$D(^RA(79.7,RASAP)),$$GET1^DIQ(79.7,RASAP,1.6)="YES" D
+ .I RAERRX["Lock of study accession:" S RARPX="YES"
+ .I RAERRX["Lock of report record:" S RARPX="YES"
+ .Q
  ;
  ; Go File the exception
  D RAERR
@@ -51,7 +58,7 @@ ENX(HLRADT,RAMSG) ; Entry point called from Bridge routine.
  D EXIT
  ;
  Q
-EN1 ; Entry point called from Bridge routine.
+EN1 ; v2.3 Entry point called from Bridge routine.
  N RAEXFIL,RADT,RAPT,RAEX,RAERRX,SFAC,X,Y,RALNGCS,RAUSR,HLRADT,RAMSG
  ;
  ; File number of Exceptions File
@@ -77,13 +84,21 @@ EN1 ; Entry point called from Bridge routine.
  ;
  ; Name of Verifying Physician or Interpreting staff (COTS unit user)
  S RAUSR=$G(^TMP("RARPT-REC",$J,RASUB,"RAVERF"))
- I RAUSR]"" D
- . D FIND^DIC(200,"",".01","AX",RAUSR,"","","","","RAOUT")
- . Q:'$D(RAOUT("DILIST","ID",1,.01))
- . S RAUSR=RAOUT("DILIST","ID",1,.01)
+ S:RAUSR]"" RAUSR="`"_RAUSR ;p220-replace below with `DUZ to avoid filer errors on duplicate names
+ ;I RAUSR]"" D
+ ;. D FIND^DIC(200,"",".01","AX",RAUSR,"","","","","RAOUT")
+ ;. Q:'$D(RAOUT("DILIST","ID",1,.01))
+ ;. S RAUSR=RAOUT("DILIST","ID",1,.01)
  ;
  ; IEN of entry in file 773 - Message Administration file.
  S RAMSG=$P(^TMP("RARPT-HL7",$J,1),"|",10)
+ ;
+ ; RA220/KLM - Set reprocess flag if it is a LOCK error
+ N RASAP S RASAP=$G(HL("SAP"))
+ I RASAP>0,$D(^RA(79.7,RASAP)),$$GET1^DIQ(79.7,RASAP,1.6)="YES" D
+ .I RAERRX["Lock of study accession:" S RARPX="YES"
+ .I RAERRX["Lock of report record:" S RARPX="YES"
+ .Q
  ;
  ; Go File the exception
  D RAERR
@@ -102,6 +117,7 @@ RAERR ; Build array and update Exceptions File.
  S:$G(RALNGCS)]"" RAEX(0,RAEXFIL,"+1,",.04)=RALNGCS
  S:$G(RAUSR)]"" RAEX(0,RAEXFIL,"+1,",.06)=RAUSR
  S:$G(RAMSG)]"" RAEX(0,RAEXFIL,"+1,",.05)=RAMSG
+ S:$G(RARPX)]"" RAEX(0,RAEXFIL,"+1,",.07)=RARPX
  D UPDATE^DIE("E","RAEX(0)","")
  Q
  ;
@@ -154,5 +170,5 @@ MAIL(SAN,SAF,RAERR,RACN,RADFN,RADT,RAUSR) ; Send mail message with error text.
  ;
  Q
 EXIT ; Kill variables and return to bridge routine..
- K RAEX,RADT,RAERRX,RAPT,SFAC,RAEXFIL,RALNGCS,RAUSR,RAMSG,X,Y
+ K RAEX,RADT,RAERRX,RAPT,SFAC,RAEXFIL,RALNGCS,RAUSR,RAMSG,X,Y,RARPX
  Q

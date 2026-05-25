@@ -1,5 +1,6 @@
 IBOBL ;ALB/ARH - LIST ALL BILLS FOR AN EPISODE OF CARE ; 25-MAY-90
- ;;2.0;INTEGRATED BILLING;**80,106**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**80,106,746**;21-MAR-94;Build 8
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;get parameters then run the report
  D HOME^%ZIS N IBASK,IBCANC,IBX W !!,"Episode of Care Bill List:",!,"--------------------------"
@@ -124,7 +125,7 @@ HDRLNS ; set up header lines
  S IBHDR1="EPISODE OF CARE BILL LIST FOR "
  I +IBASK=1 S IBHDR1=IBHDR1_$P($G(^DPT(+$P(IBASK,U,2),0)),U,1)_" ON "_$$DATE(+$P(IBASK,U,3)) S DFN=+$P(IBASK,U,2)
  I +IBASK=2 S IBX=$G(^DGCR(399,+$P(IBASK,U,2),0)),IBHDR1=IBHDR1_$P(IBX,U,1) S DFN=+$P(IBX,U,2)
- S IBX=$G(^DPT(DFN,0)) S IBHDR2=$P(IBX,U,1)_$J("",10)_$E(IBX)_$P($$PT^IBEFUNC(DFN),U,3)_$J("",10)_"DOB: "_$$DATE($P(IBX,U,3))
+ S IBX=$G(^DPT(DFN,0)) S IBHDR2=$P(IBX,U,1)_$J("",25)_"DOB: "_$$DATE($P(IBX,U,3)) ;IB*2.0*746
  Q
  ;
 DATE(X) ;

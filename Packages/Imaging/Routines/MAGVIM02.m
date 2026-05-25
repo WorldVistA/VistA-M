@@ -1,6 +1,6 @@
 MAGVIM02 ;WOIFO/MAT,PMK - Utilities for RPC calls for DICOM file processing ; Feb 15, 2022@09:33:55
- ;;3.0;IMAGING;**118,138,305**;Mar 19, 2002;Build 3
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;IMAGING;**118,138,305,375**;Mar 19, 2002;Build 3
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -330,6 +330,7 @@ GETORLAB(PATDFN,ORDRSTRT,ORDRSTOP) ;
  . N IENS,LRILIST
  . ; get FILE information
  . S ERROR=$$GETFILE^MAGT7MA(LRSS)
+ . I ERROR Q  ; p375 moved from P333 PMK 06/14/2022
  . K @MAGVGBL
  . D GETS^DIQ(63,LRDFN,FILE("FIELD")_"*","I",MAGVGBL,"ERROR")
  . S IENS="" F  S IENS=$O(@MAGVGBL@(FILE(0),IENS)) Q:IENS=""  D

@@ -1,5 +1,5 @@
 XUS1 ;SF-ISC/STAFF - SIGNON ;01/14/20 13:32
- ;;8.0;KERNEL;**9,59,111,165,150,252,265,419,469,523,543,638,659,701,795**;Jul 10, 1995;Build 1
+ ;;8.0;KERNEL;**9,59,111,165,150,252,265,419,469,523,543,638,659,701,795,799**;Jul 10, 1995;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;User setup
 USER ;
@@ -107,7 +107,18 @@ SLOG(P5,P6,P7,P8,P10,P14,P15) ;
  S $P(^XUSEC(0,0),"^",3,4)=I_U_(1+$P(^XUSEC(0,0),"^",4))
  S (XL1,DA)=I,DIK="^XUSEC(0," D IX^DIK ;index new entry
  S ^XUTL("XQ",$J,0)=XL1 ;save for sign-off
- I 'P6 S XL2=$G(^VA(200,DUZ,1.1)),$P(XL2,U,1,3)=XL1_"^0^1",$P(XL2,U,5)="",^VA(200,DUZ,1.1)=XL2  ;Set last Sign-on
+ ;**663 Story 1203246 (jfw) - Convert Last Sign On from Hard-Set to FM so X-REF fires. **799 VAMPI-22625
+ ;I 'P6 S XL2=$G(^VA(200,DUZ,1.1)),$P(XL2,U,1,3)=XL1_"^0^1",$P(XL2,U,5)="",^VA(200,DUZ,1.1)=XL2  ;Set last Sign-on
+ I 'P6 D
+ .N XUFDA
+ .S XUFDA(200,DUZ_",",202)=XL1
+ .S XUFDA(200,DUZ_",",202.02)=0
+ .S XUFDA(200,DUZ_",",202.03)=1
+ .S XUFDA(200,DUZ_",",202.05)=""
+ .L +^VA(200,DUZ,1.1):10
+ .Q:('$T)
+ .D FILE^DIE("","XUFDA")  ;Set last Sign-on
+ .L -^VA(200,DUZ,1.1)
  Q XL1
  ;
 COOKIE(J1,J2) ;Call VAdeamon for a cookie

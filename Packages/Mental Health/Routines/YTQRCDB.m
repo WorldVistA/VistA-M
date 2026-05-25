@@ -1,25 +1,42 @@
 YTQRCDB ;BAL/KTL - MHA CLOUD DATABASE ADMIN RPC CALLS; 1/25/2017
- ;;5.01;MENTAL HEALTH;**239,224,249,250**;Dec 30, 1994;Build 26
+ ;;5.01;MENTAL HEALTH;**239,224,249,250,236**;Dec 30, 1994;Build 25
  ;
  ;
  ; Reference to FILE^DIE in ICR #2053
+ ; Reference to XLFSTR in ICR #19194
+ ;
  Q
 SAVEADM(ARGS,DATA) ; Save instrument administration and answers
- N YSARR,ADMM,ANSRES,SCRRES
+ N YSARR,ADMM,ANSRES,SCRRES,TEST,YSLG
+ S TEST=$G(DATA("name")) I TEST="" D SETERROR^YTQRUTL(404,"Missing Test") Q "/api/mha/cdb/instrument/admin/"_0
+ S DATA("instrumentId")=$O(^YTT(601.71,"B",TEST,0))
+ I DATA("instrumentId")="" S DATA("instrumentId")=$O(^YTT(601.71,"B",$TR(TEST,"_"," "),0))
+ I DATA("instrumentId")="" D SETERROR^YTQRUTL(404,"Test not found") Q "/api/mha/cdb/instrument/admin/"_0
  S ADMM=$$FILADMIN(.DATA)  ; Passed in ADMIN ID for previously scored, New ADMIN ID, 0=Error
  I ADMM=0 Q "/api/mha/cdb/instrument/admin/"_ADMM
  S ANSRES=$$FILANS(ADMM,.DATA)
- I ANSRES=0 D SETERROR^YTQRUTL(500,"Error Filing Answers") S ADMM=0
- I ADMM'=0,$D(DATA("results")) D SAVESCR(ADMM,.DATA)
+ I ANSRES<1 D SETERROR^YTQRUTL(500,"Error Filing Answers") Q "/api/mha/cdb/instrument/admin/"_0
+ S YSLG=$$GET1^DIQ(601.71,DATA("instrumentId")_",",23)
+ I YSLG="Yes" K ^TMP($J) Q "/api/mha/cdb/instrument/admin/"_ADMM  ; Don't score legacy instruments
+ S SCRRES=-1 I ADMM'=0 S SCRRES=$$SAVESCR(ADMM,.DATA)
+ I SCRRES<0 D SETERROR^YTQRUTL(400,"Error Filing Score")
+ K ^TMP($J)  ;Clean up result setup
  Q "/api/mha/cdb/instrument/admin/"_ADMM
  ;
 SCORADM(ARGS,DATA) ;Score administration
  ;Used when scoring algorithm for this instrument not yet implemented in cloud app
  N DATAOUT,ERRARY,JSONOUT,SCORES,I
- N YSID,YSNAM,YSRAW,YSTSCR,CNT
+ N YSID,YSNAM,YSRAW,YSTSC,CNT,YSTSC2,YSTSC3
  K ^TMP("YTQ-JSON",$J),YTQRRSLT
+ K ^TMP($J) N YS
+ S YS("CODE")=$G(DATA("name"))
+ D SCALEG^YTQAPI3(.YSDATA,.YS)  ;Check if there are any scales for this instrument
+ I '$D(^TMP($J,"YSG",2)) D  Q "/api/mha/cdb/instrument/admin/scores/NOSCORE"
+ . S ^TMP("YTQ-JSON",$J,1,0)="{}",YTQRRSLT=$NA(^TMP("YTQ-JSON",$J))
+ . K ^TMP($J)
+ K ^TMP($J)
  D SCOREIT(.DATA,.SCORES)
- I '$D(SCORES) D   Q "/api/mha/cdb/instrument/admin/scores/NOTOK"
+ I '$D(SCORES)!$D(SCORES("error")) D   Q "/api/mha/cdb/instrument/admin/scores/NOTOK"
  . D SETERROR^YTQRUTL(500,"Error Scoring Answers")
  . S ^TMP("YTQ-JSON",$J,1,0)="ERROR",YTQRRSLT=$NA(^TMP("YTQ-JSON",$J))
  S CNT=1,^TMP("YTQ-JSON",$J,CNT,0)="{""results"":["
@@ -27,8 +44,18 @@ SCORADM(ARGS,DATA) ;Score administration
  . S YSID=$G(SCORES(I,"id"))
  . S YSNAM=$G(SCORES(I,"name"))
  . S YSRAW=$G(SCORES(I,"raw"))
- . S YSTSCR=$G(SCORES(I,"tscore"))
- . S CNT=CNT+1,^TMP("YTQ-JSON",$J,CNT,0)="{""id"":"_YSID_", ""name"":"""_YSNAM_""", ""raw"":"_YSRAW_$S(YSTSCR]"":", ""tscore"":"_YSTSCR_"},",1:"},")
+ . S YSTSC=$G(SCORES(I,"tscore"))
+ . S YSTSC2=$G(SCORES(I,"tscore2"))
+ . S YSTSC3=$G(SCORES(I,"tscore3"))
+ . I YSRAW'="",(+YSRAW'=YSRAW) S YSRAW=""""_YSRAW_""""  ;String result
+ . I YSRAW="" S YSRAW="null"
+ . I YSTSC'="",(+YSTSC'=YSTSC) S YSTSC=""""_YSTSC_""""  ;String result
+ . I YSTSC="",$D(SCORES(I,"tscore")) S YSTSC="null"  ;Must exist but be null, otherwise don't send tscore at all
+ . I YSTSC2'="",(+YSTSC2'=YSTSC2) S YSTSC2=""""_YSTSC2_""""  ;String result
+ . I YSTSC2="",$D(SCORES(I,"tscore2")) S YSTSC2="null"
+ . I YSTSC3'="",(+YSTSC3'=YSTSC3) S YSTSC3=""""_YSTSC3_""""  ;String result
+ . I YSTSC3="",$D(SCORES(I,"tscore3")) S YSTSC3="null"
+ . S CNT=CNT+1,^TMP("YTQ-JSON",$J,CNT,0)="{""id"":"_YSID_", ""name"":"""_YSNAM_""", ""raw"":"_YSRAW_$S(YSTSC]"":", ""tscore"":"_YSTSC,1:"")_$S(YSTSC2]"":", ""tscore2"":"_YSTSC2,1:"")_$S(YSTSC3]"":", ""tscore3"":"_YSTSC3,1:"")_"},"
  S ^TMP("YTQ-JSON",$J,CNT,0)=$E(^TMP("YTQ-JSON",$J,CNT,0),1,$L(^TMP("YTQ-JSON",$J,CNT,0))-1)
  S CNT=CNT+1,^TMP("YTQ-JSON",$J,CNT,0)="]}"
  S YTQRRSLT=$NA(^TMP("YTQ-JSON",$J))
@@ -37,46 +64,56 @@ SCORADM(ARGS,DATA) ;Score administration
 SAVESCR(ADMM,DATA)  ;Save scores for admin for instruments scored in cloud app and passed in
  ;  ADMM = ADMINID
  ;  DATA = ARRAY OF RESULTS
- N RARR,I,YS,YSID,YSNAM,YSRAW,YSTSC
- N SCL,SCLID
- Q:'$D(DATA("results"))
+ N RARR,I,YS,YSID,YSNAM,YSRAW,YSTSC,YSTSC2,YSTSC3
+ N SCL,SCLID,RMISS,SCRRES
+ S SCRRES=1  ;Default OK
+ N YS
+ K ^TMP($J,"YSG")
+ S YS("CODE")=$G(DATA("name"))
+ D SCALEG^YTQAPI3(.YSDATA,.YS)  ;Check if there are any scales for this instrument
+ I $D(^TMP($J,"YSG",2)),'$D(DATA("results")) S SCRRES=-1 Q SCRRES  ;Scales exist but no RESULT data sent
+ I '$D(^TMP($J,"YSG",2)),'$D(DATA("results")) Q SCRRES  ;No scales for instrument no RESULTs, OK.
  ; Sort results by Scale ID for Instrument Scale definition order matching
  S I=0 F  S I=$O(DATA("results",I)) Q:+I=0  D
  . S YSID=$G(DATA("results",I,"scaleId"))
  . S YSNAM=$G(DATA("results",I,"scaleName"))
  . S YSRAW=$G(DATA("results",I,"rawScore"))
- . S YSTSC=$G(DATA("results",I,"tScore"))
+ . S YSTSC=$G(DATA("results",I,"tscore"))
+ . S YSTSC2=$G(DATA("results",I,"tscore2"))
+ . S YSTSC3=$G(DATA("results",I,"tscore3"))
+ . I $$UP^XLFSTR(YSRAW)="NULL" S YSRAW=""
+ . I $$UP^XLFSTR(YSTSC)="NULL" S YSTSC=""
+ . I $$UP^XLFSTR(YSTSC2)="NULL" S YSTSC2=""
+ . I $$UP^XLFSTR(YSTSC3)="NULL" S YSTSC3=""
  . Q:+YSID=0
  . S RARR(YSID)=YSNAM_"="_YSRAW
  . I YSTSC]"" S RARR(YSID)=RARR(YSID)_U_YSTSC
+ . I YSTSC2]"" S $P(RARR(YSID),U,3)=YSTSC2
+ . I YSTSC3]"" S $P(RARR(YSID),U,4)=YSTSC3
  S YS("CODE")=$G(DATA("name"))
- K ^TMP($J,"YSG")
- D SCALEG^YTQAPI3(.YSDATA,.YS)
  K ^TMP($J,"YSCOR")
  S ^TMP($J,"YSCOR",1)="[DATA]"
- S I=1 F  S I=$O(^TMP($J,"YSG",I)) Q:+I=0  D
+ S RMISS=0
+ S I=1 F  S I=$O(^TMP($J,"YSG",I)) Q:+I=0!(RMISS'=0)  D
  . S SCL=^TMP($J,"YSG",I),SCLID=$P($P(SCL,"=",2),U),SCL=$P($P(SCL,"="),"Scale",2)
  . Q:+SCL=0!(+SCLID=0)
+ . I '$D(RARR(SCLID)) S RMISS=1 Q  ;Result Missing
  . S ^TMP($J,"YSCOR",SCL+1)=$G(RARR(SCLID))
+ I RMISS=1 S SCRRES=-1 Q SCRRES
  K YS S YS("AD")=$G(ADMM)
  D UPDSCORE^YTSCORE(.YSDATA,.YS)
- Q
+ Q SCRRES
  ;
 FILADMIN(DATA)  ;Get YSARR and file mh administration
  ; Expects required MH ADMINISTRATION fields in DATA(prop)
  ; Expects answers in the DATA("answers",i,"id"/"value") array
- N ANSWERS,TEST
+ N ANSWERS
  N I,ACNT,VAL,ADMIN
- S TEST=$G(DATA("name")) I TEST="" D SETERROR^YTQRUTL(404,"Missing Test") Q 0
- S DATA("instrumentId")=$O(^YTT(601.71,"B",TEST,0))
- I DATA("instrumentId")="" S DATA("instrumentId")=$O(^YTT(601.71,"B",$TR(TEST,"_"," "),0))
- I DATA("instrumentId")="" D SETERROR^YTQRUTL(404,"Test not found") Q 0
  I '$D(DATA("answers")) D SETERROR^YTQRUTL(404,"Missing Answers") Q 0
  I '$D(DATA("patientId")) D SETERROR^YTQRUTL(404,"Missing patient id") Q 0
  I '$D(DATA("orderedById")) D SETERROR^YTQRUTL(404,"Missing ordering clinician") Q 0
  I '$D(DATA("locationId")) D SETERROR^YTQRUTL(404,"Missing location") Q 0
  S DATA("source")=$G(DATA("source")) I DATA("source")="" S DATA("source")="mhaweb"
- S DATA("consultId")=$G(YSARR("consultId"))
  I '$D(DATA("administeredById")) S DATA("administeredById")=$G(DUZ)
  I '$D(DATA("completedDate")) S DATA("completedDate")=$$NOW^XLFDT()
  I '$D(DATA("dateSaved")) S DATA("dateSaved")=$$NOW^XLFDT()
@@ -138,7 +175,7 @@ SETADM(DATA) ; return the id for new/updated admin
  S YS(11)="13^`"_DATA("locationId")
  I '$L($G(DATA("source"))) S DATA("source")="web"
  S YS(12)="15^"_DATA("source")
- I DATA("consultId")]"" S YS(13)="17^"_DATA("consultId")
+ I +$G(DATA("consultId"))'=0 S YS(13)="17^"_DATA("consultId")
  D ADMSAVE^YTQAPI1(.YSDATA,.YS)
  I YSDATA(1)'="[DATA]" D SETERROR^YTQRUTL(500,"Unable to create admin") Q 0
  I 'ADMIN Q $P(YSDATA(2),U,2)  ; create new admin, ien found in 2nd piece
@@ -149,8 +186,8 @@ FILANS(ADMIN,DATA) ; File Answers for an ADMIN
  ;            DATA("answers",i,"id"/"value")
  N ARSL
  I +$G(ADMIN)=0 D SETERROR^YTQRUTL(404,"Missing ADMIN ID") Q 0
- I '$D(^YTT(601.84,ADMIN)) D SETERROR^YTQRUTL(404,"Invalid ADMIN ID") Q 0
- I '$D(DATA("answers")) D SETERROR^YTQRUTL(404,"Missing Answers") Q 0
+ I '$D(^YTT(601.84,ADMIN)) D SETERROR^YTQRUTL(404,"Invalid ADMIN ID") Q -1
+ I '$D(DATA("answers")) D SETERROR^YTQRUTL(404,"Missing Answers") Q -2
  S ARSL=$$QASAVE(ADMIN,.DATA)
  Q ARSL
  ;

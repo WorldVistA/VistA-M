@@ -1,6 +1,6 @@
-DGHBPUTL ;ALB/PWC,JAM - Health Benefit Plan Utility Routine ;5/22/13 11:50am
- ;;5.3;Registration;**871,987**;08/13/93;Build 22
- ;
+DGHBPUTL ;ALB/PWC,JAM,KUM - Health Benefit Plan Utility Routine ;5/22/13 11:50am
+ ;;5.3;Registration;**871,987,1149**;08/13/93;Build 4
+ ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 GETHBP(DFN) ;Return all records in HBP sub-file #25.01 in HBP array
  ; returns current information in HBP("CUR",PLAN NAME)=ENTIRE DATA FROM 25.01 DA
@@ -97,12 +97,16 @@ HL7UPD(DFN,DGHBP,MSHDATE) ; Store HL7 Health Benefit Plan (HBP) data in PATIENT 
  N OCC,HBPNOD,HL7DATA,ADDHBP
  ;
  ; Build an array of HBP codes to be added or retained in VistA - saving the date/time for storage
- S OCC=0 F  S OCC=$O(DGHBP(OCC)) Q:OCC=""  S ADDHBP($P(DGHBP(OCC),U,1))=""
+ ; DG*5.3*1149 - Add HBP data to array of HBP codes
+ ;S OCC=0 F  S OCC=$O(DGHBP(OCC)) Q:OCC=""  S ADDHBP($P(DGHBP(OCC),U,1))=""
+ S OCC=0 F  S OCC=$O(DGHBP(OCC)) Q:OCC=""  S ADDHBP($P(DGHBP(OCC),U,1))=$G(DGHBP(OCC))
  ;
  S OCC=0 F  S OCC=$O(^DPT(DFN,"HBP",OCC)) Q:OCC<1  D
  . S HBPNOD=$G(^DPT(DFN,"HBP",OCC,0))
  . ; If HBP code exists on Z11 and VistA, Source to "E", and do not delete or store history
- . I $D(ADDHBP($P(HBPNOD,U,1))) S $P(^DPT(DFN,"HBP",OCC,0),U,5)="E" Q
+ . ; DG*5.3*1149 Added Effective Date when HBP code exists on Z11 and VistA
+ . ; I $D(ADDHBP($P(HBPNOD,U,1))) S $P(^DPT(DFN,"HBP",OCC,0),U,5)="E" Q
+ . I $D(ADDHBP($P(HBPNOD,U,1))) D UPDCURHBP(DFN,ADDHBP($P(HBPNOD,U,1))) Q
  . ; Change Date/Time for deletion History to MSHDATE
  . I $G(MSHDATE)'="" S $P(HBPNOD,U,2)=$$FMDATE^HLFNC(MSHDATE)
  . D STORHIS(DFN,HBPNOD,"U")                                 ;CCR 13614 - Change D to U (delete to unassigned)            
@@ -118,6 +122,24 @@ HL7UPD(DFN,DGHBP,MSHDATE) ; Store HL7 Health Benefit Plan (HBP) data in PATIENT 
  . . D STORHIS(DFN,HL7DATA,"A")
  Q
  ;
+UPDCURHBP(DFN,DGDATAZ11) ; DG*5.3*1149 Update Current data
+ N DGHBPCD,DGENDA,DGSUCCESS,DGERR,DIC,X,Y,DA,D
+ S DGHBPCD=$P(DGDATAZ11,U,1)       ;HBP Code
+ I DGHBPCD="" Q
+ S DGENDA(1)=DFN                   ;Patient DFN
+ S DA(1)=DFN                       ;Get IEN of Subfile record using IX^DIC API
+ S DIC="^DPT("_DA(1)_",""HBP"","
+ S DIC(0)="XMQ"
+ S D="B"
+ S X=DGHBPCD
+ D IX^DIC
+ S DGENDA=+Y
+ I DGENDA=0 Q
+ S DGDATA(4)=$P(DGDATAZ11,U,5)                  ;Current Source
+ S DGDATA(5)=$P(DGDATAZ11,U,6)                  ;Effective Date
+ S DGSUCCESS=$$UPD^DGENDBS(2.2511,.DGENDA,.DGDATA,.DGERR)
+ Q
+ ;
 STORCUR(DFN,STORDATA) ; Store Current data
  N DGENDA,DATA,SUCCESS
  S DGENDA(1)=DFN                               ;Patient DFN
@@ -126,6 +148,7 @@ STORCUR(DFN,STORDATA) ; Store Current data
  S DATA(2)=$P(STORDATA,U,3)                    ;Assigned Entered By
  S DATA(3)=$P(STORDATA,U,4)                    ;Assigned Entered Site
  S DATA(4)=$P(STORDATA,U,5)                    ;Current Source
+ S DATA(5)=$P(STORDATA,U,6)                    ;DG*5.3*1149 Added Effective Date
  S SUCCESS=$$ADD^DGENDBS(2.2511,.DGENDA,.DATA) ;DG*5.3*871 modified 25.01 to 2.511
  Q
  ;
@@ -138,6 +161,7 @@ STORHIS(DFN,STORDATA,ACTION) ; Store History data
  S DATA(3)=$P(STORDATA,U,4)                    ;History Entered Site
  S DATA(4)=$G(ACTION)                          ;History Assignment
  S DATA(5)=$P(STORDATA,U,5)                    ;History Source
+ S DATA(6)=$P(STORDATA,U,6)                    ;DG*5.3*1149 Added Effective Date
  S SUCCESS=$$ADD^DGENDBS(2.2512,.DGENDA,.DATA) ;DG*5.3*871 modified 25.02 to 2.512
  Q
  ;

@@ -1,5 +1,5 @@
 YTQRCDB3 ;BAL/KTL - MHA CLOUD DATABASE REPORT/NOTE RPC CALLS; 1/25/2017
- ;;5.01;MENTAL HEALTH;**239,224**;Dec 30, 1994;Build 17
+ ;;5.01;MENTAL HEALTH;**239,224,236**;Dec 30, 1994;Build 25
  ;
  ; Reference to ^DPT in ICR #10035
  ;
@@ -83,6 +83,10 @@ SETNOTE(ARGS,DATA) ; save note in DATA("text") using ARGS("adminId")
  I CONSULT S YS("CON")=CONSULT D CCREATE^YTQCONS(.YSDATA,.YS) I 1
  E  D PCREATE^YTQTIU(.YSDATA,.YS)
  I YSDATA(1)'="[DATA]" D SETERROR^YTQRUTL(500,"Note not saved") Q ""
+ N ADMCNT,YSADD,ADMLST
+ S ADMCNT=0 F  S ADMCNT=$O(DATA("adminList",ADMCNT)) Q:ADMCNT=""  D
+ . S YSADD=DATA("adminList",ADMCNT) Q:+YSADD=0  ;safety 
+ . I $$ALWNOTE^YTQRQAD3(YSADD)="true" S $P(^YTT(601.84,YSADD,0),U,18)=1  ;PROGRESS NOTE GENERATED
  Q "/api/mha/cdb/instrument/note/"_$G(YSDATA(2))
  ;
 TXT2LN(SRC,DEST) ; Move CRLF delimited text from .SRC into WP lines in .DEST

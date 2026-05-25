@@ -1,6 +1,8 @@
-ORMBLDPS ;SLC/MKB-Build outgoing Pharmacy ORM msgs ;Jul 20, 2021@14:08:09
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,38,54,86,97,94,116,129,141,190,195,237,254,243,293,280,266,395,405**;Dec 17, 1997;Build 211
+ORMBLDPS ;SLC/MKB-Build outgoing Pharmacy ORM msgs ;Jun 10, 2025@15:22:25
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,38,54,86,97,94,116,129,141,190,195,237,254,243,293,280,266,395,405,508**;Dec 17, 1997;Build 39
  ;
+ ; Reference to $$ENDCM^PSJORUTL in ICR #2403
+ ; Reference to ALL^PSS51P2 in ICR #4548
  ;
 PTR(NAME) ; -- Returns ptr value of prompt in Dialog file
  Q +$O(^ORD(101.41,"AB",$E("OR GTX "_NAME,1,63),0))
@@ -59,10 +61,7 @@ UD2 I $G(OUTPT) D
 UD3 S J=0 F  S J=$O(ORDIALOG(ROUTE,J)) Q:J'>0  S I=I+1,ORMSG(I)=$$RXR($G(ORDIALOG(ROUTE,J)))
  D ORDCHKS
  S I=I+1,ORMSG(I)=$$ZRX(IFN,OUTPT)
- I $G(OUTPT) D  ;add SC data
- . N OR5 S OR5=$G(^OR(100,IFN,5))
- . I $L(OR5),OR5'?5"^" S I=I+1,ORMSG(I)="ZSC|"_$TR(OR5,"^","|") Q
- . S SC=$$PTR("SERVICE CONNECTED") S:$D(ORDIALOG(SC,1)) I=I+1,ORMSG(I)="ZSC|"_$S(ORDIALOG(SC,1):"SC",1:"NSC")
+ I $G(OUTPT) D SETHL7^ORSPECAUTH(.ORMSG,I,IFN)   ;Build ZSC seg(s) for SAs, 508
  ; Create DG1 & ZCL segment(s) for Billing Awareness (BA) Project
  D DG1^ORWDBA3($G(IFN),"I",I)
  I $P(^ORD(100.98,$P(OR0,U,11),0),U)="NON-VA MEDICATIONS" D

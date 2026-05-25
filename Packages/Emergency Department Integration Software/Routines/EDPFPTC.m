@@ -1,5 +1,11 @@
 EDPFPTC ;SLC/MKB - Patient look-up Utilities at Facility ;4/16/13 12:24pm
- ;;2.0;EMERGENCY DEPARTMENT;**5**;May 2, 2012;Build 18
+ ;;2.0;EMERGENCY DEPARTMENT;**5,34**;May 2, 2012;Build 1
+ ;Per VHA Directive 6402, this routine should not be modified.
+ ;
+ ;External References:
+ ; Reference to $$GETACT^DGPFAPI in ICR #3860
+ ; Reference to GUIBS5A^DPTLK6 in ICR #3593
+ ; Reference to NOTICE^PTSEC, PTSEC^DGSEC4 in ICR #3027
  ;
 CHK(AREA,DFN,NAME) ; perform patient select checks
  ;
@@ -52,7 +58,8 @@ CHK(AREA,DFN,NAME) ; perform patient select checks
  I $D(WARN) D
  . D XML^EDPX("<warning>")
  . S I=0 F  S I=$O(WARN(I)) Q:'I  D XML^EDPX(WARN(I))
- . I CHK("logAccess"),CHK("mayAccess") D XML^EDPX("Are you sure you wish to continue?")
+ . ;EDP*2*34 Update continue message to standard format
+ . I CHK("logAccess"),CHK("mayAccess") D XML^EDPX("Do you want to continue accessing this patient record?")
  . D XML^EDPX("</warning>")
  S I=0 F  S I=$O(SIM(I)) Q:'I  D XML^EDPX(SIM(I))
  I $D(MSG) D

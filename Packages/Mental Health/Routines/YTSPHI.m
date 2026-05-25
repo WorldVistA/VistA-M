@@ -1,5 +1,5 @@
-YTSPHI ;SLC/KCM - Score PHI and format report ; 01/08/2016
- ;;5.01;MENTAL HEALTH;**172**;DEC 30,1994;Build 10
+YTSPHI ;SLC/KCM - Score PHI and format report ;Mar 03, 2025@14:06:48
+ ;;5.01;MENTAL HEALTH;**172,236**;DEC 30,1994;Build 25
  ;
 DATA1 ; Loop YSDATA and map questions to choice values
  ; expects YTRESP from DLLSTR
@@ -8,6 +8,8 @@ DATA1 ; Loop YSDATA and map questions to choice values
  S YTI=2 F  S YTI=$O(YSDATA(YTI)) Q:'YTI  D  ; set actual choice values
  . S YTQSTN=$P(YSDATA(YTI),U),YTCHC=$P(YSDATA(YTI),U,3)
  . I YTQSTN=8558!(YTQSTN=8577)!(YTQSTN=8578) D  Q  ; handle text answers
+ . . I YTCHC=1155!(YTCHC=1156)!(YTCHC=1157) D  QUIT
+ . . . S YTRESP(YTQSTN)="SKIPPED"
  . . S YTRESP(YTQSTN)=$G(YTRESP(YTQSTN))_$P(YSDATA(YTI),U,3,99)
  . S YTRESP(YTQSTN)=$$MAPCHC(YTCHC)
  Q
@@ -48,7 +50,7 @@ SCORESV ; Save the scores (only used for graphing for PHI)
  . I YTS=1369 S X=YTRESP(8571) ; Surroundings...Now
  . I YTS=1370 S X=YTRESP(8572) ; Surroundings...To Be
  . I YTS=1371 S X=YTRESP(8573) ; Power of the Mind...Now
- . I YTS=1372 S X=YTRESP(8574) ; Power of the Mind...To Be 
+ . I YTS=1372 S X=YTRESP(8574) ; Power of the Mind...To Be
  . I YTS=1373 S X=YTRESP(8575) ; Professional Care...Now
  . I YTS=1374 S X=YTRESP(8576) ; Professional Care...To Be
  . S YTI=YTI+1,^TMP($J,"YSCOR",YTI)=YTSCALE(YTS)_X

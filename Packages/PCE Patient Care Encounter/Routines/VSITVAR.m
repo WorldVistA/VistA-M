@@ -1,5 +1,5 @@
-VSITVAR ;ISD/RJP - Define Visit Array Variables ;6/20/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**76**;Aug 12, 1996
+VSITVAR ;ISD/RJP - Define Visit Array Variables ;Aug 04, 2025@08:54:12
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,244**;Aug 12, 1996;Build 37
  ; Patch PX*1*76 changes the 2nd line of all VSIT* routines to reflect
  ; the incorporation of the module into PCE.  For historical reference,
  ; the old (VISIT TRACKING) 2nd line is included below to reference VSIT
@@ -13,16 +13,20 @@ VSITVAR ;ISD/RJP - Define Visit Array Variables ;6/20/96
  ;   VAL = <data value>
  ;   VSITDD0  = <indirect reference to dd for field>
  ;   FMT = <output format [I:internal/E:external/B:both]>
- ;   WITHIEN = 1: first subscript of VSIT array is IEN second is field. 
+ ;   WITHIEN = 1: first subscript of VSIT array is IEN second is field.
  ;             0,"",not passed: field is only subscript
  ;
 ALL(IEN,FMT,WITHIEN) ; - define all VSIT("xxx") nodes using record # IEN
  ;
- N REC,FLD,FLDINDX,VAL,VSITI
+ N REC,FLD,FLDINDX,NODE,VAL,VSITI
  S IEN=+$G(IEN),FMT=$G(FMT),WITHIEN=$G(WITHIEN)
  D:'($D(^TMP("VSITDD",$J))\10) FLD^VSITFLD
  S VSITI=0
- S REC(0)=$G(^AUPNVSIT(IEN,0)) F  S VSITI=$O(^(VSITI)) Q:VSITI'>0  S REC(VSITI)=^(VSITI)
+ S NODE=0
+ S REC(NODE)=$G(^AUPNVSIT(IEN,NODE))
+ F  S NODE=$O(^AUPNVSIT(IEN,NODE)) Q:NODE'>0  D
+ . I NODE=900 Q
+ . S REC(NODE)=^AUPNVSIT(IEN,NODE)
  S FLDINDX=""
  F  S FLDINDX=$O(^TMP("VSITDD",$J,FLDINDX)) Q:FLDINDX=""  D
  . S FLD=$G(^TMP("VSITDD",$J,FLDINDX))

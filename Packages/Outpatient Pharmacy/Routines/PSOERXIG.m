@@ -1,5 +1,5 @@
 PSOERXIG ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**581**;DEC 1997;Build 126
+ ;;7.0;OUTPATIENT PHARMACY;**581,770**;DEC 1997;Build 145
  ;
  Q
 IVADMIN(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file IV administration data
@@ -40,7 +40,7 @@ IVADMIN(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file IV administration data
  ; iv infusion code, iv infusion text, iv infusion desc
  S FDA(SF,IENS,42.1)=IVICODE,FDA(SF,IENS,43)=IVITEXT,FDA(SF,IENS,44)=IVIDESC
  D CFDA^PSOERXIU(.FDA)
- D FILE^DIE(,"FDA","IVERR") K FDA
+ I $D(FDA) D FILE^DIE(,"FDA","IVERR") K FDA
  Q
 AGENCY(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file agency of service data
  N AGGL,ABUSNAME,AGADDGL,AAL1,AAL2,ACITY,APOST,ASTATE,ACC,AGNTNMGL,AGNM,ALN,AFN,AMN,ASUFF,APREF,AGCOMMGL,EFFDATE,EXPDATE,GROUPSET,MTMFTEXT,MTMTEXT,MTMQUAL
@@ -92,7 +92,7 @@ AGENCY(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file agency of service data
  ; reason for MTM service free text, text, code, qualifier
  S FDA(SF,IENS,73)=MTMFTEXT,FDA(SF,IENS,74)=MTMTEXT,FDA(SF,IENS,75)=MTMQUAL,FDA(SF,IENS,76)=MTMCODE
  D CFDA^PSOERXIU(.FDA)
- D FILE^DIE(,"FDA","AGERR") K FDA
+ I $D(FDA) D FILE^DIE(,"FDA","AGERR") K FDA
  D COMM^PSOERXIU(AGCOMMGL,52.4931125,MIEN_","_ERXIEN,52.49311,26)
  Q
 WOUND(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file wound data
@@ -118,7 +118,7 @@ WOUND(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file wound data
  .; length, width, depth
  .S FDA(SF,IENS,4.1)=LENGTH,FDA(SF,IENS,4.2)=WIDTH,FDA(SF,IENS,4.3)=DEPTH
  D CFDA^PSOERXIU(.FDA)
- D UPDATE^DIE(,"FDA") K FDA
+ I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  Q
 DRUGCS(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parsing and filing drug coverage status data
  N CSGL,I,SF,IENS,SEQUENCE,DRUGCSC,FDA,SF
@@ -156,7 +156,7 @@ TITRATE(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file titration data
  .; unit of measure, min measurement value, max measurement value, measurement notes
  .S FDA(SF,IENS,4)=UOM,FDA(SF,IENS,5.1)=MINMEAS,FDA(SF,IENS,5.2)=MAXMEAS,FDA(SF,IENS,6)=MEASNOTE
  D CFDA^PSOERXIU(.FDA)
- D UPDATE^DIE(,"FDA") K FDA
+ I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  S SEQUENCE=SEQUENCE+1
  S TGL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0,MEDTYPE,0,"Titration",0,"TitrationDose",0,"MeasurementTimingAndDuration",0))
  S MTNUMVAL=$G(@TGL@("MeasurementAdministrationTiming",0,"MeasurementTimingNumericValue",0))
@@ -214,5 +214,5 @@ TITRATE(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file titration data
  ; measurement duration trigger text, measurement duration trigger qualifier, measurement duration trigger code, measurement duration clarifying text
  S FDA(SF,IENS,30)=MTTEXT,FDA(SF,IENS,31)=MTQUAL,FDA(SF,IENS,32)=MTCODE,FDA(SF,IENS,33)=MDCLTEXT
  D CFDA^PSOERXIU(.FDA)
- D UPDATE^DIE(,"FDA") K FDA
+ I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  Q

@@ -1,5 +1,5 @@
 PSNACT ;BIR/DMA&WRT-inquiries by VAPN, CMOP ID, or NDC ;07/02/03 14:01
- ;;4.0;NATIONAL DRUG FILE;**22,35,47,62,65,70,160,169,262,296,429,492,396**; 30 Oct 98;Build 190
+ ;;4.0;NATIONAL DRUG FILE;**22,35,47,62,65,70,160,169,262,296,429,492,396,576**; 30 Oct 98;Build 25
  ;
  ;Reference to ^PS(50.606 supported by DBIA #2174
  ;Reference to ^PSNAPIS supported by DBIA #2531
@@ -78,13 +78,14 @@ LISTNDC1 ;LOOK UP PARTIAL NDC
 PRINT(VAPRDIEN) ; Prints the Va Product field
  ;Input: VAPRDIEN - Internal Entry Number (IEN) in the VA PRODUCT (#50.68) file
  ;
- N QQQ,PSNELIEN,Z0,Z1,Z3,Z5,Z6,Z7,X,PSNELXY,K,ING
+ N QQQ,PSNELIEN,Z0,Z1,Z3,Z5,Z6,Z7,X,PSNELXY,K,ING,PGXE,PGXS
  S Z0=^PSNDF(50.68,VAPRDIEN,0)
  S Z1=^PSNDF(50.68,VAPRDIEN,1)
  S Z3=^PSNDF(50.68,VAPRDIEN,3)
  S Z5=$G(^PSNDF(50.68,VAPRDIEN,5))
  S Z6=$G(^PSNDF(50.68,VAPRDIEN,6,1,0))
  S Z7=$G(^PSNDF(50.68,VAPRDIEN,7))
+ S PGXE=$$GET1^DIQ(50.68,VAPRDIEN,46,"E"),PGXS=$$GET1^DIQ(50.68,VAPRDIEN,47,"E")
  S QQQ=$P(Z1,"^",5) D GCN
  W !,"VA Product Name: ",$P(Z0,"^"),$$DT($P(Z7,"^",3))
  W !,"VA Generic Name: ",$P(^PSNDF(50.6,+$P(Z0,"^",2),0),"^")
@@ -121,6 +122,8 @@ PRINT(VAPRDIEN) ; Prints the Va Product field
  I $G(^PSNDF(50.68,VAPRDIEN,8)) W !,"Exclude Drg-Drg Interaction Ck: Yes (No check for Drug-Drug Interactions)"
  D:($Y+5)>IOSL HANG Q:$G(QUIT)
  D OVEX(VAPRDIEN)
+ D:($Y+5)>IOSL HANG Q:$G(QUIT)
+ W !!,"PGx ELIGIBLE: ",PGXE,!,"PGx SUPPRESSED: ",PGXS
  D:($Y+5)>IOSL HANG Q:$G(QUIT)
  D CLEFF^PSNCLEHW(VAPRDIEN,$G(QUIT))
  D:($Y+5)>IOSL HANG Q:$G(QUIT)
@@ -208,7 +211,7 @@ NFIP(PSNELFJ) ;
  I '$G(QUIT),$G(PSNELFJC) W !
  Q
  ;
-POSDOS(VAPRD) ; Dispaly Possible Dosage Auto-Create Setting fields
+POSDOS(VAPRD) ; Display Possible Dosage Auto-Create Setting fields
  ; Input: VAPRD - VA PRODUCT (#50.68) entry IEN
  ;
  N POSDOS Q:'$G(VAPRD)
@@ -244,7 +247,7 @@ GETTIERN(PSNCTNDC) ;Get copay tier by NDC; called by DIC to get copay tier for t
  W:$G(PSNCONVD)'="" "  "_PSNCONVD
  Q
  ;
-GETTIER(PSNTDRUG) ;called by DIC; look up copay tier by va product for the current date 
+GETTIER(PSNTDRUG) ;called by DIC; look up copay tier by VA product for the current date 
  N CPDATE,X,PSSCP,PSNINACT,PSNCONVD,PSNFD
  S PSNFD=$$GET1^DIQ(50.68,PSNTDRUG,109)
  W:PSNFD'="" " "_PSNFD

@@ -1,6 +1,41 @@
 PRCPEIL1 ;WISC/RFJ-edit inventory item (list manager) calls         ;01 Dec 93
-V ;;5.1;IFCAP;**1,142**;Oct 20, 2000;Build 5
+V ;;5.1;IFCAP;**1,142,244**;Oct 20, 2000;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; This routine provides various edit functionalities for inventory items
+ ; within the IFCAP (Integrated Funds Distribution, Control Point Activity, 
+ ; Accounting and Procurement) system. The routine includes functionalities
+ ; for editing descriptive elements, costing elements, issue units, levels,
+ ; quantities, due-ins, special parameters, procurement sources, and drug 
+ ; accountability parameters. It also allows editing all fields collectively,
+ ; removing an item from the inventory, and editing secondary items. The 
+ ; routine ensures data integrity through comprehensive validation checks 
+ ; and error handling mechanisms.
+ ;
+ ; Key Entry Points:
+ ;   DESCRIP  - Edits the descriptive elements of an inventory item.
+ ;   COST     - Edits the cost elements of an inventory item.
+ ;   ISSUNITS - Edits the issue units of an inventory item.
+ ;   LEVELS   - Edits the levels of an inventory item.
+ ;   QUANTITY - Edits the quantities related to an inventory item with 
+ ;              checks for on-hand values and costs.
+ ;   DUEIN    - Edits the due-ins for an inventory item.
+ ;   SPECIAL  - Edits special parameters for an inventory item.
+ ;   SOURCES  - Edits procurement sources for an inventory item.
+ ;   DRUGACCT - Edits drug accountability parameters.
+ ;   ALL      - Edits all fields related to an inventory item.
+ ;   DELETE   - Removes an item from the inventory point.
+ ;   SECOND   - Edits information for a secondary item.
+ ;
+ ; Integration Control Registrations (ICRs)
+ ; ICR #10116 - FULL^VALM1
+ ; ICR #10103 - $$FMTE^XLFDT
+ ; ICR #10098 - BLD^DIALOG/CALL^DIALOG
+ ; ICR #10141 - EN^DDIOL
+ ; ICR #10101 - DIC/DIQ^DIC
+ ; ICR #10063 - DDGLIBR^DIALOG
+ ; ICR #10075 - L +^DIC(1)
+ ;
  Q
  ;
  ;
@@ -8,7 +43,7 @@ DESCRIP ;  edit descriptive elements
  D FULL^VALM1
  D DESCRIP^PRCPEITE(PRCPINPT,ITEMDA)
  ;  rebuild array
- D DIQ^PRCPEILM(".5;.7;5")
+ D DIQ^PRCPEILM(".45;.5;.7;5") ; 244 - Add ABC Classification
  D DESCRIP^PRCPEILM
  S VALMBCK="R"
  Q
@@ -154,7 +189,7 @@ SECOND ;  edit secondary item
  .   N ITEMDA,PRCPINPT,PRCPTYPE
  .   S PRCPINPT=PRCPSECO,PRCPTYPE=$P($G(^PRCP(445,PRCPSECO,0)),"^",3)
  .   F  W !! S ITEMDA=$$ITEM^PRCPUITM(PRCPINPT,1,"","") Q:'ITEMDA  D
- .   .   L +^PRCP(445,PRCPINPT,1,ITEMDA):1 I '$T D SHOWWHO^PRCPULOC(445,PRCPINPT_"-1",0) Q
+ .   .   L +^PRCP(445,PRCPINPT,1,ITEMDA):DILOCKTM I '$T D SHOWWHO^PRCPULOC(445,PRCPINPT_"-1",0) Q
  .   .   D ADD^PRCPULOC(445,PRCPINPT_"-1",0,"Enter/Edit Inventory Item Data")
  .   .   D EN^VALM("PRCP EDIT ITEMS")
  .   .   I $D(^PRCP(445,PRCPINPT,1,ITEMDA)) D BLDSEG^PRCPHLFM(3,ITEMDA,PRCPINPT) ; send supply station an update of any changes to the item

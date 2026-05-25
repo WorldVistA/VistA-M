@@ -1,5 +1,5 @@
 IBCNRP ;DAOU/ALA - Plan Match ListMan ;13-NOV-2003
- ;;2.0;INTEGRATED BILLING;**251,516,550,617**;21-MAR-94;Build 43
+ ;;2.0;INTEGRATED BILLING;**251,516,550,617,812**;21-MAR-94;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN ; -- main entry point for IBCNR PLAN MATCH
@@ -89,6 +89,13 @@ INIT ; -- init variables and list array
  . . . S ^TMP("IBCNR",$J,VALMCNT,0)=X
  . . . S ^TMP("IBCNR",$J,"IDX",VALMCNT,VALMCNT1)=IBCNGP
  . . . S ^TMP("IBCNR",$J,"IDX1",VALMCNT1)=IBCNGP
+ . . . ;
+ . . . S DELCOM=$$GET1^DIQ(355.3,IBCNGP_",",3.01)
+ . . . S X="          Comment: "_DELCOM
+ . . . S VALMCNT=VALMCNT+1
+ . . . S ^TMP("IBCNR",$J,VALMCNT,0)=X
+ . . . S ^TMP("IBCNR",$J,"IDX",VALMCNT,VALMCNT1)=IBCNGP
+ . . . S ^TMP("IBCNR",$J,"IDX1",VALMCNT1)=IBCNGP
  . ;
  . I '$D(^TMP("IBCNR",$J)) S VALMCNT=2,^TMP("IBCNR",$J,1,0)=" ",^TMP("IBCNR",$J,2,0)="   No plans were identified for this company."
  Q
@@ -120,6 +127,7 @@ SEL ; -- select plan
  S DA=IBSEL,DIC="^IBA(355.3,",DIE=DIC,DR="6.01////^S X="_IBPLN
  I IBPLNOLD'=IBPLN S DR=DR_";1.07///NOW;1.08////"_DUZ
  I IBPLNOLD=IBPLN,IBUSROLD="" S DR=DR_";1.07///NOW;1.08////"_DUZ
+ S DR=DR_";3.01///@"
  D ^DIE
  D INIT
  ;
@@ -138,11 +146,21 @@ PLCK ; -- check plan status
  ;
 DEL ; -- remove a plan from a group
  D S1
+ I $$GET1^DIQ(355.3,IBCNGP,6.01)="" D  Q
+ . W !!,"Selected group does not contain a VA Plan ID."
+ . W !,"No action taken."
+ . D PAUSE^VALM1
+ S DELCOM=$$DELCOM()
+ I DELCOM="^" D  Q
+ . W !!,"A delete reason comment is required."
+ . W !,"No action taken."
+ . D PAUSE^VALM1
  ;
  NEW DA,DIC,DIE,DR,IBPLNOLD
  S IBPLNOLD=$$GET1^DIQ(355.3,IBCNGP,6.01,"I")
  S DA=IBSEL,DIC="^IBA(355.3,",DIE=DIC,DR="6.01///@"
  I IBPLNOLD'="" S DR=DR_";1.07///NOW;1.08////"_DUZ
+ S DR=DR_";3.01///"_DELCOM
  D ^DIE
  D INIT
  ;
@@ -150,6 +168,24 @@ DEL ; -- remove a plan from a group
  ;
  D SPQ
  Q
+ ;
+DELCOM() ; Get delete reason from user
+ ;
+ N DIR,DTOUT,DUOUT,IBI,IBQT,Y
+ S DIR(0)="F^3:60"
+ S DIR("A")="Comment "
+ S DIR("?",1)="This response must be 3-60 characters and"
+ S DIR("?")="may not contain an embedded up arrow."
+ S IBQT=0
+ F  D  Q:+IBQT'=0
+ . D ^DIR
+ . I $D(DUOUT)!($D(DTOUT)) S IBQT=-1 Q
+ . F IBI=1:1:$L(Y) I $E(Y,IBI)'=" " S IBQT=1
+ . I IBQT=1 Q
+ . W !!,"This response must be 3-60 characters and"
+ . W !,"may not contain an embedded up arrow.",!
+ Q:IBQT<0 "^"
+ Q Y
  ;
 S1 ;
  NEW DIR,DIRUT,DUOUT,DTOUT,DIROUT,IBOK,IBQUIT,Y

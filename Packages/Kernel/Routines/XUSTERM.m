@@ -1,5 +1,5 @@
 XUSTERM ;SEA/AMF/WDE - DEACTIVATE USER ;10/01/18
- ;;8.0;KERNEL;**36,73,135,148,169,222,313,384,489,527,588,645,693**;Jul 10, 1995;Build 13
+ ;;8.0;KERNEL;**36,73,135,148,169,222,313,384,489,527,588,645,693,799**;Jul 10, 1995;Build 3
  ;;"Per VHA Directive 2004-038, this routine should not be modified".
 LKUP N DIRUT,DIC,DIR,XUDA,DA
  S DIC=200,DIC("S")="I $L($P(^(0),U,3))",DIC(0)="AEQMZ",DIC("A")="Select USER to be deactivated: "
@@ -62,7 +62,8 @@ ACT ;First let others clean-up, Then do our part.
  ;send a bullentin to ISO SECURITY mail group, p693
  I $L(XUSVC)>0 D SEND^XUSTERM1
  ;check Purge flag, quit if no p645
- I '$$GET^XPAR("SYS","XU645",1,"Q") L -^VA(200,XUDA,0) Q 
+ ;**799, VAMPI-22625 (jfw) - Allow Subscribers to be called
+ I '$$GET^XPAR("SYS","XU645",1,"Q") L -^VA(200,XUDA,0) D DEQUE^XUSERP(XUDA,3) Q 
  ;Delete other fields
  ;Access code;Verify Code;PAC;Last signon;SMD delegate;electronic signature,Primary menu,Hinq Employee #
  S DIE=200,DA=XUDA,DR="2///@;11///@;14///@;1.1///@;19///@;19.2///@;20.4///@;201///@;14.9///@" D ^DIE

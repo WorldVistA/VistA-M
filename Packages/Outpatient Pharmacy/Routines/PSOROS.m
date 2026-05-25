@@ -1,5 +1,5 @@
 PSOROS ;AITC/BWF - REMOTE RX UTILITY ;7/15/16 2:35am
- ;;7.0;OUTPATIENT PHARMACY;**454**;DEC 1997;Build 349
+ ;;7.0;OUTPATIENT PHARMACY;**454,774**;DEC 1997;Build 15
  ;
  Q
  ;
@@ -17,7 +17,8 @@ INIT ; -- init variables and list array
  ;S VALMCNT=30
  ;S $P(RN," ",12)=" ",VALMCNT=PSOPF
  S $P(RN," ",12)=" ",VALMCNT=$G(CNT)
- S VALM("TITLE")="REMOTE OP Medications ("_$G(SRXSTAT)_")"
+ N PARK I $G(PSODFN),$L($G(REMSITE)),$L($G(SRXSTAT)),$L($G(SDNAME)) S PARK=+$G(^XTMP("PSORRX1",$J,PSODFN,REMSITE,SRXSTAT,SDNAME,"PARK"))
+ S VALM("TITLE")=$S($G(PARK):"REMOTE OP Medications ("_$E($G(SRXSTAT),1,3)_"/PK)",1:"REMOTE OP Medications ("_$G(SRXSTAT)_")")
  D RV^PSONFI Q
  Q
  ;

@@ -1,5 +1,5 @@
 MAGGTU4D ;WOIFO/SG/NST/JSL/GEK/DAC/JSJ/MKN - VERSION CONTROL (CLINICAL DISPLAY); Apr 23, 2023@10:41
- ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181,191,188,216,234,225,256,258,316,290,315,351,334**;Mar 19, 2002;Build 51
+ ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181,191,188,216,234,225,256,258,316,290,315,351,334,379**;Mar 19, 2002;Build 1
  ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,10 +23,9 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq # | Comment                                 |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.379 |   1 |  205 | Apr 2025                                |
  ;;| 3.0.334 |   5 |  204 | Apr 2023                                |
  ;;| 3.0.351 |   1 |  203 | Jan 2023                                |
- ;;| 3.0.315 |   3 |  202 | Oct 2022                                |
- ;;| 3.0.316 |   1 |  200 | Oct 2021                                |
  ;;==================================================================
  ;
  ; Each row of the version control table contains the version and
@@ -36,6 +35,7 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
  ; NOTE:
+ ;  Patch 379 removed support for patch 379
  ;  Patch 334 removed support for patch 351
  ;  Patch 351 removed support for patch 315
  ;  Patch 315 removed support for patch 258

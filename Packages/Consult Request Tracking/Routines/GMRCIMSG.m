@@ -1,5 +1,5 @@
-GMRCIMSG ;SLC/JFR - IFC MESSAGE HANDLING ROUTINE; 09/26/02 00:23 ; Oct 23, 2023@07:47:54
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,51,44,154,184,189**;DEC 27, 1997;Build 54
+GMRCIMSG ;SLC/JFR - IFC MESSAGE HANDLING ROUTINE; 09/26/02 00:23 ; Jan 27, 2025@06:03:38
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,51,44,154,184,189,205**;DEC 27, 1997;Build 3
  ;
  ; Reference to EN^RMPRFC3 supported by #4661
  ; #2053 DIE, #4838 MAGDTR01, #2165 HLMA1, #10103 XLFDT, #2263 XPAR, #2171 XUAF4, #2541 XUPARAM
@@ -39,7 +39,21 @@ IN ;process incoming message and save segments to ^TMP(
  .. S ^TMP("GMRCIF",$J,$P(HLNODE,"|"))=$E(HLNODE,5,999)
  . Q
  ;
- S GMRCVALM=$$VALMSG(^TMP("GMRCIF",$J,"ORC"),GMRCCRNR) ; MKN GMRC*3.0*154
+ ;  If Cerner order number missing from Consult file, extract it and patient account number from HL7 message and store them.  p205 wtc 9/17/24
+ ;
+ I GMRCCRNR,$P(^TMP("GMRCIF",$J,"ORC"),"|")'="NW" D  ;
+ . ;
+ . N GMRCDA,GMRCORDN,GMRCFIN ;
+ . S GMRCDA=$P($P(^TMP("GMRCIF",$J,"ORC"),"|",2),U,1) Q:'GMRCDA  Q:'$D(^GMR(123,GMRCDA))  S GMRCORDN=$P($P(^TMP("GMRCIF",$J,"ORC"),"|",3),U,1) Q:'GMRCORDN  ;
+ . S GMRCFIN=$P($G(^TMP("GMRCIF",$J,"PID")),"|",18) ;
+ . I $P(^GMR(123,GMRCDA,0),U,22)'="" Q  ;
+ . ;
+ . N FDA,GMRCERR ;
+ . S FDA(1,123,GMRCDA_",",.06)=GMRCORDN ;
+ . S FDA(1,123,GMRCDA_",",502)=GMRCFIN ;
+ . D UPDATE^DIE("","FDA(1)",,"GMRCERR") ;
+ ;
+ S GMRCVALM=$$VALMSG(^TMP("GMRCIF",$J,"ORC"),GMRCCRNR,$NA(^TMP("GMRCIF",$J))) ; MKN GMRC*3.0*154, P205 WTC 8/21/24
  I 'GMRCVALM,'GMRCCRNR D EX Q  ;chk msg for valid cslt #'s ; MKN GMRC*3.0*154 added GMRCCRNR
  I 'GMRCVALM,GMRCCRNR D MGMSG^GMRCIAC2(101,GMRCMSGI),EX Q  ; send app. ACK ;MKN GMRC*3*154 added GMRCCRNR and GMRCMSGI
  ;
@@ -104,8 +118,13 @@ ORRIN ;process IFC responses
  . N GMRCFNUM,GMRCROUT,GMRCDA,FDA
  . S GMRCROUT=$$IEN^XUAF4($P($P(^TMP("GMRCIF",$J,"ORC"),"|",3),U,2))
  . S GMRCDA=+$P(^TMP("GMRCIF",$J,"ORC"),"|",2)
+ . ;
+ . ;  If remote order number already in consult file, stop. p205 wtc 9/17/24
+ . ;
+ . I $P($G(^GMR(123,GMRCDA,0)),U,22)'="" Q  ;
+ . ;
  . ;I GMRCROUT'=$P(^GMR(123,GMRCDA,0),U,23) Q
- . S GMRCFNUM=+$P(^TMP("GMRCIF",$J,"ORC"),"|",3)
+ . S GMRCFNUM=+$P(^TMP("GMRCIF",$J,"ORC"),"|",3) Q:'GMRCFNUM  ;
  . S FDA(1,123,GMRCDA_",",.06)=GMRCFNUM
  . ;
  . ;   If Cerner order, extract and save patient account number.  p184
@@ -160,9 +179,11 @@ ORRIN ;process IFC responses
  . D ORRIN^MAGDTR01
  Q
  ;
-VALMSG(GMRCORC,GMRCCRNR) ;check to make sure placer and filler # match current entr
+VALMSG(GMRCORC,GMRCCRNR,GMRCMSG) ;check to make sure placer and filler # match current entr
  ; Input: 
  ;  GMRCORC = ORC segment from incoming HL7 msg
+ ;  GMRCCRNR = 1 if a converted site is involved
+ ;  GMRCMSG = name of array where HL7 message is stored (P205 wtc 8/21/24)
  ;
  I $P(GMRCORC,"|")="NW" Q 1 ; no #'s to match on new order ; MKN GMRC*3.0*154 added GMRCCRNR
  N GMRCPDA,GMRCFDA,GMRCPSIT,GMRCFSIT,GMRCROL,GMRCOK
@@ -184,7 +205,8 @@ VALMSG(GMRCORC,GMRCCRNR) ;check to make sure placer and filler # match current e
  . I $P(^GMR(123,GMRCFDA,0),U,23)'=GMRCPSIT S GMRCOK=0 Q  ;routing facil.
  I 'GMRCOK D  ;return a 101 error to sending site
  . N GMRCRSLT
- . D RESP^GMRCIUTL("AR",HL("MID"),,,101) ;build HLA(
+ . I $G(GMRCCRNR)'=1 D RESP^GMRCIUTL("AR",HL("MID"),,,101) ;build HLA(
+ . I $G(GMRCCRNR)=1 D RESP^GMRCIUT1("AR",HL("MID"),,,101,$G(GMRCMSG)) ; P205 WTC 8/21/2024
  . D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"LM",1,.GMRCRSLT) ;-(
  Q GMRCOK
  ;

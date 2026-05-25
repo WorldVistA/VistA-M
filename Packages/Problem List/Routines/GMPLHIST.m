@@ -1,14 +1,16 @@
-GMPLHIST ; SLC/MKB/KER/TC -- Problem List Historical data ;02/26/15  09:09
- ;;2.0;Problem List;**7,26,31,35,36,42,46,45**;Aug 25, 1994;Build 53
+GMPLHIST ; SLC/MKB/KER/TC -- Problem List Historical data ; Dec 11, 2024@14:00
+ ;;2.0;Problem List;**7,26,31,35,36,42,46,45,58**;Aug 25, 1994;Build 33
  ;
  ; External References
- ;   DBIA 10060  ^VA(200
+ ;
+ ; Reference to ^VA(200 in ICR #10060
+ ; Reference to $$CSI^ICDEX in ICR #5747
  ;
 DT ; Add historical data (audit trail) to DT list
  ;   Called from ^GMPLDISP, requires AIFN and adds to GMPDT()
- N NODE,DATE,FLD,PROV,OLD,OLDVAL,NEW,NEWVAL,ROOT,CHNGE,GMPLCSYS,PREVAUTH
+ N NODE,DATE,FLD,PROV,OLD,OLDVAL,NEW,NEWVAL,ROOT,CHNGE,GMPLCSYS,PREVAUTH,REASON,TMP
  S NODE=$G(^GMPL(125.8,AIFN,0)) Q:NODE=""
- S DATE=$$EXTDT^GMPLX($P(NODE,U,3)),FLD=+$P(NODE,U,2),PROV=+$P(NODE,U,8)
+ S DATE=$$EXTDT^GMPLX($P(NODE,U,3)),FLD=+$P(NODE,U,2),PROV=+$P(NODE,U,8),REASON=$P(NODE,U,7)
  S:'PROV PROV=$P(NODE,U,4)
  S PROV=$S(PROV=".5":"NTRT",1:$P($G(^VA(200,PROV,0)),U))
  S FLD=FLD_U_$$FLDNAME(+FLD)
@@ -24,6 +26,13 @@ DT ; Add historical data (audit trail) to DT list
  I +FLD=1.02 D  Q
  . S CHNGE=$S(NEW="H":"removed",OLD="T":"verified",1:"placed back on list")
  . S GMPDT(LCNT,0)=$J(DATE,10)_": PROBLEM "_CHNGE_" by "_PROV
+ I +FLD=2,$$SHOWSA^GMPLSPECAUTH D  Q       ;58 audit fixes for new SA structure.
+ .S TMP=$P(OLD,":",2)
+ .S GMPDT(LCNT,0)=$J(DATE,10)_": "_$P(FLD,U,2)_" "_$$SADESC^GMPLSPECAUTH($P(OLD,":"))_" "_REASON
+ .I REASON["changed" S GMPDT(LCNT,0)=GMPDT(LCNT,0)_" "_$$GETVALUE^GMPLSPECAUTH(TMP)_" to"
+ .S GMPDT(LCNT,0)=GMPDT(LCNT,0)_" "_$$GETVALUE^GMPLSPECAUTH(NEW)
+ .S GMPDT(LCNT,0)=GMPDT(LCNT,0)_" by "_PROV
+ .S LCNT=LCNT+1
  S GMPDT(LCNT,0)=$J(DATE,10)_": "_$P(FLD,U,2)_$S(OLD]"":" changed",1:" added")_" by "_PROV,LCNT=LCNT+1
  I +FLD=.01 D  Q
  . N CSYSOLD,CSYSNEW
@@ -60,11 +69,12 @@ ALP(X) ; Alpha Field Names
  S X(1.14)="IMMEDIACY",X(1.15)="HEAD/NECK CANCER",X(1.16)="MIL SEXUAL TRAUMA",X(1.17)="COMBAT VET",X(1.18)="SHAD",X(80001)="SNOMED CT CONCEPT",X(80002)="SNOMED CT DESIGNATION"
  S X(80003)="VHAT CONCEPT",X(80004)="VHAT DESIGNATION",X(80005)="MAP STATUS"
  S X(302)="SECONDARY DIAGNOSIS",X(1101)="NOTE"
+ S X(2)="SPECIAL AUTHORITY"
  Q
 NUM(X) ; Numeric Field Designations
  N FN F FN=.01:.01:.08 S X(+FN)=+FN
  F FN=.12:.01:.13 S X(+FN)=+FN
  F FN=1.01:.01:1.18 S X(+FN)=+FN
  F FN=80001:1:80005 S X(+FN)=+FN
- S X(1101)=1101,X(302)=302
+ S X(1101)=1101,X(302)=302,X(2)=2
  Q

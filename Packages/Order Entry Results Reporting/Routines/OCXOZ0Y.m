@@ -1,4 +1,4 @@
-OCXOZ0Y ;SLC/RJS,CLA - Order Check Scan ;OCT 30,2024 at 12:49
+OCXOZ0Y ;SLC/RJS,CLA - Order Check Scan ;JUL 23,2025 at 13:11
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -42,34 +42,34 @@ R66R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #66
  .D:($G(OCXTRACE)<5) EN^ORB3(3,DFN,OCXNUM,.OCXDUZ,OCXNMSG,.OCXDATA)
  Q
  ;
-R68R1A ; Verify all Event/Elements of  Rule #68 'DANGEROUS MEDS OVER AGE 64'  Relation #1 'MED ORDER FOR PT > 64 AND AMITRIPTYLINE'
- ;  Called from EL122+5^OCXOZ0H, and EL125+5^OCXOZ0H.
+R67R1A ; Verify all Event/Elements of  Rule #67 'GLUCOPHAGE - LAB RESULTS'  Relation #1 'GLUCOPHAGE ORDER AND GLUCOPHAGE CREATININE > 1.5'
+ ;  Called from EL86+5^OCXOZ0H, and EL111+5^OCXOZ0H.
  ;
  Q:$G(OCXOERR)
  ;
  ;      Local Extrinsic Functions
- ; MCE122( ---------->  Verify Event/Element: 'AMITRIPTYLINE ORDER'
- ; MCE125( ---------->  Verify Event/Element: 'MED ORDER FOR PT > 64'
+ ; MCE111( ---------->  Verify Event/Element: 'GLUCOPHAGE CREATININE > 1.5'
+ ; MCE86( ----------->  Verify Event/Element: 'GLUCOPHAGE ORDER'
  ;
- Q:$G(^OCXS(860.2,68,"INACT"))
+ Q:$G(^OCXS(860.2,67,"INACT"))
  ;
- I $$MCE125 D 
- .I $$MCE122 D R68R1B
+ I $$MCE86 D 
+ .I $$MCE111 D R67R1B
  Q
  ;
-R68R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #68 'DANGEROUS MEDS OVER AGE 64'  Relation #1 'MED ORDER FOR PT > 64 AND AMITRIPTYLINE'
- ;  Called from R68R1A+12.
+R67R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #67 'GLUCOPHAGE - LAB RESULTS'  Relation #1 'GLUCOPHAGE ORDER AND GLUCOPHAGE CREATININE > 1.5'
+ ;  Called from R67R1A+12.
  ;
  Q:$G(OCXOERR)
  ;
  ;      Local Extrinsic Functions
  ; GETDATA( ---------> GET DATA FROM THE ACTIVE DATA FILE
  ;
- Q:$D(OCXRULE("R68R1B"))
+ Q:$D(OCXRULE("R67R1B"))
  ;
  N OCXNMSG,OCXCMSG,OCXPORD,OCXFORD,OCXDATA,OCXNUM,OCXDUZ,OCXQUIT,OCXLOGS,OCXLOGD
- I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^30^^Patient is "_$$GETDATA(DFN,"122^125",62)_". "_$$GETDATA(DFN,"122^125",141) I 1
- E  S OCXCMSG="Patient is "_$$GETDATA(DFN,"122^125",62)_". "_$$GETDATA(DFN,"122^125",141)
+ I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^28^^Metformin - Creatinine results: "_$$GETDATA(DFN,"86^111",125) I 1
+ E  S OCXCMSG="Metformin - Creatinine results: "_$$GETDATA(DFN,"86^111",125)
  S OCXNMSG=""
  ;
  Q:$G(OCXOERR)
@@ -79,71 +79,34 @@ R68R1B ; Send Order Check, Notication messages and/or Execute code for  Rule #68
  S OCXOCMSG($O(OCXOCMSG(999999),-1)+1)=OCXCMSG
  Q
  ;
-R68R2A ; Verify all Event/Elements of  Rule #68 'DANGEROUS MEDS OVER AGE 64'  Relation #2 'MED ORDER FOR PT > 64 AND CHLORPROPAMIDE'
- ;  Called from EL125+6^OCXOZ0H, and EL123+5^OCXOZ0H.
+R67R2A ; Verify all Event/Elements of  Rule #67 'GLUCOPHAGE - LAB RESULTS'  Relation #2 'GLUCOPHAGE ORDER AND NO GLUCOPHAGE CREATININE'
+ ;  Called from EL86+6^OCXOZ0H, and EL112+5^OCXOZ0H.
  ;
  Q:$G(OCXOERR)
  ;
  ;      Local Extrinsic Functions
- ; MCE123( ---------->  Verify Event/Element: 'CHLORPROPAMIDE ORDER'
- ; MCE125( ---------->  Verify Event/Element: 'MED ORDER FOR PT > 64'
+ ; MCE112( ---------->  Verify Event/Element: 'NO GLUCOPHAGE CREATININE'
+ ; MCE86( ----------->  Verify Event/Element: 'GLUCOPHAGE ORDER'
  ;
- Q:$G(^OCXS(860.2,68,"INACT"))
+ Q:$G(^OCXS(860.2,67,"INACT"))
  ;
- I $$MCE125 D 
- .I $$MCE123 D R68R2B
+ I $$MCE86 D 
+ .I $$MCE112 D R67R2B
  Q
  ;
-R68R2B ; Send Order Check, Notication messages and/or Execute code for  Rule #68 'DANGEROUS MEDS OVER AGE 64'  Relation #2 'MED ORDER FOR PT > 64 AND CHLORPROPAMIDE'
- ;  Called from R68R2A+12.
+R67R2B ; Send Order Check, Notication messages and/or Execute code for  Rule #67 'GLUCOPHAGE - LAB RESULTS'  Relation #2 'GLUCOPHAGE ORDER AND NO GLUCOPHAGE CREATININE'
+ ;  Called from R67R2A+12.
  ;
  Q:$G(OCXOERR)
  ;
  ;      Local Extrinsic Functions
  ; GETDATA( ---------> GET DATA FROM THE ACTIVE DATA FILE
  ;
- Q:$D(OCXRULE("R68R2B"))
+ Q:$D(OCXRULE("R67R2B"))
  ;
  N OCXNMSG,OCXCMSG,OCXPORD,OCXFORD,OCXDATA,OCXNUM,OCXDUZ,OCXQUIT,OCXLOGS,OCXLOGD
- I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^30^^Patient is "_$$GETDATA(DFN,"123^125",62)_". "_$$GETDATA(DFN,"123^125",142) I 1
- E  S OCXCMSG="Patient is "_$$GETDATA(DFN,"123^125",62)_". "_$$GETDATA(DFN,"123^125",142)
- S OCXNMSG=""
- ;
- Q:$G(OCXOERR)
- ;
- ; Send Order Check Message
- ;
- S OCXOCMSG($O(OCXOCMSG(999999),-1)+1)=OCXCMSG
- Q
- ;
-R68R3A ; Verify all Event/Elements of  Rule #68 'DANGEROUS MEDS OVER AGE 64'  Relation #3 'MED ORDER FOR PT > 64 AND DIPYRIDAMOLE'
- ;  Called from EL125+7^OCXOZ0H, and EL124+5^OCXOZ0H.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; MCE124( ---------->  Verify Event/Element: 'DIPYRIDAMOLE ORDER'
- ; MCE125( ---------->  Verify Event/Element: 'MED ORDER FOR PT > 64'
- ;
- Q:$G(^OCXS(860.2,68,"INACT"))
- ;
- I $$MCE125 D 
- .I $$MCE124 D R68R3B
- Q
- ;
-R68R3B ; Send Order Check, Notication messages and/or Execute code for  Rule #68 'DANGEROUS MEDS OVER AGE 64'  Relation #3 'MED ORDER FOR PT > 64 AND DIPYRIDAMOLE'
- ;  Called from R68R3A+12.
- ;
- Q:$G(OCXOERR)
- ;
- ;      Local Extrinsic Functions
- ; GETDATA( ---------> GET DATA FROM THE ACTIVE DATA FILE
- ;
- Q:$D(OCXRULE("R68R3B"))
- ;
- N OCXNMSG,OCXCMSG,OCXPORD,OCXFORD,OCXDATA,OCXNUM,OCXDUZ,OCXQUIT,OCXLOGS,OCXLOGD
- I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^30^^Patient is "_$$GETDATA(DFN,"124^125",62)_".  "_$$GETDATA(DFN,"124^125",144) I 1
- E  S OCXCMSG="Patient is "_$$GETDATA(DFN,"124^125",62)_".  "_$$GETDATA(DFN,"124^125",144)
+ I ($G(OCXOSRC)="CPRS ORDER PRESCAN") S OCXCMSG=(+OCXPSD)_"^28^^Metformin - no serum creatinine within past "_$$GETDATA(DFN,"86^112",127)_" days." I 1
+ E  S OCXCMSG="Metformin - no serum creatinine within past "_$$GETDATA(DFN,"86^112",127)_" days."
  S OCXNMSG=""
  ;
  Q:$G(OCXOERR)
@@ -166,40 +129,43 @@ GETDATA(DFN,OCXL,OCXDFI) ;     This Local Extrinsic Function returns runtime dat
  F PC=1:1:$L(OCXL,U) S OCXE=$P(OCXL,U,PC) I OCXE S VAL=$G(^TMP("OCXCHK",$J,DFN,OCXE,OCXDFI)) Q:$L(VAL)
  Q VAL
  ;
-MCE122() ; Verify Event/Element: AMITRIPTYLINE ORDER
+MCE111() ; Verify Event/Element: GLUCOPHAGE CREATININE > 1.5
+ ;
+ ;  OCXDF(127) -> RECENT GLUCOPHAGE CREATININE DAYS data field
+ ;  OCXDF(125) -> RECENT GLUCOPHAGE CREATININE TEXT data field
+ ;  OCXDF(126) -> RECENT GLUCOPHAGE CREATININE RESULT data field
+ ;  OCXDF(37) -> PATIENT IEN data field
+ ;
+ N OCXRES
+ S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(111,37)=OCXDF(37)
+ Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),111)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),111))
+ S OCXRES(111)=0,OCXDF(126)=$P($$GLCREAT^ORKPS(OCXDF(37)),"^",3) I $L(OCXDF(126)) S OCXRES(111,126)=OCXDF(126) I (OCXDF(126)>1.5)
+ E  Q 0
+ S OCXDF(125)=$P($$GLCREAT^ORKPS(OCXDF(37)),"^",2),OCXDF(127)=$P($$GCDAYS^ORKPS(OCXDF(37)),"^",1),OCXRES(111)=11 M ^TMP("OCXCHK",$J,OCXDF(37),111)=OCXRES(111)
+ Q +OCXRES(111)
+ ;
+MCE112() ; Verify Event/Element: NO GLUCOPHAGE CREATININE
+ ;
+ ;  OCXDF(127) -> RECENT GLUCOPHAGE CREATININE DAYS data field
+ ;  OCXDF(125) -> RECENT GLUCOPHAGE CREATININE TEXT data field
+ ;  OCXDF(124) -> RECENT GLUCOPHAGE CREATININE FLAG data field
+ ;  OCXDF(37) -> PATIENT IEN data field
+ ;
+ N OCXRES
+ S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(112,37)=OCXDF(37)
+ Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),112)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),112))
+ S OCXRES(112)=0,OCXDF(124)=$P($$GLCREAT^ORKPS(OCXDF(37)),"^",1) I $L(OCXDF(124)) S OCXRES(112,124)=OCXDF(124) I '(OCXDF(124))
+ E  Q 0
+ S OCXDF(125)=$P($$GLCREAT^ORKPS(OCXDF(37)),"^",2),OCXDF(127)=$P($$GCDAYS^ORKPS(OCXDF(37)),"^",1),OCXRES(112)=11 M ^TMP("OCXCHK",$J,OCXDF(37),112)=OCXRES(112)
+ Q +OCXRES(112)
+ ;
+MCE86() ; Verify Event/Element: GLUCOPHAGE ORDER
  ;
  ;  OCXDF(37) -> PATIENT IEN data field
  ;
  N OCXRES
- S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(122,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),122)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),122))
- Q 0
- ;
-MCE123() ; Verify Event/Element: CHLORPROPAMIDE ORDER
- ;
- ;  OCXDF(37) -> PATIENT IEN data field
- ;
- N OCXRES
- S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(123,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),123)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),123))
- Q 0
- ;
-MCE124() ; Verify Event/Element: DIPYRIDAMOLE ORDER
- ;
- ;  OCXDF(37) -> PATIENT IEN data field
- ;
- N OCXRES
- S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(124,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),124)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),124))
- Q 0
- ;
-MCE125() ; Verify Event/Element: MED ORDER FOR PT > 64
- ;
- ;  OCXDF(37) -> PATIENT IEN data field
- ;
- N OCXRES
- S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(125,37)=OCXDF(37)
- Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),125)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),125))
+ S OCXDF(37)=$G(DFN) I $L(OCXDF(37)) S OCXRES(86,37)=OCXDF(37)
+ Q:'(OCXDF(37)) 0 I $D(^TMP("OCXCHK",$J,OCXDF(37),86)) Q $G(^TMP("OCXCHK",$J,OCXDF(37),86))
  Q 0
  ;
 NEWRULE(OCXDFN,OCXORD,OCXRUL,OCXREL,OCXNOTF,OCXMESS) ; Has this rule already been triggered for this order number

@@ -1,5 +1,5 @@
-PXAIPOVV ;ISL/JVS,PKR - VALIDATE DIAGNOSIS ;02/04/2021
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**121,194,199,211**;Aug 12, 1996;Build 454
+PXAIPOVV ;ISL/JVS,PKR - VALIDATE DIAGNOSIS ;Aug 04, 2025@08:30:06
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**121,194,199,211,244**;Aug 12, 1996;Build 37
  ;
  ;Reference to ICDEX supported by ICR #5747.
  ;
@@ -180,53 +180,22 @@ VAL ;Validate the input data.
  ;* . S PXAERR(11)=PXAA("PL RESOLVED DATE")
  ;* . D ERRSET
  ;
- ;If PL SC is input verify it.
- ;* I $G(PXAA("PL SC"))'="",'$$SET^PXAIVAL(9000010.07,"PL SC",80001,PXAA("PL SC"),.PXAERR) D  Q
- ;* . S PXAERR(9)="PL SC"
- ;* . S PXAERR(11)=PXAA("PL SC")
- ;* . D ERRSET
- ;
- ;If PL AO is input verify it.
- ;* I $G(PXAA("PL AO"))'="",'$$SET^PXAIVAL(9000010.07,"PL AO",80002,PXAA("PL AO"),.PXAERR) D  Q
- ;* . S PXAERR(9)="PL AO"
- ;* . S PXAERR(11)=PXAA("PL AO")
- ;* . D ERRSET
- ;
- ;If PL IR is input verify it.
- ;* I $G(PXAA("PL IR"))'="",'$$SET^PXAIVAL(9000010.07,"PL IR",80003,PXAA("PL IR"),.PXAERR) D  Q
- ;* . S PXAERR(9)="PL IR"
- ;* . S PXAERR(11)=PXAA("PL IR")
- ;* . D ERRSET
- ;
- ;If PL EC is input verify it.
- ;* I $G(PXAA("PL EC"))'="",'$$SET^PXAIVAL(9000010.07,"PL EC",80004,PXAA("PL EC"),.PXAERR) D  Q
- ;* . S PXAERR(9)="PL EC"
- ;* . S PXAERR(11)=PXAA("PL EC")
- ;* . D ERRSET
- ;
- ;If PL MST is input verify it.
- ;* I $G(PXAA("PL MST"))'="",'$$SET^PXAIVAL(9000010.07,"PL MST",80005,PXAA("PL MST"),.PXAERR) D  Q
- ;* . S PXAERR(9)="PL MST"
- ;* . S PXAERR(11)=PXAA("PL MST")
- ;* . D ERRSET
- ;
- ;If PL HNC is input verify it.
- ;* I $G(PXAA("PL HNC"))'="",'$$SET^PXAIVAL(9000010.07,"PL HNC",80006,PXAA("PL HNC"),.PXAERR) D  Q
- ;* . S PXAERR(9)="PL HNC"
- ;* . S PXAERR(11)=PXAA("PL HNC")
- ;* . D ERRSET
- ;
- ;If PL CV is input verify it.
- ;* I $G(PXAA("PL CV"))'="",'$$SET^PXAIVAL(9000010.07,"PL CV",80007,PXAA("PL CV"),.PXAERR) D  Q
- ;* . S PXAERR(9)="PL CV"
- ;* . S PXAERR(11)=PXAA("PL CV")
- ;* . D ERRSET
- ;
- ;If PL SHAD is input verify it.
- ;* I $G(PXAA("PL SHAD"))'="",'$$SET^PXAIVAL(9000010.07,"PL SHAD",80008,PXAA("PL SHAD"),.PXAERR) D  Q
- ;* . S PXAERR(9)="PL SHAD"
- ;* . S PXAERR(11)=PXAA("PL SHAD")
- ;* . D ERRSET
+ ;Validate SC/SA input.
+ ;N CODE,SCSAERRORS,TEXT
+ ;W !,"VAL^PXAIPOVV VALIDATING SC/SA" BREAK
+ ;D VALSCSAVALUES^PKRUTLSCC(.PXAA,.SCSAERRORS)
+ ;I $D(SCSAERRORS) D  Q
+ ;. S PXAERR(12)="Disabled (D) or invalid (I) SC/SA, the values can only be 0, 1, or NULL."
+ ;. S CODE=$O(SCSAERRORS(""))
+ ;. S PXAERR(7)="SC/SA"
+ ;. S PXAERR(8)="CODE"
+ ;. S PXAERR(9)=CODE
+ ;. S PXAERR(11)=PXAA(CODE)_" "_SCSAERRORS(CODE)
+ ;. S TEXT=""
+ ;. F  S CODE=$O(SCSAERRORS(CODE)) Q:CODE=""  D
+ ;.. S TEXT=TEXT_CODE_"="_PXAA(CODE)_" "_SCSAERRORS(CODE)_" "
+ ;. I TEXT'="" S PXAERR(13)="Additional errors: "_TEXT
+ ;. D ERRSET
  Q
  ;
 VAL04 ;Setup error array for missing or invalid Provider Narrative.

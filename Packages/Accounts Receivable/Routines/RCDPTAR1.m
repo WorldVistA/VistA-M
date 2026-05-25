@@ -1,5 +1,5 @@
 RCDPTAR1 ;ALB/DMB - EFT TRANSACTION AUDIT REPORT (Summary) ;08/19/15
- ;;4.5;Accounts Receivable;**303,326,380,409,424**;Mar 20, 1995;Build 11
+ ;;4.5;Accounts Receivable;**303,326,380,409,424,439,446**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -38,24 +38,31 @@ SUM ;EP from RCDPTAR
 SUM2 ;EP from RCDPTAR
  ; Display EFT Transaction Audit Report in summary mode by Deposit Number
  N ARR,CDDT,CTR,DIR,DIROUT,DIRUT,DTOUT,DUOUT
- N RCDDT,RCDNUM,RCDT1,RCDT2,RCEXCEL,RCSTOP,X,XX,Y     ; PRCA*4.5*409 - Added RCSTOP
+ N RCDBAL,RCDDT,RCDIEN,RCDNUM,RCDT1,RCDT2,RCEXCEL,RCLOOP,RCSTOP,X,XX,Y     ; PRCA*4.5*409 - Added RCSTOP ; PRCA*4.5*439 - Added RCDBAL, RCDIEN
  S RCDNUM=$$ASKDNUM()
  Q:RCDNUM=-1
- S CTR=0,RCDDT="",CDDT="",RCSTOP=0              ; PRCA*4.5*409 - Added RCSTOP=0
+ S CTR=0,RCDDT="",CDDT="",RCSTOP=0,RCLOOP=0     ; PRCA*4.5*409 - Added RCSTOP=0,RCLOOP=0
  W !,"Select Deposit:"
  F  D  Q:RCDDT'=""  Q:RCSTOP                    ; PRCA*4.5*409 - Added Q:RCSTOP
  . S CDDT=$O(^RCY(344.3,"ADEP2",RCDNUM,CDDT),-1)
  . I CDDT="" D  Q                               ; No more Deposit Dates to display for Deposit Number
- . . Q:CTR=0
- . . S RCDDT=$$SELDT(CTR,.ARR)                  ; Final selection choice
- . . I RCDDT=-1 S RCSTOP=1                      ; PRCA*4.5*409 - Added line
+  . . Q:CTR=0
+ . . S RCDDT=$$SELDT(CTR,.ARR,RCLOOP)  ; Final selection choice ; PRCA*4.5*439 add RCLOOP to call
+ . . I RCDDT=-1 S RCSTOP=1
  . S CTR=CTR+1,ARR(CTR)=CDDT
  . S XX=$$FMTE^XLFDT(CDDT,"5DZ")
  . W !,$J(CTR,3)," ",RCDNUM," on: ",XX
+ . S RCDIEN="",RCDBAL="1^0^0"
+ . F  S RCDIEN=$O(^RCY(344.3,"ADEP2",RCDNUM,CDDT,RCDIEN)) Q:'RCDIEN  D  ; PRCA*4.5*439
+ . . S RCDBAL1=$$DEPBAL^RCDPTAR2(RCDIEN)               ; Is deposit out of balance, PRCA*4.5*446
+ . . S $P(RCDBAL,U,3)=$P(RCDBAL,U,3)+$P(RCDBAL1,U,3)
+ . . S:'$P(RCDBAL1,U,1) $P(RCDBAL,U,1)=0        ; Check for out of balance, PRCA*4.5*446
+ . W $J($P(RCDBAL,U,3),19,2)                    ; Deposit total
+ . I 'RCDBAL W " **UNBALANCED**"                ; Add UNBALANCED indicator if deposit is not in balance, PRCA*4.5*439
  . I CTR#10=0 D  Q:RCDDT'=""                    ; Ask selection every 10 times
- . . S RCDDT=$$SELDT(CTR,.ARR)
- . . I RCDDT=-1 S RCSTOP=1                      ; PRCA*4.5*409 - Added line
- Q:RCDDT=""  Q:RCSTOP                           ; No Deposit Date selected, PRCA*4.5*409 - Added Q:RCSTOP
+ . . S RCDDT=$$SELDT(CTR,.ARR,RCLOOP)           ; PRCA*4.5*439 add RCLOOP to parameters
+ . . I RCDDT=-1 S RCSTOP=1
+ Q:RCDDT=""  Q:RCSTOP                           ; No Deposit Date selected
  S RCEXCEL=$$EXCEL^RCDMCUT2()                   ; Ask Excel output
  Q:RCEXCEL="^"
  I RCEXCEL D EXMSG
@@ -82,17 +89,21 @@ DNUM2 ; looping tag
  Q X
  ;
  ; PRCA*4.5*380 - Added subroutine
-SELDT(CTR,ARR) ; Ask the user to select a deposit date for the selected Deposit Number
+SELDT(CTR,ARR,RCLOOP) ; Ask the user to select a deposit date for the selected Deposit Number
  ; Input:   CTR - Current # of choices displayed
  ;          ARR - Array of available choices ARR(A1)=A2 Where:
  ;                  A1 - Selection #
  ;                  A2 - Deposit Date
+ ;          RCLOOP - Flag that indicates if selection is being made after displaying a EFT for the first time.
+ ;                   Makes selection optional. PRCA*4.5*439
  ; Returns: ""  - Nothing selected, Otherwise selected deposit date is returned
  ;                -1 if user '^' or timed out
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
- S DIR(0)="NA^1:"_CTR_":0",DIR("A")="CHOOSE 1 - "_CTR_": "
+ S DIR(0)="NA" I $G(RCLOOP) S DIR(0)="NAO"      ; PRCA*4.5*439
+ S DIR(0)=DIR(0)_"^1:"_CTR_":0",DIR("A")="CHOOSE 1 - "_CTR_": "
  S DIR("?")="Select a number between 1 and "_CTR
  D ^DIR
+ I $G(RCLOOP),Y="" Q -1                             ; PRCA*4.5*439
  I $G(DTOUT)!$G(DUOUT)!(Y=-1) Q -1              ; PRCA*4.5*409 Added line
  Q $S($D(DIRUT):"",1:ARR(Y))
  ; 
@@ -133,6 +144,8 @@ RUN2(RDNUM,RCDDT,RCEXCEL) ; Compile and run the report (new summary mode)
  ;          RCDDT   - Deposit Date
  ;          RCEXCEL - 1 - Excel output, 0 otherwise
  ;
+ ;I '$L($G(RCDBAL)) S RCDBAL=1  ; If called from code that doesn't use RCDBAL, set RCDBAL to 1 to default to a balanced deposit. PRCA*4.5*439
+ ;
  D COMPILE2(RCDNUM,RCDDT)                       ; Compile the report
  ;
  D REPORT2(RCDNUM,RCDDT,RCEXCEL)                ; Display the report
@@ -163,7 +176,7 @@ COMPILE(RCDT1,RCDT2) ; Compile the report (original summary mode)
  . . . S EFTDATA=$G(^RCY(344.31,EFTIEN,0))
  . . . ;
  . . . ; Date Received-0|13;Amount-0|7;Match Status-0|8 (hist);Trace-0|4;Payer Name-0|2;Payer ID-0|3
- . . . S MDATE=$$MDATE($P(EFTDATA,U,8),EFTIEN)
+ . . . S MDATE=$$MDATE^RCDPTAR2($P(EFTDATA,U,8),EFTIEN)
  . . . ;
  . . . ; Date Received^Deposit #^EFT Amount^Date Matched^Date Posted^Trace #^Payer Name^Payer ID^Stale/Lock
  . . . S ^TMP("RCDPTAR1",$J,EFTIEN)=$$DATE^RCDPRU($P(EFTDATA,U,13),"2ZD")_U_$$GET1^DIQ(344.3,LOCKIEN_",",.03,"E")
@@ -174,31 +187,9 @@ COMPILE(RCDT1,RCDT2) ; Compile the report (original summary mode)
  . . . S $P(^TMP("RCDPTAR1",$J,EFTIEN),U,7)=$P(EFTDATA,U,2)
  . . . S $P(^TMP("RCDPTAR1",$J,EFTIEN),U,8)=$P(EFTDATA,U,3)
  . . . S $P(^TMP("RCDPTAR1",$J,EFTIEN),U,9)=$$AGED^RCDPTAR(EFTIEN)
+ . . . S $P(^TMP("RCDPTAR1",$J,EFTIEN),U,10)=LOCKIEN   ; Save Deposit IEN, #344.3, PRCA*4.5*439
  ;
  Q
- ;
-MDATE(STATUS,EFTIEN) ; Finds the Match Date from the Match History Global for the EFT
- ; Input:   STATUS  - Internal value from the EFT MATCH STATUS field
- ;          EFTIEN  - EDI THIRD PARTY EFT DETAIL (#344.31) IEN
- ; Returns: Match Date from the MATCH STATUS HISTORY (#344.314) multiple
- ;
- ; Validate Parameters.  If STATUS is equal to UNMATCHED, quit with "" (no match date)
- I $G(STATUS)=0 Q ""
- I $G(EFTIEN)="" Q ""
- ;
- N MIEN,RCDATA,IENS
- ;
- ; Get last record from the Match status history global.  If no history, then quit with "" (no match date)
- S MIEN=$O(^RCY(344.31,EFTIEN,4,999999),-1)
- I 'MIEN Q "<No History>"
- ;
- ; Get data from match history
- S IENS=MIEN_","_EFTIEN_","
- D GETS^DIQ(344.314,IENS,".01;.02","I","RCDATA")
- ;
- ; If the most recent record is UNMATCHED, then it is does not match the EFT status so return "" (no match date)
- I RCDATA(344.314,IENS,.01,"I")=0 Q ""
- Q RCDATA(344.314,IENS,.02,"I")
  ;
  ; PRCA*4.5*380 - Added subroutine
 COMPILE2(RCDNUM,RCDDT) ; Compile the report (new summary mode)
@@ -230,6 +221,7 @@ COMPILE2(RCDNUM,RCDDT) ; Compile the report (new summary mode)
  . . S $P(^TMP("RCDPTAR1",$J,EFTIEN),"^",6)=XX        ; Payer Name
  . . S XX=$P(EFTDATA,"^",3)
  . . S $P(^TMP("RCDPTAR1",$J,EFTIEN),"^",7)=XX        ; Payer ID
+ . . S $P(^TMP("RCDPTAR1",$J,EFTIEN),"^",10)=RCDIEN   ; Save Deposit IEN, #344.3, PRCA*4.5*439
  S ^TMP("RCDPTAR1",$J)=GTOT
  Q
  ;
@@ -237,7 +229,7 @@ REPORT(RCDT1,RCDT2,RCEXCEL) ; Output the report (original summary mode)
  ; Input:   RCDT1   - Start Date
  ;          RCDT2   - End Date
  ;          RCEXCEL - 1 - Excel output, 0 otherwise
- N DATA,EFTIEN,LINES,RCHR,RCNOW,RCPG,RCSCR
+ N DATA,EFTIEN,LINES,RCDBAL,RCDIEN,RCHR,RCNOW,RCPG,RCSCR
  ;
  ; Initialize Report Date, Page Number and Sting of underscores
  S RCSCR=$S($E($G(IOST),1,2)="C-":1,1:0)
@@ -257,12 +249,14 @@ REPORT(RCDT1,RCDT2,RCEXCEL) ; Output the report (original summary mode)
  . I RCSCR S LINES=LINES+1
  . D CHKP(RCNOW,.RCPG,RCHR,RCDT1,RCDT2,RCEXCEL,RCSCR,LINES,"","") ; PRCA*4.5*380 - Added dep. number & date to header call
  . Q:RCPG=0
+ . S RCDIEN=$P(DATA,U,10),RCDBAL=$$DEPBAL^RCDPTAR2(RCDIEN),RCDBAL=+RCDBAL,RCDBAL=$S('RCDBAL:"UNBALANCED",1:"")
  . ; If Excel, display as delimited and quit
- . I RCEXCEL W !,$P(DATA,U,9),$$EFT(EFTIEN),U,$P(DATA,U,1,8) Q
+ . I RCEXCEL W !,$P(DATA,U,9),$$EFT(EFTIEN),U,RCDBAL,U,$$DEPBAL^RCDPTAR2(RCDIEN),U,$P(DATA,U,1,8) Q
  . ;
  . ; Display non-Excel output
  . W !,$P(DATA,U,9),$$EFT(EFTIEN),?13,$P(DATA,U,1),?25,$P(DATA,U,2),?37,$J($P(DATA,U,3),13,2),?54,$P(DATA,U,4),?69,$P(DATA,U,5)
- . W !,?4,$P(DATA,U,6)
+ . ;W !,?4,$P(DATA,U,6),"     ",RCDBAL    ; Display unbalanced indicator, PRCA*4.5*439
+ . W !,?4,$P(DATA,U,6)                    ; Remove unbalanced indicator at EFT level, PRCA*4.5*439
  . W !,?11,$P(DATA,U,7),"/",$P(DATA,U,8)
  ;
  I 'RCSCR W !,@IOF
@@ -277,15 +271,19 @@ REPORT2(RCDNUM,RCDDT,RCEXCEL) ; Output the report (new summary mode)
  ; Input:   RCDNUM  - Deposit Number
  ;          RCDDT   - Deposit Date
  ;          RCEXCEL - 1 - Excel output, 0 otherwise
- N DATA,EFTIEN,GTOT,LINES,RCHR,RCNOW,RCPG,RCSCR
+ ;
+ N DATA,EFTIEN,GTOT,LINES,RCDBAL,RCDBAL2,RCDIEN,RCHR,RCNOW,RCPG,RCSCR
+ ;
+ ;I '$L($G(RCDBAL)) S RCDBAL=1  ; If called from code that doesn't use RCDBAL, set RCDBAL to 1 to default to a balanced deposit. PRCA*4.5*439
  ;
  ; Initialize Report Date, Page Number and String of underscores
  S RCSCR=$S($E($G(IOST),1,2)="C-":1,1:0)
  S RCNOW=$$UP^XLFSTR($$NOW^RCDPRU(2)),RCPG=0,RCHR="",$P(RCHR,"-",IOM+1)=""
  ;
+ S RCDBAL=$$DEPBAL^RCDPTAR2(RCDNUM)
  ; Display header for first page
  U IO
- D HEADER(RCNOW,.RCPG,RCHR,"","",RCEXCEL,RCDNUM,RCDDT)
+ D HEADER(RCNOW,.RCPG,RCHR,"","",RCEXCEL,RCDNUM,RCDDT,RCDBAL)  ; Add parameter RCDBAL PRCA*4.5*439
  ;
  ; No data, display message and quit
  I '$D(^TMP("RCDPTAR1",$J)) W !,"No data found"
@@ -299,18 +297,22 @@ REPORT2(RCDNUM,RCDDT,RCEXCEL) ; Output the report (new summary mode)
  . D CHKP(RCNOW,.RCPG,RCHR,"","",RCEXCEL,RCSCR,LINES,RCDNUM,RCDDT)
  . Q:RCPG=0
  . ;
+ . S RCDIEN=$P(DATA,U,10),RCDBAL=$$DEPBAL^RCDPTAR2(RCDIEN),RCDBAL2=$S('RCDBAL:"UNBALANCED",1:"")
  . ; If Excel, display as delimited and quit
- . I RCEXCEL W !,$$EFT(EFTIEN),"^",DATA Q
+ . I RCEXCEL W !,$P(DATA,U,9),$$EFT(EFTIEN),U,RCDBAL2,U,DATA Q
  . ;
  . ; Display non-Excel output
- . W !,$$EFT(EFTIEN),?13,$P(DATA,"^",1),?26,$P(DATA,"^",2)
- . W ?40,$P(DATA,"^",3),?55,$J($P(DATA,"^",4),13,2)
- . W !,?4,$P(DATA,"^",5)
- . W !,?11,$P(DATA,"^",6),"/",$P(DATA,"^",7)
+ . W !,$$EFT(EFTIEN),?13,$P(DATA,U,1),?26,$P(DATA,U,2)
+ . W ?40,$P(DATA,U,3),?55,$J($P(DATA,U,4),13,2)
+ . ;W !,?4,$P(DATA,U,5),"     ",RCDBAL2
+ . W !,?4,$P(DATA,U,5)         ; Remove unbalanced indicator at EFT level, PRCA*4.5*439
+ . W !,?11,$P(DATA,U,6),"/",$P(DATA,U,7)
  ;
  I 'RCEXCEL,RCPG D
  . W !!,"Total for Deposit #: ",RCDNUM," Deposit Date: ",$$FMTE^XLFDT(RCDDT,"5DZ")
- . W ?51,$J(GTOT,13,2)
+ . ; Add coding to account for out-of-balance deposits ; PRCA*4.5*439
+ . I RCDBAL W ?51,$J(GTOT,13,2) Q
+ . W ?55,$J($P(RCDBAL,U,3),13,2)
  I 'RCSCR W !,@IOF
  I $D(ZTQUEUED) S ZTREQ="@" Q
  D ^%ZISC
@@ -319,7 +321,7 @@ REPORT2(RCDNUM,RCDDT,RCEXCEL) ; Output the report (new summary mode)
  Q
  ;
  ; PRCA*4.5*380 - Added deposit number & deposit date
-HEADER(RCNOW,RCPG,RCHR,RCDT1,RCDT2,RCEXCEL,RCDNUM,RCDDT) ; Display the report header
+HEADER(RCNOW,RCPG,RCHR,RCDT1,RCDT2,RCEXCEL,RCDNUM,RCDDT,RCDBAL) ; Display the report header
  ; Input:   RCNOW   - External Run Date/Time
  ;          RCPG    - Current page number
  ;          RCHR    - Dashed line
@@ -328,17 +330,24 @@ HEADER(RCNOW,RCPG,RCHR,RCDT1,RCDT2,RCEXCEL,RCDNUM,RCDDT) ; Display the report he
  ;          RCEXCEL - 1 - Excel output, 0 otherwise
  ;          RCDNUM  - Deposit Number or null if original summary report
  ;          RCDDT   - Internal Deposit Date or null if original summary report
+ ;          RCDBAL  - Piece 1: 1 if deposit is in balance, 0 otherwise   ; Add parameter PRCA*4.5*439
+ ;                    Piece 2: Total of EFTs on the deposit
+ ;                    Piece 3: Deposit Total
+ ;
  ; Output:  RCPG    - Updated page number
  ;
  W @IOF
  ;
+ I '$L($G(RCDBAL)) S RCDBAL=1  ; If called from code that doesn't use RCDBAL, set RCDBAL to 1 to default to a balanced deposit. PRCA*4.5*439
+ ;
  ; If Excel, print column headers separated with up-arrows and quit
  I $G(RCEXCEL) D  Q
  . ; PRCA*4.5*380 - New header for Dep. Num/Date report
+ . ; PRCA*4.5*439 - Add UNBALANCED to Excel header
  . I RCDT1'="" D
- . . W !,"EFT#^DATE RECEIVED^DEPOSIT#^EFT TOTAL AMT^DATE MATCHED^DATE POSTED^TRACE #^PAYER NAME^PAYER ID"
+ . . W !,"EFT#^UNBALANCED^DATE RECEIVED^DEPOSIT#^EFT TOTAL AMT^DATE MATCHED^DATE POSTED^TRACE #^PAYER NAME^PAYER ID"
  . E  D
- . . W !,"EFT#^DEPOSIT#^DEPOSIT DATE^DATE RECEIVED^EFT TOTAL AMT^TRACE #^PAYER NAME^PAYER ID"
+ . . W !,"EFT#^UNBALANCED^DEPOSIT#^DEPOSIT DATE^DATE RECEIVED^EFT TOTAL AMT^TRACE #^PAYER NAME^PAYER ID"
  . S RCPG=1
  ;
  ; Non-Excel Header
@@ -356,7 +365,7 @@ HEADER(RCNOW,RCPG,RCHR,RCDT1,RCDT2,RCEXCEL,RCDNUM,RCDDT) ; Display the report he
  . W !,?4,"TRACE #",!,?11,"PAYER NAME/ID"
  . W !,RCHR
  ;
- S LINE="DEPOSIT #: "_RCDNUM_"  Deposit Date "_$$DATE^RCDPRU(RCDDT,"2D")
+ S LINE="DEPOSIT #: "_RCDNUM_"  Deposit Date "_$$DATE^RCDPRU(RCDDT,"2D")_$S('RCDBAL:" **UNBALANCED**",1:"")  ;Unbalance indicator PRCA*4.5*439
  I RCDNUM'="" D
  . W !?(IOM-$L(LINE)\2),LINE
  . W !!,"EFT#",?13,"DEPOSIT#",?26,"DEPOSIT DATE",?40,"DATE RECEIVED",?55,"EFT TOTAL AMT"
@@ -407,3 +416,47 @@ EFT(EFTIEN) ; Format EFT output - EFT.SEQ - PRCA*4.5*326
  ; Input:   EFTIEN  - Internal EFT number
  ; Returns: EFT.Sequence #
  Q $$GET1^DIQ(344.31,EFTIEN_",",.01,"E")
+ ;
+DEPEFTS(RCDNUM,RCDDT,RCEFTCNT) ; List EFTs for a given deposit number and date. Added for PRCA*4.5*439
+ ; Input - RCDNUM - Deposit #
+ ;         RCDDT  - Deposit Date
+ ; Output - Return value LIST(Y) containing data of selected EFT
+ ;          RCEFTCNT - Count of EFTs passed by reference
+ ;
+ N EFTIEN,CNT,DATA,J,LIST,RCBAL,RCDBAL,RCDBAL1,RCDIEN,Y
+ ;
+ S (CNT,RCDIEN,RCDBAL)=0
+ F  D  Q:RCDIEN=""
+ . S RCDIEN=$O(^RCY(344.3,"ADEP2",RCDNUM,RCDDT,RCDIEN))
+ . I RCDIEN="" Q
+ . S RCDBAL1=$$DEPBAL^RCDPTAR2(RCDIEN)
+ . F J=2:1:3 S $P(RCDBAL,U,J)=$P(RCDBAL1,U,J)+$P(RCDBAL,U,J)
+ . S EFTIEN=""
+ . F  D  Q:'EFTIEN
+ . . S EFTIEN=$O(^RCY(344.31,"B",RCDIEN,EFTIEN))
+ . . Q:'EFTIEN
+ . . S DATA=$$EFTDATA^RCDPTAR(EFTIEN) I DATA]"" S CNT=CNT+1,LIST(CNT)=DATA
+ ;
+ S RCEFTCNT=CNT
+ I CNT=0 W !!,"No EFT detail for this selection" D PAUSE Q ""
+ ;
+ ; If only one EFT, select it and quit
+ I CNT=1 S Y=1 G EFT1
+ ;
+ ; Display list of EFTs. Manual display and reading so we can put data on two lines. PRCA*4.5*439
+ N ROW,TRANS,X
+ W !!,"Deposit #: "_$J($$GET1^DIQ(344.3,LOCKIEN_",",.06),10)_"   "
+ W "Deposit Date: "_$$DATE^RCDPRU(RCDDT,"2DZ")
+ W $J($P(RCDBAL,U,3),19,2)   ; Deposit Total
+ ;I '($P(RCDBAL,U,2)=$P(RCDBAL,U,3)) W " **UNBALANCED**"   ; Remove unbalanced indicator at EFT level
+ N LCNT,QUIT  ; PRCA*4.5*439
+ S LCNT=0,QUIT=0,Y=-1
+ F ROW=1:1:CNT D  Q:QUIT
+ . S DATA=LIST(ROW),EFTIEN=$P(DATA,U,3)
+ . D DISPLAY^RCDPTAR(ROW,EFTIEN)
+ . ;I ROW#5=0!(ROW=CNT) D  I Y>0!(Y=-1) S QUIT=1 Q  ;
+ S Y=$$READ^RCDPTAR(1,ROW,CNT)
+ I Y'>0 Q 0
+ ;
+EFT1 ;
+ Q LIST(Y)

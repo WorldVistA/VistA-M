@@ -1,5 +1,5 @@
 TIUCCRHL7P2 ; CCRA/PB - TIUHL7 Msg Processing; March 23, 2005
- ;;1.0;TEXT INTEGRATION UTILITIES;**337,348,349,352,354,356,366**;Sep 27, 2023;Build 2
+ ;;1.0;TEXT INTEGRATION UTILITIES;**337,348,349,352,354,356,366,371**;Sep 27, 2023;Build 4
  ; Reference to CMT^GMRCGUIB in ICR #2980
  ; Reference to SETCOM^GMRCGUIB, SETDA^GMRCGUIB in ICR #7223
  ; Reference to ^TMP("CSLSUR1" supported by DBIA #3498
@@ -12,30 +12,25 @@ TIUCCRHL7P2 ; CCRA/PB - TIUHL7 Msg Processing; March 23, 2005
  ;PB - Patch 354 modifications to keep the status of the consult after the note/addendum is filed whether the note/addendum
  ;     originates in CPRS or in HSRM.
  ;PB - Patch 356 modifications to file the note as a stand-alone note and not linked to a consult
+ ;PB - Patch 371 removes unused code
  Q
 CONTINUE ; data verification
- ;
  ; DOCUMENT TEXT
  N STOP,TIUI,TIUIF
  S (TIUIF,STOP)=0
  D
  . I '$D(TIUZ("TEXT")) S MSGTEXT="Missing DOCUMENT TEXT.",STOP=1 D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,MSGTEXT,$G(CONSULTID))
  . Q:$G(STOP)=1
- . ;S TIUTMP=0 F  S TIUTMP=$O(TIUZ("TEXT",TIUTMP)) Q:'TIUTMP  I $G(TIUZ("TEXT",TIUTMP,0))="" S TIUIF=1
- . ;I +$G(TIUIF)=1 S MSGTEXT="Missing DOCUMENT TEXT.",STOP=1 D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,MSGTEXT,$G(CONSULTID))
  Q:$G(STOP)=1
- ;
  ; DOCUMENT TITLE
  I +TIU("TDA")'>0 S MSGTEXT="Could not resolve the document title "_TIU("TITLE"),STOP=1 D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,MSGTEXT,$G(CONSULTID)) Q
  I +$$GET1^DIQ(8925.1,TIU("TDA"),.07,"I")'=11 S MSGTEXT="The document title "_TIU("TITLE")_" must be ACTIVE before use",STOP=1 D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT),ANAK^TIUCCHL7UT(MSGID,MSGTEXT,$G(CONSULTID)) Q
- ;
  Q:+$G(TIU("TDA"))'>0!(+$$GET1^DIQ(8925.1,TIU("TDA"),.07,"I")'=11)
  S TIU("ELSIG")=$$GET1^DIQ(200,$G(TIU("AUIEN")),20.4)
  I $G(TIU("ELSIG"))="" D
- .N MSGTEXT ;I '$D(^VA(200,TIU("AUIEN"))) D
+ .N MSGTEXT
  .S MSGTEXT="No valid Electronic Signature for "_$G(TIU("AUNAME"))_" Note is not signed." D MESSAGE^TIUCCRHL7P3(MSGID,$G(CONSULTID),MSGTEXT) ;
  .K TIU("SIGNED"),TIU("CSIGNED")
- ;I $$MEMBEROF^TIUHL7U1(TIU("TITLE"),"CONSULTS") S TIU("VSTR")=$$VSTRBLD^TIUSRVP(TIU("VNUM")) ;D
  S CONSERVICEIEN=$$GET1^DIQ(123,CONSULTID_",",1,"I")
  S VLOC=$$GETLOC(CONSERVICEIEN),TIU("LOC")=VLOC
  D CONTINUE^TIUCCRHL7P3
@@ -51,7 +46,6 @@ MAKE(SUCCESS,DFN,TITLE,VDT,VLOC,VSIT,TIUX,VSTR,SUPPRESS,NOASF) ; New Document
  ; [VSTR]  = Visit string (i.e., VLOC;VDT;VTYPE)
  ; [NOASF] = if 1=Do Not Set ASAVE cross-reference
  ; TIUX    = (by ref) array containing field data and document body
- ;
  N CONSERVICEIEN
  S CONSERVICEIEN=$$GET1^DIQ(123,CONSULTID_",",1,"I")
  N TIU,TIUDA,LDT,NEWREC
@@ -60,7 +54,6 @@ MAKE(SUCCESS,DFN,TITLE,VDT,VLOC,VSIT,TIUX,VSTR,SUPPRESS,NOASF) ; New Document
  I $L($G(VSTR)) D
  . S VDT=$S(+$G(VDT):+$G(VDT),1:$P(VSTR,";",2))
  . S LDT=$S(+$G(VDT):$$FMADD^XLFDT(VDT,"","",1),1:"")
- . ;S VLOC=$S(+$G(VLOC):+$G(VLOC),1:$P(VSTR,";"))
  . S VLOC=$$GETLOC(CONSERVICEIEN),TIU("LOC")=VLOC
  . ; If note is for Ward Location, call MAIN^TIUMOVE
  . I $P($G(^SC(+VLOC,0)),U,3)="W" D MAIN^TIUMOVE(.TIU,DFN,"",VDT,LDT,1,"LAST",0,+VLOC) Q
@@ -77,7 +70,6 @@ MAKE(SUCCESS,DFN,TITLE,VDT,VLOC,VSIT,TIUX,VSTR,SUPPRESS,NOASF) ; New Document
  . D EVENT^TIUSRVP1(.TIU,DFN)
  S TIU("INST")=$$DIVISION^TIULC1(+TIU("LOC"))
  I $S($D(TIU)'>9:1,+$G(DFN)'>0:1,1:0) S SUCCESS="0^"_$$EZBLD^DIALOG(89250001) Q
- ;
  N % D NOW^%DTC
  S (TIU("LOC"),TIU("VLOC"))=VLOC_"^"_$$GET1^DIQ(44,VLOC_",",.01,"E"),TIU("VSTR")=VLOC_"^"_%
  S TIUDA=$$GETREC(DFN,.TIU,TITLE,.NEWREC)
@@ -110,21 +102,18 @@ FILE(SUCCESS,TIUDA,TIUX,SUPPRESS,TIUCPF) ; Call FM Filer & commit
  S IENS=""""_TIUDA_",""",FDARR="FDA(8925,"_IENS_")",FLAGS=""
  I +$G(TIUX(1202)) S TIUX(1204)=+$G(TIUX(1202))
  I +$G(TIUX(1209)) S TIUX(1208)=+$G(TIUX(1209))
- ;I +$G(TIUX(1405)) S TIUX(1405)=TIU("CNCN")_";GMR(123,"
  ;If the document is a member of the Clinical Procedures Class, set the
  ;Entered By field to the Author/Dictator field
  I $G(TIUCPF),+$G(TIUX(1202)) S TIUX(1302)=+$G(TIUX(1202))
- ;*271 Prevent string date in 1301
  S:$G(TIUX(1301)) TIUX(1301)=+TIUX(1301)
  M @FDARR=TIUX
- D FILE^DIE(FLAGS,"FDA","TIUMSG") ; File record
+ D FILE^DIE(FLAGS,"FDA","TIUMSG")
  I $D(TIUMSG)>9 S SUCCESS=0_U_$G(TIUMSG("DIERR",1,"TEXT",1)) Q
  S SUCCESS=TIUDA
  I '+$G(SUPPRESS) D
  . N DA
  . S DA=TIUDA
  . S TIUCMMTX=$$COMMIT^TIULC1(+$G(^TIU(8925,+TIUDA,0)))
- . ;I TIUCMMTX]"" X TIUCMMTX
  . K ^TIU(8925,"ASAVE",DUZ,TIUDA)
  Q
 SETXT0(TIUDA) ; Set root node of "TEMP" WP-field
@@ -134,6 +123,8 @@ SETXT0(TIUDA) ; Set root node of "TEMP" WP-field
  S ^TIU(8925,TIUDA,"TEMP",0)="^^"_TIUC_U_TIUC_U_DT_"^^"
  Q
 VSTRBLD(VSIT) ; Given Visit ien, build Visit-Descriptor String
+ Q  ;Patch 371 - PB - stopping this code block from running as CCRA doesn't link to a visit at this time, however leaving
+ ; the code in case we need to track and update the visit in the future.
  N TIUY,VSIT0,VLOC,VDT,VSVCAT
  S VSIT0=$G(^AUPNVSIT(+VSIT,0)),VDT=+$P(VSIT0,U),VLOC=+$P(VSIT0,U,22)
  S VSVCAT=$P(VSIT0,U,7)
@@ -162,7 +153,6 @@ SIGNDOC(TIUDA) ;
  . . . D ERR("TIU","15","0000.000",$P(TIUAUTH,U,2)) I TIU("AVAIL")="AV" Q
  . . . S TIUDEL=1 D ERR("TIU","","0000.000","Legal authentication failed & availability not 'AV'; document has been deleted.")
  . . I '+$G(TIUDEL) S TIUES=1_U_$$GET1^DIQ(200,TIU("AUDA"),20.2)_U_$$GET1^DIQ(200,TIU("AUDA"),20.3)
- . . ;I '+$G(TIUDEL) D ES^TIUHL7U2(TIUDA,TIUES,"",TIU("AUDA"))
  . . I '+$G(TIUDEL) D ES(TIUDA,TIUES,"",TIU("AUDA"))
  . . I '+$G(TIUDEL) S TIUSTAT=$P($G(^TIU(8925,TIUDA,0)),U,5) I TIUSTAT<6,TIU("AVAIL")'="AV" D
  . . . S TIUDEL=1 D ERR("TIU","","0000.000","Legal authentication failed & availability not 'AV'; document has been deleted.")

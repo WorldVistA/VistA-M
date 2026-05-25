@@ -1,15 +1,13 @@
-SDECAR2 ;ALB/SAT/JSM,WTC,LAB,JAS,LAB/JAS - VISTA SCHEDULING RPCS ; NOV 22, 2024
- ;;5.3;Scheduling;**627,642,658,671,686,694,745,799,805,820,823,893,895**;Aug 13, 1993;Build 11
+SDECAR2 ;ALB/SAT/JSM,WTC,LAB,JAS,LAB/JAS,TJB,AGW - VISTA SCHEDULING RPCS ; JULY 31, 2025
+ ;;5.3;Scheduling;**627,642,658,671,686,694,745,799,805,820,823,893,895,915,918**;Aug 13, 1993;Build 4
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  Q
  ;
-ARSET(RET,INP) ;Appointment Request Set
- ;SD*5.3*745 replace external 'INP...' due to XINDEX issue.  Parameters are then rolled into the INP array
- ;ARSET(RET,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15,S16,S17,S18,S19,S20,S21,S22,S23,S24,S25,S26,S27,S28,S29) external parameter tag in SDEC
+ARSET(RET,INP) ;Appt Req Set
+ ;ARSET(RET,S1,S2,S3,S4,S5,S6,S7,S8,S9,S10,S11,S12,S13,S14,S15,S16,S17,S18,S19,S20,S21,S22,S23,S24,S25,S26,S27,S28,S29)
  ; INP - Input parameters array
- ;  INP(1)  = (integer)  Wait List IEN point to SDEC APPT REQUEST file 409.85.
- ;                       If null, a new entry will be added
+ ;  INP(1)  = (integer)  Wait List IEN point to SDEC APPT REQUEST file 409.85. If null, a new entry will be added
  ;  INP(2)  = (text)     DFN Pointer to the PATIENT file 2
  ;  INP(3)  = (date)     Originating Date/time in external date form
  ;  INP(4)  = (text)     Institution name NAME field from the INSTITUTION file
@@ -21,14 +19,14 @@ ARSET(RET,INP) ;Appointment Request Set
  ;  INP(10) = (text)     Provider name  - NAME field in NEW PERSON file200
  ;  INP(11) = (date)     Desired Date of appointment in external format.
  ;  INP(12) = (text)     comment must be 1-60 characters.
- ;  INP(13) = (text)     ENROLLMENT PRIORITY - Valid Values:  GROUP 1-8
- ;  INP(14) = (text)     MULTIPLE APPOINTMENT RTC      NO; YES
+ ;  INP(13) = (text)     ENROLLMENT PRIORITY - Valid Values: GROUP 1-8
+ ;  INP(14) = (text)     MULTIPLE APPOINTMENT RTC  NO; YES
  ;  INP(15) = (integer)  MULT APPT RTC INTERVAL integer between 1-365
  ;  INP(16) = (integer)  MULT APPT NUMBER integer between 1-100
  ;  INP(17) = Patient Contacts separated by ::
  ;  Each :: piece has the following ~~ pieces:
- ;  1) = (date)    DATE ENTERED external date/time
- ;  2) = (text)    PC ENTERED BY USER ID or NAME - Pointer toNEW PERSON file or NAME
+ ;  1) = (date)  DATE ENTERED external date/time
+ ;  2) = (text)  PC ENTERED BY USER ID or NAME - Pointer toNEW PERSON file or NAME
  ;  4) = (optional) ACTION - valid values are: CALLED;MESSAGE LEFT;LETTER
  ;  5) = (optional) PATIENT PHONE Free-Text 4-20 characters
  ;  6) = NOT USED (optional) Comment 1-160 characters
@@ -57,14 +55,13 @@ ARSET(RET,INP) ;Appointment Request Set
  S (ARQUIT,AUDF)=0
  S FNUM=$$FNUM^SDECAR
  S RET="I00020ERRORID^T00030ERRORTEXT"_$C(30)
- ; Use MERGE instead of SET so we can know if values were actually specified or not.
- ; This way, if a value is null, we will delete any previous value, but if it is missing, then we will just ignore it.
  M ARIEN=INP(1)
  S DFN=$G(INP(2))
  I '+DFN S RET=RET_"-1^Invalid Patient ID."_$C(30,31) Q
  I '$D(^DPT(DFN,0)) S RET=RET_"-1^Invalid Patient ID"_$C(30,31) Q
  S AREDT=$P($G(INP(3)),":",1,2)
- S AREDT=$$NETTOFM^SDECDATE(AREDT,$S(AREDT["@":"Y",1:"N")) ;
+ S:AREDT'="" AREDT=$$NETTOFM^SDECDATE(AREDT,$S(AREDT["@":"Y",1:"N")) ;
+ S:AREDT="" AREDT=$$NOW^XLFDT
  I AREDT=-1 S RET=RET_"-1^Invalid Origination date."_$C(30,31) Q
  S ARORIGDT=$P(AREDT,".",1)
  S ARINST=$G(INP(4)) I ARINST'="" D
@@ -103,7 +100,6 @@ ARSET(RET,INP) ;Appointment Request Set
  S ARNLT=+$G(INP(26))
  S ARPRER=$G(INP(27))
  S ARORDN=+$G(INP(28))
- ;CHECK FOR MISSING NLT,PREREQ,ORDER IEN ON MULTIPLE APPT REQUESTS
  I +ARPARENT>0&(+$G(INP(26))=0) D
  .S ARNLT=$P($G(^SDEC(409.85,+ARPARENT,7)),U,2)
  I +ARPARENT>0&($G(INP(27))="") D
@@ -121,7 +117,6 @@ ARSET(RET,INP) ;Appointment Request Set
  . S AUDF=1
  . S FDA=$NA(FDA(FNUM,"+1,"))
  . S @FDA@(.01)=+DFN
- . ;This handles the date/time coming in as "8/27/2014 12:00:00 AM"
  . S:$G(ARORIGDT)'="" @FDA@(1)=ARORIGDT
  . S:$G(ARINST)'="" @FDA@(2)=+ARINST
  . S:$G(ARTYPE)'="" @FDA@(4)=$S(ARTYPE="APPOINTMENT":"APPT",1:ARTYPE) ;
@@ -152,9 +147,10 @@ ARSET(RET,INP) ;Appointment Request Set
  . I $G(ARPARENT) D
  . . S @FDA@(43.1)=$$MRTCHILDSEQUENCE($G(ARPARENT),$G(DFN))
  . S:+ARPARENT @FDA@(43.8)=+ARPARENT
- . S @FDA@(49)=0 ; setting initial appt req PID change allowed field to no. 
+ . ; initial PID change allowed field set to no.
+ . S @FDA@(49)=0
  E  D
- . S ARIEN=ARIEN_"," ; Append the comma for both
+ . S ARIEN=ARIEN_","
  . K ARDATA,ARERR
  . D GETS^DIQ(FNUM,ARIEN,"*","IE","ARDATA","ARERR")
  . I $D(ARERR) M ARMSG=ARERR K FDA Q
@@ -221,8 +217,8 @@ ARSET(RET,INP) ;Appointment Request Set
  . S RET=RET_$C(31)
  Q:$D(ARMSG)
  S ARINSTI=$P($G(^SDEC(409.85,$S(+ARIEN:ARIEN,1:ARRET(1)),0)),U,3)
- I $G(INP(17))'="" D AR23(INP(17),$S(+ARIEN:ARIEN,1:ARRET(1)))   ;patient contacts
- I +ARMAR,$G(INP(20))'="" D AR435(INP(20),$S(+ARIEN:ARIEN,1:ARRET(1)))   ;MRTC CALC PREF DATES
+ I $G(INP(17))'="" D AR23(INP(17),$S(+ARIEN:ARIEN,1:ARRET(1)))
+ I +ARMAR,$G(INP(20))'="" D AR435(INP(20),$S(+ARIEN:ARIEN,1:ARRET(1)))
  I +AUDF D ARAUD($S(+ARIEN:+ARIEN,1:ARRET(1)),ARCLIN,ARSTOP)   ;VS AUDIT
  I $G(INP(24))'="" N SDI F SDI=1:1:$L(INP(24),"|") S SDREC=$P(INP(24),"|",SDI) D AR433($S(+ARIEN:+ARIEN,1:ARRET(1)),SDREC)
  I +ARPARENT D AR433(+ARPARENT,"~"_$S(+ARIEN:+ARIEN,1:ARRET(1)))
@@ -230,7 +226,8 @@ ARSET(RET,INP) ;Appointment Request Set
  E  S RET=RET_+ARIEN_U_$C(30,31)
  Q
  ;
-LASTPIDCHECK(AREQIEN,ARDAPTDT) ; checking to see if the last PID in the PID HISTORY multiple is different from incoming value
+LASTPIDCHECK(AREQIEN,ARDAPTDT) ; check PID HISTORY
+ ; check if last PID in PID HISTORY mult is different from incoming PID
  N LASTPIDIEN,LASTPID
  S LASTPIDIEN=$O(^SDEC(409.85,AREQIEN,10,"A"),-1)
  S LASTPID=$$GET1^DIQ(409.854,LASTPIDIEN_","_AREQIEN_",",1,"I")
@@ -244,7 +241,8 @@ FDAPRER(FDA,ARPRER,ARIEN) ;
  .S PR=$P(ARPRER,DELIM,PC) Q:PR=""
  .S ASEQ=ASEQ+1,FDA(409.8548,"+"_ASEQ_","_ARIEN_",",.01)=PR
  Q
-DELPRER(ARIEN) ;Delete all entries in the PREREQUISITE multiple (#48)
+DELPRER(ARIEN) ; clear mult field #48
+ ;Delete all entries in PREREQUISITE mult (#48)
  N DIK,DA
  Q:$G(ARIEN)'=+$G(ARIEN)  Q:ARIEN'>0
  S DIK="^SDEC(409.85,"_ARIEN_",8,",DA(1)=ARIEN
@@ -258,7 +256,7 @@ GETPRER(RET,ARIEN) ;
  .S PR=$P($G(^SDEC(409.85,ARIEN,8,CC,0)),U,1) Q:PR=""
  .S RET=$S(RET'="":RET_U_PR,1:PR)
  Q
-ARAUD(ARIEN,ARCLIN,ARSTOP,DATE,USER) ;populate VS AUDIT multiple field 45
+ARAUD(ARIEN,ARCLIN,ARSTOP,DATE,USER) ;populate VS AUDIT mult (#45)
  N SDFDA,SDP,SDPN
  S ARIEN=$G(ARIEN) Q:ARIEN=""
  S ARCLIN=$G(ARCLIN)
@@ -274,11 +272,11 @@ ARAUD(ARIEN,ARCLIN,ARSTOP,DATE,USER) ;populate VS AUDIT multiple field 45
  D UPDATE^DIE("","SDFDA")
  Q
 AR433(ARIEN,SDEC) ;set MULT APPTS MADE
- ;  ARIEN  = (required) pointer to SDEC APPT REQUEST file 409.85
- ;  SDEC   = (required) child pointers to SDEC APPOINTMENT and SDEC APPTREQUEST file separated by pipe
+ ;  ARIEN  = (required) pointer to 409.85
+ ;  SDEC   = (required) child pointers to 409.84 and 409.85 separated by pipe
  ;  each pipe piece contains the following ~ pieces:
- ;  1. Appointment Id pointer to SDEC APPOINTMENT file 409.84
- ;  2. Request Id pointer to SDEC APPT REQUEST file 409.85
+ ;  1. Appointment Id pointer to 409.84
+ ;  2. Request Id pointer to 409.85
  N SDAPP,SDFDA,SDI,SDIEN
  S ARIEN=$G(ARIEN)
  Q:'$D(^SDEC(409.85,ARIEN,0))
@@ -295,32 +293,42 @@ AR433(ARIEN,SDEC) ;set MULT APPTS MADE
  .D:$D(SDFDA) UPDATE^DIE("","SDFDA")
  Q
 AR433D(SDEC) ;delete MULT APPTS MADE
- ;SDEC   = (required) pointers to SDEC APPOINTMENT file 409.84 separated by pipe
- N ARIEN,DFN,DIEN,SDAPP,SDFDA,SDI,SDJ,SDTYP
+ ;SDEC   = (required) pointers to 409.84 separated by pipe
+ N ARIEN,DFN,DIEN,SDAPP,SDFDA,SDI,SDJ,SDTYP,REOPEN,PARENREQ,PARSTAT
  S SDEC=$G(SDEC)
  F SDI=1:1:$L(SDEC,"|") D
  .S SDAPP=$P(SDEC,"|",SDI)
  .Q:'$D(^SDEC(409.84,SDAPP,0))
+ .S REOPEN=$$GET1^DIQ(409.2,$$GET1^DIQ(409.84,SDAPP,.122,"I"),5,"I")
  .S DFN=$$GET1^DIQ(409.84,SDAPP_",",.05,"I")
  .S SDTYP=$$GET1^DIQ(409.84,SDAPP_",",.22,"I"),DIEN=$P(SDTYP,";",1)
  .I $P(SDTYP,";",2)="SDEC(409.85," S ARIEN="" F  S ARIEN=$O(^SDEC(409.85,"B",DFN,ARIEN)) Q:ARIEN=""  D
  ..S SDJ="" F  S SDJ=$O(^SDEC(409.85,ARIEN,2,"B",DIEN,SDJ)) Q:SDJ=""  D
- ...S SDFDA(409.852,SDJ_","_ARIEN_",",.01)="@"
- ...D UPDATE^DIE("","SDFDA")
+ ...S SDFDA(409.852,SDJ_","_ARIEN_",",.02)="@"
+ ...D UPDATE^DIE("","SDFDA") K SDFDA
+ ...S PARENREQ=$$GET1^DIQ(409.85,DIEN,43.8,"I")
+ ...S PARSTAT=$$GET1^DIQ(409.85,PARENREQ,23,"I")
+ ...I PARSTAT="C",REOPEN D
+ ....S SDFDA(409.85,PARENREQ_",",19)=""
+ ....S SDFDA(409.85,PARENREQ_",",20)=""
+ ....S SDFDA(409.85,PARENREQ_",",21)=""
+ ....S SDFDA(409.85,PARENREQ_",",23)="O"
+ ....D FILE^DIE("","SDFDA","PARENTERR") K SDFDA
  Q
-AR438(ARIEN,SDPARENT,SDEC) ;set PARENT REQUEST field 43.8; set as child in MULTAPPTS MADE in parent request
+ ;
+AR438(ARIEN,SDPARENT,SDEC) ;set PARENT REQUEST (#43.8)
  N SDFDA
  I $G(SDPARENT)'="" S SDFDA(409.85,ARIEN_",",43.8)=SDPARENT D UPDATE^DIE("","SDFDA")
  Q
 AR435(SDDT,ARIEN) ;
- ; ARIEN - Requested date ID pointer to SDEC REQUESTED APPT file 409.85
+ ; ARIEN - Requested date ID pointer to 409.85
  ; SDDT  - MRTC calculated preferred dates separated by pipe |:
  ; Each date can be in external format with no time.
  N SDI,SDJ,SDFDA,X,Y,%DT
  F SDI=1:1:$L(SDDT,"|") D
  .S %DT="" S X=$P($P(SDDT,"|",SDI),"@",1) D ^%DT S SDJ=Y
  .Q:SDJ=-1
- .Q:$O(^SDEC(409.85,ARIEN,5,"B",SDJ,0))   ;don't add duplicates
+ .Q:$O(^SDEC(409.85,ARIEN,5,"B",SDJ,0))
  .S SDFDA(409.851,"+1,"_ARIEN_",",.01)=SDJ
  .D UPDATE^DIE("","SDFDA")
  Q
@@ -346,25 +354,25 @@ AR23(INP17,ARI) ;Patient Contacts
  .S FDA=$NA(FDA(409.8544,ARIENS1))
  .I ARASDH'="" D
  ..D GETS^DIQ(409.8544,ARIENS1,"*","IE","ARDATA1","ARERR1")
- ..I $P(STR17,"~~",1)'="" S @FDA@(.01)=ARDT ;DATE ENTERED external date/time
- ..I $P(STR17,"~~",2)'="" S ARUSR=$P(STR17,"~~",2) S @FDA@(2)=$S(ARUSR="":"@",+ARUSR:$P($G(^VA(200,ARUSR,0)),U,1),1:ARUSER) ;PC ENTERED BY USER
- ..I $P(STR17,"~~",4)'="" S @FDA@(3)=$P(STR17,"~~",4) ;ACTION  C=Called; M=Message Left; L=LETTER
- ..I $P(STR17,"~~",5)'="" S @FDA@(4)=$P(STR17,"~~",5) ;PATIENT PHONE
+ ..I $P(STR17,"~~",1)'="" S @FDA@(.01)=ARDT
+ ..I $P(STR17,"~~",2)'="" S ARUSR=$P(STR17,"~~",2) S @FDA@(2)=$S(ARUSR="":"@",+ARUSR:$P($G(^VA(200,ARUSR,0)),U,1),1:ARUSER)
+ ..I $P(STR17,"~~",4)'="" S @FDA@(3)=$P(STR17,"~~",4)
+ ..I $P(STR17,"~~",5)'="" S @FDA@(4)=$P(STR17,"~~",5)
  .I ARASDH="" D
- ..I $P(STR17,"~~",1)'="" S @FDA@(.01)=ARDT ;DATE ENTERED external date/time
- ..I $P(STR17,"~~",2)'="" S ARUSR=$P(STR17,"~~",2) S @FDA@(2)=$S(ARUSR="":"@",+ARUSR:$P($G(^VA(200,ARUSR,0)),U,1),1:ARUSR) ;PC ENTERED BY USER
- ..I $P(STR17,"~~",4)'="" S @FDA@(3)=$P(STR17,"~~",4) ;ACTION  C=Called; M=Message Left; L=LETTER
- ..I $P(STR17,"~~",5)'="" S @FDA@(4)=$P(STR17,"~~",5) ;PATIENT PHONE
+ ..I $P(STR17,"~~",1)'="" S @FDA@(.01)=ARDT
+ ..I $P(STR17,"~~",2)'="" S ARUSR=$P(STR17,"~~",2) S @FDA@(2)=$S(ARUSR="":"@",+ARUSR:$P($G(^VA(200,ARUSR,0)),U,1),1:ARUSR)
+ ..I $P(STR17,"~~",4)'="" S @FDA@(3)=$P(STR17,"~~",4)
+ ..I $P(STR17,"~~",5)'="" S @FDA@(4)=$P(STR17,"~~",5)
  .D:$D(@FDA) UPDATE^DIE("E","FDA","ARRET1","ARMSG1")
  Q
-UPDATE(ARIEN,APPDT,SDCL,SVCP,SVCPR,NOTE,SDAPPTYP,EAS) ;update REQ APPT REQUEST at appointment add
- ;  ARIEN = Appt Request pointer to SD WAIT LIST file 409.85
+UPDATE(ARIEN,APPDT,SDCL,SVCP,SVCPR,NOTE,SDAPPTYP,EAS) ;update 409.85 with appt info
+ ;  ARIEN = Appt Request pointer to 409.85
  ;  APPDT = Appointment date/time (Scheduled Date of appt) in fm format
- ;  SDCL  = Clinic ID pointer to HOSPITAL LOCATION file 44
- ;  SVCP  = Service Connected Percentage numeric 0-100
+ ;  SDCL  = Clinic ID pointer to file 44
+ ;  SVCP  = Service Connected % numeric 0-100
  ;  SVCPR = Service Connected Priority  0:NO  1:YES
  ;  NOTE  = Comment only 1st 60 characters are used
- ;  SDAPPTYP = (optional) Appointment type ID pointer to APPOINTMENT TYPE file 409.1
+ ;  SDAPPTYP = (optional) Appointment type ID pointer to file 409.1
  ;  EAS = (optional) Enterprise Appointment Scheduling Tracking Number associated to an appointment.
  ;all input must be verified by calling routine
  N SDDIV,SDFDA,SDSN,SDMSG
@@ -385,7 +393,8 @@ UPDATE(ARIEN,APPDT,SDCL,SVCP,SVCPR,NOTE,SDAPPTYP,EAS) ;update REQ APPT REQUEST a
  S:$G(EAS)'="" SDFDA(409.85,ARIEN_",",100)=EAS
  D UPDATE^DIE("","SDFDA","","SDMSG")
  Q
-MRTCHILDSEQUENCE(PARENTREQUESTIEN,DFN) ; return next sequence number for child mrtc
+MRTCHILDSEQUENCE(PARENTREQUESTIEN,DFN) ; next child
+ ; return next sequence number for child mrtc
  N COUNT,REQUESTIEN,IENS,NEXTSEQUENCENUM,CHILD,LASTCHILD
  S REQUESTIEN=0,COUNT=0,LASTCHILD=""
  F  S REQUESTIEN=$O(^SDEC(409.85,"B",DFN,REQUESTIEN)) Q:'REQUESTIEN  D

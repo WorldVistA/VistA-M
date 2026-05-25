@@ -1,6 +1,6 @@
 MAGVIM06 ;WOIFO/DAC/MAT/NST/BT - Utilities for RPC calls for DICOM file processing ; 23 Oct 2012 10:30 AM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;IMAGING;**118,138,375**;Mar 19, 2002;Build 3
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -178,7 +178,8 @@ PROCMODS(MAGRAOIEN) ;
  . N I,MODCOUNT S MODCOUNT=+@MODDATA@(0)
  . F I=1:1:MODCOUNT D
  . . N MODIEN S MODIEN=@MODDATA@(2,I)
- . . N THIS S THIS=@MODDATA@("ID",MODIEN,.01,"E") ;_"|"_@MODDATA@("ID",MODIEN,.01,"I")
+ . . ;N THIS S THIS=@MODDATA@("ID",MODIEN,.01,"E") ;_"|"_@MODDATA@("ID",MODIEN,.01,"I") P375 - when modifier deleted from order, missing ien causes error
+ . . N THIS S THIS=@MODDATA@("ID",I,.01,"E")
  . . I $L(MODIFIERS) S MODIFIERS=MODIFIERS_"~"_THIS Q
  . . S MODIFIERS=THIS
  . . Q

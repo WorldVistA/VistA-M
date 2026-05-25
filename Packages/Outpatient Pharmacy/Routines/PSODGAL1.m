@@ -1,5 +1,5 @@
-PSODGAL1 ;BIR/LC,SAB - enhanced DRUG ALLERGY REACTION CHECKING ;12/09/07  02:22
- ;;7.0;OUTPATIENT PHARMACY;**251,401,390,424,429,411,500**;DEC 1997;Build 9
+PSODGAL1 ;BIR/LC,SAB - enhanced DRUG ALLERGY REACTION CHECKING ;Dec 04, 2024@13:50
+ ;;7.0;OUTPATIENT PHARMACY;**251,401,390,424,429,411,500,778**;DEC 1997;Build 8
  ;External reference to $$ORCHK2^GMRAOR supported by DBIA 2378
  ;External reference to ^PS(50.605 supported by DBIA 696
  ;External reference to ^XUSEC("PSORPH" supported by DBIA 10076
@@ -213,7 +213,8 @@ CRI ;input electronic sig
  .I $G(PSGCOPY)=1!($G(PSIVCOPY)=1) W !,"Order not copied!",!
  .I $G(PSJREN)=1 W !,"No changes made to this order!",!
  .S DIR("A")="Press Return to continue",DIR(0)="E",DIR("?")="Press Return to continue" D ^DIR K DIR W !
- S PSORX("INTERVENE")=1
+ ;PSO*7.0*778 Commented out line below
+ ;S PSORX("INTERVENE")=1
  Q
 DIR ;
  S DIR("A")="Press Return to continue",DIR(0)="E",DIR("?")="Press Return to continue"

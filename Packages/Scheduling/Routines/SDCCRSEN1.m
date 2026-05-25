@@ -1,5 +1,5 @@
 SDCCRSEN1 ;CCRA/LB,PB - Appointment retrieval API;APR 4, 2019
- ;;5.3;Scheduling;**822,830,841,865,882**;APR 4, 2019;Build 55
+ ;;5.3;Scheduling;**822,830,841,865,882,912,936**;APR 4, 2019;Build 65
  Q
  ; Documented API's and Integration Agreements
  ; ----------------------------------------------
@@ -12,6 +12,9 @@ SDCCRSEN1 ;CCRA/LB,PB - Appointment retrieval API;APR 4, 2019
  ; in the VistA error trap.
  ; Patch 865 changes the text in the NAK messages to be more meaningful for the end user
  ; Patch 882 removes the Q: command on line 41 and corrects the global reference on line 54 and 55 to change it from ^SD to ^SC
+ ; Patch 912 change to add a new comment to the consult
+ ; Patch 936 fixes an issue with address formatting
+ ;
 MAKE ;MAKE APPOINTMENT: "S12"="SCHEDULE"
  S SDECLEN=$P(^SC(SDCL,"SL"),"^",1),SDECAPTID=0
  S:$G(DFN)>0 SDDFN=DFN
@@ -27,18 +30,20 @@ MAKE ;MAKE APPOINTMENT: "S12"="SCHEDULE"
  .S ABORT="1^"_NAKMSG
  .D MESSAGE^SDCCRCOR(MID,.ABORT)  ; Q
  Q:$G(QUIT)=1
- S SDECNOTE="HSRM, CONSULT "_$G(CONID)_" PID="_$G(CID)_" PER CONSULT, PROVIDER "_$G(PROV)
- D:QUIT=0 APPADD^SDEC07(.SDECY,SDECSTART,SDECEND,SDDFN,SDECRES,SDECLEN,$G(SDECNOTE),,,,,,,,,SDAPTYP,,,SDCL,,,,,1,,"") ;ADD NEW APPOINTMENT
+ ;S SDECNOTE="HSRM, CONSULT "_$G(CONID)_" PID="_$G(CID)_" PER CONSULT, PROVIDER "_$G(PROV)
+ S SDECNOTE=""
+ ;D:QUIT=0 APPADD^SDEC07(.SDECY,SDECSTART,SDECEND,SDDFN,SDECRES,SDECLEN,$G(SDECNOTE),,,,,,,,,SDAPTYP,,,SDCL,,,,,1,,"") ;ADD NEW APPOINTMENT
+ D:QUIT=0 APPADD^SDEC07(.SDECY,SDECSTART,SDECEND,SDDFN,SDECRES,SDECLEN,,,,,,,,,,SDAPTYP,,,SDCL,,,,,1,,"") ;ADD NEW APPOINTMENT
  ;735 - PB Check to see if the appointment was made.
  ;822 - PB make sure the CONS node in the appt multiple of file 44 has the consult number, if it doesn't hard code it
  ;Cancel remarks in SC $P($P(^SC(DA(1),"S",DA,1,2,0),"^",4)," ",3),^SC(DA(1),"S",DA,"CONS")
  ;Cancel remarks in in DPT $P(^DPT(DA(1),"S",DA,"R")," ",3)
- I +$G(^TMP("SDEC07",$J,2))>0 Q 
+ I +$G(^TMP("SDEC07",$J,2))>0 D ADDCOMMENT^SDCCRSEN2(SDECSTART,PROV,PROV1,PROVIDERADDRESS,PROVIDERPHONE) Q  ;May 7, 2025 - PB - change for patch 912 to add a new comment to the consult
  I $P($G(^TMP("SDEC07",$J,3)),"^",2)'="" D
  .N ERM,QUIT S ERM=$P($G(^TMP("SDEC07",$J,3)),"^",2) S:$G(ERM)["SDEC07 Error:" ERM=$P(ERM,":",2)
  .S ERM=$TR(ERM,$C(30),".")  ;S ERM=$E(ERM,1,$L(ERM)-1)_"."
  .S ABORT="1^"_$G(ERM) D
- .I $P($G(^TMP("SDEC07",$J,3)),"^",2)["PENDING or ACTIVE" S QUIT=$$MSGTXT("Consult status is not PENDING or ACTIVE.") Q
+ .;I $P($G(^TMP("SDEC07",$J,3)),"^",2)["PENDING or ACTIVE" S QUIT=$$MSGTXT("Consult status is not PENDING or ACTIVE.") Q
  .;Q:$G(QUIT)'=""  ;May 21, 2024 - PB - Patch 882 remove this quit it is not needed.
  .I $P($G(^TMP("SDEC07",$J,3)),"^",2)'="" S QUIT=$$MSGTXT($G(ERM))
  .;I $P($G(^TMP("SDEC07",$J,3)),"^",2)["SDEC07 Error:" S QUIT=$$MSGTXT($G(ERM))
@@ -88,9 +93,11 @@ CANCEL ;CANCEL APPOINTMENT: "S15"="CANCEL"
  Q:+$G(QUIT)=1
  S:$G(MSGARY("CANCEL CODE"))="" MSGARY("CANCEL CODE")="C"
  S:$G(MSGARY("CANCEL REASON"))="" MSGARY("CANCEL REASON")=11
- D:QUIT=0 APPDEL^SDEC08(.SDECY,SDECAPTID,$G(MSGARY("CANCEL CODE")),$G(MSGARY("CANCEL REASON")),$G(MSGARY("COMMENT")),$G(SDECDATE),$G(MSGARY("USER"))) ;CANCEL APPOINTMENT
+ S MSGARY("COMMENT")=""
+ ;D:QUIT=0 APPDEL^SDEC08(.SDECY,SDECAPTID,$G(MSGARY("CANCEL CODE")),$G(MSGARY("CANCEL REASON")),$G(MSGARY("COMMENT")),$G(SDECDATE),$G(MSGARY("USER"))) ;CANCEL APPOINTMENT
+ D:QUIT=0 APPDEL^SDEC08(.SDECY,SDECAPTID,$G(MSGARY("CANCEL CODE")),$G(MSGARY("CANCEL REASON")),,$G(SDECDATE),$G(MSGARY("USER"))) ;CANCEL APPOINTMENT
  ;735 - PB Check to see if the appointment was canceled.
- I $G(^TMP("SDEC08",$J,"APPDEL",2))=$C(30) Q
+ I $G(^TMP("SDEC08",$J,"APPDEL",2))=$C(30) D ADDCANCOMMENT^SDCCRSEN2(SDECSTART,PROV,PROV1,PROVIDERADDRESS,PROVIDERPHONE) Q  ;May 7, 2025 - PB - change for patch 912 to add a new comment to the consult
  I $G(^TMP("SDEC08",$J,"APPDEL",2))'="" S ABORT="1^"_$G(^TMP("SDEC08",$J,"APPDEL",2)) D
  .D MESSAGE^SDCCRCOR(MID,.ABORT)
  .D ANAK^SDCCRCOR($P($G(ABORT),"^",2),$G(USERMAIL),$G(ICN),$G(DFN),$G(APTTM),$G(CONID))
@@ -141,7 +148,7 @@ NOSHOW ;NOSHOW APPOINTMENT: "S26"="NOSHOW"
  .N SDRES S SDRES=$O(^SDEC(409.831,"B",$G(SRVNAMEX),"")) S:$G(SDRES)>0 SDECRES=$G(SDRES)
  D:QUIT=0 NOSHOW^SDEC31(.SDECY,SDECAPTID,1,$G(MSGARY("USER")),$G(SDECDATE))
  ;735 - PB Check to see if the appointment was made.
- I +$G(^TMP("SDEC",$J,2))>0 Q
+ I +$G(^TMP("SDEC",$J,2))>0 D NOSHOWCOMMENT^SDCCRSEN2(SDECSTART,PROV,PROV1,PROVIDERADDRESS,PROVIDERPHONE)  ;May 7, 2025 - PB - change for patch 912 to add a new comment to the consult
  I +$G(^TMP("SDEC",$J,2))=0 S ABORT="1^"_$P($G(^TMP("SDEC",$J,2)),"^",2) D
  .D MESSAGE^SDCCRCOR(MID,.ABORT)
  .D ANAK^SDCCRCOR($P($G(ABORT),"^",2),$G(USERMAIL),$G(ICN),$G(DFN),$G(APTTM),$G(CONID))
@@ -168,4 +175,5 @@ MSGTXT(ERTXT,CAN) ;
  S:$G(CAN)=1 RTN="The appointment cancellation at Community Care Provider, "_$G(PROVIDER)_" on "_$G(AMPM)_" was rejected and not written to VistA. "_$G(ERTXT)
  S (NAKMSG,ERR1)=RTN,ABORT="1^"_ERR1,DUZ=.5,QUIT=1
  I $G(NAKMSG)'="" D ANAK^SDCCRCOR($G(NAKMSG),$G(USERMAIL),$G(ICN),$G(DFN),$G(APTTM),$G(CONID)),MESSAGE^SDCCRCOR(MID,.ABORT)
+ K RTN
  Q QUIT

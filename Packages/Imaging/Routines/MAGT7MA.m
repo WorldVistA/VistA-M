@@ -1,6 +1,6 @@
 MAGT7MA ;WOIFO/MLH/PMK/DAC - Telepathology - create HL7 message to DPS ;02 Jan 2018 12:58 PM
- ;;3.0;IMAGING;**138,173,166,183**;Mar 19, 2002;Build 11;Sep 03, 2013
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+ ;;3.0;IMAGING;**138,173,166,183,375**;Mar 19, 2002;Build 3
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -214,6 +214,7 @@ GETFILE(LRSS) ; get FILE information
  . . Q
  . I '$D(FILE("PROCEDURE NAME")) D
  . . S ERRSTAT="-53`No test found in LAB(60) file for LRSS="""_LRSS_""""
+ . . S (FILE("PROCEDURE NAME"),FILE("PROCEDURE IEN"))="" ; P375 moved from P333 PMK 06/14/2022
  . . Q
  . Q
  ;

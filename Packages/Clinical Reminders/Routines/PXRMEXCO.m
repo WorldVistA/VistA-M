@@ -1,5 +1,5 @@
-PXRMEXCO ; SLC/PKR/PJH - Exchange File component order. ;04/18/2018
- ;;2.0;CLINICAL REMINDERS;**12,47,45**;Feb 04, 2005;Build 566
+PXRMEXCO ; SLC/PKR/PJH - Exchange File component order. ;Jun 10, 2024@11:50:36
+ ;;2.0;CLINICAL REMINDERS;**12,47,45,87**;Feb 04, 2005;Build 35
  ;======================================================
 CLIST(IEN,CLOK) ;Build the list of components for the repository
  ;entry IEN.
@@ -118,7 +118,7 @@ CLIST(IEN,CLOK) ;Build the list of components for the repository
 CORDER(UCOM,NUCMPNT,COMORDR) ;Build the component order for
  ;display and install.
  N DOA,IND,FILENUM,RANK
- D PACKORD^PXRMEXPD(.RANK)
+ D PACKORD^PXRMEXFILELIST(.RANK)
  D ORDER^PXRMEXPD(.UCOM,.RANK,.DOA)
  S (IND,NUCMPNT)=0
  F  S IND=+$O(DOA(IND))  Q:IND=0  D

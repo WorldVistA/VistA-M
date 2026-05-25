@@ -1,5 +1,5 @@
-RAHLO1 ;HIRMFO/GJC/BNT-File rpt (data from bridge program) ; Jan 06, 2020@15:12:27
- ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94,104,47,157,162**;Mar 16, 1998;Build 2
+RAHLO1 ;HIRMFO/GJC/BNT - File rpt (data from bridge program) ; Nov 13, 2024@10:39:22
+ ;;5.0;Radiology/Nuclear Medicine;**4,5,12,17,21,27,48,55,66,87,84,94,104,47,157,162,220**;Mar 16, 1998;Build 3
  ; 12/15/2009 BAY/KAM RA*5*104 Rem Call 359702 On-line Verification issue
  ; 11/15/2007 BAY/KAM RA*5*87 Rem Call 216332 Correct UNDEF on null dx code
  ; 09/07/2005 108405 - KAM/BAY Allow Radiology to accept dx codes from Talk Technology
@@ -192,7 +192,7 @@ UPACT ;Update the Activity Log (74.01) w/DBS call
  .Q
  ;
  ;p162 dropped the check for 'Kurzweil'
- D:'$D(RAERR) GENACK^RAHLTCPB
+ I '$D(RAERR),('$D(RAOPT("REPROC"))) D GENACK^RAHLTCPB ;p220/KLM - Supress ACK on reprocess
  ;
 PACS ;If there are subscribers to RA RPT xxx events broadcast ORU mesages to those subscribers
  ;via TASK^RAHLO4. If VOICE DICTATION AUTO-PRINT (#26) field is set to 'Y' print the report to

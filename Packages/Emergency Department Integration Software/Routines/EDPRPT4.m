@@ -1,5 +1,5 @@
-EDPRPT4 ;SLC/MKB - Delay Summary Report ;4/26/13 12:27pm
- ;;2.0;EMERGENCY DEPARTMENT;**6**;May 2, 2012;Build 200
+EDPRPT4 ;SLC/MKB - Delay Summary Report ; 1/13/25 12:41pm
+ ;;2.0;EMERGENCY DEPARTMENT;**6,31**;Feb 24, 2012;Build 4
  ;
 SUM(BEG,END,CSV) ; Get Delay Report for EDPSITE by date range
  ;   CNT = counters
@@ -29,11 +29,12 @@ D2 . ; VA admissions only
  .. S MIN("VA")=MIN("VA")+ELAPSE
  .. S MIN("VADEC")=MIN("VADEC")+ADMDEC
  .. S MIN("VADEL")=MIN("VADEL")+ADMDEL
- .. S:ADMDEL>359 CNT("VADEL6")=CNT("VADEL6")+1
+ .. S:ADMDEL>149 CNT("VADEL6")=CNT("VADEL6")+1
 D3 . ; elapsed visit time >=6 hrs
  . S:ELAPSE>1380 CNT("23+")=CNT("23+")+1
- . I ELAPSE>359 D
+ . I ELAPSE>239 D
  .. S CNT("6+")=CNT("6+")+1
+ . I ELAPSE>359 D
  .. S:VADM CNT("VA6")=CNT("VA6")+1
  . S:DEL CNT(DEL,ACU)=+$G(CNT(DEL,ACU))+1,CNT(DEL)=+$G(CNT(DEL))+1
  ;

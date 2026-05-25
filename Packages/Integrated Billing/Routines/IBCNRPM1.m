@@ -1,5 +1,5 @@
 IBCNRPM1 ;DAOU/CMW - Match Multiple Group Plans to a Pharmacy Plan ;10-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251,516,617,711**;21-MAR-94;Build 18
+ ;;2.0;INTEGRATED BILLING;**251,516,617,711,812**;21-MAR-94;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -61,12 +61,13 @@ GIPF ;  screen for valid GIPF
  ... ;
  ... S MATCH=0
  ... I $$GET1^DIQ(355.3,GPIEN,6.01)'="" S MATCH=1
+ ... I MATCH=0,GPMDT'="" S MATCH=.5
  ... ;
  ... ;set array = pharm plan and plan type and match date and match user
  ... S ^TMP("IBCNR",$J,"GP",MATCH,GPNAM,GPNUM,GPIEN)=$P($G(GP6),U)_"^"_$P($G(GP0),U,9)_"^"_GPMDT_"^"_GPMU
  ... ;S ^TMP("IBCNR",$J,"GP",MATCH)=$G(^TMP("IBCNR",$J,"GP",MATCH))+1
  ... ;
- F MATCH=0,1 D
+ F MATCH=0,.5,1 D
  . S ^TMP("IBCNR",$J,"GP",MATCH)=0
  . S (GPNAM,GPNUM,GPIEN)=""
  . F  S GPNAM=$O(^TMP("IBCNR",$J,"GP",MATCH,GPNAM)) Q:GPNAM=""  D

@@ -1,9 +1,10 @@
 RCCPCPS ;WASH-ISC@ALTOONA,PA/NYB - Build Patient Statement File ;12/19/96  4:14 PM
-V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265,301,348,397,401**;Mar 20,1995;Build 28
+V ;;4.5;Accounts Receivable;**34,70,80,48,104,116,149,170,181,190,223,237,219,265,301,348,397,401,460**;Mar 20,1995;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*348 Set 'BEG' lookup to handle last statement event
  ;             whether exists or not
+ ;PRCA*4.5*460 Set 'BEGDC' to control discrepancy check date
  ;
 EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SVINT,SVOTH,SITE,TXT,VAR,X,%
  N RCINFULL,RCINPART,STATLIM S COMM=0
@@ -17,7 +18,7 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  S LDT1=$$FPS^RCAMFN01(DT,-1),RCDATE=DT
  S (CNT,DEB)=0,PRN=1
  F  S DEB=$O(^RCD(340,"AB","DPT(",DEB)) Q:DEB=""  D
- .   N AMT,BBAL,BEG,BN,CAT,DESC,ETY,FC,ND,PAT,PBAL,PC
+ .   N AMT,BBAL,BEG,BEGDC,BN,CAT,DESC,ETY,FC,ND,PAT,PBAL,PC  ;PRC*4.5*460
  .   N PDAT,PEND,ST,SVINT,SVADM,SVOTH,ADDR
  .   I $L(+$$SSN^RCFN01(DEB))<5 Q
  .   ;Check for Emergency Response Indicator (ERI) Flag.
@@ -28,13 +29,13 @@ EN N CCPC,CNT,DAT,DEB,DIK,END,INADFL,LDT1,LDT3,PCC,PRN,RCDATE,RCT,SVADM,SVAMT,SV
  .   S (SVADM,SVAMT,SVINT,SVOTH)=0
  .   N REF,SBAL,SDT,TBAL,TN,TTY,X,Y
  .   K ^TMP("PRCAGT",$J)
- .   S BEG=+$$LST^RCFN01(DEB,2,1)
+ .   S BEG=+$$LST^RCFN01(DEB,2,1),BEGDC=+$$LST^RCFN01(DEB,2)   ;PRC*4.5*460
  .   S LDT3=$S(BEG>0:$$FPS^RCAMFN01($P(BEG,"."),-3),1:0)
  .   I $P(BEG,".")'<$P(RCDATE,".") Q
  .   D NOW^%DTC S END=%
  .   I BEG<1 S PDAT="",BEG=0,PBAL=0
  .   I BEG S PDAT=BEG,BEG=9999999.999999-BEG,PBAL=0 D PBAL^PRCAGU(DEB,.BEG,.PBAL,1) ;get prev bal ; PRCA*4.5*348 set statement flag
- .   D EN^PRCAGT(DEB,BEG,.END)
+ .   D EN^PRCAGT(DEB,BEGDC,.END)   ;PRC*4.5*460
  .   S TBAL=0 D TBAL^PRCAGT(DEB,.TBAL) ;get trans bal
  .   S BBAL=0 D BBAL^PRCAGU(DEB,.BBAL) ;get bill bal
  .   I CSBB,CSBB'<BBAL Q  ; entire account has been referred to CS
@@ -218,7 +219,7 @@ RCDESC ;Remove "IN PART" & "IN FULL" from the the bill description
  I RCDESC(1)[RCINPART S RCDESC(1)=$P(RCDESC(1),RCINPART)_$P(RCDESC(1),RCINPART,2)
  Q
  ;
-RCCPOSST ; ;PRCA*4.5*401 Sends external email to Mail group to notify there are statements to print
+RCCPOSST ;PRCA*4.5*401 Sends external email to Mail group to notify there are statements to print
  N RCDEBIEN,CNT,LINE,XMDUZ,XMTEXT,XMY,XMSUB
  S (RCDEBIEN,CNT)=0
  K ^TMP($J,"RCCPSTMTMSG")
@@ -234,7 +235,7 @@ RCCPOSST ; ;PRCA*4.5*401 Sends external email to Mail group to notify there are 
  D ^XMD
  Q
  ;
-FILEOSFG(RCDEBTDA,RCFT) ; ;PRCA*4.5*401 Set/Clear LOCAL PRINT flag, in file 340, to:
+FILEOSFG(RCDEBTDA,RCFT) ;PRCA*4.5*401 Set/Clear LOCAL PRINT flag, in file 340, to:
  ;  Yes, i.e. 1 if RCFT="S"
  ;  No, i.e. 0 if RCFT="C"
  ; RCDEBTDA = File 340 IEN
@@ -254,7 +255,7 @@ FILEOSFG(RCDEBTDA,RCFT) ; ;PRCA*4.5*401 Set/Clear LOCAL PRINT flag, in file 340,
  K DIE,DA,DR
  Q
  ;
-CLRSTMTQ ;;PRCA*4.5*401 Clear Oversize statement queue
+CLRSTMTQ ;PRCA*4.5*401 Clear Oversize statement queue
  N RCIEN,RCFT
  N DIR,X,Y,DA,DTOUT,DUOUT,DIRUT,DIROUT
  S RCFT="C",RCIEN=""
@@ -273,7 +274,7 @@ CLRSTMTQ ;;PRCA*4.5*401 Clear Oversize statement queue
  W !!,"Local Statement Queue has been cleared" H 2
  Q
  ;
-FILESTAT(DEB); ;PRCA*4.5*401 File
+FILESTAT(DEB) ;PRCA*4.5*401 File
  ; INPUT: DEB - Debtor IEN (file 340)
  ;
  ;VBLLST format - Principal Balance / Interest / Admin Fees / Court Costs / Marshal Fees / Date statement printed

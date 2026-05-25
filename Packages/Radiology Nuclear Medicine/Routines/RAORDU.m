@@ -1,5 +1,5 @@
-RAORDU ;HISC/CAH - AISC/RMO-Update Request Status ; Nov 08, 2022@12:44:16
- ;;5.0;Radiology/Nuclear Medicine;**18,41,57,133,192,196**;Mar 16, 1998;Build 1
+RAORDU ;HISC/CAH - AISC/RMO-Update Request Status ; Feb 14, 2025@07:59:30
+ ;;5.0;Radiology/Nuclear Medicine;**18,41,57,133,192,196,223**;Mar 16, 1998;Build 4
  ; last modif JULY 5,00
  ;The variables RAOIFN and RAOSTS must be defined. The variable
  ;RAOREA is set when Canceling and Holding a request. The
@@ -20,7 +20,7 @@ RAORDU ;HISC/CAH - AISC/RMO-Update Request Status ; Nov 08, 2022@12:44:16
  K N I $D(RAOREA)>1 S N=$S($D(RAOIFN):RAOIFN,$D(ORPK):ORPK,1:1) I '$D(RAOREA(N)) S N=$O(RAOREA(0))
  S DA=RAOIFN,DIE="^RAO(75.1,",DR="10///"_$S($D(RAOREA)&(RAOSTS=1!(RAOSTS=3)):"/^S X="_$S($D(N):RAOREA(N),1:RAOREA),'$D(^RAO(75.1,RAOIFN,0)):"",$P(^(0),"^",10):"@",1:"")_";I 1;5///^S X="_RAOSTS
  I $D(RAVSTFLG),$D(RAVLEDTI) S DR=DR_";17///^S X="_(9999999.9999-RAVLEDTI)
- I $D(RAOPT("CCR")),RAOSTS=3 S DR=DR_";201///1" ;p196 set referral flag
+ I $D(RAOPT("CCR")),RAOSTS=3 S DR=DR_";201///1;202///"_$G(RAUCID)_";203///^S X=""NOW""" ;p196 set referral flag/p223 add consult ID and referral DT
  S DR=DR_";18///^S X=""NOW"";23///"_$S($D(RAOSCH)&(RAOSTS=8):"^S X="_RAOSCH,'$D(^RAO(75.1,RAOIFN,0)):"",$P(^(0),"^",23):"@",1:"")
  S RADIV=$$SITE(),RADIV=$S($D(^RA(79,RADIV,0)):RADIV,1:$O(^RA(79,0)))
  I $D(^RA(79,+RADIV,.1)),$P(^(.1),"^",19)="y" D SETLOG

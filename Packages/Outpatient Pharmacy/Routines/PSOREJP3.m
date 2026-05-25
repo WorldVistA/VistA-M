@@ -1,10 +1,11 @@
 PSOREJP3 ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448,482,512,528,544**;DEC 1997;Build 19
- ;Reference to GETDAT^BPSBUTL supported by IA 4719
- ;Reference to COM^BPSSCRU3 supported by IA 6214
- ;Reference to IEN59^BPSOSRX supported by IA 4412
- ;Reference to GETPL59^BPSPRRX5 supported by IA 6939
- ;Reference to GETRTP59^BPSPRRX5 supported by IA 6939
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427,448,482,512,528,544,766,767**;DEC 1997;Build 11
+ ; Reference to GETDAT^BPSBUTL in ICR #4719
+ ; Reference to COM^BPSSCRU3 in ICR #6214
+ ; Reference to IEN59^BPSOSRX in ICR #4412
+ ; Reference to GETPL59^BPSPRRX5 in ICR #6939
+ ; Reference to GETRTP59^BPSPRRX5 in ICR #6939
+ ; Reference to ^XUSEC( in ICR #10076
  ;
 COM ; Builds the Comments section in the Reject Information Screen.
  ; The following variables are assumed to exist:
@@ -14,12 +15,6 @@ COM ; Builds the Comments section in the Reject Information Screen.
  ;
  N PSOARRAY,PSOCNT,PSOCOM,PSODATA,PSODATE,PSODATE1,PSODFN,PSOLAST,PSOPC
  N PSOPFLAG,PSOSTATUS,PSOSTR,PSOTEMP,PSOUSER,PSOX,PSOY,X
- ;
- ; MRD;PSO*7*448 - This patch added the ability for an OPECC to flag a
- ; comment on a BPS Transaction as being for pharmacy.  A comment so
- ; flagged will appear on the Reject Information Screen intermingled
- ; with any other comments on the Prescription.  All the comments will
- ; be sorted in reverse chronological order.
  ;
  ; COM^BPSSCRU3 populates the array PSOTEMP with all the comments from
  ; the BPS Transaction corresponding to the Prescription and Refill.
@@ -277,15 +272,15 @@ PRINT(RX,RFL) ; Print Label for specific Rx/Fill
  I '$G(RX) Q
  I $G(RFL)="" Q
  ;
- ; Some of these variables are used by LBL^PSOLSET but they are newed here
- N PPL,PSOSITE,PSOPAR,PSOSYS,PSOBARS,PSOBAR0,PSOBAR1,PSOIOS,PSOBFLAG,PSOCLBL
- N PSOQUIT,PSOPIOST,PSOLTEST,PSOTLBL,PSORXT
+ ; Some of these variables are used by LBL^PSOLSET but are Newed here.
+ N PPL,PSOSITE,PSOPAR,PSOSYS,PSOBARS,PSOBAR0,PSOBAR1,PSOIOS,PSOBFLAG
+ N PSOCLBL,PSOQUIT,PSOPIOST,PSOLTEST,PSOTLBL,PSORXT
  N DFN,PDUZ,RXFL,REPRINT,REJLBL,DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
  N %ZIS,IOP,POP,ZTSK,ZTRTN,ZTIO,ZTDESC,ZTSAVE,ZTDTH,VAR
  ;
- ; Set the default label printer.  We need to new it so we don't change the value that was
- ;   set by PSOLSET when the user first logged into OP so need to do a bit of work to new it and  
- ;   reset it before the call to LBL^PSOLSET.
+ ; Set the default label printer.  To prevent disrupting the value
+ ; set by PSOLSET when the user first logged into Outpatient Pharmacy,
+ ; it is Newed here and reset it before the call to LBL^PSOLSET.
  I $G(PSOLAP)]"" S PSOTLBL=PSOLAP N PSOLAP S PSOLAP=PSOTLBL,PSOCLBL=1
  E  N PSOLAP S PSOCLBL=""
  ;
@@ -328,12 +323,11 @@ PRINT(RX,RFL) ; Print Label for specific Rx/Fill
 RXINFO(RX,FILL,LINE,REJ) ; Returns header displayable Rx Information
  N TXT,RXINFO,LBL,CMOP,DRG,PSOET
  I LINE=1 D
- . N RXDOS D GETDAT^BPSBUTL(RX,FILL,,.RXDOS) ; Get Date of Service from BPS CLAIM field 401 - PSO*7*421
+ . N RXDOS D GETDAT^BPSBUTL(RX,FILL,,.RXDOS) ; Get Date of Service from BPS CLAIM field 401
  . S RXINFO="Rx#      : "_$$GET1^DIQ(52,RX,.01)_"/"_FILL
- . ;cnf, PSO*7*358, add PSOET logic for TRICARE/CHAMPVA non-billable
  . S PSOET=$$PSOET(RX,FILL)
  . S $E(RXINFO,27)="ECME#: "_$S(PSOET:"",1:$$ECMENUM^PSOBPSU2(RX,FILL))
- . S $E(RXINFO,49)="Date of Service: "_$S(PSOET:"",1:$$FMTE^XLFDT(RXDOS)) ; Use DOS from BPS Claims field 401 - PSO*7*421
+ . S $E(RXINFO,49)="Date of Service: "_$S(PSOET:"",1:$$FMTE^XLFDT(RXDOS)) ; Use DOS from BPS Claims field 401
  I LINE=2 D
  . S DRG=$$GET1^DIQ(52,RX,6,"I"),CMOP=$S($D(^PSDRUG("AQ",DRG)):1,1:0)
  . S RXINFO=$S(CMOP:"CMOP ",1:"")_"Drug",$E(RXINFO,10)=": "_$E($$GET1^DIQ(52,RX,6),1,43)
@@ -342,13 +336,13 @@ RXINFO(RX,FILL,LINE,REJ) ; Returns header displayable Rx Information
  ;
 FILL ;Fill payable TRICARE or CHAMPVA Rx
  N COM,I,OPNREJ,OPNREJ2,OPNREJ3,DCSTAT,PSOREL
- S:'$G(PSOTRIC) PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)  ;cnf, PSO*7*358, add line
- ;cnf, PSO*7*358, don't allow option if TRICARE/CHAMPVA and released, PSOREL is set to the release date
+ S:'$G(PSOTRIC) PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
+ ; don't allow option if TRICARE/CHAMPVA and released, PSOREL is set to the release date
  S PSOREL=0 I PSOTRIC D
  . I 'FILL S PSOREL=+$$GET1^DIQ(52,RX,31,"I")
  . I FILL S PSOREL=+$$GET1^DIQ(52.1,FILL_","_RX,17,"I")
  I PSOREL S VALMSG="Released Rxs may not be filled.",VALMBCK="R" Q
- ;cnf, PSO*7*358, don't allow option if prescription has been discontinued
+ ; don't allow option if prescription has been discontinued
  ;  12 - DISCONTINUED
  ;  14 - DISCONTINUED BY PROVIDER
  ;  15 - DISCONTINUED (EDIT)
@@ -357,11 +351,11 @@ FILL ;Fill payable TRICARE or CHAMPVA Rx
  D FULL^VALM1
  I $$CLOSED^PSOREJP1(RX,REJ) D  Q
  . S VALMSG="This Reject is marked resolved!",VALMBCK="R"
- ;cnf, PSO*7*358
+ ;
  S COM=""
  I 'PSOTRIC&($$STATUS^PSOBPSUT(RX,FILL)'["PAYABLE") S VALMSG="Only Rxs with an E PAYABLE status may be filled.",VALMBCK="R" Q
- I PSOTRIC&($$STATUS^PSOBPSUT(RX,FILL)'["PAYABLE") D FILLTR I $L($G(VALMSG)_$G(VALMBCK)) Q  ;cnf, PSO*7*358
- S:COM="" COM="AUTOMATICALLY CLOSED"  ;cnf, PSO*7*358, add condition
+ I PSOTRIC&($$STATUS^PSOBPSUT(RX,FILL)'["PAYABLE") D FILLTR I $L($G(VALMSG)_$G(VALMBCK)) Q
+ I COM="" S COM="AUTOMATICALLY CLOSED"
  S (OPNREJ,OPNREJ2,OPNREJ3)=""
  S OPNREJ2=0 F  S OPNREJ2=$O(^PSRX(RX,"REJ",OPNREJ2)) Q:OPNREJ2=""!(OPNREJ2'?1N.N)  S OPNREJ=OPNREJ_","_OPNREJ2
  S OPNREJ=$E(OPNREJ,2,999),OPNREJ2=""
@@ -369,9 +363,9 @@ FILL ;Fill payable TRICARE or CHAMPVA Rx
  F I=1:1 S OPNREJ2=$P(OPNREJ,",",I) Q:OPNREJ2=""  D
  . S OPNREJ3="",OPNREJ3=$$GET1^DIQ(52.25,OPNREJ2_","_RX,".01")
  . W !?25,OPNREJ3_" - "_$$GET1^DIQ(9002313.93,OPNREJ3,".02")_"..."
- . D CLOSE^PSOREJUT(RX,FILL,OPNREJ2,DUZ,6,COM,"","","","","",1) W "OK]",!,$C(7) H 1  ; pso*7*421 Use 12th param to ignore
+ . D CLOSE^PSOREJUT(RX,FILL,OPNREJ2,DUZ,6,COM,"","","","","",1) W "OK]",!,$C(7) H 1
  I $$PTLBL^PSOREJP2(RX,FILL) D PRINT(RX,FILL)
- S CHANGE=1   ;cnf, PSO*7*358, remove S VALMBCK="R" so user goes back to selection list
+ S CHANGE=1
  Q
  ;
 PSOCOB(RX,FILL,REJ) ; Returns RXCOB indicator for Worklist
@@ -389,14 +383,13 @@ DC ;Discontinue TRICARE Rx
  S CHANGE=1
  Q
  ;
-FILLTR ;TRICARE/CHAMPVA specific logic  ;cnf, PSO*7*358
+FILLTR ;TRICARE/CHAMPVA specific logic
  ;COM is not new'd so the variable can be used in FILL tag
  N CONT,PSOETEC,PSQSTR
  ;
-FILLTR2 ;Use for looping if user enters ^ in required comment field  ;cnf, PSO*7*358
+FILLTR2 ;Use for looping if user enters ^ in required comment field
  ;
  ;if TRICARE/CHAMPVA, not payable, and no security key, quit
- ;reference to ^XUSEC( supported by IA 10076
  I '$D(^XUSEC("PSO TRICARE/CHAMPVA",DUZ)) S VALMSG="Action Requires <PSO TRICARE/CHAMPVA> security key",VALMBCK="R" Q
  ;
  ;if TRICARE/CHAMPVA, not payable, and user has security key, prompt to continue or not
@@ -429,19 +422,21 @@ PSOET(RX,FILL) ; Returns flag for TRICARE or CHAMPVA non-billable and no claim s
  N X,TRIREJCD
  S X=0
  S TRIREJCD=$T(TRIREJCD+1),TRIREJCD=$P(TRIREJCD,";;",2)
- S X=$$FIND^PSOREJUT(RX,$G(FILL),,TRIREJCD,1) ; PSO*7*421 - Pass indicator to ignore ECME status
+ S X=$$FIND^PSOREJUT(RX,$G(FILL),,TRIREJCD,1)
  Q X
  ;
-TRIREJCD ;TRICARE or CHAMPVA Reject Code, non-billable Rx   ;cnf, PSO*7*358
+TRIREJCD ;TRICARE or CHAMPVA Reject Code, non-billable Rx
  ;;eT,eC;;TRICARE or CHAMPVA pseudo reject codes referenced in ^PSOREJP3, ^PSOREJU4
  Q
  ;
-SEND(OVRCOD,CLA,PA,PSOET) ; - Sends Claim to ECME and closes Reject
+SEND(OVRCOD,CLA,PA,PSOET,DIAG,PREG) ; - Sends Claim to ECME and closes Reject
  ; Input:  OVRCOD - Up to three ~-pieces, and each populated would be
  ;              Reason for Service Code ^ Prof Srvc Cd ^ Result of Srvc Cd
  ;         CLA - Submission Clarification Code #1 ~ SCC #2 ~ SCC #3 
  ;         PA - Prior Auth Type ^ Prior Auth Number 
  ;         PSOET - 1 if eT/eC pseudo-reject on claim
+ ;         DIAG - Diagnosis Code
+ ;         PREG - Pregnancy Indicator
  N ALTXT,COM,DIR,PSO59,PSOCOB,PSOETEC,PSOPLAN,PSORTYPE,RESP,SMA
  N DIWF,DIWL,DIWR,X
  S DIR(0)="Y",DIR("A")="     Confirm",DIR("B")="YES"
@@ -457,16 +452,22 @@ SEND(OVRCOD,CLA,PA,PSOET) ; - Sends Claim to ECME and closes Reject
  . S:$G(OVRCOD)'="" ALTXT=ALTXT_"-DUR OVERRIDE CODES("_$TR(OVRCOD,"^","/")_")"
  . S:$G(CLA)]"" ALTXT=ALTXT_"-(CLARIF. CODE="_CLA_")"
  . S:$G(PA)]"" ALTXT=ALTXT_"-(PRIOR AUTH.="_$TR(PA,"^","/")_")"
+ . I $G(DIAG)'="" D
+ . . I DIAG="REMOVED" S ALTXT=ALTXT_"-(DIAGNOSIS CODE REMOVED)"
+ . . E  S ALTXT=ALTXT_"-(DIAGNOSIS CODE="_DIAG_")"
+ . I $G(PREG)'="" D
+ . . S ALTXT=ALTXT_"-(PREGNANCY INDICATOR="
+ . . S ALTXT=ALTXT_$S(PREG=1:"NOT ",1:"")_"PREGNANT)"
  ;
  S PSOCOB=$$PSOCOB^PSOREJP3(RX,FILL,REJ)
  S PSO59=$$IEN59^BPSOSRX(RX,FILL,PSOCOB)
- S PSOPLAN=$$GETPL59^BPSPRRX5(PSO59)  ; IA 6939
- S PSORTYPE=$$GETRTP59^BPSPRRX5(PSO59)  ; IA 6939
+ S PSOPLAN=$$GETPL59^BPSPRRX5(PSO59)
+ S PSORTYPE=$$GETRTP59^BPSPRRX5(PSO59)
  ; Check for Tricare/Champva Non-Billable eT,eC pseudo reject set PSOETEC=1
  S PSOETEC=""
  I ($D(^PSRX(RX,"REJ","B","eT")))!($D(^PSRX(RX,"REJ","B","eC"))) S PSOETEC=1
  ;
- D ECMESND^PSOBPSU1(RX,FILL,,$S($G(PSOET):"RSNB",1:"ED"),$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRCOD),,.RESP,,ALTXT,$G(CLA),$G(PA),PSOCOB,,PSOPLAN,PSORTYPE)
+ D ECMESND^PSOBPSU1(RX,FILL,,$S($G(PSOET):"RSNB",1:"ED"),$$GETNDC^PSONDCUT(RX,FILL),,,$G(OVRCOD),,.RESP,,ALTXT,$G(CLA),$G(PA),PSOCOB,,PSOPLAN,PSORTYPE,$G(DIAG),$G(PREG))
  ;If PSOETEC=1 RESP will exist because its a Non-Billable Rx, do not Quit continue processing
  I PSOETEC'=1 I $G(RESP) D  Q
  . W !!?10,"Claim could not be submitted. Please try again later!"

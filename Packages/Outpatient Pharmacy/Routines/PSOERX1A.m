@@ -1,5 +1,5 @@
 PSOERX1A ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,527,508,551,581,617,669,700,743,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**467,527,508,551,581,617,669,700,743,746,770**;DEC 1997;Build 145
  ;
  Q
  ; select an item
@@ -51,8 +51,6 @@ L(DFN,DIS,SILENT) ; Locks an eRx Patient
  I $G(PSONOLCK) Q 1
  N FLAG,LKTOUT S ^XTMP("PSOERXLOCK",0)=$$PDATE,LKTOUT=0
  S LKTOUT=$S($$GET1^DIQ(59.7,1,102,"I")="MBM":0,$G(DILOCKTM)>0:DILOCKTM,1:3)
- ; TEMP CHANGE UNTIL MBM GETS OFF Class 3 option
- I $$GET1^DIQ(59.7,1,102,"I")="MBM",$G(^XTMP("PSOERXLOCK",DFN)) Q 0
  ; If a lock is already established for this patient and is associated with the current user
  I $P($G(^XTMP("PSOERXLOCK",DFN)),"^",1)=DUZ D  Q FLAG
  . L +^XTMP("PSOERXLOCK",DFN):LKTOUT S FLAG=$T
@@ -81,6 +79,7 @@ R() ; check lock on node
  .S FDA(52.46,DFN_",",6)=DUZ
  .D UPDATE^DIE(,"FDA") K FDA
  I $T=0 W:DIS=1&'$G(SILENT) !,$$WHO(DFN) S Y=$P($G(^XTMP("PSOERXLOCK",DFN)),"^",2) X ^DD("DD") Q $S(DIS=0:0_"^"_$P($G(^VA(200,+$P($G(^XTMP("PSOERXLOCK",DFN)),"^"),0)),"^")_"^"_Y,1:0)
+ Q 0
  ;
 PDATE() ;
  N X1,X2 S X1=DT,X2=+14 D C^%DTC
@@ -157,14 +156,17 @@ EDIT(EDTYP,SBN) ;
  S PSOIENS=PSOIEN_","
  Q:'$D(EDTYP)
  I EDTYP="D" D  Q
- . S SUGVARX=$$MATCHSUG^PSOERUT4(PSOIEN)
+ . S SUGVARX=$$MATCHSUG^PSOERUT6(PSOIEN)
  . I $G(SUGVARX) D  Q
+ . . I +$P(SUGVARX,"^",2)=-1 Q  ;if the user ^ in the Patient Instruction prompt, do not update all the fields
  . . W !?64,"Updating..."
- . . D SAVEDRUG^PSOERUT2(PSOIEN,SUGVARX)
+ . . D SAVEDRUG^PSOERUT2(PSOIEN,+SUGVARX,$P(SUGVARX,"^",2))
+ . . I RXSTAT="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
+ . . I $$GET1^DIQ(52.49,PSOIEN,.08,"I")="RE",RXSTAT'="RXI" D UPDSTAT^PSOERXU1(PSOIEN,"RXI")
  . . K @VALMAR D INIT^PSOERXD1 S VALMBCK="R"
  . . H .5 W "done." H 1
  . W !
- . D PLSTRNG(1,10,.RES,SBN)
+ . D PLSTRNG(1,11,.RES,SBN)
  . I '$O(RES(0)) Q
  . I $D(RES(1)) D DERX1^PSOERXD2(PSOIEN,PSOIENS)
  . S (ITEM,PQUIT)=0 F  S ITEM=$O(RES(ITEM)) Q:'ITEM!(PQUIT)  D
@@ -277,11 +279,11 @@ PLSTRNG(LOW,HIGH,EDIT,SBN) ;
  ..I Y="^" S DONE=1 Q
  .I SBN']"",Y["-",Y["," D  Q
  ..W !!,"Invalid Response."
- ..W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
+ ..W !,"Answer must be numeric (1-11), a series of numbers (3,5,7), 'A' or 'ALL'."
  ..S DIR(0)="E" D ^DIR K Y,DIR I $D(DIRUT)!$D(DTOUT) S DONE=1 Q
  .I SBN']"",(Y[".")!(Y[" ") D  Q
  ..W !!,"Invalid Response."
- ..W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
+ ..W !,"Answer must be numeric (1-11), a series of numbers (3,5,7), 'A' or 'ALL'."
  ..S DIR(0)="E" D ^DIR K DIR I $D(DIRUT)!$D(DTOUT) S DONE=1 Q
  ..I Y'[" " K Y
  .I SBN]"",'$D(Y) S Y=SBN
@@ -297,7 +299,7 @@ PLSTRNG(LOW,HIGH,EDIT,SBN) ;
  .I Y?1.2N1"-"1.2N D
  ..F I=$P(Y,"-"):1:$P(Y,"-",2) D
  ...Q:I<LOW!(I>HIGH)
- ...S EDIT(I)=""
+ ...S EDIT(+I)=""
  .I $D(EDIT) S DONE=1 Q
  .I Y["," D
  ..; check to see if there are alpha-numerics if there are, quit and reprompt
@@ -307,10 +309,10 @@ PLSTRNG(LOW,HIGH,EDIT,SBN) ;
  ...S VAL=$P(Y,",",NUM)
  ...I 'VAL S DONE2=1 Q
  ...I VAL<LOW!(VAL>HIGH) Q
- ...S EDIT(VAL)=""
+ ...S EDIT(+VAL)=""
  .I $D(EDIT) S DONE=1 Q
  .W !,"Invalid Response."
- .W !,"Answer must be numeric (1-10), a series of numbers (3,5,7), 'A' or 'ALL'."
+ .W !,"Answer must be numeric (1-11), a series of numbers (3,5,7), 'A' or 'ALL'."
  .K DIR S DIR(0)="E" D ^DIR K Y,DIR
  Q
  ; Match Patient
@@ -343,7 +345,7 @@ VPAT ;
  . D ^DPTLK I Y<0 S PSOQUIT=1 Q
  . S SELPAT=+Y
  . D CMPPAT^PSOERPT1(PSOIEN,SELPAT)
- . S ERXMMFLG=$$PATWARN("EP",PSOIEN,SELPAT)
+ . S ERXMMFLG=$$PATWARN^PSOERX1E("EP",PSOIEN,SELPAT)
  . S DIR(0)="Y",DIR("A")="Would you like to use this patient"
  . S DIR("B")=$S($G(ERXMMFLG):"NO",1:"YES") D ^DIR I 'Y!$D(DIRUT)!$D(DIROUT) S PSOQUIT=1 Q
  ;
@@ -386,43 +388,3 @@ VPAT ;
  I ERXSTAT="N" D UPDSTAT^PSOERXU1(PSOIEN,"I")
  H .5 W "done.",$C(7) H 1
  Q
- ;
-PATWARN(ACTION,PSOIEN,SELPAT) ; Check whether the Patient Select is valid or not
- ; Input:(r)ACTION - Ation being peformed ("EP": Edit Patient | "VP": Validate Patient)
- ;       (r)PSOIEN - Pointer to the ERX HOLDING QUEUE file (#52.49)
- ;       (r)SELPAT - Patient -Pointer to the PATIENT file (#2)
- ;Output: 1 - No Issues Found with Patient Selected | 2 - Issues Found With Patient selected but Ok to proceed | 0 - Invalid Patient Selection
- N MBMSITE,ERXPIEN,ERXSSN,ERXDOB,ERXGEN,ERXMMFLG,ERXMSG,EXPRVDEA,ERXCNT,I,VADM,GMRA,GMRAL
- S MBMSITE=$S($$GET1^DIQ(59.7,1,102,"I")="MBM":1,1:0)
- S ERXCNT=0,ERXMMFLG=1
- S ERXPIEN=$$GET1^DIQ(52.49,PSOIEN,.04,"I")
- S ERXSSN=$$GET1^DIQ(52.46,ERXPIEN,1.4,"E"),ERXSSN=$TR(ERXSSN,"-","")
- S ERXDOB=$$GET1^DIQ(52.46,ERXPIEN,.08,"I")
- S ERXGEN=$$GET1^DIQ(52.46,ERXPIEN,.07,"I")
- ; if the selected patient is not defined, use the va matched patient because we are doing this check
- ; during accept validation
- I '$G(SELPAT) S SELPAT=$$GET1^DIQ(52.49,PSOIEN,.05,"I") Q:'$G(SELPAT) 0
- I $G(MBMSITE) D
- . N DUPPATS,DUP
- . D DUPVPAT^PSOERX1E(SELPAT,.DUPPATS) I '$D(DUPPATS) Q
- . S ERXMMFLG=2,ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="The following VistA Patient(s) has been identified as potential duplicate(s):"
- . S DUP=0 F  S DUP=$O(DUPPATS(DUP)) Q:'DUP  S ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)=" "_DUP_"-"_DUPPATS(DUP)
- S DFN=SELPAT D DEM^VADPT
- ; Warning/Block for Patient w/out valid Address (CS prescriptions only)
- I $$GET1^DIQ(52.49,ERXIEN,95.1,"I"),'$$VALPTADD^PSOERXUT(SELPAT) D
- . S ERXMMFLG=1,ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="VistA Patient does not have a current mailing or residential address on file."
- . S ERXMMFLG=$S(ACTION="EP":2,1:0)
- ; Checking for ChampVA Eligibility (MBM Sites only)
- I $G(MBMSITE),'$$CHVAELIG^PSOERXU9(DFN) D
- . S ERXMMFLG=$S(ACTION="EP":2,1:0),ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="VistA Patient is not eligible for ChampVA Rx Benefit."
- ; Checking on Allergies/Adverse Reactions
- S GMRA="0^0^111" D EN1^GMRADPT I $G(GMRAL)="" D
- . S ERXMMFLG=$S(ACTION="EP"!'$G(MBMSITE):2,1:0),ERXCNT=ERXCNT+1,ERXMSG(ERXCNT)="VistA Patient does not have an Allergy Assessment."
- ;
- I $O(ERXMSG(0)) D
- . W !!,"*******************************",$S(ERXMMFLG:"   WARNING(S)  ",1:"INVALID PATIENT"),"*******************************"
- . S I=0 F  S I=$O(ERXMSG(I)) Q:'I  D
- . . W !,$G(ERXMSG(I))
- . W !,"*****************************************************************************"
- ;
- Q ERXMMFLG

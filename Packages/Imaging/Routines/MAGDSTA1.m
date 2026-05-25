@@ -1,13 +1,10 @@
-MAGDSTA1 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Mar 08, 2022@07:55:07
- ;;3.0;IMAGING;**231,306,305**;Mar 19, 2002;Build 3
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTA1 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Mar 23, 2023@08:45:36
+ ;;3.0;IMAGING;**231,306,305,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -30,6 +27,7 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  N ACNUMB,BATCHSIZE,BEGDATE,DFN,ENDDATE,HOSTNAME,HOURS,IMAGINGSERVICE,OPTION,QRSCP,QRSTACK
  N MAGIOM,MAGXTMP,RUNTIME,SCANMODE,SORTORDER,STARTIEN,STARTTIME,STATUS,STUDYDATE,STUDYIEN
  N CONSULTSERVICES,DEFAULT,DIVISION,DONE,ERROR,I,LASTRUN,OK,QUESTION,QUIT,SERVICES,X,ZTDESC
+ N AUTOSCROLL,OUTPUTEXCEL ; P333 PMK 07/13/2022
  ;
  N $ETRAP,$ESTACK S $ETRAP="D ERROR^MAGDSTA"
  ;
@@ -38,7 +36,8 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  S IMAGINGSERVICE=$G(^TMP("MAG",$J,"BATCH Q/R","IMAGING SERVICE"))
  S QRSTACK="AUTOMATIC"
  S HOSTNAME=$$HOSTNAME^MAGDFCNV
-  I $$CHECKDIV^MAGDSTAB()="" D  Q
+ S OUTPUTEXCEL="" ; don't output an Excel file
+ I $$CHECKDIV^MAGDSTAB()="" D  Q
  . W !!,"*** Use the PARM option to set Check Study Division switch ***"
  . D CONTINUE^MAGDSTQ
  . Q
@@ -64,7 +63,7 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  . I X="" S OK=-1 Q
  . I X["^" S OK=-1 Q
  . I "Dd"[$E(X) S SCANMODE="DATE",OK=1 Q
- . I "Nn"[$E(X) S SCANMODE="NUMBER",OK=1 Q
+ . I "NnRr"[$E(X) S SCANMODE="NUMBER",OK=1 Q
  . I "Pp"[$E(X) S SCANMODE="PATIENT",OK=1 Q
  . I "Aa"[$E(X) S SCANMODE="ACCESSION",OK=1 Q
  . W "   ???",!,"Please enter ""D"", ""N"", ""P"", or ""A""."
@@ -81,10 +80,10 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  . D DISPLAY1^MAGDSTA9
  . I STATUS="COMPLETED" D
  . . W !!,"The last ",SCANMODE," scan run completed on ",$$FMTE^XLFDT(RUNTIME)
- . . S ERROR=$$YESNO^MAGDSTQ("Start this "_SCANMODE_" scan where the last run ended?","y",.X)
+ . . S ERROR=$$YESNO^MAGDSTQ("Start this "_SCANMODE_" scan where the last run ended?","n",.X) ; P333 PMK 01/04/2023
  . . I ERROR<0 W " YESNO ERROR" Q
  . . I X="YES" D
- . . . D COPYPARM(1)
+ . . . D COPYPARM^MAGDSTA0(1)
  . . . Q
  . . E  D
  . . . K ^TMP("MAG",$J,"BATCH Q/R","PATIENT DFN")
@@ -96,7 +95,7 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  . . S ERROR=$$YESNO^MAGDSTQ("Start this "_SCANMODE_" scan where the last run is expected to end?",,.X) ; no default
  . . I ERROR<0 W " YESNO ERROR" Q
  . . I X="YES" D
- . . . D COPYPARM(1)
+ . . . D COPYPARM^MAGDSTA0(1)
  . . . Q
  . . E  D
  . . . K ^TMP("MAG",$J,"BATCH Q/R","PATIENT DFN")
@@ -107,7 +106,7 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  . . S ERROR=$$YESNO^MAGDSTQ("Start this "_SCANMODE_" scan where the last run is expected to end?",,.X) ; no default
  . . I ERROR<0 W " YESNO ERROR" Q
  . . I X="YES" D
- . . . D COPYPARM(1)
+ . . . D COPYPARM^MAGDSTA0(1)
  . . . Q
  . . E  D
  . . . K ^TMP("MAG",$J,"BATCH Q/R","PATIENT DFN")
@@ -119,7 +118,7 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  . . S ERROR=$$YESNO^MAGDSTQ("Start this "_SCANMODE_" scan where the last run abnormally ended?",,.X) ; no default
  . . I ERROR<0 W " YESNO ERROR" Q
  . . I X="YES" D
- . . . D COPYPARM(0)
+ . . . D COPYPARM^MAGDSTA0(0)
  . . . Q
  . . E  D
  . . . K ^TMP("MAG",$J,"BATCH Q/R","PATIENT DFN")
@@ -136,6 +135,8 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  I $G(^TMP("MAG",$J,"BATCH Q/R","PACS Q/R RETRIEVE SCP"))="" W " -- Exiting" Q
  ;
  I SCANMODE="ACCESSION" D  Q  ; single accession number compare/retrieve
+ . N IO
+ . S IO="" ; <-------------------
  . D ACNUM^MAGDSTA2
  . Q
  ;
@@ -155,19 +156,19 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  . E  D  ; consults
  . . S QUESTION=QUESTION_" STUDY1^MAGDSTA6"
  . . Q
- . S QUESTION=QUESTION_" BATCHSIZ^MAGDSTA2 HOURS^MAGDSTA2 VERIFY^MAGDSTA9"
+ . S QUESTION=QUESTION_" BATCHSIZ^MAGDSTA2 HOURS^MAGDSTA2 SCROLL^MAGDSTA2 REPORT^MAGDSTA2 VERIFY^MAGDSTA9" ; P333 PMK 07/13/2022
  . S QUESTION("ASCENDING")=QUESTION
  . S QUESTION("DESCENDING")=QUESTION
  . Q
  E  I SCANMODE="DATE" D
  . S QUESTION="SORTORDR^MAGDSTA2"
- . S QUESTION("ASCENDING")=QUESTION_" BEGDATE^MAGDSTA2 ENDDATE^MAGDSTA2 HOURS^MAGDSTA2 VERIFY^MAGDSTA9"
- . S QUESTION("DESCENDING")=QUESTION_" ENDDATE^MAGDSTA2 BEGDATE^MAGDSTA2 HOURS^MAGDSTA2 VERIFY^MAGDSTA9"
+ . S QUESTION("ASCENDING")=QUESTION_" BEGDATE^MAGDSTA2 ENDDATE^MAGDSTA2 HOURS^MAGDSTA2 SCROLL^MAGDSTA2 REPORT^MAGDSTA2 VERIFY^MAGDSTA9"
+ . S QUESTION("DESCENDING")=QUESTION_" ENDDATE^MAGDSTA2 BEGDATE^MAGDSTA2 HOURS^MAGDSTA2 SCROLL^MAGDSTA2 REPORT^MAGDSTA2 VERIFY^MAGDSTA9"
  . Q
  E  I SCANMODE="PATIENT" D
  . S QUESTION="PATIENTA^MAGDSTQA SORTORDR^MAGDSTA2"
- . S QUESTION("ASCENDING")=QUESTION_" BEGDATE^MAGDSTA2 ENDDATE^MAGDSTA2 HOURS^MAGDSTA2 VERIFY^MAGDSTA9"
- . S QUESTION("DESCENDING")=QUESTION_" ENDDATE^MAGDSTA2 BEGDATE^MAGDSTA2 HOURS^MAGDSTA2 VERIFY^MAGDSTA9"
+ . S QUESTION("ASCENDING")=QUESTION_" BEGDATE^MAGDSTA2 ENDDATE^MAGDSTA2 HOURS^MAGDSTA2 SCROLL^MAGDSTA2 REPORT^MAGDSTA2 VERIFY^MAGDSTA9"
+ . S QUESTION("DESCENDING")=QUESTION_" ENDDATE^MAGDSTA2 BEGDATE^MAGDSTA2 HOURS^MAGDSTA2 SCROLL^MAGDSTA2 REPORT^MAGDSTA2 VERIFY^MAGDSTA9"
  . Q
  ; 
  S QUESTION("NONE")=QUESTION("ASCENDING") ; initial default is ASCENDING
@@ -188,7 +189,10 @@ ENTRY(MENUOPTION) ; Entry point from main menu
  ; ZTDESC is set above
  ;
  N %ZIS,ZTSAVE
+ S ZTSAVE("AUTOSCROLL")="" ; P333 PMK 11/02/2022
  S ZTSAVE("HOSTNAME")=""
+ S ZTSAVE("DIVISION")="" ; P333 PMK 06/23/2022
+ S ZTSAVE("OUTPUTEXCEL")="" ; P333 PMK 07/14/2022
  S ZTSAVE("MAGIOM")=""
  S ZTSAVE("MAGXTMP")=""
  S ZTSAVE("MENUOPTION")=""
@@ -226,7 +230,9 @@ TASK ; entry point for a tasked job
 BEGIN ; entry point for running the image compare or retrieve process
  N ACNUMB,BATCHSIZE,BEGDATE,DFN,ENDDATE,HOURS,IMAGINGSERVICE,OPTION,QRSCP,RUNTIME
  N SCANMODE,SORTORDER,STARTIEN,STARTTIME,STATUS,STUDYDATE,STUDYIEN
- N DIRECTION,I,J,K,L,RUNNUMBER,STOP
+ N DIRECTION,I,J,K,L,RUNNUMBER,STOP,X,Y
+ N DEL ; P333 PMK 7/14/2022
+ S DEL="," ; comma delimiter for Excel
  ;
  S X=MAGIOM X ^%ZOSF("RM") ; set right margin to 80 or 132
  ;
@@ -243,9 +249,46 @@ BEGIN ; entry point for running the image compare or retrieve process
  S QRSCP=$G(^TMP("MAG",$J,"BATCH Q/R","PACS Q/R RETRIEVE SCP"))
  S DFN=$G(^TMP("MAG",$J,"BATCH Q/R","PATIENT DFN"))
  ;
- L +^MAGDSTT(2006.543,0):30 E  D  Q
- . W !!,"Cannot obtain LOCK on Q/R RETRIEVE DICOM RUN STATISTICS Table.",!!
+ ; Output Excel *CSV header, if necesary - P333 PMK 11/03/2022
+ I OUTPUTEXCEL'="" D
+ . S X=$$FMTE^XLFDT($$NOW^XLFDT,1)_"   "_IMAGINGSERVICE
+ . S X=X_"   Option: "_OPTION
+ . I SCANMODE="DATE" D
+ . . S X=X_"   Begin Date: "_$$FMTE^XLFDT(BEGDATE,1)
+ . . S X=X_"   End Date: "_$$FMTE^XLFDT(ENDDATE,1)
+ . . Q
+ . E  I SCANMODE="NUMBER" D
+ . . S X=X_"   Starting Report/Study Number: "_STARTIEN_"   Batch Size: "_BATCHSIZE
+ . . Q
+ . E  I SCANMODE="PATIENT" D
+ . . N DOB,NAME,SSN,VADM
+ . . D
+ . . . N X
+ . . . D DEM^VADPT
+ . . . Q
+ . . S NAME=VADM(1),DOB=$P(VADM(3),"^",2),SSN=$P(VADM(2),"^",2)
+ . . S X=X_"   Patient Name: "_NAME
+ . . S X=X_"   Social Security Number: "_SSN
+ . . S X=X_"   Date of Birth: "_DOB
+ . . Q
+ . D CSVSAVE^MAGDSTAA(X)
+ . D CSVSAVE^MAGDSTAA("") ; new line for header
+ . D CSVSAVE^MAGDSTAA("Report #","Accession Number","Date","Group #")
+ . D CSVSAVE^MAGDSTAA("VistA Series","VistA Images","PACS Series","PACS Images")
+ . I ^TMP("MAG",$J,"BATCH Q/R","OPTION")="RETRIEVE MISSING IMAGES" D
+ . . D CSVSAVE^MAGDSTAA("Retrieve Status")
+ . . Q
  . Q
+ ;
+ L +^MAGDSTT(2006.543,0):30 E  D  Q
+ . S X="*** Cannot obtain LOCK on Q/R RETRIEVE DICOM RUN STATISTICS Table. ***"
+ . W !!,X,!!
+ . I OUTPUTEXCEL'="" D  ; P333 PMK 07/14/2022
+ . . D SAVE^MAGDSTA0(OUTPUTEXCEL,X)
+ . . Q
+ . D CONTINUE^MAGDSTQ
+ . Q
+ ;
  S X=$G(^MAGDSTT(2006.543,0))
  S $P(X,"^",1,2)="DICOM BATCH Q/R RUN STATISTICS^2006.543"
  S (RUNNUMBER,$P(X,"^",3))=$O(^MAGDSTT(2006.543," "),-1)+1 ; get next IEN
@@ -291,7 +334,7 @@ BEGIN ; entry point for running the image compare or retrieve process
  ;
  S ^TMP("MAG",$J,"BATCH Q/R","RUN NUMBER")=RUNNUMBER
  ;
- S DIRECTION=$$DIRECTON(SORTORDER)
+ S DIRECTION=$$DIRECTION^MAGDSTA0(SORTORDER)
  ;
  S ^XTMP(MAGXTMP,"AUTO Q/R",HOSTNAME,$J,"STATUS")="RUN",^("IMAGING SERVICE")=IMAGINGSERVICE
  S ^XTMP(MAGXTMP,"AUTO Q/R",HOSTNAME,$J,"SCAN MODE")=SCANMODE,^("OPTION")=OPTION
@@ -310,59 +353,14 @@ BEGIN ; entry point for running the image compare or retrieve process
  S $P(^MAGDSTT(2006.543,RUNNUMBER,0),"^",3)=RUNTIME ; final time updated
  S X=$S(STOP<0:"Stopped due to Error",STOP>0:"Stopped by User",1:"COMPLETED")
  S $P(^MAGDSTT(2006.543,RUNNUMBER,0),"^",5)=X
- W !!,"RUN ",X
- W " at ",$$FMTE^XLFDT($$NOW^XLFDT,1)
+ S Y="RUN "_X_" at "_$$FMTE^XLFDT($$NOW^XLFDT,1)
+ W !!,Y
+ I OUTPUTEXCEL'="" D  ; P333 PMK 11/03/2022
+ . D CSVSAVE^MAGDSTAA("") ; blank line
+ . D CSVSAVE^MAGDSTAA("") ; blank line
+ . D CSVSAVE^MAGDSTAA(Y)
+ . Q 
  K ^XTMP(MAGXTMP,"AUTO Q/R",HOSTNAME,$J)
  K ^TMP("MAG",$J,"BATCH Q/R")
  D CONTINUE^MAGDSTQ
  Q
- ;
-DIRECTON(SORTORDER) ; return the direction for $order
- ;  1 = normal order
- ; -1 = reverse order
- Q $S(SORTORDER="ASCENDING":1,SORTORDER="DESCENDING":-1)
- ;
-COPYPARM(NORMALRUN) ; copy last run's parameters for the next run
- N I,DIRECTION
- S ^TMP("MAG",$J,"BATCH Q/R","PACS Q/R RETRIEVE SCP")=QRSCP
- S ^TMP("MAG",$J,"Q/R PARAM","SCAN MODE")=SCANMODE
- S ^TMP("MAG",$J,"BATCH Q/R","SORT ORDER")=SORTORDER
- S ^TMP("MAG",$J,"BATCH Q/R","HOURS OF OPERATION")=HOURS
- ;
- S ^TMP("MAG",$J,"Q/R PARAM","QUERY USER APPLICATION")=QRSCP ; needed for QRSCP^MAGDSTA2
- ;
- S DIRECTION=$$DIRECTON(SORTORDER)
- ;
- ; get scan mode specific parameters
- I SCANMODE="PATIENT" D
- . ; user may want to change patient
- . S ^TMP("MAG",$J,"BATCH Q/R","PATIENT DFN")=DFN
- . Q
- I (SCANMODE="DATE")!(SCANMODE="PATIENT") D  ; user may want to change date range 
- . I SORTORDER="ASCENDING" D  ; set BEGIN DATE to the last date of the previous run
- . . I NORMALRUN S ^TMP("MAG",$J,"BATCH Q/R","BEGIN DATE")=$$NEXTDATE(ENDDATE,DIRECTION)
- . . E  S ^TMP("MAG",$J,"BATCH Q/R","BEGIN DATE")=STUDYDATE\1
- . . S ^TMP("MAG",$J,"BATCH Q/R","END DATE")=""
- . . Q
- . E  D  ; DESCENDING -- set END DATE to the last date of the previous run
- . . I NORMALRUN S ^TMP("MAG",$J,"BATCH Q/R","END DATE")=$$NEXTDATE(BEGDATE,DIRECTION)
- . . E  S ^TMP("MAG",$J,"BATCH Q/R","END DATE")=STUDYDATE\1
- . . S ^TMP("MAG",$J,"BATCH Q/R","BEGIN DATE")=""
- . . Q
- . Q
- E  I SCANMODE="NUMBER" D
- . ; set REPORT/STUDY IEN to the last IEN of the previous run
- . S ^TMP("MAG",$J,"BATCH Q/R","REPORT/STUDY IEN")=(STUDYIEN+DIRECTION)
- . S ^TMP("MAG",$J,"BATCH Q/R","BATCH SIZE")=BATCHSIZE
- . Q
- ;
- ; get consult services
- M ^TMP("MAG",$J,"BATCH Q/R","CONSULT SERVICES")=CONSULTSERVICES
- Q
- ;
-NEXTDATE(DATE,DIRECTION) ; get the next date, but not in the future
- N NEXTDATE,NOW
- S NOW=$$NOW^XLFDT\1
- S NEXTDATE=$$FMADD^XLFDT(DATE\1,DIRECTION)
- I NEXTDATE>NOW S NEXTDATE=NOW ; no future dates
- Q NEXTDATE

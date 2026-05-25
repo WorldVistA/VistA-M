@@ -1,0 +1,21 @@
+TIU372P ;XAN/AJB - MEDICATION OBJECT UPDATE ;Aug 29, 2025@06:54:03
+ ;;1.0;TEXT INTEGRATION UTILITIES;**372**;Jun 20, 1997;Build 5
+ ;
+ ; Reference to File #19 in ICR #10156
+ ; Reference to $$FIND1^DIC in ICR #2051
+ ; Reference to *^XPAR in ICR#2263
+ ;
+ Q
+POST ; post-install
+ D EN^XPAR("SYS","TIUMOBJ STATUS",1,1)
+ N ERR,FDA,IEN
+ S IEN=$$FIND1^DIC(19,"","","TIUMOBJ UTILITY")
+ ; update the option
+ S:'IEN IEN=$$FIND1^DIC(19,"","","TIUMOBJ TESTER") Q:IEN'>0
+ S FDA(19,IEN_",",.01)="TIUMOBJ UTILITY"
+ S FDA(19,IEN_",",1)="Medication Object Manager"
+ S FDA(19,IEN_",",10.1)="Med Obj Manager"
+ S FDA(19,IEN_",",1.1)="MEDICATION OBJECT MANAGER"
+ S FDA(19,IEN_",",25)="EN^TIUMOBJLM"
+ D UPDATE^DIE("","FDA","IEN","ERR")
+ Q

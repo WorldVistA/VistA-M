@@ -1,18 +1,12 @@
-GMTSPSO8 ;RS/DLC - OP Rx Summary Component by VA Drug Class ;Jun 14, 2021@12:10:02
- ;;2.7;Health Summary;**125,115**;Oct 20, 1995;Build 190
+GMTSPSO8 ;RS/DLC - OP Rx Summary Component by VA Drug Class ;Jan 14, 2026@15:09
+ ;;2.7;Health Summary;**125,115,147**;Oct 20, 1995;Build 5
  ;
  ; This is a copy of GMTSPSO7 with modifications to enable selections by class
- ; External References
- ;   DBIA    330  ^PSOHCSUM, ACS^PSOHCSUM
- ;   DBIA    522  ^PS(55,
- ;   DBIA  10035  ^DPT(  file #2
- ;   DBIA   3136  ^PS(59.7,
- ;   DBIA  10011  ^DIWP
- ;   DBIA   4820  ^PSO52API
- ;   DBIA   4828  ^PSS59P7
- ;   DBIA   2858  ^PSDRUG
- ;   DBIA   4997  ^PS(50.605
- ;   DBIA   6263  ^UTILITY
+ ;
+ ; REFERENCE     ICR NUMBER
+ ; ========================
+ ; ^TMP("PSOO",    330
+ ; ^PSOHCSUM       330
  ;
 MAIN ; OP Rx HS Component
  N DC,ECD,GMR,IX,PSOBEGIN,PSOACT,GMX,GMTOP,GMTSI
@@ -23,15 +17,13 @@ MAIN ; OP Rx HS Component
  D PROF^PSO52API(DFN,"GMTSPS",1,9999999)
  I +$G(^TMP($J,"GMTSPS",DFN,0))<1,'$D(^TMP($J,"GMTSPS",DFN,"ARC")) Q
  I '$G(^TMP($J,"GMTSPS",DFN,0)),$D(^TMP($J,"GMTSPS",DFN,"ARC")) D CKP^GMTSUP Q:$D(GMTSQIT)  W "Patient Has Archived OP Prescriptions",!
- ;I '$D(^PS(55,DFN,"P")),'$D(^("ARC")) Q
- ;I '$O(^PS(55,DFN,"P",0)),$D(^PS(55,DFN,"ARC")) D CKP^GMTSUP Q:$D(GMTSQIT)  W "Patient Has Archived OP Prescriptions",!
  I $L($T(ACS^PSOHCSUM))>0 D ACS^PSOHCSUM I '$D(^TMP("PSOO",$J)) Q
  I $L($T(ACS^PSOHCSUM))'>0 D ^PSOHCSUM I '$D(^TMP("PSOO",$J)) Q
  S GMTSLO=GMTSLO+3
  S (GMTOP,GMX,IX)=0
  ;---filter first before directing to print/wrt
  F  S IX=$O(^TMP("PSOO",$J,IX)) Q:IX'>0  S GMR=$G(^(IX,0)) D
- .S DC=$$GET1^DIQ(50,+$P(GMR,U,3),25,"I")
+ .S DC=$$GETDC(+$P(GMR,U,3))
  .S GMTSI=0
  .F  S GMTSI=$O(GMTSEG(GMTSEGN,50.605,GMTSI)) Q:GMTSI'>0  D
  ..I DC=GMTSEG(GMTSEGN,50.605,GMTSI) D WRT
@@ -67,7 +59,6 @@ HEAD ; Prints Header
  S GMTOP=1
  K ^TMP($J,"GMTSPSSYS") D PSS^PSS59P7(1,,"GMTSPSSYS")
  I GMX'>0,$D(^DPT(DFN,.1)),^(.1)]"",+$G(^TMP($J,"GMTSPSSYS",1,40.1)) D CKP^GMTSUP Q:$D(GMTSQIT)  W "Outpatient prescriptions are cancelled 72 hours after admission",!
- ;I GMX'>0,$D(^DPT(DFN,.1)),^(.1)]"",+($P($G(^PS(59.7,1,40.1)),"^")) D CKP^GMTSUP Q:$D(GMTSQIT)  W "Outpatient prescriptions are cancelled 72 hours after admission",!
  D CKP^GMTSUP Q:$D(GMTSQIT)
   W "VA drug class(es) selected: "
  S (GMI,GMY)=0
@@ -84,3 +75,10 @@ HEAD ; Prints Header
  W ?18,"Rx #",?31,"Stat",?45,"Qty",?54,"Issued",?65,"Filled",?76,"Rem"
  W:$Y'>(IOSL-GMTSLO)!(+($G(GUI))>0) !
  Q
+GETDC(GMTS50IEN) ; Return drug class code given DRUG file (#50) IEN
+ K ^TMP($J,"GMTSDC")
+ D DATA^PSS50(GMTS50IEN,,,,0,"GMTSDC")
+ N GMTSRETURN
+ S GMTSRETURN=$P($G(^TMP($J,"GMTSDC",GMTS50IEN,25)),U)
+ K ^TMP($J,"GMTSDC")
+ Q GMTSRETURN

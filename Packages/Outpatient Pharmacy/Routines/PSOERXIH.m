@@ -1,5 +1,5 @@
 PSOERXIH ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**581**;DEC 1997;Build 126
+ ;;7.0;OUTPATIENT PHARMACY;**581,770**;DEC 1997;Build 145
  ;
  Q
 OMEDDATE(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file other medication date data ; ***ask Brad about date/time, not sure if we need that field
@@ -18,7 +18,7 @@ OMEDDATE(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file other medication date data 
  .; sequence, other medicaiton date, other medication date qualifier
  .S FDA(SF,IENS,.01)=SEQUENCE,FDA(SF,IENS,.02)=DATE,FDA(SF,IENS,.03)=QUAL
  D CFDA^PSOERXIU(.FDA)
- D UPDATE^DIE(,"FDA") K FDA
+ I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  ; file the effective and expiration dates in the old fields as well.
  I $D(EFFDT) S FDA(52.49,ERXIEN_",",6.3)=EFFDT
  I $D(EXDT) S FDA(52.49,ERXIEN_",",6.2)=EXDT
@@ -38,7 +38,7 @@ FACTIME(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file facility specific hours of a
  .; sequence, hours of administration code, hours of adminstraiton qualifier, hours of adminstration text, hours of adminstration value
  .S FDA(SF,IENS,.01)=SEQUENCE,FDA(SF,IENS,.02)=ADVAL,FDA(SF,IENS,1)=ADTEXT,FDA(SF,IENS,2.1)=ADQUAL,FDA(SF,IENS,2.2)=ADCODE
  D CFDA^PSOERXIU(.FDA)
- D UPDATE^DIE(,"FDA") K FDA
+ I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  Q
 PATNOTES(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file patient codified notes
  N PGL,I,SEQUENCE,SF,QUAL,VALUE,IENS,FDA,SF
@@ -102,7 +102,7 @@ COMPOUND(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file compound ingredient informa
  .S COAGQUAL=$$PRESOLV^PSOERXA1(COAGQUAL,"CAQ") ; resolving pointer
  .S FDA(SF,IENS,3.4)=COAGCODE,FDA(SF,IENS,3.5)=COAGQUAL,FDA(SF,IENS,3.6)=CLINSC,FDA(SF,IENS,3.7)=ACKREA,FDA(SF,IENS,4)=COAGDESC
  D CFDA^PSOERXIU(.FDA)
- D UPDATE^DIE(,"FDA") K FDA
+ I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  S FNLCMPDF=$G(@CGL@("FinalCompoundPharmaceuticalDosageForm",0))
  S FNLCMPDF=$$PRESOLV^PSOERXA1(FNLCMPDF,"NCI")
  S FDA(52.49311,MIEN_","_ERXIEN_",",81)=FNLCMPDF D FILE^DIE(,"FDA") K FDA

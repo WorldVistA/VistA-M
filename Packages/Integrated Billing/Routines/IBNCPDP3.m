@@ -1,9 +1,9 @@
-IBNCPDP3 ;OAK/ELZ - STORES NDC/AWP UPDATES ;11/14/07  13:18
- ;;2.0;INTEGRATED BILLING;**223,276,342,363,383,384,411,435,452,516,647**;21-MAR-94;Build 10
+IBNCPDP3 ;OAK/ELZ - STORES NDC/AWP UPDATES ;14-NOV-2007
+ ;;2.0;INTEGRATED BILLING;**223,276,342,363,383,384,411,435,452,516,647,822**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; Reference to ^PRCASER1 supported by IA# 593
- ; Reference to BPS RESPONSES file (#9002313.03) supported by IA# 4813
+ ; Reference to ^PRCASER1 supported by ICR# 593
+ ; Reference to BPS RESPONSES file (#9002313.03) supported by ICR# 4813
  ;
  ;
 UPAWP(IBNDC,IBAWP,IBADT) ; updates AWP prices for NDCs
@@ -164,15 +164,31 @@ ELIG(DFN,IBD) ; process an Eligibility response
  I '$D(^DPT(DFN,.312,IBCDFN,0)) S IBRES="0^Pt. insurance policy data not found" G ELIGX
  I +$P($G(^DPT(DFN,.312,IBCDFN,0)),U,18)'=IBPL S IBRES="0^Mismatch on plan ien" G ELIGX
  ;
+ ; IB*822/DJW - call gatekeeper if test acct and triggered from eIV appt ext
+ I $$CHECK^BPSTEST D E1^IBCNETST(DFN,BPRIEN)
+ ;
+ ;IB*822/CKB - get E1 buffer symbol
+ N BPSSTAT,E1SYMBOL S (BPSSTAT,E1SYMBOL)=""
+ S BPSSTAT=$$GET1^DIQ(9002313.0301,"1,"_BPRIEN,112,"I") ;TRANSACTION RESPONSE STATUS
+ S E1SYMBOL=$S(BPSSTAT="A":"a1",BPSSTAT="R":"r1",1:"")
+ S E1SYMBOL=$$FIND1^DIC(365.15,,"MX",E1SYMBOL)          ;get IEN of E1 symbol
+ ;
  ; build a buffer entry based primarily on the ins. policy in the pt. file
  K IBERR
  S IDUZ=IBUSR
  S IBNCPDPELIG=1   ; special variable indicating to eIV where the buffer entry is coming from
- D PT^IBCNEBF(DFN,IBCDFN,"","",1,.IBERR)     ; build and add buffer entry
+ ;
+ ;IB*822/CKB - include symbol from E1 transaction (E1SYMBOL) when creating the Buffer
+ ; - moved up from below: 1) added IBSOURCE and 2) changed "E-PHARMACY" to "EPHARMACY"
+ N IBSOURCE
+ S (IBSOURCE,EPHSRC)=+$O(^IBE(355.12,"C","EPHARMACY",0))    ; source of information
+ I 'EPHSRC S IBRES="0^Cannot find e-Pharmacy Source of Information in dictionary" G ELIGX
+ D PT^IBCNEBF(DFN,IBCDFN,E1SYMBOL,"",1,.IBERR)     ; build and add buffer entry
  I $G(IBERR)'="" S IBRES="0^"_IBERR G ELIGX
  I '$G(IBFDA) S IBRES="0^No Buffer entry was created" G ELIGX
- I '$D(^IBA(355.33,IBFDA,0)) S IBRES="0^Buffer entry doesn't exist" G ELIGX
- S EPHSRC=+$O(^IBE(355.12,"C","E-PHARMACY",0))    ; source of information
+ I '$D(^IBA(355.33,IBFDA,0)) S IBRES="0^Buffer entry doesn't exist"
+ ;IB*822/CKB - changed "E-PHARMACY" to "EPHARMACY"
+ S EPHSRC=+$O(^IBE(355.12,"C","EPHARMACY",0))    ; source of information
  I 'EPHSRC S IBRES="0^Cannot find e-Pharmacy Source of Information in dictionary" G ELIGX
  S INSIEN=+$P($G(^DPT(DFN,.312,IBCDFN,0)),U,1)
  I 'INSIEN S IBRES="0^Insurance Company pointer not there" G ELIGX
@@ -183,52 +199,83 @@ ELIG(DFN,IBD) ; process an Eligibility response
  S PLDA=IBPL_","                ; IENS for the plan entry 355.3
  S ICDA=INSIEN_","              ; IENS for the insurance company entry 36
  ;
- S BUFF(355.33,BUDA,60.1)=$$GET1^DIQ(2.312,PTDA,4.01,"I")
- S BUFF(355.33,BUDA,60.11)=$$GET1^DIQ(2.312,PTDA,4.02,"I")
+ ;IB*822/CKB - removed adding the addt'l fields to the buffer as they are not coming from the Payer
+ ;S BUFF(355.33,BUDA,60.1)=$$GET1^DIQ(2.312,PTDA,4.01,"I")
+ ;S BUFF(355.33,BUDA,60.11)=$$GET1^DIQ(2.312,PTDA,4.02,"I")
  ;
- S BUFF(355.33,BUDA,40.01)=$$GET1^DIQ(355.3,PLDA,.02,"I")
- S BUFF(355.33,BUDA,40.04)=$$GET1^DIQ(355.3,PLDA,.05,"I")
- S BUFF(355.33,BUDA,40.05)=$$GET1^DIQ(355.3,PLDA,.06,"I")
- S BUFF(355.33,BUDA,40.06)=$$GET1^DIQ(355.3,PLDA,.12,"I")
- S BUFF(355.33,BUDA,40.07)=$$GET1^DIQ(355.3,PLDA,.07,"I")
- S BUFF(355.33,BUDA,40.08)=$$GET1^DIQ(355.3,PLDA,.08,"I")
- S BUFF(355.33,BUDA,40.09)=$$GET1^DIQ(355.3,PLDA,.09,"I")
- S BUFF(355.33,BUDA,40.1)=$$GET1^DIQ(355.3,PLDA,6.02,"I")
- S BUFF(355.33,BUDA,40.11)=$$GET1^DIQ(355.3,PLDA,6.03,"I")
+ ;S BUFF(355.33,BUDA,40.01)=$$GET1^DIQ(355.3,PLDA,.02,"I")
+ ;S BUFF(355.33,BUDA,40.04)=$$GET1^DIQ(355.3,PLDA,.05,"I")
+ ;S BUFF(355.33,BUDA,40.05)=$$GET1^DIQ(355.3,PLDA,.06,"I")
+ ;S BUFF(355.33,BUDA,40.06)=$$GET1^DIQ(355.3,PLDA,.12,"I")
+ ;S BUFF(355.33,BUDA,40.07)=$$GET1^DIQ(355.3,PLDA,.07,"I")
+ ;S BUFF(355.33,BUDA,40.08)=$$GET1^DIQ(355.3,PLDA,.08,"I")
+ ;S BUFF(355.33,BUDA,40.09)=$$GET1^DIQ(355.3,PLDA,.09,"I")
+ ;S BUFF(355.33,BUDA,40.1)=$$GET1^DIQ(355.3,PLDA,6.02,"I")
+ ;S BUFF(355.33,BUDA,40.11)=$$GET1^DIQ(355.3,PLDA,6.03,"I")
  ;
- S BUFF(355.33,BUDA,20.02)=$$GET1^DIQ(36,ICDA,.131,"I")
- S BUFF(355.33,BUDA,20.05)=$$GET1^DIQ(36,ICDA,1,"I")
- S BUFF(355.33,BUDA,21.01)=$$GET1^DIQ(36,ICDA,.111,"I")
- S BUFF(355.33,BUDA,21.02)=$$GET1^DIQ(36,ICDA,.112,"I")
- S BUFF(355.33,BUDA,21.03)=$$GET1^DIQ(36,ICDA,.113,"I")
- S BUFF(355.33,BUDA,21.04)=$$GET1^DIQ(36,ICDA,.114,"I")
- S BUFF(355.33,BUDA,21.05)=$$GET1^DIQ(36,ICDA,.115,"I")
- S BUFF(355.33,BUDA,21.06)=$$GET1^DIQ(36,ICDA,.116,"I")
+ ;S BUFF(355.33,BUDA,20.02)=$$GET1^DIQ(36,ICDA,.131,"I")
+ ;S BUFF(355.33,BUDA,20.05)=$$GET1^DIQ(36,ICDA,1,"I")
+ ;S BUFF(355.33,BUDA,21.01)=$$GET1^DIQ(36,ICDA,.111,"I")
+ ;S BUFF(355.33,BUDA,21.02)=$$GET1^DIQ(36,ICDA,.112,"I")
+ ;S BUFF(355.33,BUDA,21.03)=$$GET1^DIQ(36,ICDA,.113,"I")
+ ;S BUFF(355.33,BUDA,21.04)=$$GET1^DIQ(36,ICDA,.114,"I")
+ ;S BUFF(355.33,BUDA,21.05)=$$GET1^DIQ(36,ICDA,.115,"I")
+ ;S BUFF(355.33,BUDA,21.06)=$$GET1^DIQ(36,ICDA,.116,"I")
  ;
  ; update buffer entry with some additional information
- S BUFF(355.33,BUDA,.03)=EPHSRC      ; source of info
- S BUFF(355.33,BUDA,.12)=""          ; make sure eIV related fields are blank
- S BUFF(355.33,BUDA,.13)=""
- S BUFF(355.33,BUDA,.14)=""
- S BUFF(355.33,BUDA,.15)=""
+ ;IB*822/CKB - commented out the following lines of code as they are being set unneccessarily  
+ ; this overwrites a valid value - S BUFF(355.33,BUDA,.03)=EPHSRC      ; source of info
+ ;S BUFF(355.33,BUDA,.12)=""          ; make sure eIV related fields are blank
+ ;S BUFF(355.33,BUDA,.13)=""
+ ;S BUFF(355.33,BUDA,.14)=""
+ S BUFF(355.33,BUDA,.15)=$$NOW^XLFDT ; IB*822/CKB - changed from "" (setting IIV PDATE on purpose)
  S BUFF(355.33,BUDA,.17)=BPRIEN      ; BPS response file ien
  ;
  ; update buffer entry with data pulled from BPS response file
  ; only 2 fields are applicable here:  group# and cardholder ID
  ;
- S BPRSUB=$G(BPSR(9002313.03,ZR,302,"E"))         ; subscriber/cardholder ID
- ;I BPRSUB'="" S BUFF(355.33,BUDA,60.04)=BPRSUB    ; update buffer if field exists
- I BPRSUB'="" S BUFF(355.33,BUDA,90.03)=BPRSUB    ; update new field - 516 - baa
- ;
  S BPRGRP=$G(BPSR(9002313.03,ZR,301,"E"))         ; group number
  ;I BPRGRP'="" S BUFF(355.33,BUDA,40.03)=BPRGRP    ; update buffer if field exists
  I BPRGRP'="" S BUFF(355.33,BUDA,90.02)=BPRGRP    ; update new field - 516 - baa
  ;
+ S BPRSUB=$G(BPSR(9002313.03,ZR,302,"E"))         ; subscriber/cardholder ID
+ ;I BPRSUB'="" S BUFF(355.33,BUDA,60.04)=BPRSUB    ; update buffer if field exists
+ I BPRSUB'="" S BUFF(355.33,BUDA,90.03)=BPRSUB    ; update new field - 516 - baa
+ ;
  D FILE^DIE(,"BUFF")
  ;
+ ;IB*822/CKB - call to add tracking the E1 transactions
+ D EIVE1LOG
+ ; 
  S IBRES=1  ; all good
  ;
 ELIGX ;
  Q IBRES
  ;
+EIVE1LOG ;IB*822/CKB - Add to EIV E1 TRANSACTION RESPONSE LOG file #365.3
+ N E1IEN,E1LOG,IBDATA,IBERR,IBFILE,IBIEN,IBIENS
+ S IBFILE=365.3
+ ;
+ S IBDATA(.01)=DFN           ;IEN of PATIENT file #2
+ S IBDATA(.02)=$$NOW^XLFDT   ;Date/Time response received
+ S IBDATA(.03)=BPRIEN        ;IEN of BPS RESPONSE file #9002313.03
+ ;Add/create entry in file #365.3
+ S E1IEN=$$ADD^IBDFDBS(IBFILE,,.IBDATA,.IBERR,.IBIEN)
+ I 'E1IEN,('IBIEN) Q         ; W "Unable to add entry, "_IBERR
+ K IBDATA S IBERR=""
+ ;
+ ;IBIENS=IEN for file #365.3 - add other info to file
+ S IBIENS=E1IEN S:IBIENS="" IBIENS=IBIEN S IBIENS=IBIENS_","
+ S E1LOG(365.3,IBIENS,.04)=$$GET1^DIQ(9002313.0301,"1,"_BPRIEN,112,"I") ;Transaction Status
+ S E1LOG(365.3,IBIENS,.05)=IBFDA         ;IEN of Buffer file #355.33
+ S E1LOG(365.3,IBIENS,.06)=0             ;prevent from purging
+ S E1LOG(365.3,IBIENS,1.1)=IBCDFN        ;IEN of PATIENT INSURANCE subfile #2.312
+ S E1LOG(365.3,IBIENS,1.2)=INSIEN        ;IEN of INSURANCE file #36
+ S E1LOG(365.3,IBIENS,1.3)=$$GET1^DIQ(36,ICDA,.01) ;Insurance Company Name
+ S E1LOG(365.3,IBIENS,1.4)=IBPL          ;IEN of GROUP PLAN file #355.3
+ S E1LOG(365.3,IBIENS,1.5)=$$GET1^DIQ(355.33,BUDA,90.02) ;Group Number
+ S E1LOG(365.3,IBIENS,1.6)=$$GET1^DIQ(355.33,BUDA,90.03) ;Subscriber ID
+ D FILE^DIE(,"E1LOG")
+ K E1LOG
+ Q
  ;IBNCPDP3

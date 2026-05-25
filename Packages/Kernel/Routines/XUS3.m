@@ -1,9 +1,12 @@
 XUS3 ;SF-ISC/STAFF - SIGNON ;5/31/2006
- ;;8.0;KERNEL;**32,149,265,419**;Jul 10, 1995;Build 5
+ ;;8.0;KERNEL;**32,149,265,419,820**;Jul 10, 1995;Build 1
 TT ;Terminal Type select
  Q:$D(XUIOP(1))
- S DIC("B")=$S($P(XUIOP,";",2)]"":$P(XUIOP,";",2),$D(^%ZIS(1,XUDEV,"SUBTYPE")):+^("SUBTYPE"),1:"C-VT100")
- S DIC="^%ZIS(2,",DIC(0)="AEMQO",DIC("S")="I $P(^(0),U,2)" D ^DIC K DIC Q:Y<1
+ S X="C-VT320" ;p820
+ ;S DIC("B")=$S($P(XUIOP,";",2)]"":$P(XUIOP,";",2),$D(^%ZIS(1,XUDEV,"SUBTYPE")):+^("SUBTYPE"),1:"C-VT100") p820
+ ;The Terminal Type is no longer being prompted for and will default to C-VT320 for all-users p820
+ ;S DIC="^%ZIS(2,",DIC(0)="AEMQO",DIC("S")="I $P(^(0),U,2)" D ^DIC K DIC Q:Y<1
+ S DIC="^%ZIS(2,",DIC(0)="MO",DIC("S")="I $P(^(0),U,2)" D ^DIC K DIC Q:Y<1  ;p820
  ;M/11 & M/VX sites may want to remove the ; from the next line.
  ;S J=$P(Y,U,2) I $D(^%IS(0,"SUB",J)) S $P(^%IS($I,1),U,3)=J
  S ^VA(200,DUZ,1.2)=+Y,$P(XUIOP,";",2)=$P(Y,U,2) Q

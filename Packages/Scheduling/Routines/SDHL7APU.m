@@ -1,5 +1,5 @@
 SDHL7APU ;MS/TG,PH - TMP HL7 Routine;OCT 16, 2018
- ;;5.3;Scheduling;**704,714,773,780,798,810,859,863**;Aug 13, 1993;Build 14
+ ;;5.3;Scheduling;**704,714,773,780,798,810,859,863,879**;Aug 13, 1993;Build 31
  ;  Integration Agreements:
  ;
  Q
@@ -11,6 +11,7 @@ MSH(MSH,INP,MSGARY) ;
  S MSGARY("HLTHISSITE")=+$G(MSH(5,1,1))
  S ^XTMP("SDTMP",+MSH(9))="",$P(^XTMP("SDTMP",0),U,1)=$$FMADD^XLFDT(DT,7) ;773
  Q
+ ;
 SCH(SCH,INP,MSGARY) ;
  N TM,TMM,CONSDSC,CANCODE
  S SDAPTYP="A|"
@@ -34,7 +35,7 @@ SCH(SCH,INP,MSGARY) ;
  N SCHEMAIL I $G(SCH(13,1,4))'="" D
  .S SCHEMAIL=$$LOW^XLFSTR(SCH(13,1,4)),(DUZ,MSGARY("DUZ"))=$O(^VA(200,"ADUPN",$G(SCHEMAIL),""))
  S:$G(DUZ)'>0 (DUZ,MSGARY("DUZ"))=.5
- N SDTYP S SDTYP=$G(SCH(6,1,4))
+ N SDTYP S SDTYP=$G(SCH(6,1,4))    ;consistent location for appt type
  I $G(SDTYP)="R" D
  .S (RTCID,SDCHILD)=$G(SCH(7,1,1)),SDPARENT=$G(SCH(24,1,1))
  .S:$G(SDCHILD)="" (RTCID,SDCHILD)=$G(SCH(7,1,4))
@@ -43,15 +44,14 @@ SCH(SCH,INP,MSGARY) ;
  .I $G(SDPARENT)>0 S:$P($G(^SDEC(409.85,$G(SDPARENT),3)),"^",1)>0 SDMTC=1
  S:$G(SDTYP)="" SDTYP="A",SDAPTYP="A|"
  S:$G(SDTYP)="A" SDTYP="A",SDAPTYP="A|"
- ;
  Q
-SCHNTE(SCHNTE,INP,MSGARY) ; 
  ;
+SCHNTE(SCHNTE,INP,MSGARY) ; 
  S SDECNOTE=$G(SCHNTE(3))
  I $G(MSGARY("EVENT"))="CANCELED" S SDECNOT=$G(SCHNTE(3))
  Q
-PID(PID,INP,MSGARY) ;
  ;
+PID(PID,INP,MSGARY) ;
  S MSGARY("MPI")=$G(PID(3,1,1))
  S DFN=$$GETDFN^MPIF001(MSGARY("MPI"))
  Q
@@ -84,7 +84,6 @@ AIGNTE(AIGNTE,CNT,INP) ;
  Q
  ;
 AIL(AIL,CNT,INP,MSGARY) ;
- ;
  S:$D(AIL) AIL(CNT,1)=1
  N STCREC
  S STCREC=""
@@ -105,6 +104,7 @@ AIL(AIL,CNT,INP,MSGARY) ;
  I $G(AIL(1,4,1,2))="A" S SDAPTYP="A|"
  I $G(AIL(1,4,1,2))="R" S SDAPTYP="R|"_$G(AIL(1,4,1,4))
  Q
+ ;
 AILNTE(AILNTE,CNT,INP) ;
  S:$D(AILNTE) AILNTE(CNT,1)=1
  S AILNTE=$G(AILNTE(1,3,2))
@@ -120,26 +120,6 @@ AIPNTE(AIPNTE,CNT,INP,MSGARY) ;
  S:$D(AIPNTE) AIPNTE(CNT,1)=1
  Q 
  ;
-CHKCHILD ;
- N MTC,FIRST
- K RTCCLIN
- I $P($G(SDAPTYP),"|",1)="R" D  ; if rtc check to see if the child is actually a parent
- .I $G(SDPARENT)="" S:$G(SCH(24,1,1))'="" SDPARENT=$G(SCH(24,1,1))
- .I $G(SDPARENT)="" S:$G(SCH(23,1,1))'="" SDPARENT=$G(SCH(23,1,1))
- .S:$G(SDPARENT)>0 MTC=$P($G(^SDEC(409.85,+$G(SDPARENT),3)),"^",3),SDMRTC=$S(MTC>0:"1",1:0)
- .Q:+$G(MTC)=0  ; Not a multi RTC
- .S:$G(SDCL)>0 RTCCLIN=$P(^SDEC(409.85,$G(SDPARENT),0),"^",9)
- .S DUZ=$G(MSGARY("DUZ"))
- .Q:$G(RTCCLIN)'=SDCL
- .N X12,X13 S (X12,X13)=0 F  S X12=$O(^SDEC(409.85,$G(SDPARENT),2,X12)) Q:X12'>0  S X13=X12
- .Q:$G(X13)=MTC!($G(X13)>MTC)
- .I $G(MTC)>0 F I=1:1:MTC Q:I>MTC  D
- ..S:$G(INP(3))="" INP(3)=DT S INP(25)=SDPARENT,INP(6)=$P(^SDEC(409.85,SDPARENT,0),"^",9),RTN=0
- ..S INP(5)="RTC",INP(1)="",INP(14)="YES",INP(15)=$P($G(^SDEC(409.85,SDPARENT,3)),"^",2),INP(16)=I
- ..D ARSET^SDHLAPT1(.RTN,.INP)
- ..I I=1 S:$P($G(RTN),"^",2)>0 FCHILD=$P(RTN,"^",2)
- .Q
- Q
 VALIDMSG(MSGROOT,QRY,XMT,ERR)   ;Validate message
  ;
  ;  Messages handled: SIU^S12
@@ -231,28 +211,22 @@ SEND() ;
 ACKIN ;
  Q
 INP ; set up the INP array for calling ARSET^SDECAR2 to update the RTC orders
- ; Need to add code to add the rtcparent to the HL7 message and to parse it out. 
- N NODE3,INTV,NUMAPT,ORDATE,SDCHILD,SDPARENT
+ N NODE3,INTV,NUMAPT,ORDATE
  K INP
- S:$G(MSGARY("PROVIEN"))>0 INP(10)=$$GET1^DIQ(200,$G(MSGARY("PROVIEN"))_",",.01,"E")
- ;
- S SDPARENT=$G(SCH(24,1,1))
- S PCE="" S PCE=$P($G(^DPT($G(DFN),"ENR")),U,1) I PCE'="" D
- .S INP(13)=$$GET1^DIQ(27.11,PCE,.07,"E")
- S:$G(SDMRTC)'="" INP(14)=$S(SDMRTC=1:"YES",SDMRTC=0:"NO",1:"")
- ;I $G(SDPARENT)'="" S SDPARENT=$G(MSGARY("SDPARENT"))
- I +$G(SDPARENT)>0 S NODE3=$G(^SDEC(409.85,+SDPARENT,3)),INTV=$P(NODE3,"^",2)
- S INP(1)=$P(SDAPTYP,"|",2)    ;If a new RTC order this will be null so it will be added.    810-change 1st piece to use 2nd piece.  IEN for file (#409.85)
+ S SDPARENT=$G(SDPARENT)  ;879
+ I SDPARENT>0 S NODE3=$G(^SDEC(409.85,SDPARENT,3)),INTV=$P(NODE3,"^",2),NUMAPT=$P(NODE3,"^",3)  ;879 define numapt
+ S INP(1)=$P(SDAPTYP,"|",2)    ;If NO ien passed in this will be null so it will be added.    810-change 1st piece to use 2nd piece.  IEN for file (#409.85)
  S INP(2)=$G(DFN)
  D NOW^%DTC S NOW=$$HTFM^XLFDT($H),INP(3)=$$FMTE^XLFDT(NOW)
  ;NEEDS THE TEXT INSTITUTION NAME
  S INP(4)=$$NAME^XUAF4(+$G(DUZ(2))) ;Required, DUZ(2) is the signed on users division they are signed into, +DUZ(2) is the parent station number
- S INP(5)="APPT"
+ S INP(5)=$S($G(AIL(1,4,1,2))="R":"RTC",1:"APPT")   ;879
  S INP(6)=$G(SDCL)
  S INP(7)="" ;null for TMP appointments or can we get this from the original RTC order?
  S INP(8)="FUTURE"
  N X11 S X11=$P($G(SDAPTYP),"|") S:$G(X11)="" X11="A"
- S INP(9)=$S(X11="A":"PATIENT",1:"PROVIDER") ;request by provider or patient. RTC orders and consults will always be PROVIDER otherwise it is PATIENT
+ S:$G(MSGARY("PROVIEN"))>0 INP(10)=$$GET1^DIQ(200,$G(MSGARY("PROVIEN"))_",",.01,"E")
+ S INP(9)=$S($G(SDMTC):"PROVIDER",X11="A":"PATIENT",1:"PROVIDER")   ;request by provider or patient. RTC orders and consults will always be PROVIDER otherwise it is PATIENT
  S:$G(MSGARY("PROVIEN"))>0 INP(10)=$$GET1^DIQ(200,$G(MSGARY("PROVIEN"))_",",.01,"E") ;Provider name - needs to be in lastname,firstname middle initial.
  S SDDDT=$G(SCH(5,1,2))
  S:$G(SDDDT)="" SDDDT=$G(SCH(11,1,8))
@@ -261,22 +235,23 @@ INP ; set up the INP array for calling ARSET^SDECAR2 to update the RTC orders
  S INP(12)=$G(SDECNOTE) ; RTC comments these are different than the comments that are stored in in file 44 appointment multiple. 
  S PCE="" S PCE=$P($G(^DPT(DFN,"ENR")),U,1) I PCE'="" D
  .S INP(13)=$$GET1^DIQ(27.11,PCE,.07,"E")
- S INP(14)=""
- S:$G(SDMRTC)'="" INP(14)=$S(SDMRTC=1:"YES",SDMRTC=0:"NO",1:"NO")  ; SDMRTC=1:YES
- S INP(15)=$G(INTV) ;If MRTC, the interval in days between appointments
- S INP(16)=$G(AIL(1,4,1,4)) ;If MRTC, the appointment number for this appointment
+ S SDMRTC=$G(SDMRTC) S:$G(SDMRTC)]"" SDMRTC=$S(SDMRTC=1:"YES",SDMRTC=0:"NO",1:"NO")  ; SDMRTC=YES if MRTC
+ I SDMRTC="YES" D              ;879 Do only when MRTC
+ .S INP(14)=SDMRTC
+ .S INP(15)=$G(INTV)      ;If MRTC, the interval in days between appointments
+ .S INP(16)=$G(NUMAPT)    ;If MRTC, appointments needed number for this MRTC
  S INP(17)="" ;null for TMP
- N SCXX S SCXX=$S($G(SDPARENT)>0:$$GET1^DIQ(409.85,SDPARENT_",",15,"I"),1:0)
+ N SCXX S SCXX=$S(SDPARENT>0:$$GET1^DIQ(409.85,SDPARENT_",",15,"I"),1:0)
  S INP(18)=$S($G(SCXX)=1:"YES",1:"NO")  ;is this service connected? we can get this from the parent
  S SCPERC=0
  S SCPERC=$P(^DPT($G(INP(2)),.3),"^",2)
  S INP(19)=SCPERC
  S INP(22)="9"
  S INP(23)="NEW"
- S:$G(SDCHILD)=$G(SDPARENT) SDPARENT=""
- S INP(25)=$G(SDPARENT)
- S:$G(SDPARENT)>0 INP(28)=$P($G(^SDEC(409.85,+SDPARENT,7)),U,1)  ; this is the CPRS order number
- S:$G(INP(28))>0 INP(26)=$P($G(^SDEC(409.85,+SDPARENT,7)),U,2)
+ I SDPARENT,($G(AIL(1,4,1,2))="R")!($G(AIL(1,2))="R") D
+ .S INP(25)=SDPARENT
+ .S:SDPARENT>0 INP(28)=$P($G(^SDEC(409.85,SDPARENT,7)),U,1)  ; this is the CPRS order number
+ .S:$G(INP(28))>0 INP(26)=$P($G(^SDEC(409.85,SDPARENT,7)),U,2)
  Q
 ARSET(X) ; set the appointment requests into 409.85
  Q
@@ -392,7 +367,8 @@ CHKLL(X) ;check setup of Logical Link
  Q $$LLOK^HLCSLM(X)
 SENDERR(ERR)  ; Send for unsuccessful response
  K @MSGROOT
- N HLA
+ ;879 discovered when we have any errors that halts make appt, (e.g. patient already has appt this time), then this newly stubbed in open REQ rec needs to be closed as "NN" no longer needed.
+ I $G(REQIEN) N RET,INPA S INPA(1)=REQIEN,INPA(2)="NN",INPA(3)=$G(DUZ),DUZ(2)=$G(STA),INPA(4)=$$FMTE^XLFDT(DT) D ARCLOSE^SDECAR(.RET,.INPA)
  D INIT^HLFNC2(EIN,.HL)
  S HL("FS")="|",HL("ECH")="^~\&"
  S CNT=1,@MSGROOT@(CNT)=$$MSA^SDTMBUS($G(HL("MID")),ERR,.HL),LEN=$L(@MSGROOT@(CNT))
@@ -448,12 +424,15 @@ ERRS ;
  ;;
  ;
 ACK ;****BUILD THE RESPONSE MSA (Cont. of SDHL7APT)
+ S ERRTXT=$$ERRLKP^SDHL7APU(ERRTXT)  ; move to this tag from sdhl7apt
+ S ERRTXT=$$STRIP^SDHL7APU(ERRTXT)
+ ;
  K @MSGROOT
  N HLA,ERR,LEN,FOUNDCN
  D INIT^HLFNC2(EIN,.HL)
  S HL("FS")="|",HL("ECH")="^~\&"
  S (ERR,FOUNDCN)=0
  S HL("MID")=$S($G(HL("MID")):HL("MID"),1:ACKMSG)
- S HLA("HLA",1)="MSA"_HL("FS")_$S(ERRCND:"AE",1:"AA")_HL("FS")_HL("MID")_HL("FS")_$S(ERRCND:$E(ERRTXT,1,52),1:"")_HL("FS")
+ S HLA("HLA",1)="MSA"_HL("FS")_$S(ERRCND:"AE",1:"AA")_HL("FS")_HL("MID")_HL("FS")_$S(ERRCND:$E(ERRTXT,1,99),1:"")_HL("FS")  ;879 incr to 99
  D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"LM",1,.MYRESULT)
  Q

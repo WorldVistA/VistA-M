@@ -1,5 +1,5 @@
 IBCNBCD ;ALB/ARH - Ins Buffer: display/compare buffer and existing ins ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,251,361,371,416,438,452,497,528,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**82,251,361,371,416,438,452,497,528,549,806**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INS(IBBUFDA,IBINSDA) ; display a buffer entry's insurance company fields and
@@ -160,7 +160,8 @@ ELIG(IBBUFDA,IBPOLDA) ; Display eligibility/benefit data
  . S NOIDATA=1
  ;
  ; Loop through response data and display it
- F FLDIDX=0:1:1 Q:EX  D
+ ;F FLDIDX=0:1:1 Q:EX  D
+ S FLDIDX=0 D  G ELIGX  ;IB*806/DTG only show the payer side
  . I +FLDIDX S FLD1=$NA(^TMP("RESP. EB DATA",$J,"DISP")),FLD2=$NA(^TMP("INS. EB DATA",$J,"DISP"))
  . E  S FLD1=$NA(^TMP("RESP. PS DATA",$J)),FLD2=$NA(^TMP("INS. PS DATA",$J))
  . S (I,I1)="",NOIDATA=0

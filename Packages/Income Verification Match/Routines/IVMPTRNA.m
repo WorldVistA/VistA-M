@@ -1,5 +1,5 @@
 IVMPTRNA ;ALB/CKN,BRM,TDM,LBD,KUM - HL7 FULL DATA TRANSMISSION (Z07) BUILDER(CONTINUED) ;7/18/24 9:13AM
- ;;2.0;INCOME VERIFICATION MATCH;**46,58,76,105,152,164,201,215**;21-OCT-94;Build 14
+ ;;2.0;INCOME VERIFICATION MATCH;**46,58,76,105,152,164,201,215,217**;21-OCT-94;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -47,6 +47,7 @@ RF1(DFN,RF1TYP) ; create RF1 segment
  ;              EAD = E-Mail Address Change
  ;              PHH = Home Phone Number Change
  ;              RAD   Residential Address Change
+ ;              PHC = Confidential Phone Number Change
  ;
  ;  Output: RF1 segment
  ;
@@ -136,6 +137,8 @@ RF1LOAD(RF1TYP) ;
  I RF1TYP="PHH" S RFDT=.1321,RFSRC=.1322,RFSIT=.1323
  ; IVM*2.0*164 - Add Residential Address Change
  I RF1TYP="RAD" S RFDT=.1158,RFSRC=.11582,RFSIT=.11581
+ ; IVM*2.0*217 - Add Confidential Phone Number Change
+ I RF1TYP="PHC" S RFDT=.14121,RFSRC=.14122,RFSIT=.14123
  S GETFLDS=RFDT S:RFSRC'="" GETFLDS=GETFLDS_";"_RFSRC S GETFLDS=GETFLDS_";"_RFSIT
  D GETS^DIQ(2,DFN_",",GETFLDS,"IE","RFDAT","ERR") Q:$D(ERR)
  S ADRDT=$$FMTHL7^XLFDT($G(RFDAT(2,DFN_",",RFDT,"I")))

@@ -1,5 +1,5 @@
-SDUPDATECONSPID ;ALB/BLB -  Feb 29, 2024 - Entry point for SD PID/CID UPDATE OR protocol - attached to GMRC EVSEND OR
- ;;5.3;Scheduling;**877,885**;Aug 13, 1993;Build 5
+SDUPDATECONSPID ;ALB/BLB - Entry point for SD PID/CID UPDATE OR protocol - attached to GMRC EVSEND OR ;Aug 08, 2025
+ ;;5.3;Scheduling;**877,885,918**;Aug 13, 1993;Build 4
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  Q
@@ -22,6 +22,9 @@ UPDATECONSULTPID(CONSULT) ;
  .I $E($G(CONSULT(COUNT)),1,3)="PID" D
  ..S DFN=$P($G(CONSULT(COUNT)),"|",4)
  I '$G(CONSULTIEN)!('$G(DFN))!('$G(PID)) Q
+ ;
+ I $G(XQZ)="^SDC" D
+ .S PID=$$GETPID^SDES2GETCONSULTS(CONSULTIEN)
  ;
  D UPDATECONSULTPID^SDES2APPTUTIL(CONSULTIEN,PID,DFN) ;
  Q

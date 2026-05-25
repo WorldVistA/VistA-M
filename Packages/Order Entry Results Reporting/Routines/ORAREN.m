@@ -1,13 +1,15 @@
-ORAREN ;SLC/JLC - PROCESS RENEWAL REQUEST ;Apr 07, 2022@14:23:48
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**336,349,350,540,405**;Dec 17, 1997;Build 211
+ORAREN ; SLC/JLC - PROCESS RENEWAL REQUEST ; Aug 28, 2024@09:14:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**336,349,350,540,405,609**;Dec 17, 1997;Build 23
  ;
  ;The purpose of this API is to process a request to renew an
  ;Outpatient Prescription
  ;
- ;  DBIA 2790 - ACTVSURO^XQALSURO
- ;  DBIA 2343 - ACTIVE^XUSER
- ;  DBIA 2848 - GETALL^SCAPMCA
- ;  DBIA 2263 - GET^XPAR
+ ; Reference to ACTVSURO^XQALSURO in ICR #2790
+ ; Reference to ACTIVE^XUSER in ICR #2343
+ ; Reference to GETALL^SCAPMCA in ICR #2848
+ ; Reference to GET^XPAR in ICR #2263
+ ; Reference to UP^XLFSTR in ICR #10104
+ ; Reference to EN^PSOORDER in ICR #1878
  ;
  Q
 RENEW(ORRESULT,DFN,RX,PROVP,RENEWF) ;
@@ -20,6 +22,7 @@ RENEW(ORRESULT,DFN,RX,PROVP,RENEWF) ;
  ;*349 Added passing to build the message for variable safety. And mail reformat.
  N X,OK,ORY,ORPKG,ORITM,ORIFN,PSOSTAT,A,PDET,ORFLDS,DRUG,DISPLAY,FAIL,LIST,OCHKS,OCO,OCLIST,ORCPLX,ORINFO,ORPVSTS
  N ORL,ORPROV,PCP,PCPN,RNWFLDS,Y,ORUSR,NEWIFN,PNM,RXE,EMSG,INMSG,ORPROVNM ;*349
+ N ACFLAG S ACFLAG=""
  K ^TMP("SC",$J) S RENEWF=$G(RENEWF)
  I $G(PROVP)="" S PROVP="A"
  S PNM=$P($G(^DPT(DFN,0)),U),ORUSR=$$GET^XPAR("SYS","OR AUTORENEWAL USER") I ORUSR="" D AE(.EMSG,RX,DFN,"No auto-renewal user defined") S ORRESULT=0 G END
@@ -36,7 +39,7 @@ RENEW(ORRESULT,DFN,RX,PROVP,RENEWF) ;
  D LOCKORD^ORWDX(.OK,ORIFN) I 'OK D AE(.EMSG,RX,DFN,"Order Lock Failed") S ORRESULT=0 G UNLOCK
  S A=$G(^OR(100,ORIFN,0)) I A="" D AE(.EMSG,RX,DFN,"Order missing from ORDERS file") S ORRESULT=0 G UNO
  S ORPROV=+$P(A,U,4),ORL=+$P(A,U,10)
- ;*349 Add Provider name, check valid surogate
+ ;*349 Add Provider name, check valid surrogate
  S ORPROVNM=$$GET1^DIQ(200,ORPROV,.01,"E"),ORPVSTS=$$ACTIVE^XUSER(ORPROV)
  I ORPROVNM]"" S ORPROVNM="("_ORPROVNM_")"
  I '$G(ORPVSTS)&($$ACTVSURO^XQALSURO(ORPROV)<1) D AE(.EMSG,RX,DFN,"Provider "_ORPROVNM_$S(ORPVSTS="":" NOT FOUND",1:" flagged as "_$P(ORPVSTS,U,2))) S ORRESULT=0 G UNO
@@ -116,7 +119,7 @@ SEG ;break up lines longer than 500 characters
  Q
  ;
 AE(MSARY,RX,DFN,TEXT,PDET) ;*349
- ;Input:  MSARY - Output aray
+ ;Input:  MSARY - Output array
  ;        RX    - Internal RX#
  ;        DFN   - Internal Patient DFN
  ;Output: MSARY will be appended with a line pertaining to the input.
@@ -135,7 +138,7 @@ AE(MSARY,RX,DFN,TEXT,PDET) ;*349
  Q
  ;
 INFO(INARY,RX,DFN,MSG)     ;file informational items in mail message ;*349
- ;Input:  INARY - Output aray
+ ;Input:  INARY - Output array
  ;        RX    - Internal RX#
  ;        DFN   - Internal Patient DFN
  ;        MSG   - Message Array

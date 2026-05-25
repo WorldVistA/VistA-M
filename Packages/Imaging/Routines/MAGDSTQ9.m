@@ -1,13 +1,10 @@
-MAGDSTQ9 ;WOIFO/PMK - Study Tracker - Query/Retrieve user ; Feb 15, 2022@10:23:02
- ;;3.0;IMAGING;**231,305**;Mar 19, 2002;Build 3
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTQ9 ;WOIFO/PMK - Study Tracker - Query/Retrieve user ; Jan 14, 2026@09:59:16
+ ;;3.0;IMAGING;**231,305,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -25,9 +22,13 @@ MAGDSTQ9 ;WOIFO/PMK - Study Tracker - Query/Retrieve user ; Feb 15, 2022@10:23:0
  ; Modeled after PICKSCP^MAGDACU on the DICOM Gateway
  ;
 PICKSCP(DEFAULT,SCPTYPE) ; Pick the SCP for the site
- N FOUND,HIT,I,LOCATION,MAGIEN,MAGSCPTYPE,N,NEXT,NEXTDATETIME
- N USERAPP,STATNUMB,TARGET,TIMESTAMP,X
- S STATNUMB=$$STATNUMB^MAGDFCNV
+ N DIVISION,FOUND,HIT,I,LOCATION,MAGIEN,MAGSCPTYPE,N,NEXT,NEXTDATETIME
+ N USERAPP,TARGET,TIMESTAMP,X
+ S DIVISION=$$DIVISION^MAGDFCNV ; P333 PMK 01/13/2026
+ I DIVISION<0 D  Q ""
+ . W !!,"*** ",$P(DIVISION,",",2,999)," ***"
+ . D CONTINUE^MAGDSTQ
+ . Q
  S DEFAULT=$G(DEFAULT),SCPTYPE=$G(SCPTYPE)
  S USERAPP="",(HIT,I)=0
  F  S USERAPP=$O(^MAG(2006.587,"B",USERAPP)) Q:USERAPP=""  D
@@ -35,8 +36,7 @@ PICKSCP(DEFAULT,SCPTYPE) ; Pick the SCP for the site
  . F  S MAGIEN=$O(^MAG(2006.587,"B",USERAPP,MAGIEN)) Q:MAGIEN=""  D
  . . S NEXT=^MAG(2006.587,MAGIEN,0)
  . . S LOCATION=$P(NEXT,"^",7)
- . . S LOCATION=$$GET1^DIQ(4,LOCATION,99,"E") ; compare station numbers
- . . I LOCATION'=STATNUMB Q  ; ignore entries for other locations
+ . . I LOCATION'=DIVISION Q  ; ignore entries for other locations - P333 PMK 01/13/2026
  . . S MAGSCPTYPE=$P(NEXT,"^",9)
  . . I SCPTYPE'="",SCPTYPE'=MAGSCPTYPE Q  ; skip entries for other types
  . . S NEXTDATETIME=$P(NEXT,"^",8)

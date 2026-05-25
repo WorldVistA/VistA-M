@@ -1,5 +1,14 @@
 IBDFN4 ;ALB/CJM - ENCOUNTER FORM - (entry points for selection routines) ;5/21/93
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**38,51,64,63**;APR 24, 1997;Build 80
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**38,51,64,63,71**;APR 24, 1997;Build 5
+ ;;Per VA Directive 6402, this routine should not be modified. 
+ ;
+ ; Reference to ^DIC in ICR #10006
+ ; Reference to YN^DICN in ICR #10009
+ ; Reference to ^DIK in ICR #10013
+ ; Reference to ^DIR in ICR #10026
+ ; Reference to DIS^DGRPDB in ICR #4807
+ ; Reference to CPT^ICPTCOD,$$CPTD^ICPTCODin ICR #1995
+ ; Reference to $$OUTPTPR^SDUTL3,$$OUTPTTM^SDUTL3 in ICR #1252
  ;
  ;
 CPT ;select ambulatory procedures
@@ -59,7 +68,10 @@ VSIT ; -- Select only visit cpt codes
  .S NODE=$$CPT^ICPTCOD(CODE)
  .I +NODE=-1 S IBSNM="" Q
  .S IBSNM=$P(NODE,U,3)
- .S @IBARY=CODE_"^"_IBTXT_"^"_IBHDR_"^"_IBSNM
+ .;IBD*3.0*71 (Enh) - Default CPT short name for Header & Description
+ .;Left original IBARY for tracking purposes
+ .;S @IBARY=CODE_"^"_IBTXT_"^"_IBHDR_"^"_IBSNM
+ .S @IBARY=CODE_"^"_IBSNM_"^"_IBSNM_"^"_IBSNM
  E  K @IBARY ;kill if nothing chosen
  Q
  ;

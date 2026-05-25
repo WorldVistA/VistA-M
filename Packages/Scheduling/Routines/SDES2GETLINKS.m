@@ -1,6 +1,8 @@
-SDES2GETLINKS ;ALB/TJB - VISTA SCHEDULING GET LINKS from file 409.98 ;August 24, 2023
- ;;5.3;Scheduling;**861**;Aug 13, 1993;Build 17
+SDES2GETLINKS ;ALB/TJB,LAB - VISTA SCHEDULING GET LINKS from file 409.98 ;JUN 9,2025
+ ;;5.3;Scheduling;**861,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
+ ;
+ ; Reference to DUZ^XUP is supported by IA #7487
  ;
  Q
  ;
@@ -11,6 +13,7 @@ GETLINKS(SDRETURN,SDCONTEXT) ;
  ; validate context array, quit if errors
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("HelpLinks",1)="" D BUILDJSON^SDES2JSON(.SDRETURN,.ERRORS) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  ;
  D BUILDLINKS(.HELPLNK)
  I '$D(HELPLNK) S HELPLNK("HelpLinks",1)=""

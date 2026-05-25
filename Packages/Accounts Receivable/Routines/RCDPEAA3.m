@@ -1,5 +1,5 @@
 RCDPEAA3 ;ALB/KML - APAR Screen - callable entry points ;Nov 24, 2014@23:32:24
- ;;4.5;Accounts Receivable;**298,304,318,332**;Mar 20, 1995;Build 40
+ ;;4.5;Accounts Receivable;**298,304,318,332,439**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -10,10 +10,7 @@ SPLIT(RCIENS) ;EP - Protocol action - RCDPE APAR SPLINE LINE
  N DIR,L,RCQUIT,X
  S RCQUIT=0
  D FULL^VALM1
- I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
- . S VALMBCK="R"
- . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
- . D PAUSE^VALM1
+ ; PRCA*4.5*439 - Removed check on security key RCDPEPP
  S L=0
  F  S L=$O(^RCY(344.49,$P(RCIENS,U),1,$P(RCIENS,U,2),1,L)) Q:'L  I "01"[$P($G(^(L,0)),U,2) D  G SPLITQ
  . S DIR(0)="EA",DIR("A",1)="THIS EEOB IS NOT AVAILABLE TO EDIT/SPLIT",DIR("A")="PRESS RETURN TO CONTINUE "
@@ -37,10 +34,7 @@ REFRESH(RCIENS) ;EP - Protocol action - RCDPE APAR EEOB REFRESH - PRCA*4.5*332 s
  D FULL^VALM1
  S XX=$P(RCIENS,"^",2)_","_$P(RCIENS,"^",1)_","
  S SEQ=$$GET1^DIQ(344.491,XX,.01,"I")       ; Line Sequence #
- I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
- . S VALMBCK="R"
- . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
- . D PAUSE^VALM1
+ ; PRCA*4.5*439 - Removed check on security key RCDPEPP
  ;
  S DIR(0)="YA"
  S DIR("A",1)="This action will delete and rebuild this EEOB Worklist Scratch Pad for Line "_SEQ_"."
@@ -225,10 +219,7 @@ VERIF(RCIENS) ;EP - Protocol action RCDPE APAR VERIFY
  ;                    344.491^selectable line item from listman screen
  N DIR,DIRUT,DTOUT,DUOUT,RCQUIT,X,Y
  D FULL^VALM1
- I '$D(^XUSEC("RCDPEPP",DUZ)) D  Q  ; PRCA*4.5*318 Added security key check
- . S VALMBCK="R"
- . W !!,"This action can only be taken by users that have the RCDPEPP security key.",!
- . D PAUSE^VALM1
+ ; PRCA*4.5*439 - Removed check on security key RCDPEPP
  ;
  W !!!!
  S RCQUIT=0

@@ -1,5 +1,5 @@
 PSOUTL ;BHAM ISC/SAB - PSO utility routine ;Jun 22, 2018@08:18
- ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313,411,466,477,626,639,692**;DEC 1997;Build 4
+ ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313,411,466,477,626,639,692,777,751**;DEC 1997;Build 8
  ;External reference to $$SERV^IBARX1 supported by DBIA 2245
  ;External reference to ^PS(55 supported by DBIA 2228
  ;External reference to ^PSSDIUTL supported by DBIA 5737
@@ -37,12 +37,13 @@ CHK1 I '$P(PSOSYS,"^",2) W !?10,$C(7),"RX# ",$P(^PSRX(PSRX,0),"^")," is not a va
  S:$E(ANS)["Nn" PSPOP=1 Q
  ;PSO*7*259; SET VAR PSOSFN TO CHECK FOR SUSPENDED REFILL
 K52 K PSOSFN S SFN=+$O(^PS(52.5,"B",DA(1),0)),PSOSFN=SFN Q:SFN=0
+ I $G(PSORFKILL)="Y" S Y=1 ;p751 set in WARN^PSOUTLA1 if fill is deleted
  I $P($G(^PS(52.5,SFN,0)),"^",5)=$P($G(^PSRX(+^PS(52.5,SFN,0),"P",0)),"^",3),$P($G(^PSRX($P(^PS(52.5,SFN,0),"^"),"P",0)),"^",4)=0 N PSOXX S PSOXX=1 G KILL
- G:X'=""&($G(Y)=1) KILL I $G(Y)'=1,SFN I $D(^PS(52.5,SFN,0)),'$P(^(0),"^",5),'$P($G(^("P")),"^") D
+ G:X'=""&$G(Y)=1 KILL I $G(Y)'=1,SFN I $D(^PS(52.5,SFN,0)),'$P(^(0),"^",5),'$P($G(^("P")),"^") D
  .S SDT=+$P(^PS(52.5,SFN,0),"^",2) K ^PS(52.5,"C",SDT,SFN)
  .I $P($G(^PS(52.5,SFN,0)),"^",7)="Q" K ^PS(52.5,"AQ",SDT,+$P(^PS(52.5,SFN,0),"^",3),SFN) D KCMPX^PSOCMOP(SFN,"Q")
  .I $P($G(^PS(52.5,SFN,0)),"^",7)="" K ^PS(52.5,"AC",+$P(^PS(52.5,SFN,0),"^",3),SDT,SFN)
- .K SFN,SDT
+ .K SFN,SDT,PSORFKILL
  Q
 S52 S (RIFN,PSOSX)=0 F  S RIFN=$O(^PSRX(DA(1),1,RIFN)) Q:'RIFN  S RFID=$P(^PSRX(DA(1),1,RIFN,0),"^"),PSOSX=PSOSX+1
  S SFN=+$O(^PS(52.5,"B",DA(1),0)) I SFN,'$G(^PS(52.5,SFN,"P")),$P($G(^PSRX($P($G(^PS(52.5,SFN,0)),"^"),"STA")),"^")=5 D
@@ -51,7 +52,7 @@ S52 S (RIFN,PSOSX)=0 F  S RIFN=$O(^PSRX(DA(1),1,RIFN)) Q:'RIFN  S RFID=$P(^PSRX(
  .I $P($G(^PS(52.5,SFN,0)),"^",7)="Q" S ^PS(52.5,"AQ",RFID,+$P(^PS(52.5,SFN,0),"^",3),SFN)="" D SCMPX^PSOCMOP(SFN,"Q")
  .I $P($G(^PS(52.5,SFN,0)),"^",7)="" S ^PS(52.5,"AC",+$P(^PS(52.5,SFN,0),"^",3),RFID,SFN)=""
  K SFN,RIFN,RFID,PSOSX,PSOSXDT Q
-KILL N DFN
+KILL N DFN,PAT,CNT,SUB
  I SFN D
  .S $P(^PSRX(DA(1),"STA"),"^")=0 Q:'$D(^PS(52.5,SFN,0))  S DFN=+$P(^PS(52.5,SFN,0),"^",3),PAT=$P(^DPT(DFN,0),"^")
  .;I $P(^PS(52.5,SFN,0),"^",5) Q
@@ -62,6 +63,7 @@ KILL N DFN
  .I $P($G(^PS(52.5,SFN,0)),"^",7)'="" D
  ..;Kill CMOP xrefs
  ..N PSOC7 S PSOC7=$P($G(^PS(52.5,SFN,0)),"^",7)
+ ..I PSOC7="Q" S SDT=+$P(^PS(52.5,SFN,0),"^",2) K ^PS(52.5,"AQ",SDT,+$P(^PS(52.5,SFN,0),"^",3),SFN)
  ..I PSOC7="Q"!(PSOC7="P") K ^PS(52.5,"AG",+$P(^PS(52.5,SFN,0),"^",3),SFN) D KCMPX^PSOCMOP(SFN,PSOC7)
  ..I PSOC7="X"!(PSOC7="P")!(PSOC7="L") K ^PS(52.5,$S(PSOC7="X":"AX",PSOC7="P":"AP",1:"AL"),$P(^PS(52.5,SFN,0),"^",2),$P(^(0),"^",3),SFN) D KCMPX^PSOCMOP(SFN,PSOC7)
  ..K ^PS(52.5,"APR",+$P(^PS(52.5,SFN,0),"^",8),+$P(^(0),"^",9),+$P(^(0),"^",6),+$P(^(0),"^",11),SFN),^PS(52.5,"ADL",$E(+$P(^PS(52.5,SFN,0),"^",8),1,7),SFN)
@@ -71,7 +73,7 @@ KILL N DFN
  S ^PSRX(DA(1),"A",0)="^52.3DA^"_CNT_"^"_CNT,^PSRX(DA(1),"A",CNT,0)=%_"^D^"_DUZ_"^"_DA_"^"
  I '$D(PSOXX) S ^PSRX(DA(1),"A",CNT,0)=^PSRX(DA(1),"A",CNT,0)_"Refill "
  ;if PSOXX not exist, = refill. otherwise, it is a partial.
- S ^PSRX(DA(1),"A",CNT,0)=^PSRX(DA(1),"A",CNT,0)_$S($G(RESK):"returned to stock.",$G(PSOPSDAL):"deleted during Controlled Subs release.",$G(PSOXX)=1:"Partial deleted from suspense file.",1:"deleted during Rx edit.") K CNT,SUB
+ S ^PSRX(DA(1),"A",CNT,0)=^PSRX(DA(1),"A",CNT,0)_$S($G(RESK):"returned to stock.",$G(PSOPSDAL):"deleted during Controlled Subs release.",$G(PSOXX)=1:"Partial deleted from suspense file.",1:"deleted during Rx edit.")
  Q
 CID ;calculates six months limit on issue dates
  S PSID=X,X=$S($$CSID():"T-6M",1:"T-12M"),%DT="X" D ^%DT S %DT(0)=Y,X=PSID,%DT="EX" D ^%DT K PSID
@@ -108,36 +110,8 @@ IBSSR N PSOIBFL,PSOIBLP,PSOIBST S PSOIBFL=0
  F PSOIBLP=0:0 S PSOIBLP=$O(^DIC(49,PSOIBLP)) Q:'PSOIBLP!(PSOIBFL)  S Y=PSOIBLP,PSOIBST=$$SERV^IBARX1(+Y) I $G(PSOIBST) S DIE="^PS(59,",DA=PSOSITE,DR="1003////"_PSOIBLP D ^DIE K DIE D  S PSOIBFL=1
  .W $C(7),!!,"There was an invalid entry in your IB SERVICE/SECTION field in your Outpatient",!,"Site Parameter file, but we have fixed the problem for you, and you",!,"may continue!" Q
  Q
-WARN ;
- I $G(PSOUNHLD) D  Q
- .D EN^DDIOL("You cannot delete a refill while removing from Hold! Use the Edit Action.","","$C(7),!!"),EN^DDIOL(" ","","!!")
- I $G(CMOP(DA))]""&(+$G(CMOP(DA))<3) D  K CMOP Q
- .D EN^DDIOL("You cannot delete a refill that"_$S(+$G(CMOP(DA))=1:" has been released by",1:" is being transmitted to")_" the CMOP","","!!")
- .D EN^DDIOL(" ","","!!")
- K CMOP
- ;
- N PSOL,PSR
- S PSR=0 F  S PSR=$O(^PSRX(DA(1),1,PSR)) Q:'PSR  S PSOL=PSR
- I DA=PSOL,$P(^PSRX(DA(1),1,DA,0),"^",18) D  Q
- .D EN^DDIOL("Refill Released! Use the 'Return to Stock' option!","","$C(7),!!"),EN^DDIOL(" ","","!")
- ;
- ;Only allow deletion if last refill      *259
- I $O(^PSRX(DA(1),1,DA)) D  Q
- .D EN^DDIOL("Only the last refill can be deleted.  Later refills must be deleted first.","","$C(7),!!")
- .D EN^DDIOL("","","!!")
- ;
- ;Warn of In Process, Only delete if answered Yes         ;*259
- I $$REFIP^PSOUTLA1(DA(1),DA,"R") D  I 'Y Q               ;reset $T
- . D EN^DDIOL("** Refill has previously been sent to the External Dispense Machine","","!!,?2")
- . D EN^DDIOL("** for filling and is still Pending Processing","","$C(7),!,?2")
- . D EN^DDIOL("","","!")
- . K DIR
- . S DIR("A")="Do you want to continue? "
- . S DIR("B")="Y"
- . S DIR(0)="YA^^"
- . S DIR("?")="Enter Y for Yes or N for No."
- . D ^DIR
- . K DIR
+WARN ;move to PSOUTLA1 (p751)
+ D WARN^PSOUTLA1
  Q
  ;
 WARN1 ;move to PSOUTLA1

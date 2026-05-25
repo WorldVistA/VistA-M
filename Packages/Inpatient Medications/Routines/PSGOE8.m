@@ -1,5 +1,5 @@
-PSGOE8 ;BIR/CML3 - EDIT ORDERS IN 53.1 ;12 June 2019 09:31:53
- ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287,315,338,366,327,380**;16 DEC 97;Build 10
+PSGOE8 ;BIR/CML - EDIT ORDERS IN 53.1; Jan 28, 2025@14:32
+ ;;5.0;INPATIENT MEDICATIONS ;**47,50,65,72,110,111,188,192,113,223,269,287,315,338,366,327,380,456**;16 DEC 97;Build 7
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^PS(50.7 is supported by DBIA# 2180
  ; Reference to ^PS(51.1 is supported by DBIA 2177
@@ -84,7 +84,19 @@ A26 I $$PNDREN($G(PSGORD)) D  Q
  I X?1."?" D ENHLP^PSGOEM(53.1,26) G A26
  I $E(X)="^" D ENFF^PSGOE82 G:Y>0 @Y G A26
  ;BHW;PSJ*5*188;Add flag and IEN return variable for PSGS0 (PSJ*5*134), Highlight Admin Times if they changed.
- N PSGOES,PSJSLUP,PSGSFLG S PSJSLUP=1,PSGSFLG=1 D EN^PSGS0 I '$D(X) W $C(7),"  ??" S X="?" D ENHLP^PSGOEM(53.1,26) G A26
+ ;PSJ*5.0*456: equire that a schedule be selected before proceeding,
+ ;             if not PRN, ODD, or DOW schedule.
+ N PSGOES,PSJSLUP,PSGSFLG,PSGSCIEN,PSGHIT
+ S PSGHIT=1 D  I 'PSGHIT W $C(7),"  ??" S X="?" D ENHLP^PSGOEM(53.1,26) G A26
+ . S (PSJSLUP,PSGSFLG)=1
+ . D EN^PSGS0
+ . I '$D(X) S PSGHIT=0 Q
+ . ;The same checks below along with variable ZZND checks are performed
+ . ;at DIC+50^PSGS0. It was decided to not modify PSGS0 since the logic
+ . ;is called during various workflows. A PSGS0 code change could affect other
+ . ;workflows. Therefore, the additional check below was inserted for Rx edits.
+ . I '$G(PSGSCIEN),'$$DOW^PSIVUTL(X),'$$PRNOK^PSGS0(X),'$$ODD^PSGS0($G(PSGS0XT)) S PSGHIT=0
+ ;end PSJ*3.0*456
  I X'=PSGSCH D
  . K PSGDUR,PSGRMVT,PSGRMV,ND2P1 ;*315 Removal times are tied to ADMIN times.
  . N XX

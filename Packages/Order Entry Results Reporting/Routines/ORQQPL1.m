@@ -1,7 +1,17 @@
-ORQQPL1 ; ALB/PDR,REV,ISL/JER,TC,LAB - PROBLEM LIST FOR CPRS GUI ;04/25/19  09:27
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,148,173,203,206,249,243,280,306,361,385,350,479,377**;Dec 17, 1997;Build 582
+ORQQPL1 ; ALB/PDR,REV,ISL/JER,TC,LAB - PROBLEM LIST FOR CPRS GUI ;Dec 31, 2025@12:53:47
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,148,173,203,206,249,243,280,306,361,385,350,479,377,508**;Dec 17, 1997;Build 39
  ;
  ;------------------------- GET PROBLEM FROM LEXICON -------------------
+ ;
+ ; Reference to GETFLDS^GMPLEDT3 in ICR #2977
+ ; Reference to EN^GMPLSAVE, NEW^GMPLAVE in ICR #2978
+ ; Reference to UPDATE^GMPLUTL in ICR #928
+ ; Reference to $$DUPL^GMPLX in ICR #2742
+ ; Reference to $$SERVICE^GMPLX1, $$VIEW^GMPLX1, VADPT^GMLPX1 in ICR #2743
+ ; Reference to $$CODECS^ICDEX, $$SAB^ICDEX, $$STATCHK^ICDEX in ICR #5747
+ ; Reference to ^AUPNPROB( in ICR #2727
+ ; Reference to ^GMPL(125.99 in ICR #2970
+ ; Reference to ^DIC(49 in ICR #2939
  ;
 LEXSRCH(LIST,FROM,N,VIEW,ORDATE) ; Get candidate Problems from LEX file
  N LEX,VAL,VAL1,COD,CIEN,SYS,MAX,NAME,ORIMPDT,ICDCSYS,ICDCODE
@@ -98,13 +108,16 @@ EDLOAD(RETURN,DA) ; LOAD EDIT ARRAYS
 LOADFLDS(RETURN,NAM,TYP,I) ; LOAD FIELDS FOR TYPE OF ARRAY
  N S,V,CVP,PN,PID
  S S="",V=$C(254)
- F  S S=$O(@NAM@(S)) Q:S=10  D
+ F  S S=$O(@NAM@(S)) Q:S=10!(S=2)  D
  . S RETURN(I)=TYP_V_S_V_@NAM@(S)
  . S I=I+1
+ S S="" F  S S=$O(@NAM@(2,S)) Q:S=""  D         ;New SA nodes 508.
+ .S RETURN(I)=TYP_V_"2,"_S_V_@NAM@(2,S),I=I+1
  S S=""
  F  S S=$O(@NAM@(10,S)) Q:S=""  D
  . S CVP=@NAM@(10,S)
  . S PN="" ; provider name
+ . S PROVPARAM=""
  . S PID=$P(CVP,U,6) ; provider id
  . I PID'=""  S PN=$$GET1^DIQ(200,PID,.01) ; get provider name
  . S RETURN(I)=TYP_V_"10,"_S_V_CVP_U_PN
@@ -147,7 +160,7 @@ EDSAVE(RETURN,GMPIFN,GMPROV,GMPVAMC,UT,EDARRAY,GMPSRCH) ; SAVE EDITED RES
  . L +^AUPNPROB(GMPIFN,11):10 ; given bogus nature of this lock, should be able to get
  . I '$T S RETURN=0
  ;
- D EN^GMPLSAVE ; save the data
+ D EN^GMPLSAVE ; save the new SA data
  K GMPFLD,GMPORIG
  ;
  L -^AUPNPROB(GMPIFN,11) ; free this instance of lock (in case it was set)
@@ -294,7 +307,7 @@ INITPT(RETURN,DFN) ; GET PATIENT PARAMETERS
  S RETURN(10)=$G(GMPSHD) ; SHAD
  Q
  ;
-PROVSRCH(LST,FLAG,N,FROM,PART) ; Get candidate Rroviders from person file
+PROVSRCH(LST,FLAG,N,FROM,PART) ; Get candidate Providers from person file
  N LV,NS,RV,IEN
  S RV=$NAME(LV("DILIST","ID"))
  IF +$G(N)=0 S N=50

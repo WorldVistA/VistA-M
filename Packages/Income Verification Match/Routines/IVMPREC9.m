@@ -1,5 +1,5 @@
-IVMPREC9 ;ALB/KCL,BRM,CKN,TDM,KUM,JAM,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;09-05-2017 10:03am
- ;;2.0;INCOME VERIFICATION MATCH;**34,58,115,121,151,159,167,192,193,187,210**;21-OCT-94;Build 13
+IVMPREC9 ;ALB/KCL,BRM,CKN,TDM,KUM,JAM,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;09-10-2024 10:03am
+ ;;2.0;INCOME VERIFICATION MATCH;**34,58,115,121,151,159,167,192,193,187,210,216,217**;21-OCT-94;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -144,6 +144,14 @@ AUTOEPC(DFN,UPDEPC) ;
  ..S (UPDT,DFLG)=0
  ..; - check for data node in (#301.511) sub-file
  ..S IVMNODE=$G(^IVM(301.5,IVMDA2,"IN",IVMDA1,"DEM",IVMJ,0))
+ ..; IVM*2.0*216 - Remove Cell phone if VES chagne date/time is recent than DHCP change date/time and blank is sent
+ ..I ($P($G(^IVM(301.92,+IVMNODE,0)),"^",5)=.134),($P(IVMNODE,"^",2)="") D
+ ...S IVMNODE=+IVMNODE_"^@"
+ ..;
+ ..; IVM*2.0*217 - Remove Conf phone if VES chagne date/time is recent than DHCP change date/time and blank is sent
+ ..I ($P($G(^IVM(301.92,+IVMNODE,0)),"^",5)=.1315),($P(IVMNODE,"^",2)="") D
+ ...S IVMNODE=+IVMNODE_"^@"
+ ..;
  ..I ('+IVMNODE)!($P(IVMNODE,"^",2)']"") Q
  ..;Check if fields needs to be updated for particular comm. Type.
  ..S CTYP=0 F  S CTYP=$O(UPDEPC(CTYP)) Q:CTYP=""!UPDT  D
@@ -154,11 +162,13 @@ AUTOEPC(DFN,UPDEPC) ;
  ..; delete inaccurate Addr Change Site data if Source is not VAMC
  ..; IVM*2.0*167 - Make Home phone records auto-upload to Patient File
  ..;I UPDT,((IVMCFLD=.1311)!(IVMCFLD=.1313)!(IVMCFLD=.137)) D
- ..I UPDT,((IVMCFLD=.1311)!(IVMCFLD=.1313)!(IVMCFLD=.137)!(IVMCFLD=.1322)) D
+ ..; IVM*2.0*217 - Add Confidential phone change source
+ ..I UPDT,((IVMCFLD=.1311)!(IVMCFLD=.14122)!(IVMCFLD=.1313)!(IVMCFLD=.137)!(IVMCFLD=.1322)) D
  ...I IVMCVAL="VAMC" Q
  ...; IVM*2.0*167 - Make Home phone records auto-upload to Patient File
  ...; S SITEFLD=$S(IVMCFLD=.1311:.13111,IVMCFLD=.1313:.1314,IVMCFLD=.137:.138)
- ...S SITEFLD=$S(IVMCFLD=.1311:.13111,IVMCFLD=.1313:.1314,IVMCFLD=.137:.138,IVMCFLD=.1322:.1323)
+ ...; IVM*2.0*217 - Add Confidential phone change source
+ ...S SITEFLD=$S(IVMCFLD=.1311:.13111,IVMCFLD=.14122:.14123,IVMCFLD=.1313:.1314,IVMCFLD=.137:.138,IVMCFLD=.1322:.1323)
  ...S FDA(2,+DFN_",",SITEFLD)="@" D UPDATE^DIE("E","FDA")
  ..; - remove entry only for Email, Cell, Home phone and Pager from (#301.511) sub-file
  ..S CTYP=0 F  S CTYP=$O(EPCFARY(CTYP)) Q:CTYP=""!DFLG  D

@@ -1,5 +1,5 @@
 RCDPEX2 ;ALB/TMK/KML/PJH - ELECTRONIC EOB DETAIL EXCEPTION MAIN LIST TEMPLATE ;20 Dec 2018 17:20:51
- ;;4.5;Accounts Receivable;**173,269,298,304,326,345,409,424**;Mar 20, 1995;Build 11
+ ;;4.5;Accounts Receivable;**173,269,298,304,326,345,409,424,439**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ;EP from listman template RCDPEX EOB_SUM EXCEPTION LIST
@@ -143,11 +143,17 @@ SET(X,RCSEQ,RCMSG,RCS) ; Set arrays for EOB exception records
  Q
  ;
 HDR ;EP from listman template RCDPEX EOB_SUM EXCEPTION LIST
+ N X,Y
  S VALMHDR(1)=$J("",19)_"EEOB DETAIL DATA WITH EXCEPTION CONDITIONS"
+ ;Add second header line to show filter selection, PRCA*4.5*439
+ S X="INSURANCE CO.: "_$S(RCPAY="R":"RANGE",RCPAY="S":"SELECTED",1:"ALL")
+ S X=X_"     CHAMPVA/MEDICAL/PHARM/TRICARE: "_$S(RCTYPE="P":"PHARMACY",RCTYPE="T":"TRICARE",RCTYPE="C":"CHAMPVA",RCTYPE="M":"MEDICAL",1:"ALL")
+ S Y="",$P(Y," ",((79-$L(X))/2))="",X=Y_X
+ S VALMHDR(2)=X
  ; 
  ; HIPPA 5010 - display of the following headers on a separate line due to the
  ; increased length of Trace # from 30 to 50 characters
- S VALMHDR(2)="  #   Trace #"_$J("",58)_"EOB Date"
+ S VALMHDR(3)="  #   Trace #"_$J("",58)_"EOB Date"  ;PRCA*4.5*439 Change from line 2 to line 3
  Q
  ;
 DIQ3444(DA,DR,RCPDATA) ; DIQ call to retrieve data for DR fields in file 344.4/344.41

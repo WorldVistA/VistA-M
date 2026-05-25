@@ -1,5 +1,5 @@
-SDESMISSIONAVL ;ALB/BWF/ANU - VISTA SCHEDULING MISSION ACT AVAILABILITY ;Feb 16, 2023
- ;;5.3;Scheduling;**838,875**;Aug 13, 1993;Build 25
+SDESMISSIONAVL ;ALB/BWF/ANU,MCB - VISTA SCHEDULING MISSION ACT AVAILABILITY ;Feb 19, 2026
+ ;;5.3;Scheduling;**838,875,930**;Aug 13, 1993;Build 4
  ;;Per VHA Directive 6402, this routine should not be modified;
  ;
  Q
@@ -54,8 +54,8 @@ GETAVAIL(RETURN,CLINLIST,START,END,NUMBER) ;
  ...S NUMBER=$G(NUMBER)-SLOTS
  ...S RETURN("MissionActAvailability",CNT,"ClinicID")=CLIN
  ...S RETURN("MissionActAvailability",CNT,"ClinicName")=$$GET1^DIQ(44,CLIN,.01,"E")
- ...S RETURN("MissionActAvailability",CNT,"AppointmentStart")=$$FMTISO^SDAMUTDT($P(APPTDAT,U,2))
- ...S RETURN("MissionActAvailability",CNT,"AppointmentEnd")=$$FMTISO^SDAMUTDT($P(APPTDAT,U,3))
+ ...S RETURN("MissionActAvailability",CNT,"AppointmentStart")=$$FMTISO^SDAMUTDT($P(APPTDAT,U,2),CLIN)
+ ...S RETURN("MissionActAvailability",CNT,"AppointmentEnd")=$$FMTISO^SDAMUTDT($P(APPTDAT,U,3),CLIN)
  ...S RETURN("MissionActAvailability",CNT,"AvailableSlots")=SLOTS
  ...; 875
  ...S (PROV,PRVCNT)=0 F  S PROV=$O(^SC(CLIN,"PR",PROV)) Q:'PROV  D

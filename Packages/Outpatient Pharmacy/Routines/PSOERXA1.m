@@ -1,5 +1,5 @@
 PSOERXA1 ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**467,520,508,551,581,617,743**;DEC 1997;Build 24
+ ;;7.0;OUTPATIENT PHARMACY;**467,520,508,551,581,617,743,770**;DEC 1997;Build 145
  ;
  Q
  ; File incoming XML into appropriate file
@@ -298,7 +298,7 @@ PRESOLV(VAL,TYPE) ;
  ; return the match found, null if no match
  Q MATCH
 CONVDTTM(VAL) ;
- N EDATE,ETIME,X,ETZ,Y
+ N EDATE,ETIME,X,ETZ,Y,%,%DT
  I '$L(VAL) Q ""
  I VAL'["T" D  Q VAL
  .S X=$E(VAL,1,10),X=$TR(X,"-","")

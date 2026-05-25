@@ -1,5 +1,5 @@
-MAGNTRAI ;WOIFO/NST - List images for Reports ; 16 Jan 2018 3:59 PM
- ;;3.0;IMAGING;**170,185**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGNTRAI ;OIT/NST - List images for Reports ; 16 Jan 2018 3:59 PM
+ ;;3.0;IMAGING;**170,185,365**;Mar 19, 2002;Build 19;May 01, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -29,6 +29,7 @@ MAGNTRAI ;WOIFO/NST - List images for Reports ; 16 Jan 2018 3:59 PM
  ;                or
  ;               RPT^CPRS^4658^TIU^2243408^^^^^^^^1
  ; [IMGLESS]  flag to speed up queries: if=1 (true), just get study-level data
+ ; [INCRT]    set to 1 to include Rad Report Text
  ;           
  ; Return Values
  ; =============
@@ -38,9 +39,9 @@ MAGNTRAI ;WOIFO/NST - List images for Reports ; 16 Jan 2018 3:59 PM
  ;            MAGRY(1..n) = CONTEXTID | 0 or 1 | images in format defined in
  ;                        RPC [MAGG CPRS RAD EXAM] or [MAG3 CPRS TIU NOTE]
  ;
-IMAGEL(MAGRY,DATA,IMGLESS) ;RPC [MAGN CPRS IMAGE LIST]
+ ;*zeb *365 added INCRT param and processing to allow radiology report text return
+IMAGEL(MAGRY,DATA,IMGLESS,INCRT) ;RPC [MAGN CPRS IMAGE LIST]
  S IMGLESS=$S($D(IMGLESS):+IMGLESS,1:1)  ; Defualt is IMAGELESS
- ;
  N MAGVER,MAGNII
  S MAGVER=""
  S MAGNII=""
@@ -48,7 +49,7 @@ IMAGEL(MAGRY,DATA,IMGLESS) ;RPC [MAGN CPRS IMAGE LIST]
  F  S MAGNII=$O(DATA(MAGNII)) Q:(MAGVER'="")!(MAGNII="")  D
  . S MAGVER=$P(DATA(MAGNII),"~",2)
  . Q
- I MAGVER=2 D IMAGEL^MAGNVQ06(.MAGRY,.DATA,IMGLESS) Q 
+ I MAGVER=2 D IMAGEL^MAGNVQ06(.MAGRY,.DATA,IMGLESS,$G(INCRT)) Q  ;*zeb *365 pass along INCRT
  ;
  N MAGNCXT,MAGNI,MAGNCNT,MAGNX,MAGNTIU,RARPT
  N MAGZRY
@@ -64,7 +65,7 @@ IMAGEL(MAGRY,DATA,IMGLESS) ;RPC [MAGN CPRS IMAGE LIST]
  . S MAGNX=$P(MAGNCXT,"^",4)
  . I MAGNX="RA" D  Q
  . . D IMAGEC(.MAGZRY,MAGNCXT,IMGLESS,.RARPT)  ; get image list for a single contextID
- . . D APPENDRA(MAGRY,.MAGNCNT,MAGNCXT,MAGZRY,RARPT)  ; Append individual contextID image list to final list
+ . . D APPENDRA(MAGRY,.MAGNCNT,MAGNCXT,MAGZRY,RARPT,$G(INCRT))  ; Append individual contextID image list to final list ;*zeb *365 pass along INCRT
  . . Q
  . I MAGNX="TIU" D  Q
  . . S MAGNTIU=$P(MAGNCXT,"^",5)
@@ -146,15 +147,17 @@ GETSTUDY(MAGZRY,RARPT,IMGLESS) ; Private call. From other points in this routine
  ;
  Q
  ;
-APPENDRA(OUT,MAGNCNT,MAGNCXT,MAGZRY,RARPT)  ;
+ ;*zeb *365 add INCRT param for returning report text
+APPENDRA(OUT,MAGNCNT,MAGNCXT,MAGZRY,RARPT,INCRT)  ;
  ; Append individual contextID image list to final list
  ; and add more data 
  ; OUT  - destination image list array 
  ; .MAGNCNT -- Start position in the array
- ; MAGNCXT -- context ID
- ; MAGZRY  -- Image list to be appended - reference to a global
+ ; MAGNCXT  -- context ID
+ ; MAGZRY   -- Image list to be appended - reference to a global
+ ; INCRT    -- 1=include radiology report text
  ;
- N I,IMGIEN,MAGNCNTN,MAGSTUDY
+ N I,IMGIEN,MAGNCNTN,MAGSTUDY,REPL
  S @MAGZRY@(0)=$G(@MAGZRY@(0))
  I '@MAGZRY@(0) D  Q
  . S MAGNCNT=MAGNCNT+1
@@ -172,6 +175,10 @@ APPENDRA(OUT,MAGNCNT,MAGNCXT,MAGZRY,RARPT)  ;
  . . S MAGNCNT=MAGNCNT+1
  . . S IMGIEN=$P(@MAGZRY@(I),"|",2)  ; IEN of the group
  . . S @OUT@(MAGNCNT)="STUDY_INFO|"_$$STDINFO(IMGIEN)_"|RA-"_RARPT
+ . . I $G(INCRT) D  ;*zeb *365 allow returning report text
+ . . . S MAGNCNT=MAGNCNT+1
+ . . . S REPL($C(10))="%0A"
+ . . . S @OUT@(MAGNCNT)="REPORT_TEXT|"_$$REPLACE^XLFSTR($$RPTTEXT(RARPT),.REPL)
  . . S MAGSTUDY=@MAGZRY@(I)
  . . Q
  . I IMGLESS,($P(@MAGZRY@(I),"|")="STUDY_PAT") D INSFIMG(MAGSTUDY,.MAGNCNT,OUT)  ; Append First Image Info
@@ -259,3 +266,15 @@ STDINFO(IMGIEN) ; Get study info
  S $P(FLTX,U,15)=$$GET1^DIQ(200,+$P(X2,U,2)_",",.01) ; Captured by
  S $P(FLTX,U,16)=IMGIEN                              ; Image IEN
  Q FLTX
+ ;
+ ;*zeb *365 added to allow returning radiology report text with study info
+RPTTEXT(RAIEN) ;Return Report Text from a rad report with each line delimited by $C(10)
+ N TEXT,RET,LN
+ S RET=$$GET1^DIQ(74,RAIEN_",",200,,"TEXT")
+ Q:'$D(TEXT) ""
+ S RET="",LN=""
+ F  S LN=$O(TEXT(LN)) Q:LN=""  D
+ . S:RET]"" RET=RET_$C(10)
+ . S RET=RET_TEXT(LN)
+ Q RET
+ ;

@@ -1,5 +1,5 @@
 IBCNBES ;ALB/ARH-Ins Buffer: stuff new entries/data into buffer ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,184,345,438,497,743**;21-MAR-94;Build 18
+ ;;2.0;INTEGRATED BILLING;**82,184,345,438,497,743,804**;21-MAR-94;Build 6
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -25,6 +25,10 @@ ADDSTF(IBSOURCE,DFN,IBDATA) ;  add new entry to Insurance Buffer file (355.33) a
  ;  add new entry to Buffer file (355.33)
  S IBBUFDA=+$$ADD^IBCNBEE(IBSOURCE) I 'IBBUFDA S IBERROR="COULD NOT CREATE A NEW BUFFER ENTRY" G EXIT
  ;
+ ;IB*804/DTG lock buffer entry
+ ; Lock the buffer entry
+ N BUFLOCK S BUFLOCK=$$BUFLOCK^IBCNEHL6(IBBUFDA,1)
+ ;
  S IBDATA(60.01)=+DFN
  ;
  ; Set up DUZ (interface user) so 60.01 field check can find 'valid reason' for sensitive
@@ -35,6 +39,10 @@ ADDSTF(IBSOURCE,DFN,IBDATA) ;  add new entry to Insurance Buffer file (355.33) a
  ;
  ; delete leftover ESGHP data if ESGHP? is not Yes
  I +$G(IBBUFDA),$D(^IBA(355.33,$G(IBBUFDA),61)),'$G(^IBA(355.33,$G(IBBUFDA),61)) D DELEMP^IBCNBEE($G(IBBUFDA))
+ ;
+ ;IB*804/DTG un-lock buffer entry
+ ; remove Lock on the buffer entry
+ S BUFLOCK=$$BUFLOCK^IBCNEHL6(IBBUFDA,0)
  ;
 EXIT Q +$G(IBBUFDA)_"^"_$G(IBERROR)
  ;

@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: BPS NCPDP REJECT CODES
 ZWR
-^BPSF(9002313.93,0)="BPS NCPDP REJECT CODES^9002313.93I^1539^1537"
+^BPSF(9002313.93,0)="BPS NCPDP REJECT CODES^9002313.93I^1542^1540"
 ^BPSF(9002313.93,1,0)="01^M/I IIN Number"
 ^BPSF(9002313.93,2,0)="02^M/I Version/Release Number"
 ^BPSF(9002313.93,3,0)="03^M/I Transaction Code"
@@ -1538,6 +1538,9 @@ ZWR
 ^BPSF(9002313.93,1537,0)="DO2^Matching Medicare Part D Claim not found to allow processing Pymt Plan"
 ^BPSF(9002313.93,1538,0)="DO3^This claim is not eligible for Medicare Prescription Payment Plan."
 ^BPSF(9002313.93,1539,0)="DO4^Oth Payer-Pt Resp Not-Supported, Plan only requires Oth Payer Amt Pd"
+^BPSF(9002313.93,1540,0)="DO5^DUR Conflict. Limited override at pharmacy. Prior auth may be needed."
+^BPSF(9002313.93,1541,0)="DO6^Prescription Required. Claim without an associated Rx is not covered."
+^BPSF(9002313.93,1542,0)="DO7^M/I Transmission Time"
 ^BPSF(9002313.93,"B",10,10)=""
 ^BPSF(9002313.93,"B",11,11)=""
 ^BPSF(9002313.93,"B",12,12)=""
@@ -2737,6 +2740,9 @@ ZWR
 ^BPSF(9002313.93,"B","DO2",1537)=""
 ^BPSF(9002313.93,"B","DO3",1538)=""
 ^BPSF(9002313.93,"B","DO4",1539)=""
+^BPSF(9002313.93,"B","DO5",1540)=""
+^BPSF(9002313.93,"B","DO6",1541)=""
+^BPSF(9002313.93,"B","DO7",1542)=""
 ^BPSF(9002313.93,"B","DP",119)=""
 ^BPSF(9002313.93,"B","DQ",121)=""
 ^BPSF(9002313.93,"B","DR",120)=""

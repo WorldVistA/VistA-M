@@ -1,0 +1,169 @@
+OREDITOR ; SLC/AGP - Information panel editor API ;Mar 12, 2025@09:17:36
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**508**;Dec 17, 1997;Build 39
+ ;
+ ;
+ Q
+ ;
+INQEDITOR ;
+ N ARRAY,CNAME,CIDX,CNT,DIWF,DIWL,HEAD,IDX,ISCOMBO,NAME,NODE,PIECE,SUB,TMP,VALUE,X
+ S SUB="OREDITOR INQEDITOR",CNT=0,DIWF="C80N",DIWL=2
+ K ^TMP(SUB,$J)
+ S NODE=$G(^ORE(101.74,D0,50)) I $P(NODE,U)>0!($P(NODE,U,2)>0) D  K ^TMP(SUB,$J) Q
+ . S TMP=$P($G(^ORW(101.76,+$P(NODE,U),0)),U)
+ . D SETTEXT^ORIMGR("Schema: ",TMP,SUB,.CNT,28," ")
+ . S TMP=$P($G(^ORW(101.76,+$P(NODE,U,2),0)),U)
+ . D SETTEXT^ORIMGR("UI Schema: ",TMP,SUB,.CNT,28," ")
+ . S CNT=0 F  S CNT=$O(^TMP(SUB,$J,CNT)) Q:CNT'>0  D
+ .. S X=^TMP(SUB,$J,CNT) D ^DIWP
+ S ARRAY(0,1)="Cell Name: ",ARRAY(0,2)="Editor Type: ^101.74",ARRAY(0,3)="Disabled: "
+ S ARRAY(10,1)="Label: ",ARRAY(10,2)="Column: ",ARRAY(10,3)="Row: ",ARRAY(10,4)="Column Span: ",ARRAY(10,5)="Row Span: ",ARRAY(10,6)="Required: ^1",ARRAY(10,3)="Set Default Value: ^1"
+ S ARRAY(30,1)="Need Sort: ^1",ARRAY(30,2)="Show Possible Values: ^1",ARRAY(30,2)="Show Possible Values: ^1",ARRAY(30,3)="Long List Lookup: ^101.75"
+ S ARRAY(40,1)="Long List Parameter: "
+ S CIDX=0 F  S CIDX=$O(^ORE(101.74,D0,30,CIDX)) Q:CIDX'>0  D
+ .S ISCOMBO=0,CNAME=""
+ .S IDX="" F  S IDX=$O(ARRAY(IDX)) Q:IDX=""  D
+ ..I IDX>10,'ISCOMBO Q
+ ..S NODE=$G(^ORE(101.74,D0,30,CIDX,IDX))
+ ..S PIECE=0 F  S PIECE=$O(ARRAY(IDX,PIECE)) Q:PIECE'>0  D
+ ...I IDX=0,PIECE=1 D  Q
+ ....S CNAME=$P(NODE,U)
+ ....S HEAD="-- Begin Cell: "_CNAME_" -"
+ ....S TMP=70-$L(HEAD) F X=1:1:TMP S HEAD=HEAD_"-"
+ ....S CNT=CNT+1,^TMP(SUB,$J,CNT)=" "
+ ....D SETTEXT^ORIMGR(HEAD,"",SUB,.CNT,70," ")
+ ...I IDX=0,PIECE=2,$P(NODE,U,PIECE)>0 S ISCOMBO=$$ISCOMBO($P(NODE,U,PIECE))
+ ...S NAME=$P(ARRAY(IDX,PIECE),U),TMP=$P(ARRAY(IDX,PIECE),U,2)
+ ...S:TMP=1 VALUE=$S($P(NODE,U,PIECE)=1:"Yes",1:"No") S:TMP="" VALUE=$P(NODE,U,PIECE)
+ ...I TMP>1,$P(NODE,U,PIECE)>0 S VALUE=$$GET1^DIQ(TMP,$P(NODE,U,PIECE)_",",.01)
+ ...D SETTEXT^ORIMGR(NAME,VALUE,SUB,.CNT,28," ")
+ .S HEAD="-- End Cell: "_CNAME_" -",TMP=70-$L(HEAD) F X=1:1:TMP S HEAD=HEAD_"-"
+ .D SETTEXT^ORIMGR(HEAD,"",SUB,.CNT,70," ")
+ S CNT=0 F  S CNT=$O(^TMP(SUB,$J,CNT)) Q:CNT'>0  D
+ .S X=^TMP(SUB,$J,CNT) D ^DIWP
+ K ^TMP(SUB,$J)
+ Q
+ ;
+ISCOMBO(IDX) ;
+ N NAME
+ S NAME=$P($G(^ORI(101.73,IDX,0)),U,3)
+ I $E(NAME,1,2)'="pt" Q 0
+ I $E(NAME,1,5)="ptCBO" Q 1
+ I NAME="ptCheckListBox" Q 1
+ I NAME="ptListBox" Q 1
+ Q 0
+ ;
+CELLDATA(DFN,USER,EID,SUB,IDS,DARRAY,ARRAY) ;
+ N MPFIEN,REQDATA,RET
+ S MPFIEN=$P($G(^ORE(101.74,EID,40)),U)
+ M REQDATA("data")=DARRAY
+ S RET=$$ONCLICKEXECODE^ORIUTL(SUB,DFN,USER,"BUILD",IDS,MPFIEN,.REQDATA)
+ I 'RET D SETERROR(.ARRAY,$P(RET,U,2)) Q 0
+ Q 1
+ ;
+GETEDITOR(DFN,USER,IDS,PKG,EID,DARRAY,ARRAY) ;
+ N SUB
+ S SUB="OREDITOR CELL DATA"
+ K ^TMP(SUB,$J)
+ I EID=0 D SETERROR(.ARRAY,"Editor ID not found") Q 0
+ D SETHEAD(EID,SUB)
+ I '$$LAYOUT(EID,SUB,.ARRAY) Q 0
+ I '$$CELLDATA(DFN,USER,EID,SUB,IDS,.DARRAY,.ARRAY) Q 0
+ K ^TMP(SUB,$J,"OREDITOR INDEX")
+ M ARRAY("editor")=^TMP(SUB,$J)
+ Q 1
+ ;
+LAYOUT(EID,SUB,ARRAY) ;
+ N CNT,GCNTRL,FAIL,IDX,NODE,X0,X10,X30,NUM
+ S IDX=0,CNT=0,FAIL=0 F  S IDX=$O(^ORE(101.74,EID,30,IDX)) Q:IDX'>0!(FAIL=1)  D
+ .S X0=$G(^ORE(101.74,EID,30,IDX,0))
+ .S X10=$G(^ORE(101.74,EID,30,IDX,10)),X30=$G(^ORE(101.74,EID,30,IDX,30))
+ .S GCNTRL=$$GETCOMP^ORDD71($P(X0,U,2)) I GCNTRL="" D  Q
+ ..D SETERROR(.ARRAY,"Editor control for cell "_$P(NODE,U)_" not found.") S FAIL=1
+ .S CNT=CNT+1
+ .S ^TMP(SUB,$J,"layout",CNT,"id")=$P(X0,U),^TMP(SUB,$J,"layout",CNT,"prompt")=GCNTRL
+ .S ^TMP(SUB,$J,"layout",CNT,"disabled")=$S($P(X0,U,3)="true":"true",1:"false")
+ .S ^TMP(SUB,$J,"OREDITOR INDEX",$P(X0,U))=CNT
+ .;
+ .S ^TMP(SUB,$J,"layout",CNT,"label")=$P(X10,U)
+ .S ^TMP(SUB,$J,"layout",CNT,"column")=($P(X10,U,2)-1),^TMP(SUB,$J,"layout",CNT,"row")=($P(X10,U,3)-1)
+ .S ^TMP(SUB,$J,"layout",CNT,"columnSpan")=$P(X10,U,4),^TMP(SUB,$J,"layout",CNT,"rowSpan")=$P(X10,U,5)
+ .S:$P(X10,U,6)'="" ^TMP(SUB,$J,"layout",CNT,"required")=$P(X10,U,6)
+ .S:$P(X10,U,7)'="" ^TMP(SUB,$J,"layout",CNT,"hasDefaults")=$P(X10,U,7)
+ .;
+ .S NUM=0 F  S NUM=$O(^ORE(101.74,EID,30,IDX,41,NUM)) Q:'NUM  D
+ ..S ^TMP(SUB,$J,"layout",CNT,"hint","\",NUM)=^ORE(101.74,EID,30,IDX,41,NUM,0)_$C(13)_$C(10)
+ .;
+ .S:$P(X30,U)'="" ^TMP(SUB,$J,"layout",CNT,"needSort")=$P(X30,U)
+ .S:$P(X30,U,2)'="" ^TMP(SUB,$J,"layout",CNT,"aboveLine")=$P(X30,U,2)
+ .I +$P(X30,U,3)>0 S ^TMP(SUB,$J,"layout",CNT,"longListId")=$P(X30,U,3)
+ .I $P($G(^ORE(101.74,EID,30,IDX,40)),U)'="" S ^TMP(SUB,$J,"layout",CNT,"longListParameter")=$P(^ORE(101.74,EID,30,IDX,40),U)
+ Q $S(FAIL=1:0,1:1)
+ ;
+LONGLIST(RESULTS,IJSON) ;
+ N DFN,EID,ERROR,IDS,INFOARRAY,INPUTS,MPFIEN,RET,SUB,TARRAY,TEMPARR
+ D DECODE^XLFJSON("IJSON","TEMPARR","ERROR")
+ S SUB="OREDITOR LONGLIST"
+ K ^TMP(SUB,$J)
+ S RESULTS=$NA(^TMP(SUB,$J))
+ S IDS=$G(TEMPARR("id")) I IDS=""  D SETERROR(.TARRAY,"Panel ID not passed in") G LONGLISTX
+ I '$$GETINFOARRAY^ORIRPCCL(.INFOARRAY,IDS,.TARRAY) G LONGLISTX
+ S EID=+$P($G(INFOARRAY(30)),U,5) I EID=0 D SETERROR(.TARRAY,"Editor ID not passed in") G LONGLISTX
+ S MPFIEN=+$G(TEMPARR("longListId")) I MPFIEN=0 D SETERROR(.TARRAY,"LongList Lookup ID not passed in") G LONGLISTX
+ S DFN=+$G(TEMPARR("patientId")) I DFN=0 D SETERROR(.TARRAY,"Patient id not found") G LONGLISTX
+ S INPUTS("editorId")=EID
+ S INPUTS("startFrom")=$G(TEMPARR("startFrom")),INPUTS("direction")=$G(TEMPARR("direction"),1)
+ I $G(TEMPARR("longListParameter"))'="" S INPUTS("longListParameter")=TEMPARR("longListParameter")
+ ;M INPUTS("requiredData")=REQDATA
+ S RET=$$ONCLICKEXECODE^ORIUTL(SUB,DFN,0,"LOOKUP",IDS,MPFIEN,.INPUTS)
+ I 'RET D SETERROR(.TARRAY,$P(RET,U,2)) G LONGLISTX
+ S TARRAY("success")="true"
+ M TARRAY=^TMP(SUB,$J)
+LONGLISTX ;
+ K ^TMP(SUB,$J)
+ D ENCODE^XLFJSON("TARRAY",$NA(^TMP(SUB,$J)),"ERROR")
+ Q
+ ;
+SAVE(RESULTS,IJSON) ;
+ N ARRAY,DATA,DFN,EID,FAIL,ID,IDS,IDX,INFOARRAY,INPUTS,PIDX,REQDATA,SRCDATA,SUB,USER,VALUES,TARRAY
+ S SUB="OREDITOR SAVE DATA"
+ K ^TMP(SUB,$J)
+ S RESULTS=$NA(^TMP(SUB,$J))
+ D DECODE^XLFJSON("IJSON","INPUTS","ERROR")
+ S DFN=+$G(INPUTS("patientId")),IDS=$G(INPUTS("id")),EID=+$G(INPUTS("editor","id")),USER=+$G(INPUTS("connectionUser"))
+ I 'DFN D SETERROR(.TARRAY,"Patient DFN not found") G SAVEX
+ I 'EID D SETERROR(.TARRAY,"Editor ID not found") G SAVEX
+ I 'IDS D SETERROR(.TARRAY,"Panel ID not found") G SAVEX
+ ;I 'USER D SETERROR(.TARRAY,"User Id not found") G SAVEX
+ I '$$GETINFOARRAY^ORIRPCCL(.INFOARRAY,IDS,.TARRAY) G SAVEX
+ S IDX=0,FAIL=0 F  S IDX=$O(INPUTS("editor","layout",IDX)) Q:IDX'>0!(FAIL=1)  D
+ .S ID=$G(INPUTS("editor","layout",IDX,"id")) I ID="" S FAIL=1 D SETERROR(.TARRAY,"Editor component item number "_IDX_" name not found.") Q
+ .M DATA(ID,"values")=INPUTS("editor","layout",IDX,"values")
+ I FAIL=1 G SAVEX
+ I '$$REQDATA^ORIRPCCL(.INFOARRAY,.INPUTS,.TARRAY,.REQDATA) G SAVEX
+ I '$$SAVEDATA^ORHEDITOR(DFN,USER,EID,IDS,SUB,.DATA,.REQDATA,.SRCDATA,.TARRAY) G SAVEX
+ S TARRAY("success")="true"
+SAVEX ;
+ K ^TMP(SUB,$J)
+ D ENCODE^XLFJSON("TARRAY",$NA(^TMP(SUB,$J)),"ERROR")
+ Q
+ ;
+SETERROR(ARRAY,ERROR) ;
+ S ARRAY("success")="false"
+ S ARRAY("error")=ERROR
+ Q
+ ;
+SETHEAD(EID,SUB) ;
+ N NODE,VALUE,NUM
+ S NODE=$G(^ORE(101.74,EID,0))
+ S ^TMP(SUB,$J,"id")=EID,^TMP(SUB,$J,"name")=$P(NODE,U),^TMP(SUB,$J,"displayText")=$P(NODE,U,2)
+ S ^TMP(SUB,$J,"disabled")=$S($P(NODE,U,3)=1:"true",1:"false")
+ S ^TMP(SUB,$J,"columns")=$P(NODE,U,4),^TMP(SUB,$J,"rows")=$P(NODE,U,5)
+ S ^TMP(SUB,$J,"hideButtons")=$S($P(NODE,U,6)=1:"true",1:"false")
+ S VALUE=$P(NODE,U,7) I VALUE="" S VALUE="Save"
+ S ^TMP(SUB,$J,"buttonTextSave")=VALUE
+ S VALUE=$P(NODE,U,8) I VALUE="" S VALUE="Cancel"
+ S ^TMP(SUB,$J,"buttonTextCancel")=VALUE
+ S NUM=0 F  S NUM=$O(^ORE(101.74,EID,20,NUM)) Q:'NUM  D
+ .S ^TMP(SUB,$J,"description","\",NUM)=^ORE(101.74,EID,20,NUM,0)_$C(13)_$C(10)
+ Q
+ ;

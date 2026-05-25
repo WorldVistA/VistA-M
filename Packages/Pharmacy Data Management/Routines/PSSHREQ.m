@@ -1,5 +1,5 @@
-PSSHREQ ;WOIFO/AV,TS - Creates PSSXML to send to PEPS using input global ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,163**;9/30/97;Build 8
+PSSHREQ ;WOIFO/AV,TS - Creates PSSXML to send to PEPS using input global ; Sep 20, 2007@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,163,254**;9/30/97;Build 109
  ;
  ; @authors - Alex Vazquez, Tim Sabat, Steve Gordon
  ; @date    - September 19, 2007
@@ -50,9 +50,9 @@ HEADER(PSSBASE) ;
  . QUIT
  ;
  SET PSSXML="<Header "_$GET(PSS("pingOnly"))_">"
-  SET PSSXML=PSSXML_$$HDRTIME
-  SET PSSXML=PSSXML_$$HDRSERVR
-  SET PSSXML=PSSXML_$$HDRMUSER
+ SET PSSXML=PSSXML_$$HDRTIME
+ SET PSSXML=PSSXML_$$HDRSERVR
+ SET PSSXML=PSSXML_$$HDRMUSER
  SET PSSXML=PSSXML_"</Header>"
  ;
  ; Return composed header
@@ -149,7 +149,7 @@ BODY(PSSBASE) ;
  NEW PSSXML
  ;
  SET PSSXML="<Body>"
-  SET PSSXML=PSSXML_$$DRGCHEK(PSSBASE)
+ SET PSSXML=PSSXML_$$DRGCHEK(PSSBASE)
  SET PSSXML=PSSXML_"</Body>"
  ;
  QUIT PSSXML
@@ -164,9 +164,9 @@ DRGCHEK(PSSBASE) ;
  NEW PSSXML
  ;
  SET PSSXML="<drugCheck>"
-  SET PSSXML=PSSXML_$$CHECKS(PSSBASE)
-  SET PSSXML=PSSXML_$$DRUGPROS(PSSBASE)
-  SET PSSXML=PSSXML_$$MEDPROF(PSSBASE)
+ SET PSSXML=PSSXML_$$CHECKS(PSSBASE)
+ SET PSSXML=PSSXML_$$DRUGPROS(PSSBASE)
+ SET PSSXML=PSSXML_$$MEDPROF(PSSBASE)
  SET PSSXML=PSSXML_"</drugCheck>"
  ;
  ; Return the full drugCheck element
@@ -198,9 +198,9 @@ CHECKS(PSSBASE) ;
  SET PSSXML=PSSXML_" "_$GET(PSS("prospectiveOnly"))
  SET PSSXML=PSSXML_" "_$GET(PSS("useCustomTables"))
  SET PSSXML=PSSXML_" >"
-  SET PSSXML=PSSXML_$$CHEKDOSE(PSSBASE)
-  SET PSSXML=PSSXML_$$CHEKDRUG(PSSBASE)
-  SET PSSXML=PSSXML_$$CHEKTHER(PSSBASE)
+ SET PSSXML=PSSXML_$$CHEKDOSE(PSSBASE)
+ SET PSSXML=PSSXML_$$CHEKDRUG(PSSBASE)
+ SET PSSXML=PSSXML_$$CHEKTHER(PSSBASE)
  SET PSSXML=PSSXML_"</checks>"
  ;
  ; Return the full drugCheck element
@@ -290,7 +290,7 @@ MEDPROF(PSSBASE) ;
  NEW PSS,PSSXML
  ;
  SET PSSXML="<medicationProfile>"
-  SET PSSXML=PSSXML_$$DRUGPROF(PSSBASE)
+ SET PSSXML=PSSXML_$$DRUGPROF(PSSBASE)
  SET PSSXML=PSSXML_"</medicationProfile>"
  ;
  QUIT PSSXML
@@ -440,12 +440,13 @@ READDOSE(PSSBASE,PSSHASH,PSSCOUNT,ORDRNM) ;
  SET PSS("value")=$GET(^TMP($JOB,PSSBASE,"IN","DOSE",ORDRNM))
  ; If specific get values (doseAmount,doseUnit,doseRate,frequency,
  ; duration,durationRate,medicalRoute,doseType)
+ N ROUTE S ROUTE=$$UPPER^VALM1($PIECE(PSS("value"),"^",11))
  SET PSSHASH("DRUG",PSSCOUNT,"doseAmount")=$PIECE(PSS("value"),"^",5)
  SET PSSHASH("DRUG",PSSCOUNT,"doseUnit")=$PIECE(PSS("value"),"^",6)
- SET PSSHASH("DRUG",PSSCOUNT,"doseRate")=$PIECE(PSS("value"),"^",7)
+ SET PSSHASH("DRUG",PSSCOUNT,"doseRate")=$S(ROUTE["CONTINUOUS"&($PIECE(PSS("value"),"^",7)="DAY"):"HOUR",1:$PIECE(PSS("value"),"^",7))  ;254
  SET PSSHASH("DRUG",PSSCOUNT,"frequency")=$PIECE(PSS("value"),"^",8)
  SET PSSHASH("DRUG",PSSCOUNT,"duration")=$PIECE(PSS("value"),"^",9)
- SET PSSHASH("DRUG",PSSCOUNT,"durationRate")=$PIECE(PSS("value"),"^",10)
+ SET PSSHASH("DRUG",PSSCOUNT,"durationRate")=$S(ROUTE["CONTINUOUS":"DAY",1:$PIECE(PSS("value"),"^",10))  ;254
  SET PSSHASH("DRUG",PSSCOUNT,"route")=$PIECE(PSS("value"),"^",11)
  SET PSSHASH("DRUG",PSSCOUNT,"doseType")=$PIECE(PSS("value"),"^",12)
  QUIT
@@ -468,7 +469,7 @@ RITEDOSE(PSSHASH,I) ;
  SET PSSXML=PSSXML_"<doseAmount>"_PSSHASH("DRUG",I,"doseAmount")_"</doseAmount>"
  SET PSSXML=PSSXML_"<doseUnit>"_PSSHASH("DRUG",I,"doseUnit")_"</doseUnit>"
  SET PSSXML=PSSXML_"<doseRate>"_PSSHASH("DRUG",I,"doseRate")_"</doseRate>"
- I $L(PSSHASH("DRUG",I,"frequency")) SET PSSXML=PSSXML_"<frequency>"_PSSHASH("DRUG",I,"frequency")_"</frequency>"
+ I $L(PSSHASH("DRUG",I,"frequency")) SET PSSXML=PSSXML_"<frequency>"_$S(PSSHASH("DRUG",I,"frequency")=0:"",1:PSSHASH("DRUG",I,"frequency"))_"</frequency>"
  I $L(PSSHASH("DRUG",I,"duration")) SET PSSXML=PSSXML_"<duration>"_PSSHASH("DRUG",I,"duration")_"</duration>"
  I $L(PSSHASH("DRUG",I,"durationRate")) SET PSSXML=PSSXML_"<durationRate>"_PSSHASH("DRUG",I,"durationRate")_"</durationRate>"
  SET PSSXML=PSSXML_"<route>"_PSSHASH("DRUG",I,"route")_"</route>"

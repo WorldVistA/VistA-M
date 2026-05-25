@@ -1,5 +1,5 @@
-EDPMAIL ;SLC/KCM - Process incoming mail for posted events ; 10/19/21 9:50am
- ;;2.0;EMERGENCY DEPARTMENT;**16**;May 2, 2012;Build 6
+EDPMAIL ;SLC/KCM - Process incoming mail for posted events ; 5/22/25 10:23am
+ ;;2.0;EMERGENCY DEPARTMENT;**16,37**;May 2, 2012;Build 3
  ;
 MSG(MSG) ; parse message passed in from SEND^EDPFMON
  N I,PARAM,LOG,ORIFN,EDPDBUG
@@ -64,6 +64,6 @@ CHKIN ; check in a patient
  N AREA
  S AREA=$O(^EDPB(231.9,"C",$$VAL("site"),0)) Q:'AREA
  N EDPXML,EDPSITE,EDPSTA
- S EDPUSER=DUZ,EDPSITE=DUZ(2),EDPSTA=$$STA^XUAF4(DUZ(2))
+ S EDPUSER=DUZ,EDPSITE=$$VAL("site"),EDPSTA=$$STA^XUAF4($$VAL("site"))
  S EDPFAIL=$$ADD^EDPLOGA(NEWPT,AREA,$$VAL("time"),0)
  Q

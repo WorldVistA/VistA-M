@@ -1,5 +1,5 @@
-DGENUPL2 ;ALB/CJM,RTK,TMK,ISA/KWP/RMM/CKN,EG,ERC,PWC,TDM,TEJ,KUM - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 23 Nov 2019  1:07 PM
- ;;5.3;REGISTRATION;**147,222,232,310,314,367,397,677,631,675,672,673,716,653,688,838,842,894,934,940,993,1027**;Aug 13,1993;Build 70
+DGENUPL2 ;ALB/CJM,RTK,TMK,ISA/KWP/RMM/CKN,EG,ERC,PWC,TDM,TEJ,KUM,SJD - PROCESS INCOMING (Z11 EVENT TYPE) HL7 MESSAGES ; 23 Nov 2019  1:07 PM
+ ;;5.3;REGISTRATION;**147,222,232,310,314,367,397,677,631,675,672,673,716,653,688,838,842,894,934,940,993,1027,1138**;Aug 13,1993;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified. 
  ;
  ;**************************************************************
@@ -7,6 +7,9 @@ DGENUPL2 ;ALB/CJM,RTK,TMK,ISA/KWP/RMM/CKN,EG,ERC,PWC,TDM,TEJ,KUM - PROCESS INCOM
  ;Input:SEG(),MSGID
  ;Output:DGPAT(),DGELG(),DGENR(),DGCDIS(),DGNTR(),DGOEIF(),ERROR
  ;**************************************************************
+ ;
+ ;Reference to ^DIC(31 supported by ICR #733
+ ;Reference to ^DIC(31 supported by ICR #7530
  ;
 PID ;
  S DGPAT("SSN")=SEG(19)
@@ -60,7 +63,7 @@ ZEN ;
  S DGENR("APP")=$$CONVERT^DGENUPL1(SEG(11),"DATE",.ERROR)
  I ERROR D  Q
  .D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZEN SEGMENT, SEQ 11",.ERRCOUNT)
- ;DG*5.3*1027 - Capture Application Date tranmitted by ES for checking later
+ ;DG*5.3*1027 - Capture Application Date transmitted by ES for checking later
  S DGOAPP=DGENR("APP")
  I DGOAPP="@" S DGOAPP=""
  ;
@@ -137,7 +140,7 @@ ZCD ;
  I ERROR D  Q
  .D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZCD SEGMENT, SEQ 16",.ERRCOUNT)
 SKIP ;
- ;Phase II Parse out additional fields.  CONVERT type of RSN converts the code to IEN for diagnosis,procedure and condition (HL7TORSN^DGENA5).
+ ;Phase II Parse out additional fields.  CONVERT type of RSN converts the code to IEN for diagnosis, procedure and condition (HL7TORSN^DGENA5).
  ; * check the new DESCRIPTOR sequences  -  DG*5.3*894
  N I,D3     ; DG*5.3*894
  S D3="|"   ; DG*5.3*894
@@ -206,6 +209,7 @@ ZRD ;
  Q:DXCODE=""  ;segment does not contain a disability condition
  ;
  S COUNT=1+(+$G(DGELG("RATEDIS")))
+ I '$D(^DIC(31,"C",DXCODE)) D DCNEW(DXCODE,NAME)  ;DG*5.3*1138 - If DX code does not exist, set it.
  S (COND,DGELG("RATEDIS",COUNT,"RD"))=$$DCLOOKUP(DXCODE,NAME)
  S DGELG("RATEDIS",COUNT,"PER")=$$CONVERT^DGENUPL1(SEG(3)),DGELG("RATEDIS")=COUNT
  S DGELG("RATEDIS",COUNT,"RDEXT")=$$CONVERT^DGENUPL1(SEG(12))
@@ -216,7 +220,7 @@ ZRD ;
  I ERROR D  Q
  . D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZRD SEGMENT, S 14",.ERRCOUNT)
  I 'COND D  Q
- .D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZRD SEGMENT, SEQ 2 - DISABILTY CONDITION LOOKUP FAILED",.ERRCOUNT)
+ .D ADDERROR^DGENUPL(MSGID,$G(DGPAT("SSN")),"BAD VALUE, ZRD SEGMENT, SEQ 2 - DISABILITY CONDITION LOOKUP FAILED",.ERRCOUNT)
  .S ERROR=1
  Q
 OBX ;
@@ -224,6 +228,24 @@ OBX ;
  Q
  ;
  ;*********** end of segment parsers ****
+ ;
+DCNEW(DGNEWDX,DGNEWNM) ;DG*5.3*1138 - New tag to set entry into Disability Condition File (#31)
+ ; Creates new entry when DX code is not defined
+ ;
+ ; Input:
+ ;  DGNEWDX - New DX code to set in field (#2)
+ ;  DGNEWNM - New Name to set in field (#.01)
+ ;  (Note: The Long Name can be added here in the future)
+ ; Output: None
+ ;
+ N DGDATA,DGADD
+ Q:DGNEWDX>9999
+ S DGNEWNM=$E(DGNEWNM,1,45)  ;Max 45 according to FileMan
+ S DGNEWNM=$$UPPER^DGUTL(DGNEWNM) ;Convert to uppercase
+ S DGDATA(2)=DGNEWDX
+ S DGDATA(.01)=DGNEWNM
+ S DGADD=$$ADD^DGENDBS(31,,.DGDATA)
+ Q  ;DCNEW
  ;
 DCLOOKUP(DGCODE,DGNAME) ;
  ; Description: Returns the ien of a Disability Condition (file #31) based on the DGCODE and DGNAME

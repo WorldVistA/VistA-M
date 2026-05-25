@@ -1,5 +1,5 @@
 RCTCSP1 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
- ;;4.5;Accounts Receivable;**301,331,315,339,341,336,350,343,433**;Mar 20, 1995;Build 7
+ ;;4.5;Accounts Receivable;**301,331,315,339,341,336,350,343,433,449**;Mar 20, 1995;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*331 Modify code to ensure that the debtor address info
@@ -19,6 +19,8 @@ RCTCSP1 ;ALBANY/BDB-CROSS-SERVICING TRANSMISSION ;03/15/14 3:34 PM
  ;             to a null entry.
  ;
  ;PRCA*4.5*433 Add AR Category to Cross Servicing Report
+ ;
+ ;PRCA*4.5*449 Adjusted parameter sent to allow use of Confidential Address in tag ADDR
  Q
  ;
 BILLREP ;Cross-servicing bill report, prints individual bills that make up a cross-servicing account
@@ -279,7 +281,7 @@ ADDR(RCDFN,RCCSW) ; returns patient file address
  D ADD^VADPT
  S STATEIEN=+VAPA(5),STATEAB=$$GET1^DIQ(5,STATEIEN,1)
  S ADDRCS=VAPA(1)_U_VAPA(2)_U_VAPA(4)_U_STATEAB_U_VAPA(6)_U_VAPA(8)_U_+VAPA(25)
- S ADDR340=$P($$DADD^RCAMADD(DEBTOR,,RCCSW),U,1,8)     ;PRCA*4.5*336
+ S ADDR340=$P($$DADD^RCAMADD(DEBTOR,1,RCCSW),U,1,8)     ;PRCA*4.5*336 PRCA*4.5*449
  I $P(ADDRCS,U,7)>2 S $P(ADDR340,U,6)="     "    ;PRCA*4.5*331/336
  S ADDR340=$P(ADDR340,U,1,2)_"^"_$P(ADDR340,U,4,7)_U_$S($P(ADDRCS,U,7)'="":$P(ADDRCS,U,7),1:1)    ;PRCA*4.5*331        
  I $P(ADDR340,U,7)="" S $P(ADDR340,U,7)=$P(ADDRCS,U,7)     ;PRCA*4.5*331

@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: IB FORM FIELD CONTENT
 ZWR
-^IBA(364.7,0)="IB FORM FIELD CONTENT^364.7IP^1015^1688"
+^IBA(364.7,0)="IB FORM FIELD CONTENT^364.7IP^1950^1688"
 ^IBA(364.7,1,0)="1^N^54^^^^N"
 ^IBA(364.7,1,3,0)="^364.73^2^2^3071129^^"
 ^IBA(364.7,1,3,1,0)="This is CI2-2."
@@ -7544,12 +7544,12 @@ ZWR
 ^IBA(364.7,1948,3,1,0)="This field may contain an NDC enterd by the user for this line of the "
 ^IBA(364.7,1948,3,2,0)="claim. MRD;IB*2.0*516"
 ^IBA(364.7,1949,0)="2236^N^5^^^^N^0"
-^IBA(364.7,1949,1)="K IBXDATA N Z S Z=0 F  S Z=$O(IBXSAVE(""INPT"",Z)) Q:'Z  I $P(IBXSAVE(""INPT"",Z),U,12)'="""" S IBXDATA(Z)=+$TR($J($P(IBXSAVE(""INPT"",Z),U,12),11,3),"" ."")"
-^IBA(364.7,1949,3,0)="^364.73^2^2^3170508^^^"
+^IBA(364.7,1949,1)="K IBXDATA N Z S Z=0 F  S Z=$O(IBXSAVE(""INPT"",Z)) Q:'Z  I $P(IBXSAVE(""INPT"",Z),U,11)'="""" S IBXDATA(Z)=+$TR($J($P(IBXSAVE(""INPT"",Z),U,12),11,3),"" ."")"
+^IBA(364.7,1949,3,0)="^364.73^2^2^3260114^^^^"
 ^IBA(364.7,1949,3,1,0)="If the user added an NDC to this line of the claim, they are then allowed "
 ^IBA(364.7,1949,3,2,0)="to enter a unit. MRD;IB*2.0*516"
 ^IBA(364.7,1950,0)="2237^N^5^^^^N^0"
-^IBA(364.7,1950,1)="K IBXDATA N Z S Z=0 F  S Z=$O(IBXSAVE(""INPT"",Z)) Q:'Z  I $P(IBXSAVE(""INPT"",Z),U,12)'="""" S IBXDATA(Z)=$P(IBXSAVE(""INPT"",Z),U,13) I IBXDATA(Z)="""" S IBXDATA(Z)=""UN"""
+^IBA(364.7,1950,1)="K IBXDATA N Z S Z=0 F  S Z=$O(IBXSAVE(""INPT"",Z)) Q:'Z  I $P(IBXSAVE(""INPT"",Z),U,11)'="""" S IBXDATA(Z)=$P(IBXSAVE(""INPT"",Z),U,13) I IBXDATA(Z)="""" S IBXDATA(Z)=""UN"""
 ^IBA(364.7,1950,3,0)="^364.73^3^3^3170413^^^"
 ^IBA(364.7,1950,3,1,0)="If the user added an NDC to this line of the claim, there should also be "
 ^IBA(364.7,1950,3,2,0)="a value in the unit field ($P(IBXSAVE(""INPT"",Z),U,12), and if there is, "

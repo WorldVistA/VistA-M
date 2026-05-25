@@ -1,10 +1,11 @@
-RAORDR1 ;ABV/SCR/MKN - Refer Pending/Hold Requests continued ; Nov 09, 2022@06:30:52
- ;;5.0;Radiology/Nuclear Medicine;**148,161,170,190,196**;Mar 16, 1998;Build 1
+RAORDR1 ;ABV/SCR/MKN - Refer Pending/Hold Requests continued ; Apr 14, 2025@11:55:42
+ ;;5.0;Radiology/Nuclear Medicine;**148,161,170,190,196,223**;Mar 16, 1998;Build 4
  ;
  ; p196/KLM - Does the following:
  ;          - Update rad order HOLD code - don't write to OR global, instead
  ;          - use our RA EVSEND OR to update special comment in RAO7CH. 
  ;          - Also, RAORDU is updated to set the 'ORDER REFERRED..' field.
+ ; p223/KLM - Update to consult title lookup to accomodate special procedure mappings
  ;
  ;
  ; Routine/File        IA           Type
@@ -14,6 +15,7 @@ RAORDR1 ;ABV/SCR/MKN - Refer Pending/Hold Requests continued ; Nov 09, 2022@06:3
  ; SAVE^ORWDX          NONE
  ; SEND^ORWDX          5656         (C)
  ; VALID^ORWDXA        NONE
+ ; $$ICDSRCH^LEX10CS   5681         (S)
  ; ^OR(100             5771,6475    (C)
  ; 101.41              NONE
  ; 101.42              2698         (C)
@@ -28,6 +30,7 @@ MAKECONS(RAOIFN) ;Create Consult using Order Dialog GMRCOR CONSULT
  N DA,DFN,DIC,DIE,DR,ORDIALOG,RADFN,RADLG,RADTDES,RAFIELDS,RAFILE,RAIENS,RAMAP,RAN,RAN1,RANEWORD,RAO,RAOIEN,RAORDG
  N RAORDIEN,RAORDITM,RAORDLOC,RAORDS,RAORDTXT,RAOREA,RAORGTX,RAORNP,RAORIT,RAORL,RAORNP,RAORPRE,RAORPREG,RAORTYP
  N RAORVP,RAORWANT,RAQUIT,RAORD,RARET,RARTRN,RAUCID,RAURG,RAWPN,RAX,RAY,RAOILOC,VADM,X,Y,RAITYP,RAOREA,RAORC
+ N RAPROVDX,RAPROVTX,RAZ122,RAR911,RAZ0189
  S RADLG="GMRCOR CONSULT"
  K DIC S DIC=101.41,X=RADLG D ^DIC I Y=-1 D ERROR("Quick Order ""GMRCOR CONSULT"" not found in ORDER DIALOG file") Q 0
  S RAORIT=+Y
@@ -60,15 +63,20 @@ MAKECONS(RAOIFN) ;Create Consult using Order Dialog GMRCOR CONSULT
  I $G(RAOILOC)=0 D ERROR("No Imaging location found/selected") Q 0
  ;if the I-LOC doesn't have a CCC
  I '$O(^RA(79.1,RAOILOC,"CON",0)) S RAOILOC=$$GETILOC^RAORDR2(RAITYP) ;no CCC on order location
- I $G(RAOILOC)=0 D ERROR("No Consult title associated with I-LOC") Q 0
+ I $G(RAOILOC)=0 D ERROR("No Consult titles associated with I-LOC") Q 0
  ;p170 end
  ;
- I $D(^RA(79.1,RAOILOC,"CON")) D
- .I RAORTYP["MAMMOGRAPHY" S RAMAP=$$MAMMO() Q
- .S RAI=$O(^RA(79.1,RAOILOC,"CON",0)) S RAMAP=$$GET1^DIQ(79.11,RAI_","_RAOILOC_",",.01)
- .Q
+ ;P223 - New consult title lookup to accomodate special procedure mappings
+ I $D(^RA(79.1,RAOILOC,"CON")) S RAMAP=$$GETCON(RAOIFN,RAORTYP,RAOILOC)
  I $G(RAMAP)=0 Q 0
  I $G(RAMAP)="" D ERROR("No Consult title associated with I-LOC") Q 0
+ ;p223 - Set provisional DX based on LDCT procedure or generic
+ S RAPROVDX=$S($G(RAMAP)["LDCT LUNG CANCER SCREENING":"Z12.2",$G(RAMAP)["LDCT 1, 3, OR 6 MONTH FOLLOW UP":"R91.1",1:"Z01.89")
+ S RAZ122="Encounter for Screening for Malignant Neoplasm of Respiratory organs"
+ S RAR911="Solitary pulmonary nodule"
+ S RAZ0189="Encounter for other specified special examinations"
+ S RAPROVTX=$S(RAPROVDX="Z12.2":RAZ122,RAPROVDX="R91.1":RAR911,1:RAZ0189)
+ ;
  ;p170 - change next line to FIND^DIC to allow for partial matches
  ;S RAORDITM=$$FIND1^DIC(101.43,,,RAMAP) I RAORDITM=0 D ERROR("Orderable Item "_RAMAP_" not found in Orderable item file") Q 0
  D FIND^DIC(101.43,,"@;.01","P",RAMAP,,,,,"RAOI",) I $D(RAOI)=10 D
@@ -89,8 +97,8 @@ MAKECONS(RAOIFN) ;Create Consult using Order Dialog GMRCOR CONSULT
  D GETS^DIQ(100,RAORDIEN_",",".8*","IE","RAO")
  S RAORDTXT=$G(RAO(100.008,"1,"_RAORDIEN_",",.1,1))
  I RAORDTXT="" D ERROR("Order Text not found in ORDER file at IEN "_RAORDIEN) Q 0
- D UPORDLG("OR GTX FREE TEXT","Encounter for other specified special examinations")
- D UPORDLG("OR GTX CODE","Z01.89") ;p161 - Add Provisional DX Code
+ D:$G(RAPROVTX)]"" UPORDLG("OR GTX FREE TEXT",RAPROVTX)
+ D:$G(RAPROVDX)]"" UPORDLG("OR GTX CODE",RAPROVDX) ;p161 - Add Provisional DX Code /p223 LDCT ProvDX
  D UPORDLG("OR GTX CLINICALLY INDICATED DATE",RADTDES)
  S ORDIALOG("ORCHECK")=0 ;No Order Checks
  S ORDIALOG("ORTS")=0
@@ -178,19 +186,75 @@ GETDIAG(RAORDIEN) ;RETURN POINTER TO #80 FROM ORDER ENTRY
  I $D(RAERR) S RADIAG="-1^"_RAERR("DIERR",1,"TEXT",1)
  Q RADIAG
  ;
-MAMMO() ;
- N RARES,DIR,DIRUT,RAI,RATOM,RAMAM,Y
+MAMMO() ;p223 - modified
+ N RARES,DIR,DIRUT,RAIT,RATOM,RAMAM,Y
  W !!,"Please select the type of Mammography order from the following options:"
  S DIR(0)="S^1:Diagnostic Mammography;2:Screen Mammography"
  D ^DIR
  I $D(DIRUT) S RARES=0 Q 0
  S RAARAY("TYPEOFSERVICE")=$S(Y=1:"4^Diagnostic",1:"4^Screen")
- S RATOM=$S(+Y=2:"SCREEN",1:"DIAGNOSTIC"),RAMAP=""
- S RAI=0 F  S RAI=$O(^RA(79.1,RAOILOC,"CON",RAI)) Q:RAI=""  D
- .S RAMAM=$$GET1^DIQ(79.11,RAI_","_RAOILOC_",",.01) I RAMAM[RATOM S RAMAP=RAMAM
- .Q
- Q $G(RAMAP)
+ S RATOM=$S(+Y=2:"SCREEN",1:"DIAGNOSTIC")
+ S RAIT=RATOM_" MAMMOGRAPHY"
+ Q RAIT
  ;
+GETCON(RAOIEN,RAITYP,RAIL) ;p223 - get consult title
+ ;First check if special mapping, then check if mammo, then default.
+ N RARSLT,RAIEN,RAIENS,RACCC,RAI
+ S RARSLT=""
+ S RARSLT=$$SPECPR(RAOIEN,RAIL)
+ I RARSLT]"" Q RARSLT
+ I RAITYP["MAMMOGRAPHY" S RAITYP=$$MAMMO()
+ S RAI=$O(^RA(71.1235,"B",RAITYP,0))
+ S RACCC=$P(^RA(71.1235,RAI,0),U,2)
+ S RAIEN=","_RAIL_","
+ S RAIENS=$$FIND1^DIC(79.11,RAIEN,"O",.RACCC)_","_RAIL_","
+ S RARSLT=$$GET1^DIQ(79.11,RAIENS,.01)
+ Q RARSLT
+ ;
+SPECPR(RAOIEN,RAIL) ;p223 - Check if procedure has a special CC Title mapped
+ ;New file: RADIOLOGY PROCEDURE MAP TO CC CONSULT [^RA(71.1235,]
+ I RAOIEN="" Q ""
+ N RARSLT,RAPROC,RAPRN,RACCC,RAPTYP,RAI,RAOIENS,RAIEN,RAIENS
+ S RARSLT=""
+ D GETS^DIQ(75.1,RAOIEN,"2","IE","RAPROC") ;procedure ordered
+ S RAOIENS=RAOIEN_","
+ S RAPRN=$G(RAPROC(75.1,RAOIENS,2,"E")) ;procedure name
+ S RAPTYP=$$GET1^DIQ(71,$G(RAPROC(75.1,RAOIENS,2,"I")),6,"I") ;check procedure type
+ S RACPT=$$GET1^DIQ(71,RAPROC(75.1,RAOIENS,2,"I"),9)
+ ;detailed procedure - check for mapped CCC
+ I $L(RAPRN)>30 S RAPRN=$E(RAPRN,1,30)
+ I RAPTYP="D",$D(^RA(71.1235,"B",RAPRN)) D
+ .S RAI=$O(^RA(71.1235,"B",RAPRN,"")) Q:RAI=""
+ .;Check that CPT code matches
+ .I $P(^RA(71.1235,RAI,0),U,3)=$G(RACPT) D
+ ..S RACCC=$P(^RA(71.1235,RAI,0),U,2)
+ ..S RAIEN=","_RAIL_","
+ ..S RAIENS=$$FIND1^DIC(79.11,RAIEN,"O",.RACCC)_","_RAIL_","
+ ..S RARSLT=$$GET1^DIQ(79.11,RAIENS,.01)
+ .Q
+ ;It's possible to have a parent procedure with a descendent of interest
+ I RAPTYP="P" D
+ .N RADPRN,RAX,RAPAR,RACPT,RADES
+ .S RAPAR=$G(RAPROC(75.1,RAOIENS,2,"I"))
+ .;Loop through descendents multiple to check for mapped procedure
+ .S RAX=0 F  S RAX=$O(^RAMIS(71,RAPAR,4,RAX)) Q:RAX="B"  D
+ ..S RADES=$G(^RAMIS(71,RAPAR,4,RAX,0)) Q:RADES=""!(RARSLT]"")
+ ..S RACPT=$$GET1^DIQ(71,RADES,9) ;CPT of desc.
+ ..S RADPRN=$$GET1^DIQ(71,RADES,.01) ;procedure name
+ ..I $L(RADPRN)>30 S RADPRN=$E(RADPRN,1,30)
+ ..I RADPRN]"",$D(^RA(71.1235,"B",RADPRN)) D
+ ...S RAI=$O(^RA(71.1235,"B",RADPRN,"")) Q:RAI=""
+ ...;Check CPT code
+ ...I $P(^RA(71.1235,RAI,0),U,3)=$G(RACPT) D
+ ....S RACCC=$P(^RA(71.1235,RAI,0),U,2)
+ ....S RAIEN=","_RAIL_","
+ ....S RAIENS=$$FIND1^DIC(79.11,RAIEN,"O",.RACCC)_","_RAIL_","
+ ....S RARSLT=$$GET1^DIQ(79.11,RAIENS,.01)
+ ....Q
+ ...Q
+ ..Q
+ .Q
+ Q RARSLT
 MAP(RAIN) ;
  N RAI,RARES,RAX
  S RARES=""

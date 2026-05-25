@@ -1,12 +1,20 @@
-PSOERCR0 ;BHAM/MR - eRx Change Request Functionality ; 11/14/2019 3:46pm
- ;;7.0;OUTPATIENT PHARMACY;**746**;DEC 1997;Build 106
+PSOERCR0 ;BHAM/MR - eRx Change Request Functionality ; 11 Jul 2025  7:14 PM
+ ;;7.0;OUTPATIENT PHARMACY;**746,770**;DEC 1997;Build 145
  ;
 EN ; Action Entry Point
- N ERXSTS,CRMEDS,CRMED,MED,MEDCNT,DIR,Y,X,INDEX,CODE,HLP,DESC,I,REACODE,EXTRCODE,REASCODE,EXTSCODE,LINE,DIRUT,DIROUT,DUOUT,SELCTREC,FDAPNCOM
- N REATXT,DIC,DWLW,DWPK,DIWESUB,X,DELMED,TMPARR,WRPHELP,HELP,DESC,LINE,PSOQUIT,ERROR,FINISH,PSSRET,HUBID,VADAT,NPIINST,GBL,RECARY,RTHID
- N INSTNAME,STATION,INSTNPI,DIV,NOTE2PRV,REASONTXT,RELERX,CRFOUND,PNCOMM,CODETYPE,DDWFLAGS,MESSID,CRERXIEN,NPLEN,RECFOUND,ORGRXIEN,TMPIEN
+ N ERXSTS,CRMEDS,CRMED,MED,MEDCNT,DIR,Y,X,INDEX,CODE,HLP,DESC,I,REACODE,EXTRCODE,REASCODE,EXTSCODE,LINE,MSGTYPE
+ N DIRUT,DIROUT,DUOUT,SELCTREC,FDAPNCOM,RECENTRY,REATXT,DIC,DWLW,DWPK,DIWESUB,X,DELMED,TMPARR,WRPHELP,HELP
+ N DESC,LINE,PSOQUIT,ERROR,FINISH,PSSRET,HUBID,VADAT,NPIINST,GBL,RECARY,RTHID,INSTNAME,STATION,INSTNPI,DIV
+ N REASONTXT,RELERX,CRFOUND,PNCOMM,CODETYPE,DDWFLAGS,MESSID,CRERXIEN,NPLEN,RECFOUND,ORGRXIEN,TMPIEN,REACODCH
+ N NOTE2PRV,MEDTYPE
+ ; Batch Entry Point
+ I $G(ERXBTCHFLG) G EN1
  I '$G(ERXIEN) Q
  D FULL^VALM1 S VALMBCK="R"
+ ;
+ ;Division Selection
+ I '$G(PSOSITE) D ^PSOLSET I '$D(PSOPAR) W $C(7),!!,"Pharmacy Division Must be Selected!",! G EXIT
+ S PSNPINST=$$GET1^DIQ(59,PSOSITE,101,"I")
  ;
  S NPIINST=$$GET1^DIQ(59,PSOSITE,101,"I"),INSTNAME=$$NAME^XUAF4(NPIINST),STATION=$$WHAT^XUAF4(NPIINST,99)
  S INSTNPI=$$NPI^XUSNPI("Organization_ID",NPIINST) I $P(INSTNPI,U)<1 D
@@ -19,11 +27,13 @@ EN ; Action Entry Point
  S SELCTREC=""
  I $G(RESEND) S RECFOUND=0,ORGRXIEN="" D RESENDEC K RECFOUND Q  ;entry point for  PSO ERX RESEND CHANGE REQUEST Protocol action
  ;
- S ERXSTS=$$GET1^DIQ(52.49,ERXIEN,1,"E")
- I $$GET1^DIQ(52.49,ERXIEN,.08,"I")'="N"!(ERXSTS="RJ")!(ERXSTS="RM")!(ERXSTS="CAN")!(ERXSTS="CAC")!($E(ERXSTS)="H")!(ERXSTS="CXQ") D  Q
+ S MSGTYPE=$$GET1^DIQ(52.49,ERXIEN,.08,"I"),ERXSTS=$$GET1^DIQ(52.49,ERXIEN,1,"E")
+ I (",N,RE,CX,"'[","_MSGTYPE_",")!(ERXSTS="RJ")!(ERXSTS="RM")!(ERXSTS="CAN")!(ERXSTS="CAC")!(ERXSTS="CXQ") D  Q
  . W !!,$G(IOINHI),"Change Request may not be used for this record type.",!,$G(IOINORM) D DIRE^PSOERXX1
+ I MSGTYPE="RE",",CXP,RRP,RXP,RXC,"'[(","_ERXSTS_",") D
+ . W !!,$G(IOINHI),"Change Request can only be made on Response if it has been processed/completed.",!,$G(IOINORM) D DIRE^PSOERXX1
  ;
- I '$$GET1^DIQ(52.49,ERXIEN,1.7,"I") D  Q
+ I $$GET1^DIQ(52.49,ERXIEN,.08,"I")="N",'$$GET1^DIQ(52.49,ERXIEN,1.7,"I") D  Q
  . W !!,$G(IOINHI),"The VistA Patient must be matched and validated first.",!,$G(IOINORM) D DIRE^PSOERXX1
  ;
  D DSPERX^PSOERUT(ERXIEN)
@@ -40,7 +50,7 @@ EN ; Action Entry Point
  . I +$G(RECENTRY)>0 S RECFOUND=0,ORGRXIEN="",ERXIEN=$G(RECARY(RECENTRY)) D RESENDEC
  ;
 EN1 ; Loop Entry Point
- K INDEX S CODE=0 K DIR S DIR(0)="SO^",HLP=0,DIR("?")=" "
+ K INDEX,REACODCH S CODE=0 K DIR S DIR(0)="SO^",HLP=0,DIR("?")=" "
  F  S CODE=$O(^PS(52.45,"TYPE","MRC",CODE)) Q:'CODE  D
  . S INDEX($$GET1^DIQ(52.45,CODE,.01))=CODE
  . S DIR(0)=DIR(0)_$$GET1^DIQ(52.45,CODE,.01)_":"_$$GET1^DIQ(52.45,CODE,.02)_";"
@@ -51,30 +61,38 @@ EN1 ; Loop Entry Point
  . F I=1:1 Q:'$D(WRPHELP(I))  S:I>1 HLP=HLP+1 S $E(DIR("?",HLP),10)=$G(WRPHELP(I,0))
  S DIR("A")="CHANGE REQUEST CODE" I $G(REACODE) S DIR("B")=$$GET1^DIQ(52.45,REACODE,.01)
  D ^DIR I $D(DIRUT)!$D(DIROUT) Q
- I Y="G",'$$GET1^DIQ(52.49,ERXIEN,5.8,"I") D  G EN1
+ I '$G(ERXBTCHFLG),Y="G",'$$GET1^DIQ(52.49,ERXIEN,5.8,"I") D  G EN1
  . W !!,$G(IOINHI),"Substitutions are already allowed by prescriber for this eRx.",$G(IOINORM),$C(7)
- I $G(REACODE)'=+$G(INDEX(Y)) S REASCODE=0,EXTSCODE="" K REATXT
+ I $G(REACODE)'=+$G(INDEX(Y)) S REASCODE=0,EXTSCODE="" K REATXT S REACODCH=1
  S REACODE=+$G(INDEX(Y)),EXTRCODE=$$GET1^DIQ(52.45,REACODE,.01)
- W ! I '$D(REATXT) S X=$$GET1^DIQ(52.45,REACODE,20,,"REATXT")
+ W ! I '$D(REATXT) D
+ . I $$CHKDIVRSN^PSOERPC3(REACODE,.REATXT) Q
+ . S X=$$GET1^DIQ(52.45,REACODE,20,,"REATXT")
  ;
  S PSOQUIT=0
- I (" D U "[(" "_EXTRCODE_" ")) D  I $G(PSOQUIT) G EXIT
+ I (" S D U T "[(" "_EXTRCODE_" ")) D  I $G(PSOQUIT) G EXIT
+ . I $G(RECFOUND),$G(EXTSCODE)="",'$G(REACODCH) Q
  . K INDEX  K DIR S DIR(0)="SO^",DIR("L",1)="     Select one of the following:",DIR("L",2)=" "
  . S HLP=0,LINE=2,DIR("L")="        "_$S(EXTRCODE="D":"Type '?' for the full list. ",1:"")
- . S DIR("?")="^D HELP^PSOERCR0"
- . S CODETYPE=$S(EXTRCODE="D":"REA",1:"MRSC")
+ . S DIR("?")="^D HELP^PSOERCR1"
+ . S CODETYPE=$S(EXTRCODE="S":"SCR",EXTRCODE="D":"REA",EXTRCODE="T":"TIS",1:"MRSC")
  . F  S CODE=$O(^PS(52.45,"TYPE",CODETYPE,CODE)) Q:'CODE  D
  . . S INDEX($$GET1^DIQ(52.45,CODE,.01))=CODE
  . . S DIR(0)=DIR(0)_$$GET1^DIQ(52.45,CODE,.01)_":"_$$GET1^DIQ(52.45,CODE,.02)_";"
- . . I EXTRCODE="U"!(EXTRCODE="D"&(",DA,DD,HD,LD,MS,TD,AR,DI,DR,ID,UD,PS,SX,TP,"[(","_$$GET1^DIQ(52.45,CODE,.01)_","))) D
+ . . I EXTRCODE="U"!(EXTRCODE="T")!(EXTRCODE="D"&(",DA,DD,HD,LD,MS,TD,AR,DI,DR,ID,UD,PS,SX,TP,"[(","_$$GET1^DIQ(52.45,CODE,.01)_","))) D
  . . . S LINE=LINE+1,DIR("L",LINE)="   "_$S(EXTRCODE="D":"     ",1:"")_$$GET1^DIQ(52.45,CODE,.01)_" - "_$$GET1^DIQ(52.45,CODE,.02)
  . . S HLP=HLP+1,DIR("?",HLP)="   "_$S(EXTRCODE="D":"     ",1:"")_$$GET1^DIQ(52.45,CODE,.01)_" - "_$$GET1^DIQ(52.45,CODE,.02)
+ . . I EXTRCODE="S"&(",PRN,UDD,COD,MSD,RIJ,VEF,VLQ,VPQ,AUT,"[(","_$$GET1^DIQ(52.45,CODE,.01)_",")) D  ;script clarification subcodes
+ . . . S LINE=LINE+1,DIR("L",LINE)="   "_$S(EXTRCODE="S":"     ",1:"")_$$GET1^DIQ(52.45,CODE,.01)_" - "_$$GET1^DIQ(52.45,CODE,.02)
  . I EXTRCODE="D" S LINE=LINE+1,DIR("L",LINE)=" "
  . S DIR("A")="CHANGE REQUEST SUB-CODE" I $G(REASCODE) S DIR("B")=$$GET1^DIQ(52.45,REASCODE,.01)
  . D ^DIR I $D(DIRUT)!$D(DIROUT) S PSOQUIT=1 Q
  . I $G(REASCODE)'=+$G(INDEX(Y)) K REATXT
- . S REASCODE=+$G(INDEX(Y)),EXTSCODE=$$GET1^DIQ(52.45,REASCODE,.01)
- . W ! I '$D(REATXT) S X=$$GET1^DIQ(52.45,REASCODE,20,,"REATXT")
+ . S REASCODE=+$G(INDEX(Y))
+ . I (" S T "'[(" "_EXTRCODE_" ")) S EXTSCODE=$$GET1^DIQ(52.45,REASCODE,.01) ;do not set/send this variable for script clarification and Therapeutic Interchange/Substitution, this subcodes are not valid NCPDP codes
+ . W ! I '$D(REATXT) D
+ . . I $$CHKDIVRSN^PSOERPC3(REASCODE,.REATXT) Q
+ . . S X=$$GET1^DIQ(52.45,REASCODE,20,,"REATXT")
  ;
 NOTES ; NOTE TO PROVIDER Prompt (Max 260 characters)
  K ^TMP("PSOERN2P",$J)
@@ -86,18 +104,19 @@ NOTES ; NOTE TO PROVIDER Prompt (Max 260 characters)
  . S DIWESUB="NOTE TO PROVIDER" W !,DIWESUB,":"
  . D EN^DIWE I $G(DUOUT) S PSOQUIT=1 Q
  . F I=1:1 Q:'$D(^TMP("PSOERN2P",$J,I))  D  I 'FINISH Q
- . . S X=^TMP("PSOERN2P",$J,I,0)
- . . S NPLEN=NPLEN+$L(X) I NPLEN>260 W !!,$G(IOINHI),"The maximum length for this note is 260 characters.",$G(IOINORM),$C(7) S FINISH=0 D PAUSE^PSOSPMU1 Q
- . . I X["[DRUG_NAME]" W !!,$G(IOINHI),"The place holder [DRUG_NAME] must be replaced before proceeding.",$G(IOINORM),$C(7) S FINISH=0 D PAUSE^PSOSPMU1 Q
- . . I X["[ADD_TEXT_HERE]" W !!,$G(IOINHI),"The place holder [ADD_TEXT_HERE] must be replaced before proceeding.",$G(IOINORM),$C(7) S FINISH=0 D PAUSE^PSOSPMU1 Q
+ . . S X=$$TRIM^XLFSTR(^TMP("PSOERN2P",$J,I,0))
+ . . S NPLEN=NPLEN+$L(X) I NPLEN>(261-$O(^TMP("PSOERN2P",$J,99),-1)) W !!,$G(IOINHI),"The maximum length for this note is 260 characters.",$G(IOINORM),$C(7) S FINISH=0 D PAUSE^PSOSPMU1 Q
+ . . I X["[DRUG_NAME]"!(X["[ADD_TEXT_HERE]")!(X["[QUANTITY]")!(X["[PHONE_NUMBER]") D  Q
+ . . . W !!,$G(IOINHI),"The place holder ",X," must be replaced before proceeding.",$G(IOINORM),$C(7) S FINISH=0 D PAUSE^PSOSPMU1
  I PSOQUIT G EXIT
  K REATXT F I=1:1 Q:'$D(^TMP("PSOERN2P",$J,I))  S REATXT(I)=$G(^TMP("PSOERN2P",$J,I,0))
  ;
  I (" P U "'[(" "_EXTRCODE_" ")) D  I $G(PSOQUIT) G EXIT
+ . I $G(ERXBTCHFLG),$G(CHRQTYPE)'=1 Q  ;do not prompt user for drug suggestion if coming from batch erx ch req option and the type of ch rq is 2 and 3
  . S (LINE,FINISH,ERROR,PSOQUIT)=0 W !
  . F I=1:1 D  I FINISH!PSOQUIT Q
  . . S (MED,MEDCNT)=0 F  S MED=$O(CRMEDS(MED)) Q:'MED  S MEDCNT=MEDCNT+1
- . . D:'$G(ERROR) LISTMEDS S ERROR=0
+ . . D:'$G(ERROR) LISTMEDS^PSOERCR1 S ERROR=0
  . . K DIR S DIR(0)="SOA^N:NEW;"_$S(MEDCNT>0:"E:EDIT;D:DELETE;",1:"")_"F:FINISH"
  . . S DIR("A")="Select Drug Suggestion Option:  (N)EW  "_$S(MEDCNT>0:"(E)DIT  (D)ELETE  ",1:"")_"(F)INISH: "
  . . S II=0
@@ -112,7 +131,7 @@ NOTES ; NOTE TO PROVIDER Prompt (Max 260 characters)
  . . I $D(DIROUT)!$G(DIRUT) S FINISH=1 Q
  . . I Y="N" D  Q
  . . . S CRMED=$O(CRMEDS(99),-1)+1 I CRMED>9 W !!,"A maximum of 9 Drug Suggestion can be entered!",!,$C(7) S ERROR=1 Q
- . . . W ! D DSPERX^PSOERUT(ERXIEN) D EN^PSOERCR1
+ . . . W ! D EN^PSOERCR1
  . . I Y="E" D  W ! Q
  . . . K DIR S DIR(0)="L^1:"_MEDCNT,DIR("A")="Select Entry # to Edit"
  . . . W ! D ^DIR I $D(DIRUT)!$D(DIROUT) Q
@@ -128,8 +147,15 @@ NOTES ; NOTE TO PROVIDER Prompt (Max 260 characters)
  . . . W !?64,"Deleting..." K CRMEDS(DELMED) H .5 W "Ok.",! H .5
  . . . K TMPARR M TMPARR=CRMEDS K CRMEDS S MED=0 F I=1:1 S MED=$O(TMPARR(MED)) Q:'MED  M CRMEDS(I)=TMPARR(MED)
  ;
+ I $G(ERXBTCHFLG),$G(CHRQTYPE)=2 D  I $D(DIROUT)!$D(DIRUT) G EXIT
+ . K DIR,DIRUT S DIR(0)="FO^1:210",DIR("A")="SUGGESTED PROVIDER NOTE (FOR RESPONSE RX)"
+ . I $G(NOTE2PRV)'="" S DIR("B")=NOTE2PRV
+ . S DIR("?")="This is the suggested Provider Note that will be sent back with Rx Response if this drug option is selected by the outside Provider. It may be edited/removed by the Provider before sending the response back."
+ . D ^DIR I $D(DIROUT)!$D(DIRUT) Q
+ . S NOTE2PRV=Y
+ ;
 PNCOMM ; Patient Progress Note Comments
- K DIR,DIRUT S DIR(0)="FO^1:210",DIR("A")="VA PROGRESS NOTE COMMENTS (Optional)" I $G(PNCOMM)'="" S DIR("B")=PNCOMM
+ K DIR,DIRUT S DIR(0)="FO^1:500",DIR("A")="VA PROGRESS NOTE COMMENTS (Optional)" I $G(PNCOMM)'="" S DIR("B")=PNCOMM
  S DIR("?")="This text will be appended at the bottom of the Patient Progress Notes that will be created after this Rx Change Request is submitted."
  W ! D ^DIR I Y="^" G EXIT
  S PNCOMM=Y
@@ -139,20 +165,29 @@ PNCOMM ; Patient Progress Note Comments
  . W !,$G(IOINHI),"before proceeding.",$G(IOINORM),$C(7) D PAUSE^PSOSPMU1
  ;
 RESENDEC ;Allows a user to resend an eRx Change request in the Inbound eRx application
- I $G(RESEND)!($G(SELCTREC)="R") D  Q:'$G(RECFOUND)
+ I '$G(ERXBTCHFLG),$G(RESEND)!($G(SELCTREC)="R") D  Q:'$G(RECFOUND)
  . Q:RECFOUND  ;only build existing record once
  . I $$GET1^DIQ(52.49,ERXIEN,.08,"I")="CR" D  Q  ;resend eRx ONLY if message type is 'CR' FOR RXCHANGEREQUEST
  . . S ORGRXIEN=$P(^PS(52.49,ERXIEN,0),"^",14),ORGRXIEN=$O(^PS(52.49,"B",ORGRXIEN,0)),TMPIEN=PSOIEN
  . . S RECFOUND=1,PNCOMM=""
  . . D BUILDSUM^PSOERX1H(ERXIEN)
  . . K PNCOMM S PNCOMM=$$GET1^DIQ(52.49,ERXIEN,320.2) ;CH REQ PROGRESS NOTE COMMENT
- . W !!,$G(IOINHI),"Resend Change Request may not be used for this record type.",$G(IOINORM),! D ASKCONT^PSOERX1H
- D SUMMARY
+ . W !!,$G(IOINHI),"You can only used this action on an existing Change Request eRx record.",$G(IOINORM),! D ASKCONT^PSOERX1H
+ D SUMMARY^PSOERCR1
  ;
  W ! K DIR S DIR(0)="SA^Y:YES;N:NO",DIR("B")="NO"
  S DIR("A")="Would you like to edit this Rx Change Request before sending it? "
  D ^DIR I $D(DIRUT)!$D(DIROUT) G EXIT
  I $G(Y)="Y" G EN1
+ ;
+ I $G(ERXBTCHFLG) D  Q
+ . K PSOBTDAT
+ . S PSOBTDAT("EXTRCODE")=EXTRCODE
+ . S PSOBTDAT("EXTSCODE")=EXTSCODE
+ . S PSOBTDAT("PNCOMM")=PNCOMM
+ . M PSOBTDAT("REATXT")=REATXT
+ . I $G(CHRQTYPE)=1 M PSOBTDAT("CRMEDS")=CRMEDS
+ . I $G(CHRQTYPE)=2 S PSOBTDAT("NOTE2PRV")=$G(NOTE2PRV)
  ;
  W ! K DIR S DIR(0)="SA^Y:YES;N:NO",DIR("B")="YES"
  S DIR("A")="Would you like to send this Rx Change Request? "
@@ -160,22 +195,34 @@ RESENDEC ;Allows a user to resend an eRx Change request in the Inbound eRx appli
  ;
  W !!,"Sending Request to Provider..."
  ; Building & Sending RxChangeRequest Message to the Provider
- S GBL=$NA(^TMP("PSOERCR0",$J)) K @GBL
  S CNT=0
  ;
- I $G(RESEND)!($G(SELCTREC)="R") S ERXIEN=$G(ORGRXIEN) ;send the original erx instead of the new CRN type eRx.
+ I $G(RESEND)!($G(SELCTREC)="R"),$G(ORGRXIEN) S ERXIEN=$G(ORGRXIEN) ;send the original erx instead of the new CRN type eRx.
  ;
+ D SENDCHRQ(ERXIEN,.CRMEDS) ;Send eRx Change Request
+ ;
+ W ! D DIRE^PSOERXX1
+ D REF^PSOERSE1
+ Q
+ ;
+SENDCHRQ(ERXIEN,CRMEDS,ERXBTCHFLG) ;Batch eRx Change Request entry point, called from PSO ERX BATCH CHANGE REQUEST SUBMISSION protocol
+ ; Input: ERXIEN     - eRx for the Change Request (Pointer to to #52.49)
+ ;        CRMEDS     - Array containg Suggested Med(s)
+ ;        ERXBTCHFLG - 1: Indicates a Batch CH REQ Submission
+ ;Single eRx Change Request entry point
+ N ERXSTS,GBL
+ S GBL=$NA(^TMP("PSOERCR0",$J)) K @GBL
  D MSG^PSOERXOA(.GBL,1)
  ; Header
  S MESSID=$$HEADER^PSOERXOA(.GBL,ERXIEN)
  ; Body Header
  D BHF^PSOERXOA(.GBL,1)
-  ; Request Type Header
+ ; Request Type Header
  D RTYPE^PSOERXOA(.GBL,"RxChangeRequest",1)
  ; RxChangeRequest Code/Sub-Code
  D BL^PSOERXOA(GBL,.CNT,"MessageRequestCode",EXTRCODE)
  D BL^PSOERXOA(GBL,.CNT,"MessageRequestSubCode",EXTSCODE)
- S REASONTXT="" F I=1:1 Q:'$D(REATXT(I))  S REASONTXT=REASONTXT_" "_REATXT(I)
+ S REASONTXT="" F I=1:1 Q:'$D(REATXT(I))  S REASONTXT=REASONTXT_" "_$$TRIM^XLFSTR(REATXT(I))
  S $E(REASONTXT,1)=""
  D BL^PSOERXOA(GBL,.CNT,"ChangeReasonText",REASONTXT)
  ;
@@ -189,7 +236,8 @@ RESENDEC ;Allows a user to resend an eRx Change request in the Inbound eRx appli
  D PERSON^PSOERXOE(GBL,.CNT,PSOSITE,ERXIEN,"PR") ; PRESCRIBER - brad/steve
  D OOBSERVE^PSOERXOB(GBL,.CNT,ERXIEN) ;outbound observation segment
  ; Bulding the <MedicationPrescribed> Segment
- D MEDS^PSOERXOG(GBL,.CNT,ERXIEN,"P")
+ S MEDTYPE=$S($D(^PS(52.49,ERXIEN,311,"C","P")):"P",$D(^PS(52.49,ERXIEN,311,"C","MR")):"MR",1:"")
+ D MEDS^PSOERXOG(GBL,.CNT,ERXIEN,MEDTYPE)
  ; Bulding the <MedicationRequested> Segment
  I $O(CRMEDS(0)) D MEDREQ^PSOERXON(GBL,.CNT,.CRMEDS)
  D PERSON^PSOERXOE(GBL,.CNT,PSOSITE,ERXIEN,"FU") ; FOLLOW UP PRESCRIBER
@@ -215,25 +263,22 @@ RESENDEC ;Allows a user to resend an eRx Change request in the Inbound eRx appli
  S HUBID=HUBID_U_U_RTHID
  W "Done." H .5
  D INCERX^PSOERXI1(.RES,.XXL1,"","","",STATION,DIV,HUBID,"","",VADAT,"")
- I $P(RES,U)=0 D
+ I $P(RES,U)=0 D  K @GBL Q
  . W !,"A problem was encountered while trying to file the RxChange request."
  . W !,"RxChange Request was not filed in vista."
  . W !!,"ERROR: "_$P(RES,U,2)
  . K DIR S DIR(0)="E" D ^DIR K DIR
- I '$G(RESEND)!($G(SELCTREC)'="R") D UPDSTAT^PSOERXU1(ERXIEN,"HC")
+ S ERXSTS=$$GET1^DIQ(52.49,ERXIEN,1)
+ I ",PR,CXP,RRP,RXP,RXC,"'[(","_ERXSTS_","),($G(RESEND)!($G(SELCTREC)'="R"))&('+$G(ERXBTCHFLG)) D UPDSTAT^PSOERXU1(ERXIEN,"HC")
  ;
  ; Creating Patient Progress Note
  I $P(HUBID,"^")'="" D
+ . N TIUTITLE S TIUTITLE="PHARMACY ERX RX CHANGE REQUEST NOTE"
+ . I '+$$FIND1^DIC(8925.1,"","X",TIUTITLE,"B") S TIUTITLE="ERX RX CHANGE REQUEST NOTE"
  . S CRERXIEN=$O(^PS(52.49,"B",$P(HUBID,"^"),0))
- . D CREATEPN^PSOERX1H(ERXIEN,CRERXIEN,PNCOMM,.CRMEDS,"ERX RX CHANGE REQUEST NOTE")
+ . D CREATEPN^PSOERX1H(ERXIEN,CRERXIEN,PNCOMM,.CRMEDS,TIUTITLE,$G(ERXBTCHFLG))
  I $G(RESEND)!($G(SELCTREC)="R") S ERXIEN=TMPIEN ;put back the ERXIEN used during the entry point
- ;
  K @GBL
- ;
- W ! D DIRE^PSOERXX1
- ;
- D REF^PSOERSE1
- ;
  Q
  ;
 EXIT ; Exit the action
@@ -242,69 +287,4 @@ EXIT ; Exit the action
  W ! K DIR S DIR(0)="SA^Y:YES;N:NO",DIR("B")="YES"
  S DIR("A")="Are you sure you want to exit (ALL INFORMATION ENTERED WILL BE LOST)? "
  D ^DIR I Y="N" G EN1
- Q
- ;
-DEFREA(REACODE) ; Returns the Default Change Request Reason Text
- ; Input: REACODE - Pointer to the ERX SERVICE REASON CODES (#52.45)
- ;Output: DEFREA  - Default Change Request Reason Text for the Code passed in
- N DEFREA,I,X,REATXT
- S DEFREA="",X=$$GET1^DIQ(52.45,REACODE,20,,"REATXT")
- F I=1:1 Q:'$D(REATXT(I))  S DEFREA=DEFREA_" "_$G(REATXT(I))
- S $E(DEFREA)=""
- Q DEFREA
- ;
-HELP ; Sub-Code List
- N I,XX W !,"     Complete List of Change Request Sub-Codes:",!
- F I=1:1 Q:'$D(DIR("?",I))  W !,DIR("?",I) I '(I#20) R !,"Type <Enter> to continue or '^' to exit:",XX:DTIME I XX="^" Q
- D:(I#20) PAUSE^PSOSPMU1
- Q
- ;
-LISTMEDS ; Display Meds Already entered
- N XX,Z,MED,Y,SIG
- ;D DSPERX^PSOERUT(ERXIEN)
- I '$O(CRMEDS(0)) Q
- ;
- S LINE=1 D PAUSE W ! W:$D(IOUON) IOUON W "#  DRUG",?50,"QTY",?55,"# REFS",?63,"DAYS SUPPLY",?76,"SUBS" W:$D(IOUOFF) IOUOFF
- I '$D(IOUON) S $P(XX,"-",81)="" D PAUSE W !,XX,! S LINE=2
- S MED=0 F  S MED=$O(CRMEDS(MED)) Q:'MED  D
- . S Z=$G(CRMEDS(MED))
- . I MED=1 W !
- . D PAUSE W MED,?3,"(",$P(Z,"^"),")",$E($P(Z,"^",2),1,43),?50,$J($P(Z,"^",6),3),?57,$J($P(Z,"^",10),2)
- . W ?65,$J($P(Z,"^",9),4),?76,$S($P(Z,"^",5):"NO",1:"YES"),!
- . I $O(CRMEDS(MED,"SIG",0)) D
- . . D PAUSE W ?3 W:$D(IOUON) IOUON W "Sig :" W:$D(IOUOFF) IOUOFF
- . . S SIG="" F I=1:1 Q:'$D(CRMEDS(MED,"SIG",I))  S SIG=SIG_CRMEDS(MED,"SIG",I,0)_" "
- . . F I=1:1 Q:(SIG="")  W ?9,$E(SIG,1,70),! S SIG=$E(SIG,71,999) D PAUSE
- . I $G(CRMEDS(MED,"NOTE"))'="" D
- . . D PAUSE W ?3 W:$D(IOUON) IOUON W "Note:" W:$D(IOUOFF) IOUOFF S NOTE=CRMEDS(MED,"NOTE")
- . . F I=1:1 Q:NOTE=""  W ?9,$E(NOTE,1,71),! S NOTE=$E(NOTE,72,999) D PAUSE
- Q
- ;
-SUMMARY ; Displays a Summary of the RxChangeRequest
- N HIGH,NORM,XX,ERXSIG,NOTES,MEDIEN,QTYQUAL
- ;
- W @IOF S LINE=0
- S HIGH=$G(IOINHI),NORM=$G(IOINORM)
- W ! D PAUSE S $P(XX,$S($D(IOUON):" ",1:"-"),81)="",$E(XX,27,51)="RX CHANGE REQUEST SUMMARY" W !,$G(IOUON),XX,$G(IOUOFF)
- W ! D PAUSE W "Change Request Reason Code: ",HIGH,$$GET1^DIQ(52.45,+$G(REACODE),.01)," - ",$$GET1^DIQ(52.45,+$G(REACODE),.02),NORM
- I $G(REASCODE) D
- . W ! D PAUSE W "Change Request Reason Sub-Code: ",HIGH,$$GET1^DIQ(52.45,+$G(REASCODE),.01)," - ",$$GET1^DIQ(52.45,+$G(REASCODE),.02),NORM
- ;
- W ! D PAUSE W "Note to Provider: " F I=1:1 Q:'$D(REATXT(I))  W !,HIGH,REATXT(I),NORM
- ;
- W ! D LISTMEDS
- ;
- I ($G(PNCOMM)'="")!($G(RESEND))!($G(SELCTREC)="R") W ! D PAUSE W "VA Progress Note Comment: ",!,HIGH,PNCOMM,NORM,!
- ;
- S XX="",$P(XX,$S($D(IOUON):" ",1:"-"),81)="" W $G(IOUON),XX,$G(IOUOFF)
- Q
- ;
-PAUSE ; Decides whether to pause the listing or not
- N XX,I,Y,X
- S LINE=LINE+1
- S Y=$S($G(IOSL):IOSL,1:24)-3 I (LINE#Y) Q
- W "Press Return to continue" R X:60
- F I=1:1:26 W $C(8)
- S $P(XX," ",26)="" W XX
- F I=1:1:26 W $C(8)
  Q

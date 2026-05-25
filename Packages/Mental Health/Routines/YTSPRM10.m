@@ -1,5 +1,5 @@
 YTSPRM10 ;SLC/KCM - Score PROMIS10 ; 3/25/22 2:02pm
- ;;5.01;MENTAL HEALTH;**218**;Dec 30, 1994;Build 9
+ ;;5.01;MENTAL HEALTH;**218,236**;Dec 30, 1994;Build 25
  ;
 DLLSTR(YSDATA,YS,YSTRNG) ; compute scores or report text based on YSTRNG
  ; input
@@ -25,6 +25,7 @@ SCORESV ; calculate the score
  S I=2 F  S I=$O(YSDATA(I)) Q:'I  D
  . S QID=$P(YSDATA(I),U),CID=$P(YSDATA(I),U,3)
  . I CID=1155!(CID=1156)!(CID=1157) Q  ; leave skipped questions undefined
+ . I QID=8798 S QSTN(QID)=+CID Q  ;8798 is numerical response. Set only if not skipped
  . S QSTN(QID)=$$GET1^DIQ(601.75,CID_",",4,"I")
  S GPHYS=$$SUM(.QSTN,"8791,8795,8797,8798") ; Questions 3,7,9,10
  S GMENT=$$SUM(.QSTN,"8790,8792,8793,8796") ; Questions 2,4,5,8

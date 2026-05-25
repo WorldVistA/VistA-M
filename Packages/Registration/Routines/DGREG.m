@@ -1,5 +1,5 @@
-DGREG ;ALB/JDS,MRL,PJR,PHH,ARF,RN,JAM,ARF - REGISTER PATIENT ; 3/28/14 12:38pm
- ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,864,886,915,926,1024,993,1040,1027,1045,1067,1075,1102,1111**;Aug 13, 1993;Build 18
+DGREG ;ALB/JDS,MRL,PJR,PHH,ARF,RN,JAM,ARF,SJD - REGISTER PATIENT ; 3/28/14 12:38pm
+ ;;5.3;Registration;**1,32,108,147,149,182,245,250,513,425,533,574,563,624,658,864,886,915,926,1024,993,1040,1027,1045,1067,1075,1102,1111,1138**;Aug 13, 1993;Build 3
  ; 
  ; DG*5.3*1075 - Fix line 1 for SAC compliance
  ; Reference to (#350.9,54.01) supported by ICR #7429
@@ -197,8 +197,8 @@ REASON(Y,XQY0) ; DG*5.3*1027 - Screen logic/Input Transform for field .15 (REGIS
  ;
  ; Check the entry in the 408.43 (PATIENT REGISTRATION ONLY REASON) dictionary
  I '$D(^DG(408.43,Y,0)) Q 0
- ; Entries with AVAILABILITY field = 3 are not valid
- I $P(^DG(408.43,Y,0),U,2)=3 Q 0
+ ; Entries with AVAILABILITY field = 3 (HEC) and 4 (VBA) are not valid. DG*5.3*1138 adds Availability = 4
+ I ($P(^DG(408.43,Y,0),U,2)=3)!($P(^DG(408.43,Y,0),U,2)=4) Q 0
  ; DG*5.3*1067 - For Reg Only Reasons added in patch 1067, screen them out until the date/time in XPAR parameter DG PATCH DG*5.3*1067 ACTIVE is reached
  N DGREASON,DGACTTS
  S DGREASON=$$GET1^DIQ(408.43,Y_",",.01)

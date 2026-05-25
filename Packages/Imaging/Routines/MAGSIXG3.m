@@ -1,5 +1,5 @@
 MAGSIXG3 ;WOIFO/SG/NST/DAC - LIST OF IMAGES RPCS (CALLBACK) ; Aug 20, 2020@06:55:25
- ;;3.0;IMAGING;**93,117,150,138,167,221,258**;Mar 19, 2002;Build 21
+ ;;3.0;IMAGING;**93,117,150,138,167,221,258,365**;Mar 19, 2002;Build 19
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -116,7 +116,8 @@ QRYCBK(IMGIEN,FLAGS,MAGDATA) ;
  Q:RC=2 1  ; Terminate the query when maximum number of records is reached
  ;
  ;=== Flags for $$INFO^MAGGAII
- S IIFLAGS=$$TRFLAGS^MAGUTL05(FLAGS,"DE")
+ ;*zeb *365 add support for O flag
+ S IIFLAGS=$$TRFLAGS^MAGUTL05(FLAGS,"DEO")
  ;
  ;=== Sparse subset query does not append image entries to the result 
  ;    array right away. It saves them to the temporary buffers in the
@@ -184,6 +185,8 @@ FILTER(FLTX,GRPCNTS,PTIEN,IMGIEN,FLAGS,MAGDATA) ;
  N CPTCODE,MODALITY
  N X,X0,X01,X100,X2,X40
  N MAGFOUND  ; temp loop flag
+ ;*zeb *365 add support for O flag
+ N MAGSDESC,BADCHARS,CHR
  S FLTX=""
  S IMGNODE=$$NODE^MAGGI11(IMGIEN)  Q:IMGNODE="" 0
  ;=== Terminate the query when maximum number of records is reached
@@ -294,10 +297,16 @@ FILTER(FLTX,GRPCNTS,PTIEN,IMGIEN,FLAGS,MAGDATA) ;
  I $D(MAGDATA("GDESC"))  Q:$$UP^XLFSTR($P(X2,U,4))'[MAGDATA("GDESC") 0
  ;
  ;=== Build the result item
+ ;*zeb *365 support O flag
+ S MAGSDESC=$P(X2,U,4)
+ I FLAGS["O" D
+ . S BADCHARS="|"
+ . F CHR=0:1:31 S BADCHARS=BADCHARS_$C(CHR)
+ . S MAGSDESC=$TR(MAGSDESC,BADCHARS)
  S $P(FLTX,U,3)=$$RPTITLE($P(X2,U,6),$P(X2,U,7))     ; Report title
  S $P(FLTX,U,4)=$$DTE($P(X2,U,5))                    ; Procedure date
  S $P(FLTX,U,5)=$P(X0,U,8)                           ; Procedure
- S $P(FLTX,U,7)=$P(X2,U,4)                           ; Short descr.
+ S $P(FLTX,U,7)=MAGSDESC                             ; Short descr.
  S $P(FLTX,U,8)=PKG                                  ; Package
  S $P(FLTX,U,9)=$P($G(^MAG(2005.82,+CLASS,0)),U)     ; Class
  S $P(FLTX,U,10)=$P($G(^MAG(2005.83,+TYPE,0)),U)     ; Type

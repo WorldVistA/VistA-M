@@ -1,5 +1,5 @@
-ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;2/5/18  11:05
- ;;2.0;EVENT CAPTURE;**25,47,49,61,72,131,134,139**;8 May 96;Build 7
+ECV3RPC ;ALB/ACS - Event Capture Spreadsheet Data Validation ;1/30/25  13:44
+ ;;2.0;EVENT CAPTURE;**25,47,49,61,72,131,134,139,170**;8 May 96;Build 2
  ;
  ;----------------------------------------------------------------------
  ;  Validates the following Event Capture Spreadsheet Upload fields:
@@ -104,13 +104,15 @@ ECV3RPC ;ALB/ACS;Event Capture Spreadsheet Data Validation ;2/5/18  11:05
  ; Check for National Procedure code (D x-ref)
  I $D(^EC(725,"D",ECPROCV)) D
  . S ECPROCV=$O(^EC(725,"D",ECPROCV,0))_";EC(725,"
- . S ECPI=$P($G(^EC(725,ECPROCV,0)),"^",5)
+ . ; S ECPI=$P($G(^EC(725,ECPROCV,0)),"^",5)  ; EC*2*170 - tjl
+ . S ECPI=$P($G(^EC(725,+ECPROCV,0)),"^",5)   ; Preceded variable with '+' to get its numeric value
  . I ECPI="" S ECFOUND=1 Q
  . S ECPI=$$CPT^ICPTCOD(ECPI,ECDT) I +ECPI>0,$P(ECPI,"^",7) S ECFOUND=1
  ; Check for local procedure code (DL x-ref)
  I 'ECFOUND,$D(^EC(725,"DL",ECPROCV)) D
  . S ECPROCV=$O(^EC(725,"DL",ECPROCV,0))_";EC(725,"
- . S ECPI=$P($G(^EC(725,ECPROCV,0)),"^",5)
+ . ; S ECPI=$P($G(^EC(725,ECPROCV,0)),"^",5)  ; EC*2*170 - tjl
+ . S ECPI=$P($G(^EC(725,+ECPROCV,0)),"^",5)   ; Preceded variable with '+' to get its numeric value
  . I ECPI="" S ECFOUND=1 Q
  . S ECPI=$$CPT^ICPTCOD(ECPI,ECDT) I +ECPI>0,$P(ECPI,"^",7)  S ECFOUND=1
  ; Check for CPT code (B x-ref)

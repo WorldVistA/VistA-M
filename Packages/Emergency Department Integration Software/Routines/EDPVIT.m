@@ -1,5 +1,5 @@
-EDPVIT ;SLC/MKB -- Vitals utilities ;4/25/12 12:51pm
- ;;2.0;EMERGENCY DEPARTMENT;;May 2, 2012;Build 103
+EDPVIT ;SLC/MKB - Vitals utilities ; 11/5/25 8:01am
+ ;;2.0;EMERGENCY DEPARTMENT;**42**;May 2, 2012;Build 6
  ;
 GET(DFN,BEG,END) ; -- Return vitals measurements from BEG to END
  D XML^EDPX("<Vitals dfn="""_$G(DFN)_""" >")
@@ -36,7 +36,7 @@ PUT(DFN,DATA) ; -- Save new measurement
  F I=1:1:$L(DATA,"^") D  ;parse
  . S X=$P(DATA,U,I),NM=$P(X,"="),VAL=$P(X,"=",2)
  . S:$L(NM) DATA($$UP^XLFSTR(NM))=VAL
- S TIME=$G(DATA("TIME")),ERROR=$G(DATA("ERROR"))
+ S TIME=$$NOW^XLFDT,ERROR=$G(DATA("ERROR"))
  I TIME<1 D ERR("Missing or invalid time") Q
  I ERROR="true" D  G PUTQ
  . ;mark all values at TIME as Entered in Error

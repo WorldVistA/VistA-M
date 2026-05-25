@@ -1,5 +1,8 @@
-PXRMEXPD ;SLC/PKR - General packing driver. ;07/31/2020
- ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,45,42**;Feb 04, 2005;Build 245
+PXRMEXPD ;SLC/PKR - General packing driver. ;Jan 29, 2025@15:17:55
+ ;;2.0;CLINICAL REMINDERS;**12,17,16,18,22,26,45,42,87**;Feb 04, 2005;Build 35
+ ;
+ ; Reference to $$GETNATIONAL^ORIUTL supported by DBIA # 7465 (submit)
+ ;
  ;==========================
 BLDDESC(USELLIST,TMPIND) ;If multiple entries have been selected
  ;then initialize the description with the selected list.
@@ -100,21 +103,8 @@ CRE(REPACK,EXNAME,NOTINLM) ;Pack a reminder component and store it in the reposi
  N OUTPUT,POA,RANK,SERROR,SELLIST,SUCCESS,TMPIND,USELLIST
  S TMPIND="PXRMEXPR"
  K ^TMP(TMPIND,$J)
- S FILELST(1)=811.4_U_$$GET1^DID(811.4,"","","NAME")
- S FILELST(2)=810.8_U_$$GET1^DID(810.8,"","","NAME")
- S FILELST(3)=811.9_U_$$GET1^DID(811.9,"","","NAME")
- S FILELST(4)=801.41_U_$$GET1^DID(801.41,"","","NAME")
- S FILELST(5)=810.7_U_$$GET1^DID(810.7,"","","NAME")
- S FILELST(6)=810.2_U_$$GET1^DID(810.2,"","","NAME")
- S FILELST(7)=810.4_U_$$GET1^DID(810.4,"","","NAME")
- S FILELST(8)=810.9_U_$$GET1^DID(810.9,"","","NAME")
- S FILELST(9)=811.6_U_$$GET1^DID(811.6,"","","NAME")
- S FILELST(10)=811.2_U_$$GET1^DID(811.2,"","","NAME")
- S FILELST(11)=811.5_U_$$GET1^DID(811.5,"","","NAME")
- S FILELST(12)=801_U_$$GET1^DID(801,"","","NAME")
- S FILELST(13)=801.1_U_$$GET1^DID(801.1,"","","NAME")
- S FILELST(0)=13
- D PACKORD(.RANK)
+ D FILELIST^PXRMEXFILELIST(.FILELST,0)
+ D PACKORD^PXRMEXFILELIST(.RANK)
  ;
  ;Get the list to pack.
  I $D(REPACK) M SELLIST=REPACK
@@ -167,7 +157,7 @@ DIALOG ;Check reminder dialogs for errors
  I $D(SELLIST(801.41)) D  I FAIL="F" K ^TMP(TMPIND,$J) Q
  .W !!,"Checking reminder dialog(s) for errors."
  . S DIEN=0
- .;Check individual reminder dialogs 
+ .;Check individual reminder dialogs
  . F  S DIEN=$O(SELLIST(801.41,"IEN",DIEN)) Q:DIEN'>0  D
  .. I FAIL=0 W "."
  .. S FAILTYPE=$$RETARR^PXRMDLRP(DIEN,.OUTPUT) Q:'$D(OUTPUT)
@@ -191,7 +181,7 @@ DIALOG ;Check reminder dialogs for errors
  ;Pack the list
  D PACK(.CMPLIST,.POA,TMPIND,.SELLIST,.SERROR)
  I SERROR K ^TMP(TMPIND,$J) Q
- ;Add information to the description about quick orders, TIU health 
+ ;Add information to the description about quick orders, TIU health
  ;summary objects, and health summaries that are included but are
  ;not exchangeable.
  D NEXINFO(TMPIND)
@@ -231,6 +221,13 @@ IENSEL(LIST,ID,FILELST) ;Select entries from the selected file.
  N DIC,DIR,DIROUT,DIRUT,DONE,DTOUT,DUOUT,FILENUM,NUMF,X,Y
  S (DIC,FILENUM)=$P(FILELST(ID),U,1)
  S NUMF=+$O(LIST(FILENUM,""),-1)
+ I FILENUM=101.71 D  Q
+ .S Y=$$GETNATIONAL^ORIUTL
+ .I Y=0 W !,"Cannot find National entry." S DONE=1 Q
+ .S NUMF=NUMF+1
+ .S LIST(FILENUM,NUMF)=+Y
+ .S LIST(FILENUM,"IEN",+Y)=NUMF
+ .W !,"National entry selected."
  S DIC(0)="QEA"
  S DONE=0
  F  Q:DONE  D
@@ -287,7 +284,7 @@ GDIQF(FILENUM,FILENAME,IEN,IND,TMPIND,SELLIST,SERROR) ;Save file entries into
  I $D(MSG) D  Q
  . S SERROR=1
  . N ETEXT
- . S ETEXT="GETS^DIQ failed for "_FILENAME_", ien="_IEN_";"
+ . S ETEXT="GDIQF^PXRMEXPD, GETS^DIQ failed for "_FILENAME_", ien="_IEN_";"
  . W !,ETEXT
  . W !,"it returned the following error:"
  . D AWRITE^PXRMUTIL("MSG")
@@ -447,27 +444,6 @@ PACK(CMPLIST,POA,TMPIND,SELLIST,SERROR) ;Create the packed entry, store it in
  W !,"Packing is complete."
  ;If there were any errors saving the data kill the ^TMP array.
  I SERROR K ^TMP(TMPIND,$J)
- Q
- ;
- ;==========================
-PACKORD(RANK) ;
- S RANK("FN",801.41)=200000,RANK(200000)=801.41
- S RANK("FN",810.2)=11000,RANK(11000)=810.2
- S RANK("FN",810.4)=8000,RANK(8000)=810.4
- S RANK("FN",810.7)=10000,RANK(10000)=810.7
- S RANK("FN",810.8)=9000,RANK(9000)=810.8
- S RANK("FN",810.9)=4000,RANK(4000)=810.9
- S RANK("FN",811.2)=3000,RANK(3000)=811.2
- S RANK("FN",811.4)=2000,RANK(2000)=811.4
- S RANK("FN",811.5)=5000,RANK(5000)=811.5
- S RANK("FN",811.6)=1000,RANK(1000)=811.6
- S RANK("FN",811.9)=6000,RANK(6000)=811.9
- S RANK("FN",142.1)=100000,RANK(100000)=142.1
- S RANK("FN",142)=100100,RANK(100100)=142
- S RANK("FN",142.5)=100200,RANK(100200)=142.5
- S RANK("FN",8925.1)=100300,RANK(100300)=8925.1
- S RANK("FN",801)=100500,RANK(100500)=801
- S RANK("FN",801.1)=100400,RANK(100400)=801.1
  Q
  ;
  ;==========================

@@ -1,14 +1,16 @@
-ORKMGR ; SLC/AEB,CLA - Manager Options - Order Checking Parameters ;Oct 27, 2023@11:56:34
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,85,105,401,535**;Dec 17, 1997;Build 20
+ORKMGR ; SLC/AEB,CLA - Manager Options - Order Checking Parameters ;9/22/97
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**9,85,105,401**;Dec 17, 1997;Build 0
  ;
- ;Reference to CHG^XPAR,ENVAL^XPAR in ICR #2263
- ;Reference to ^XTV(8989.51,"B" in ICR #2685
- ;Reference to ^DIR in ICR #10026
- ;Reference to ^VA(200 in ICR #10060 (Field .01)
- ;Reference to $$GET1^DIQ in ICR #2056
- ;Reference to ^%ZIS in ICR #10086
- ;Reference to ^DIC in ICR #10006
- ;Reference to EDITPAR^XPAREDIT in ICR #2336
+ ;References to ^XPAR supported by IA #2263
+ ;Direct read of 8989.51 "B" index supported by IA #2685
+ ;References to ^DIR supported by IA #10026
+ ;Fileman read of File 200 Field .01 field supported by IA #10060
+ ;Fileman read of File 44 Field .01 field supported by IA #10040
+ ;Fileman read of File 49 Field .01 supported by IA #10093
+ ;Fileman read of File 4 Field .01 supported by IA #10090
+ ;Fileman read of File 4.2 Field .01 supported by IA #1966
+ ;Fileman read of File 9.4 Field .01 supported by IA #10048
+ ;Reference to $$GET1^DIQ() supported by IA #2056
  ;
 PFLAG ;
  N ORKT,PAR,PIEN
@@ -110,14 +112,6 @@ GLUCREAT ;
  N ORKT,PAR,PIEN
  S ORKT="Set Creatinine Search Range for Glucophage-Lab Results Order Check",PIEN=0
  S PIEN=$O(^XTV(8989.51,"B","ORK GLUCOPHAGE CREATININE",PIEN)) Q:PIEN=""
- S PAR=PIEN
- D TITLE(ORKT) D PROC(PAR)
- Q
- ;
-GLEGFR ;
- N ORKT,PAR,PIEN
- S ORKT="Set eGFR Search Range for Metformin eGFR-Lab Results Order Check",PIEN=0
- S PIEN=$O(^XTV(8989.51,"B","ORK METFORMIN EGFR",PIEN)) Q:PIEN=""
  S PAR=PIEN
  D TITLE(ORKT) D PROC(PAR)
  Q

@@ -1,5 +1,5 @@
 YTQRQAD2 ;SLC/KCM - RESTful Calls to set/get MHA administrations ;Oct 31, 2024@13:37:11
- ;;5.01;MENTAL HEALTH;**130,141,173,178,182,181,199,202,204,208,233,223,234,238,250**;Dec 30, 1994;Build 26
+ ;;5.01;MENTAL HEALTH;**130,141,173,178,182,181,199,202,204,208,233,223,234,238,250,236**;Dec 30, 1994;Build 25
  ;
 SAVEADM(ARGS,DATA) ; save answers and return /ys/mha/admin/{adminId}
  I $G(DATA("assignmentId"))?36ANP G POSTADM^YTQRCRW
@@ -8,9 +8,18 @@ SAVEADM(ARGS,DATA) ; save answers and return /ys/mha/admin/{adminId}
  ;
  ; create a note if this was patient-entered
  N ASMT,CPLT,PTENT,LSTASMT,PNOT,AGPROG,TMPYS
+ N YSCERR
  S ASMT=DATA("assignmentId")
  S LSTASMT=$G(DATA("lastAssignment"))
  S CPLT=$S(DATA("complete")="true":"Y",1:"N")
+ S YSCERR=""
+ I CPLT="Y" D  ;Score instrument results up front in MHA
+ . N YS,YSDATA
+ . K ^TMP($J,"YSCOR")
+ . S YS("AD")=ADMIN
+ . D SCORSAVE^YTQAPI11(.YSDATA,.YS)
+ . ; check and return any errors from SCORSAVE
+ . I $G(^TMP($J,"YSCOR",1))'="[DATA]" S YSCERR=$G(^TMP($J,"YSCOR",2))
  S PTENT=($G(^XTMP("YTQASMT-SET-"_ASMT,1,"entryMode"))="patient")
  I (CPLT="Y"),PTENT,(LSTASMT'="Yes") D NOTE4PT^YTQRQAD3(ADMIN,.DATA)
  ;
@@ -35,6 +44,7 @@ SAVEADM(ARGS,DATA) ; save answers and return /ys/mha/admin/{adminId}
  I LSTASMT="Yes",(AGPROG!$D(TMPYS)) S PNOT=$$FILPNOT^YTQRQAD8(ASMT,ADMIN,"","",.TMPYS)
  ;Check for consolidated progress note node 2. If exists, ASMT deleted in YTQRQAD8
  I 'REMAIN,'$D(^XTMP(NOD,2)),$D(^XTMP(NOD,0)) D DELASMT1^YTQRQAD1(ASMT)
+ I YSCERR'=""  ;need to format return with error message of result save.
  Q "/api/mha/instrument/admin/"_ADMIN ; was erroneously /ys/mha/admin/
  ;
 QASAVE(DATA) ; save questions and answers in DATA

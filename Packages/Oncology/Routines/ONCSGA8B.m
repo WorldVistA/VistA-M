@@ -1,9 +1,10 @@
 ONCSGA8B ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
- ;;2.2;ONCOLOGY;**10,12,13,18,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**10,12,13,18,20,21,22**;Jul 31, 2013;Build 6
  ;
  ;
-30 ;NET
+30 ;NET DUODENUM AND AMPULLA OF VATER
  S M=$E(M,2,5)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3231231 D V299^ONCSGA8C Q  ; same as ch 29
  I T="T1",N="N0",M="M0" S SG=1 Q
  I T="T2",N="N0",M="M0" S SG=2 Q
  I T="T3",N="N0",M="M0" S SG=2 Q
@@ -11,8 +12,9 @@ ONCSGA8B ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  I N="N1",M="M0" S SG=3 Q
  I M["M1" S SG=4
  Q
-31 ;NET
+31 ;NET JEJUNUM AND ILEUM
  S M=$E(M,2,5)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3231231 D V319^ONCSGA8C Q
  I ((T="TX")!(T="T0")),((N="NX")!(N="N0")!(N="N1")!(N="N2")),M["M1" S SG=4 Q
  I T="T1",N="N0",M="M0" S SG=1 Q
  I T="T1",((N="N1")!(N="N2")),M="M0" S SG=3 Q
@@ -27,11 +29,14 @@ ONCSGA8B ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  I T="T4",((N="N1")!(N="N2")),M="M0" S SG=3 Q
  I T="T4",((N="NX")!(N="N0")!(N="N1")!(N="N2")),M["M1" S SG=4
  Q
-32 ;NET
- D 29^ONCSGA8A
- Q
-33 ;NET
+32 ;NET APPENDIX
  S M=$E(M,2,5)
+ D 29^ONCSGA8A
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3231231 D V329^ONCSGA8C Q
+ Q
+33 ;NET COLON AND RECTUM
+ S M=$E(M,2,5)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3231231 D V339^ONCSGA8C Q
  I ((T="TX")!(T="T0")),M["M1" S SG=4 Q
  I T["T1",N="N0",M="M0" S SG=1 Q
  I T["T1",N="N1",M="M0" S SG="3B" Q
@@ -46,7 +51,9 @@ ONCSGA8B ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  I T="T4",N="N1",M="M0" S SG="3B" Q
  I T="T4",M["M1" S SG=4
  Q
-34 ;NET
+34 ;NET PANCREAS
+ S M=$E(M,2,5)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3231231 D V299^ONCSGA8C Q  ; same as ch 29
  D 30
  Q
 35 ;THYMUS
@@ -62,6 +69,7 @@ ONCSGA8B ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  Q
 36 ;LUNG
  S M=$E(M,2,5)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3241231 D V369^ONCSGA8C Q
  I T="TX",N="N0",M="M0" S SG="OccultCarcinoma" Q
  I T="Tis",N="N0",M="M0" S SG=0 Q
  I T="T1mi",N="N0",M="M0" S SG="1A1" Q
@@ -100,6 +108,7 @@ ONCSGA8B ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  Q
 37 ;MALIGNANT PLEURAL MESOTHELIOMA
  S M=$E(M,2,5)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3241231 D V379^ONCSGA8C Q
  I T="T1",N="N0",M="M0" S SG="1A" Q
  I ((T="T2")!(T="T3")),N="N0",M="M0" S SG="1B" Q
  I T="T1",N="N1",M="M0" S SG=2 Q
@@ -137,7 +146,7 @@ ONCSGA8B ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  I T="T3",N="N0",M="M0",MTRT="L" S SG="1B" Q
  I T="T1",N="N0",M="M0",MTRT="H" S SG=2 Q
  I T="T2",N="N0",M="M0",MTRT="H" S SG=2 Q
- I T="T4",N="N0",M="M0",MTRT="L" S SG=3 Q
+ I T="T4",N="N0",M="M0",MTRT="L" S SG=2 Q
  I T="T3",N="N0",M="M0",MTRT="H" S SG="3A" Q
  I T="T4",N="N0",M="M0",MTRT="H" S SG="3B" Q
  I N="N1",M="M0" S SG=4 Q
@@ -238,6 +247,7 @@ ONCSGA8B ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/15/19
  ;
 50 ;VULVA
  S M=$E(M,2,5)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3231231 D V509^ONCSGA8C Q
  I T="T1",N="N0",M="M0" S SG=1 Q
  I T="T1a",N="N0",M="M0" S SG="1A" Q
  I T="T1b",N="N0",M="M0" S SG="1B" Q

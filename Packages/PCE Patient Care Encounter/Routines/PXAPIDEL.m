@@ -1,5 +1,10 @@
-PXAPIDEL ;ISL/dee - PCE's code for the DELVFILE api ;Dec 19, 2018@07:53:52
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,22,130,168,197,216,211,217**;Aug 12, 1996;Build 134
+PXAPIDEL ;ISL/DEE - PCE's code for the DELVFILE api ;Dec 15, 2025@09:33:11
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**1,9,22,130,168,197,216,211,217,244**;Aug 12, 1996;Build 37
+ ;
+ ; Reference to LSTVST^SDOERPC in ICR #7584
+ ; Reference to File ^SCE("AVSIT", in ICR #2045
+ ; Reference to File ^DIC(9.4, in ICR #2058
+ ;
  Q
  ;
 DELVFILE(PXAWHICH,PXAVISIT,PXAPKG,PXASOURC,PXAASK,PXAECHO,PXAUSER,ERRRET,PXAPROB) ;Deletes the requested data related to the visit.
@@ -119,41 +124,48 @@ STOP ;Do Stop Codes first
  S ^TMP("PXK",$J,"PKG")=PXAPKG
  S ^TMP("PXK",$J,"SOR")=PXAMYSOR
  S ^TMP("PXK",$J,"VST",1,"IEN")=PXAVISIT
- F PXAPIECE=0,21,150,800,811 D
+ F PXAPIECE=0,21,150,811 D
  . S (^TMP("PXK",$J,"VST",1,PXAPIECE,"BEFORE"),^TMP("PXK",$J,"VST",1,PXAPIECE,"AFTER"))=$G(^AUPNVSIT(PXAVISIT,PXAPIECE))
+ N NODE800,NODE900
+ D GETSAFORVISITDET^PXSPECAUTH(.NODE900,.NODE800,PXAVISIT)
+ S ^TMP("PXK",$J,"VST",1,800,"BEFORE")=NODE800
+ M ^TMP("PXK",$J,"VST",1,900,"BEFORE")=NODE900
+ I PXAWHICH["VISIT" D
+ . S ^TMP("PXK",$J,"VST",1,800,"AFTER")=""
+ . S ^TMP("PXK",$J,"VST",1,900,"AFTER")=""
+ E  D
+ . S ^TMP("PXK",$J,"VST",1,800,"AFTER")=NODE800
+ . M ^TMP("PXK",$J,"VST",1,900,"AFTER")=NODE900
  ;
  F PXACOUNT=1:1:PXALEN S PXAVFILE=$P(PXAWHICH,"^",PXACOUNT) D
- . I PXAVFILE="VISIT" D
- .. ;set fields to @
- .. S $P(^TMP("PXK",$J,"VST",1,0,"AFTER"),"^",18)="@"
- .. F INDEX=1:1:8 S:$P(^TMP("PXK",$J,"VST",1,800,"AFTER"),"^",INDEX)]"" $P(^TMP("PXK",$J,"VST",1,800,"AFTER"),"^",INDEX)="@"
- . E  I PXAVFILE="STOP" ;skip already done
- . E  D  ;the v-files
- .. S PXAWFLAG=PXAECHO&'$D(ZTQUEUED)
- .. S PXAFILE=$P($T(FORMAT^@("PXCE"_$S(PXAVFILE="IMM":"VIMM",1:PXAVFILE))),"~",5)
- .. S PXAIEN=0
- .. F PXAINDX=1:1 S PXAIEN=$O(@(PXAFILE_"(""AD"",PXAVISIT,PXAIEN)")) Q:'PXAIEN  D
- ... I PXAUSER>0,PXAUSER'=$P($P($P($G(@(PXAFILE_"(PXAIEN,801)")),"^",2),";",1)," ",2) Q
- ... I PXAPKG>0,PXAPKG'=$P($G(@(PXAFILE_"(PXAIEN,812)")),"^",2) Q
- ... I PXASOURC>0,PXASOURC'=$P($G(@(PXAFILE_"(PXAIEN,812)")),"^",3) Q
- ... ; Check to see if there is a skin test reading linked to this entry
- ... I PXAVFILE="SK",$D(^AUPNVSK("APT",PXAIEN)) D  Q
- .... S PXARET=0
- .... S PXERRMSG="Could not delete V SKIN TEST entry (#"_PXAIEN_") as there is a reading "
- .... S PXERRMSG=PXERRMSG_"skin test linked to it. You must first delete the reading skin test."
- .... D ADDERR(PXERRMSG)
- ... I $P($G(@(PXAFILE_"(PXAIEN,812)")),"^",1) D  Q
- .... S PXARET=0
- .... D ADDERR("Could not delete this "_PXAVFILE_" entry (#"_PXAIEN_") as this event was electronically signed.")
- ... S ^TMP("PXK",$J,PXAVFILE,PXAINDX,0,"BEFORE")=@(PXAFILE_"(PXAIEN,0)")
- ... S ^TMP("PXK",$J,PXAVFILE,PXAINDX,0,"AFTER")="@"
- ... S ^TMP("PXK",$J,PXAVFILE,PXAINDX,"IEN")=PXAIEN
- ... I PXAWFLAG D
- .... S PXAWFLAG=0
- .... W !,"   ...deleting "
- .... W $S("CPT"=PXAVFILE:"Procedure","IMM"=PXAVFILE:"Immunizations","PED"=PXAVFILE:"Patient Education","ICR"=PXAVFILE:"Contra/Refusal Event",1:"") ; PX*1*216
- .... W $S("POV"=PXAVFILE:"Diagnoses","PRV"=PXAVFILE:"Providers","SK"=PXAVFILE:"Skin Test","TRT"=PXAVFILE:"Treatments","HF"=PXAVFILE:"Health Factors","XAM"=PXAVFILE:"Exams",1:"")
- .... W $S("SC"=PXAVFILE:"Standard Codes",1:"")
+ . I PXAVFILE="VISIT" Q
+ . I PXAVFILE="STOP" Q
+ . ;the v-files
+ . S PXAWFLAG=PXAECHO&'$D(ZTQUEUED)
+ . S PXAFILE=$P($T(FORMAT^@("PXCE"_$S(PXAVFILE="IMM":"VIMM",1:PXAVFILE))),"~",5)
+ . S PXAIEN=0
+ . F PXAINDX=1:1 S PXAIEN=$O(@(PXAFILE_"(""AD"",PXAVISIT,PXAIEN)")) Q:'PXAIEN  D
+ .. I PXAUSER>0,PXAUSER'=$P($P($P($G(@(PXAFILE_"(PXAIEN,801)")),"^",2),";",1)," ",2) Q
+ .. I PXAPKG>0,PXAPKG'=$P($G(@(PXAFILE_"(PXAIEN,812)")),"^",2) Q
+ .. I PXASOURC>0,PXASOURC'=$P($G(@(PXAFILE_"(PXAIEN,812)")),"^",3) Q
+ .. ; Check to see if there is a skin test reading linked to this entry
+ .. I PXAVFILE="SK",$D(^AUPNVSK("APT",PXAIEN)) D  Q
+ ... S PXARET=0
+ ... S PXERRMSG="Could not delete V SKIN TEST entry (#"_PXAIEN_") as there is a reading "
+ ... S PXERRMSG=PXERRMSG_"skin test linked to it. You must first delete the reading skin test."
+ ... D ADDERR(PXERRMSG)
+ .. I $P($G(@(PXAFILE_"(PXAIEN,812)")),"^",1) D  Q
+ ... S PXARET=0
+ ... D ADDERR("Could not delete this "_PXAVFILE_" entry (#"_PXAIEN_") as this event was electronically signed.")
+ .. S ^TMP("PXK",$J,PXAVFILE,PXAINDX,0,"BEFORE")=@(PXAFILE_"(PXAIEN,0)")
+ .. S ^TMP("PXK",$J,PXAVFILE,PXAINDX,0,"AFTER")="@"
+ .. S ^TMP("PXK",$J,PXAVFILE,PXAINDX,"IEN")=PXAIEN
+ .. I PXAWFLAG D
+ ... S PXAWFLAG=0
+ ... W !,"   ...deleting "
+ ... W $S("CPT"=PXAVFILE:"Procedure","IMM"=PXAVFILE:"Immunizations","PED"=PXAVFILE:"Patient Education","ICR"=PXAVFILE:"Contra/Refusal Event",1:"") ; PX*1*216
+ ... W $S("POV"=PXAVFILE:"Diagnoses","PRV"=PXAVFILE:"Providers","SK"=PXAVFILE:"Skin Test","TRT"=PXAVFILE:"Treatments","HF"=PXAVFILE:"Health Factors","XAM"=PXAVFILE:"Exams",1:"")
+ ... W $S("SC"=PXAVFILE:"Standard Codes",1:"")
  ;now process all the data except the stop codes which have already been done
  ;
  N PXKERROR

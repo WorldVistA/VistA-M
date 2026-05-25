@@ -1,5 +1,5 @@
 PSOBPSU1 ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403,427,448,482,512,680**;DEC 1997;Build 5
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,281,287,303,289,290,358,359,385,403,427,448,482,512,680,766,767**;DEC 1997;Build 11
  ; Reference to $$EN^BPSNCPDP in ICR #4415
  ; Reference to $$NDCFMT^PSSNDCUT,$$GETNDC^PSSNDCUT in ICR #4707
  ; Reference to $$ECMEON^BPSUTIL,$$CMOPON^BPSUTIL in ICR #4410
@@ -8,8 +8,9 @@ PSOBPSU1 ;BIRM/MFR - BPS (ECME) Utilities 1 ;10/15/04
  ; Reference to $$RESPONSE^BPSOS03 in ICR #6226
  ; Reference to $$LOG^BPSOSL in ICR #6764
  ;
-ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB,PSOVRIEN,PSOPLAN,PSORTYPE) ; - Sends Rx Release 
- ;information to ECME/IB and updates NDC in the files 50 & 52; DBIA4702
+ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB,PSOVRIEN,PSOPLAN,PSORTYPE,DIAG,PREG) ;
+ ;Sends Rx Release information to ECME/IB
+ ;and updates NDC in the files 50 & 52
  ;Input: (r) RX   - Rx IEN (#52)
  ;       (o) RFL  - Refill #  (Default: most recent)
  ;       (o) DATE - Date of Service
@@ -31,6 +32,8 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB,PSO
  ;       (o) PSOVRIEN - IEN to BPS NCPDP OVERRIDE (#9002313.511)
  ;       (o) PSOPLAN - IEN to file# 355.3, GROUP INSURANCE PLAN
  ;       (o) PSORTYPE - IEN to file# 399.3, RATE TYPE
+ ;       (o) DIAG - Diagnosis Code
+ ;       (o) PREG - Pregnancy Indicator
  ;Output:    RESP - Response from $$EN^BPSNCPDP api
  ;
  N ACT,NDCACT,DA,PSOELIG,PSOBYPS,ACT1,SMA
@@ -68,18 +71,19 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB,PSO
  . I $P($G(OVRC),"~")'="" S CLSCOM="DUR Override Codes "_$TR($P(OVRC,"~"),"^","/")_" submitted."
  . I $G(CLA)'="" S CLSCOM="Clarification Code(s) "_CLA_" submitted."
  . I $G(PA)'="" S CLSCOM="Prior Authorization Code ("_$P(PA,"^")_"/"_$P(PA,"^",2)_") submitted."
+ . I $G(DIAG)'="" S CLSCOM="Diagnosis Code "_DIAG_" submitted."
+ . I $G(PREG)'="" S CLSCOM="Pregnancy Indicator "_PREG_" submitted."
  D CLSALL^PSOREJUT(RX,RFL,DUZ,1,$G(CLSCOM),$P($G(OVRC),"~",1),$P($G(OVRC),"~",2),$P($G(OVRC),"~",3),$G(CLA),$G(PA))
  ; - Call to ECME (NEWing STAT because ECME was overwriting it - Important variable for CMOP release PSXVND)
  N STAT
  I $G(RVTX)="",FROM="ED" S RVTX="RX EDITED"
- S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL,.DATE),FROM,NDC,$G(RVTX),$G(OVRC),$G(PSOVRIEN),$G(CLA),$G(PA),$G(RXCOB),,,,$G(PSOPLAN),,$G(PSORTYPE))
+ S RESP=$$EN^BPSNCPDP(RX,RFL,$$DOS(RX,RFL,.DATE),FROM,NDC,$G(RVTX),$G(OVRC),$G(PSOVRIEN),$G(CLA),$G(PA),$G(RXCOB),,,,$G(PSOPLAN),,$G(PSORTYPE),,$G(DIAG),$G(PREG))
  I $$STATUS^PSOBPSUT(RX,RFL)="E PAYABLE" D
  . D SAVNDC^PSONDCUT(RX,RFL,NDC,+$G(CMOP),1,FROM)
  . ;
- . ; MRD;PSO*7.0*448 - If this is a resubmit of a claim with an RRR
- . ; reject, and it came back E PAYABLE, then display some additional
- . ; information about the response to the claim, conditional upon the
- . ; value of FROM.
+ . ; If this is a resubmit of a claim with an RRR reject, and it came
+ . ; back E PAYABLE, then display some additional information about
+ . ; the response to the claim, conditional upon the value of FROM.
  . ;
  . I ",ED,PE,PP,RF,RN,RRL,"[(","_FROM_","),$$RRR(RX,RFL) D ADDLINFO(RX,RFL,$G(RXCOB))
  . ;
@@ -101,18 +105,18 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB,PSO
  . N MSG
  . ; If there are DUR overrides, create the message and file it since this will never be the last message
  . I $G(OVRC)]"" D
- .. S MSG=ACT_"REJECT WORKLIST-DUR OVERRIDE CODES("_$TR(OVRC,"^","/")_")"
- .. D RXACT^PSOBPSU2(RX,RFL,MSG,"M",DUZ)
+ . . S MSG=ACT_"REJECT WORKLIST-DUR OVERRIDE CODES("_$TR(OVRC,"^","/")_")"
+ . . D RXACT^PSOBPSU2(RX,RFL,MSG,"M",DUZ)
  . ; If there are Clarification codes, create the message
  . ; Only file it if we also have a Prior Auth message.
  . ; Otherwise more data will be added to it and it will be filed below.
  . I $G(CLA)]"" D
- .. S MSG=ACT_"REJECT WORKLIST-(CLARIF. CODE="_CLA_")"
- .. I $G(PA)]"" D RXACT^PSOBPSU2(RX,RFL,MSG,"M",DUZ)
+ . . S MSG=ACT_"REJECT WORKLIST-(CLARIF. CODE="_CLA_")"
+ . . I $G(PA)]"" D RXACT^PSOBPSU2(RX,RFL,MSG,"M",DUZ)
  . ; If there are Prior Auth overrides, create the message.
  . ; More data will be added to it and it will be filed below.
  . I $G(PA)]"" D
- .. S ALTX="REJECT WORKLIST-(PRIOR AUTH.="_$TR(PA,"^","/")_")"
+ . . S ALTX="REJECT WORKLIST-(PRIOR AUTH.="_$TR(PA,"^","/")_")"
  ;
  ; - Logging ECME Act Log to file 52
  I $G(ALTX)="" D
@@ -130,19 +134,23 @@ ECMESND(RX,RFL,DATE,FROM,NDC,CMOP,RVTX,OVRC,CNDC,RESP,IGSW,ALTX,CLA,PA,RXCOB,PSO
  . I 'SMA,$G(OVRC)'="" S X="DUR OVERRIDE CODES("_$TR(OVRC,"^","/")_")"
  . S:$G(CNDC) X=X_"(NDC:"_NDCACT_")" S ACT=ACT_X
  . S ACT=ACT_$$STS(RX,RFL,RESP)
+ . Q
+ ;
  I $G(ALTX)'="" S ACT=ACT_ALTX_$$STS(RX,RFL,RESP)
  I +RESP=2 S ACT="Not ECME Billable: "_$P(RESP,"^",2)
  I +RESP=6 S ACT=$P(RESP,"^",2)
  I +RESP=10 S ACT="ECME reversed/NOT re-submitted: "_$P(RESP,"^",2)
- S:PSOELIG="T" ACT="TRICARE-"_ACT
- S:PSOELIG="C" ACT="CHAMPVA-"_ACT
+ I PSOELIG="T" S ACT="TRICARE-"_ACT
+ I PSOELIG="C" S ACT="CHAMPVA-"_ACT
  S ACT1=""
  I $P(RESP,"^",6),$P(RESP,"^",7)'=""  S ACT1="-"_$S($P(RESP,"^",6)="2":"s",$P(RESP,"^",6)="3":"t",1:"p")_$P(RESP,"^",7)
  S ACT=$E(ACT_ACT1,1,75)
+ ;
  D RXACT^PSOBPSU2(RX,RFL,ACT,"M",DUZ)
  D ELOG^PSOBPSU2(RESP)  ;-Logs an ECME Act Log if Rx Qty is different than Billing Qty
- ; If not a bypass RX-claim, then call TRICCHK so the user can process
  D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-ECMESND, RESP="_RESP)
+ ;
+ ; If not a bypass RX-claim, then call TRICCHK so the user can process
  D LOG^BPSOSL($$IEN59^BPSOSRX(RX,RFL),$T(+0)_"-ECMESND, FROM="_FROM_"  PSOELIG="_PSOELIG_"  PSOBYPS="_PSOBYPS)
  I PSOELIG="T"!(PSOELIG="C"),'PSOBYPS D TRICCHK^PSOREJU3(RX,RFL,RESP,FROM,$G(RVTX))
  Q
@@ -246,8 +254,13 @@ REVERSE(RX,RFL,FROM,RSN,RTXT,IGRL,NDC) ; - Reverse a claim and close all OPEN/UN
  I 'PSOET,$$STATUS^PSOBPSUT(RX,RFL)="" Q    ;cnf, PSO*7.0*358, add PSOET check, allow reversal for TRICARE non-billable reject
  N RESP,STS,ACT,STAT,DA,STATUS,NOACT,REVECME S RSN=+$G(RSN),RTXT=$G(RTXT),REVECME=1
  I RTXT="",RSN D
- . S:RSN=2 RTXT="RX PLACED ON HOLD" S:RSN=3 RTXT="RX SUSPENDED" S:RSN=4 RTXT="RX RETURNED TO STOCK"
- . S:RSN=5 RTXT="RX DELETED" S:RSN=7 RTXT="RX DISCONTINUED" S:RSN=8 RTXT="RX EDITED"
+ . I RSN=2 S RTXT="RX PLACED ON HOLD"
+ . E  I RSN=3 S RTXT="RX SUSPENDED"
+ . E  I RSN=4 S RTXT="RX RETURNED TO STOCK"
+ . E  I RSN=5 S RTXT="RX DELETED"
+ . E  I RSN=7 S RTXT="RX DISCONTINUED"
+ . E  I RSN=8 S RTXT="RX EDITED"
+ . Q
  D CLSALL^PSOREJUT(RX,RFL,DUZ,RSN,RTXT)
  I '$G(IGRL),$$RXRLDT^PSOBPSUT(RX,RFL) Q
  ; - Reseting the Re-transmission flag if Rx is being suspended
@@ -281,8 +294,8 @@ RELEASE(RX,RFL,USR) ; - Notifies IB that the Rx was RELEASED
  ;       (o) RFL  - Refill # (Default: most recent)
  ;       (o) USR  - User responsible for releasing the Rx (Default: .5 - Postmaster)
  N IBAR,RXAR,RFAR,PSOIBN
- S:'$D(RFL) RFL=$$LSTRFL(RX)
- S:'$D(USR) USR=.5
+ I '$D(RFL) S RFL=$$LSTRFL(RX)
+ I '$D(USR) S USR=.5
  D GETS^DIQ(52,RX_",",".01;2;6;7;8;22","I","RXAR")
  S DFN=+$G(RXAR(52,RX_",",2,"I"))
  S IBAR("PRESCRIPTION")=RX,IBAR("RX NO")=$G(RXAR(52,RX_",",.01,"I"))
@@ -311,14 +324,16 @@ ECMEACT(RX,RFL,COMM,USR) ; - Add an Act to the ECME Act Log (FILE 52)
  ;       (o) RFL  - Refill #  (Default: most recent)
  ;       (r) COMM - Comments (up to 100 characters)
  ;       (o) USR  - User logging the comments (Default: DUZ)
- S:'$D(RFL) RFL=$$LSTRFL^PSOBPSU1(RX)
+ I '$D(RFL) S RFL=$$LSTRFL^PSOBPSU1(RX)
  D RXACT^PSOBPSU2(RX,RFL,COMM,"M",+$G(USR))
  Q
  ;
 STS(RX,RFL,RSP) ; Adds the Status to the ECME Act Log according to Rx/fill claim status Response
  N STS
  S STS=$S($$STATUS^PSOBPSUT(RX,RFL)'="IN PROGRESS"&($$STATUS^PSOBPSUT(RX,RFL)'=""):"-"_$$STATUS^PSOBPSUT(RX,RFL),1:"")
- S:+RSP=1 STS="-NO SUBMISSION THROUGH ECME" S:+RSP=3 STS="-NO REVERSAL NEEDED" S:+RSP=4 STS="-NOT PROCESSED"
- S:+RSP=5 STS="-SOFTWARE ERROR"_$S($P($G(RESP),"^",2)'="":" ("_$P(RESP,"^",2)_")",1:"")
+ I +RSP=1 S STS="-NO SUBMISSION THROUGH ECME"
+ I +RSP=3 S STS="-NO REVERSAL NEEDED"
+ I +RSP=4 S STS="-NOT PROCESSED"
+ I +RSP=5 S STS="-SOFTWARE ERROR"_$S($P($G(RESP),"^",2)'="":" ("_$P(RESP,"^",2)_")",1:"")
  I +RSP=2,$$STATUS^PSOBPSUT(RX,RFL)'="" S STS="-NOT BILLABLE:"_$S(PSOELIG="T":"TRICARE",PSOELIG="C":"CHAMPVA",1:"")_":"_$P(RSP,"^",2)
  Q STS

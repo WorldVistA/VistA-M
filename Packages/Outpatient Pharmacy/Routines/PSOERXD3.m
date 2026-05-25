@@ -1,5 +1,5 @@
 PSOERXD3 ;ALB/BWF - eRx Drug edit actions - Cont'd ; 5/26/2017 9:57am
- ;;7.0;OUTPATIENT PHARMACY;**651,700**;DEC 1997;Build 261
+ ;;7.0;OUTPATIENT PHARMACY;**651,700,770**;DEC 1997;Build 145
  ;
 FNM S NM=$E(X,2,4),NM=$TR(NM,"qwertyuioplkjhgfdsazxcvbnm","QWERTYUIOPLKJHGFDSAZXCVBNM")
  S FLDNM=$S(NM="DOS":"DOSE^*Dosage",NM="DIS":"DOSE ORDERED^Dispense Units",NM="ROU":"ROUTE^*Route",NM="SCH":"SCHEDULE^*Schedule",NM="DUR"!(NM="LIM"):"DURATION^*Duration",1:"")
@@ -47,4 +47,31 @@ SETUNEX ; Setting variable UNEXINS (Broken off from PSOERXD3 due to routine size
  ..S UNEXINS=UNEXINS_$G(PSORXED("VERB",I))_" "_$G(PSORXED("DOSE ORDERED",I))_" "_$G(PSORXED("NOUN",I))_" "_$G(ERXRTE(I))_" "_$G(PSORXED("SCHEDULE",I))
  ..I $L($G(PSORXED("DURATION",I))) S UNEXINS=UNEXINS_" "_$G(PSORXED("DURATION",I))
  ..I $L($G(PSORXED("CONJUNCTION",I))) S UNEXINS=UNEXINS_" "_$G(PSORXED("CONJUNCTION",I))_" "
+ Q
+ ;
+VDRG11(PSOIEN,PSOIENS) ;Indication For Use Edit
+ N DA,DR,PSODFN,X,Y,DTOUT,DUOUT,DIRUT,DIROUT,PSOEDIT,PSOERXD,PSODRUG,PSODONE,PSODELINS
+ ;
+ S VDRG=$$GET1^DIQ(52.49,PSOIEN,3.2,"I") Q:'VDRG
+ S VAOI=$$GET1^DIQ(50,VDRG,2.1,"I") Q:'VAOI
+ S PSODRUG("OI")=VAOI,PSOERXD("IND")=$$GET1^DIQ(52.49,PSOIEN,29),PSOERXD("INDO")=$$GET1^DIQ(52.49,PSOIEN,29.2)
+ S PSODFN=+$$GET1^DIQ(52.49,PSOIEN,.05,"I")
+ S PSOEDIT=1,DIE="^PS(52.49,",DA=PSOIEN
+ ;
+ I '$P($G(^PS(55,PSODFN,"LAN")),"^") D  ;patient does not have other indication
+ . D INDICAT^PSODIR(.PSOERXD)
+ . I $G(X)="" S PQUIT=1 Q
+ . I $G(PSOERXD("DFLG")) S PQUIT=1 Q
+ . I $G(X)="@" S (PSOERXD("IND"),PSOERXD("INDF"))=$G(X)
+ . S DR="29////"_$G(PSOERXD("IND"))_";29.1////"_$G(PSOERXD("INDF"))
+ . D ^DIE K DIE,DR,DA
+ E  D  ;patient contain other language indication for use
+ . D SIND^PSODIR(.PSOERXD,1)
+ . I $G(X)="" S PQUIT=1 Q
+ . I $G(PSOERXD("DFLG")) S PQUIT=1 Q
+ . I $G(X)="@" D
+ . . I $G(PSOERXD("IND"))'="",$G(PSOERXD("INDO"))'="" Q  ;user answered no or entered ^ to the delete prompt confirmation
+ . . S (PSOERXD("IND"),PSOERXD("INDF"),PSOERXD("INDO"))=$G(X)
+ . S DR="29////"_$G(PSOERXD("IND"))_";29.1////"_$G(PSOERXD("INDF"))_";29.2////"_$G(PSOERXD("INDO"))
+ . D ^DIE K DIE,DR,DA
  Q

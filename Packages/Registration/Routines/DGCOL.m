@@ -1,5 +1,5 @@
-DGCOL ;ALB/MRL,ARF,RN - COLLATERAL PATIENT ENTRY-EDIT ; 04 MAY 87
- ;;5.3;Registration;**2,23,32,993,1023,1027,1052**;Aug 13, 1993;Build 7
+DGCOL ;ALB/MRL,ARF,RN,JAM - COLLATERAL PATIENT ENTRY-EDIT ; 04 MAY 87
+ ;;5.3;Registration;**2,23,32,993,1023,1027,1052,1143**;Aug 13, 1993;Build 36
 1 K DFN W !! S DGDIR=$S($D(DGDIR):DGDIR,1:1),DIC="^DPT(",DIC(0)="AEQML",DIC("DR")=".03;.09;.02;.3601;1901///^S X=""N"";391///^S X=""COLLATERAL"";.361///^S X=""COLLATERAL OF VET."";.323///^S X=""OTHER NON-VETERANS"";"
  S DLAYGO=2 D ^DIC I Y'>0 S DGDIR=0 K DLAYGO G Q
  S DFN=+Y,DGVET=$S('$D(^DPT(DFN,"VET")):0,^("VET")="Y":1,1:0) I '$P(Y,"^",3),DGVET,'DGDIR G Q
@@ -16,15 +16,22 @@ EN S DGDIR=$S($D(DGDIR):DGDIR,1:0) G Q:'$D(DFN),VET:DGVET
  W !!,"SPONSOR:  ",$P(^DPT(DGCOLV,0),"^",1),", ",$E($P(^(0),"^",9),1,3),"-",$E($P(^(0),"^",9),4,5),"-",$E($P(^(0),"^",9),6,10)
  D ENRRO ;DG*5.3*993 - Ask for SELF-SUPPORTED REGISTRATION ONLY REASON
 ASK W !!,"DO YOU WISH TO EDIT COLLATERAL INFORMATION" S %=2 D YN^DICN G Q:%=2!(%=-1) I %=0 W !,"ENTER 'Y'ES OR 'N'O" G ASK
+ ; DG*5.3*1143 - For Real-time updates - call separate code to enter address data if RTA is activated
+ I $$ISRTAUON^DGRTAUPD() G EDRTA
 H W !!,"SHOULD COLLATERAL PATIENT ADDRESS DATA BE SAME AS SPONSOR'S" S %=2 D YN^DICN I %>0 S DGADED=(%-1) G ED
  G Q:%=-1 W !!,"Y - To stuff in sponsor's address data.",!,"N - To edit collateral address data",!,"^ - To QUIT." G H
 ED I DGADED S DR=".3601;.111;S:X']"""" Y=.114;.112;S:X']"""" Y=.114;.113:.115;.1112;.117;.131;",DIE="^DPT(",(DA,Y)=DFN D ^DIE G Q
  ;S DGADD=$S($D(^DPT(DFN,.11)):^(.11),1:""),DGADD=$P(DGAD1,"^",1,12)_"^"_$P(DGADD,"^",13,999),^DPT(DFN,.11)=DGADD,$P(^DPT(DFN,.13),"^",1)=$P(DGPHON,"^",2) W !!,"Sponsor address data entered..." G Q
-  S DGADD=$S($D(^DPT(DFN,.11)):^(.11),1:""),DGADD=$P(DGAD1,"^",1,12)_"^^^^"_$$GET1^DIQ(2,DGCOLV,.121)_"^^"_$P(DGADD,"^",18),$P(DGADD,"^",7)=$$GET1^DIQ(2,DGCOLV,.117) D  W !!,"Sponsor address data entered..." G Q
+ S DGADD=$S($D(^DPT(DFN,.11)):^(.11),1:""),DGADD=$P(DGAD1,"^",1,12)_"^^^^"_$$GET1^DIQ(2,DGCOLV,.121)_"^^"_$P(DGADD,"^",18),$P(DGADD,"^",7)=$$GET1^DIQ(2,DGCOLV,.117) D  W !!,"Sponsor address data entered..." G Q
  .S DIE="^DPT(",DA=DFN,DR=".111///^S X=$P(DGADD,U);.112///^S X=$P(DGADD,U,2);.113///^S X=$P(DGADD,U,3);.114///^S X=$P(DGADD,U,4);.115///^S X=$P(DGADD,U,5);.116///^S X=$P(DGADD,U,6);.117///^S X=$P(DGADD,U,7)" D ^DIE
  .S DIE="^DPT(",DA=DFN,DR=".1171///^S X=$P(DGADD,U,8);.1172///^S X=$P(DGADD,U,9);.1173///^S X=$P(DGADD,U,10);.118///^S X=$P(DGADD,U,13);.119///^S X=$P(DGADD,U,14);.12///^S X=$P(DGADD,U,15);.121///^S X=$P(DGADD,U,16)" D ^DIE
  .S DIE="^DPT(",DA=DFN,DR=";.1118///^S X=$P(DGADD,U,18);.131///^S X=$P(DGPHON,U,2)" D ^DIE
  .Q
+ ;
+EDRTA ; DG*5.3*1143 - Edit of Mailing address data with Real-time address update active
+ ; FLG(1)=1 will allow the user to enter/edit Home and Office phone
+ N FLG S FLG(1)=1,FLG(2)=1 D EN^DGREGAED(DFN,.FLG) G Q
+ ;
 AD F I=1:1:5,12,7 I $P(X,"^",I)]"" D
  .S D=$P(X,"^",I),C=C+1
  .S:(I=12)&($L(D)>5) D=$E(D,1,5)_"-"_$E(D,6,20)

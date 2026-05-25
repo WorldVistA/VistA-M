@@ -1,13 +1,10 @@
-MAGBRTE4 ;WOIFO/EdM,DAC,gek - Process Routing Rule Evaluation Queue ;
- ;;3.0;IMAGING;**11,30,51,85,54,39,156,196**;Mar 19, 2002;Build 30;Feb 9, 2018
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGBRTE4 ;WOIFO/EDM,DAC,GEK - Process Routing Rule Evaluation Queue ; May 25, 2022@10:48:31
+ ;;3.0;IMAGING;**11,30,51,85,54,39,156,196,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -26,7 +23,7 @@ EVAL ;
  N XMSG ;----- Message counter
  ;
  F I="MAGEVAL","MAGEVALSTUDY" K ^XTMP(I,ZTSK)
- D LOG^MAGBRTE5("Started at "_$H)
+ D LOG^MAGBRTE5("Started at "_$$HTE^XLFDT($H)) ; P333 PMK 4/25/2022
  S XMSG=1,CONS=$$CONSOLID^MAGBAPI()
  S PLACE=$S(CONS:$O(^MAG(2006.1,"B",LOCATION,"")),1:1)
  L +^MAGDICOM(2006.563,1,"EVAL",LOCATION):0 E  D  Q
@@ -48,7 +45,7 @@ EVAL ;
  S ACTIVE=1 F  D  Q:'ACTIVE
  . S ANY=0
  . S ACTIVE=+$G(^MAGDICOM(2006.563,1,"EVAL")) I 'ACTIVE D  Q
- . . D LOG^MAGBRTE5("Stopped at "_$H)
+ . . D LOG^MAGBRTE5("Stopped at "_$$HTE^XLFDT($H)) ; P333 PMK 4/25/2022
  . . Q
  . D
  . . N IMAGE,QPTR,QPTR2,STATUS,X

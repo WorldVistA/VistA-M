@@ -1,5 +1,5 @@
 PSOERPC1 ;BIRM/MFR - All Patients (Patient Centric) eRx Queue - Supporting APIs 1 ; 12/10/22 10:07am
- ;;7.0;OUTPATIENT PHARMACY;**700,750,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**700,750,746,770**;DEC 1997;Build 145
  ;
 HDR ; - Displays the Header Line
  N LINE1,LINE2,HDR,SRTORD,SRTPOS
@@ -145,7 +145,7 @@ PATSTATS(PATIEN) ; Set the Numbers (Stat Columns data) of eRx by Patient
  ;                       P7: Number of eRx's on 'Other' Statuses
  ;                       P8: Number of CS eRx's
  N PATSTATS,MSGDT,ERXIEN,CSERX,STSIEN,EXTSTS
- I '$G(PSOLKBKD) S PSOLKBKD=$$GET1^DIQ(59,PSOSITE,10.2) S:'PSOLKBKD PSOLKBKD=365
+ I $G(PSOLKBKD)="" S PSOLKBKD=$$GET1^DIQ(59,PSOSITE,10.2) S:'PSOLKBKD PSOLKBKD=365
  S MSGDT=$$FMADD^XLFDT(DT,-PSOLKBKD),PATSTATS=""
  F  S MSGDT=$O(^PS(52.49,"PAT2",PATIEN,MSGDT)) Q:'MSGDT  D
  . S ERXIEN=0 F  S ERXIEN=$O(^PS(52.49,"PAT2",PATIEN,MSGDT,ERXIEN)) Q:'ERXIEN  D
@@ -196,20 +196,20 @@ ELIGSTS(VIEW,ERXSTS,MSGTYPE) ; Checks whether the eRx's status is eligible to be
  ;
  S SKIP=0
  I '$$FILTERED(VIEW) D  I SKIP Q 0
- . I $G(PSOSTFLT)="N",",RXN,N,CXN,"'[STS S SKIP=1
- . I $G(PSOSTFLT)="I",",RXI,I,CXI,"'[STS S SKIP=1
- . I $G(PSOSTFLT)="W",",RXW,W,CXW,"'[STS S SKIP=1
- . I $G(PSOSTFLT)="C" D  S SKIP=$S(PSOCCRST="ALL"&(CCRSTS[STS):0,PSOCCRST'="ALL"&(PSOCCRST=ERXSTS):0,1:1)
+ . I $G(PSOSTFLT)="N",",RXN,N,CXN,"'[STS S SKIP=1 Q
+ . I $G(PSOSTFLT)="I",",RXI,I,CXI,"'[STS S SKIP=1 Q
+ . I $G(PSOSTFLT)="W",",RXW,W,CXW,"'[STS S SKIP=1 Q
+ . I $G(PSOSTFLT)="C" D  S SKIP=$S(PSOCCRST="ALL"&(CCRSTS[STS):0,PSOCCRST'="ALL"&(PSOCCRST=ERXSTS):0,1:1) Q
  . . S CCRSTS=",RXN,RXR,RXE,RXD,RXF,CAO,CAR,CAH,CAP,CAX,CAF,CXD,CXN,CXV,CXY,CXE,"
- . I $G(PSOSTFLT)="H" S SKIP=$S(PSOHDSTS="ALL"&(STS=",H,"):0,PSOHDSTS'="ALL"&(PSOHDSTS=ERXSTS):0,1:1)
+ . I $G(PSOSTFLT)="H" S SKIP=$S(PSOHDSTS="ALL"&(STS=",H,"):0,PSOHDSTS'="ALL"&(PSOHDSTS=ERXSTS):0,1:1) Q
  ; Default: Eligible
  Q 1
  ;
 FILTERED(VIEW) ; Return whether the list is being filtered or not
- ; Input: VIEW    - View: "PC" - Patient Centric View | "RX" - Rx Medication View
+ ; Input: VIEW    - View: "PC" - Patient Centric View | "RX" - Rx Med View
  ;Output: 0 - No filters | 1 - Filters are in place
  I $G(VIEW)="PC",$D(PATFLTR)!$G(DOBFLTR)!$G(MATFLTR) Q 1
- I $G(VIEW)="RX",$D(PATFLTR)!$G(DOBFLTR)!$G(REDTFLTR)!$D(PRVFLTR)!$G(STSFLTR)!($G(DRGFLTR)'="")!($G(MSTPFLTR)'="")!$G(MATFLTR)!$G(PSOALLST) Q 1
+ I $G(VIEW)="RX",$D(PATFLTR)!$G(DOBFLTR)!$G(REDTFLTR)!$D(PRVFLTR)!$G(STSFLTR)!($G(DRGFLTR)'="")!$D(VPATFLTR)!$D(VPRVFLTR)!$D(VDRGFLTR)!($G(MSTPFLTR)'="")!$G(MATFLTR) Q 1
  Q 0
  ;
 HLDSTS() ; - Prompt User for Hold eRx Status
@@ -265,7 +265,6 @@ NEXTPAT(CURPTIEN) ; Returns the next Patient on the Queue to be worked on
  . . . S NEXTPAT=EPATIEN
  K ^TMP("PSOERSKP",$J)
  I $G(CURPTIEN),'NEXTPAT,$$NEXTPAT(0)'=CURPTIEN S NEXTPAT=$$NEXTPAT(0)
- I PSOSTFLT="WP",NEXTPAT,$D(^XUSEC("PSO ERX WORKLOAD TECH",DUZ)) S ^XTMP("PSOERXWP",NEXTPAT,DUZ)=""
  Q NEXTPAT
  ;
 LOADSTS(STSLST) ; Load Status Filter Array based on the Filter selected

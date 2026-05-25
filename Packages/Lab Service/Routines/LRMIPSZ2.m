@@ -1,5 +1,5 @@
 LRMIPSZ2 ;DALOI/STAFF - MICRO PATIENT REPORT - BACTERIA, SIC/SBC, MIC ;Jul 15, 2021@13:13
- ;;5.2;LAB SERVICE;**388,350,427,547**;Sep 27, 1994;Build 10
+ ;;5.2;LAB SERVICE;**388,350,427,547,581**;Sep 27, 1994;Build 7
  ;
  ;
  Q
@@ -119,7 +119,12 @@ BRMK ;
 LST ;
  ;
  N LRX
- S LRX=^TMP("LRMI",$J,LRDFN,"MI",LRIDT,3,LRBUG,0)
+ ;LR*5.2*581: When accepting instrument interfaced results, detect
+ ;            if organism information was not filed at the ^LAH subscript
+ ;            LREND = discontinue display and prevent downstream errors
+ ;            LRXPROB = pass back to routine LRVR0 to inform user of setup issue
+ S LRX=$G(^TMP("LRMI",$J,LRDFN,"MI",LRIDT,3,LRBUG,0))
+ I LRX="",$G(LRINTYPE) S (LREND,LRXPROB)=1 Q
  S (LRBUG(LRAX),LRORG)=$P(LRX,U),LRQU=$P(LRX,U,2),LRSSD=$P(LRX,U,3,8),LRORG=$P(^LAB(61.2,LRORG,0),U)
  ;
  I LRSSD'?."^" S LRSIC1=$P(LRSSD,U),LRSBC1=$P(LRSSD,U,2),LRDRTM1=$P(LRSSD,U,3),LRSIC2=$P(LRSSD,U,4),LRSBC2=$P(LRSSD,U,5),LRDRTM2=$P(LRSSD,U,6),LRSSD=1

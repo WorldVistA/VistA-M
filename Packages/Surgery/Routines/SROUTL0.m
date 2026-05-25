@@ -1,5 +1,5 @@
-SROUTL0 ;BIR/DLR,ADM - UTILITY ROUTINE ; [ 06/20/01  2:33 PM ]
- ;;3.0; Surgery ;**50,100**;24 Jun 93
+SROUTL0 ;BIR/DLR,ADM,NMG - UTILITY ROUTINE; Jul 11, 2025@15:08
+ ;;3.0;Surgery ;**50,100,222**;24 Jun 93;Build 3
  ;
  ; Reference to ^SC( supported by DBIA #964
  ;
@@ -37,9 +37,12 @@ NONORDIV(CASE,NONOR) ;define nonor divisional locations (File #130,119 input tra
  S SRDIV=1
  I '$D(^SC(NONOR,0))!$G(NONOR)=""!$G(CASE)="" Q SRDIV
  I '$D(^SRF(CASE,"NON")) Q 0
- ;if there is no institution set for this non-or location quit
- I $P(^SC(NONOR,0),U,4)="" Q 0
- I $D(SRSITE("DIV")) I $P(^SC(NONOR,0),U,4)'=$G(SRSITE("DIV")) Q 0
+ N SRXDIV
+ S SRXDIV=$$GET1^DIQ(44,NONOR_",",3.5,"I")
+ I SRXDIV="" Q 0
+ S SRXDIV=$$GET1^DIQ(40.8,SRXDIV_",",.07,"I")
+ I SRXDIV="" Q 0
+ I $D(SRSITE("DIV")) I SRXDIV'=$G(SRSITE("DIV")) Q 0
  I $D(^SC(NONOR,"I")) S CD=$P(^SRF(CASE,"NON"),U,3),IORD=$P(^SC(NONOR,"I"),U),RORD=$P(^SC(NONOR,"I"),U,2) D:IORD'=""
  .I CD'<IORD,((RORD="")!(CD<RORD)) S SRDIV=0 Q
  Q SRDIV

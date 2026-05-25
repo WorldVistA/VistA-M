@@ -1,0 +1,40 @@
+EHM013P ;ALB/WTC - EHRM APPOINTMENT MAINTENANCE; Jun 05, 2025@14:48:28
+ ;;1.0;ELECTRONIC HEALTH MODERNIZATION;**13**;Apr 19, 2021;Build 27
+ ;
+ ;  EHM*1*13 post-install
+ ;
+ ;  ICR #10070 supports call to APPERROR^%ZTER.
+ ;
+ Q  ;
+ ;
+RUN ;
+ ;
+ ;  Add "CONVERTED TO CERNER" to Cancellation Reasons file (#409.2).
+ ;
+ I $O(^SD(409.2,"B","CONVERTED TO CERNER",0))'>0 D  ;
+ . ;
+ . N EHMIEN,EHMFDA,ERRMSG,EHMIENS ;
+ . ;
+ . S EHMIEN="+1," ;
+ . S EHMFDA(409.2,EHMIEN,.01)="CONVERTED TO CERNER" ;
+ . S EHMFDA(409.2,EHMIEN,2)="C" ;
+ . S EHMFDA(409.2,EHMIEN,5)=0 ;
+ . S EHMFDA(409.2,EHMIEN,6)=1 ;
+ . D UPDATE^DIE("","EHMFDA","EHMIENS","ERRMSG") ;
+ . S EHMIEN=+$G(EHMIENS(1)) I EHMIEN<1 D APPERROR^%ZTER("Error creating record in file #409.2") Q  ;  ICR #10070
+ ;
+ ;  Add "DUPLICATE - CERNER" to Cancellation Reasons file (#409.2).
+ ;
+ I $O(^SD(409.2,"B","DUPLICATE - CERNER",0))'>0 D  ;
+ . ;
+ . N EHMIEN,EHMFDA,ERRMSG,EHMIENS ;
+ . ;
+ . S EHMIEN="+1," ;
+ . S EHMFDA(409.2,EHMIEN,.01)="DUPLICATE - CERNER" ;
+ . S EHMFDA(409.2,EHMIEN,2)="C" ;
+ . S EHMFDA(409.2,EHMIEN,5)=0 ;
+ . S EHMFDA(409.2,EHMIEN,6)=1 ;
+ . D UPDATE^DIE("","EHMFDA","EHMIENS","ERRMSG") ;
+ . S EHMIEN=+$G(EHMIENS(1)) I EHMIEN<1 D APPERROR^%ZTER("Error creating record in file #409.2") Q  ;  ICR #10070
+ ;
+ Q  ;

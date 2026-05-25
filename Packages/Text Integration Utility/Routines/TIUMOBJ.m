@@ -1,5 +1,5 @@
-TIUMOBJ ;XAN/AJB - MEDICATION OBJECT ;Aug 02, 2024@13:51:30
- ;;1.0;TEXT INTEGRATION UTILITIES;**365**;Jun 20, 1997;Build 1
+TIUMOBJ ;XAN/AJB - MEDICATION OBJECT ;Aug 29, 2025@06:54:59
+ ;;1.0;TEXT INTEGRATION UTILITIES;**365,372**;Jun 20, 1997;Build 5
  ;
  ; Reference to ^DIM in ICR #10016
  ; Reference to ^DPT( in ICR #10035
@@ -28,35 +28,48 @@ TIUMOBJ ;XAN/AJB - MEDICATION OBJECT ;Aug 02, 2024@13:51:30
  ;                     3/"O" Outpatient meds only
  ;                     4/"C" Clinic meds only
  ;                     5/"CI" Clinic and inpatient meds only
- ;                     6/"CI" Clinic and outpatient meds only
- ; O  (onelist)        0 Separates based on status [default]
+ ;                     6/"CO" Clinic and outpatient meds only
+ ;                     7/"NVA" Non-VA only
+ ; O  (onelist)        0 Separate based on type [default]
  ;                     1 Combines meds into one list per type
  ; SC (sort by class)  0 Sort meds alphabetically [default]
  ;                     1 Sort by class, alphabetically
  ;                     2 Sort by class with class in header
  ; SU (supplies)       0 Exclude supplies
  ;                     1 Include supplies [default]
+ ; MR (med rec)        0 Exclude TIUDATE for OCL^PSOORRL call - pass 0 for temporary workaround so older meds will be included
+ ;                     1 Include TIUDATE (if set) [default] (PSI noted for excluding old but active Non-VA meds when date is included)
  ; Global Variable
- ; TIUDATE             # of days to search from today [Med Reconciliation TIU*1.0*238 & PSO*7.0*294]
- ;
+ ; TIUDATE             # of days to search from today [Med Reconciliation TIU*1.0*238 & PSO*7.0*294] - independent start/end dates for INP/OUT meds
+ ;                     OCL^PSOQ0496 for med rec was not updated to include IND text - deprecated by pharm. and no longer used
+ ;                     Met with PBM 05/07/2025 - awaiting decision on their fix - if addressed in PSOQ0496, will need to add that back
+ ;                                               if addressed in PSOORRL, MR parameter may be removed/set to 1 via TIU MED LM (in *372)
  Q
-LIST(DFN,TARGET,A,D,M,O,SC,SU) ;
+LIST(DFN,TARGET,A,D,M,O,SC,SU,MR) ;
  ; validate target, default to OUTPUT if needed
- N P,X S DFN=+$G(DFN),TARGET=$G(TARGET,"OUTPUT"),TARGET=$S(TARGET[""""""!(TARGET[U&(TARGET'["^TMP(")):"OUTPUT",1:TARGET)
+ N IB,IE,OB,OE,P,VIEW,X S DFN=+$G(DFN),TARGET=$G(TARGET,"OUTPUT"),TARGET=$S(TARGET[""""""!(TARGET[U&(TARGET'["^TMP(")):"OUTPUT",1:TARGET)
  ; DIM checks syntax, ensures valid TARGET
  S X="S TEST="_TARGET D ^DIM S TARGET=$S('$D(X):"OUTPUT",1:TARGET)
  ; validate patient
  I 'DFN!(DFN&('$D(^DPT(DFN)))) D ADD(.TARGET,$S('DFN:"No Patient ID",1:"Patient DFN invalid")) Q "~@"_$NA(@TARGET)
  K @TARGET,^TMP("PS",$J)
  ; verify/set routine parameters in P(parameter)
- F X="A","D","M","O","SC","SU" D
+ F X="A","D","M","O","SC","SU","MR" D
  . S:X="A" A=$S(+$G(A)'<0&(+$G(A)<3):+$G(A),1:0)
  . S:X="D" D=$S(+$G(D)'<0&(+$G(D)<2):+$G(D),1:0)
- . S:X="M" M=$$UP($G(M)),M=$S(M="I":2,M="O":3,M="C":4,M="CI"!(M="IC"):5,M="CO"!(M="OC"):6,+$G(M)'<0&(+$G(M)<7):+$G(M),1:0)
+ . S:X="M" M=$$UP($G(M)),M=$S(M="I":2,M="O":3,M="C":4,M="CI"!(M="IC"):5,M="CO"!(M="OC"):6,M="NVA":7,+$G(M)'<0&(+$G(M)<8):+$G(M),1:0)
  . S:X="O" O=$S(+$G(O)'<0&(+$G(O)<2):+$G(O),1:0)
  . S:X="SC" SC=$S(+$G(SC)'<0&(+$G(SC)<3):+$G(SC),1:0)
  . S:X="SU" SU=$S($G(SU)="":1,+$G(SU)=0:0,1:1)
- . S P(X)=@(X) K @(X) K:X="SU" X
+ . S:X="MR" MR=$S($G(MR)="":1,+$G(MR)=0:0,1:1)
+ . S P(X)=@(X) K @(X) K:X="MR" X
+ ; TIUDATE setup - supports separate OUT & INP starting/ending date values
+ S TIUDATE=$G(TIUDATE) F X="IB","IE","OB","OE" S (@(X),P(X))="" K:X="OE" X
+ S:P("MR")&($P(TIUDATE,U)) (OB,P("OB"))=$$FMADD^XLFDT(DT,-TIUDATE)
+ S:$P(TIUDATE,U,2) (OE,P("OE"))=$$FMADD^XLFDT(DT,-$P(TIUDATE,U,2))
+ S:P("MR")&($P(TIUDATE,U,3)) (IB,P("IB"))=$$FMADD^XLFDT(DT,-$P(TIUDATE,U,3))
+ S:$P(TIUDATE,U,4) (IE,P("IE"))=$$FMADD^XLFDT(DT,-$P(TIUDATE,U,4))
+ S:OB&('OE) (OE,P("OE"))=DT S:IB&('IE) (IE,P("IE"))=DT
  ; additional parameters/data
  S P("AS")="^ACTIVE^REFILL^HOLD^PROVIDER HOLD^ON CALL^ACTIVE (S)^ACTIVE/PARKED^"
  S P("PS")="^NON-VERIFIED^DRUG INTERACTIONS^INCOMPLETE^PENDING^"
@@ -64,15 +77,16 @@ LIST(DFN,TARGET,A,D,M,O,SC,SU) ;
  S P("INP")=($G(^DPT(DFN,.1))'=""),P("SORT","I")=$S(P("INP"):2,1:3),P("SORT","O")=$S(P("INP"):3,1:2)
  ; flag for any drug with unknown class, evaluated in TITLE output
  S P("UNK")=0
- ; variables left after external calls
- N %H,BDT1,D0,DILOCKTM,DIQ2,DISYS,DRG,GP,IEN,LSTDS,LSTFD,LSTRD,ND2P5,PSSTMP2,RNWDT,SG
- ; get med data
- D OCL^PSOORRL(DFN,$S('$G(TIUDATE):"",1:$$FMADD^XLFDT(DT,-$G(TIUDATE)))) G EX:'$D(^TMP("PS",$J))
+ ; variables that exist after OCL^PSOORRL
+ N %H,BDT1,D0,DILOCKTM,DNORIG,DIQ2,DISYS,DRG,GP,IEN,LOC,LSTDS,LSTFD,LSTRD,ND2P5,ND8
+ N POP,PSGDT,PSJOI,PSJOINM,PSJST,PSJST2,PSJSTP,PSSTMP2,RNWDT,SG,X3,X4
+ ; dfn, out begin dt, out end dt, view, inp begin dt, inp end dt
+ S VIEW=0 D OCL^PSOORRL(DFN,OB,OE,VIEW,IB,IE) G EX:'$D(^TMP("PS",$J))
  N INDEX,MEDS,OCL M OCL=^TMP("PS",$J) K ^TMP("PS",$J)
  S INDEX=0 F  S INDEX=$O(OCL(INDEX)) Q:'INDEX  D
  . N MED S MED("NAME")=$TR($P(OCL(INDEX,0),U,2),"""","") Q:MED("NAME")=""
  . ; TIU*238 & PSO*7.0*294 (Med Reconciliation)
- . Q:$P(OCL(INDEX,0),U,9)["DISCONTINUED"&($G(TIUDATE))
+ . Q:$P(OCL(INDEX,0),U,9)["DISCONTINUED"&(OB!(IB))
  . S:$P(OCL(INDEX,0),U,9)="ACTIVE/SUSP" $P(OCL(INDEX,0),U,9)="ACTIVE (S)"
  . S MED("STATUS")=$P(OCL(INDEX,0),U,9)
  . S MED("ORDER #")=+OCL(INDEX,0)
@@ -89,8 +103,8 @@ LIST(DFN,TARGET,A,D,M,O,SC,SU) ;
  . Q:$S('P("A"):0,P("A")=1&(P("AS")'[MED("STATUS")&(P("PS")'[MED("STATUS"))):1,P("A")=2&(P("AS")[MED("STATUS")!(P("PS")[MED("STATUS"))):1,1:0)
  . ; in/outpatient                                                 all        inpatient                                          outpatient
  . Q:$S(P("M")=0:$S(MED("CLINIC"):1,P("SORT",MED("TYPE"))=2:0,1:1),P("M")=1:0,P("M")=2:$S(MED("CLINIC"):1,MED("TYPE")="I":0,1:1),P("M")=3:$S(MED("CLINIC"):1,MED("TYPE")="O":0,1:1),1:0)
- . ; clinic meds                     & inpatient                        & outpatient
- . Q:$S(P("M")'<4:$S(MED("CLINIC"):0,P("M")=5:$S(MED("TYPE")="I":0,1:1),P("M")=6:$S(MED("TYPE")="O":0,1:1),1:1),1:0)
+ . ; non-VA meds (only)                 clinic meds                            & inpatient                        & outpatient
+ . Q:$S(P("M")=7&(MED("FILE")'="N;O"):1,P("M")'<4&(P("M")'>6):$S(MED("CLINIC"):0,P("M")=5:$S(MED("TYPE")="I":0,1:1),P("M")=6:$S(MED("TYPE")="O":0,1:1),1:1),1:0)
  . ; get med class, needed for sorting by class or to exclude supplies
  . I P("SC")!('P("SU")) D CLASS(.MED,DFN)
  . ; drug class unknown, set flag
@@ -110,7 +124,7 @@ LIST(DFN,TARGET,A,D,M,O,SC,SU) ;
  . . . I $P(OCL(INDEX,0),U,15)'<@SUBS@(IEN) K @SUBS@(IEN)
  . ; MEDS(type_status,class,xstr,index)=issue/start date
  . S MEDS(MED("SORT"),$S(P("SC")&($G(MED("CLASS"))'=""):MED("CLASS"),1:" "),XSTR,INDEX)=$P(OCL(INDEX,0),U,15)
-EX D TITLE(.TARGET,.P,$D(MEDS))
+EX D TITLE^TIUMOBJ1(.TARGET,.P,$D(MEDS))
  I '$D(MEDS) D ADD(.TARGET,"No Medications Found"),ADD(.TARGET," ")
  I $D(MEDS) D OUTPUT(.TARGET,.MEDS,.OCL,.P)
  K TIUDATE ; Med Reconciliation
@@ -233,8 +247,7 @@ ADDMED(TARGET,OCL,P,COL,CNT,INDEX,XSTR) ;
  . N TEMP S TEMP=$$NODE(.OCL,INDEX,"SIG") S:TEMP'="" DATA=DATA_U_$S(P("D"):"Sig: ",1:"")_TEMP S:TEMP="" DATA=DATA_U_$$NODE(.OCL,INDEX,"SIO;MDR;SCH") S DATA=$TR($$REPLACE^XLFSTR(DATA,.REP),U," ")
  ; return xstr
  S DATA=$$TRIM^XLFSTR(DATA) Q:XSTR DATA
- ; get indication, remove indication from data output
- S IND=$G(OCL(INDEX,"IND",0)) I IND'="" S REP(IND)="",DATA=$$REPLACE^XLFSTR(DATA,.REP)
+ S IND=$G(OCL(INDEX,"IND",0))
  ; wrap data for detailed output, put in TIUFT
  I 'XSTR,P("D") S (X,Y)=0 F  S X=$O(DATA(X)) Q:'X  D WRAP^TIUFLD(DATA(X),COL(1,"W")) D  I '$O(DATA(X)) K TIUFT M TIUFT=TEMP
  . S Y=$O(TEMP(""),-1) N X S X=0 F  S X=$O(TIUFT(X)) Q:'X  S TEMP(X+Y)=TIUFT(X) K TIUFT(X)
@@ -279,14 +292,5 @@ NODE(OCL,IDX,NODES) ;
  Q DATA
 SETSTR(S,V,X,L) ;
  Q $E(V_$J("",X-1),1,X-1)_$E(S_$J("",L),1,L)_$E(V,X+L,999)
-TITLE(TARGET,P,SHOW) ;
- N DATA S DATA=$S('P("A"):"Active and Recently Expired ",P("A")=1:"Active ",1:"Recently Expired ")
- S DATA=DATA_$S('P("M"):$S(P("INP"):"Inpatient ",1:"Outpatient "),P("M")=1:"Inpatient, Outpatient and Clinic ",P("M")=2:"Inpatient ",P("M")=3:"Outpatient ",1:"")
- S DATA=DATA_$S(P("M")=4:"Clinic ",P("M")=5:"Inpatient & Clinic ",P("M")=6:"Outpatient & Clinic ",1:"")_"Medications"_" ("_$S(P("SU"):"in",1:"ex")_"cluding Supplies):"
- N TIUFT D WRAP^TIUFLD(DATA,80) S TIUFT=0 F  S TIUFT=$O(TIUFT(TIUFT)) Q:'TIUFT  D ADD(.TARGET,TIUFT(TIUFT)) D:'$O(TIUFT(TIUFT)) ADD(.TARGET," ")
- I SHOW,P("SC") D ADD(.TARGET,"              WARNING              Sorting by drug class may be inaccurate.") D
- . D ADD(.TARGET,"Multi-classed medications will only be displayed under a single drug class.") I 'P("UNK") D ADD(.TARGET," ")
- I P("UNK") D ADD(.TARGET,"The system may not be able to determine the drug class of some medications."),ADD(.TARGET," ")
- Q
 UP(X) Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ;

@@ -1,5 +1,5 @@
-IVMPLOG ;ALB/CJM,RTK,ERC,KUM - API for IVM PATIENT file; ; 8/15/08 12:49pm
- ;;2.0;INCOME VERIFICATION MATCH;**9,19,12,21,17,28,36,40,49,68,115,194**; 21-OCT-94;Build 34
+IVMPLOG ;ALB/CJM,RTK,ERC,KUM,ARF - API for IVM PATIENT file; ; 8/15/08 12:49pm
+ ;;2.0;INCOME VERIFICATION MATCH;**9,19,12,21,17,28,36,40,49,68,115,194,219**; 21-OCT-94;Build 36
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
  ;
@@ -191,10 +191,10 @@ LOG(DFN,YEAR,EVENTS) ;
  ;
  N IEN
  ;
- ;if the eligibility/enrollment upload is in progess, do nothing
+ ;if the eligibility/enrollment upload is in progress, do nothing
  Q:($G(DGENUPLD)="ENROLLMENT/ELIGIBILITY UPLOAD IN PROGRESS") ""
  ;
- ;to be compatable with current software - in some places,
+ ;to be compatible with current software - in some places,
  ;YEAR passed is just 3 digits
  S:YEAR YEAR=$E(YEAR,1,3)_"0000"
  ;
@@ -243,22 +243,26 @@ DELETE(DFN,TESTDATE,MT,RX,HARDSHIP,LTC) ;
  I $$UPD^DGENDBS(301.5,IEN,.DATA)
  Q
  ;
-EVENT(DFN) ;
+EVENT(DFN,RTAU) ;
  ;Description: Called in response to enrollment events. Determines
  ;whether for this patient transmission is appropriate, and if so the
  ;patient is logged for transmission.
  ;
  ;Input: DFN
+ ;       RTAU - Optional:  If set to 1, check if the Real-time Address Update process is enabled - IVM*2.0*219
  ;Output: none
- ;
  Q:'$G(DFN)
  ;
  Q:'$$ON^IVMUPAR1  ;quit if enrollment events turned off
  ;
+ ;IVM*2.0*219 - If RTAU parameter set to 1, quit if the Real-time Address Update process is enabled - 
+ ;              Do not process for HL7 transmission.
+ I $G(RTAU)=1 I $$GET1^DIQ(43,1,1403)="YES" Q
+ ;
  ;don't want to log event if called due to file re-indexing
  I $D(DIU(0))!($D(DIK)&$D(DIKJ)&$D(DIKLK)&$D(DIKS)&$D(DIN)) Q
  ;
- ;if the eligibility/enrollment upload is in progess, or there is no enrollment, do nothing
+ ;if the eligibility/enrollment upload is in progress, or there is no enrollment, do nothing
  Q:($G(DGENUPLD)="ENROLLMENT/ELIGIBILITY UPLOAD IN PROGRESS")
  ;remove screen for non-vets, IVM 115 - ERC
  I '$$VET1^DGENPTA(DFN) S EVENTS("ENROLL")=1 I $$LOG(DFN,$$YEAR(DFN),.EVENTS) Q 

@@ -1,5 +1,5 @@
 PSGOE92 ;BIR/CML - ACTIVE ORDER EDIT (CONT.) ;2/18/10 4:15pm
- ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276,316,317,366,327,372**;16 DEC 97;Build 153
+ ;;5.0;INPATIENT MEDICATIONS ;**2,35,50,58,81,110,215,237,276,316,317,366,327,372,449**;16 DEC 97;Build 18
  ;
  ;Reference to ^DD(53.1 is supported by DBIA #2256.
  ;Reference to ^PS(55 is supported by DBIA #2191.
@@ -91,7 +91,11 @@ A6 I $G(PSJORD),$G(PSGP) I $$COMPLEX^PSJOE(PSGP,PSJORD) S PSGOEE=0 D  G DONE
  D DDOC^PSGOE82(PSGX) ;* Perform allergy/adv. reaction order checks
  N PSJDOSE
  D DOSECHK^PSJDOSE
+ ;PSJ*5*449 Display 0 unit Per Dose warning
+ I +$G(PSJDSFLG0) D DSPWARN0^PSJDOSE
  I +$G(PSJDSFLG) D DSPWARN^PSJDOSE S:$G(PSGOEEF(109))="" PSGOEEF(109)=1 ; PSJ*5*237 - Check PSGOEEF(109) to prevent infinite loop
+ ;PSJ*5*449 pause moved here from PSJDOSE
+ I PSJDSFLG0!+$G(PSJDSFLG) D PAUSE^VALM1
  ; PSJ*5*215 - If Dispense Drug(s) changed, make entry in Activity Log.
  ; Compare the edited dispense drug information in ^PS(53.45 to the active
  ; order dispense drug information in ^PS(55.

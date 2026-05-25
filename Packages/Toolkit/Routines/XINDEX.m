@@ -1,5 +1,5 @@
 XINDEX ;ISC/REL,GFT,GRK,RWF - INDEX & CROSS-REFERENCE ; Sep 07, 2022@14:22:58
- ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121,128,132,133,148,151,153,155**;Apr 25, 1995;Build 3
+ ;;7.3;TOOLKIT;**20,27,48,61,66,68,110,121,128,132,133,148,151,153,155,158**;Apr 25, 1995;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
  G ^XINDX6
 SEP F I=1:1 S CH=$E(LIN,I) D QUOTE:CH=Q Q:" "[CH
@@ -11,15 +11,22 @@ ALIVE ;enter here from taskman
  D SETUP^XINDX7 ;Get ready to process
 A2 S RTN=$O(^UTILITY($J,RTN)) G ^XINDX5:RTN=""
  ;INDLC=1 compiled template or ^DD code
- S INDLC=(RTN?1"|"1.4L.NP) D LOAD:'INDLC&'$D(^UTILITY($J,1,RTN,0))
+ ;p158 CEP - change call from LOAD to LOAD1 for blank line modification
+ S INDLC=(RTN?1"|"1.4L.NP) D LOAD1:'INDLC&'$D(^UTILITY($J,1,RTN,0))
  I $D(ZTQUEUED),$$S^%ZTLOAD S RTN="~",IND("QUIT")=1,ZTSTOP=1 G A2
  I 'INDDS,INDLC W !!?10,"Data Dictionaries",! S INDDS=1
  D BEG
  G A2
- ;
-LOAD S X=RTN,XCNP=0,DIF="^UTILITY("_$J_",1,RTN,0," X ^%ZOSF("TEST") Q:'$T  X ^%ZOSF("LOAD") S ^UTILITY($J,1,RTN,0,0)=XCNP-1
+ ;P158 CEP - LOAD1 sub for ability to look beyond blank lines
+LOAD1 S X=RTN,XCNP=0,DIF="^UTILITY("_$J_",1,RTN,0," X ^%ZOSF("TEST") Q:'$T  D
+ . X "N %,%N S %N=0 X ""ZL @X F XCNP=XCNP+1:1 S %N=%N+1,%=$T(+%N) Q:XCNP>$G(^ROUTINE(X,0,0))  S @(DIF_XCNP_"""",0)"""")=%"""
+ . S ^UTILITY($J,1,RTN,0,0)=XCNP-1
  I $D(^UTILITY($J,1,RTN,0,0)) S ^UTILITY($J,1,RTN,"RSUM")="B"_$$SUMB^XPDRSUM($NA(^UTILITY($J,1,RTN,0)))
  Q
+LOAD ;original LOAD subroutine - no longer called (p158 CEP
+  S X=RTN,XCNP=0,DIF="^UTILITY("_$J_",1,RTN,0," X ^%ZOSF("TEST") Q:'$T  X ^%ZOSF("LOAD") S ^UTILITY($J,1,RTN,0,0)=XCNP-1
+  I $D(^UTILITY($J,1,RTN,0,0)) S ^UTILITY($J,1,RTN,"RSUM")="B"_$$SUMB^XPDRSUM($NA(^UTILITY($J,1,RTN,0)))
+  Q
 BEG ;
  S %=INDLC*5 W:$X+10+%>IOM ! W:$X ?$X\10+1*10 W RTN ;p148 handle routines over 8 char.
  S (IND("DO"),IND("SZT"),IND("SZC"),LABO)=0,LC=$G(^UTILITY($J,1,RTN,0,0))

@@ -1,7 +1,8 @@
-SDES2GETHOLIDAYS ;ALB/BWF - SDES2 GET HOLIDAYS ;JULY 10, 2023
- ;;5.3;Scheduling;**853**;Aug 13, 1993;Build 9
+SDES2GETHOLIDAYS ;ALB/BWF,JHC - SDES2 GET HOLIDAYS ;FEBRUARY 28, 2025
+ ;;5.3;Scheduling;**853,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
+ ; Reference to DUZ^XUP is supported by IA #7487
  Q
  ; SDCONTEXT("ACHERON AUDIT ID") = 36 Character unique ID number. Ex: 11d9dcc6-c6a2-4785-8031-8261576fca37
  ; SDCONTEXT("USER DUZ") = The DUZ of the user taking action on the calling application.
@@ -17,6 +18,7 @@ GETHOLIDAYS(RES,SDCONTEXT,PARAMS) ;
  ; validate context array, quit if errors
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("Holiday",1)="" D BUILDJSON^SDES2JSON(.RES,.ERRORS) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  ; get the start and end date. Strip off time because we do not need it.
  S STRTDTISO=$P($G(PARAMS("START DATE")),"T")
  S ENDDTISO=$P($G(PARAMS("END DATE")),"T")

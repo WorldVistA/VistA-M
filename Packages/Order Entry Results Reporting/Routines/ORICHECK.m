@@ -1,0 +1,107 @@
+ORICHECK ; SLC/AGP - Information panel and editor structure checker ;Jan 08, 2026@12:50:15
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**508**;Dec 17, 1997;Build 39
+ ;
+ ;
+ ;
+ Q
+ ;
+CHECKITEM(RESULTS,INPUTS,PIDX,SIDX,IIDX) ;
+ N ACT,CDRPC,DCODE,EDITOR,ERROR,FAIL,HASDETAIL,ISREM,LBL,NEEDREQ,NODE,RIDX,TMP
+ S LBL="Item: #"
+ S ERROR="Missing or incorrect value for the "
+ S NODE=$G(INPUTS("PKG",PIDX,"LOC",SIDX,"ITM",IIDX,0))
+ I NODE="" Q
+ I $P(NODE,U,3)'="E" Q
+ S TMP=LBL_IIDX_" "_$P(NODE,U,2)
+ S HASDETAIL=+$O(INPUTS("PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"DTXT","A"),-1)
+ I +$P(NODE,U)<1 D SETERROR(.RESULTS,TMP_ERROR_"SEQUENCE field.") Q
+ I $P(NODE,U,2)="" D SETERROR(.RESULTS,TMP_ERROR_"NAME field.") Q
+ I $P(NODE,U,4)="" D SETERROR(.RESULTS,TMP_ERROR_"DISPLAY TEXT field.") Q
+ I $P(NODE,U,5)=""  D SETERROR(.RESULTS,TMP_ERROR_"ABBREVIATION field.") Q
+ S NODE=$G(INPUTS("PKG",PIDX,"LOC",SIDX,"ITM",IIDX,10))
+ ;check evaluation fields
+ S FAIL=0,ISREM=0
+ I $P(NODE,U)="" D SETERROR(.RESULTS,TMP_ERROR_"evaluation type field.") Q
+ I $P(NODE,U)="RD" D  I FAIL=1 Q
+ .S ISREM=1
+ .I ($P(NODE,U,2)'["PXD(811.9") D SETERROR(.RESULTS,TMP_ERROR_"REMINDER COMPONENT field.") S FAIL=1 Q
+ .I "ADN"'[$P(NODE,U,3)!($P(NODE,U,3)="") D SETERROR(.RESULTS,TMP_ERROR_"REMINDER STATUS field.") S FAIL=1
+ I $P(NODE,U)="RT" D  I FAIL=1 Q
+ .S ISREM=1
+ .I ($P(NODE,U,2)'["PXRMD(811.5") D SETERROR(.RESULTS,TMP_ERROR_"REMINDER COMPONENT field.") S FAIL=1 Q
+ .I "TF"'[$P(NODE,U,3)!($P(NODE,U,3)="") D SETERROR(.RESULTS,TMP_ERROR_"REMINDER STATUS field.") S FAIL=1
+ I $P(NODE,U)="C",+$P(NODE,U,4)=0 D SETERROR(.RESULTS,TMP_ERROR_"EVALUATION CODE field.") Q
+ ;check action fields
+ S NODE=$G(INPUTS("PKG",PIDX,"LOC",SIDX,"ITM",IIDX,30))
+ I $P(NODE,U)="" D SETERROR(.RESULTS,TMP_ERROR_"ACTION field.") Q
+ S ACT=$$GETCOMP^ORDD71($P(NODE,U))
+ I ACT'["act" D SETERROR(.RESULTS,TMP_ERROR_"ACTION field.") Q
+ S CDRPC="",DCODE=0,EDITOR=0
+ I ACT'="actNone",ACT'="actShowMessage" D  I FAIL=1 Q
+ .I $P(NODE,U,2)="" D SETERROR(.RESULTS,TMP_ERROR_"FORM TYPE field.") S FAIL=1 Q
+ .S CDRPC=$P(NODE,U,4)="true",DCODE=+$P(NODE,U,3),EDITOR=+$P(NODE,U,5)
+ .I ACT="actShowEditor"!(ACT="actShowHTMLEditor") D  Q
+ ..I EDITOR=0 D SETERROR(.RESULTS,TMP_ERROR_"EDITOR field.") S FAIL=1 Q
+ ..I CDRPC=0 D SETERROR(.RESULTS,"CALL DETAIL RPC field should be set to True.") S FAIL=1 Q
+ ..I '$$CHKEDITOR(.RESULTS,EDITOR) S FAIL=1
+ .I ACT="actShowUrl" D  Q
+ ..I $P($G(INPUTS("PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"URL")),U)'=""!(DCODE>0) Q
+ ..D SETERROR(.RESULTS,TMP_" is either missing the URL value or the Detail Code value.") S FAIL=1
+ .;actShowDetail,actShowMessage
+ .I 'ISREM,'DCODE,'HASDETAIL D SETERROR(.RESULTS,TMP_" Set to show detail text but missing reminders, detail code, or detail text.") S FAIL=1 Q
+ ;
+ S NEEDREQ=0,RIDX=0,FAIL=0
+ F  S RIDX=$O(INPUTS("PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"REQD",RIDX)) Q:RIDX'>0!(NEEDREQ=1)!(FAIL=1)  D
+ .S NODE=$G(INPUTS("PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"REQD",RIDX,0))
+ .I +$P(NODE,U)=0 D SETERROR(.RESULTS,TMP_ERROR_"REQUIRED DATA field for index: "_RIDX) S FAIL=1 Q
+ .I $P(NODE,U,2)="" D SETERROR(.RESULTS,TMP_ERROR_"REQUIRED field for index: "_RIDX) S FAIL=1 Q
+ .S NEEDREQ=$S($P(NODE,U,2)="Y":1,$P(NODE,U,2)="O":1,1:0)
+ I NEEDREQ,'CDRPC D SETERROR(.RESULTS,TMP_" CALL DETAIL RPC field should be set to True.") Q
+ Q
+ ;
+CHECKPANEL(RESULTS,INPUTS) ;
+ N IIDX,ISEQ,PIDX,PKG,SIDX,SSEQ,TMP
+ S RESULTS("success")="true"
+ S PIDX=0 F  S PIDX=$O(INPUTS("PKG",PIDX)) Q:PIDX'>0!(RESULTS("success")="false")  D
+ .S PKG=$P($G(INPUTS("PKG",PIDX,0)),U),PKG=$$GET1^DIQ(9.4,PKG_",",.01)
+ .S SSEQ=0 F  S SSEQ=$O(INPUTS("PKG",PIDX,"LOC","B",SSEQ)) Q:SSEQ'>0!(RESULTS("success")="false")  D
+ ..S SIDX=$O(INPUTS("PKG",PIDX,"LOC","B",SSEQ,"")) Q:SIDX'>0
+ ..D CHECKSECTION(.RESULTS,.INPUTS,PIDX,SIDX) I RESULTS("success")="false" Q
+ ..S ISEQ=0
+ ..F  S ISEQ=$O(INPUTS("PKG",PIDX,"LOC",SIDX,"ITM","B",ISEQ)) Q:ISEQ'>0!(RESULTS("success")="false")  D
+ ...S IIDX=$O(INPUTS("PKG",PIDX,"LOC",SIDX,"ITM","B",ISEQ,"")) Q:IIDX'>0
+ ...D CHECKITEM(.RESULTS,.INPUTS,PIDX,SIDX,IIDX)
+ Q
+ ;
+CHECKSECTION(RESULTS,INPUTS,PIDX,SIDX) ;
+ N LBL,NAME,NODE,TMP
+ S NAME="",LBL="Section: #"
+ S NODE=$G(INPUTS("PKG",PIDX,"LOC",SIDX,0))
+ I $P(NODE,U,2)>0 S NAME=$P($G(^ORI(101.73,$P(NODE,U,2),0)),U)
+ S TMP=LBL_SIDX_" "_NAME
+ I +$P(NODE,U)<1 D SETERROR(.RESULTS,TMP_" Missing or incorrect sequence value.") Q
+ I +$P(NODE,U,2)<1 D SETERROR(.RESULTS,TMP_" Missing or incorrect location value.") Q
+ I $P(NODE,U,3)="" D SETERROR(.RESULTS,TMP_" Missing or incorrect display text value.") Q
+ I $P(NODE,U,4)="" D SETERROR(.RESULTS,TMP_" Missing or incorrect abbreviation value.") Q
+ Q
+ ;
+SETERROR(RESULTS,ERROR) ;
+ S RESULTS("success")="false"
+ S RESULTS("error")=$G(RESULTS("error"))_ERROR_$C(13)_$C(10)
+ Q
+ ;
+CHKEDITOR(RESULTS,EID) ;
+ N CELLNAME,CODE,IDX,NAME,NODE,RESULT,TMP
+ S NODE=$G(^ORE(101.74,EID,0))
+ S NAME=$P(NODE,U)
+ S TMP="Editor: #"_EID_" "_NAME
+ I NAME="" D SETERROR(.RESULTS,TMP_"Editor does not have name defined.") Q 0
+ I $P(NODE,U,2) D SETERROR(.RESULTS,"Does not have display name defined.") Q 0
+ S NODE=$G(^ORE(101.74,EID,40))
+ I +$P(NODE,U)="" D SETERROR(.RESULTS,"Plugin value not defined") Q 0
+ Q 1
+ ;
+SETTEXT(TXT,TEXT,TCNT) ;
+ S TCNT=TCNT+1
+ S TEXT(TCNT)=TXT
+ Q

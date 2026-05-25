@@ -1,10 +1,10 @@
 IBNCPIV ;ALB/ESG - Manual Rx Eligibility Verification ;23-SEP-2010
- ;;2.0;INTEGRATED BILLING;**435,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**435,452,822**;21-MAR-94;Build 21
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; Reference to EN^BPSNCPD9 supported by IA# 5576
- ; Reference to PID^VADPT6 supported by IA# 10062
- ; Reference to DT^DICRW supported by IA# 10005
+ ; Reference to EN^BPSNCPD9 in ICR #5576
+ ; Reference to PID^VADPT6 in ICR #10062
+ ; Reference to DT^DICRW in ICR #10005
  ;
  Q
  ;
@@ -56,6 +56,9 @@ SEND ; send the ELIG inquiry
  I 'IBPL W !!,GENERR,!,"This policy has no plan." D PAUSE^VALM1 G SENDX
  S IBDATA("PLAN")=IBPL                   ; plan file 355.3 ien
  S IBCDFN=+$P(IBPPOL,U,4)                ; subfile 2.312 ien
+ ;
+ ;IB*822/CKB - check to see if the E1 Transactions Enabled switch is 'Disabled' (set to '0') 
+ I $$GET1^DIQ(350.9,"1,",54.05,"I")=0 W !!,"The creation of E1 (ePharmacy Eligibility Inquiry) transactions are disabled at this time. " D PAUSE^VALM1 G SENDX
  ;
  ; lock check
  L +^IBDPTL(DFN,IBCDFN):$G(DILOCKTM,3)

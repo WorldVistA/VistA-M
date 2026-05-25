@@ -1,15 +1,20 @@
-ORQQPL3 ; ALB/PDR,REV,ISL/JER/TC - Problem List RPCs ;02/13/17  14:04
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,148,173,243,280,306,361,385,429**;Dec 17, 1997;Build 33
+ORQQPL3 ; ALB/PDR,REV,ISL/JER/TC - Problem List RPCs ;Dec 31, 2025@12:57:15
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,148,173,243,280,306,361,385,429,508**;Dec 17, 1997;Build 39
  ;
- ;  External References:
- ;  $$ICDDESC^GMPLUTL2                               ICR #2741
- ;  $$PROBTEXT^GMPLX                                 ICR #2742
- ;  $$CODECS/$$CSI/$$ICDDX/$$SAB/$$STATCHK^ICDEX     ICR #5747
- ;  $$ICDDATA/$$STATCHK^ICDXCODE                     ICR #5699
- ;  $$STATCHK^LEXSRC2                                ICR #4083
- ;  $$IMPDATE^LEXU                                   ICR #5679
- ;  $$DT^XLFDT                                       ICR #10103
- ;  $$GET^XPAR                                       ICR #2263
+ ;  Reference to $$ICDDESC^GMPLUTL2 in ICR #2741
+ ;  Reference to $$PROBTEXT^GMPLX in ICR #2742
+ ;  Reference to $$CODECS^ICDEX,$$CSI^ICDEX,$$ICDDX^ICDEX,$$SAB^ICDEX,$$STATCHK^ICDEX in ICR #5747
+ ;  Reference to $$ICDDATA/$$STATCHK^ICDXCODE in ICR #5699
+ ;  Reference to $$STATCHK^LEXSRC2 in ICR #4083
+ ;  Reference to $$IMPDATE^LEXU in ICR #5679
+ ;  Reference to $$DT^XLFDT in ICR #10103
+ ;  Reference to $$GET^XPAR in ICR #2263
+ ;  Reference to ^AUPNPROB( in ICR #2727
+ ;  Reference to GETNEWSA^GMPLSPECAUTH in ICR #7586
+ ;  Reference to ^GMPL(125.99 in ICR #2970
+ ;  Reference to ^GMPL(125 in ICR #2971
+ ;  Reference to ^GMPL(125.11 in ICR #7619
+ ;  Reference to ^DIC(49 in ICR #2939
  ;
  ;---------------- LIST PATIENT PROBLEMS ------------------------
  ;
@@ -78,15 +83,8 @@ LIST(GMPL,GMPDFN,GMPSTAT,ORIDT) ; -- Returns list of problems for patient GMPDFN
  . S LASTMOD=$P(GMPL0,U,3)
  . S ST=$P(GMPL0,U,12)
  . S ONSET=$P(GMPL0,U,13)
- . S SC=$S(+$P(GMPL1,U,10):"SC",$P(GMPL1,U,10)=0:"NSC",1:"")
- . S AO=$S(+$P(GMPL1,U,11):"/AO",1:"")
- . S IR=$S(+$P(GMPL1,U,12):"/IR",1:"")
- . S ENV=$S(+$P(GMPL1,U,13):"/EC",1:"")
- . S HNC=$S(+$P(GMPL1,U,15):"/HNC",1:"")
- . S MST=$S(+$P(GMPL1,U,16):"/MST",1:"")
- . S CV=$S(+$P(GMPL1,U,17):"/CV",1:"")
- . S SHD=$S(+$P(GMPL1,U,18):"/SHD",1:"")
- . S SCCOND=SC_AO_IR_ENV_HNC_MST_CV_SHD
+ . S SCCOND=$$GETSA(IFN,GMPL1)
+ . S SC=$P(SCCOND,U),SCCOND=$P(SCCOND,U,2)
  . S LOC=$P(GMPL1,U,8)
  . S DTREC=$P(GMPL1,U,9)
  . S LT=""
@@ -137,15 +135,8 @@ DELLIST(RETURN,GMPDFN,ORIDT) ; GET LIST OF DELETED PROBLEMS
  ... I +SCT'>0,(+ICD>0) S ICDD=$$ICDDESC^GMPLUTL2(ICD,ORIDT,ORPLCSYS)
  ... S ONSET=$P(L0,U,13)
  ... S MOD=$P(L0,U,3)
- ... S SC=$S(+$P(L1,U,10):"SC",$P(L1,U,10)=0:"NSC",1:"")
- ... S AO=$S(+$P(L1,U,11):"/AO",1:"")
- ... S IR=$S(+$P(L1,U,12):"/IR",1:"")
- ... S ENV=$S(+$P(L1,U,13):"/EC",1:"")
- ... S HNC=$S(+$P(L1,U,15):"/HNC",1:"")
- ... S MST=$S(+$P(L1,U,16):"/MST",1:"")
- ... S CV=$S(+$P(L1,U,17):"/CV",1:"")
- ... S SHD=$S(+$P(L1,U,18):"/SHD",1:"")
- ... S SCCOND=SC_AO_IR_ENV_HNC_MST_CV_SHD
+ ... S SCCOND=$$GETSA(IFN,L1)
+ ... S SC=$P(SCCOND,U),SCCOND=$P(SCCOND,U,2)
  ... S SP=$$GETSP
  ... S LOC=$P(L1,U,8)
  ... S LT=""
@@ -262,3 +253,15 @@ GETSRVC(RETURN,INP) ; GET FILTERED LIST OF INPATIENT SERVICES
  .. S RETURN(I)=INP(S)_U_$P(^DIC(49,INP(S),0),U,1)
  ;. S RETURN(I)="-1"_U_"None" ; return empty service
  Q
+GETSA(ORIFN,ORN1) ; RETURN STRING OF SPECIAL AUTHORITIES
+ ;INPUT: ORIFN - INTERNAL ENTRY NUMBER IN PROBLEM FILE (#9000011)
+ ;       ORN1 - CARET-DELIMITED STRING OF SPECIAL AUTHORIEIS (OPTIONAL)
+ ;OUTPUT: $$GETSA() - CARET-DELIMITED STRING OF SPECIAL AUTHORITIES
+ ;                    SC|NSC ^ SLASH-DELIMITED STRING OF SPECIAL AUTHORITIES
+ ;                    WHERE SC|NSC IS THE SERVICE CONNECTED STATUS (SC OR NSC)
+ N ORSAS,ORSA,OREI,ORSCNSC
+ D GETNEWSA^GMPLSPECAUTH(ORIFN,ORN1,.ORSAS)
+ S (OREI,ORSA)="" F  S ORSA=$O(ORSAS(ORSA)) Q:ORSA=""  D
+ .I ORSA["|" S ORSCNSC=ORSAS(ORSA),OREI=$S(OREI'="":OREI_"/",1:"")_ORSCNSC Q
+ .S OREI=$S(OREI'="":OREI_"/",1:"")_ORSA
+ Q $G(ORSCNSC)_U_OREI

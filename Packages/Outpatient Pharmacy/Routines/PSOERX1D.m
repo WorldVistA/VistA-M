@@ -1,5 +1,5 @@
 PSOERX1D ;ALB/JSG - eRx Utilities ; 11/27/2019 11:02am
- ;;7.0;OUTPATIENT PHARMACY;**581,617,746,769**;DEC 1997;Build 26
+ ;;7.0;OUTPATIENT PHARMACY;**581,617,746,769,770**;DEC 1997;Build 145
  ;
  ;The rule numbers correspond to the last 4 digits of RTC story #'s and are abbreviations
  ;  for the various conditions which control what is printed on the Summary Detail screen or
@@ -154,7 +154,7 @@ MEDREQ(REQIEN,F,IENS,IEN311,LINE,CNT) ; Medication Request section
  S LINE=LINE+1 D SET^VALM10(LINE,"****************************MEDICATION REQUESTED "_CNT_"****************************")
  I $G(SDERXFLG) D SET^VALM10(LINE,"                            MEDICATION REQUESTED "_CNT_"                            "),CNTRL^VALM10(LINE,1,80,IOUON_IOINHI,IOUOFF_IOINORM)
  K NOTEARY
- D TXT2ARY^PSOERXD1(.NOTEARY,DRUG_" "_$P($$ERXDRSCH^PSOERXUT(ERXIEN),"^",2)," ",74)
+ D TXT2ARY^PSOERXD1(.NOTEARY,DRUG_" "_$P($$ERXDRSCH^PSOERXUT($G(PSOIEN)),"^",2)," ",74)
  S I=0 F  S I=$O(NOTEARY(I)) Q:'I  D
  . S LINE=LINE+1
  . D SET^VALM10(LINE,$S(I=1:"Drug: ",1:$J("",6))_NOTEARY(I))

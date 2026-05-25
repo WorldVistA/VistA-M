@@ -1,11 +1,15 @@
-GMRCIEV1 ;SLC/JFR - IFC EVENTS CONT'D ; Aug 08, 2024@10:31:29
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,31,154,184,185,189**;DEC 27, 1997;Build 54
+GMRCIEV1 ;SLC/JFR - IFC EVENTS CONT'D ; Jan 09, 2025@09:44:31
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,31,154,184,185,189,201**;DEC 27, 1997;Build 7
  ;#2161 HFLNC2, #2164 HLMA, #2701 MPIF001, #3105 VAFCPID, #2056 DIQ
  Q  ;no-no-no
 RESUB(GMRCDA,GMRCACT) ;build HL7 msg with edits from resubit
  ;Input:
  ;  GMRCDA  = ien from file 123
  ;  GMRCACT = ien of the activity from 40 multiple
+ ;
+ ;  If HL7 message goes to Cerner, hold it until the Cerner order number is received.  wtc 8/8/24
+ ;
+ I '$P(^GMR(123,GMRCDA,0),U,22),$$ISCERNER^GMRCIEVT(GMRCDA) D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,,204) Q  ;
  ;
  N HL,HLL,SEG,GMRC773,GMRCIQT,GMRCPD
  S SEG=1
@@ -78,6 +82,11 @@ SF(GMRCDA,GMRCACT) ;send SIG FINDING update
  ;Input:
  ;  GMRCDA  = ien from file 123
  ;  GMRCACT = ien of the activity from 40 multiple
+ ;
+ ;  If HL7 message goes to Cerner, hold it until the Cerner order number is received.  wtc 8/8/24
+ ;
+ I '$P(^GMR(123,GMRCDA,0),U,22),$$ISCERNER^GMRCIEVT(GMRCDA) D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,,204) Q  ;
+ ;
  N HL,HLL,SEG,GMRC773,GMRCIQT,GMRCOS,GMRCCRNR,OBR,PROSTHCS ; P184
  S SEG=1
  K ^TMP("HLS",$J)
@@ -140,6 +149,11 @@ FWD(GMRCDA,GMRCACT) ;bld HL7 msg upon FWD action
  ;Input:
  ;  GMRCDA  = ien from file 123
  ;  GMRCACT = ien of the activity from 40 multiple
+ ;
+ ;  If HL7 message goes to Cerner, hold it until the Cerner order number is received.  wtc 8/8/24
+ ;
+ I '$P(^GMR(123,GMRCDA,0),U,22),$$ISCERNER^GMRCIEVT(GMRCDA) D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,,204) Q  ;
+ ;
  N HL,HLL,SEG,GMRC773,GMRCIQT,GMRCOS,GMRCCRNR,OBR,PROSTHCS ; P184
  S SEG=1
  K ^TMP("HLS",$J)
@@ -177,9 +191,9 @@ FWD(GMRCDA,GMRCACT) ;bld HL7 msg upon FWD action
  ;
  S PROSTHCS=$S($G(OBR)="":0,$P($P(OBR,"|",5),U,2)["PROSTHETICS IFC":1,1:0) ; P184
  ;
- I $O(^GMR(123,GMRCDA,40,GMRCACT,1,0)) D  ;load up comment to send
+ S GMRCCRNR=$$ISCERNER^GMRCIEVT(GMRCDA) ;MKN 184
+ I $O(^GMR(123,GMRCDA,40,GMRCACT,1,0))!GMRCCRNR D  ;load up comment to send.  P201 WTC 9/9/24
  . K ^TMP("GMRCMT",$J)
- . S GMRCCRNR=$$ISCERNER^GMRCIEVT(GMRCDA) ;MKN 184
  . D:GMRCCRNR&'PROSTHCS CRNROBX(GMRCDA,$NA(^TMP("GMRCMT",$J))) ; P184 WTC 6/1/22
  . D:'GMRCCRNR!PROSTHCS OBXWP^GMRCISEG(GMRCDA,"",GMRCACT,$NA(^TMP("GMRCMT",$J))) ; P184 WTC 6/1/22
  . Q:'$O(^TMP("GMRCMT",$J,0))
@@ -204,12 +218,34 @@ FWD2IFC(GMRCDA,GMRCACT) ;pkg up and send request upon fwd'ing into IFC serv
  ;  GMRCDA  = ien from file 123
  ;  GMRCACT = ien of the activity from 40 multiple
  N GMRCACTN
- I '$P(^GMR(123,GMRCDA,0),U,22),'$D(^GMR(123.6,"C",GMRCDA)) D  Q
+ I '$P(^GMR(123,GMRCDA,0),U,22),'$D(^GMR(123.6,"C",GMRCDA))!($$ISCERNER^GMRCIEVT(GMRCDA)) D  Q  ;
  . D NW^GMRCIEVT(GMRCDA,GMRCACT) ; Added GMRCACT parameter P 189 wtc 6/24/24
+ . ;
+ . ;  If forward to site is Cerner-enabled, log error code 204 to delay sending message until new order processed by Cerner unless
+ . ;  proxy add failed or did not complete (error code 203 or 205). p201 wtc 12/1/23, 12/19/24
+ . ;
+ . I $$ISCERNER^GMRCIEVT(GMRCDA) D  Q  ;
+ .. N OK2SEND,MSGLOGDA,ERRCODE S OK2SEND=1,MSGLOGDA="" ;
+ .. F  S MSGLOGDA=$O(^GMR(123.6,"C",GMRCDA,GMRCACT,MSGLOGDA),-1) Q:'MSGLOGDA  S ERRCODE=$P($G(^GMR(123.6,MSGLOGDA,0)),U,8) I ERRCODE=203!(ERRCODE=205) S OK2SEND=0 Q  ;
+ .. I OK2SEND D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,,204) Q  ;
+ . ;
+ . ;  Send all actions if VistA-to-VistA.
+ . ;
  . S GMRCACTN=1
  . F  S GMRCACTN=$O(^GMR(123,GMRCDA,40,GMRCACTN)) Q:'GMRCACTN  D
  .. D TRIGR^GMRCIEVT(GMRCDA,GMRCACTN)
- D FWD(GMRCDA,GMRCACT)
+ ;
+ ;  Do not send forward message if proxy add failed or is incomplete unless Cerner order number has been received. p201 12/19/24, 1/8/25
+ ;
+ I $$ISCERNER^GMRCIEVT(GMRCDA) D  Q  ;
+ . N OK2SEND,MSGLOGDA,ERRCODE S OK2SEND=1,MSGLOGDA="" ;
+ . I '$P(^GMR(123,GMRCDA,0),U,22) F  S MSGLOGDA=$O(^GMR(123.6,"C",GMRCDA,GMRCACT,MSGLOGDA),-1) Q:'MSGLOGDA  S ERRCODE=$P($G(^GMR(123.6,MSGLOGDA,0)),U,8) I ERRCODE=203!(ERRCODE=205) S OK2SEND=0 Q  ;
+ . I OK2SEND D FWD(GMRCDA,GMRCACT) ;
+ ;
+ ;  VistA-to-VistA IFC, send forward message immediately.  p201 12/19/24
+ ;
+ I '$$ISCERNER^GMRCIEVT(GMRCDA) D FWD(GMRCDA,GMRCACT) ;
+ ;
  Q
  ;
 EXIST201(GMRCDA,GMRCACT) ;
@@ -264,11 +300,16 @@ CRNROBX(IEN,GMRCNA) ;If Add Comment going to Cerner, send ALL comments
  S GMRCTMP=$NA(^TMP("GMRCCRNRCMT",$J)) K @GMRCTMP
  ;
  S GMRCT=0,GMRCN="@" ;
- F  S GMRCN=$O(^GMR(123,IEN,40,GMRCN),-1) Q:'GMRCN  S GMRCX=^(GMRCN,0) I $D(GMRCACTD($P(GMRCX,U,2))),$D(^GMR(123,IEN,40,GMRCN,1,1)) D  ;
+ F  S GMRCN=$O(^GMR(123,IEN,40,GMRCN),-1) Q:'GMRCN  S GMRCX=^(GMRCN,0) I $D(GMRCACTD($P(GMRCX,U,2))) D  ;
+ . Q:'$D(^GMR(123,IEN,40,GMRCN,1,1))&(GMRCACTD($P(GMRCX,U,2))'["Received")  ;  WTC P201 12/19/23
  . S GMRCIENS=GMRCN_","_IEN_"," K GMRCO D GETS^DIQ(123.02,GMRCIENS,"2;4;.21;.32;.33","IE","GMRCO")
  . S GMRCDT=$G(GMRCO(123.02,GMRCIENS,2,"I")),GMRCDT=$$UP^XLFSTR($$FMTE^XLFDT(GMRCO(123.02,GMRCIENS,2,"I"),"5PZ"))
  . S GMRCT=GMRCT+1,@GMRCNA@(GMRCT)="OBX|3|TX|^COMMENTS^|"_GMRCT_"| ||||||P" ;
  . S GMRCT=GMRCT+1,@GMRCNA@(GMRCT)="OBX|3|TX|^COMMENTS^|"_GMRCT_"|Activity Type: "_GMRCACTD($P(GMRCX,U,2))_"||||||P" ;
+ . ;
+ . ;  If activity is received, insert "Referral received by CPRS" as a comment. wtc p201 12/19/23
+ . ;
+ . I GMRCACTD($P(GMRCX,U,2))["Received" S GMRCT=GMRCT+1,@GMRCNA@(GMRCT)="OBX|3|TX|^COMMENTS^|"_GMRCT_"|Referral received by CPRS||||||P" ; 
  . ;
  . K @GMRCTMP D OBXWP^GMRCISEG(IEN,"IP",GMRCN,GMRCTMP) ; WTC 2/4/22
  . S GMRCL=0 F  S GMRCL=$O(@GMRCTMP@(GMRCL)) Q:'GMRCL  S GMRCT=GMRCT+1,GMRCX=@GMRCTMP@(GMRCL),$P(GMRCX,"|",5)=GMRCT,@GMRCNA@(GMRCT)=GMRCX ; WTC 6/10/22
@@ -292,4 +333,5 @@ LOC(GMRCLOC,GMRCIENS) ;DETERMINE LOCATION
  Q LOCNAME
 SITE ;SET LOCAL SITE
  S GMRCLOC=$P($$SITE^VASITE,U,2)
- Q
+ Q  ;
+ ;

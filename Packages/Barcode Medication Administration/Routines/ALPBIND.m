@@ -1,5 +1,5 @@
-ALPBIND ;OIFO-DALLAS/SED/KC/MW  BCMA-BCBU INPT TO HL7 INIT ;07/06/16 7:06am
- ;;3.0;BAR CODE MED ADMIN;**8,73,87,115**;Mar 2004;Build 3
+ALPBIND ;OIFO-DALLAS/SED/KC/MW  BCMA-BCBU INPT TO HL7 INIT; Nov 26, 2024@13:45
+ ;;3.0;BAR CODE MED ADMIN;**8,73,87,115,153**;Mar 2004;Build 3
  ;
  ; Reference/IA
  ; DPT/10035
@@ -151,14 +151,21 @@ SNDPT ;Send a Single Patient
  ;
 PAT(ALPDIV2) ;Process and send patients  ;add DIV par specl for DIV init *87
  ;New Div variable, reused in some downstream function calls    ;*87
- N ALPDIV
+ ;PSB*3.0*153: ALPNORX used by PMOV^ALPBINP to determine whether to call
+ ;             ADMQ^ALPBINP.
+ N ALPDIV,ALPNORX
+ S ALPNORX=0
  K ^TMP("PSJBU",$J)
  S X=+$$GET^XPAR("PKG.BAR CODE MED ADMIN","PSB BKUP IPH",1,"Q")
  S X=$S(X>0:"T-"_X,1:"T-15")
  D ^%DT
  Q:+Y'>0  ;Cannot get a valid date
  D EN2^PSJBCBU(ALDFN,Y)
- Q:'$D(^TMP("PSJBU",$J))  ; NO DATA
+ ;PSB*3.0*153: If patient has no Rx's,
+ ;             send an ADT transaction.
+ I $G(^TMP("PSJBU",$J,1,0))'>0 D  Q
+ . S ALPNORX=1
+ . D PMOV^ALPBINP(ALDFN,58,"ADMISSION",DT)
  S ALPBJ=0
  F  S ALPBJ=$O(^TMP("PSJBU",$J,ALPBJ)) Q:+ALPBJ'>0  D
  . Q:'$D(^TMP("PSJBU",$J,ALPBJ,0))

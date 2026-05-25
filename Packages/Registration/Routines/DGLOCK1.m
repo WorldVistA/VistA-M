@@ -1,5 +1,5 @@
 DGLOCK1 ;ALB/MRL,JAM,ARF,JAM,ARF,JAM - PATIENT FILE DATA EDIT CHECK ; 28 JUL 86
- ;;5.3;Registration;**121,314,1014,1061,1075,1081,1082,1098,1109**;Aug 13, 1993;Build 13
+ ;;5.3;Registration;**121,314,1014,1061,1075,1081,1082,1098,1109,1144**;Aug 13, 1993;Build 3
 AOD ;AO Delete
  I $D(^DPT(DFN,.321)),$P(^(.321),U,2)="Y" W !?4,*7,"Can't delete as long as Agent Orange exposure is indicated." K X
  Q
@@ -46,6 +46,7 @@ HUDCK(DGEC) ; DG*5.3*1075; Check for when HUD-VASH eligibility code can be used
  I ($$NATCODE^DGENELA(DGEC))=26 D  I $$NOW^XLFDT()<DGACTIVE Q 0
  . S DGACTIVE=$$GET^XPAR("PKG","DG PATCH DG*5.3*1075 ACTIVE",1)
  ; DG*5.3*1098 - Check if patient can have WORLD WAR II eligibility
+ I '$G(DFN) N DFN S DFN=D0 ;DG*5.3*1144 ensuring DFN is set incase editing through FileMan ENTER/EDIT option
  I $$NATCODE^DGENELA(DGEC)=29 I '$$WW2ELIG(DFN) Q 0
  Q 1
 WW2ELIG(DFN) ;DG*5.3*1098 - Determine if patient can have WORLD WAR II as a PATIENT ELIGIBILITIES

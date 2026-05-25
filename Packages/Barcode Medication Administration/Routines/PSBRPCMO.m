@@ -1,5 +1,5 @@
-PSBRPCMO ;BIRMINGHAM/EFC-MED ORDER BUTTON FUNCTIONS ;Mar 2004
- ;;3.0;BAR CODE MED ADMIN;**6,32**;Mar 2004;Build 32
+PSBRPCMO ;BIRMINGHAM/EFC-MED ORDER BUTTON FUNCTIONS; Nov 14, 2024@12:30
+ ;;3.0;BAR CODE MED ADMIN;**6,32,151**;Mar 2004;Build 1
  ;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ; Reference/IA
  ; ^XUSEC("PROVIDER")/10076
@@ -72,7 +72,8 @@ OILST(RESULTS,PSBSCAN,PSBOTYP) ;
  ..Q:$P(^TMP("PSBLST",$J,"DILIST",X,0),U,3)=""
  ..Q:$P(^TMP("PSBLST",$J,"DILIST",X,0),U,4)=""
  ..I PSBOTYP'="OIT" D
- ...I $P(^TMP("PSBLST",$J,"DILIST",X,0),U,3)'?.N S $P(^TMP("PSBLST",$J,"DILIST",X,0),U,3,99)=$P(^TMP("PSBLST",$J,"DILIST",X,0),U,4,99) Q
+ ...;PSB*3.0*151: removed Q at end of line below
+ ...I $P(^TMP("PSBLST",$J,"DILIST",X,0),U,3)'?.N S $P(^TMP("PSBLST",$J,"DILIST",X,0),U,3,99)=$P(^TMP("PSBLST",$J,"DILIST",X,0),U,4,99)
  ...S ^TMP("PSB",$J,$P(^TMP("PSBLST",$J,"DILIST",X,0),U))=$P(^TMP("PSBLST",$J,"DILIST",X,0),U)_U_$P($G(^PSDRUG($P(^TMP("PSBLST",$J,"DILIST",X,0),U),0)),U)_U_$P(^TMP("PSBLST",$J,"DILIST",X,0),U,3,99)
  ..I PSBOTYP="OIT" S ^TMP("PSB",$J,$P(^TMP("PSBLST",$J,"DILIST",X,0),U))=$P(^TMP("PSBLST",$J,"DILIST",X,0),U)_U_$P($G(^PSDRUG($P(^TMP("PSBLST",$J,"DILIST",X,0),U),0)),U)_U_$P(^TMP("PSBLST",$J,"DILIST",X,0),U,3,99)
  .S PSBCNT=0,RESULTS(0)=0,PSBTLNG=0

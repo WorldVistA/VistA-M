@@ -1,5 +1,5 @@
 PSOERXI2 ;ALB/BWF - eRx Utilities/RPC's ; 11/8/2022 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**700**;DEC 1997;Build 261
+ ;;7.0;OUTPATIENT PHARMACY;**700,770**;DEC 1997;Build 145
  ;
  Q
 PARSE(STREAM,ERXVALS,NPI,STREAM2,STREAM3) ;
@@ -228,7 +228,7 @@ SPEEK(S,X) ;same as SPOP except the top item is not removed
  ;
 SPUT(S,X) ;implementation specific, uses the stack to form a global node
  N I,STR
- S X=$TR(X,";","")
+ S X=$TR(X,";",""),X=$TR(X,"""","'")
  S STR=$P(GL,")")
  S I=0 F  S I=$O(S(I)) Q:'I  D
  .S STR=STR_","_""""_S(I)_""""_","
@@ -241,7 +241,7 @@ SPUT(S,X) ;implementation specific, uses the stack to form a global node
  Q STR
 APUT(S,X,LN) ;
  N I,STR
- S X=$TR(X,";","")
+ S X=$TR(X,";",""),X=$TR(X,"""","'")
  S STR=$P(GL,")")
  S I=0 F  S I=$O(S(I)) Q:'I  D
  .S STR=STR_","_""""_S(I)_""""_","

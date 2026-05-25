@@ -1,0 +1,71 @@
+PSOERRX2 ;BIRM/RRM - All Rxs eRx Queue - Supporting APIs ;09/23/24
+ ;;7.0;OUTPATIENT PHARMACY;**770**;DEC 1997;Build 145
+ ;
+ADDFLTR(RESCODE,FILTER) ;prompt user for additional filter when prompted for response type in the search queue
+ ;Input : RESCODE - The RESPONSE VALUE from File #52.49 field 52.1
+ ;        FILTER  - The message type filter. Example format:RXRENEWALRESPONSE/DENIED
+ ;Note: Currently, the code below only prompt for DENIED response type
+ Q:$G(RESCODE)=""
+ N DIR,DIRUT,DIROUT,EXTSCODE,PSOQUIT,INDEX,HLP,CODE,LINE,DNDDESC
+ S DIR(0)="AO"
+ S PSOQUIT=0
+ I (" D "[(" "_RESCODE_" ")) D  I $G(PSOQUIT)
+ . K INDEX  K DIR S DIR(0)="SO^ALL:ALL;",DIR("L",1)="     Select one of the following:",DIR("L",2)=" "
+ . S HLP=0,LINE=2,DIR("L")="        "_$S(RESCODE="D":"Type '?' for the full list. ",1:"")
+ . S DIR("?")="^D HELP^PSOERCR0"
+ . S CODE=0 F  S CODE=$O(^PS(52.45,"TYPE","CLQ",CODE)) Q:'CODE  D
+ . . S INDEX($$GET1^DIQ(52.45,CODE,.01))=CODE
+ . . S DIR(0)=DIR(0)_$$GET1^DIQ(52.45,CODE,.01)_":"_$$GET1^DIQ(52.45,CODE,.02)_";"
+ . . ;
+ . . I RESCODE="D"&(",AE,AF,AM,"[(","_$$GET1^DIQ(52.45,CODE,.01)_",")) D
+ . . . S LINE=LINE+1,DIR("L",LINE)="   "_$S(RESCODE="D":"     ",1:"")_$$GET1^DIQ(52.45,CODE,.01)_" - "_$$GET1^DIQ(52.45,CODE,.02)
+ . . S HLP=HLP+1,DIR("?",HLP)="   "_$S(RESCODE="D":"     ",1:"")_$$GET1^DIQ(52.45,CODE,.01)_" - "_$$GET1^DIQ(52.45,CODE,.02)
+ . I RESCODE="D" S LINE=LINE+1,DIR("L",LINE)=" "
+ . S DIR("A")="DENIED REASON CODE",DIR("B")="ALL"
+ . I $G(REASCODE) S DIR("B")=$$GET1^DIQ(52.45,REASCODE,.01)
+ . D ^DIR I $D(DIRUT)!$D(DIROUT) S PSOQUIT=1 K MSTPFLTR1,MSTPFLTR Q
+ . I $G(Y)="ALL" M DNDARY=INDEX K REASCODE
+ . E  D
+ . . S REASCODE=+$G(INDEX(Y)),EXTSCODE=$$GET1^DIQ(52.45,REASCODE,.01),DNDDESC=$$GET1^DIQ(52.45,REASCODE,.02)
+ . . S DNDARY(EXTSCODE)=REASCODE_"^"_DNDDESC
+ . S MSTPFLTR1=$G(FILTER)_"/"_$S($G(Y)="ALL":"ALL",1:EXTSCODE)
+ Q
+ ;
+DNDRCODE(ERXIEN) ;Return the Denied Reason Code
+ ;Input : ERXIEN - Pointer to ERX HOLDING QUEUE file (#52.49)
+ ;Output: Return the Denied Reason Code. Example: AE
+ Q:$G(ERXIEN)=""
+ N ERESCODE,CODEIEN,RESDESC,DNDRCODE
+ S IENS=ERXIEN_","
+ S DNDRCODE=""
+ S I=0 F  S I=$O(^PS(52.49,ERXIEN,55,I)) Q:'I  D 
+ . S ERESCODE=$$GET1^DIQ(52.4955,I_","_IENS,.01,"E")
+ . S CODEIEN=$$GET1^DIQ(52.4955,I_","_IENS,.01,"I")
+ . S RESDESC=$$GET1^DIQ(52.45,CODEIEN,.02,"E")
+ . S DNDRCODE=ERESCODE
+ Q DNDRCODE
+ ;
+REQCODE(REQFLTR) ;Prompt user for the 'CR' RXCHANGEREQUEST Codes
+ ;Input: REQFLTR  - The message type filter. Example format:RXCHANGEREQUEST
+ ;
+ N INDEX,CODE,HLP,DESC,HELP,I,WRPHELP,DIRUT,DIROUT,REASCODE,EXTRCODE,REQDESC
+ K INDEX S CODE=0 K DIR S DIR(0)="SO^ALL:ALL;",HLP=0,DIR("?")=" "
+ F  S CODE=$O(^PS(52.45,"TYPE","MRC",CODE)) Q:'CODE  D
+ . S INDEX($$GET1^DIQ(52.45,CODE,.01))=CODE
+ . S DIR(0)=DIR(0)_$$GET1^DIQ(52.45,CODE,.01)_":"_$$GET1^DIQ(52.45,CODE,.02)_";"
+ . S HLP=HLP+1,DIR("?",HLP)="    "_$$GET1^DIQ(52.45,CODE,.01)_" - "
+ . K DESC S X=$$GET1^DIQ(52.45,CODE,1,"","DESC") I '$D(DESC) Q
+ . S HELP=$G(DESC(1)) F I=2:1 Q:'$D(DESC(I))  S HELP=HELP_" "_DESC(I)
+ . K WRPHELP D WRAP^PSOERUT(HELP,70,.WRPHELP)
+ . F I=1:1 Q:'$D(WRPHELP(I))  S:I>1 HLP=HLP+1 S $E(DIR("?",HLP),10)=$G(WRPHELP(I,0))
+ S DIR("A")="CHANGE REQUEST CODE",DIR("B")="ALL"
+ I $G(REACODE) S DIR("B")=$$GET1^DIQ(52.45,REACODE,.01)
+ D ^DIR I $D(DIRUT)!$D(DIROUT) Q
+ I $G(Y)="ALL" M RXREQARY=INDEX
+ E  D
+ . S REACODE=+$G(INDEX(Y))
+ . S EXTRCODE=$$GET1^DIQ(52.45,REACODE,.01)
+ . S REQDESC=$$GET1^DIQ(52.45,REACODE,.02)
+ . S RXREQARY(EXTRCODE)=""
+ S MSTPFLTR1=$G(REQFLTR)_"/"_$S($G(Y)="ALL":"ALL",1:$E(REQDESC,1,28))
+ Q

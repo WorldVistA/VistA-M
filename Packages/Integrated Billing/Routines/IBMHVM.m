@@ -1,5 +1,5 @@
 IBMHVM ;EDE/YMG - Mental Health Visit Maintenance; 07/06/2023
- ;;2.0;INTEGRATED BILLING;**784**;21-MAR-94;Build 8
+ ;;2.0;INTEGRATED BILLING;**784,779**;21-MAR-94;Build 7
  ;; Per VHA Directive 6402, this routine should not be modified
  ;
  ; This routine is used to perform the Mental Health Visit Tracking
@@ -156,7 +156,7 @@ ADDVST(IBDFN) ; Add a new MH visit for the patient
  Q
  ;
 EDITVST(IBLCT) ; Edit an existing MH visit for the patient
- N IBSTAT,IBVISIT,IBIEN,IBD,IBSITECD,IBSITENM,IBVSITE,IBVST,IBVSTIEN,IBOK,IBOVRFLG,IBIND,IBCOMM
+ N IBSTAT,IBVISIT,IBIEN,IBD,IBSITECD,IBSITENM,IBVSITE,IBVST,IBVSTIEN,IBOK,IBOVRFLG,IBIND,IBCOMM,IBUID
  ; Ask user for visit to edit
  S (IBSTAT,IBVSITE,IBOVRFLG)=""
  S IBVISIT=$$GETVISIT(IBLCT)
@@ -164,6 +164,14 @@ EDITVST(IBLCT) ; Edit an existing MH visit for the patient
  ; Get the visit info
  S IBD=$G(^TMP($J,"IBMHVM","IBP",IBVISIT)) Q:IBD=""
  S IBVSTIEN=$P(IBD,U),IBVST=$P(IBD,U,4),IBIEN=$P(IBD,U,9)
+ ;IB*2.0*801 - Prevent edits on visits from other sites
+ ;
+ ;Check to see if visit info is from another site, if so, warn the user and quit.
+ S IBUID=$P($G(^IBMH(351.83,IBVSTIEN,0)),U,7)
+ I IBUID["_" D  Q -1
+ . W !!,"Unable to edit this visit.  The visit data is from another VAMC."
+ . W !,"Please select another visit to edit."
+ ;END IB 801
  ; Get the Site name and code
  I $P(IBD,U,3)'="" D
  .S IBSITECD=$$GET1^DIQ(4,$P(IBD,U,3)_",",99,"I")

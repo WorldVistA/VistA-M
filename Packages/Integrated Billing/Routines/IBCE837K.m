@@ -1,6 +1,8 @@
 IBCE837K ;EDE/JWS - ACK FOR 837 FHIR TRANSMISSION ;8/6/18 10:48am
- ;;2.0;INTEGRATED BILLING;**623,641,650**;21-MAR-94;Build 21
+ ;;2.0;INTEGRATED BILLING;**623,641,650,770**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to ENCODE^XLFJSON in ICR #6682
  ;
 GET(RESULT,ARG) ;RPC - EDIACKCLAIMS; ack queue posting
  ;
@@ -29,13 +31,23 @@ GET(RESULT,ARG) ;RPC - EDIACKCLAIMS; ack queue posting
  .. I OK Q
  .. S X1="A" F  S X1=$O(^IBA(364,"B",IBIEN,X1),-1) Q:X1=""  I $P(^IBA(364,X1,0),"^",2)'="" S IB364=X1 Q
  . ;JWS;IB*2.0*623;7/24/19 make sure non-prod systems are reported posted to test queue
- . S IBTEST=$G(^IBA(364,"AC",1,IB364)),IBBILL(IB364)="",IBTXTEST=$S(IBTEST:2,'$$PROD^XUPROD(1):1,1:+$$TEST^IBCEF4(IBIEN)),IBBTYP=$P("P^I^D",U,$S($$FT^IBCEF(IBIEN)=7:3,1:($$FT^IBCEF(IBIEN)=3)+1))_"-"_IBTXTEST
+ . S IBTEST=$G(^IBA(364,"AC",1,IB364)),IBBILL(IB364)="",IBTXTEST=$S(IBTEST:2,'$$PROD^XUPROD(1):1,1:+$$TEST^IBCEF4(IBIEN)),IBBTYP=$P("P^I^D",U,$S($$FT^IBCEF(IBIEN)=7:3,1:($$FT^IBCEF(IBIEN)=3)+1))_"-"_IBTXTEST   ;ICR #4440 (Supported)
  . S IBDESC=$S('IBTXTEST:"",1:"TEST ")_$S($E(IBBTYP)="P":"PROF",$E(IBBTYP)="D":"DENT",1:"INST")_" CLAIM-"_$$HTE^XLFDT($H,2)
  . S IBBATCH=$$GET1^DIQ(364,IB364_",",.02,"E")
  . D UPD^IBCE837A("",IBBATCH,1,.IBBILL,IBDESC,IBBTYP,"")
  . K DIE
  . ;JWS/IB*2.0*650v5;clear getBundle validate flag [11] in file 364
  . D SETSUB^IBCE837I(IB364,0,.11)
+ . ;JWS;IB*2.0*770v18;if claim is transmitted make sure "AC index it cleared
+ . I $D(^IBA(364,"AC",1,IB364)) D CLR
+ . D
+ .. N X1,X2,I
+ .. S X1="" F I=1:1:3 S X1=$O(^IBA(364,"ABDT",IBIEN,X1),-1) Q:X1=""  D
+ ... S X2="" F  S X2=$O(^IBA(364,"ABDT",IBIEN,X1,X2),-1) Q:X2=""  D
+ .... I $D(^IBA(364,"AC",1,X2)) D CLR
+ .... Q
+ ... Q
+ .. Q
  . D EMAIL(IBIEN,IBTXTEST,IBBATCH)
  . Q
  S RES=1
@@ -44,7 +56,7 @@ R ; setup return JSON
  ; create JSON structured message
  S RES("ien")=IBIEN
  S RES("status")=RES  ;result of update
- D ENCODE^XLFJSONE("RES","RESULT")
+ D ENCODE^XLFJSONE("RES","RESULT")   ;ICR #6682 (Supported)
  D FINISH^IBCE837I
  Q
  ;
@@ -71,11 +83,18 @@ EMAIL(IBIEN,IBTXTEST,IBBATCH) ; Send an email message to MCT mail group - to emu
  S XMTO("G.CLAIMS4US")=""
  S XMTO("G."_IBEQ)=""
  S XMINSTR("FROM")="VistA-eBilling 837 FHIR Submission Process"
- D SENDMSG^XMXAPI(DUZ,SUBJ,"MSG",.XMTO,.XMINSTR)
+ D SENDMSG^XMXAPI(DUZ,SUBJ,"MSG",.XMTO,.XMINSTR)   ;ICR #2729 (Supported)
  ;
 EMAILX ;
  ;
  D CLEAN^DILF
  S DUZ=ODUZ
+ Q
+ ;
+CLR ; JWS;8/25/25;IB*2.0*770v41;clear out "AC" index as already transmitted
+ N DA,D0,DR,DIE,DIC
+ S DA=IB364
+ S DR=".09////2",DIE="^IBA(364,"
+ D ^DIE
  Q
  ;

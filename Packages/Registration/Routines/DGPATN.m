@@ -1,5 +1,5 @@
 DGPATN ;ALB/MRL - NEW PATIENT ENTRY ; 11/4/09 8:57pm
- ;;5.3;Registration;**41,278,671,820**;Aug 13, 1993;Build 5
+ ;;5.3;Registration;**41,278,671,820,1152**;Aug 13, 1993;Build 1
  ;Name Changed/Patient Deleted Bulletin
  I $S('$D(DFN):1,'$D(X):1,1:0) Q
  I $D(DGNEWVAL),(DGNEWVAL=X) Q  ; edit and edited to same value
@@ -10,7 +10,13 @@ DGPATN ;ALB/MRL - NEW PATIENT ENTRY ; 11/4/09 8:57pm
  . N DA,DIK
  . S DA=DFN,DIK="^AUPNPAT(" D ^DIK
  ;
- S DGTEXT(1,0)="NAME:  "_DGNAME,DGTEXT(2,0)="SSN :  "_$P(SSN,"^",2),DGTEXT(3,0)="DOB :  "_$P(DOB,"^",2),DGTEXT(4,0)="" I DGB=3 S DGTEXT(5,0)="Previous name was '"_DGDATA_"'."
+ S DGTEXT(1,0)="NAME:  "_DGNAME,DGTEXT(2,0)="SSN :  "_$P(SSN,"^",2),DGTEXT(3,0)="DOB :  "_$P(DOB,"^",2),DGTEXT(4,0)="",DGTEXT(5,0)=""
+ I DGB=3 S DGTEXT(5,0)="Previous name was '"_DGDATA_"'."
+ S DGTEXT(6,0)=""
+ ;**1152 VAMPI-32285 changed by if coming from processing HL7 message
+ I $G(HL("ETN"))'="" S WHO="HL7 message "_$G(HL("MTN"))_"-"_$G(HL("ETN")) I $G(HL("SAN"))["MPIF" S WHO=WHO_" From VA MPI Primary View"
+ I $G(HL("ETN"))=""&($G(DUZ)'="") S WHO=$$GET1^DIQ(200,DUZ_",",.01)_" (DUZ= "_DUZ_")"
+ S DGTEXT(7,0)="Name Changed By: "_WHO
  G T
  ;
 S ;SSN Changed/New Patient Added Bulletin
@@ -18,6 +24,11 @@ S ;SSN Changed/New Patient Added Bulletin
  S DGDATA=X D ^DGPATV S DGB=$S(SSN=X:2,SSN="UNSPECIFIED":2,DGDATA'=$P(SSN,"^",1):4,1:0) I 'DGB G Q
  S XMSUB=$S(DGB=2:"NEW PATIENT ADDED TO SYSTEM",1:"SSN CHANGED"),DGTEXT(1,0)="NAME:  "_DGNAME,DGTEXT(2,0)="SSN :  "_$E(DGDATA,1,3)_"-"_$E(DGDATA,4,5)_"-"_$E(DGDATA,6,10),DGTEXT(3,0)="DOB :  "_$P(DOB,"^",2)
  I DGB=4 S DGTEXT(4,0)="",DGTEXT(5,0)="Previous SSN was '"_$P(SSN,"^",2)_"'."
+ S DGTEXT(6,0)=""
+ ;**1152 VAMPI-32285 changed by if coming from processing HL7 message
+ I $G(HL("ETN"))'="" S WHO="HL7 message "_$G(HL("MTN"))_"-"_$G(HL("ETN")) I $G(HL("SAN"))["MPIF" S WHO=WHO_" From VA MPI Primary View"
+ I $G(HL("ETN"))=""&($G(DUZ)'="") S WHO=$$GET1^DIQ(200,DUZ_",",.01)_" (DUZ= "_DUZ_")"
+ S DGTEXT(7,0)="SSN Changed By: "_WHO
  I DGB=2 D H^DGUTL D       ;New patient Who & When
  .N DGFDART
  .S DGFDART(1,2,DFN_",",.097)=DGDATE

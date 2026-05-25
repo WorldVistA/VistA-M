@@ -1,6 +1,6 @@
 ORCHECK ;SLC/MKB-Order checking calls ;Jun 19, 2020@09:03:02
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,94,141,215,243,293,280,346,357,352,345,311,269,382,545,405**;Dec 17, 1997;Build 211
- ;;Per VA Directive 6402, this routine should not be modified.
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,94,141,215,243,293,280,346,357,352,345,311,269,382,545,405,626**;Dec 17, 1997;Build 19
+ ;
 DISPLAY ; -- DISPLAY event [called from ORCDLG,ORCACT4,ORCMED]
  ;    Expects ORVP, ORNMSP, ORTAB, [ORWARD]
  Q:$$GET^XPAR("DIV^SYS^PKG","ORK SYSTEM ENABLE/DISABLE")'="E"
@@ -213,7 +213,9 @@ FDBDOWN(ORX) ; -- Checks to see if the FDB was down and if so set appropriate OC
  ..N ORCNT S ORCNT=1
  ..I ORENH S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Drug Interactions"
  ..I ORENH S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Duplicate Therapy"
- ..I '$G(ORX),ORDSG S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Dosing"
+ ..;I '$G(ORX),ORDSG S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Dosing"
+ ..I '$G(ORX) S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Dosing"  ;;; *626
+ ..I ORENH S ORCNT=ORCNT+1,^TMP($J,"ORK XTRA TXT",ORKGLOB,ORMAIN,ORCNT)="      Pharmacogenomics"
  Q
  ;
 RETURN ; -- Return checks in ORCHECK(ORIFN,CDL,#)
@@ -236,10 +238,10 @@ OCAPI(IFN,ORPLACE) ;IA #4859
  ;               ^TMP($J,ORPLACE,D0,"OC LEVEL")="order check level"
  ;                                                 ,"OC NUMBER")="file 100.8 ien"
  ;                                                 ,"OC TEXT")="order check text"
- ;                                                 ,"OR REASON")="over ride reason text"
+ ;                                                 ,"OR REASON")="override reason text"
  ;                                                 ,"OC COMMENT")="remote allergy comment"
- ;                                                 ,"OR PROVIDER")="provider DUZ who entered over ride reason"
- ;                                                 ,"OR DT")="date/time over ride reason was entered"
+ ;                                                 ,"OR PROVIDER")="provider DUZ who entered override reason"
+ ;                                                 ,"OR DT")="date/time override reason was entered"
  ; NOTE on OC LEVEL: 1 is HIGH, 2 is MODERATE, 3 is LOW
  N RET,ORN,CNT,I,ORFLAG
  S ORN=+IFN,CNT=0,ORFLAG=0
@@ -259,12 +261,12 @@ OCAPI(IFN,ORPLACE) ;IA #4859
  .S ^TMP($J,ORPLACE,CNT,"OC INSTANCE")=I
  Q CNT
  ;
-ISMONO(ORY) ;returns 1 if there is monograph data for the orderchecks being presented to the user
+ISMONO(ORY) ;returns 1 if there is monograph data for the order checks being presented to the user
  S ORY=0
  Q:'$$PATCH^XPDUTL("OR*3.0*272")
  I $D(^TMP($J,"ORMONOGRAPH")) S ORY=1
  Q
-GETMONOL(ORY) ;returns a list of monographs available for the orderchecks being presented to the user
+GETMONOL(ORY) ;returns a list of monographs available for the order checks being presented to the user
  Q:'$D(^TMP($J,"ORMONOGRAPH"))
  N I S I=0
  F  S I=$O(^TMP($J,"ORMONOGRAPH",I)) Q:'I  D

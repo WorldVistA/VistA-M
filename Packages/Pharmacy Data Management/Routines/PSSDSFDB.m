@@ -1,6 +1,5 @@
-PSSDSFDB ;WOIFO/Steve Gordon - Allows for a user to disable FDB interface during an FDB update ;03/17/09
- ;;1.0;PHARMACY DATA MANAGEMENT;**136**;9/30/97;Build 89
- ;
+PSSDSFDB ;WOIFO/SG - Allows for a user to disable FDB interface during an FDB update ;03/17/09
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,262**;9/30/97;Build 66
  ;
 EN ;driver
  ; Called from PSS ENABLE/DISABLE DB LINK option
@@ -67,9 +66,9 @@ QSTION(OLDVAL) ;
  ..I FINAL W !!,"Vendor database connection enabled." Q
  ..I 'FINAL D
  ...W !!,"   WARNING! The connection to the Vendor Database remains DISABLED"
- ...I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI() W !!,"NO Drug-Drug Interactions, Duplicate Therapy or Dosing Order Checks will be"
- ...E  W !!,"NO Drug-Drug Interactions or Duplicate Therapy Checks will be"
- ...W !,"performed while the connection is disabled!!!"
+ ...I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI() W !!,"NO Drug-Drug Interactions, Duplicate Therapy, Dosing or Pharmacogenomics Order Checks will be"
+ ...E  W !!,"NO Drug-Drug Interactions, Duplicate Therapy or Pharmacogenomics Order Checks will be"
+ ...W "performed while the connection is disabled!!!"
  Q FINAL
  ;
 ASK(NEWSTAT) ;
@@ -79,9 +78,9 @@ ASK(NEWSTAT) ;
  K DIR,Y
  S DIR(0)="Y^A"
  S DIR("B")="NO"
- I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI() S DIR("A",1)="NO Drug-Drug Interactions, Duplicate Therapy or Dosing Order Checks"
- E  S DIR("A",1)="NO Drug-Drug Interactions or Duplicate Therapy Order Checks"
- S DIR("A",2)="will be performed while the connection is disabled!!!"
+ W !
+ I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI() S DIR("A",1)="NO Drug-Drug Interactions, Duplicate Therapy, Dosing or Pharmacogenomics",DIR("A",2)="Order Checks will be performed while the connection is disabled!!!"
+ E  S DIR("A",1)="NO Drug-Drug Interactions, Duplicate Therapy or Pharmacogenomics Order Checks",DIR("A",2)="will be performed while the connection is disabled!!!"
  S DIR("A",3)=" "
  S DIR("A")="Are you sure you want to "_NEWSTAT_" the connection to the Vendor Database"
  D ^DIR
@@ -102,9 +101,8 @@ ENMSG(DIR) ;
  ;output: sets up DIR message array
  S DIR("A",1)="    WARNING! The connection to the Vendor database is currently DISABLED."
  S DIR("A",2)=" "
- I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI() S DIR("A",3)="NO Drug-Drug Interactions, Duplicate Therapy or Dosing Order Checks"
- E  S DIR("A",3)="NO Drug-Drug Interactions or Duplicate Therapy Order Checks"
- S DIR("A",4)="will be performed while the connection is disabled!!!"
+ I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI() S DIR("A",3)="NO Drug-Drug Interactions, Duplicate Therapy, Dosing or Pharmacogenomics",DIR("A",4)="Order Checks will be performed while the connection is disabled!!!"
+ E  S DIR("A",3)="NO Drug-Drug Interactions, Duplicate Therapy or Pharmacogenomics Order Checks",DIR("A",4)="will be performed while the connection is disabled!!!"
  S DIR("A",5)=" "
  S DIR("A")="Do you wish to ENABLE the Vendor database connection"
  ;
@@ -157,8 +155,8 @@ UNLOCK ;
  ;
 HELP(DIR) ;
  ;Returns array of help for DIR call
- I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI()  S DIR("?")="Enter either 'Y' or 'N'.  No Drug-Drug Interactions, Duplicate Therapy or Dosing Order Checks will be performed while the connection is disabled!!!"
- E  S DIR("?")="Enter either 'Y' or 'N'.  No Drug-Drug Interactions or Duplicate Therapy Order Checks will be performed while the connection is disabled!!!"
+ I $T(DS^PSSDSAPI)]"",$$DS^PSSDSAPI()  S DIR("?")="Enter either 'Y' or 'N'.  No Drug-Drug Interactions, Duplicate Therapy, Dosing or Pharmacogenomics Order Checks will be performed while the connection is disabled!!!"
+ E  S DIR("?")="Enter either 'Y' or 'N'.  No Drug-Drug Interactions, Duplicate Therapy or Pharmacogenomics Order Checks will be performed while the connection is disabled!!!"
  Q
 CHKSTAT() ;
  ; Called from IN^PSSHRQ2 routine
@@ -171,5 +169,5 @@ CHKSTAT() ;
  ;
 PRSRTN ;
  ;calls std routine to ask user to hit return 
- K DIR S DIR(0)="E" S DIR("A")="Press Return to Continue" D ^DIR
+ K DIR W ! S DIR(0)="E" S DIR("A")="Press Return to Continue" D ^DIR
  Q

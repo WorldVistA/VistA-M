@@ -1,5 +1,5 @@
-LRRPL ;DALOI/JMC - Interim Report Performing Lab Utility ;03/12/13  09:46
- ;;5.2;LAB SERVICE;**350,427**;Sep 27, 1994;Build 33
+LRRPL ;DALOI/JMC - Interim Report Performing Lab Utility; Feb 07, 2025@14:00
+ ;;5.2;LAB SERVICE;**350,427,583**;Sep 27, 1994;Build 1
  ;
  ;
 RETLST(LRPL,LRDFN,LRSS,LRIDT,LROPT) ; Retreive list of Report sections and related performing labs.
@@ -13,6 +13,8 @@ RETLST(LRPL,LRDFN,LRSS,LRIDT,LROPT) ; Retreive list of Report sections and relat
  ; 
  N LRPLIEN,LRQUIT,LRREC,LRX
  S (LRPL,LRQUIT)=0
+ ;LR*5.2*583: LRIDT (inverted date/time) is zero for Autopsy.
+ I LRSS="AU" S LRIDT=0
  S (LRX,LRREC)=LRDFN_","_LRSS_","_LRIDT_","
  F  S LRX=$O(^LR(LRDFN,"PL","B",LRX)) Q:LRX=""  D  Q:LRQUIT
  . I $P(LRX,",",1,3)'=$P(LRREC,",",1,3) S LRQUIT=1 Q

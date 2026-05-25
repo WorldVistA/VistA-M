@@ -1,5 +1,5 @@
-SRONRPT2 ;BIR/ADM - NURSE INTRAOP REPORT ; [ 09/08/03  2:47 PM ]
- ;;3.0;Surgery;**100,182**;24 Jun 93;Build 49
+SRONRPT2 ;BIR/ADM - NURSE INTRAOP REPORT ; September 08, 2003@14:47
+ ;;3.0;Surgery;**100,182,218**;24 Jun 93;Build 2
  ;
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure.  Local modifications to this routine
@@ -20,6 +20,7 @@ SRONRPT2 ;BIR/ADM - NURSE INTRAOP REPORT ; [ 09/08/03  2:47 PM ]
  S Y=SHARP,C=$P(^DD(130,45,0),"^",2) D:Y'="" Y^DIQ S SHARP=$S(Y'="":Y,VERIFY'="N/A"!(VERIFY'="NA"):"* NOT ENTERED *",1:"N/A")
  S Y=INSTR,C=$P(^DD(130,46,0),"^",2) D:Y'="" Y^DIQ S INSTR=$S(Y'="":Y,VERIFY'="N/A"!(VERIFY'="NA"):"* NOT ENTERED *",1:"N/A")
  S Y=$P(SR(25),"^",4),C=$P(^DD(130,47,0),"^",2) D:Y'="" Y^DIQ S COUNTER=$S(Y'="":Y,VERIFY'="N/A":"* NOT ENTERED *",1:"N/A")
+PIR I 'SRALL!(SRPIR["NOT ENTERED") G SPONGE ;SR*3.0*218
  D LINE(1) S @SRG@(SRI)="Possible Item Retention:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(28)_SRPIR
 SPONGE I 'SRALL,(SPONGE="NA"!(SPONGE="N/A")) G SHARP
  D LINE(1) S @SRG@(SRI)="Sponge Final Count Correct:",@SRG@(SRI)=@SRG@(SRI)_$$SPACE(28)_SPONGE

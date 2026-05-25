@@ -1,5 +1,5 @@
 ONCPAT ;HINES OIFO/GWB - PATIENT IDENTIFICATION ;10/07/11
- ;;2.2;ONCOLOGY;**1,13,17,19,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,13,17,19,20,22**;Jul 31, 2013;Build 6
  ;
  W !
  K DR
@@ -19,7 +19,8 @@ ONCPAT ;HINES OIFO/GWB - PATIENT IDENTIFICATION ;10/07/11
  S DR(1,160,11)="W !,""    RACE 5.....................: Unknown"""
  S DR(1,160,12)="S Y=9"
  S DR(1,160,13)="@81"
- S DR(1,160,14)="8.1    RACE 2.....................//No additional races (Race 2 - Race 5)"
+ ;S DR(1,160,14)="8.1    RACE 2.....................//No additional races (Race 2 - Race 5)"
+ S DR(1,160,14)="8.1    RACE 2.....................//No additional races"
  S DR(1,160,15)="S Y=$S(X=88:""@8288"",X=99:""@8299"",X="""":""@8200"",1:""@82"")"
  S DR(1,160,16)="@8288"
  S DR(1,160,17)="8.2////88"
@@ -46,7 +47,7 @@ ONCPAT ;HINES OIFO/GWB - PATIENT IDENTIFICATION ;10/07/11
  S DR(1,160,38)="W !,""    RACE 5.....................:"""
  S DR(1,160,39)="S Y=9"
  S DR(1,160,40)="@82"
- S DR(1,160,41)="8.2    RACE 3.....................//No additional races (Race 2 - Race 5)"
+ S DR(1,160,41)="8.2    RACE 3.....................//No additional races"
  S DR(1,160,42)="S Y=$S(X=88:""@8388"",X=99:""@8399"",X="""":""@8300"",1:""@83"")"
  S DR(1,160,43)="@8388"
  S DR(1,160,44)="8.3////88"
@@ -67,7 +68,7 @@ ONCPAT ;HINES OIFO/GWB - PATIENT IDENTIFICATION ;10/07/11
  S DR(1,160,59)="W !,""    RACE 5.....................:"""
  S DR(1,160,60)="S Y=9"
  S DR(1,160,61)="@83"
- S DR(1,160,62)="8.3    RACE 4.....................//No additional races (Race 2 - Race 5)"
+ S DR(1,160,62)="8.3    RACE 4.....................//No additional races"
  S DR(1,160,63)="S Y=$S(X=88:""@8488"",X=99:""@8499"",X="""":""@8400"",1:""@84"")"
  S DR(1,160,64)="@8488"
  S DR(1,160,65)="8.4////88"
@@ -82,7 +83,7 @@ ONCPAT ;HINES OIFO/GWB - PATIENT IDENTIFICATION ;10/07/11
  S DR(1,160,74)="W !,""    RACE 5.....................:"""
  S DR(1,160,75)="S Y=9"
  S DR(1,160,76)="@84"
- S DR(1,160,77)="8.4    RACE 5.....................//No additional races (Race 2 - Race 5)"
+ S DR(1,160,77)="8.4    RACE 5.....................//No additional races"
  S DR(1,160,78)="9    SPANISH ORIGIN.............//"
  S DR(1,160,79)="10    SEX........................"
  S DR(1,160,80)="48    EXPOSURE AGENT ORANGE......//^S X=AOE"

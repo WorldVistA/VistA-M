@@ -1,5 +1,5 @@
 DGRPD ;ALB/MRL,MLR,JAN,LBD,EG,BRM,JRC,BAJ,JAM,HM,BDB,ARF,RN,JAM - PATIENT INQUIRY (NEW) ; 04/01/2024@12:01
- ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,941,987,1006,1056,1061,1059,1071,1064,1086,1095,1104**;Aug 13, 1993;Build 59
+ ;;5.3;Registration;**109,124,121,57,161,149,286,358,436,445,489,498,506,513,518,550,545,568,585,677,703,688,887,907,925,936,940,941,987,1006,1056,1061,1059,1071,1064,1086,1095,1104,1117**;Aug 13, 1993;Build 32
  ; *286* Newing variables X,Y in OKLINE subroutine
  ; *358* If a patient is on a domiciliary ward, don't display MEANS
  ; TEST required/Medication Copayment Exemption messages
@@ -157,7 +157,8 @@ EN ;call to display patient inquiry - input DFN
  . I $G(DISPLAY)="" W !! Q
  . I $P(DISPLAY,U)="COMPACT Act Start Date" W !,?4,"Episode Start Date: ",$P(DISPLAY,U,2)
  . I $P(DISPLAY,U)="Extension Start Date" W !,?7,"Ext. Start Date: ",$P(DISPLAY,U,2)
- . W ?38,"Residential Remaining Days: ",$P(DISPLAY,U,4),!
+ . ;patch DG*5.3*1117 - remove "Residential" from prompt
+ . W ?38,"Remaining Days: ",$P(DISPLAY,U,4),!
  ;
  ;display primary eligibility
  S X1=DGRP(.36),X=$P(DGRP(.361),"^",1) W !,"Primary Eligibility: ",$S($D(^DIC(8,+X1,0)):$P(^(0),"^",1)_" ("_$S(X="V":"VERIFIED",X="P":"PENDING VERIFICATION",X="R":"PENDING REVERIFICATION",1:"NOT VERIFIED")_")",1:DGRPU)

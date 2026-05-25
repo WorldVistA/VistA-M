@@ -1,5 +1,5 @@
 IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ; 26-JUN-2002
- ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593,601,595,621,631,668,687,702,732,743,771**;21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**300,345,416,444,438,497,506,549,593,601,595,621,631,668,687,702,732,743,771,806**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -26,6 +26,9 @@ IBCNEHL1 ;DAOU/ALA - HL7 Process Incoming RPI Messages ; 26-JUN-2002
  ;    MSGID    - Original Message Control ID
  ;    RIEN     - Response Record IEN
  ;    SEG      - HL7 Segment Name
+ ;
+ ; IB*806/DJW & CKB - Moved tag AUTOUPD to ^IBCNEHL1A ; therefore this dropped comments
+ ;                 related to the following patches: IB*497,549,595,601,668,702,732,771,702.
  ;
  ; IB*621/TAZ - Added EVENTYP to control type of event processing.
  ;
@@ -150,11 +153,17 @@ EN(EVENTYP) ;Entry Point
  . I IIVSTAT="V" S FDA(365.185,IENS,1.04)=3   ;Ambiguous
  . D FILE^DIE("","FDA"),CLEAN^DILF
  ;
- ;IB*702/DTG - set variable for the auto eiv user (proxy in file #200)
- N IBEIVUSR
- S IBEIVUSR="AUTOUPDATE,IBEIV"
  ;
- S AUTO=$$AUTOUPD(RIEN)  ; 1=AUTO-UPDATE response  0=Save response to the buffer
+ ;  *** Can we auto update ?  (It checks for Auto load for Medicare as well
+ ;
+ ;IB*702/DTG - Add variable IBEIVUSR for the auto eiv user (proxy in file #200) and added P3
+ ;IB*806/DJW - Add variable LOAD (logic for Medicare policies loading in file #2 automatically)
+ N IBEIVUSR,LOAD,P3
+ S IBEIVUSR="AUTOUPDATE,IBEIV",LOAD=0
+ ;  $$AUTOUPD can set LOAD when policy is Medicare (WNR)
+ S AUTO=$$AUTOUPD^IBCNEHL1A(RIEN)  ; 1=AUTO-UPDATE response  0=Save response to the buffer
+ ;
+ ;
  ;
  ;IB*771/DW ***Temporary fix required by VA eInsurance eBusiness team 'ERROR'
  ;             is set when there is a problem filing part of the eIV payer
@@ -163,8 +172,7 @@ EN(EVENTYP) ;Entry Point
  ;             eIV response from Auto-Updating.
  ;   
  ;
- ;I $G(ACK)'="AE",$G(ERACT)="",$G(ERTXT)="",'$D(ERROR),+AUTO D  Q
- I $G(ACK)'="AE",$G(ERACT)="",$G(ERTXT)="",+AUTO D  Q
+ I $G(ACK)'="AE",$G(ERACT)="",$G(ERTXT)="",+AUTO D  G ENX              ; Updates patient record & files #365, #365.1 etc.
  . ;IB*743/TAZ - Updated code to lock the Buffer entries.
  . N AUBUFF,AUOK,AULOCK
  . S (AUOK,AULOCK)=0
@@ -179,17 +187,19 @@ EN(EVENTYP) ;Entry Point
  .. ;Re-Check Status.  Quit if not ENTERED.
  .. S BUFFSTAT=$$GET1^DIQ(355.33,AUBUFF,.04,"I") I BUFFSTAT'="E" Q
  .. S AUOK=1 ; regardless if locked we are going to update buffer
- . D:$P(AUTO,U,3)'="" AUTOFIL($P(AUTO,U,2),$P(AUTO,U,3),$P(AUTO,U,6))
+ . D:$P(AUTO,U,3)'="" AUTOFIL($P(AUTO,U,2),$P(AUTO,U,3),$P(AUTO,U,6))  ;AUTO-UPDATE
  . D:$P(AUTO,U,4)'="" AUTOFIL($P(AUTO,U,2),$P(AUTO,U,4),$P(AUTO,U,6))
  . ;Unlock global if locked.
  . I AULOCK,$$BUFLOCK^IBCNEHL6(AUBUFF,0)
- D FIL
  ;
+ ;                    ; IB*806/DJW If already loaded as a new policy don't do FIL
+ I '$G(LOAD) D FIL    ; file response to buffer & wrap up files #365 & #365.1
 ENX ;
  Q
  ;
  ;=================================================================
-AUTOFIL(DFN,IEN312,ISSUB) ;Finish processing the response message - file directly into patient insurance
+AUTOFIL(DFN,IEN312,ISSUB) ;Finish processing the response message 
+ ;                         file directly into patient insurance
  ;
  ;IB*702/DTG - moved AUTOFIL to IBCNEHL5 due to routine file size
  ;IB*732/CKB&TAZ - Loop through each insurance type IEN and file
@@ -201,6 +211,7 @@ AUTOFIL(DFN,IEN312,ISSUB) ;Finish processing the response message - file directl
 AUTOFILX ;
  Q
  ;
+ ; ---------------------------------------
 GRPFILE(DFN,IEN312,RIEN,AFLG) ;IB*497 file data at node 12 & at subfiles 2.312, 9, 10 & 11
  ;    DFN - file 2 ien
  ; IEN312 - file 2.312 ien
@@ -240,131 +251,14 @@ GRPFILE(DFN,IEN312,RIEN,AFLG) ;IB*497 file data at node 12 & at subfiles 2.312, 
  S Z2="" F  S Z2=$O(DIAG(365.01,Z2)) Q:Z2=""  M DIAG3121(2.31211,IENS312)=DIAG(365.01,Z2) D UPDATE^DIE("E","DIAG3121",,"ERROR") K DIAG3121 I $D(ERROR) D:AFLG WARN^IBCNEHL3 K ERROR
 GRPFILEX ;
  Q $G(ERFLG)
- ;
+ ; 
+ ; ---------------------------------------
 FIL ;Finish processing the response message - file into insurance buffer
  ;IB*601/DM - FIL moved to IBCNEHL6 due to routine size
  D FIL^IBCNEHL6
  Q
  ;
-AUTOUPD(RIEN) ;
- ;Returns "1^file 2 ien^file 2.312 ien^2nd file 2.312 ien^Medicare flag^subscriber flag", if entry
- ; in file 365 is eligible for auto-update, returns 0 otherwise.
- ;
- ;Medicare flag: 1 for Medicare, 0 otherwise
- ;Subscriber flag: 1 if patient is the subscriber, 0 otherwise
- ;
- ;For non-Medicare response: 1st file 2.312 ien is set, 2nd file 2.312 ien is empty, pieces 5-7 are empty
- ;For Medicare response: 1st file 2.312 ien contains ien for Medicare Part A, 2nd file 2.312 ien contains ien for Medicare Part B,
- ;                       either one may be empty, but at least one of them is set if entry is eligible.
- ;
- ;RIEN - ien in file 365
- ;
- ;IB*732/CKB&TAZ - New ISBLUE
- N APPIEN,GDATA,GIEN,GNAME,GNUM,GNUM1,GOK,IEN2,IEN312,IEN36,IDATA0,IDATA3,ISSUB,MWNRA,MWNRB,MWNRIEN,MWNRTYP
- N ONEPOL,PIEN,RDATA0,RDATA1,RES,TQIEN,IDATA7,RDATA13,RDATA14,ISBLUE
- N IBGETTQ,IBGETWE,IBGETSTC,IBGETDEF,IBGETNOK
- S RES=0
- I +$G(RIEN)'>0 Q RES          ;Invalid ien for file 365
- ;IB*595/DM if entry is missing from #200, file in buffer
- I '$$FIND1^DIC(200,,"M",IBEIVUSR) Q RES  ; IB*702/DTG - use variable for name
- ;
- ;IB*549 - Moved up the next 5 lines.
- S RDATA0=$G(^IBCN(365,RIEN,0)),RDATA1=$G(^IBCN(365,RIEN,1))
- ;
- ;IB*497 - longer fields for GROUP NAME, GROUP NUMBER, NAME OF INSURED, & SUBSCRIBER ID
- S RDATA13=$G(^IBCN(365,RIEN,13)),RDATA14=$G(^IBCN(365,RIEN,14))
- S PIEN=$P(RDATA0,U,3)
- S ISBLUE=$$GET1^DIQ(365.12,PIEN_",",.09,"I") ;IB*732/CKB&TAZ
- ;
- ;IB*549 - Moved up the next 2 lines.
- S MWNRIEN=$P($G(^IBE(350.9,1,51)),U,25),MWNRTYP=0,(MWNRA,MWNRB)=""
- I PIEN=MWNRIEN S MWNRTYP=$$ISMCR^IBCNEHLU(RIEN)
- ;
- ;IB*549 - Added ',MWNRTYP' below to only quit for non-medicare policies
- ;Only auto-update 'active policy' responses
- I $G(IIVSTAT)'=1,'MWNRTYP Q RES
- ;IB*668/TAZ - Changed app to EIV from IIV
- I +PIEN>0 S APPIEN=$$PYRAPP^IBCNEUT5("EIV",PIEN)
- I +$G(APPIEN)'>0 Q RES  ;couldn't find eIV application entry
- ;
- ;IB*601/HN Don't allow any entry with HMS SOI to auto-update
- ;IB*595/HN Don't allow any entry with Contract Services SOI to auto-update
- I $P(RDATA0,U,5)'="" I "^HMS^CONTRACT SERVICES^"[("^"_$$GET1^DIQ(365.1,$P(RDATA0,U,5)_",","SOURCE OF INFORMATION","E")_"^") Q RES  ; HAN IB*621
- ;
- ;IB*732/DTG start, allow auto update for some "Request Electronic Insurance Inquiry" requests
- ;
- ;Check dictionary 365.1 MANUAL REQUEST DATE/TIME Flag, Quit if Set.
- ;I $P(RDATA0,U,5)'="",$P($G(^IBCN(365.1,$P(RDATA0,U,5),3)),U,1)'="" Q RES
- ;
- ; get values
- S (IBGETTQ,IBGETDEF,IBGETWE,IBGETSTC)=""
- ; Get 365.1 transmission queue number
- S IBGETTQ=$$GET1^DIQ(365,RIEN_",",.05,"I") I IBGETTQ="" Q RES
- ; Get 365.1 which extract
- S IBGETNOK=0
- S IBGETWE=$$GET1^DIQ(365.1,IBGETTQ_",",.1,"I") I IBGETWE=5 D  I IBGETNOK Q RES
- . ; Get 350.9 default service type code
- . S IBGETDEF=$$GET1^DIQ(350.9,1_",",60.01,"I") I IBGETDEF="" S IBGETNOK=1 Q
- . ; Get 365 requested service type code
- . S IBGETSTC=$$GET1^DIQ(365,RIEN_",",.15,"I") I IBGETSTC'=IBGETDEF S IBGETNOK=1 Q
- ;
- ;IB*732/DTG end, allow auto update for some "Request Electronic Insurance Inquiry" requests
- ;
- ;IB*668/TAZ - Changed to new field location
- I '$$GET1^DIQ(365.121,APPIEN_","_PIEN_",",4.01,"I") Q RES  ; auto-update is OFF
- S IEN2=$P(RDATA0,U,2) I +IEN2'>0 Q RES  ; couldn't find patient
- S ONEPOL=$$ONEPOL^IBCNEHLU(PIEN,IEN2)
- ;try to find a matching pat. insurance
- ;IB*732/CKB&TAZ - Modify next two lines to check for ISBLUE
- ;IB*771/CKB - remove the check for ISBLUE and RES
- ;S IEN36="" F  S IEN36=$O(^DIC(36,"AC",PIEN,IEN36)) Q:IEN36=""  D  I 'ISBLUE&(RES>0) Q
- ;.S IEN312="" F  S IEN312=$O(^DPT(IEN2,.312,"B",IEN36,IEN312)) Q:IEN312=""  D  I ('ISBLUE)&(RES>0&('+MWNRTYP)) Q
- S IEN36="" F  S IEN36=$O(^DIC(36,"AC",PIEN,IEN36)) Q:IEN36=""  D
- .S IEN312="" F  S IEN312=$O(^DPT(IEN2,.312,"B",IEN36,IEN312)) Q:IEN312=""  D
- ..S IDATA0=$G(^DPT(IEN2,.312,IEN312,0)),IDATA3=$G(^DPT(IEN2,.312,IEN312,3))
- ..S IDATA7=$G(^DPT(IEN2,.312,IEN312,7))   ;IB*497 (vd)
- .. ; IB*771/DTG brought expired check into routine from IBCNEDE2
- ..;I $$EXPIRED^IBCNEDE2($P(IDATA0,U,4)) Q  ;Insurance policy has expired
- ..I $$EXPIRED($P(IDATA0,U,4)) Q  ;Insurance policy has expired
- ..S ISSUB=$$PATISSUB^IBCNEHLU(IDATA0)
- ..;Patient is the subscriber
- ..I ISSUB,'$$CHK1^IBCNEHL3 Q
- ..;Patient is the dependent
- ..I 'ISSUB,'$$CHK2^IBCNEHL3(MWNRTYP) Q
- ..;check group #
- ..S GNUM=$P(RDATA14,U,2),GIEN=+$P(IDATA0,U,18),GOK=1  ;IB*497 - group # needs to be retrieved from new field
- ..;check non-Medicare group #
- ..I '+MWNRTYP D  Q:'GOK  ;Group # doesn't match
- ...I 'ONEPOL D
- ... .I GIEN'>0 S GOK=0 Q
- ... .S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2)   ;IB*497 (vd)
- ... .I GNUM=""!(GNUM1="")!(GNUM'=GNUM1) S GOK=0
- ...I ONEPOL D
- ... .I GNUM'="",GIEN'="" S GNUM1=$P($G(^IBA(355.3,GIEN,2)),U,2) I GNUM1'="",GNUM'=GNUM1 S GOK=0  ;IB*497 (vd)
- ..;check for Medicare part A/B
- ..I +MWNRTYP D  Q:'GOK  ;Group # doesn't match
- ...I GIEN'>0 S GOK=0 Q
- ...S GDATA=$G(^IBA(355.3,GIEN,0))
- ...I $P(GDATA,U,14)="A" D
- ... .;IB*549 Change $P(MWNRTYP,U,2)="MA"!($P(MWNRTYP,U,2)="B")
- ... .;           To     $P(MWNRTYP,U,5)="MA"!($P(MWNRTYP,U,5)="B")
- ... .I $P(MWNRTYP,U,5)="MA"!($P(MWNRTYP,U,5)="B") S MWNRA=IEN312 Q
- ... .S GOK=0
- ...I $P(GDATA,U,14)="B" D
- ... .;IB*549 Change $P(MWNRTYP,U,2)="MB"!($P(MWNRTYP,U,2)="B")
- ... .;           To     $P(MWNRTYP,U,5)="MB"!($P(MWNRTYP,U,5)="B")
- ... .I $P(MWNRTYP,U,5)="MB"!($P(MWNRTYP,U,5)="B") S MWNRB=IEN312 Q
- ... .S GOK=0
- ..;IB*732/CKB&TAZ - Restructured building RES string
- ..I +MWNRTYP S RES=1_U_IEN2_U_MWNRA_U_MWNRB_U_1_U_ISSUB Q   ;Process MWNR
- ..;IB*771/CKB - Process Blues and non-MWNR
- ..I 'MWNRTYP D 
- ... S P3=$P(RES,U,3),P3=P3_$S($L(P3):"~",1:"")_IEN312
- ... S RES=1_U_IEN2_U_P3_U_U_0_U_ISSUB ;Process Blues and non-MWNR 
- ..;I ISBLUE S P3=$P(RES,U,3),P3=P3_$S($L(P3):"~",1:"")_IEN312,RES=1_U_IEN2_U_P3_U_U_0_U_ISSUB Q  ;Process Blues
- ..;S RES=1_U_IEN2_U_IEN312_U_U_0_U_ISSUB  ;Process non-MWNR and Non-Blue
- Q RES
- ;
+ ; ------------------------------
 EBFILE(DFN,IEN312,RIEN,AFLG) ;File eligibility/benefit data from file 365 into file 2.312
  ;Input:   DFN    - Internal Patient IEN
  ;         IEN312 - Insurance multiple #
@@ -375,11 +269,13 @@ EBFILE(DFN,IEN312,RIEN,AFLG) ;File eligibility/benefit data from file 365 into f
  ;         for manual processing of ins. buffer entry.
  ;
  Q $$EBFILE^IBCNEHL5(DFN,IEN312,RIEN,AFLG)  ;IB*549 moved because of routine size
- ;
- ; IB*771/DTG brought expired check into routine from IBCNEDE2
+ ; 
+ ; -------------------------
 EXPIRED(EXPDT) ; check if insurance policy has already expired
  ; EXPDT - expiration date (2.312/3)
  ; returns 1 if expiration date is in the past, 0 otherwise
+ ;
+ ; IB*771/DTG brought this tag for expired check into routine from IBCNEDE2
  N X1,X2
  S X1=+$G(DT),X2=+$G(EXPDT)
  I X1,X2 Q $S($$FMDIFF^XLFDT(DT,EXPDT,1)>0:1,1:0)

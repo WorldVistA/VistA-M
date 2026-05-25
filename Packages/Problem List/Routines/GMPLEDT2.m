@@ -1,20 +1,22 @@
-GMPLEDT2 ; SLC/MKB/KER -- Problem List edit actions ; 04/15/2002
- ;;2.0;Problem List;**26,35**;Aug 25, 1994;Build 26
+GMPLEDT2 ; SLC/MKB/KER -- Problem List edit actions ;Jul 28, 2025@13:52:56
+ ;;2.0;Problem List;**26,35,58**;Aug 25, 1994;Build 33
  ;
- ; External References
- ;   DBIA 10060  ^VA(200
- ;   DBIA 10003  ^%DT
- ;   DBIA 10006  ^DIC
- ;   DBIA 10026  ^DIR
- ;   DBIA 10103  $$HTFM^XLFDT
- ;   DBIA 10104  $$UP^XLFSTR
- ;                   
+ ; Reference to ^VA(200, in ICR #10060
+ ; Reference to ^%DT in ICR #10003
+ ; Reference to ^DIC in ICR #10006
+ ; Reference to ^DIR in ICR #10026
+ ; Reference to $$HTFM^XLFDT in ICR #10103
+ ; Reference to $$UP^XLFSTR in ICR #10104
+ ;
+ Q
 EDITED() ; Returns 1 if problem has been altered
  N FLD,NOTE,DIFFRENT S DIFFRENT=0
- F FLD=0:0 S FLD=$O(GMPORIG(FLD)) Q:(FLD'>0)!(FLD'<10)  I GMPORIG(FLD)'=GMPFLD(FLD) S DIFFRENT=1 Q
+ F FLD=0:0 S FLD=$O(GMPORIG(FLD)) Q:(FLD'>0)!(FLD'<10)  D  Q:DIFFRENT  ; *58
+ . I FLD'=2,GMPORIG(FLD)'=GMPFLD(FLD) S DIFFRENT=1 ; *58
+ . I FLD=2,GMPORIG(FLD,0)'=GMPFLD(FLD,0) S DIFFRENT=1 ; *58
  G:DIFFRENT EDQ
  I $D(GMPFLD(10,"NEW"))>9 S DIFFRENT=1 G EDQ
- F NOTE=0:0 S NOTE=$O(GMPORIG(10,NOTE)) Q:NOTE'>0  I $P(GMPORIG(10,NOTE),U,3)'=$P(GMPFLD(10,NOTE),U,3) S DIFFRENT=1 Q
+ F NOTE=0:0 S NOTE=$O(GMPORIG(10,NOTE)) Q:NOTE'>0  I $P($G(GMPORIG(10,NOTE)),U,3)'=$P($G(GMPFLD(10,NOTE)),U,3) S DIFFRENT=1 Q
 EDQ Q DIFFRENT
  ;
 SUREDEL(NUM) ; -- sure you want to delete problems?

@@ -1,9 +1,8 @@
-KMPUTLW2 ;SP/JML - Manage REST interfaces for VSM Monitors ;11/1/2023
- ;;4.0;CAPACITY MANAGEMENT;**1,4**;3/1/2018;Build 36
-  ;
-  ; Reference to ^%ZTER(1 supported by ICR #7138
-  ; Reference to ^%ZTER(3.077 supported by ICR #7139
-  ;
+KMPUTLW2 ;SP/JML - Manage REST interfaces for VSM Monitors ;7/1/2025
+ ;;4.0;CAPACITY MANAGEMENT;**1,4,5**;3/1/2018;Build 9
+ ;
+ ;
+ ;
 EVTPKG(KMPOPT) ;
  ; calculate eventname, parenteventname, eventtype, eventsource
  N KMPENAME,KMPESTR,KMPPSTR
@@ -90,14 +89,13 @@ SETCFG(KMPCFG) ; Change VSM configuration via national server change request
  S KMPFVAL("ENCRYPT")=KMPCFG.Encrypt
  S KMPFVAL("HTTP REQUEST MAX LENGTH")=KMPCFG.HttpRequestMaxLength
  S KMPFVAL("MONITOR START DELAY")=KMPCFG.MonitorStartDelay
- S KMPFVAL("NATIONAL DATA EMAIL ADDRESS")=KMPCFG.NationalDataEmailAddress
  S KMPFVAL("NATIONAL FQDN")=KMPCFG.NationalFqdn
  S KMPFVAL("NATIONAL IP ADDRESS")=KMPCFG.NationalIpAddress
  S KMPFVAL("NATIONAL PORT")=KMPCFG.NationalPort
  S KMPFVAL("NATIONAL SUPPORT EMAIL ADDRESS")=KMPCFG.NationalSupportEmailAddress
  S KMPFVAL("ONOFF")=KMPCFG.OnOff
- S KMPFVAL("TASKMAN OPTION")=KMPCFG.TaskmanOption
- S KMPFVAL("VSM CFG EMAIL ADDRESS")=KMPCFG.VsmCfgEmailAddress
+ S KMPFVAL("COVER SHEET EXPIRATION")=KMPCFG.CoverSheetExpiration
+ S KMPFVAL("FUTURE TASK CHECK")=KMPCFG.FutureTaskCheck
  ;
  ; verify Monitor Type is valid
  I $D(^KMPV(8969,"B",KMPMKEY)) S KMPIEN=$O(^KMPV(8969,"B",KMPMKEY,""))
@@ -121,7 +119,6 @@ SETCFG(KMPCFG) ; Change VSM configuration via national server change request
  S KMPFNAM=""
  F  S KMPFNAM=$O(KMPFVAL(KMPFNAM)) Q:KMPFNAM=""  D
  .S $P(KMPFVAL(KMPFNAM),"^",2)=$$GETVAL^KMPVCCFG(KMPMKEY,KMPFNAM,8969,"I")
- ;
  ; ATTEMPT TO MAKE CHANGES
  K KMPEARR
  D FILE^DIE("ET","FDA($J)","KMPEARR")
@@ -152,45 +149,4 @@ SETCFG(KMPCFG) ; Change VSM configuration via national server change request
  .D INFOMSG^KMPUTLW(.KMPTEXT)
  ; if end state is 'ON' then start monitor
  I $$GETVAL^KMPVCCFG(KMPMKEY,"ONOFF",8969)="ON" D STARTMON^KMPVCBG(KMPMKEY,1,1)
- ;
  Q KMPRESP
- ;
-GETERR(KMPRET,KMPREQ) ; Return run history recorded in the VSM CACHE TASK LOG file
- N KMPD,KMPDAT,KMPENUM,KMPINODE,KMPJNODE,KMPUVNB,KMPVAL,KMPVAR,KMPVNUM,KMPVOBJ
- ;
- S KMPDAT=KMPREQ.ErrorDate
- I KMPDAT="" S KMPRET.Status="No Date Provided" Q
- S KMPDAT=$ZDATEH(KMPDAT,3)
- S KMPENUM=KMPREQ.ErrorNumber
- I KMPENUM="" S KMPRET.Status="No Error Number Provided" Q
- S KMPD=##class(%DynamicObject).%New()
- I '$D(^%ZTER(1,KMPDAT,1,KMPENUM)) S KMPRET.Status="Error Not Found" Q
- S KMPD.ErrorNumber=+$G(^%ZTER(1,KMPDAT,1,KMPENUM,0))
- S KMPD.LastGlobalReference=$G(^%ZTER(1,KMPDAT,1,KMPENUM,"GR"))
- S KMPINODE=$G(^%ZTER(1,KMPDAT,1,KMPENUM,"I"))
- S KMPD.CurrentIo=$P(KMPINODE,"^",1)
- S KMPD.ZaValue=$P(KMPINODE,"^",2)
- S KMPD.ZbValue=$P(KMPINODE,"^",3)
- S KMPD.CurrentZio=$P(KMPINODE,"^",4)
- S KMPD.HValue=$G(^%ZTER(1,KMPDAT,1,KMPENUM,"H"))
- S KMPJNODE=$G(^%ZTER(1,KMPDAT,1,KMPENUM,"J"))
- S KMPD.JobNumber=$P(KMPJNODE,"^",1)
- S KMPD.ProcessName=$P(KMPJNODE,"^",2)
- S KMPD.UserName=$P(KMPJNODE,"^",3)
- S KMPUVNB=$P(KMPJNODE,"^",4)
- S KMPD.Uci=$P(KMPUVNB,"~",1)
- S KMPD.Vol=$P(KMPUVNB,"~",1)
- S KMPD.Node=$P(KMPUVNB,"~",1)
- S KMPD.Box=$P(KMPUVNB,"~",1)
- S KMPD.AlternateJobNumber=$P(KMPJNODE,"^",5)
- S KMPD.Line=$G(^%ZTER(1,KMPDAT,1,KMPENUM,"LINE"))
- S KMPD.ZE=$G(^%ZTER(1,KMPDAT,1,KMPENUM,"ZE"))
- S KMPVNUM=0,KMPVOBJ=##class(%DynamicObject).%New()
- F  S KMPVNUM=$O(^%ZTER(1,KMPDAT,1,KMPENUM,"ZV",KMPVNUM)) Q:+KMPVNUM=0  D
- .S KMPVAR=^%ZTER(1,KMPDAT,1,KMPENUM,"ZV",KMPVNUM,0)
- .S KMPVAL=^%ZTER(1,KMPDAT,1,KMPENUM,"ZV",KMPVNUM,"D")
- .D KMPVOBJ.%Set(KMPVAR,KMPVAL)
- S KMPD.Variables=KMPVOBJ
- S KMPRET.Status="Error Found"
- S KMPRET.Error=KMPD
- Q

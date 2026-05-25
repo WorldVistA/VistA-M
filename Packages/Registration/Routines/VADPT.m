@@ -1,5 +1,5 @@
-VADPT ;ALB/MRL,MJK,ERC,TDM,ARF,JAM,JMM - RETURN PATIENT VARIABLE ARRAYS [DRIVER];7/17/14
- ;;5.3;Registration;**193,343,389,415,489,498,688,754,887,996,1061,1103,1121**;Aug 13, 1993;Build 14
+VADPT ;ALB/MRL,MJK,ERC,TDM,ARF,JAM,JMM,JAM - RETURN PATIENT VARIABLE ARRAYS [DRIVER];7/17/14
+ ;;5.3;Registration;**193,343,389,415,489,498,688,754,887,996,1061,1103,1121,1149**;Aug 13, 1993;Build 4
  ;DFN = Patient IFN [if not passed entire array returned as null]
  ;
 DEM ;Demographic Variables
@@ -23,8 +23,9 @@ INP ;Inpatient Data [pre-version 5]
 IN5 ;Inpatient Data [v5.0 and above]
  N VAINDTT S VAN=6,VAN(1)=19,VAV=$S('$D(VAIP("V")):"VAIP",VAIP("V")'?1A.E:"VAIP",1:VAIP("V")),VAINDTT=$G(VAIP("D")) S:$L(VAINDTT) VAIP("D")=VAINDTT S:VAINDTT VAIP("D")=$$DATIM(VAINDTT) D ^VADPT0 S:$L(VAINDTT) VAIP("D")=VAINDTT Q
  ;
+ ; DG*5.3*1149 - Increase VAN(1) to 11 for adding the Health Benefit Plan data
 ELIG ;Eligibility Information
- S VAN=7,VAN(1)=9,VAV="VAEL" D ^VADPT0 Q
+ S VAN=7,VAN(1)=11,VAV="VAEL" D ^VADPT0 Q
  ;
 MB ;Monetary Benefits
  S VAN=8,VAN(1)=9,VAV="VAMB" D ^VADPT0 Q

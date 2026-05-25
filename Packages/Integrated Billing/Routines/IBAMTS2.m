@@ -1,17 +1,20 @@
 IBAMTS2 ;ALB/CPM - PROCESS UPDATED OUTPATIENT ENCOUNTERS ; 25-AUG-93
- ;;2.0;INTEGRATED BILLING;**52,91,117,132,153,156,167,247,339**;21-MAR-94;Build 2
+ ;;2.0;INTEGRATED BILLING;**52,91,117,132,153,156,167,247,339,795**;21-MAR-94;Build 4
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 UPD ; Perform encounter update actions.
- N IBCBK,IBFILTER,IBVAL
+ N IBBIL,IBCBK,IBFILTER,IBVAL  ; IB*2.0*795
  ;
  ; - was check out deleted?
  I IBAST'=2,IBBST=2 S IBCRES=$S(IBAST=8:5,1:1)
  ;
- ; - see if checked out appt classifications were changed
- I IBAST=2,IBBST=2 D CLSF^IBAMTS1(1,.IBCLSF) S IBACT=$$CLUPD() G:'IBACT UPDQ D  I IBACT'=1 G UPDQ
- .I IBACT=1 S IBCRES=2 Q
- .I IBACT=2 N IBCLSF D NEW^IBAMTS1
+ I IBAST=2,IBBST=2 D  ; IB*2.0*795
+ .S IBACT=$S($$GETSA^IBAMTS1(IBOE)[1:1,1:2) ; 1 - charge needs to be cancelled, 2 - appt needs to be billed
+ .S IBBIL=0  ; is there a billed charge for this OE?
+ .I $$LINK(IBOE,$S(IBEVT:IBEVT,1:IBEV0),IBBILLED),"^BILLED^HOLD - RATE^HOLD - REVIEW^INCOMPLETE^ON HOLD^"[(U_$$GET1^DIQ(350,IBBILLED,.05)_U) S IBBIL=1
+ .I IBACT=1,IBBIL S IBCRES=2 Q  ; there's a charge to be cancelled
+ .I IBACT=2,'IBBIL N IBCLSF D NEW^IBAMTS1
+ .Q
  ;
  ; - cancel charge if there is a cancellation reason, and the billed
  ; - charge was for the appointment that is no longer billable
@@ -40,8 +43,7 @@ BEDIT(IBOEN,IBEVT) ; - perform batch edit
  Q:'$$CHKS^IBAMTS1
  ;
  ; - check classifications
- S IBCLSF=$$ENCL(IBOEN)
- I IBCLSF[1 Q  ; care was related to ao/ir/swa/sc/mst/hnc/cv/shad
+ S IBCLSF=$$GETSA^IBAMTS1(IBOEN) I IBCLSF[1 Q  ; care was related to ao/ir/swa/sc/mst/hnc/cv/shad  IB*2.0*795
  S IBSL="409.68:"_IBOEN ; set softlink
  ;
  ; - ready to bill another encounter
@@ -68,18 +70,6 @@ LINK(IBOE,IBEVT,IBN) ; Was the billed charge for the current appointment?
  I +IBSL=44 S Y=$P(IBSL,";",1,2)=("44:"_$P(IBEVT,"^",4)_";S:"_+IBEVT) G LINKQ
  I +IBSL=409.68 S Y=IBSL=("409.68:"_IBOE)
 LINKQ Q +$G(Y)
- ;
-CLUPD() ; Examine changes in the classification.
- ;  Output:    0  --  no changes
- ;             1  --  changes require charges to be cancelled
- ;             2  --  changes require appt to be billed
- ;             3  --  [ec/swa] cancel charge, create deferred charge
- ;             4  --  [ec/swa] pass deferred charge, disposition case
- N I,Y S Y=0
- I IBCLSF("BEFORE")=IBCLSF("AFTER") G CLUPDQ
- F I=1,2,3,4,5,6,7,8 I '$P(IBCLSF("BEFORE"),U,I),$P(IBCLSF("AFTER"),U,I) S Y=$S(I=4:3,1:1) G CLUPDQ
- F I=1,2,3,4,5,6,7,8 I $P(IBCLSF("BEFORE"),U,I),'$P(IBCLSF("AFTER"),U,I) S Y=$S(I=4:4,1:2) Q
-CLUPDQ Q Y
  ;
 CANC ; Determine cancellation reason and cancel charge
  ;  Input variables:   IBCRES  --  Code for reason to be determined

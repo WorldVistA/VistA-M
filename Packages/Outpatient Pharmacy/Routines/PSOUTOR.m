@@ -1,5 +1,5 @@
-PSOUTOR ;HPS/DSK - MEDICATION ORDER STATUS CHECK ;FEB. 10, 2019@16:00
- ;;7.0;OUTPATIENT PHARMACY;**546**;DEC 1997;Build 23
+PSOUTOR ;HPS/DSK - MEDICATION ORDER STATUS CHECK; Oct 22, 2024@10:20
+ ;;7.0;OUTPATIENT PHARMACY;**546,775**;DEC 1997;Build 1
  ;
  ;Reference to:                     Supported by:
  ;-------------                     -------------
@@ -16,7 +16,11 @@ PSOUTOR ;HPS/DSK - MEDICATION ORDER STATUS CHECK ;FEB. 10, 2019@16:00
  ;STATUS^ORCSAVE2                   IA #5903
  ;$$SETUP1^XQALERT                  IA #10081
  ;NOTE: SACC guidelines allow lowercase subscripts in ^TMP and ^XTMP.
- ; 
+ ;
+ ;PSO*7.0*775: Deleted requirement that start date precede login date
+ ;             of first IEN in the ORDERS (#100) file. The lowest IEN
+ ;             may not necessarily correspond to the install of CPRS.
+ ;
  ;Search Logic
  ;============
  ;
@@ -60,19 +64,10 @@ ASK ;
  W !,"This search routine limits the search to a year's worth of orders,"
  W !,"but that might still be too large of a date range depending on"
  W !,"your order volume.",!
- N PSOCPRS,PSOCPRSIEN,PSOCPRSDT
- S PSOCPRSIEN=0,PSOCPRSDT=""
- F PSOCPRS=1:1 Q:PSOCPRSDT]""  D
- . S PSOCPRSIEN=$O(^OR(100,PSOCPRSIEN))
- . S PSOCPRSDT=$P($P($G(^OR(100,PSOCPRSIEN,0)),"^",7),".")
  S DIR(0)="DO",DIR("A")="Date to begin search"
  D ^DIR
  I $G(Y)=""!($D(DTOUT))!($D(DUOUT)) S PSOQUIT=1 Q
  S PSOSDT=$P(Y,".")
- I PSOSDT<PSOCPRSDT D  G ASK
- . S Y=PSOCPRSDT
- . W !,?5,"The start date cannot be previous to "
- . D DD^%DT W $G(Y),!,?5,"since the first CPRS order was entered on ",$G(Y),".",!
  D DD^%DT W ?40,$G(Y)
  S DIR(0)="DO",DIR("A")="Date to end search  "
  D ^DIR

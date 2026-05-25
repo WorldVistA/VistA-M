@@ -1,5 +1,5 @@
 IBCEF71 ;WOIFO/SS - FORMATTER AND EXTRACTOR SPECIFIC BILL FUNCTIONS ;31-JUL-03
- ;;2.0;INTEGRATED BILLING;**232,155,288,320,349,432,592,650**;21-MAR-94;Build 21
+ ;;2.0;INTEGRATED BILLING;**232,155,288,320,349,432,592,650,770**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;---------
@@ -51,6 +51,8 @@ OTHPAYV(IBXIEN,IBSAVE,IBDATA,IBFUNC,IBFLDTYP,IBSEQN) ;
  .. ;I IBFL S IBFUNC=$S($O(IBSAVE("PROVINF",IBXIEN,"O",IB1,3,0)):3,1:4),IBFL=0
  .. ;JWS;IB*2.0*650;issue with 1st provider having no Insurance Other Payer Operating Phy Sec ID
  .. S XIB1=IB1 I $G(IBXPG)=171,IB1=2,'$D(^TMP("IBXDATA",$J,1,171,2,1)) S XIB1=1
+ .. ;JWS;IB*2.0*770;EBILL-3440-OP1 segment - don't pass qualifier unless it's valid for Other Payer Rendering Secondary ID qualifier 0B, 1G, G2, LU
+ .. I $G(IBXPG)=170,IBFUNC=3 I '$F(",0B,1G,G2,LU",","_$P($G(IBSAVE("PROVINF",IBXIEN,"O",IB1,3,IBSEQN)),U,3)) Q
  .. S IBDATA(XIB1)=$P($G(IBSAVE("PROVINF",IBXIEN,"O",IB1,IBFUNC,IBSEQN)),U,IBPIECE)
  Q
  ;

@@ -1,5 +1,5 @@
 IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ; 01-APR-2015
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528,549,601,621,659,668,687,702,732,763,771**;21-MAR-94;Build 26
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528,549,601,621,659,668,687,702,732,763,771,806,822**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;/vd-IB*2*668 - Removed the SSVI logic introduced with IB*2*528 in its entirety within VistA.
@@ -37,6 +37,13 @@ HELP ; help
  W !,"associated with a specific extract may also be detailed here."
  W !!,"The Fix Corrupt Buffers action allows a user to list or fix corrupted entries in"
  W !,"the INSURANCE VERIFICATION PROCESSOR file (#355.33) aka ""the buffer file""."
+ ;IB*806/CKB - add help text for 'Duplicate Buffer Clean up'
+ W !!,"The Duplicate Buffer Clean up action is a nightly process that rejects"
+ W !,"duplicate entries from the INSURANCE VERIFICATION PROCESSOR file (#355.33)."
+ W !,"Duplicate entries are defined as having identical Insurance Company name,"
+ W !,"Subscriber ID and Group Number for a unique patient. When the action is set"
+ W !,"to YES, the cleanup process will reject the most recent duplicates, leaving"
+ W !,"the oldest entry."
  D PAUSE^VALM1
  W @IOF
  S VALMBCK="R"
@@ -57,6 +64,9 @@ BLD ; Creates the body of the worklist
  D BLDGENNR(STARTR,.ELINER)                     ; Build Non-Editable Gen Param Right
  S SLINE=$S(ELINEL>ELINER:ELINEL,1:ELINER)
  D BLDGENNB(SLINE,.ELINEL)                      ; Build Non-Editable Bottom Params
+ ;IB*806/CKB - added update SLINE and call to BLDBC
+ S SLINE=$S(ELINEL>ELINER:ELINEL,1:ELINER)
+ D BLDBC(SLINE,.ELINEL)                         ; Build Buffer Cleanup Parameters - IB*806/CKB
  D BLDBE(ELINEL,.ELINEL)                        ; Build Batch Extract Gen Parameters
  D BLDGENNS(.ELINEL)                     ; Build Non-Editable IIU Parameters - vd/IB*2*687
  S VALMCNT=ELINEL-1
@@ -76,6 +86,8 @@ BLDGENE(SLINE,ELINE) ; Build the General Editable Parameters Section
  ;IB*763/CKB - Added display for INSURANCE IMPORT SWITCH
  ;S STRTLN=ELINE
  S ELINE=$$SET("                   EII Active: ",$$GET1^DIQ(350.9,"1,",13.02),ELINE,1)
+ ;IB*822 - Added display for E1 Transactions Enabled
+ S ELINE=$$SET("      E1 Transactions Enabled: ",$$GET1^DIQ(350.9,"1,",54.05),ELINE,1)
  ;S ELINE=STRTLN
  S ELINE=$$SET("",$J("",40),ELINE,1)            ; Spacing Blank Line
  S ELINE=$$SET("  IIU Settings ","",ELINE,1)
@@ -92,7 +104,8 @@ BLDGENE(SLINE,ELINE) ; Build the General Editable Parameters Section
  ;
  ;The next line adds blank lines to force the non-editable to a new page
  ;If any lines are added above this line will need to be adjusted.
- F XX=1:1:3 S ELINE=$$SET("",$J("",40),ELINE,1)            ; Spacing Blank Line
+ ;IB*822 - adjusted the number of blank lines from 3 to 2
+ F XX=1:1:2 S ELINE=$$SET("",$J("",40),ELINE,1)            ; Spacing Blank Line
  ;
  Q
  ;
@@ -150,6 +163,24 @@ BLDGENNB(SLINE,ELINE) ; Build the General Non-Editable Bottom Parameters Section
  S ELINE=$$SET("   Receive MailMan Message, Daily Statistical: ",XX,ELINE,1)
  Q
  ;
+BLDBC(SLINE,ELINE) ; Build the Buffer Cleanup Parameters Section ;IB*806/CKB
+ ; Input:   SLINE   - Starting Section Line Number
+ ;          ELINE   - Current Ending Section Line Number
+ ; Output:  ELINE   - Updated Ending Section Line Number
+ ;
+ N STRTLN,XX
+ S ELINE=$$SET("",$J("",40),SLINE,1)            ; Spacing Blank Line
+ S ELINE=$$SETN("Buffer Cleanup",ELINE,1,1)
+ S STRTLN=ELINE
+ S XX=$$GET1^DIQ(350.9,"1,",54.03)
+ S:XX="" XX="NO"
+ S ELINE=$$SET("Duplicate Buffer Cleanup Active: ",XX,ELINE,1)
+ S ELINE=STRTLN
+ S XX=$$GET1^DIQ(350.9,"1,",54.04,"E") ; returns MON DD, YYYY@HH:MM
+ S XX=$P(XX,"@")_" (10:00PM)"
+ S ELINE=$$SET("      Last Run: ",XX,ELINE,41)
+ Q
+ ;
 BLDBE(SLINE,ELINE) ; Build the Batch Extract Parameters Section
  ; Input:   SLINE   - Starting Section Line Number
  ;          ELINE   - Current Ending Section Line Number
@@ -157,7 +188,8 @@ BLDBE(SLINE,ELINE) ; Build the Batch Extract Parameters Section
  ;
  ;IB*771/TAZ - Added blank lines to start section on a new page
  N IBEX,IBEX1,IBEIVB,IBST,IEN,XX
- F XX=1:1:6 S ELINE=$$SET("",$J("",40),ELINE,1)            ; Spacing Blank Line
+ ;IB*806/CKB - changed the number of Blank lines from 6 to 3
+ F XX=1:1:3 S ELINE=$$SET("",$J("",40),ELINE,1)            ; Spacing Blank Line
  S ELINE=$$SETN("Batch Extracts",ELINE,1,1)
  ;/vd-IB*2*687 - Commented the following section of code and re-wrote it to make it cleaner.
  ;               Also renamed variable IBIIVB to IBEIVB to better reflect the application name
@@ -293,4 +325,4 @@ SET1(TEXT,LINE,COL,WIDTH,RV,ULINE) ; Sets the TMP array with body data
  D:$G(RV)'="" CNTRL^VALM10(LINE,COL,WIDTH,IORVON,IORVOFF)
  D:$G(ULINE)'="" CNTRL^VALM10(LINE,COL,WIDTH,IOUON,IOUOFF)
  Q
- ; 
+ ;

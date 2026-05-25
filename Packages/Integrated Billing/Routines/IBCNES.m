@@ -1,5 +1,5 @@
 IBCNES ;ALB/ESG - eIV elig/Benefit screen ; 14-Jul-2009
- ;;2.0;INTEGRATED BILLING;**416,438,497,506,702**;21-MAR-94;Build 53
+ ;;2.0;INTEGRATED BILLING;**416,438,497,506,702,806,822**;21-MAR-94;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q
@@ -29,7 +29,7 @@ HDR ; -- header code - called by ListManager
  . S RSDATE=$$GET1^DIQ(2.312,IENS,8.01,"I"),RSTYPE=$$GET1^DIQ(2.312,IENS,8.02,"I")
  . S VALMHDR(1)=$$FO^IBCNEUT1(PN,30)_"  "_$$FO^IBCNEUT1(LPID,15)_"  "_$$FO^IBCNEUT1(INSNM,30)
  . S VALMHDR(2)="** Based on service date "_$S(RSDATE:$$FMTE^XLFDT(RSDATE,"5Z"),1:"UNKNOWN")_" and service type: "_$S(RSTYPE:$P($G(^IBE(365.013,RSTYPE,0)),U,2),1:"UNKNOWN")_" **"
- . Q
+ . S RSPIEN=$$GET1^DIQ(2.312,IENS,8.03,"I")
  ;
  ; eIV response file
  I IBVF=365.02 D
@@ -51,12 +51,10 @@ HDR ; -- header code - called by ListManager
  . I INS S INSNM=$P($G(^IBE(365.12,INS,0)),U,1)   ; payer name
  . S VALMHDR(1)=$$FO^IBCNEUT1(PN,30)_"  "_$$FO^IBCNEUT1(LPID,15)_"  "_$$FO^IBCNEUT1(INSNM,30)
  . S VALMHDR(2)="** Based on service date "_$S(RSDATE:$$FMTE^XLFDT(RSDATE,"5Z"),1:"UNKNOWN")_" and service type: "_$S(RSTYPE:$P($G(^IBE(365.013,RSTYPE,0)),U,2),1:"UNKNOWN")_" **"
- . Q
  ;
  I $G(IBBUFDA) D
  .N SRVARRAY,Z
  .D SERVLN^IBCNBLE(IBBUFDA,.SRVARRAY) I SRVARRAY F Z=1:1:SRVARRAY S VALMHDR(Z+1)=SRVARRAY(Z)
- .Q
  Q
  ;
 INIT(IBVF,IBVIENS,IBVEBFLG,IBVV,IBVSUB) ; List Entry
@@ -79,7 +77,7 @@ INIT(IBVF,IBVIENS,IBVEBFLG,IBVV,IBVSUB) ; List Entry
  ;   IBVSUB = literal subscript to use in the display scratch global
  ;
  N IBVDA,GLO,IBVLIST,IEN,IBVEBIEN,IBVEBTOT,IBVEBCNT
- N IBECODE,IIVSTAT,PLNDESC,IBINSTYP,OTHINS,MWNRIEN     ;IB*2.0*506
+ ;N IBECODE,IIVSTAT,PLNDESC,IBINSTYP,OTHINS,MWNRIEN     ;IB*2.0*506 to be used to create EBSummary
  ;
  S OTHINS=0 ;IB*2.0*506/TAZ Initialize Other Insurance variable
  S MWNRIEN=$P($G(^IBE(350.9,1,51)),U,25) ;IB*2.0*506/TAZ Initialize Medicare WNR payer IEN
@@ -113,46 +111,13 @@ INIT(IBVF,IBVIENS,IBVEBFLG,IBVV,IBVSUB) ; List Entry
  S IEN=0 F IBVEBTOT=0:1 S IEN=$O(IBVLIST(IEN)) Q:'IEN
  I 'IBVEBTOT D NODATA G INITX
  ;
- ; /IB*2.0*506 Beginning
- ; Count EBs and gather EB Summary Data
- ; IIVSTAT will tell us the coverage status 1,6, or V (File #365.011)
- ; Flag related to IBINSTYP will tell us the insurance type (File #365.014)
- ; OTHINS will tell us if Other Insurance was indicated on the response
+ ;IB*506 -  Count EBs and gather EB Summary Data
+ ;  IB*806 All related code to IB*506 for EB count and EB Summary Data was replaced
+ ;         
+ D SUMMARY   ; Summary of EB loops
  ;
- S (IEN,IBVEBTOT,OTHINS)=0,(IIVSTAT,IBINSTYP,PLNDESC)=""
- F  S IEN=$O(IBVLIST(IEN)) D  Q:'IEN
- . Q:'IEN
- . S IBVEBTOT=IBVEBTOT+1   ; total # of EBs
- . I IBVEBTOT=1 D
- . . S IBECODE=$P($G(@GLO@(1,0)),U,2)    ; Eligibility/Benefits Code
- . . S PLNDESC=$P($G(@GLO@(1,0)),U,6)    ; Plan Description
- . . I PLNDESC'="eIV Eligibility Determination" S IIVSTAT="V"
- . . I IBECODE=1 S IIVSTAT=1              ; active
- . . I IBECODE=6 S IIVSTAT=6              ; inactive
- . . I IIVSTAT="" S IIVSTAT="V"           ; ambigious
- . . ;
- . I IBINSTYP="" D
- . . S IBINSTYP=$P($G(@GLO@(IEN,0)),U,5) ; Insurance Type (check all EBs, get 1st occurrence)
- . . I IBINSTYP="" Q   ; no insurance type found 
- . . S IBINSTYP=$$GET1^DIQ(365.014,IBINSTYP,.02)
- . ;
- . ;Screen out non_Medicare records
- . S MWNRIEN=$P($G(^IBE(350.9,1,51)),U,25) ; Initialize Medicare WNR payer IEN
- . I IBVF=2.322,($$GET1^DIQ(36,$P(^DPT(+$G(IBVDA(1)),.312,+$G(IBVDA),0),U,1)_",",3.1,"I")'=MWNRIEN) Q
- . I IBVF=365.02,($P(^IBCN(365,+$G(IBVDA),0),U,3)'=MWNRIEN) Q
- . ;
- . N IBEIEN,IBELIG
- . S IBEIEN=0
- . F  S IBEIEN=$O(@GLO@(IBEIEN)) Q:'IBEIEN  D  I OTHINS Q
- .. ;Get Eligibility Code.  We want R codes only.
- .. S IBELIG=$P($G(@GLO@(IBEIEN,0)),U,2) I $P($G(^IBE(365.011,IBELIG,0)),U,1)="R" S OTHINS=1
  ;
- I IBVEBTOT D SUMMARY(IIVSTAT,IBINSTYP,OTHINS)
- ; /IB*2.0*506 End
- ;
- I 'IBVEBTOT D NODATA G INITX
- ;
- S (IBVEBIEN,IBVEBCNT)=0
+ S IBVEBIEN=1,IBVEBCNT=0  ;IB*806/DJW  initialize IBVEBIEN to 1 to skip 1st EB loop (FSC generated loop)
  F  S IBVEBIEN=$O(IBVLIST(IBVEBIEN)) Q:'IBVEBIEN  D
  . S IBVEBCNT=IBVEBCNT+1
  . N TXVIENS
@@ -162,11 +127,12 @@ INIT(IBVF,IBVIENS,IBVEBFLG,IBVV,IBVSUB) ; List Entry
  .. N DSP,LN,IBZ
  .. S DSP=$NA(^TMP(IBVSUB,$J,"DISP"))
  .. S LN=+$O(@DSP@(""),-1)
- .. S IBZ="eIV Eligibility/Benefit Data Group# "_IBVEBCNT_" of "_IBVEBTOT
+ .. S IBZ="eIV Eligibility/Benefit Data Group# "_IBVEBCNT_" of "_(IBVEBTOT-1)  ;IB*806 added -1
+ .. S IBZ=$$FO^IBCNEUT1($J("",20)_IBZ,80)
+ .. S LN=LN+1 D SET^IBCNES1(LN,1,IBZ,,IBVV)   ;section hdr "eIV Elig ... x of x"
+ .. S IBZ="---------------------------------------------"
  .. S IBZ=$$FO^IBCNEUT1($J("",20)_IBZ,80)
  .. S LN=LN+1 D SET^IBCNES1(LN,1,IBZ,,IBVV)
- .. S LN=LN+1 D SET^IBCNES1(LN)
- .. Q
  . ;
  . ; add this EB ien to the list of iens
  . S TXVIENS=IBVEBIEN_","_IBVIENS
@@ -177,31 +143,59 @@ INIT(IBVF,IBVIENS,IBVEBFLG,IBVV,IBVSUB) ; List Entry
  . D HCSD^IBCNES1(IBVF,TXVIENS,IBVV,IBVSUB)
  . D NTE^IBCNES1(IBVF,TXVIENS,IBVV,IBVSUB)
  . D BRE^IBCNES1(IBVF,TXVIENS,IBVV,IBVSUB)
- . ;
- . Q
  ;
  S VALMCNT=$O(^TMP(IBVSUB,$J,"DISP"," "),-1)
  ;
 INITX ;
  Q
  ;
-SUMMARY(IIVSTAT,IBINSTYP,OTHINS) ; (New w/ IB*2.0*506) key data from the Eligibility Benefit Information
- N DSP,LN,IBZ
+SUMMARY ;
+ N ARRAY,DSP,LN,IBZ,IBINSTYP,IBPEDT,XX,HLDT,IIVSTAT,DFN,RSPIEN,IBX,DATA
  ;
- S IIVSTAT=$S(IIVSTAT=1:"ACTIVE",IIVSTAT=6:"INACTIVE",1:"AMBIGUOUS")
+ KILL ARRAY
+ ;
+ I IBVF=2.322 D
+ . S DFN=+$G(IBVDA(1))
+ . S RSPIEN=$$GET1^DIQ(2.312,+$G(IBVDA)_","_DFN_",",8.03,"I")
+ I IBVF=365.02 D
+ . S RSPIEN=+$G(IBVDA)
+ . S IBX=$G(^IBCN(365,RSPIEN,0)),DFN=+$P(IBX,U,2)
  ;
  S DSP=$NA(^TMP(IBVSUB,$J,"DISP"))
  S LN=+$O(@DSP@(""),-1)
  S IBZ="Summary of eIV Eligibility/Benefit Data"
  S IBZ=$$FO^IBCNEUT1($J("",20)_IBZ,80)
  S LN=LN+1 D SET^IBCNES1(LN,1,IBZ,,IBVV)
- S LN=LN+1 D SET^IBCNES1(LN)
+ S IBZ="---------------------------------------"
+ S IBZ=$$FO^IBCNEUT1($J("",20)_IBZ,80)
+ S LN=LN+1 D SET^IBCNES1(LN,1,IBZ,,IBVV)
  ;
- S LN=LN+1 D SET^IBCNES1(LN,1,"Coverage Status",IIVSTAT)
- S LN=LN+1 D SET^IBCNES1(LN,1,"Insurance Type",IBINSTYP)
+ D EBSUMMARY^IBCNEUT2(DFN,RSPIEN,"",.ARRAY)
  ;
- I OTHINS S LN=LN+1 D SET^IBCNES1(LN,1,"Other insurance was potentially found")
- S LN=LN+1 D SET^IBCNES1(LN)
+ S IBPEDT=$P($G(RPTDATA(1)),U,11)  ; get Effective dt  from above
+ I '$O(ARRAY(0)) D  G SUMX  ; IB*806/DTG blank summary section use $O instead of $D
+ . S LN=LN+1 D SET^IBCNES1(LN,1,"Insurance Type","Unknown")
+ . S LN=LN+1 D SET^IBCNES1(LN,5,"Coverage Status","Unknown")
+ . S LN=LN+1 D SET^IBCNES1(LN,5,"Plan Date/Effective Date",$S(IBPEDT'="":IBPEDT,1:"Unknown"))  ;use eff dt from above / uknown if not there
+ . S LN=LN+1 D SET^IBCNES1(LN)
+ ;
+ S XX="" F  S XX=$O(ARRAY(XX)) Q:XX=""  D
+ . S IBINSTYP="" F  S IBINSTYP=$O(ARRAY(XX,IBINSTYP)) Q:IBINSTYP=""  D
+ .. S DATA=ARRAY(XX,IBINSTYP),IIVSTAT=$P(DATA,U,5),HLDT=$$FMTE^XLFDT($P(DATA,U,3),"5Z")
+ .. ;I HLDT="" S HLDT="Unknown"
+ .. I HLDT="" S HLDT=IBPEDT  ; use eff dt from above
+ .. I HLDT="" S HLDT="Unknown"  ; if date is still null use Unknown
+ .. S LN=LN+1 D SET^IBCNES1(LN,1,"Insurance Type",IBINSTYP)
+ .. S LN=LN+1 D SET^IBCNES1(LN,5,"Coverage Status",IIVSTAT)
+ .. S LN=LN+1 D SET^IBCNES1(LN,5,"Plan Date/Effective Date",HLDT)
+ .. S LN=LN+1 D SET^IBCNES1(LN)
+ ;
+ I $D(ARRAY("OHI")) D
+ . S LN=LN+1 D SET^IBCNES1(LN,1,"Other insurance was potentially found")
+ . S LN=LN+1 D SET^IBCNES1(LN)
+ ;
+SUMX ; end of summary section  ;IB*806/DTG
+ ;
  Q
  ;
 NODATA ; display no data found
@@ -222,4 +216,3 @@ EXIT ; -- exit code
  K ^TMP(IBVSUB,$J)
  I $D(VALMEVL) D CLEAN^VALM10,KILL^VALM10()
  Q
- ;

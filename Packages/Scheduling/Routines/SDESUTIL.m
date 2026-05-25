@@ -1,5 +1,5 @@
-SDESUTIL ;ALB/TAW,KML,LAB,MGD,ANU,MGD,ANU,BWF,TJB - SDES Utilities ;Aug 27, 2024
- ;;5.3;Scheduling;**801,804,805,814,816,818,820,823,824,825,831,836,838,845,851,877,878,887**;Aug 13, 1993;Build 7
+SDESUTIL ;ALB/TAW,KML,LAB,MGD,ANU,MGD,ANU,BWF,TJB,MCB,MCB,TAW - SDES Utilities ;Nov 17,2025
+ ;;5.3;Scheduling;**801,804,805,814,816,818,820,823,824,825,831,836,838,845,851,877,878,887,897,910,920,928**;Aug 13, 1993;Build 5
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  ; Reference to INSTITUTION in #2251
@@ -46,12 +46,15 @@ ISDATEDST(DATE,DSTSUM) ;Does this date use Daylight Savings
  ; Return 1 = DATE is considered DST or SUM
  ;        0 = DATE is not DST and not SUM
  ;       -1 = DATE is not FM format
- N YR
+ N YR,DSTSTART,DSTEND,DSTTIME
  S DATE=$G(DATE),DSTSUM=$G(DSTSUM)
  I '$$VALIDFMFORMAT^SDECDATE(DATE) Q -1
- S YR=$E(DATE,2,3)
- I DATE<$$DSTSTART(YR,DSTSUM) Q 0
- I DATE>$$DSTEND(YR,DSTSUM) Q 0
+ S YR=$E(DATE,2,3),DSTTIME=.02
+ I DSTSUM="SUM" S DSTTIME=.01  ;if we get a VAMC in Germany this will need fixed
+ S DSTSTART=$$DSTSTART(YR,DSTSUM)_DSTTIME
+ S DSTEND=$$DSTEND(YR,DSTSUM)_DSTTIME
+ I DATE<DSTSTART Q 0
+ I DATE>=DSTEND Q 0
  Q 1
 DSTSTART(YR,DSTSUM) ;Daylight Savings or Summer start date
  ; countries that observe DST or Summer ST (e.g., USA observes DST and Europe observes SUM ST)
@@ -69,6 +72,7 @@ DSTSTART(YR,DSTSUM) ;Daylight Savings or Summer start date
  I DOW D
  .I DSTSUM="DST" S DSTDT=DSTDT+(SUNDAY*7)-DOW
  .E  S DSTDT=$$SUMMER(DSTDT,DOW,SUNDAY)
+ I (DSTSUM="DST")&(DOW=0) S DSTDT=DSTDT+(7)-DOW
  Q DSTDT
 DSTEND(YR,DSTSUM) ;Daylight Savings END date
  ; YR - 2 digit year
@@ -86,7 +90,7 @@ DSTEND(YR,DSTSUM) ;Daylight Savings END date
  I DOW D
  .I DSTSUM="DST" S DSTDT=DSTDT+(SUNDAY*7)-DOW
  .E  S DSTDT=$$SUMMER(DSTDT,DOW,SUNDAY)
- Q $$FMADD^XLFDT(DSTDT,-1)
+ Q DSTDT
  ;
 SUMMER(DSTDT,DOW,SUNDAY) ; determine last Sunday of MARCH or OCTOBER
  ; DSTDT - March or October (e.g, CYY0301 or CYY1001)

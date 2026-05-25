@@ -1,9 +1,10 @@
 YTQRCDB2 ;BAL/KTL - MHA CLOUD DATABASE RPC CALLS; 1/25/2017
- ;;5.01;MENTAL HEALTH;**239,250**;Dec 30, 1994;Build 26
+ ;;5.01;MENTAL HEALTH;**239,250,236**;Dec 30, 1994;Build 25
  ;
  ;
- ;Reference to VADPT APIs supported by DBIA #10061
- ;Reference to $$SITE^VASITE supported by IA #10112
+ ;Reference to VADPT APIs supported by ICR #10061
+ ;Reference to $$KSP^XUPARAM supported by ICR #2541
+ ;Reference to DIUTC supported by ICR #6445
  ;Reference to PXRMINDX in ICR #4290
  ;
  Q
@@ -25,24 +26,12 @@ PID2(ARGS,RESULTS) ;Get additional patient demographics
  S RESULTS("sex")=YSSEX
  S RESULTS("sigi")=YSSIG
  Q
-TZ(ARGS,RESULTS) ;Get timezone
- N HASSITE,SITE,INST,UTC,NN
- S HASSITE=""
- S INST=$$SITE^VASITE,INST=$P(INST,U,3)
- S:+INST'=0 SITE(INST)="",HASSITE=1
- I '$D(SITE) S HASSITE=$$DIV4^XUSER(.SITE,DUZ)
- I 'HASSITE I $G(DUZ(2))]"" S SITE(DUZ(2))=""  ;Use Default site if not explicitly defined.
- I '$D(SITE) D  Q
- . S RESULTS("inst")=""
- . S RESULTS("fileman")=""
- . S RESULTS("external")=""
- . S RESULTS("offset")=""
- . S RESULTS("timezone")=""
- S INST=$O(SITE(""))  ;Use first in list-assume all are in same TZ
- S NN=$$NOW^XLFDT(),UTC=""
- S INST="" F  S INST=$O(SITE(INST)) Q:INST=""!(UTC'="")  D
- . S UTC=$$UTC^DIUTC(NN,,$G(INST),,1)
- . S:UTC<0 UTC=""
+TZ(ARGS,RESULTS) ;Get Timezone
+ N INST,PROP,UTC
+ F PROP="fileman","external","offset","timezone" D
+ . S RESULTS(PROP)=""
+ S INST=$$KSP^XUPARAM("INST") Q:+INST=0
+ S UTC=$$UTC^DIUTC($$NOW^XLFDT(),,INST,,1)
  S RESULTS("fileman")=$P(UTC,U)
  S RESULTS("external")=$P(UTC,U,2)
  S RESULTS("offset")=$P(UTC,U,3)

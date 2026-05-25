@@ -1,0 +1,57 @@
+PXCOMPACTDISP ;ALB/BPA,CMC - API to display COMPACT Act Episode of Care file (818);08/06/2024@10:58
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**241**;Aug 12, 1996;Build 31
+ ; API will display multiple data elements from the COMPACT Act Episode of Care file
+ ; 
+ Q
+EN ;
+ N AUTHBY,DFN,DIC,ENDSOURCE,EPSEQ,LASTFLAG,LASTSTAT,MOVEMENT,MOVESEQ,PTF,PTFSEQ,PXCOMPACT,PXEOCNUM,SOURCE,VISIT,VISITSEQ,Y,%
+ W ! S DIC="^PXCOMP(818,",DIC(0)="AEQMZ" D ^DIC
+ Q:Y=-1
+ S DFN=$P(Y,"^",2)
+ D EXTRACT^PXCOMPACTAPI(DFN,.PXCOMPACT)
+ W !!!,"Patient Name: "_$G(PXCOMPACT("PATIENT NAME"))
+ W !,"Patient Id: "_$G(PXCOMPACT("PATIENT ID"))
+ W !,"Benefit Type: "_$S($G(PXCOMPACT("BENEFIT TYPE"))="O":"Outpatient",$G(PXCOMPACT("BENEFIT TYPE"))="I":"Inpatient",1:"")
+ W !,"Episode of Care Open/Closed: "_$S($G(PXCOMPACT("EOC OPEN/CLOSE FLAG"))=1:"Open",1:"Closed")
+ W !
+ D LOOP
+ W !,"Would you like to view another patient" S %=2 D YN^DICN I %=1 G EN
+ Q
+ ;
+LOOP ;
+ S EPSEQ=""
+ F  S EPSEQ=$O(PXCOMPACT("EPISODE",EPSEQ)) Q:EPSEQ=""  D
+ . W !,"Episode Start Date: "_$$FMTE^XLFDT($G(PXCOMPACT("EPISODE",EPSEQ,"EPISODE START DATE")))
+ . W !,"Episode End Date: "_$$FMTE^XLFDT($G(PXCOMPACT("EPISODE",EPSEQ,"EPISODE END DATE")))
+ . W !,"Outpatient Benefit End Date: "_$$FMTE^XLFDT($G(PXCOMPACT("EPISODE",EPSEQ,"OUTPATIENT BENEFIT END DATE")))
+ . W !,"Inpatient Benefit End Date: "_$$FMTE^XLFDT($G(PXCOMPACT("EPISODE",EPSEQ,"INPATIENT BENEFIT END DATE")))
+ . W !,"Remaining Inpatient Days: "_$G(PXCOMPACT("EPISODE",EPSEQ,"REMAINING INPATIENT DAYS"))
+ . W !,"Remaining Outpatient Days: "_$G(PXCOMPACT("EPISODE",EPSEQ,"REMAINING OUTPATIENT DAYS"))
+ . S ENDSOURCE=$G(PXCOMPACT("EPISODE",EPSEQ,"SOURCE OF CRISIS END"))
+ . W !,"Source of Crisis End: "_$S(ENDSOURCE="PR":"Provider",ENDSOURCE="PA":"Patient","TE":"Time Expired",1:"")
+ . S SOURCE=$G(PXCOMPACT("EPISODE",EPSEQ,"EPISODE SOURCE"))
+ . W !,"Episode Source: "_$S(SOURCE="A":"Auto Adjudication",SOURCE="V":"VistA",1:"")
+ . S LASTFLAG=$G(PXCOMPACT("EPISODE",EPSEQ,"LAST COMPACT ACT ADMIN ELIG"))
+ . W !,"Last COMPACT Act Admin Eligibility Flag: "_$S(LASTFLAG="E":"Eligible",LASTFLAG="N":"Not Eligible",LASTFLAG="U":"Undetermined",1:"")
+ . S LASTSTAT=$G(PXCOMPACT("EPISODE",EPSEQ,"EPISODE FINAL STATUS"))
+ . W !,"Episode Final Status: "_$S(LASTSTAT="R":"Rollback",LASTSTAT="E":"Entered in Error",1:"")
+ . S AUTHBY=$G(PXCOMPACT("EPISODE",EPSEQ,"CRISIS END AUTHORIZED BY"))
+ . I AUTHBY'="" W !,"Crisis End Authorized By: "_$P($G(^VA(200,AUTHBY,0)),"^")
+ . W !,"Crisis End Other Comment: "_$G(PXCOMPACT("EPISODE",EPSEQ,"CRISIS END OTHER COMMENT"))
+ . S PTFSEQ=""
+ . F  S PTFSEQ=$O(PXCOMPACT("EPISODE",EPSEQ,"PTF",PTFSEQ)) Q:PTFSEQ=""  D
+ . . S PTF=PXCOMPACT("EPISODE",EPSEQ,"PTF",PTFSEQ)
+ . . I PTF'="" S PTF=$P($G(^DGPT(PTF,0)),"^",2)
+ . . W !,"PTF: "_$$FMTE^XLFDT(PTF)
+ . . S MOVESEQ=""
+ . . F  S MOVESEQ=$O(PXCOMPACT("EPISODE",EPSEQ,"PTF",PTFSEQ,"MOVEMENT",MOVESEQ)) Q:MOVESEQ=""  D
+ . . . S MOVEMENT=PXCOMPACT("EPISODE",EPSEQ,"PTF",PTFSEQ,"MOVEMENT",MOVESEQ)
+ . . . S MOVEMENT=$P($G(^DGPM(MOVEMENT,0)),"^",1)
+ . . . W !,"Movement: "_$$FMTE^XLFDT(MOVEMENT)
+ . S VISITSEQ=""
+ . F  S VISITSEQ=$O(PXCOMPACT("EPISODE",EPSEQ,"VISIT",VISITSEQ)) Q:VISITSEQ=""  D
+ . . S VISIT=$P(PXCOMPACT("EPISODE",EPSEQ,"VISIT",VISITSEQ),"^",1)
+ . . I VISIT'="" S VISIT=$P($G(^AUPNVSIT(VISIT,0)),"^",1)
+ . . W !,"Visit: "_$$FMTE^XLFDT(VISIT)
+ . W !
+ Q

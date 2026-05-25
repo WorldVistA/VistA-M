@@ -1,5 +1,5 @@
 ONCSCHMH ;HINES OIFO/RTK - TNM CODE CALLED FROM SCHMG ROUTINE ;05/19/20
- ;;2.2;ONCOLOGY;**12,13,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**12,13,20,21,22**;Jul 31, 2013;Build 6
  ;
 CCODES ;IT code for PATH T/N to also accept CLIN T/N codes
  I ($G(ONCTNMTP)="P")&((ONCNODE=1)!(ONCNODE=6)) S ONCTNMTP="C" D ADDN1CS S ONCTNMTP="P" Q  ; reset ONCTNMTP when done
@@ -93,4 +93,14 @@ STGVRCHK ;check the AJCC edition (version) and set correct node
  ..I (ONCNODE=1)!(ONCNODE=6) S ONCNODE="V9T"
  .I ONCAJIEN=108 D  ; medulloblastoma (new 72.9 chapter)
  ..I ONCNODE=3 S ONCNODE="V9M"
+ I DATEDX>3231231 D   ;2024 v9 update-Vulva
+ .I ONCAJIEN=53 D
+ ..I (ONCNODE=1)!(ONCNODE=6) S ONCNODE="V9T"
+ ..I (ONCNODE=2)!(ONCNODE=7) S ONCNODE="V9N"
+ I DATEDX>3241231 D
+ .I ONCAJIEN=4 D  ;2025+ Nasopharynx
+ ..I ONCNODE=3 S ONCNODE="V9M"  ;New V9 M-codes
+ .I ONCAJIEN=38 D  ;2025+ Lung
+ ..I ONCNODE=2 S ONCNODE="V9N"  ;New V9 N-codes
+ ..I ONCNODE=3 S ONCNODE="V9M"  ;New V9 M-codes
  Q

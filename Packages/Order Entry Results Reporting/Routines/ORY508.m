@@ -1,0 +1,227 @@
+ORY508 ;SLC/AGP/GN - PRE/POST INSTALL OR*3.0*508 ;Nov 07, 2025@12:15:01
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**508**;Dec 17, 1997;Build 39
+ ;
+ ;
+ Q
+ ;
+ENVCHCK ;
+ N ALERTS
+ D ALERTPARAMS(.ALERTS)
+ I '$$ENVCHKALERTS(.ALERTS) W !,"Cannot install notifications updates" S XPDABORT=2 Q
+ Q
+ ;
+ ;COPY OF CODE on ENVCHKALERTS^ORPATCHUTILS, had to place here since first time the ORPATCHUTILS is being deployed
+ENVCHKALERTS(ALERTS) ;
+ N IDX,RESULT
+ S RESULT=1
+ S IDX=0 F  S IDX=$O(ALERTS(IDX)) Q:IDX'>0!(RESULT=0)  D
+ .I '$D(^ORD(100.9,IDX)) Q
+ .I $P($G(^ORD(100.9,IDX,0)),U)'=ALERTS(IDX,"name") S ALERTS(IDX,"error")="Entry found in file 100.9",RESULT=0
+ Q RESULT
+ ;
+DELDD ;
+ N DIU,TEXT
+ D BMES^XPDUTL("Removing old data dictionaries.")
+ S DIU(0)=""
+ F DIU=100.0112,101.71,101.73,101.74,101.75,101.76,101.77 D
+ . S TEXT=" Deleting data dictionary for file # "_DIU
+ . D MES^XPDUTL(TEXT)
+ . D EN^DIU2
+ Q
+ ;
+DELWIN ; pre-install to remove win message param values
+ ;KIDS will delete the parameter definition during the install
+ N PARM,LIST,ERR
+ S PARM="OR CPRS WIN MESSAGE LOG SIZE"
+ D BMES^XPDUTL("Building value list for "_PARM_" ...")
+ D ENVAL^XPAR(.LIST,PARM,,.ERR)
+ Q:+$G(ERR)>0  ;parameter not found
+ I $G(LIST)=0 D BMES^XPDUTL("No values found - continuing with installation.") Q
+ D BMES^XPDUTL("Deleting values from "_PARM_" ...")
+ N I,J S I="",J=0
+ F  S I=$O(LIST(I))  Q:$G(I)=""  D
+ . F  S J=$O(LIST(I,J))  Q:+$G(J)=0  D
+ . . D DEL^XPAR(I,PARM,J,.ERR)
+ . . I +$G(ERR)>0 D  Q
+ . . . D MES^XPDUTL("ERROR MESSAGE: "_$P(ERR,"^",2)) K ERR
+ D MES^XPDUTL("Completed deleting values.")
+ Q
+ ;
+PRE ;
+ D SETALERTSTUB
+ D DELDD
+ D DELWIN
+ Q
+ ;
+POST ;
+ D SETALERTPARAMS
+ D SETPANEL
+ D SETPKGPARAMS
+ D SETINFOPARAMS
+ D UPDMENU
+ D NONVAPAP
+ Q
+ ;
+SETALERTPARAMS ;
+ N ALERTS
+ D ALERTPARAMS(.ALERTS)
+ I '$$SETALERTPARAMS^ORPATCHUTILS(.ALERTS,1) D MES^XPDUTL("Enter a ServiceNow ticket")
+ Q
+ ;
+SETALERTSTUB ;
+ N ALERTS
+ D ALERTPARAMS(.ALERTS)
+ I '$$SETALERTSTUB^ORPATCHUTILS(.ALERTS,1) D MES^XPDUTL("Enter a ServiceNow ticket")
+ Q
+ ;
+SETPANEL ;
+ N ADM,CLI,ERROR,FDA,ORIMGR,PKG,SKY
+ D BMES^XPDUTL("Installing CPRS Information Panel")
+ I $G(^ORI(101.71,1,0))'="" Q
+ S PKG=+$O(^DIC(9.4,"B","ORDER ENTRY/RESULTS REPORTING","")) I PKG=0 D BMES^XPDUTL("ORDER ENTRY/RESULTS REPORTING package entry not found.") Q
+ S CLI=$O(^ORI(101.73,"B","ALL TAB CLINICAL","")) I CLI=0 D BMES^XPDUTL("Component entry ALL TAB CLINICAL not found.") Q
+ S ADM=$O(^ORI(101.73,"B","ALL TAB ADMIN","")) I ADM=0 D BMES^XPDUTL("Component entry ALL TAB ADMIN not found.") Q
+ ;S SKY=$O(^ORI(101.73,"B","SKY BLUE","")) I ADM=0 D BMES^XPDUTL("Component entry SKY BLUE not found.") Q
+ S FDA(101.71,"+1,",.01)="NATIONAL"
+ S FDA(101.71,"+1,",.02)=1
+ S FDA(101.71,"+1,",.03)=$$NOW^XLFDT()
+ S FDA(101.71,"+1,",.04)="Patch: OR*3.0*508"
+ S FDA(101.711,"+2,+1,",.01)=PKG
+ S FDA(101.7112,"+3,+2,+1,",.01)=1
+ S FDA(101.7112,"+3,+2,+1,",.02)=CLI
+ S FDA(101.7112,"+3,+2,+1,",.03)="Clinical Information"
+ S FDA(101.7112,"+3,+2,+1,",.04)="CI"
+ ;S FDA(101.7112,"+3,+2,+1,",.05)=SKY
+ S FDA(101.7112,"+3,+2,+1,",.07)="false"
+ S FDA(101.7112,"+4,+2,+1,",.01)=2
+ S FDA(101.7112,"+4,+2,+1,",.02)=ADM
+ S FDA(101.7112,"+4,+2,+1,",.03)="Admin Function"
+ S FDA(101.7112,"+4,+2,+1,",.04)="NAF"
+ ;S FDA(101.7112,"+4,+2,+1,",.05)=SKY
+ S FDA(101.7112,"+4,+2,+1,",.07)="true"
+ S ORIMGR=1
+ D UPDATE^DIE("","FDA","","ERROR")
+ I $D(ERROR) D AWRITE^ORINQIV("ERROR") Q
+ D BMES^XPDUTL("  Done")
+ Q
+ ;
+SETINFOPARAMS ;
+ N ORPARAMS
+ D INFOPARAMS(.ORPARAMS)
+ D BMES^XPDUTL("Setting Information Panel parameters:")
+ D SETPARAMS^ORPATCHUTILS(.ORPARAMS,1)
+ D BMES^XPDUTL("  Done")
+ Q
+ ;
+UPDMENU ;
+ N FAIL
+ S FAIL=0
+ D BMES^XPDUTL("Updating the menu OR PARAM COORDINATOR MENU")
+ I +$$ADD^XPDMENU("OR PARAM COORDINATOR MENU","OR DEBUG REPORT","RPC","")=0 S FAIL=1
+ I +$$ADD^XPDMENU("OR PARAM COORDINATOR MENU","ORI MENU","INFO","")=0 S FAIL=1
+ D BMES^XPDUTL($S(FAIL=1:"  error updating OR PARAM COORDINATOR MENU",1:"  Done"))
+ S FAIL=0
+ Q
+ ;
+ ;========================= CONFIG SECTION ========================================
+ALERTPARAMS(RESULTS) ;
+ S RESULTS(100,"name")="COMPACT UPDATES"
+ S RESULTS(100,"error")=""
+ S RESULTS(100,"parameters","ORB ARCHIVE PERIOD")=30
+ S RESULTS(100,"parameters","ORB DELETE MECHANISM")="A"
+ S RESULTS(100,"parameters","ORB FORWARD BACKUP REVIEWER")=0
+ S RESULTS(100,"parameters","ORB FORWARD SUPERVISOR")=0
+ S RESULTS(100,"parameters","ORB FORWARD SURROGATES")=0
+ S RESULTS(100,"parameters","ORB PROCESSING FLAG")="Disabled"
+ S RESULTS(100,"parameters","ORB PROVIDER RECIPIENTS")=""
+ S RESULTS(100,"parameters","ORB URGENCY")="Low"
+ Q
+ ;
+INFOPARAMS(RESULTS) ;
+ S RESULTS("OR INFO COLORS","PKG",1)="DISABLED"
+ S RESULTS("OR INFO DEFAULT COLOR","PKG",1)="WINDOW BUTTON FACE"
+ S RESULTS("OR INFO IMAGES","PKG",1)="ENABLED"
+ S RESULTS("OR INFO INDENT","PKG",1)="YES"
+ S RESULTS("OR INFO MOUSE CLICK","PKG",1)="YES"
+ S RESULTS("OR INFO PANEL ALIGNMENT","PKG",1)="Left"
+ S RESULTS("OR INFO PANEL ON","PKG",1)="ON"
+ S RESULTS("OR INFO REFRESH BUTTON","PKG",1)="YES"
+ S RESULTS("OR INFO TEXT ALIGN","PKG",1)="Left"
+ Q
+ ;
+ ;========================= TRANSPORT SECTION RECORD KIDS IS EXPORTING ============
+TRANSPORTEDITOR(IEN) ;
+ N NAME
+ S NAME=$P($G(^ORE(101.74,IEN,0)),U)
+ I NAME="COMPONENTS" Q 1
+ I NAME="PLUGINS" Q 1
+ I NAME="NATIONAL INFO PANEL" Q 1
+ I NAME="EDITOR" Q 1
+ I NAME="WEB CONTENT" Q 1
+ Q 0
+ ;
+TRANSPORTPLUGIN(IEN) ;
+ N NAME
+ S NAME=$P($G(^OR(101.75,IEN,0)),U)
+ I NAME="COMPONENTS" Q 1
+ I NAME="EDITOR" Q 1
+ I NAME="INFO PANEL" Q 1
+ I NAME="PLUGIN SETUP" Q 1
+ I NAME="PROVIDER LOOKUP" Q 1
+ I NAME="SCHEMA" Q 1
+ Q 0
+ ;
+TRANSPORTWEB(IEN) ;
+ N NODE
+ S NODE=$G(^ORW(101.76,IEN,0))
+ I $P(NODE,U,3)=1 Q 1
+ I $P(NODE,U)="INFO UI SCHEMA" Q 1
+ I $P(NODE,U)="INFO SCHEMA" Q 1
+ I $P(NODE,U)="COMPONENT UI SCHEMA" Q 1
+ I $P(NODE,U)="COMPONENT SCHEMA" Q 1
+ I $P(NODE,U)="EDITOR UI SCHEMA" Q 1
+ I $P(NODE,U)="EDITOR SCHEMA" Q 1
+ I $P(NODE,U)="SCHEMA UI SCHEMA" Q 1
+ I $P(NODE,U)="SCHEMA SCHEMA" Q 1
+ I $P(NODE,U)="PLUGIN UI SCHEMA" Q 1
+ I $P(NODE,U)="PLUGIN SCHEMA" Q 1
+ Q 0
+ ;
+SETPKGPARAMS ;set PKG values for 3 of the 4 below params, as they can be overidden by the site with a SYS param, but not the UDPATE PSO param, as it is SYS only.
+ D EN^XPAR("PKG","OR LOAD SA FROM EXISTING ORDER",1,"y")   ;y/1
+ D EN^XPAR("SYS","OR LOAD SA FROM EXISTING ORDER",1,"y")   ;y/1
+ D EN^XPAR("PKG","OR SPECAUTH ADD PROB TO VISIT",1,"n")  ;no/No
+ D EN^XPAR("PKG","OR SPECAUTH UNANSWERD TO VALUE",1,"C") ;Checked/true
+ D EN^XPAR("SYS","OR UPDATE PSO ENV INDICATOR",1,"n")    ;n/0
+ I $$PATCH^XPDUTL("OR*3.0*508"),$$PATCH^XPDUTL("PSO*7.0*788") D EN^XPAR("SYS","OR UPDATE PSO ENV INDICATOR",1,"y")
+ D EN^XPAR("PKG","OR CPRS LAST BROKER RPC MAX",1,500)
+ D EN^XPAR("PKG","OR CPRS ACTIVITY LOG SIZE",1,10,)
+ Q
+ ;
+NONVAPAP ;Set SYS & PKG values for NON-VA provider for both parameter defintions
+ N FRM,I
+ F I=1:1 S FRM=$P($T(NONVAP+I),";;",2) Q:FRM=""  D
+ . D SETPARVAL("ORWCH NON-VA PROVIDERS",FRM,"PKG",1)
+ ;
+ D SETPARVAL("ORWCH NON-VA PROVS FEATURE",1,"PKG","YES")
+ Q
+ ;
+SETPARVAL(ORPAR,ORINST,ORENT,ORVAL) ; set param value
+ ;
+ N ORERR
+ ;
+ D BMES^XPDUTL("Setting "_$G(ORENT)_" value for parameter "_ORPAR_" ("_ORINST_")...")
+ ;
+ D EN^XPAR(ORENT,ORPAR,ORINST,.ORVAL,.ORERR)
+ K ORVAL
+ I +$G(ORERR)>0 D  Q
+ . D MES^XPDUTL("  ERROR #"_$P(ORERR,U)_": "_$P(ORERR,U,2))
+ . D MES^XPDUTL("  Please log a Service Now ticket for assistance.")
+ D MES^XPDUTL("  Done.")
+ ;
+NONVAP ;Form Names for NON-VA Provider
+ ;;frmEncounter,cboPtProvider
+ ;;frmODAnatPath,cbxPtProvider
+ ;;frmdlgProb,cbProv
+ ;;vimmMainForm,ORDERED_BY
+ Q

@@ -1,8 +1,8 @@
-PXCEVFI2 ;ISL/DEE,ESW - Supporting routines for editing a visit or v-file entry ;05/03/2024@10:58
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,95,96,124,158,184,215,211,217,235,240**;Aug 12, 1996;Build 55
+PXCEVFI2 ;ISL/DEE,ESW - Supporting routines for editing a visit or v-file entry ;Aug 04, 2025@08:44:48
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,95,96,124,158,184,215,211,217,235,240,244**;Aug 12, 1996;Build 37
  ; Reference to ^DIC(31) in ICR #792
  ; Reference to ^DIC(391) in ICR #1112
- ; Reference to ^SCE(DA,0) in ICR #2065
+ ; Reference to ^SCE(DA,0) in ICR #402
  ; Reference to INP^SDAM2 in ICR #1582
  ; Reference to REQ^SDM1A in ICR #1583
  ; Reference to CLINIC^SDAMU in ICR #1580
@@ -11,6 +11,7 @@ PXCEVFI2 ;ISL/DEE,ESW - Supporting routines for editing a visit or v-file entry 
  ; Reference to SEQ^SDCO21 in ICR #1300
  ; Reference to CL^SDCO21 in ICR #1300
  ; Reference to ^SCE("AVSIT") in ICR #2045
+ ; Reference to ^DPT() in ICR #7029
  ;
  Q
 ASK(PXCVIEN,PXCFIEN,PXCEAUPN,PXCCATT,PXCCODE) ; -- Display a selection list from one V-File for this visit
@@ -55,6 +56,11 @@ SAVE ; -- Save this edited and quit editing.
  ... S PXCESEQ=""
  ... F  S PXCESEQ=$O(PXCEAFTR(PXCENODE,PXCESEQ)) Q:PXCESEQ=""  D
  .... S ^TMP("PXK",$J,PXCECATS,1,PXCENODE,PXCESEQ,"AFTER")=PXCEAFTR(PXCENODE,PXCESEQ)
+ .. I PXCECODE="PXCEVST"!(PXCECODE="PXCEPOV"),PXCENODE=800 D  Q
+ ... I '$D(PXCEAFTR(PXCENODE)),'$D(PXCEAFTR(900)) Q
+ ... I $D(PXCEAFTR(900)) M ^TMP("PXK",$J,PXCECATS,1,900,"AFTER")=PXCEAFTR(900)
+ ... I $G(PXCEAFTR(800))'="" S ^TMP("PXK",$J,PXCECATS,1,800)=PXCEAFTR(800)
+ ..I '$D(PXCEAFTR(PXCENODE)) Q
  .. S ^TMP("PXK",$J,PXCECATS,1,PXCENODE,"AFTER")=PXCEAFTR(PXCENODE)
  . I PXCECAT="SK",$G(^TMP("PXK",$J,PXCECATS,1,"IEN"))]"" D SAVE^PXCESK
  . D EN1^PXKMAIN
@@ -116,8 +122,11 @@ DEL(PXCECAT) ; -- Delete this V-File entry from the List if all the visit inform
  E  D
  . K ^TMP("PXK",$J)
  . S ^TMP("PXK",$J,"VST",1,"IEN")=PXCEVIEN
- . F PXCENODE=0,21,150,800,811,812 D
+ . F PXCENODE=0,21,150,811,812 D
  .. S (^TMP("PXK",$J,"VST",1,PXCENODE,"AFTER"),^TMP("PXK",$J,"VST",1,PXCENODE,"BEFORE"))=$G(^AUPNVSIT(PXCEVIEN,PXCENODE))
+ . D GETSAFORVISITDET^PXSPECAUTH(.NODE900,.NODE800,PXCEVIEN)
+ . S ^TMP("PXK",$J,"VST",1,800,"BEFORE")=NODE800
+ . M ^TMP("PXK",$J,"VST",1,900,"BEFORE")=NODE900
  . ;
  . S ^TMP("PXK",$J,"SOR")=PXCESOR
  . S ^TMP("PXK",$J,PXCECATS,1,"IEN")=PXCEFIEN

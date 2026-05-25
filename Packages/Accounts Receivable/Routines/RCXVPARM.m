@@ -1,5 +1,6 @@
-RCXVPARM ;DAOU-AR Paramater File Editor;02-JUL-03
- ;;4.5;Accounts Receivable;**201**;Mar 20, 1995
+RCXVPARM ;DAOU/ALA-AR Paramater File Editor ;02-JUL-03
+ ;;4.5;Accounts Receivable;**201,447**;Mar 20, 1995;Build 4
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
  Q  ; Quit routine if not called at Entry Point EN
@@ -58,7 +59,9 @@ SET ; SET
  ; Set variables for ^DIE call
  S DIE="^RC(342,",DA=1
  S DR="20.01;20.02;20.05"
- I RCXVSYS'="P" S DR=DR_";20.04T~"
+ ;
+ ; PRCA*4.5*447 Remove test only restriction on CBO Status field
+ S DR=DR_";20.04T~"
  ;
  S DR=DR_";20.07"
  ; Prompt user to enter/edit values in DR and file data

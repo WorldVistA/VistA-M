@@ -1,5 +1,5 @@
 PSOSPMUT ;BIRM/MFR - State Prescription Monitoring Program Utilities ;10/07/12
- ;;7.0;OUTPATIENT PHARMACY;**408,451,549,625,630**;DEC 1997;Build 26
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,549,625,630,772**;DEC 1997;Build 105
  ;
 EXPORT(BATCHIEN,MODE,BCKGRND,DEBUG,FLUSH) ; Export a SPMP Batch
  ;Input: BATCHIEN - Pointer to #58.41
@@ -194,7 +194,7 @@ WRITESEG(SEGID,LEVEL,ARRAY) ; Write the ASAP segment to the file
  W SEGID D SEGCOUNT(LEVEL)
  F ELMPOS=1:1:LASTELEM D
  . ;Skipping Last Element if marked NOT USED (to solve issue with TH09 for 4.0 and TH13 for 3.0)
- . I ELMPOS=LASTELEM,$P(@ARRAY@(SEGID,ELMPOS),"^",6)="N" Q
+ . I (+$G(PSOASVER)<4.2)!((+$G(PSOASVER)=4.2)&($E(PSOASVER,1,4)'="4.2A")&($E(PSOASVER,1,4)'="4.2B")) I ELMPOS=LASTELEM,$P(@ARRAY@(SEGID,ELMPOS),"^",6)="N" Q  ; 772
  . ;Data Element Delimiter Char
  . W $P(@ARRAY,"^",2)
  . ; ASAP Data Element Marked NOT USED
@@ -398,3 +398,4 @@ ESC(VALUE) ; Removes Control Characters from the Data Element Value
  S ESCVALUE=""
  F I=1:1:$L(VALUE) I $A(VALUE,I)>31,$A(VALUE,I)<127 S ESCVALUE=ESCVALUE_$E(VALUE,I)
  Q ESCVALUE
+ ;

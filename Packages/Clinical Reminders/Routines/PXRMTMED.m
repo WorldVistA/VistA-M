@@ -1,5 +1,5 @@
-PXRMTMED ; SLC/PKR/PJH - Edit a reminder term. ;Aug 18, 2020@11:19:40
- ;;2.0;CLINICAL REMINDERS;**1,4,6,12,26,45,42,65**;Feb 04, 2005;Build 438
+PXRMTMED ; SLC/PKR/PJH - Edit a reminder term. ;Mar 11, 2025@15:17:17
+ ;;2.0;CLINICAL REMINDERS;**1,4,6,12,26,45,42,65,87**;Feb 04, 2005;Build 35
  ;
  ;=======================================================
  N CS1,CS2,DA,DIC,DLAYGO,DTOUT,DUOUT,Y
@@ -40,8 +40,8 @@ RETRY W !
  S RESULT=$$VSPONSOR^PXRMINTR(X)
  I RESULT=0 S DIE("NO^")="Other value" G RETRY
  I RESULT=1 K DIE("NO^")
- ;Review date, Usage
- S DR="102;1" D ^DIE I $D(Y) Q
+ ;Review date, Usage, description
+ S DR="102;103;1" D ^DIE I $D(Y) Q
  Q
  ;
  ;=======================================================

@@ -1,5 +1,5 @@
 RCXFMSUV ;WISC/RFJ-fms vendor id ;9/17/98  11:42 AM
- ;;4.5;Accounts Receivable;**90,119,98,165,192,220,315,338**;Mar 20, 1995;Build 69
+ ;;4.5;Accounts Receivable;**90,119,98,165,192,220,315,338,452**;Mar 20, 1995;Build 2
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -143,6 +143,7 @@ LINKASK ;ENTRY POINT FOR MENU OPTION TO STORE LINK
  S DIC=340,DIC(0)="AEQM",DIC("A")="Enter Debtor to be linked to Vendor File: ",DIC("S")="I $P(^RCD(340,+Y,0),U)'[""PRC(""" D ^DIC Q:Y<0  S DEBTOR=+Y
 LINK ;LINKS DEBTOR TO VENDOR FILE
  S VENDOR=$$VENSEL^PRCHUTL() I VENDOR<0 S VENDOR="LINK" Q
+ S VENDOR=+VENDOR
  D STOREL(DEBTOR,VENDOR) Q
  ;
  ;

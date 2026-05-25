@@ -1,5 +1,5 @@
 MAGGI13 ;WOIFO/SG/BNT/NST/GEK/JSL - IMAGE FILE API (QUERY) ; 21 Jul 2010 11:05 AM
- ;;3.0;IMAGING;**93,117,122**;Mar 19, 2002;Build 92;Aug 02, 2012
+ ;;3.0;IMAGING;**93,117,122,365**;Mar 19, 2002;Build 19;Aug 02, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -142,6 +142,9 @@ PTCHK(IMGIEN,DFN) ;
  ;                 D  Include only deleted images (file #2005.1)
  ;
  ;                 E  Include only existing images (file #2005)
+ ;                    
+ ;                 O  Omit non-printable and delimiter characters in the
+ ;                    SHORT DESCRIPTION field
  ;
  ;               If neither 'E' nor 'D' flag is provided, then an
  ;               error code is returned.
@@ -190,7 +193,8 @@ QUERY(CALLBACK,FLAGS,MAG8DATA,MAG8FROM,MAG8TO,DFN) ;
  ;--- If a patient IEN is provided, it must be valid
  I $G(DFN)>0,'$$VALDFN^MAGUTL05(DFN,.TMP)  D STORE^MAGUERR(TMP)  Q TMP
  ;--- Unknown/Unsupported flag(s)
- Q:$TR(FLAGS,"CDEG")'="" $$IPVE^MAGUERR("FLAGS")
+ ;*zeb *365 add support for O flag
+ Q:$TR(FLAGS,"CDEGO")'="" $$IPVE^MAGUERR("FLAGS")
  ;--- Missing required flag
  Q:$TR(FLAGS,"DE")=FLAGS $$ERROR^MAGUERR(-6,,"D,E")
  ;

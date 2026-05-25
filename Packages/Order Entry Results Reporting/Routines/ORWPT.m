@@ -1,5 +1,5 @@
-ORWPT ;SLC/KCM/REV - Patient Lookup Functions ; Apr 2, 2024@08:12:00
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280,306,311,441,528,519,544,405,608**;Dec 17, 1997;Build 15
+ORWPT ;SLC/KCM/REV - Patient Lookup Functions ;Jan 23, 2025@10:18:50
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280,306,311,441,528,519,544,405,608,628,586**;Dec 17, 1997;Build 5
  ;
  ; Reference to ^UTILITY( in ICR #10061
  ; Reference to ^%ZOSF() in ICR #10096
@@ -22,15 +22,18 @@ ORWPT ;SLC/KCM/REV - Patient Lookup Functions ; Apr 2, 2024@08:12:00
  ; Reference to ^VA(200 in ICR #10060
  ; Reference to ^DPT( in ICR #10035
  ; Reference to ^DPT(IEN,-9 in ICR #2762
- ; Reference to ELIG^VADPT in ICR #10061
  ; Reference to DEM^VADPT in ICR #10061
+ ; Reference to ELIG^VADPT in ICR #10061
+ ; Reference to KVAR^VADPT in ICR #10061
+ ; Reference to SVC^VADPT in ICR #10061
  ; Reference to DEMUPD^VADPT in ICR #7109
  ; Reference to GET1^DIQ in ICR #2056
  ; Reference to ^DPT(DFN,.372 in 1476
  ;
+ Q
 IDINFO(REC,DFN) ; Return identifying information for a patient
  ; PID^DOB^SEX^VET^SC%^WARD^RM-BED^NAME
- N X0,X1,X101,X3,XV,X24,VAEL,ATT  ; name/dob/sex/ssn, ward, room-bed, sc%, vet, SIGI, Attending Physician
+ N X0,X1,X101,X3,XV,X24,VADM,VAEL,ATT  ; name/dob/sex/ssn, ward, room-bed, sc%, vet, SIGI, Attending Physician
  D ELIG^VADPT S XV=$S(VAEL(4):"Y",1:"N"),X3=$P(VAEL(3),"^",2)
  D DEM^VADPT S X24=$P($G(VADM(14,5)),"^")
  S ATT=$P($G(^DPT(DFN,.1041)),"^") I ATT]"" S ATT=$$GET1^DIQ(200,ATT,.01)
@@ -38,10 +41,22 @@ IDINFO(REC,DFN) ; Return identifying information for a patient
  S REC=$$SSN^DPTLK1(DFN)_U_$$DOB^DPTLK1(DFN,2)_U_$P(X0,U,2)_U_XV_U_X3_U_$P(X1,U)_U_$P(X101,U)_U_$P(X0,U)_U_X24_U_ATT ;DG249
  Q
 PTINQ(REF,DFN) ; Return formatted pt inquiry report
- K ^TMP("ORDATA",$J,1)
+ S REF=$NA(^TMP("ORDATA",$J,1)) K @REF
+ I '+$G(DFN) D SETITEM^ORWRP(.REF,"Invalid patient number.") Q 
+ I '$D(^DPT(DFN)) D SETITEM^ORWRP(.REF,"Patient not found on local system.") Q 
  D DGINQ^ORCXPND1(DFN)
- S REF=$NA(^TMP("ORDATA",$J,1))
+ ; insert persian gulf indicator *628 ajb
+ N DATA,TDATA M TDATA=@REF K @REF
+ N X,Y S (X,Y)=0 F  S X=$O(TDATA(X)) Q:'X  D  ; hard code to insert data after 'Preferred Language' :(
+ . S Y=Y+1,DATA(Y)=TDATA(X)
+ . I DATA(Y)["Preferred Language" S Y=Y+1,DATA(Y)="",Y=Y+1,DATA(Y)=$$PGULF(DFN)
+ M ^TMP("ORDATA",$J,1)=DATA
  Q
+PGULF(DFN) ; persian gulf indicator
+ N OUT,VAERR,VAROOT,X,Y
+ I '$D(^TMP($J,"SVC",DFN)) S VAROOT="^TMP($J,""SVC"",DFN)" D SVC^VADPT,KVAR^VADPT
+ S OUT=$G(^TMP($J,"SVC",DFN,16)),OUT="Persian Gulf Indicator:  "_$S(OUT="":"<no data>",1:$P(OUT,U,2))
+ Q OUT
 SCDIS(LST,DFN) ; Return service connected % and rated disabilities
  N VAEL,VAERR,I,ILST,DIS,SC,X
  D ELIG^VADPT
@@ -76,7 +91,7 @@ SELECT(REC,DFN) ; Selects patient & returns key information
  ; for CCOW (RV - 2/27/03)  name="-1", location=error message
  I '$D(^DPT(+DFN,0)) S REC="-1^^^^^Patient is unknown to CPRS." Q
  ;
- N X,ORPREF,VADEMO,X24,ORPRON
+ N X,ORPREF,VADEMO,VAERR,X24,ORPRON
  I $G(XWB("2","RPC"))="ORWPT SELECT" K ^TMP($J,"OC-OPOS") ; delete once per order session order checks
  K ^TMP("ORWPCE",$J) ; delete PCE 'cache' when switching patients
  K ^TMP("ORALLERGYCHK",$J) ; delete all temp allergy data for current session
@@ -88,7 +103,7 @@ SELECT(REC,DFN) ; Selects patient & returns key information
  S X=$G(^DPT(DFN,.105)) I X S $P(REC,U,10)=$P($G(^DGPM(X,0)),U)
  S:'$D(IOST) IOST="P-OTHER"
  S $P(REC,U,11)=0
- D ELIG^VADPT S $P(REC,U,12)=$G(VAEL(3)) ;two pieces: SC^SC%
+ N VAEL D ELIG^VADPT S $P(REC,U,12)=$G(VAEL(3)) ;two pieces: SC^SC%
  I $L($T(GETICN^MPIF001)) S X=+$$GETICN^MPIF001(DFN) S:X>0 $P(REC,U,14)=X
  S $P(REC,U,15)=$$AGE(DFN,$P(REC,U,3))
  S $P(REC,U,16)=+$G(^DPT(DFN,.103)) ; treating specialty
@@ -199,7 +214,7 @@ LISTALL(Y,FROM,DIR) ; Return a bolus of patient names.  From is either Name or I
  Q
 APPTLST(LST,DFN) ; return a list of appointments
  ; APPTTIME^LOCIEN^LOCNAME^EXTSTATUS
- N ERR,ERRMSG,VASD,VAERR K ^UTILITY("VASD",$J)
+ N ERR,ERRMSG,I,VASD,VAERR K ^UTILITY("VASD",$J)
  S VASD("F")=$$HTFM^XLFDT($H-30,1)
  S VASD("T")=$$HTFM^XLFDT($H+1,1)_".2359"
  S VASD("W")="123456789"
@@ -262,8 +277,8 @@ CWAD(Y,DFN) ;  returns CWAD flags for a patient
 LEGACY(ORLST,DFN) ; return message if data on the legacy system
  ; ORLST(0)=1 if data,  ORLST(n)=display message if data
  S ORLST(0)=0
- I $L($T(HXDATA^A7RDPAGU)) D
- . D HXDATA^A7RDPAGU(.ORLST,DFN)
+ I $L($T(@("HXDATA^A7RDPAGU"))) D
+ . D @"HXDATA^A7RDPAGU(.ORLST,DFN)"
  . I $O(ORLST(0)) S ORLST(0)=1
  Q
 INPLOC(REC,DFN) ; Return a patient's current location
@@ -286,3 +301,4 @@ GETFICN(ORWRSLT,DFN) ;returns ICN plus checksum for a DFN
  Q
 ROK(X) ; Routine OK (in UCI) (NDBI)
  S X=$G(X) Q:'$L(X) 0  Q:$L(X)>8 0  X ^%ZOSF("TEST") Q:$T 1  Q 0
+ ;

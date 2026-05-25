@@ -1,24 +1,25 @@
-ORNEWPERS ; NA/AJB - NEW PERSON RPC ;02/09/23  06:03
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**596**;Dec 17, 1997;Build 7
+ORNEWPERS ; NA/AJB - NEW PERSON RPC ;Dec 31, 2025@12:51:27
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**596,609,508**;Dec 17, 1997;Build 39
  ;
- ; External reference to $$DT^XLFDT supported by IA 10103
- ; External reference to $$ALL^VASITE suppored by IA 10112
- ; External reference to $$SCRDFCS^TIULA3 supported by IA 3976
- ; External reference to $$DIV4^XUSER supported by 2343
- ; External reference to $$PROVIDER^XUSER supported by IA 2343
- ; External reference to $$GET^XUA4A72 supported by IA 1625
- ; External reference to $$GET1^DIQ supported by IA 2056
- ; External reference to $$ACCESS^XQCHK supported by IA 10078
- ; External reference to $$NPI^XUSNPI supported by IA 4532
- ; External reference to $$ISA^USRLM supported by IA 1544
- ; External reference to $$REQCOSIG^TIULP supported by IA 2322
- ; External reference to $$ISA^USRLM supported by 1544
- ; External reference to GETLST^XPAR supported by IA 2263
- ; External reference to File ^DIC(49 supported by IA 4330
- ; External reference to File ^TIU(8925 supported by IA 2937
- ; External reference to File ^VA supported by IA 4329
- ; External reference to File ^VA supported by IA 10060
- ; External reference to File ^XUSEC supported by IA 10076
+ ; Reference to $$DT^XLFDT in ICR #10103
+ ; Reference to $$ALL^VASITE in ICR #10112
+ ; Reference to $$DIV4^XUSER in ICR #2343
+ ; Reference to $$PROVIDER^XUSER in ICR #2343
+ ; Reference to $$GET^XUA4A72 in ICR #1625
+ ; Reference to $$GET1^DIQ in ICR #2056
+ ; Reference to $$ACCESS^XQCHK in ICR #10078
+ ; Reference to $$NPI^XUSNPI in ICR #4532
+ ; Reference to $$ISA^TIULX in ICR #3058
+ ; Reference to $$REQCOSIG^TIULP in ICR #2322
+ ; Reference to $$ISA^USRLM in ICR #1544
+ ; Reference to $$PROVIDER^TIUPXAP1 in ICR #7618
+ ; Reference to GETLST^XPAR in ICR #2263
+ ; Reference to File ^DIC(49 in ICR #4330
+ ; Reference to File ^TIU(8925 in ICR #2937
+ ; Reference to File ^VA(200 in ICR #4329
+ ; Reference to File ^VA(200 in ICR #10060
+ ; Reference to File ^XUSEC in ICR #10076
+ ; Reference to File ^DIC(3.1 in ICR #1234
  ;
  Q
 PARAMETERS ; FROM^DIR^KEY^DATE^RDV^ALL^PDMP^SPN^EXC^NVAP^DFC^TIUDA^TYPE^HELP^DEBUG
@@ -28,6 +29,7 @@ NEWPERSON(ORY,PARAMS) ; all parameters passed by reference
  S PARAMETERS=$P($T(PARAMETERS),"; ",2) F I=1:1:$L(PARAMETERS,U) S PRM=$P(PARAMETERS,U,I) N @(PRM) D  ;   setup parameters
  . S (@(PRM),P(PRM))=$G(PARAMS(PRM)) ;                                                                    set variables & parameters
  . S INF(I,PRM)=$S($D(PARAMS(PRM)):PARAMS(PRM),1:"") ;                                                    set for help
+ I $$GET^XPAR("ALL","ORWCH NON-VA PROVS FEATURE")=0 S (NVAP,P("NVAP"))=1 ;                                backward compatibility for non-va providers
  I EXC S P("ORUCE")=$$GET^XPAR("SYS","OR CPRS USER CLASS EXCLUDE",1,"B") ;                                set OR CPRS USER CLASS EXCLUDE parameter
  S DIR=$S('DIR:1,1:DIR),MAX=44 ;                                                                          direction & max results
  S GBL=$S((ALL!RDV):$NA(^VA(200,"B")),1:$NA(^VA(200,"AUSER"))) ;                                          search global
@@ -35,7 +37,7 @@ NEWPERSON(ORY,PARAMS) ; all parameters passed by reference
  I TAG="COS" S P("DSC")=$$FIND1^DIC(8925.1,"","","DISCHARGE SUMMARY","","I $P(^(0),U,4)=""CL""","") ;     discharge summary class
  F I=0:1 S J=$P($T(@TAG+I),";;",2,3) Q:J=""  S XEC(I)=J ;                                                 execution criteria [evaluated reverse order]
  I HELP'=0 D HELP(.ORY,.INF,.XEC) Q  ;                                                                    REMOTE PROCEDURE information
- ; similiar provider name lookup receives IEN, returns all users that match LAST,FI [ignores max limit]
+ ; similar provider name lookup receives IEN, returns all users that match LAST,FI [ignores max limit]
  ; example:  CPRSPROVIDER,FIRSTNAME becomes CPRSPROVIDER,FH~
  I SPN N SPNQ D SPN(.FROM,.SPNQ) ;                                                                        similar provider name lookup
  S I=0 F  Q:$S(SPN:0,1:(I'<MAX))  S FROM=$O(@GBL@(FROM),DIR) Q:$S(SPN:'(FROM[SPNQ),1:FROM="")  D  ;       main loop
@@ -66,7 +68,7 @@ SPN(FROM,SPNQ) ; similar provider name lookup
  Q
 DETAILS(NODE0,IEN,MORE,DIV) ; get user information
  N DTL,ENTRY S DIV=$G(DIV),DTL="",ENTRY=IEN_"^"_$$NAMEFMT^XLFNAME($P(NODE0,U),"F","DcMPC")_"^",MORE=$G(MORE,0) ;         IEN^user name
- S:$P(NODE0,U,9) DTL(1)=$$TITLE^XLFSTR($G(^DIC(3.1,$P(NODE0,U,9),0))) ;                                                  title
+ S:$P(NODE0,U,9) DTL(1)=$$TITLE^XLFSTR($P($G(^DIC(3.1,$P(NODE0,U,9),0)),U)) ;                                            title
  I MORE D
  . N SRV S SRV=$P($G(^VA(200,IEN,5)),U) S:SRV SRV=$$TITLE^XLFSTR($P($G(^DIC(49,SRV,0)),U)) S:SRV'="" DTL(2)=SRV ;        service/section
  . I +DIV S DIV=$S($P(DIV,U,2)'="":$P(DIV,U,2),1:$$GET1^DIQ(4,+DIV,.01)) S:DIV'="" DTL(3)=DIV Q  ;                       division
@@ -74,8 +76,9 @@ DETAILS(NODE0,IEN,MORE,DIV) ; get user information
  . N X S X=0 F  S X=$O(DIV(X)) Q:'+X  I +DIV(X) S DIV=$$GET1^DIQ(4,X,.01) ;                                              default division
  . S:DIV'="" DTL(3)=DIV ;                                                                                                division
  N NPI S NPI=+$$NPI^XUSNPI("Individual_ID",IEN) S:+NPI>0 DTL(4)="[NPI: "_NPI_"]" ;                                       NPI
+ S DTL(5)="" I NVAP S DTL(5)=$S($$CPRSTAB(IEN,$O(^ORD(101.13,"B","NVA",0)),DATE):"Non VA-Provider",1:"")
  N X S X=0 F  S X=$O(DTL(X)) Q:'X  S:$O(DTL(0))=X DTL="- " S DTL=DTL_DTL(X)_$S($O(DTL(X))=4:" ",$O(DTL(X)):", ",1:"") ;  set details
- Q ENTRY_DTL
+ Q ENTRY_DTL_U_$S(DTL(5)'="":"N",1:"")
 CPRSTAB(USER,TAB,DATE) ; return tab status
  ; 0 missing/expired, 1 assigned & current
  N RESULT S DATE=$S(+DATE:DATE,1:DT),RESULT=0
@@ -96,7 +99,7 @@ HELP(ORY,INF,XEC) ; return detailed parameter &  user evaluation information
  . S I=0 F  S I=$O(@GBL@(I)) Q:'I  S X=X+1,ORY(X)=@GBL@(I,0)
  S X=X+1,ORY(X)="",X=X+1,ORY(X)="Parameter       Value"
  S I=0 F  S I=$O(INF(I)) Q:'I  S X=X+1,ORY(X)=$O(INF(I,"")),J=INF(I,$O(INF(I,""))),ORY(X)=$$SETSTR(J,ORY(X),17,$L(J))
- S X=X+1,ORY(X)="",X=X+1,ORY(X)="COR=CPRS GUI ""core"" tab status",X=X+1,ORY(X)="NVA=Non-VA Providers tab staus"
+ S X=X+1,ORY(X)="",X=X+1,ORY(X)="COR=CPRS GUI ""core"" tab status",X=X+1,ORY(X)="NVA=Non-VA Providers tab status"
  S X=X+1,ORY(X)="",X=X+1,ORY(X)="Current Evaluation Criteria"
  S I="" F  S I=$O(XEC(I),-1) Q:I=""  S X=X+1,ORY(X)=$P(XEC(I),";;")
  Q
@@ -109,12 +112,11 @@ USRCLEX(IEN,CLASS,ERR,DATE) ; NSR 20120101
 COS ;;I $$REQCOSIG^TIULP(TYPE,TIUDA,IEN,DATE);;"User requires co-signature for a:",!,?4,$E($$GET1^DIQ(8925.1,TYPE,.01),1,67)
  ;;I TYPE=DSC!($$ISA^TIULX(TYPE,DSC)),'$$ISA^USRLM(IEN,"PROVIDER",,DATE);;"Not a PROVIDER User Class for a title in DISCHARGE SUMMARY Class"
 DFC ;;I DFC,'$$PROVIDER^TIUPXAP1(IEN,DATE);;"Not a member of a Provider 'Person Class' for default co-signer selection"
- ;;I DFC,DUZ=IEN;;"Cannot assign youself as default co-signer"
+ ;;I DFC,DUZ=IEN;;"Cannot assign yourself as default co-signer"
 USR ;;I EXC,+ORUCE,$$USRCLEX(IEN,+ORUCE,"ERR",DATE);;"Member of "_$P(ORUCE,U,2)_" user class excluded via parameter"
  ;;I EXC,NVA;;"Non-VA Provider excluded for Additional Signer selection"
  ;;I COR,VAL=-3;;"OR CPRS GUI CHART option missing"
  ;;S VAL=$$ACCESS^XQCHK(IEN,"OR CPRS GUI CHART") I COR,VAL=0;;"Not assigned OR CPRS GUI CHART option [any menu tree]"
- ;;I 'NVAP,NVA;;"Non-VA Provider excluded via parameter"
 PDM ;;I PDMP,'$$ISAUTH^ORPDMP(IEN);;"Not authorized for PDMP access"
  ;;I NVA,COR;;"Non-VA and 'core' CPRS TAB ACCESS "_$S(DATE:"active on "_$$FMTE^XLFDT(DATE),1:"currently active")
  ;;I 'NVA,'COR;;"No CPRS TAB ACCESS assigned"
@@ -122,6 +124,7 @@ PDM ;;I PDMP,'$$ISAUTH^ORPDMP(IEN);;"Not authorized for PDMP access"
 RDV ;;I $P(NODE0,U,11)>0,$P(NODE0,U,11)'>$S(DATE:DATE,1:DT);;"Termination date reached "_$$FMTE^XLFDT($P(NODE0,U,11))
 ALL ;;I DATE,$$GET^XUA4A72(IEN,DATE)'>0;;"No active 'Person Class' for "_$$FMTE^XLFDT(DATE)
  ;;I KEY'="",'$D(^XUSEC(KEY,IEN));;"Not assigned "_KEY_" Security Key"
+ ;;I 'NVAP,NVA;;"Non-VA Provider excluded via parameter"
  ;;
 DEBUG ; evaluate a specific user, list below prompts user to determine RPC criteria entry point
  ;;ALL^YE^NO^Terminated or DISUSER allowed
@@ -149,7 +152,7 @@ DEBUG ; evaluate a specific user, list below prompts user to determine RPC crite
  G EXIT:'VAL  W !!,IOUON_"Optional Parameters"_IOUOFF
  S DIC=19.1,DIC("A")="Enter a SECURITY KEY: ",VAL=$$DIC(.DIC) G EXIT:VAL=U  S P("KEY")=$S(+VAL:$P(VAL,U,2),1:"") ; security key
  S DIR(0)="DO",DIR("A")="Enter a DATE",VAL=$$DIR(.DIR) G EXIT:VAL=U  S P("DATE")=$S(+VAL:VAL,1:"") ;               date for evaluation
- I $S(TAG="ALL":0,TAG="RDV":0,TAG="PDM":0,1:1) D  G EXIT:VAL=U
+ D  G EXIT:VAL=U
  . S DIR(0)="YE",DIR("A")="Include Non-VA Providers",DIR("B")="NO",VAL=$$DIR(.DIR) Q:VAL=U  S P("NVAP")=VAL ;      ask Non-VA Provider
  . S DIR(0)="YE",DIR("A")="Screen for OR CPRS USER CLASS EXCLUDE parameter",DIR("B")="NO",VAL=$$DIR(.DIR) Q:VAL=U  S P("EXC")=VAL ; ask parameter definition
  I P("EXC") S P("ORUCE")=$$GET^XPAR("SYS","OR CPRS USER CLASS EXCLUDE",1,"B") ;                                    set ASU class

@@ -1,5 +1,5 @@
-DGCLEAR ;ALB/BAJ,TDM - REGISTRATION CROSS REFERENCE CLEANUP ; 12/22/08 4:14pm
- ;;5.3;Registration;**653,688,754**;Aug 13, 1993;Build 46
+DGCLEAR ;ALB/BAJ,TDM,ARF - REGISTRATION CROSS REFERENCE CLEANUP ; 12/22/08 4:14pm
+ ;;5.3;Registration;**653,688,754,1127**;Aug 13, 1993;Build 11
  ;
  ; Called from ASK^DGLOCK or ADK^DGLOCK3, The purpose of this routine is to clear All temporary or confidential address fields
  ; Also called from Z07 process to clear Permanent address before update 
@@ -19,6 +19,7 @@ SETARR(CALLTYP,DATA) ;set up data array
  F CNT=1:1 S T=$P($T(DTABLE+CNT),";;",3) Q:T="QUIT"  D
  . Q:$P(T,";",1)'=CALLTYP  S DATA($P(T,";",3))=$P(T,";",4)
  Q
+ ;DG*5.3*1127 - Added CONFIDENTIAL ADDR OVERRIDE IND field (#.141201) to DTABLE
 DTABLE ;TABLE of Foreign and Domestic fields: structure -->>;;Description;;(T)EMPORARY/(C)ONFIDENTIAL/(P)ERMANENT;FILE;FIELD;DATA
  ;;TEMPORARY STREET [LINE 1];;T;2;.1211;@
  ;;TEMPORARY ZIP+4;;T;2;.12112;@
@@ -49,6 +50,7 @@ DTABLE ;TABLE of Foreign and Domestic fields: structure -->>;;Description;;(T)EM
  ;;CONFIDENTIAL ADDRESS POSTAL CODE;;C;2;.14115;@
  ;;CONFIDENTIAL ADDRESS COUNTRY;;C;2;.14116;@
  ;;CONFIDENTIAL ADDRESS ACTIVE;;C;2;.14105;N
+ ;;CONFIDENTIAL ADDR OVERRIDE IND;;C;2;.141201;@
  ;;PERMANENT STREET [LINE 1];;P;2;.111;@
  ;;PERMANENT STREET [LINE 2];;P;2;.112;@
  ;;PERMANENT CITY;;P;2;.114;@

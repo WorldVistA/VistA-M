@@ -1,5 +1,5 @@
-PSSFDBDI ;BIR/LE - Sends XML Request to PEPS via HWSC for Dose Information ;01/23/12
- ;;1.0;PHARMACY DATA MANAGEMENT;**160,175,201**;9/30/97;Build 25
+PSSFDBDI ;BIR/LE - Sends XML Request to PEPS via HWSC for Dose Information ; Jan 23, 2012@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**160,175,201,254**;9/30/97;Build 109
  ;
  ; Reference to ^PSNDF(50.68 is supported by DBIA #3735
  ; Reference to ^MXMLDOM is supported by DBIA #3561
@@ -306,6 +306,9 @@ GETFILE(PSSDR,PSSMM) ;
  .I PSSTYPE="MM" S PSSMM(PSSFLD)=PSSNODE_"^"_PSSPIECE
  Q
  ;
+ ;254 - Changed intlDoseRouteDescription to doseRouteDescription.  V4.5 no longer returns
+ ;  custom, category, intlDoseRouteDescription, hitIndicationDescription, indicationId,
+ ;  indicationDescription, indicationIdType, and hepaticImpairment.
 FILE ;file structure for the temp file for each data field imported from FDB
  ;;;0
  ;;;custom;1;1
@@ -313,7 +316,7 @@ FILE ;file structure for the temp file for each data field imported from FDB
  ;;;doseTypeId;1;3
  ;;;doseTypeDescription;1;4
  ;;;doseRouteId;1;5
- ;;;intlDoseRouteDescription;1;6
+ ;;;doseRouteDescription;1;6
  ;;;ageLowInDays;1;7
  ;;;ageHighInDays;1;8
  ;;;hitIndicationId;2;1

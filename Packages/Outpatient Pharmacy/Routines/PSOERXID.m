@@ -1,5 +1,5 @@
 PSOERXID ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**581,635**;DEC 1997;Build 19
+ ;;7.0;OUTPATIENT PHARMACY;**581,635,770**;DEC 1997;Build 145
  ;
  Q
 ALLERGY(IEN,MYTPE) ; parsing and filing into allergy multiple
@@ -38,7 +38,7 @@ ALLERGY(IEN,MYTPE) ; parsing and filing into allergy multiple
  .S FDA(SF,"+"_SEQUENCE_","_IENS,8)=ADVET ; adverse event text
  .S FDA(SF,"+"_SEQUENCE_","_IENS,9)=ADVEC ; adverse event code
  D CFDA^PSOERXIU(.FDA)
- D UPDATE^DIE(,"FDA") K FDA
+ I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  S NKA=$G(@AGL@("NoKnownAllergies",0)),FDA(52.49,IEN_",",302)=NKA
  D FILE^DIE(,"FDA")
  Q
@@ -100,7 +100,7 @@ BENEFITS(IEN,MTYPE) ;parsing and filing benefits coordination data
  .; payer type
  .S FDA(F,"+"_SEQUENCE_","_IENS,16.6)=PAYTYPE
  .D CFDA^PSOERXIU(.FDA)
- .D UPDATE^DIE(,"FDA","NEWIEN") K FDA
+ .I $D(FDA) D UPDATE^DIE(,"FDA","NEWIEN") K FDA
  .S NIEN=$O(NEWIEN(0)),NIEN=$G(NEWIEN(NIEN))
  .D COMM^PSOERXIU(BGLC,SF,NIEN_","_IEN,52.49304,7) ;parse and file benefits coordination communication
  .K NEWIEN
@@ -135,7 +135,7 @@ FACILITY(IEN,MTYPE) ; parsing and filing facility data
  S FDA(F,IENS,74.5)=UPIN,FDA(F,IENS,74.6)=FACID,FDA(F,IENS,75.1)=DEA,FDA(F,IENS,75.2)=HIN
  S FDA(F,IENS,75.3)=NPI,FDA(F,IENS,75.4)=MUTDEF,FDA(F,IENS,75.5)=REMS
  D CFDA^PSOERXIU(.FDA)
- D UPDATE^DIE(,"FDA") K FDA
+ I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  D COMM^PSOERXIU(FGLC,SF,IEN,52.49,76) ; parse and file facility communication data
  Q
 OBSERV(IEN,MTYPE) ; parsing and filing observation data
@@ -157,7 +157,7 @@ OBSERV(IEN,MTYPE) ; parsing and filing observation data
  .S FDA(F,"+"_SEQUENCE_","_IENS,.01)=SEQUENCE,FDA(F,"+"_SEQUENCE_","_IENS,1)=VSIGN,FDA(F,"+"_SEQUENCE_","_IENS,2)=LOIN,FDA(F,"+"_SEQUENCE_","_IENS,3)=VALUE
  .S FDA(F,"+"_SEQUENCE_","_IENS,4)=UOM,FDA(F,"+"_SEQUENCE_","_IENS,5)=UCUM,FDA(F,"+"_SEQUENCE_","_IENS,6)=OBDATE
  D CFDA^PSOERXIU(.FDA)
- D UPDATE^DIE(,"FDA") K FDA
+ I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  S OBNOTES=$G(@OGL@("ObservationNotes",0))
  S LGL=$NA(^TMP($J,"PSOERXO1","Message",0,"Body",0,MTYPE,0))
  S LTCLOC=$G(@LGL@("MessageRequestCode",0))
@@ -169,5 +169,5 @@ OBSERV(IEN,MTYPE) ; parsing and filing observation data
  S FDA(52.49,IEN_",",301.1)=LTCLOC,FDA(52.49,IEN_",",301.2)=UIC,FDA(52.49,IEN_",",301.3)=PROREN
  S FDA(52.49,IEN_",",305)=OBNOTES
  D CFDA^PSOERXIU(.FDA)
- D FILE^DIE(,"FDA") K FDA
+ I $D(FDA) D FILE^DIE(,"FDA") K FDA
  Q

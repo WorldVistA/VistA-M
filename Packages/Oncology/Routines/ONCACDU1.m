@@ -1,5 +1,5 @@
 ONCACDU1 ;HINES OIFO/GWB - NAACCR extract utilities #1 ;05/08/12
- ;;2.2;ONCOLOGY;**1,4,7,5,10,12,13,14,17,18**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,7,5,10,12,13,14,17,18,21**;Jul 31, 2013;Build 6
  ;P17 set Date Flag to Null if DX is year 2023
 BDATE(ACD160) ;Date of Birth [240] 196-203
  N D0,X,Y
@@ -92,6 +92,10 @@ COMO ;ICD10 PHI Code.
 BRE22(IEN) ;Breast Surgery code User define in p18
  S DATEDX=$$GET1^DIQ(165.5,IEN,3,"I")
  I (DATEDX<3220101)!(DATEDX>3231231) S ACDANS=""
+ Q ACDANS
+BRE24(IEN) ;Breast Surgery code User define in p21
+ S DATEDX=$$GET1^DIQ(165.5,IEN,3,"I")
+ I DATEDX<3240101 S ACDANS=""
  Q ACDANS
 CSF1(IEN) ;CSF1   ;P#18 default to 999 for specific Site and Histology
  N ONC164,ONC164H,ONCPS,ONCS,ONCH1,ONCH1H,DATEDX S ONC164=$$GET1^DIQ(165.5,IEN,20,"I"),ONCH1=0

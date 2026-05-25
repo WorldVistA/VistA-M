@@ -1,13 +1,10 @@
-MAGDSTA7 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Mar 04, 2022@13:42:59
- ;;3.0;IMAGING;**231,305**;Mar 19, 2002;Build 3
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTA7 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Aug 12, 2025@10:58:55
+ ;;3.0;IMAGING;**231,305,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -83,13 +80,16 @@ PATIENT() ; use "AD" cross-reference to find studies for a single patient
 DATE() ; use "AE" cross-reference to find completed studies
  ; ^GMR(123,"AE",SERVICE,STATUS,GMRCDATE,GMRCIEN)=""
  ; only look for COMPLETED studies and PARTIAL RESULTS
- N DATEBEG,DATESTOP,DONE,GMRCDATE,STATUS,STOP
+ N DATEBEG,DATESTOP,DONE,GMRCDATE,STATUS,STATUSNAME,STOP
  S STOP=0 ; set to stop the q/r process
  D SETDATES(.DATEBEG,.DATESTOP,BEGDATE,ENDDATE,DIRECTION)
  S SERVICE="" F  S SERVICE=$O(CONSULTSERVICES(SERVICE)) Q:SERVICE=""  Q:STOP  D
  . F STATUS=2,9 D  ; STATUS=2 for COMPLETE, STATUS=9 for PARTIAL RESULTS
  . . W !!,CONSULTSERVICES(SERVICE)," -- "
- . . W $S(STATUS=2:"COMPLETE",STATUS=9:"PARTIAL RESULTS",1:"Unknown Status "_STATUS)
+ . . S STATUSNAME=$S(STATUS=2:"COMPLETE",STATUS=9:"PARTIAL RESULTS",1:"Unknown Status "_STATUS)
+ . . W STATUSNAME  ; P333 PMK 08/12/2025
+ . . D CSVSAVE^MAGDSTAA(""),CSVSAVE^MAGDSTAA("") ; P333 PMK 08/12/2025
+ . . D CSVSAVE^MAGDSTAA(""""_CONSULTSERVICES(SERVICE)_" -- "_STATUSNAME_"""") ; P333 PMK 08/12/2025
  . . S GMRCDATE=DATEBEG,DONE=0
  . . ; reverse date, opposite sort order
  . . F  S GMRCDATE=$O(^GMR(123,"AE",SERVICE,STATUS,GMRCDATE),-DIRECTION) Q:'GMRCDATE  Q:DONE  Q:STOP  D

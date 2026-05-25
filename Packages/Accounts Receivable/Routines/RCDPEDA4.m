@@ -1,5 +1,5 @@
 RCDPEDA4 ;AITC/DW - ACTIVITY REPORT ;Feb 17, 2017@10:37:00
- ;;4.5;Accounts Receivable;**318,321,326,432**;Mar 20, 1995;Build 16
+ ;;4.5;Accounts Receivable;**318,321,326,432,439,446**;Mar 20, 1995;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  ; Continuation of RCDPEDAR - Daily activity Report
  Q
@@ -102,6 +102,11 @@ LMHDR(RCSTOP,RCDET,RCNJ,RCDT1,RCDT2,RCHDR,DONLY) ;EP from RCDPEDAR
  . . ;S Z1=Z1_VAUTD(Z0)_", "
  . . S Z1=Z1_XX_", "
  S Z="DIVISIONS: "_$S(VAUTD:"ALL",1:$E(Z1,1,$L(Z1)-2))
+ ; PRCA*4.5*439 Add Deposit Balance/Unbalance/All filter to header
+ S Z1=$L(Z),Z1=59-Z1,Z0="",$P(Z0," ",Z1)=""  ;Add spaces
+ S Z=Z_Z0_"DEPOSITS: "
+ S Z=Z_$S(RCUNBAL="U":"UNBALANCED  ",RCUNBAL="B":"BALANCED    ",1:"ALL         ")
+ S Z=$J("",80-$L(Z)\2)_Z
  I 'RCDET D
  . S RCCT=RCCT+1,RCHDR(RCCT)=""
  S RCCT=RCCT+1,RCHDR(RCCT)=Z
@@ -192,3 +197,133 @@ GETTR(IEN34431,INPUT)   ;EP from RCDPEDA2
  . S ^TMP($J,"ONEDEP",EFTCTR,EFTLN)=$J("",3)_TRDOCS(XX)
  Q
  ;
+DEPBAL(RCDIEN) ;Is the deposit total in balance with EFT amounts ; New subroutine PRCA*4.5*439
+ ; If modified, also check DEPBAL^RCDPTAR2
+ ; Input:   RCDIEN  - IEN for EDI LOCKBOX DEPOSIT, #344.3
+ ;
+ ; Output:  RCBALS, returned via function call
+ ;          Piece 1 - 1 if in balance, 0 if out of balance
+ ;          Piece 2 - null (no longer needed PRCA*4.5*446) Total of EFTs on the deposit
+ ;          Piece 3 - Deposit Total
+ ;
+ ; PRCA*4.5*446, Modify sub-routine to use unbalanced flag in 344.3
+ ;
+ N DTOT,DEPDATA,EFTDATA,RCBALS
+ S RCBALS="0^^0"
+ ;
+ Q:'$G(RCDIEN) RCBALS                                           ; Error condition, IEN is missing or incorrect
+ ;
+ S DEPDATA=$G(^RCY(344.3,RCDIEN,0)) Q:'$L($G(DEPDATA)) RCBALS   ; Quit if zero node does not exist or has bad data
+ S DTOT=$P(DEPDATA,U,8)                                         ; Get total deposit amount
+ ;
+ S $P(RCBALS,U,3)=DTOT
+ S $P(RCBALS,U,1)='$$GET1^DIQ(344.3,RCDIEN_",",.15,"I")         ; Equal to 1 if inbalance, 0 otherwise
+ ;
+ Q RCBALS
+ ;
+UNBALONLY() ; Allows the user to select filter to only show Balanced, Unbalanced or All deposits
+ ; PRCA*4.5*439 Added subroutine
+ ; Input:   None
+ ; Returns: A - All, B - Balanced, U - Unbalanced, (-1) - User '^' or timeout
+ ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,RTNFLG,Y
+ ;
+ S RTNFLG=0
+ ;
+ ; Select option required (All, Balanced or Unbalanced)
+ S DIR(0)="SA^B:Balanced;U:Unbalanced;A:All"
+ S DIR("A")="(B)alanced deposits, (U)nbalanced deposits or (A)LL?: "  ; PRCA*4.5*332
+ S DIR("?",2)="Enter 'A' to select all deposits, both balanced and unbalanced."
+ S DIR("B")="All"
+ S DIR("?",1)="Enter 'U' to select only unbalanced deposits."
+ S DIR("?")="Enter 'B' to select only balanced deposits."
+ D ^DIR K DIR
+ ;
+ ; Abort on ^ exit or timeout
+ I $D(DTOUT)!$D(DUOUT) S RTNFLG=-1 Q RTNFLG
+ ;
+ I Y="" S Y="A"
+ ;
+ Q Y
+ ;
+RTYPE() ; Allows the user to select the report type (Summary/Detail)
+ ; Input:   None
+ ; Returns: 0       - Summary Display
+ ;          1       - Detail Display
+ ;         -1       - User up-arrowed or timed out
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S DIR("A")="(S)UMMARY OR (D)ETAIL?: "
+ S DIR(0)="SA^S:SUMMARY TOTALS ONLY;D:DETAIL AND TOTALS"
+ S DIR("B")="D"
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
+ Q Y="D"
+ ;
+DTRANGE(STDATE,ENDDATE) ; Allows the user to select the date range to by used
+ ; Input:   None
+ ; Output:  STDATE  = Internal Fileman Date to start at
+ ;          ENDDATE - Internal Fileman Date to end at
+ ; Returns: 0 - User up-arrowed or timed out, 1 otherwise
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S DIR("?")="Enter the earliest date of receipt of deposit to include on the report."
+ S DIR(0)="DAO^:"_DT_":APE"
+ S DIR("A")="START DATE: "
+ D ^DIR
+ Q:$D(DTOUT)!$D(DUOUT)!(Y="") 0
+ S STDATE=Y
+ K DIR
+ S DIR("?")="Enter the latest date of receipt of deposit to include on the report."
+ S DIR("B")=Y(0)
+ S DIR(0)="DAO^"_RCDT1_":"_DT_":APE",DIR("A")="END DATE: "
+ D ^DIR
+ Q:$D(DTOUT)!$D(DUOUT)!(Y="") 0
+ S ENDDATE=Y
+ Q 1
+ ;
+DBTONLY() ; Allows the user to select filter to only show EFTs with debits
+ ; PRCA*4.5*321 Added subroutine
+ ; Input:   None
+ ; Returns: 0       - All EFTs to display
+ ;          1       - Only EFTs with debits to be displayed
+ ;         -1       - User up-arrowed or timed out
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT
+ S DIR("A")="Show EFTs with debits only? "
+ S DIR(0)="SA^Y:YES;N:NO"
+ S DIR("B")="NO"
+ S DIR("?",1)="Enter 'YES' to only show EFTs with a debit flag of 'D'."
+ S DIR("?")="Enter 'NO' to show all EFTs."
+ D ^DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
+ Q $E(Y,1)="Y"
+ ;
+DUP(INPUT,IEN34431,EFTCTR) ; Check to see if the EFT was a duplicate
+ ; Input:   IEN34431                - Internal IEN for file 344.31
+ ;          INPUT                   - See RPT2 for details
+ ;          EFTCTR                  - Used to store lines for EFT
+ ;          ^TMP($J,ONEDEP,EFTCTE)  - Current # of lines for EFT
+ ;          ^TMP($J,ONEDEP,EFTCTR,xx)- Current Deposit Lines
+ ; Output:  ^TMP($J,ONEDEP,EFTCTR)  - Updated # of lines for EFT
+ ;          ^TMP($J,ONEDEP,EFTCTR,xx)- Updated EFT Lines
+ ;
+ ;PRCA*4.5*321 capture display to ^TMP($J,"ONEDEP",EFTRCR) including line cnt
+ N EFTLN,X,XX,YY
+ Q:'$D(^RCY(344.31,IEN34431,3))                 ; Not a duplicate
+ S XX=$$GET1^DIQ(344.31,IEN34431,.18,"I")       ; Date/Time Removed
+ S YY=$$GET1^DIQ(344.31,IEN34431,.17,"I")       ; User who removed it
+ S X="   MARKED AS DUPLICATE: "_$$FMTE^XLFDT(XX)_" "_$$EXTERNAL^DILFD(344.31,.17,,YY)
+ S EFTLN=$G(^TMP($J,"ONEDEP",EFTCTR))+1
+ S ^TMP($J,"ONEDEP",EFTCTR)=EFTLN
+ S ^TMP($J,"ONEDEP",EFTCTR,EFTLN)=X
+ S EFTLN=EFTLN+1
+ S ^TMP($J,"ONEDEP",EFTCTR)=EFTLN
+ S ^TMP($J,"ONEDEP",EFTCTR,EFTLN)=" "
+ Q
+ ;
+EXCELHDR ;Excel header  ; PRCA*4.5*439 Add EXCELHDR tag
+ ;
+ W !!,"DEP #^UNBALANCED^DEPOSIT DT^DEP AMOUNT^FMS DEPOSIT STAT^"
+ W "EFT #^DATE PD^PAYMENT AMOUNT^ERA MATCH STATUS^ERA^DATE^EFT PAYER TRACE #^CR #^PAYMENT FROM^PAYER TIN^TR #^DEP RECEIPT #^DEP RECEIPT STATUS"
+ Q
+ ;
+ ; Moved tag DUP to RCDPEDA4 from RCDPEDA2 PRCA*4.5*439
+ ; Moved tags to RCDPEDA4 from RCDPEDAR: RTYPE, DTRANGE, DBTONLY, EXCELHDR; PRCA*4.5*439

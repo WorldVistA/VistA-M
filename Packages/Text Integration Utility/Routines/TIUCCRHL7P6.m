@@ -1,7 +1,8 @@
 TIUCCRHL7P6 ; CCRA/PB - TIU CCRA HL7 Msg Processing; January 6, 2006
- ;;1.0;TEXT INTEGRATION UTILITIES;**344**;Jun 20, 1997;Build 11
+ ;;1.0;TEXT INTEGRATION UTILITIES;**344,371**;Jun 20, 1997;Build 4
  ;
  ;PB - Patch 344 to modify how the note and addendum text is formatted
+ ;PB - Patch 371 removes unused code
  ;
  Q
 CCPN ;
@@ -9,7 +10,6 @@ CCPN ;
  K T2 S T2("CCPN Number:")=$C(160)_"CCPN Number:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Veteran Last Name:")=$C(160)_"Veteran Last Name:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Veteran First Name:")=$C(160)_"Veteran First Name:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2 S T2("Veteran Social:")=$C(160)_"Veteran Social:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Date:")=$C(160)_"Date:" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("CONSULT AND REFERRAL INFORMATION")=$C(160)_"CONSULT AND REFERRAL INFORMATION" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Name of Referring VA Provider: ")=$C(160)_"Name of Referring VA Provider: " S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
@@ -38,7 +38,6 @@ CCPN ;
  K T2 S T2("FACILITY COMMUNITY CARE OFFICE CONTACT")=$C(160)_$C(160)_"FACILITY COMMUNITY CARE OFFICE CONTACT"_$C(160)_$C(160) S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Care Coordination Point of Contact: "_$C(160))="Care Coordination Point of Contact: "_$C(160) S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Phone Number:")="Phone Number: "_$C(160) S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2 S T2("VETERAN'S CAREGIVER CONTACT INFO ")=$C(160)_"VETERAN'S CAREGIVER CONTACT INFO "_$C(160) S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Is Veteran's caregiver same as next of kin listed in the demographic section of CPRS (Yes/No)?:  If no, provide the following: ",T2($G(T4))=$C(160)_$G(T4) S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Veteran's Caregiver Point of Contact: ")=$C(160)_"Veteran's Caregiver Point of Contact: " S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Caregiver's Primary Phone Number:")=$C(160)_"Caregiver's Primary Phone Number: "_$C(160) S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)

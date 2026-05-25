@@ -1,5 +1,5 @@
-LRAUMLK ;VAMC 695/MLK - AUTOPSY SLIDE LABELS;1/21/91 ;5/31/96  08:29
- ;;5.2;LAB SERVICE;**72**;Sep 27, 1994
+LRAUMLK ;VAMC/MLK - AUTOPSY SLIDE LABELS; Jan 15, 2025@01:48
+ ;;5.2;LAB SERVICE;**72,579**;Sep 27, 1994;Build 1
  ;
  S LRDICS="AU" D ^LRAP G:'$D(Y) END D XR^LRU W !!?25,"Autopsy Slide Labels"
 ASK ;SECTION WITH INPUTS
@@ -24,7 +24,8 @@ SLIDE R !,"Enter # of slides for this block/stain: 1//",TS:DTIME G:'$T!(TS["^") 
  G ADDL1
 TSK S ZTRTN="QUE^LRAUMLK",ZTDESC="Autopsy labels",ZTSAVE("LR*")="",ZTSAVE("^TMP($J,")="",ZTSAVE("WR")="" D BEG^LRUTL G:POP!($D(ZTSK)) END
 QUE U IO W @IOF
- S LR(1)=$E(LR(2),2,3)_"-"_LR(3),LR("SITE")=+$$SITE^VASITE
+ ;LR*5.2*579: Pulling third piece for proper label generation.
+ S LR(1)=$E(LR(2),2,3)_"-"_LR(3),LR("SITE")=$P($$SITE^VASITE,U,3)
 PL F I=1:1:WR W:I>1 ! S X=LRABV D PL1 S X=LR(1) D PL1,PL2 S X=LR("SITE") D PL1
  D END^LRUTL,END Q
 PL1 W !,X,?10,X,?20,X,?30,X,?40,X,?50,X Q

@@ -1,13 +1,10 @@
-MAGDSTAA ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Feb 15, 2022@10:50:34
- ;;3.0;IMAGING;**231,306,305**;Mar 19, 2002;Build 3
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTAA ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Aug 14, 2025@09:05:58
+ ;;3.0;IMAGING;**231,306,305,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -31,7 +28,7 @@ LOOKUP(DFN,STUDYDATE,STUDYIEN,ACNUMB,MAGIENLIST) ; called by MAGDSTA5 and MAGDST
  ; MAGIENLIST --- array of MAGIEN pointers
  ; VISTAUIDFLAG - flag to indicate that an acn query failed
  ;
- N ERROR,EXAMDATE,I,IMAGECOUNT,MAGGLIST,MAGIEN,NONDICOM,SSN
+ N ERROR,EXAMDATE,I,IMAGECOUNT,MAGGLIST,MAGIEN,NONDICOM,SSN,TEXTCNT
  N PACS,RUNTIME,SERIESCOUNT,PACSSTUDYUID,VISTASTUDYUID,VISTA,X
  ;
  D STTINC("VISTA STUDIES PROCESSED",1)
@@ -46,23 +43,33 @@ LOOKUP(DFN,STUDYDATE,STUDYIEN,ACNUMB,MAGIENLIST) ; called by MAGDSTA5 and MAGDST
  I $$SUSPEND(HOURS) Q 1  ; stop
  I $Y>(IOSL-6) W !! D HEADER(1)
  ;
- S NONDICOM=0,IMAGES="NONE"
+ S (NONDICOM,TEXTCNT)=0,IMAGES="NONE"
  W !,$J(STUDYIEN,8),?11,ACNUMB,?30,$P($$FMTE^XLFDT(STUDYDATE,"2Z"),"@",1)
+ D CSVNEWLINE
  ; lookup legacy 2005 image group pointers
  K ^TMP("MAG",$J,"UIDS") ; remove the list of UIDs for the VistA study
  S MAGIEN=""
  F I=1:1 S MAGIEN=$O(MAGIENLIST(MAGIEN)) Q:MAGIEN=""  D
- . W:I>1 ! W ?40,$J(MAGIEN,8)
+ . I I>1 W ! D CSVSAVE(0,0),CSVNEWLINE
+ . W ?40,$J(MAGIEN,8) D CSVSAVE(MAGIEN)
  . D LEGACY^MAGDSTA8(MAGIEN,.SERIESCOUNT,.IMAGECOUNT) ; count images in all groups
- . I SERIESCOUNT W ?52,$J(SERIESCOUNT,5)
+ . I SERIESCOUNT D
+ . . W ?52,$J(SERIESCOUNT,5) D CSVSAVE(SERIESCOUNT)
+ . . Q
  . E  D
- . . I IMAGECOUNT W ?52,$J("",5) ; same as previous series, don't show count
+ . . I IMAGECOUNT D
+ . . . W ?52,$J("",5) ; same as previous series, don't show count
+ . . . D CSVSAVE(0)
+ . . . Q
  . . E  D
  . . . W ?55,"non-DICOM" ; not DICOM, maybe TGA, JPEG, PDF, etc.
+ . . . D CSVSAVE("non-DICOM","non-DICOM")
  . . . S NONDICOM=1
  . . . Q
  . . Q
- . I IMAGECOUNT W ?59,$J(IMAGECOUNT,5)
+ . I IMAGECOUNT D
+ . . W ?59,$J(IMAGECOUNT,5) D CSVSAVE(IMAGECOUNT)
+ . . Q
  . D STTINC("LEGACY STUDIES PROCESSED",1)
  . D STTINC("LEGACY SERIES COUNT",SERIESCOUNT)
  . D STTINC("LEGACY IMAGE COUNT",IMAGECOUNT)
@@ -76,7 +83,11 @@ LOOKUP(DFN,STUDYDATE,STUDYIEN,ACNUMB,MAGIENLIST) ; called by MAGDSTA5 and MAGDST
  ; look up in new sop class database (P34)
  D NEWSOPDB^MAGDSTA8(ACNUMB,.SERIESCOUNT,.IMAGECOUNT)
  I IMAGECOUNT>0 D
- . W:$D(MAGIENLIST) ! W ?41,"NEW SOP",?52,$J(SERIESCOUNT,5),?59,$J(IMAGECOUNT,5)
+ . I $D(MAGIENLIST) D
+ . . W ! D CSVNEWLINE ; P333 PMK 08/04/2025
+ . . Q
+ . W ?41,"NEW SOP",?52,$J(SERIESCOUNT,5),?59,$J(IMAGECOUNT,5)
+ . D CSVSAVE("NEW SOP",SERIESCOUNT,IMAGECOUNT)
  . D STTINC("NEW SOP CLASS STUDIES PROCESSED",1)
  . D STTINC("NEW SOP CLASS SERIES COUNT",SERIESCOUNT)
  . D STTINC("NEW SOP CLASS IMAGE COUNT",IMAGECOUNT)
@@ -93,7 +104,9 @@ LOOKUP(DFN,STUDYDATE,STUDYIEN,ACNUMB,MAGIENLIST) ; called by MAGDSTA5 and MAGDST
  S ERROR=$$FINDSUID^MAGDSTAB(ACNUMB,SSN,.PACSSTUDYUID,.SERIESCOUNT,.IMAGECOUNT)
  ;
  I VISTA("IMAGE COUNT")=0 D  ; no DICOM images on file in VistA
- . I NONDICOM=0 W ?46,"--",?55,"--",?62,"--"
+ . I NONDICOM=0 D
+ . . W ?46,"--",?55,"--",?62,"--" D CSVSAVE(0,0,0)
+ . . Q
  . D STTINC("VISTA STUDIES WITHOUT DICOM IMAGES",1)
  . Q
  E  I '$D(PACSSTUDYUID) D
@@ -110,6 +123,7 @@ LOOKUP(DFN,STUDYDATE,STUDYIEN,ACNUMB,MAGIENLIST) ; called by MAGDSTA5 and MAGDST
  S PACS("SERIES COUNT")=SERIESCOUNT,PACS("IMAGE COUNT")=IMAGECOUNT
  I SERIESCOUNT D
  . W ?67,$J(SERIESCOUNT,5),?74,$J(IMAGECOUNT,5)
+ . D CSVSAVE(SERIESCOUNT,IMAGECOUNT)
  . D STTINC("PACS STUDIES PROCESSED",1)
  . D STTINC("PACS SERIES COUNT",SERIESCOUNT)
  . D STTINC("PACS IMAGE COUNT",IMAGECOUNT)
@@ -118,7 +132,7 @@ LOOKUP(DFN,STUDYDATE,STUDYIEN,ACNUMB,MAGIENLIST) ; called by MAGDSTA5 and MAGDST
  . . Q
  . Q
  E  D
- . W ?70,"--",?77,"--"
+ . W ?70,"--",?77,"--" D CSVSAVE(0,0)
  . D STTINC("PACS STUDIES WITHOUT IMAGES",1)
  . Q
  ;
@@ -135,8 +149,11 @@ LOOKUP(DFN,STUDYDATE,STUDYIEN,ACNUMB,MAGIENLIST) ; called by MAGDSTA5 and MAGDST
 HEADER(CONTINUE,CLEARSCREEN) ;
  S CONTINUE=$G(CONTINUE,1)
  S CLEARSCREEN=$G(CLEARSCREEN,1)
- I CONTINUE D CONTINUE^MAGDSTQ(0)
- I CLEARSCREEN W @IOF
+ I $G(AUTOSCROLL)'="YES" D
+ . I CONTINUE D CONTINUE^MAGDSTQ(0)
+ . I CLEARSCREEN W @IOF
+ . E  W !! S $Y=0
+ . Q
  E  W !! S $Y=0
  W $$FMTE^XLFDT($$NOW^XLFDT,1),?55,"VistA",?71,"PACS"
  W !,"Report #",?11,"Accession Number",?32,"Date",?40,"Group #",?51,"Series Images",?66,"Series Images"
@@ -149,9 +166,33 @@ HEADER(CONTINUE,CLEARSCREEN) ;
  . Q
  Q
  ;
+CSVNEWLINE ; output the beginning of the new line for the CSV Excel file
+ D CSVSAVE("") ; start the next record 
+ D CSVSAVE(STUDYIEN,ACNUMB)
+ D CSVSAVE($P($$FMTE^XLFDT(STUDYDATE,"2Z"),"@",1))
+ Q
+ ;
+CSVSAVE(D0,D1,D2,D3,D4,D6,D7,D8,D9) ; save values in CSV format
+ N DATA,I,VAR
+ I OUTPUTEXCEL="" Q  ; no CSV file to be generated
+ F I=0:1:9 S VAR="D"_I I $D(@VAR) S DATA=@VAR D
+ . I DATA="" D
+ . . D SAVE^MAGDSTA0(OUTPUTEXCEL,"") ; start the next record
+ . . Q
+ . E  D
+ . . I DATA["," S DATA=""""_DATA_""""
+ . . D SAVE^MAGDSTA0(OUTPUTEXCEL,DATA_DEL,1) ; concatenate
+ . . Q
+ . Q
+ Q
+ ;
 QRSTATUS(TEXT) ; output query/retrieve status text
  I $Y>(IOSL-4) D HEADER(1)
- W:$X>82 ! W ?82,TEXT
+ I $X>82 W !
+ W ?82,TEXT I OUTPUTEXCEL'="" D
+ . S TEXTCNT=TEXTCNT+1 I TEXTCNT>1 D SAVE^MAGDSTA0(OUTPUTEXCEL,"; ",1)
+ . I TEXT[","  D SAVE^MAGDSTA0(OUTPUTEXCEL,""""_TEXT_"""",1)
+ . E  D SAVE^MAGDSTA0(OUTPUTEXCEL,TEXT,1)
  Q
  ;
 SUSPEND(HOURS) ; check date/time & request to stop

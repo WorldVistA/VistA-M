@@ -1,5 +1,5 @@
 YTQRQAD4 ;ISP/MJB - RESTful Calls to handle MHA lists ; 1/25/2017
- ;;5.01;MENTAL HEALTH;**158,178,182,181,187,199,202,204,221,249**;Dec 30, 1994;Build 30
+ ;;5.01;MENTAL HEALTH;**158,178,182,181,187,199,202,204,221,249,236**;Dec 30, 1994;Build 25
  ;
  ; Reference to PXRMINDX in ICR #4290
  ; Reference to ^SC in ICR 10040
@@ -7,7 +7,7 @@ YTQRQAD4 ;ISP/MJB - RESTful Calls to handle MHA lists ; 1/25/2017
 GETLIST(ARGS,RESULTS) ; GET Insts for Pat
  N LST,TST,I,NM,TEST,DFN,SRISK
  N ADMINDT,ADMINID,CMPL,CNT,HIT,PAT,G,YSIENS,YSDATA,N,STR,ERRLST,ERRSTR
- N ADMINAR,XDT,SAVEDT,SRC,ORD,RVW
+ N ADMINAR,XDT,SAVEDT,SRC,ORD,RVW,PNOT
  S NM="",N=0
  K ^TMP("YTQ-JSON",$J) S CNT=0
  D SETRES("{""instruments"":[")
@@ -26,7 +26,7 @@ GETLIST(ARGS,RESULTS) ; GET Insts for Pat
  .S NM="" F  S NM=$O(ADMINAR(XDT,NM)) Q:NM=""  D
  ..S STR=""
  ..S G=$G(^YTT(601.84,NM,0))
- ..S TST=$P(G,U,3),ORD=$P(G,U,6),RVW=$P(G,U,17)
+ ..S TST=$P(G,U,3),ORD=$P(G,U,6),RVW=$P(G,U,17),PNOT=$P(G,U,18)
  ..S SRC=$P(G,U,13) S:SRC'="" SRC=$P($G(^YTT(601.844,SRC,0)),U)
  ..I $P($G(^YTT(601.71,TST,2)),U,2)="C" QUIT
  ..S CMPL=$P(G,U,9) I CMPL="Y" D 
@@ -36,7 +36,7 @@ GETLIST(ARGS,RESULTS) ; GET Insts for Pat
  ...S SRISK=$P(G,U,14) I SRISK="" S SRISK=0
  ...S STR="{""adminId"":"""_ADMINID_""", ""instrumentName"":"""_NAME_""" , ""instrumentIen"":"""_TST_""" , ""administrationDate"":"""_$P($$FMTE^XLFDT(ADMINDT),":",1,2)
  ...S STR=STR_""" , ""saveDate"":"""_$P($$FMTE^XLFDT(SAVEDT),":",1,2)_""" , ""suicideRisk"":"""_SRISK_""", ""entrySource"":"""_SRC
- ...S STR=STR_""" , ""orderedBy"":"""_ORD_""" , ""reviewed"":"""_RVW_""" },"
+ ...S STR=STR_""" , ""orderedBy"":"""_ORD_""" , ""progressNote"":"""_PNOT_""" , ""reviewed"":"""_RVW_""" },"
  ..I STR]"" S HIT=1 D SETRES(STR)
  I $D(ERRLST) D  Q
  . S (ERRSTR,NM)="" F  S NM=$O(ERRLST(NM)) Q:NM=""  D

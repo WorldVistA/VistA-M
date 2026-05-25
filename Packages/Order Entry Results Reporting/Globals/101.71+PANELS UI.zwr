@@ -1,0 +1,23 @@
+OSEHRA ZGO Export: PANELS UI
+ZWR
+^ORI(101.71,0)="PANELS UI^101.71S^1^1"
+^ORI(101.71,1,0)="NATIONAL^1^3260508.090038^CPRS INFO PANEL"
+^ORI(101.71,1,"PKG",0)="^101.711P^1^1"
+^ORI(101.71,1,"PKG",1,0)=35
+^ORI(101.71,1,"PKG",1,"LOC",0)="^101.7112^2^2"
+^ORI(101.71,1,"PKG",1,"LOC",1,0)="1^50^Clinical Information^CI^^^false"
+^ORI(101.71,1,"PKG",1,"LOC",1,"ITM",0)="^101.71123^1^1"
+^ORI(101.71,1,"PKG",1,"LOC",1,"ITM",1,0)="5^COVID^E^COVID^Covid Status"
+^ORI(101.71,1,"PKG",1,"LOC",1,"ITM",1,10)="RD^269;PXD(811.9,^D"
+^ORI(101.71,1,"PKG",1,"LOC",1,"ITM",1,30)="1^showEmbedded"
+^ORI(101.71,1,"PKG",1,"LOC",1,"ITM",1,"DESC",0)="^^1^1^3260508"
+^ORI(101.71,1,"PKG",1,"LOC",1,"ITM",1,"DESC",1,0)="This panel shows the patient's COVID testing status."
+^ORI(101.71,1,"PKG",1,"LOC",1,"ITM","B",5,1)=""
+^ORI(101.71,1,"PKG",1,"LOC",2,0)="2^51^Admin Function^NAF^^^true"
+^ORI(101.71,1,"PKG",1,"LOC","B",1,1)=""
+^ORI(101.71,1,"PKG",1,"LOC","B",2,2)=""
+^ORI(101.71,1,"PKG",1,"LOC","C",50,1)=""
+^ORI(101.71,1,"PKG",1,"LOC","C",51,2)=""
+^ORI(101.71,1,"PKG","B",35,1)=""
+^ORI(101.71,"B","NATIONAL",1)=""
+^ORI(101.71,"REM","269;PXD(811.9,",1,1,1,1)=""

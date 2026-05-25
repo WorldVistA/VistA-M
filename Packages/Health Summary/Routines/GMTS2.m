@@ -1,5 +1,11 @@
-GMTS2 ;SLC/SBW - Health Summary Driver Cont. ; 02/27/2019
- ;;2.7;Health Summary;**2,58,62,122**;Oct 20, 1995;Build 183
+GMTS2 ;SLC/SBW - Health Summary Driver Cont. ;Jan 13, 2026@12:43
+ ;;2.7;Health Summary;**2,58,62,122,147**;Oct 20, 1995;Build 5
+ ;
+ ; REFERENCE  ICR NUMBER
+ ; =====================
+ ; ^AUTTEDT(    3085
+ ; ^AUTTEXAM(   3087
+ ; ^AUTTHF(     3083
  ;
 TDISBLD ; Temporarily Disabled Components
  D CKP^GMTSUP Q:$D(GMTSQIT)  W "Temporarily disabled",!

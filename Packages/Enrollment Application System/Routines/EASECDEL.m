@@ -1,14 +1,15 @@
-EASECDEL ;ALB/LBD - Delete a LTC Copay Test;  2 JUN 2003
- ;;1.0;ENROLLMENT APPLICATION SYSTEM;**34**;Mar 15, 2001
+EASECDEL ;ALB/LBD,SJD - Delete a LTC Copay Test;  2 JUN 2003
+ ;;1.0;ENROLLMENT APPLICATION SYSTEM;**34,226**;Mar 15, 2001;Build 4
  ;
 EN ; Entry point to delete a LTC copay test
  I '$D(^XUSEC("DG MTDELETE",+DUZ)) W !!,"ACCESS TO THIS OPTION IS RESTRICTED!!",*7 G EXIT
  ;
 LKP ; Patient lookup
- N DIC,DTOUT,DUOUT,DGMTYPT,DGNAM,DGDOB,VA,Y
+ N DIC,DTOUT,DUOUT,DGMTYPT,DGNAM,DGDOB,VA,Y,DIR,DGCFLG
  S DGMTYPT=3
  D HOME^%ZIS S DIC="^DPT(",DIC(0)="AEQMZ" W ! D ^DIC G:$D(DTOUT)!($D(DUOUT))!(+Y<0) EXIT
  I '$O(^DGMT(408.31,"AD",DGMTYPT,+Y,0)) W !?5,$P(Y(0),U)," has no LTC copay (10-10EC) tests on file." G LKP
+ D WARN G:$G(DGCFLG) LKP  ;EAS*1.0*226 - Warning message and continue logic for LTC copay
  S DFN=+Y,DGNAM=$P(Y(0),U),DGDOB=$P(Y(0),U,3)
  D HD
  ;
@@ -76,3 +77,22 @@ ID ; Write identifiers for test lookup
  W "  LTC Copay Test Date   Status: ",$$S^DGMTAUD1($P(^(0),U,3))
  W !?36,"Source: ",$$SR^DGMTAUD1(DGN)
  Q
+ ;
+WARN ;EAS*1.0*226 - Warning message and continue logic for LTC copay
+ N DIR,Y,J,I
+ S DGCFLG=0
+ F I=1:1 S J=$P($T(WARNTXT+I),";;",2) Q:J="END"  W !,J
+ S DIR("A")="ARE YOU SURE YOU WANT TO CONTINUE",DIR(0)="Y",DIR("B")="NO"
+ D ^DIR I Y'=1 S DGCFLG=1
+ Q
+ ;
+WARNTXT ;EAS*1.0*226 - Warning text 
+ ;;
+ ;;************************WARNING***************************
+ ;;Deleting this LTC Copayment Test will result in the
+ ;;DELETION of this Veteran's Primary Means Test as well. 
+ ;;This will require the Veteran to submit a new Financial
+ ;;Means Test to restore eligibility.  
+ ;;************************WARNING***************************
+ ;;
+ ;;END

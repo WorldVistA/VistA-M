@@ -1,10 +1,10 @@
-RMPRCDP ;PHX/DWL,HNB-PURGE FILE 664 ;8/29/1994
- ;;3.0;PROSTHETICS;**3,173**;Feb 09, 1996;Build 29
+RMPRCDP ;PHX/DWL,HNB-PURGE FILE 664 ;Oct 21, 2024@09:10
+ ;;3.0;PROSTHETICS;**3,173,218**;Feb 09, 1996;Build 12
  ;
  ;RMPR*3.0*173 Added purge for file 664 to remove aged orders that are 
  ;             no longer defined in IFCAP file 442.  The purge will be
  ;             controlled to ONLY allow orders for a fiscal year greater
- ;             than 6 years ago to be entered and should be run AFTER
+ ;             than 8 years ago to be entered and should be run AFTER
  ;             the IFCAP annual purging process and use the same fiscal
  ;             year that purge process used.
  ;

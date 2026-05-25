@@ -1,77 +1,5 @@
 PSOERUT4 ;ALB/MFR - eRx Drug Suggestion Utilities; 06/25/2023 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**700,746,769**;DEC 1997;Build 26
- ;
-MATCHSUG(ERXIEN,VIEW) ; Match Suggestion Prompt
- ; Input: ERXIEN   - Pointer to ERX HOLDING QUEUE file (#52.49)
- ;     (o)VIEW     - View Only Mode (1:YES,0/null: NO)
- ;Output: MATCHSUG - eRx record (Pointer to #52.49) or 0 (Not selected or no suggestion on file)
- ;
- N MATCHSUG,DRUGHASH,MATCHCNT,CNT,VISTARX,QUIT,DIR,Y,X,VADRUG,VASIG,SUGGARR,TEMPARR,II
- N VADAYS,VAREFS,VAQTY
- I '$D(^PS(52.49,+$G(ERXIEN),0)) Q 0
- ; Dosage already entered
- I '$G(VIEW),$D(^PS(52.49,ERXIEN,21)) Q 0
- ; 
- S DRUGHASH=$$DRUGHASH^PSOERUT(ERXIEN) I 'DRUGHASH Q 0
- ;
- S (MATCHSUG,MATCHCNT,QUIT)=0
- S VISTARX=9999999999
- F  S VISTARX=$O(^PS(52.49,"ADRGVRX",DRUGHASH,VISTARX),-1) Q:'VISTARX  D  I (MATCHCNT>2) Q
- . S VADRUG=+$$GET1^DIQ(52,VISTARX,6,"I") I 'VADRUG Q
- . ; If in View Mode and VistA Rx was created after eRx Drug was Validated, skip
- . I $G(VIEW),$P($G(^PS(52.49,ERXIEN,1)),"^",12),$P($G(^PSRX(VISTARX,"OR1")),"^",8)>+$P($G(^PS(52.49,ERXIEN,1)),"^",12) Q
- . ; If Drug is Inactive, forget suggestion automatically
- . I $$GET1^DIQ(50,VADRUG,100,"I") D  Q
- . . K ^PS(52.49,"ADRGVRX",DRUGHASH,VISTARX)
- . S VASIG=$E($$SUGSIG^PSOERUT3(VISTARX,ERXIEN),1,500) I VASIG="" Q
- . S VAQTY=+$$GET1^DIQ(52,VISTARX,7,"I")
- . S VADAYS=+$$GET1^DIQ(52,VISTARX,8,"I")
- . S VAREFS=+$$GET1^DIQ(52,VISTARX,9,"I")
- . I $D(TEMPARR(VADRUG,VASIG,VAQTY,VADAYS,VAREFS)) Q
- . S MATCHCNT=MATCHCNT+1
- . S SUGGARR(MATCHCNT)=VISTARX_"^"_DRUGHASH,TEMPARR(VADRUG,VASIG,VAQTY,VADAYS,VAREFS)=""
- F CNT=1:1:MATCHCNT D  I MATCHSUG!QUIT Q
- . S VISTARX=+SUGGARR(CNT),DRUGHASH=$P(SUGGARR(CNT),"^",2)
- . D CMPMEDS(ERXIEN,VISTARX,CNT_"^"_MATCHCNT)
- . K DIR S DIR(0)="SOA^"_$S('$G(VIEW):"A:ACCEPT;",1:"")_$S(MATCHCNT>1&(MATCHCNT'=CNT):"N:NEXT;",1:"")_"F:FORGET;E:EXIT"
- . S DIR("A")="ACTION on SUGGESTION: "_$S('$G(VIEW):"(A)CCEPT  ",1:"")_$S(MATCHCNT>1&(MATCHCNT'=CNT):"(N)EXT  ",1:"")_"(F)ORGET  (E)XIT: "
- . S DIR("B")=$S(MATCHCNT>1&(MATCHCNT'=CNT):"NEXT",1:"EXIT")
- . S II=0
- . I '$G(VIEW) D
- . . S II=II+1,DIR("?",II)="  ACCEPT - Accepts the suggested data (right column) and pre-populates the"
- . . S II=II+1,DIR("?",II)="           VistA fields"
- . I MATCHCNT>1&(MATCHCNT'=CNT) D
- . . S II=II+1,DIR("?",II)="  NEXT   - Ignores the current suggestion and view the next one"
- . S II=II+1,DIR("?",II)="  FORGET - Forgets the current suggestion so that it is not presented again"
- . S II=II+1,DIR("?",II)="           in the future to any user"
- . S DIR("?")="  EXIT   - Exits and continue to filling the VistA fields manually"
- . D ^DIR I $D(DIRUT)!$D(DIROUT)!(Y="E") S QUIT=1 Q
- . I Y="A" S MATCHSUG=VISTARX Q
- . I Y="N" W ! Q
- . I Y="F" D
- . . K DIR S DIR(0)="SA^Y:YES;N:NO",DIR("B")="NO"
- . . S DIR("A")="Are you sure this suggestion match should be forgotten? "
- . . S DIR("?")="This suggestion originated from a VistA Rx previously dispensed for an eRx with"
- . . S DIR("?")=DIR("?")_" the exact Drug Name, NDC, SIG, Quantity, Days Supply, # of Refills"
- . . S DIR("?")=DIR("?")_" and Substitution allowance. Once you forget this match it will no"
- . . S DIR("?")=DIR("?")_"  longer be suggested as a match for future eRx's with the same fields."
- . . W ! D ^DIR I $D(DIRUT)!$D(DIROUT)!(Y="N") S CNT=CNT-1 W ! Q
- . . W !?64,"Forgetting..." K ^PS(52.49,"ADRGVRX",DRUGHASH,VISTARX) H 1 W "Ok." H .5 W ! Q
- Q MATCHSUG
- ;
-CMPMEDS(ERXIEN,VISTARX,COUNTER) ; Display the Comparison Between eRx and VistA Providers
- ;Input: ERXIEN   - Pointer to ERX HOLDING QUEUE file (#52.49)
- ;       VISTARX - VistA Rx IEN (Pointer to #52)
- ;       COUNTER - P1: Entry # | P2: Number of Entries
- I '$D(^PS(52.49,+$G(ERXIEN),0))!'$D(^PSRX(+$G(VISTARX),0)) Q
- N XX,LINE,X
- W !?55,"|Sugg. " W $G(IOINHI)_+$G(COUNTER)_$G(IOINORM)_" of "_$G(IOINHI)_$P($G(COUNTER),"^",2)_$G(IOINORM)
- W " - ",$G(IOINHI)_$$FMTE^XLFDT($$GET1^DIQ(52,VISTARX,21,"I")\1,"2Z")_$G(IOINORM),?79,"|"
- W !,$G(IORVON)_"ERX MED"_$G(IORVOFF),?41,$G(IORVON)_"VISTA MED"_$G(IORVOFF)
- W ?55,"|From Rx#: "_$G(IOINHI)_$$GET1^DIQ(52,VISTARX,.01)_$G(IOINORM),?79,"|"
- S $P(XX,"_",81)="" W !,XX
- S LINE=0 D SETDRUG^PSOERUT2("RS",,ERXIEN,1,VISTARX)
- Q
+ ;;7.0;OUTPATIENT PHARMACY;**700,746,769,770**;DEC 1997;Build 145
  ;
 CSPRV(PROV,DRG,ORN) ; Sets CS Information (DEA#, Detox #, Site Address,...)
  N DETN,DEA,I,LBL,VADD,SPC
@@ -154,7 +82,8 @@ PODOSAGE(NMSPC,ORDIEN,PENDATA,RENEWORD) ; Set ListMan Side-By-Side Section for V
  ;       ORDIEN   - Pointer to PENDING OUTPATIENT ORDERS file (#52.41)
  ;       PENDATA  - Array containing the Pending Order data
  ;       RENEWORD - Renewal Pending Order? 1: YES | 0/null - NO ; Sets Pending Order Dosage Information
- N DOSE,XE,XEI,XV,XVI,LMLINE,DFN,I,WRPDOSE,DISPUNTS,ROUTE,CONJUNCT,PDUE,DUESEQ,COAGENT,REASON,RESULT,ACK,ALLLN,ERXALLS
+ N DOSE,XE,XEI,XV,XVI,LMLINE,DFN,I,WRPDOSE,DISPUNTS,ROUTE,CONJUNCT,PDUE,DUESEQ,COAGENT,REASON,RESULT,ACK
+ N ALLLN,ERXALLS,DOSEX,ERXLINES,VAALLS,VALINES,VAOTHINS
  S DFN=+$$GET1^DIQ(52.41,ORDIEN,1,"I")
  ;
  D PDUEDATA^PSOERXU9(.PDUE,ERXIEN,1)
@@ -232,14 +161,26 @@ PODOSAGE(NMSPC,ORDIEN,PENDATA,RENEWORD) ; Set ListMan Side-By-Side Section for V
  . F I=1:1 Q:'$D(VARR(I))  D
  . . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$G(VARR(I,0)),$G(VARR(I,0)),42,,LMLINE)
  I $O(PENDATA("SINS",0)) D
- . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" Other Lang. Pat. Instruct: :"
+ . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" Other Lang. Pat. Instruct:"
  . S VAOTHINS="" F I=1:1 Q:'$D(PENDATA("SINS",I))  S VAOTHINS=VAOTHINS_" "_$$UP^XLFSTR($G(PENDATA("SINS",I)))
  . S $E(VAOTHINS)=""
  . K VARR D WRAP^PSOERUT(VAOTHINS,39,.VARR)
  . F I=1:1 Q:'$D(VARR(I))  D
  . . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$G(VARR(I,0)),$G(VARR(I,0)),42,,LMLINE)
+ ; - Patient Indications
+ I $G(PENDATA("IND"))'="" D
+ . I '$D(PENDATA("INDF")) S PENDATA("INDF")=+$$GET1^DIQ(52.49,ERXIEN,29.1,"I")
+ . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)="Indications:"
+ . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$E(PENDATA("IND"),1,38),$E(PENDATA("IND"),1,38),42,,LMLINE)
+ . I $L(PENDATA("IND"))>38 D
+ . . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$E(PENDATA("IND"),39,99),$E(PENDATA("IND"),39,99),42,,LMLINE)
+ I $G(PENDATA("INDO"))'="",+$G(DFN),$P($G(^PS(55,+$G(DFN),"LAN")),"^"),$G(PENDATA("INDO"))'="" D
+ . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)="Other Indications:"
+ . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$E(PENDATA("INDO"),1,38),$E(PENDATA("INDO"),1,38),42,,LMLINE)
+ . I $L(PENDATA("INDO"))>38 D
+ . . S XVI=XVI+1,LMLINE=LMLINE+1,VALINES(XVI)=" "_$$COMPARE^PSOERUT0("LM",$E(PENDATA("INDO"),39,99),$E(PENDATA("INDO"),39,99),42,,LMLINE)
  ;
- ; - Setting eRx Prescriber Drug Use Evaluation (DUE), Matched Dosage and Patient Instructions
+ ; - Setting eRx Prescriber Drug Use Evaluation (DUE), Matched Dosage, Patient Instructions, and Indications For Use
  F ALLLN=1:1 Q:('$D(ERXLINES(ALLLN))&'$D(VALINES(ALLLN)))  D
  . S ERXALLS=$G(ERXLINES(ALLLN)),VAALLS=$G(VALINES(ALLLN))
  . S XE=$G(ERXLINES(ALLLN))
@@ -253,12 +194,11 @@ PENFLAG(NMSPC,ORD) ; Backdoor ListManager Display of Flag/Unflag Information
  ;
  D GETS^DIQ(52.41,ORD,"33;34;35;36;37;38","IE","FLAG") I '$G(FLAG(52.41,ORD_",",33,"I")) Q
  S XX="Order Flagged by "_FLAG(52.41,ORD_",",34,"E")_" on "_FLAG(52.41,ORD_",",33,"E")
- S $E(FLAGHDR,(81-$L(XX))/2)=XX
+ S FLAGHDR="",$E(FLAGHDR,(81-$L(XX))/2)=XX
  S UNDERLN(LINE,1)=100
  D ADDLINE^PSOERUT0("LM",NMSPC,FLAGHDR,"")
  S XX=FLAG(52.41,ORD_",",35,"E")
  F  Q:XX=""  D
- . S FLAGCOMM=$E(XX,1,79)
  . S FLAGCOMM=" "_$$COMPARE^PSOERUT0("LM",$E(XX,1,79),$E(XX,1,79),2),XX=$E(XX,80,9999)
  . D ADDLINE^PSOERUT0("LM",NMSPC,FLAGCOMM,"")
  I FLAG(52.41,ORD_",",36,"I")'="" D
@@ -281,6 +221,7 @@ ACCDTBY(ERXIEN) ; Returns the eRx latest Accepted Date/Time
  N ACCDTBY,ACDTTM,ACBY,STHIS,FOUND,STAT
  S ACCDTBY="",STHIS=99999,FOUND=0
  F  S STHIS=$O(^PS(52.49,ERXIEN,19,STHIS),-1) Q:'STHIS!(FOUND)  D
+ . I $$GET1^DIQ(52.4919,STHIS_","_ERXIEN,.04,"I") S FOUND=1 Q  ; eRx was Un-Accepted
  . S STAT=$$GET1^DIQ(52.4919,STHIS_","_ERXIEN,.02,"I")
  . I ",PR,RXP,CXP,"[(","_$$GET1^DIQ(52.45,STAT,.01,"E")_",") D
  . . S ACCDTBY=$$FMTE^XLFDT($$GET1^DIQ(52.4919,STHIS_","_ERXIEN,.01,"I"),"2Y")_"^"_$$GET1^DIQ(52.4919,STHIS_","_ERXIEN,.03,"E")

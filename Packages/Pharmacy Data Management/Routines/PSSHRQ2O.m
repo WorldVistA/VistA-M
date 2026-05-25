@@ -1,5 +1,5 @@
-PSSHRQ2O ;WOIFO/AV,TS,SG - Handles parsing a PEPS Drug Check Response ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,160**;9/30/97;Build 76
+PSSHRQ2O ;WOIFO/AV,TS,SG - Handles parsing a PEPS Drug Check Response ; Sep 20, 2007@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,160,254**;9/30/97;Build 109
  ;
  ; @authors - Chris Flegel, Alex Vazquez, Tim Sabat
  ; @date    - September 19, 2007
@@ -88,11 +88,13 @@ GTDBINFO(DOCHAND,BASE) ; get the Vendor database info.
  . SET PSS("childName")=$$NAME^MXMLDOM(DOCHAND,PSS("child"))
  ;
  SET ^TMP($JOB,BASE,"OUT","difIssueDate")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"difIssueDate")
- SET ^TMP($JOB,BASE,"OUT","difBuildVersion")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"difBuildVersion")
- SET ^TMP($JOB,BASE,"OUT","difDbVersion")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"difDbVersion")
+ ;*254 FDB 4.5 upgrade swapping values for difDbVersion and difBuildVersion
+ SET ^TMP($JOB,BASE,"OUT","difDbVersion")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"difBuildVersion")
+ SET ^TMP($JOB,BASE,"OUT","difBuildVersion")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"difDbVersion")
  SET ^TMP($JOB,BASE,"OUT","customIssueDate")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"customIssueDate")
- SET ^TMP($JOB,BASE,"OUT","customBuildVersion")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"customBuildVersion")
- SET ^TMP($JOB,BASE,"OUT","customDbVersion")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"customDbVersion")
+ ;*254 FDB 4.5 upgrade swapping values for customDbVersion and customBuildVersion
+ SET ^TMP($JOB,BASE,"OUT","customDbVersion")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"customBuildVersion")
+ SET ^TMP($JOB,BASE,"OUT","customBuildVersion")=$$VALUE^MXMLDOM(DOCHAND,PSS("child"),"customDbVersion")
  QUIT
  ;
 GTHANDLE(DOCHAND) ;

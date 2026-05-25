@@ -1,13 +1,15 @@
-SDES2CLININFO ;ALB/TJB,JAS - Get Clinic Info based on Clinic IEN ;NOV 06, 2024
- ;;5.3;Scheduling;**893,895**;Aug 13, 1993;Build 11
+SDES2CLININFO ;ALB/TJB,JAS,TJB,MCB,JDJ,JAS - Get Clinic Info based on Clinic IEN ;DEC 26,2025
+ ;;5.3;Scheduling;**893,895,898,907,927,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  ; Documented API's and Integration Agreements
  ; -------------------------------------------
  ; Reference to $$GETS^DIQ is supported by IA #2056
  ; Reference to $$GETS1^DIQ is supported by IA #2056
+ ; Reference to DUZ^XUP is supported by IA #7487
  ;
  ; copy of SDESRTVCLN
+ ;
  Q
  ;
 ENTRY(SDRETURN,SDCONTEXT,SDPARAM) ;SDES2 GET CLINIC INFO
@@ -32,6 +34,9 @@ ENTRY(SDRETURN,SDCONTEXT,SDPARAM) ;SDES2 GET CLINIC INFO
  ;"CreditStopCodeNum": "",
  ;"DefaultApptType": "",
  ;"DefaultToPCPractitioner": "",
+ ;"Diagnosis": {
+ ; "Code":"",
+ ; "DefaultForClinic":""},
  ;"DisplayClinicAppt": "",
  ;"DivisionIEN": 1,
  ;"DivisionName": "CHEYENNE VAMROC",
@@ -54,11 +59,15 @@ ENTRY(SDRETURN,SDCONTEXT,SDPARAM) ;SDES2 GET CLINIC INFO
  ;"PreApptLetter": "",
  ;"PreCheckinAllowed": "",
  ;"Principal": "",
+ ;"PrivilegedUser": {
+ ; "Name":"",
+ ; "IEN":""},
  ;"ProhibitAccessToClinic": "",
  ;"Provider": {
  ; "DefaultForClinic": "",
  ; "IEN": "",
- ; "Name": ""},
+ ; "Name": ""
+ ; "Title": ""},
  ;"Reactivate Date": "",
  ;"ReqActionProfiles": "",
  ;"ReqXrayFilms": "",
@@ -80,12 +89,14 @@ ENTRY(SDRETURN,SDCONTEXT,SDPARAM) ;SDES2 GET CLINIC INFO
  ;"VeteranSelfCancel": "",
  ;"WorkloadValidationCheckout": ""}}
  ;
- N RETURN,HASFIELDS,ELGFIELDSARRAY,ELGRETURN,SDECI,ERRORS,SDCLNJSON
+ N RETURN,HASFIELDS,ELGFIELDSARRAY,ELGRETURN,SDECI,ERRORS,SDCLNJSON,DIERR
  S (RETURN,ELGFIELDSARRAY,HASFIELDS)=""
  ;
  ; validate context array
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("Clinic")="" D BUILDJSON^SDES2JSON(.SDRETURN,.ERRORS) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
+ ;
  D VALCLINIEN^SDES2VAL44(.ERRORS,$G(SDPARAM("CLINICIEN")),1)
  I $D(ERRORS) S ERRORS("Clinic")="" D BUILDJSON^SDES2JSON(.SDRETURN,.ERRORS) Q
  D VALIDATEHASHFLG(.ERRORS,$G(SDPARAM("HASHFLAG")))
@@ -108,23 +119,21 @@ ENTRY(SDRETURN,SDCONTEXT,SDPARAM) ;SDES2 GET CLINIC INFO
  ; SDPARAM("CLINICIEN",1)={Clinic IEN} - One is required multiple allowed
  ; SDPARAM("CLINICIEN",n)={Clinic IEN}
 CLINICLIST(SDRETURN,SDCONTEXT,SDPARAM) ;RPC: SDES2 GET CLINICS BY CLIN LIST
- N NODE,SEQUENCE,IEN,SDEAS,HASHFLG,RETURNDATA,CLINICLIST,ERRORS,SDCLNJSON,RETSDCLNJSON
+ N NODE,SEQUENCE,IEN,SDEAS,HASHFLG,RETURNDATA,CLINICLIST,ERRORS,SDCLNJSON,RETSDCLNJSON,DIERR
  S (NODE,IEN,SDEAS,RETURNDATA,CLINICLIST)=""
  S (HASHFLG,SEQUENCE)=0
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("Clinic")="" D BUILDJSON^SDES2JSON(.SDRETURN,.ERRORS) Q
- S NODE=""
- F  S NODE=$O(SDPARAM("CLINICIEN",NODE)) Q:NODE=""  D
- . D VALCLINIEN^SDES2VAL44(.ERRORS,$G(SDPARAM("CLINICIEN",NODE)),1)
- I $D(ERRORS) S ERRORS("Clinic")="" D BUILDJSON^SDES2JSON(.SDRETURN,.ERRORS) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  ;
  S NODE=""
  F  S NODE=$O(SDPARAM("CLINICIEN",NODE)) Q:NODE=""  D
- . ; N ERRORS
  . S IEN=$G(SDPARAM("CLINICIEN",NODE))
  . S SEQUENCE=SEQUENCE+1
  . I SEQUENCE>50 D ERRLOG^SDES2JSON(.ERRORS,381)
  . I $D(ERRORS) M CLINICLIST("Error","Max")=ERRORS("Error") Q
+ . I IEN="" S CLINICLIST("Error","ClinicIEN")=$$GET1^DIQ(409.93,19,1,"E") Q
+ . I '$D(^SC(IEN,0)) S CLINICLIST("Error","ClinicIEN "_IEN)=$$GET1^DIQ(409.93,20,1,"E") Q
  . ;
  . K RETURNDATA,ELGFIELDSARRAY
  . S HASFIELDS=$$BLDCLNREC(.ELGFIELDSARRAY,$G(SDPARAM("CLINICIEN",NODE)))
@@ -204,8 +213,11 @@ BLDCLNREC(SDCLNSREC,SDCLNIEN) ;Get Clinic data
  S SDCLNSREC("Clinic","NoShowLetter")=$G(SDDATA(44,SDCLNIEN_",",2508,"E")) ;NO SHOW LETTER
  S SDCLNSREC("Clinic","NoShowLetterIEN")=$G(SDDATA(44,SDCLNIEN_",",2508,"I")) ;NO SHOW IEN
  S SDCLNSREC("Clinic","PreApptLetter")=$G(SDDATA(44,SDCLNIEN_",",2509,"E")) ;PRE-APPOINTMENT LETTER
+ S SDCLNSREC("Clinic","PreApptLetterIEN")=$G(SDDATA(44,SDCLNIEN_",",2509,"I")) ;PRE-APPOINTMENT LETTER IEN
  S SDCLNSREC("Clinic","CancelLetter")=$G(SDDATA(44,SDCLNIEN_",",2510,"E")) ;CLINIC CANCELLATION LETTER
+ S SDCLNSREC("Clinic","CancelLetterIEN")=$G(SDDATA(44,SDCLNIEN_",",2510,"I")) ;CLINIC CANCELLATION LETTER IEN
  S SDCLNSREC("Clinic","ApptCancelLetter")=$G(SDDATA(44,SDCLNIEN_",",2511,"E")) ;APPT. CANCELLATION LETTER
+ S SDCLNSREC("Clinic","ApptCancelLetterIEN")=$G(SDDATA(44,SDCLNIEN_",",2511,"I")) ;APPT. CANCELLATION LETTER IEN
  S SDCLNSREC("Clinic","CheckinCheckoutTime")=$G(SDDATA(44,SDCLNIEN_",",24,"E")) ;ASK FOR CHECK IN/OUT TIME
  S SDCLNSREC("Clinic","DefaultToPCPractitioner")=$G(SDDATA(44,SDCLNIEN_",",2801,"E")) ;DEFAULT TO PC PRACTITIONER?
  S SDCLNSREC("Clinic","WorkloadValidationCheckout")=$G(SDDATA(44,SDCLNIEN_",",30,"E")) ;WORKLOAD VALIDATION AT CHK OUT
@@ -266,7 +278,9 @@ BLDCLNREC(SDCLNSREC,SDCLNIEN) ;Get Clinic data
  . S SDC=SDC+1
  . S SDCLNSREC("Clinic","Provider",SDC,"Name")=$G(SDDATA(44.1,SDX,.01,"E"))
  . S SDCLNSREC("Clinic","Provider",SDC,"IEN")=$G(SDDATA(44.1,SDX,.01,"I"))
+ . S SDCLNSREC("Clinic","Provider",SDC,"Title")=$$GET1^DIQ(200,$G(SDDATA(44.1,SDX,.01,"I"))_",",8,"E")
  . S SDCLNSREC("Clinic","Provider",SDC,"DefaultForClinic")=$G(SDDATA(44.1,SDX,.02,"E"))
+ I '$D(SDCLNSREC("Clinic","Provider")) S SDCLNSREC("Clinic","Provider",1)=""
  ; Diagnosis Multiple
  S SDX="",SDC=0
  S SDFIELDS="2700*"
@@ -276,12 +290,14 @@ BLDCLNREC(SDCLNSREC,SDCLNIEN) ;Get Clinic data
  . S SDC=SDC+1
  . S SDCLNSREC("Clinic","Diagnosis",SDC,"Code")=$G(SDDATA(44.11,SDX,.01,"E"))
  . S SDCLNSREC("Clinic","Diagnosis",SDC,"DefaultForClinic")=$G(SDDATA(44.11,SDX,.02,"E"))
+ I '$D(SDCLNSREC("Clinic","Diagnosis")) S SDCLNSREC("Clinic","Diagnosis",1)=""
  ; Return all Privileged Users
  S (USRCNT,USRIEN)=0
  F  S USRIEN=$O(^SC(SDCLNIEN,"SDPRIV",USRIEN)) Q:'USRIEN  D
  .S USRCNT=USRCNT+1
  .S SDCLNSREC("Clinic","PrivilegedUser",USRCNT,"IEN")=USRIEN
  .S SDCLNSREC("Clinic","PrivilegedUser",USRCNT,"Name")=$$GET1^DIQ(44.04,USRIEN_","_SDCLNIEN,.01)
+ I '$D(SDCLNSREC("Clinic","PrivilegedUser")) S SDCLNSREC("Clinic","PrivilegedUser",1)=""
  ;
  ; get resource IEN
  S RESIEN=""

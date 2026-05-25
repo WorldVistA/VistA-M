@@ -1,5 +1,5 @@
-PSSJSV ;BIR/CML3/WRT-SCHEDULE VALIDATION ;06/24/96
- ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143,149,146,189,201,210**;9/30/97;Build 9
+PSSJSV ;BIR/CML,WRT - SCHEDULE VALIDATION ; Jun 24, 1996@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143,149,146,189,201,210,254**;9/30/97;Build 109
  ;
  ; Reference to ^PS(51.15 is supported by DBIA #2132
  ; Reference to $$UP^XLFSTR(P1) is supported by DBIA #10104
@@ -95,21 +95,68 @@ ENFREQ ; validate frequency
  K:+X'=X!(X>525600)!(X<1)!(X?.E1"."1N.N) X
  Q
  ;
-DFCHK ; validate dosing check frequency **pss_1_201**
- N PSSX1,PSSX2 S PSSX1="",X=$$UP^XLFSTR(X),PSSX2=$E(X,$L(X))
+FREQCHK(DOSEFREQ) ; Checks Dosing Frequency (used to check Outside Vendor dose frequencies)
+ ; Input: DOSEFREQ - Dosing Frequency to be checked (e.g.,'3xd', 'q1w', '10xd', etc.)
+ ;Output: Expanded Frequency. (e.g., "3 TIMES PER DAY", "EVERY WEEK", "10 TIMES PER DAY",  etc.)
+ ;    or  "" - Invalid Frequency
+ ;        
+ N QORX,FREQ,TIMES,EXPAND
  ;
- I $L(X)>4!($L(X)<3) K X Q
+ S DOSEFREQ=$$UP^XLFSTR($G(DOSEFREQ))
  ;
- I '+($E(X,2)) K X Q
- I $L(X)=4 S PSSX1=($E(X,2,3)) I PSSX1'?.N K X Q
+ I $L(DOSEFREQ)>4!($L(DOSEFREQ)<3) Q ""
  ;
- I $L(X)=3,$E(X,1)="Q",PSSX2="L",$E(X,2)'<7 K X Q
- I $G(PSSX1),$E(X,1)="Q",PSSX2="L",PSSX1'<7 K X Q
- I $G(PSSX1),$E(X,1)="Q",PSSX2="W",PSSX1'<29 K X Q
+ ; Retrieving Period (H)ours, (D)ays, (W)eek and (L):Month
+ S FREQ=$E(DOSEFREQ,$L(DOSEFREQ)) I (" H D W L ")'[(" "_FREQ_" ") Q ""
  ;
- I $E(X,1)="Q"&(PSSX2="H"!(PSSX2="D")!(PSSX2="W")!(PSSX2="L")) Q
- I $E(X,1)="X"&(PSSX2="D"!(PSSX2="W")!(PSSX2="L")) Q
- E  K X Q
+ ; First characters must be a 'Q' or a numeric value
+ I $E(DOSEFREQ,1)'="Q",$E(DOSEFREQ,1)'?1N Q ""
+ ;
+ ; Retrieving QORX and TIMES values
+ I $E(DOSEFREQ,1)="Q" D
+ . S QORX="Q",TIMES=+$E(DOSEFREQ,2,99)
+ E  D
+ . I $E(DOSEFREQ,2)?1N D
+ . . S TIMES=+$E(DOSEFREQ,1,2),QORX=$E(DOSEFREQ,3)
+ . E  D
+ . . S TIMES=+$E(DOSEFREQ,1),QORX=$E(DOSEFREQ,2)
+ ; If only 1 digit was used then the whole length MUST be 3, not 4
+ I $L(TIMES)=1,$L(DOSEFREQ)=4 Q ""
+ ;
+ ; Invalid Frequency #
+ I 'TIMES Q ""
+ ;
+ ; QORX must be "Q" or "X" & TIMES must have a valid number w/out leading zeros (e.g.,"03")
+ I (TIMES'?.N)!($E(TIMES,1)=0)!(QORX'="Q"&(QORX'="X")) Q ""
+ ;
+ ; 'N times per month' not supported
+ I QORX="X",FREQ="L" Q ""
+ ;
+ ; 'N times per week' only supported for 1 thru 6
+ I QORX="X",FREQ="W",TIMES>6 Q ""
+ ;
+ ; 'every N hours' only supported for 1-12hrs, 14-24hrs, 30hrs, 36hrs, 48hrs, 60hrs, 72hrs and 96hrs
+ I QORX="Q",FREQ="H",(TIMES=13!(TIMES>24&(TIMES<30))!(TIMES>30&(TIMES<36))!(TIMES>36&(TIMES<48))!(TIMES>48&(TIMES<60))!(TIMES>60&(TIMES<72))!(TIMES>72&(TIMES<96))!(TIMES>96)) Q ""
+ ;
+ ; 'every N days' only supported for 1-10days, 14days, 21days, 28days, 30days, 56days and 90days
+ I QORX="Q",FREQ="D",((TIMES>10&(TIMES<14))!(TIMES>14&(TIMES<21))!(TIMES>21&(TIMES<28))!(TIMES=29)!(TIMES>30&(TIMES<56))!(TIMES>56&(TIMES<90))!(TIMES>90)) Q ""
+ ;
+ ; 'every N weeks' only supported for 1-6weeks, 8-10weeks, 12weeks, 16weeks and 24weeks
+ I QORX="Q",FREQ="W",(TIMES=7!(TIMES=11)!(TIMES>12&(TIMES<16))!(TIMES>16&(TIMES<24))!((TIMES>24)&(TIMES'=52))) Q ""
+ ;
+ ; 'every N months' only supported for 1-4months, 6months, and 12
+ I QORX="Q",FREQ="L",TIMES=5!((TIMES>6)&(TIMES'=12)) Q ""
+ ;
+ ; N times per Hour schedules are not allowed
+ I QORX="X",FREQ="H" Q ""
+ ;
+ S EXPAND=""
+ I QORX="Q" D
+ . S EXPAND="EVERY "_$S(TIMES>1:TIMES_" ",1:"")_$S(FREQ="H":"HOUR",FREQ="D":"DAY",FREQ="W":"WEEK",1:"MONTH")_$S(TIMES>1:"S",1:"")
+ E  D
+ . S EXPAND=$S(TIMES>1:TIMES_" TIMES",1:"ONCE")_" PER "_$S(FREQ="D":"DAY",FREQ="W":"WEEK",1:"MONTH")
+ ;
+ Q EXPAND
  ;
 HPDCHK ; help prompt with specified formats for the dosing check frequency fields **pss_1_201**
  N MSG,PSSHFLG S (MSG,PSSHFLG)=""
@@ -117,16 +164,33 @@ HPDCHK ; help prompt with specified formats for the dosing check frequency field
  I $G(X)="??" S PSSHFLG=1
  ;
  I 'PSSHFLG D  Q
- .S MSG(1)="     The numeric limit is 99, except for the following formats:"
- .S MSG(2)=""
- .S MSG(3)="     Q#W - Maximum 28 weeks allowed"
- .S MSG(4)="     Q#L - Maximum 6 months allowed"
+ .S MSG(1)="     Enter the frequency that matches the format pattern supported"
+ .S MSG(2)="     by the vendor who will perform dosing check."
  .S MSG(5)=""
  .S MSG(6)="     Enter '??' to view the available dosing check frequency formats"
  .S MSG(7)="     for this field."
  .S MSG(8)=""
  .D EN^DDIOL(.MSG,"","!")
  Q
+ ;
+DCFCNV(DOSEFREQ) ; Converts (if needed) the DOSING CHECK FREQUENCY field value to the vendor accpeted format
+ ; Input: DOSEFREQ - Dosing Frequency to be converted (e.g.,'3XD', 'Q1W', '6XW', etc.)
+ ;Output: Converted Frequency. (e.g., "3", "QWEEK", "6XW", etc.)
+ ;    or  "" - Invalid Frequency
+ ;
+ S DOSEFREQ=$G(DOSEFREQ)
+ ; For XD frequencies, return the integer (# of days)
+ I DOSEFREQ["XD" Q +DOSEFREQ
+ ;
+ I DOSEFREQ="Q1D" Q "QDAY"
+ ;
+ I DOSEFREQ="1XW"!(DOSEFREQ="Q1W") Q "QWEEK"
+ ;
+ I DOSEFREQ="Q1L" Q "QMONTH"
+ ;
+ I DOSEFREQ="Q52W" Q "Q12L"
+ ;
+ Q DOSEFREQ
  ;
 OASCHK ; check the 'D' cross reference to see if duplicates exist **pss_1_201**
  N MSG,PSSCNT,PSSD,PSSFLG,PSSDA,PSSDONE,PSSAIEN S (MSG,PSSAIEN)="",(PSSCNT,PSSD,PSSFLG)=0,PSSDA=$G(DA),PSSDONE=$G(DA(1))

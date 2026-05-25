@@ -1,5 +1,5 @@
-LRRP8B ;DALISC/TNN/J0 - WKLD STATS REPORT BY SHIFT ; 4/9/93
- ;;5.2;LAB SERVICE;;Sep 27, 1994
+LRRP8B ;HDSO/DSK - WKLD STATS REPORT BY SHIFT; Sep 29, 2025@17:00
+ ;;5.2;LAB SERVICE;**589**;Sep 27, 1994;Build 1
  W !!,"ENTRY POINT IS AT EN^LRRP8." H 3 QUIT
  ;
 BUILD ;
@@ -7,6 +7,11 @@ BUILD ;
  S ^TMP("LR",$J,0)=0
  D INITMAN^LRCAPMR1
  D GENCOM^LRCAPMR1,CAPCOM^LRCAPMR1
+ ;LR*5.2*589: Correct ending date if user entered month and year.
+ ;            Upstream routines flip the "to" and "from" variables
+ ;            depending on various factors. "31" covers max number
+ ;            of days per month.
+ I $E(LRTO,6,7)="00" S $E(LRTO,6,7)=31
  S LRCDT=LRFR-1
  F  S LRCDT=$O(^LRO(64.1,LRIN,1,LRCDT)) Q:('LRCDT)!(LRCDT>LRTO)  D
  . D DATCOM^LRCAPMR1

@@ -1,5 +1,5 @@
-SROATM4 ;BIR/MAM - CREATE MESSAGES ;03/10/11
- ;;3.0;Surgery;**27,38,62,125,153,175,200**;24 Jun 93;Build 9
+SROATM4 ;BIR/MAM - CREATE MESSAGES ; March 10, 2011
+ ;;3.0;Surgery;**27,38,62,125,153,175,200,216**;24 Jun 93;Build 2
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -22,7 +22,7 @@ MSG ; send message to G.SURGERY RISK at Hines
  S ISC=1 I $$PROD^XUPROD() S ISC=0
  S NAME=$G(^XMB("NETNAME")) I NAME["FORUM" S ISC=1
  I ISC S XMY("G.RISK ASSESSMENT@"_^XMB("NETNAME"))=""
- I 'ISC S XMY("G.RISK ASSESSMENT@FO-HINES.DOMAIN.EXT")=""
+ I 'ISC S XMY("G.RISK ASSESSMENT@SURGERYSRA.DOMAIN.EXT")=""
  S SRATDATE=$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)
  S X=$$ACTIVE^XUSER(DUZ) I '+X S XMDUZ=.5
  S XMSUB=$P($$SITE^SROVAR,"^",2)_": SURG-"_$S($G(SR1L):"1L",1:"NC")_" ("_SRAMNUM_" OF "_SRATOTM_") "_SRATDATE,XMTEXT="^TMP(""SRA"",$J,"_SRAMNUM_"," N I D ^XMD

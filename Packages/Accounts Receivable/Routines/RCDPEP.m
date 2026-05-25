@@ -1,5 +1,5 @@
 RCDPEP ;AITC/CJE - FLAG PAYERS AS PHARMACY/TRICARE ; 19-APR-2017
- ;;4.5;Accounts Receivable;**321,326,332,371,432**;;Build 16
+ ;;4.5;Accounts Receivable;**321,326,332,371,432,439**;;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EN(FILTER,DATEFILT) ; -- main entry point for RCDPE PAYER FLAGS template
@@ -14,6 +14,11 @@ EN(FILTER,DATEFILT) ; -- main entry point for RCDPE PAYER FLAGS template
  I DATEFILT=-1 Q  ;
  I '$D(FILTER) S FILTER=$$GETFILT()
  I FILTER=-1 Q  ;
+ ;
+ ; PRCA*4.5*439 Add next 3 lines
+ N RCDISP
+ S RCDISP=$$DISPTY^RCDPEAPP() Q:RCDISP=-1    ; Output to Excel?
+ I RCDISP D EXCEL^RCDPEP1 Q  ;
  ;
  D PAYEN^RCDPESP6 ; PRCA*4.5*332
  D EN^VALM("RCDPE PAYER FLAGS")

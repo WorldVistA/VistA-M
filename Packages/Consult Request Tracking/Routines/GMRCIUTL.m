@@ -1,5 +1,5 @@
-GMRCIUTL ;SLC/JFR - UTILITIES FOR INTER-FACILITY CONSULTS ; Jun 18, 2024@15:00:56
- ;;3.0;CONSULT/REQUEST TRACKING;**22,58,184,185,189**;DEC 27, 1997;Build 54
+GMRCIUTL ;SLC/JFR - UTILITIES FOR INTER-FACILITY CONSULTS ; Jan 09, 2025@09:45:11
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,58,184,185,189,201**;DEC 27, 1997;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; #2051 DIC, #2053 DIE, #3015 VAFCPID, #10112 VASITE, #10103 XLFDT, #3065 XLFNAME, #2171 XUAF4, #2541 XUPARAM, #4648 VAFCTFU2
@@ -200,8 +200,10 @@ LOGMSG(GMRCO,GMRCACT,GMRCMSG,GMRCER) ;create or update IFC MESSAGE LOG entry
  ; GMRCMSG = HL7 message ID of message being sent 
  ; GMRCER  = error number if can't transmit immediately
  ;
+ ;  Modified to allow message to be logged without a consult number for error code 206.  p201 wtc 5/8/2024
+ ;
  N GMRCLG,GMRCERR,FDA
- S GMRCLG=$O(^GMR(123.6,"AC",GMRCO,GMRCACT,1,0))
+ S GMRCLG=0 I $G(GMRCO) S GMRCLG=$O(^GMR(123.6,"AC",GMRCO,GMRCACT,1,0)) ; p201 wtc 5/8/2024
  I +GMRCLG D  Q  ; update existing incomplete record.
  . S FDA(1,123.6,GMRCLG_",",.01)=$$NOW^XLFDT
  . S FDA(1,123.6,GMRCLG_",",.03)=$G(GMRCMSG)
@@ -211,9 +213,9 @@ LOGMSG(GMRCO,GMRCACT,GMRCMSG,GMRCER) ;create or update IFC MESSAGE LOG entry
  ;
  ; create new record
  S FDA(1,123.6,"+1,",.01)=$$NOW^XLFDT
- S FDA(1,123.6,"+1,",.02)=$P(^GMR(123,GMRCO,0),U,23)
+ I $G(GMRCO) S FDA(1,123.6,"+1,",.02)=$P(^GMR(123,GMRCO,0),U,23)
  S FDA(1,123.6,"+1,",.03)=$G(GMRCMSG)
- S FDA(1,123.6,"+1,",.04)=GMRCO
+ I $G(GMRCO) S FDA(1,123.6,"+1,",.04)=GMRCO
  S FDA(1,123.6,"+1,",.05)=GMRCACT
  S FDA(1,123.6,"+1,",.06)=1
  S FDA(1,123.6,"+1,",.07)=1
@@ -222,7 +224,7 @@ LOGMSG(GMRCO,GMRCACT,GMRCMSG,GMRCER) ;create or update IFC MESSAGE LOG entry
  ;
  ;  Save Cerner-bound HL7 message in file #1609.  - P189
  ;
- I $$CNVTD^GMRCIEVT(GMRCO)=1,$D(^TMP("HLS",$J)) D SAVEHL7X^EHMHL7("HLS","IFC","VISTA-"_$$STA^XUAF4($$KSP^XUPARAM("INST")),"CERNER-"_$$STA^XUAF4($P(^GMR(123,GMRCO,0),U,23)),"|","^","~") ;
+ I $G(GMRCO),$$CNVTD^GMRCIEVT(GMRCO)=1,$D(^TMP("HLS",$J)) D SAVEHL7X^EHMHL7("HLS","IFC","VISTA-"_$$STA^XUAF4($$KSP^XUPARAM("INST")),"CERNER-"_$$STA^XUAF4($P(^GMR(123,GMRCO,0),U,23)),"|","^","~") ;
  ; 
  Q
  ;
@@ -342,7 +344,9 @@ ERR101 ;Unknown Consult/Procedure request
 ERR201 ;Unknown Patient
 ERR202 ;Local or unknown MPI identifiers
 ERR203 ;Patient not in Cerner
+ERR204 ;Waiting for IFC order to be processed in Cerner
 ERR205 ;Waiting for treating facility list to be updated
+ERR206 ;ICN Missing from Incoming Order
 ERR301 ;Service not matched to receiving facility
 ERR401 ;Procedure not matched to receiving facility
 ERR501 ;Error in procedure name

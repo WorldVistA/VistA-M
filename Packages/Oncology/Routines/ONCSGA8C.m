@@ -1,5 +1,5 @@
 ONCSGA8C ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/17/19
- ;;2.2;ONCOLOGY;**10,12,13,18,19,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**10,12,13,18,19,20,21,22**;Jul 31, 2013;Build 6
  ;
  ;
 58 ;PROSTATE
@@ -243,5 +243,93 @@ V219 ;ANUS AJCC -- 21 - 9TH EDITION V9 STAGING
  I T="T3",((N="N0")!(N["N1")),M="M0" S SG="3A" Q
  I T="T4",N="N0",M="M0" S SG="3B" Q
  I T="T4",N["N1",M="M0" S SG="3C" Q
+ I M="M1" S SG=4
+ Q
+V299 ;NET STOMACH AJCC -- 29 - 9TH EDITION V9 STAGING
+ I T="T1",(N="NX")!(N="N0"),M="M0" S SG=1 Q
+ I (T="T2")!(T="T3"),N="N0",M="M0" S SG=2 Q
+ I T="T4",N="N0",M="M0" S SG=3 Q
+ I N["N1",M="M0" S SG=3 Q
+ I M="M1" S SG=4
+ Q
+V319 ;NET JEJUNUM AND ILEUM AJCC -- 31 - 9TH EDITION V9 STAGING
+ I T="T1",N="N0",M="M0" S SG=1 Q
+ I (T="T2")!(T="T3"),N="N0",M="M0" S SG=2 Q
+ I T="T4",N="N0",M="M0" S SG=3 Q
+ I (N["N1")!(N["N2"),M="M0" S SG=3 Q
+ I M="M1" S SG=4
+ Q
+V329 ;NET APPENDIX AJCC -- 32 - 9TH EDITION V9 STAGING
+ I T="T1",(N="NX")!(N="N0"),M="M0" S SG=1 Q
+ I T="T2",(N="NX")!(N="N0"),M="M0" S SG=2 Q
+ I T="T3",N="N0",M="M0" S SG=2 Q
+ I T="T4",N="N0",M="M0" S SG=3 Q
+ I N["N1",M="M0" S SG=3 Q
+ I M="M1" S SG=4
+ Q
+V339 ;NET COLON AND RECTUM -- 33 - 9TH EDITION V9 STAGING
+ I T["T1",(N="NX")!(N="N0"),M="M0" S SG=1 Q
+ I T="T2",N="N0",M="M0" S SG="2A" Q
+ I T="T3",N="N0",M="M0" S SG="2B" Q
+ I T="T4",N="N0",M="M0" S SG="3A" Q
+ I N["N1",M="M0" S SG="3B" Q
+ I M="M1" S SG=4
+ Q
+V509 ;VULVA -- 50 - 9TH EDITION V9 STAGING
+ I T="T1",N="N0",M="M0" S SG=1 Q
+ I T="T1a",N="N0",M="M0" S SG="1A" Q
+ I T="T1b",N="N0",M="M0" S SG="1B" Q
+ I T="T2",N="N0",M="M0" S SG=2 Q
+ I ((T="TX")!(T["T1")!(T="T2")!(T="T3")),N="N1",M="M0" S SG=3 Q
+ I T="T3",N="N0",M="M0" S SG="3A" Q
+ I ((T="TX")!(T["T1")!(T="T2")!(T="T3")),((N="N1mi")!(N="N1a")),M="M0" S SG="3A" Q
+ I ((T="TX")!(T["T1")!(T="T2")!(T="T3")),N="N1b",M="M0" S SG="3B" Q
+ I ((T="TX")!(T["T1")!(T="T2")!(T="T3")),N="N1c",M="M0" S SG="3C" Q
+ I T="T4",M="M0" S SG="4A" Q
+ I N="N2",M="M0" S SG="4A" Q
+ I M="M1" S SG="4B"
+ Q
+V99 ;NASOPHARYNX -- 9 - 9TH EDITION V9 STAGING
+ I T="Tis",N="N0",M="M0" S SG=0 Q
+ I ((T="T1")!(T="T2")),N="N0",M="M0" S SG="1A" Q
+ I ((T="T0")!(T="T1")!(T="T2")),N="N1",M="M0" S SG="1B" Q
+ I ((T="T0")!(T="T1")!(T="T2")),N="N2",M="M0" S SG=2 Q
+ I T="T3",((N="N0")!(N="N1")!(N="N2")),M="M0" S SG=2 Q
+ I T="T4",M="M0" S SG=3 Q
+ I N="N3",M="M0" S SG=3 Q
+ I M="M1a" S SG="4A"
+ I M="M1b" S SG="4B"
+ Q
+V369 ;LUNG -- 36 - 9TH EDITION V9 STAGING
+ I T="TX",N="N0",M="M0" S SG="OccultCarcinoma" Q
+ I T="Tis",N="N0",M="M0" S SG=0 Q
+ I ((T="T1mi")!(T="T1")!(T="T1a")),N="N0",M="M0" S SG="1A1" Q
+ I T="T1b",N="N0",M="M0" S SG="1A2" Q
+ I T="T1c",N="N0",M="M0" S SG="1A3" Q
+ I T="T2a",N="N0",M="M0" S SG="1B" Q
+ I T="T2b",N="N0",M="M0" S SG="2A" Q
+ I T="T1",N="N1",M="M0" S SG="2A" Q
+ I T="T3",N="N0",M="M0" S SG="2B" Q
+ I T="T1",N="N2a",M="M0" S SG="2B" Q
+ I ((T="T2a")!(T="T2b")),N="N1",M="M0" S SG="2B" Q
+ I T="T4",N="N0",M="M0" S SG="3A" Q
+ I ((T="T3")!(T="T4")),N="N1",M="M0" S SG="3A" Q
+ I T="T1",N="N2b",M="M0" S SG="3A" Q
+ I ((T="T2")!(T="T3")),N="N2a",M="M0" S SG="3A" Q
+ I ((T="T2")!(T="T3")),N="N2b",M="M0" S SG="3B" Q
+ I T="T4",((N="N2a")!(N="N2b")),M="M0" S SG="3B" Q
+ I ((T="T1")!(T="T2")),N="N3",M="M0" S SG="3B" Q
+ I ((T="T3")!(T="T4")),N="N3",M="M0" S SG="3C" Q
+ I ((M="M1a")!(M="M1b")) S SG="4A" Q
+ I ((M="M1c1")!(M="M1c2")) S SG="4B" Q
+ Q
+V379 ;PLEURAL MESOTHELIOMA -- 37 - 9TH EDITION V9 STAGING
+ I T="T1",N="N0",M="M0" S SG=1 Q
+ I T="T2",N="N0",M="M0" S SG=2 Q
+ I T="T1",N="N1",M="M0" S SG=2 Q
+ I T="T2",N="N1",M="M0" S SG="3A" Q
+ I T="T3",((N="N0")!(N="N1")),M="M0" S SG="3A" Q
+ I ((T="T1")!(T="T2")!(T="T3")),N="N2",M="M0" S SG="3A" Q
+ I T="T4",M="M0" S SG="3B" Q
  I M="M1" S SG=4
  Q

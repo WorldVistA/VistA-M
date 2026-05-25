@@ -1,5 +1,5 @@
 LRVR0 ;DALOI/STAFF - LEDI MI/AP Data Verification; Jul 20, 2020@13:53
- ;;5.2;LAB SERVICE;**350,427,474,480,537,561**;Sep 27, 1994;Build 2
+ ;;5.2;LAB SERVICE;**350,427,474,480,537,561,581**;Sep 27, 1994;Build 7
  ;
  ; LEDI MI/AP Auto-instrument verification
  ; Called from LRVR
@@ -231,8 +231,18 @@ ACCEPT ;Display results and accept data
  I $G(LREND) S LREND=0 Q
  ;
  S LRMODE="LDSI",LRBATCH=1,LREDITTYPE=1
+ ;LR*5.2*581: Detect instrument setup problem
+ N LRXPROB S LRXPROB=0
  D DQ^LRMIPSZ1
- ;
+ I $G(LRXPROB) D  Q
+ . W !!,"*******************************************************"
+ . W !,"* Result verification cannot be performed due to a    *"
+ . W !,"* possible VistA instrument file configuration issue. *"
+ . W !,"* Suggestion: Set the ""OVERLAY DATA"" (#12) field      *"
+ . W !,"* of the AUTO INSTRUMENT (#62.4) file to ""YES"".       *"
+ . W !,"* Results will then need to be retransmitted.         *"
+ . W !,"*******************************************************"
+ . D PURG
  ;
  N DIR,DIROUT,DIRUT,DUOUT
  I LRINTYPE=1 D

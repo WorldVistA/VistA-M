@@ -1,6 +1,6 @@
-MAGGTLB ;WOIFO/LB - RPC call for Laboratory/Imaging interface ; [ 11/24/2004 04:06 ]
- ;;3.0;IMAGING;**48,72**;10-November-2008;;Build 1324
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGGTLB ;WOIFO/LB/MKN - RPC call for Laboratory/Imaging interface ; Mar 22, 2023@11:33:23
+ ;;3.0;IMAGING;**48,72,343**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -26,11 +26,14 @@ MAGGTLB ;WOIFO/LB - RPC call for Laboratory/Imaging interface ; [ 11/24/2004 04:
  ;the Accession year, and either an Accession # or Autopsy #.  Based on
  ;this information it will return an array of specimens for selection.
  ;
-START(MAGRY,SECT,YR,ACNUM,XXX) ;RPC Call to Return a list of specimens
+START(MAGRY,SECT,YR,ACNUM,DFN) ;RPC Call to Return a list of specimens
  ;  -Removed DFN (XXX) -no longer being used for lookup
+ ;  -P343 added DFN back following decision by users to only show
+ ;        records where lab data shows file #2, not file #67
  ;SECT = Lab entry from 2005.03
  ;YR = 4 digits of year (1700-2000's)
  ;ACNUM = Accession number or autopsy number
+ ;DFN = IEN in the PATIENT file (#2)
  ;Returns an array of specimens for the year_accession#.
  ;MAGRY(#)=Piece 1 = Pt Name            piece 2 = Ssn
  ;               3 = Date/Time                4 = Accn #
@@ -42,7 +45,7 @@ START(MAGRY,SECT,YR,ACNUM,XXX) ;RPC Call to Return a list of specimens
  ;              13 = LR global being referenced
  ;the MAGRY(0)=0 or # lines in array^status (success or no success)
  ;the MAGRY(1)=titles for the grid array
- N Y,YEAR
+ N X,Y,YEAR
  IF $$NEWERR^%ZTER N $ETRAP,$ESTACK S $ETRAP="D ERRA^MAGGTERR"
  E  S X="ERRA^MAGGTERR",@^%ZOSF("TRAP")
  S MAGRY(0)="0^No Data",DATA=0
@@ -72,12 +75,16 @@ START(MAGRY,SECT,YR,ACNUM,XXX) ;RPC Call to Return a list of specimens
  S LRDFN=$O(^LR(MAGX,YR,MAGABV,ACNUM,0)),LRI=$O(^(LRDFN,0))
  S MAGDFN=$P(^LR(LRDFN,0),"^",3),FILE=$P(^LR(LRDFN,0),"^",2)
  S (MAGNM,MAGSSN)=""
- I FILE=2 S X=^DPT(MAGDFN,0),MAGNM=$P(X,"^"),MAGSSN=$P(X,"^",9) ;Patient file
- I FILE[67 D  Q:MAGNM="" 
- . D GETS^DIQ(67,MAGDFN,".01;.09","E","MAGZZ","MAGERR")
- . I $D(MAGERR("DIERR")) S MAGRY(0)="0^Patient lookup failed" Q
- . S MAGNM=$G(MAGZZ(67,MAGDFN_",",".01","E"))
- . S MAGSSN=$G(MAGZZ(67,MAGDFN_",",".09","E"))
+ ;Start mods p343 - lookup on DFN reintroduced
+ Q:FILE'=2
+ S X=^DPT(MAGDFN,0),MAGNM=$P(X,"^"),MAGSSN=$P(X,"^",9) ;Patient file
+ Q:DFN'=MAGDFN
+ ;I FILE[67 D  Q:MAGNM="" 
+ ;. D GETS^DIQ(67,MAGDFN,".01;.09","E","MAGZZ","MAGERR")
+ ;. I $D(MAGERR("DIERR")) S MAGRY(0)="0^Patient lookup failed" Q
+ ;. S MAGNM=$G(MAGZZ(67,MAGDFN_",",".01","E"))
+ ;. S MAGSSN=$G(MAGZZ(67,MAGDFN_",",".09","E"))
+ ;End mods p343
  I "ASCE"'[MAGI Q   ;Not a valid lab section (Autopsy,Surgical Path, Cytology or EM)
  S MAGNODE=$S(MAGI="S":"SP",MAGI="E":"EM",MAGI="C":"CY",1:"AY")
  G:MAGNODE="AY" AUTOPSY    ;Need this because 2005.03 does not reference the right node.

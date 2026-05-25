@@ -1,5 +1,5 @@
 PSOERXIE ;ALB/BWF - eRx Utilities/RPC's ; 8/3/2016 5:14pm
- ;;7.0;OUTPATIENT PHARMACY;**581,617,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**581,617,746,770**;DEC 1997;Build 145
  ;
  Q
 MEDS(ERXIEN,MTYPE,MEDTYPE) ; medication prescribed/dispensed/requested segment
@@ -32,7 +32,7 @@ MEDS(ERXIEN,MTYPE,MEDTYPE) ; medication prescribed/dispensed/requested segment
  .I '$L(LASTFD) S LASTFD=$G(@GL@(I,"LastFillDate",0,"DateTime",0))
  .S LASTFD=$$CONVDTTM^PSOERXA1(LASTFD)
  .S SUBS=$G(@GL@(I,"Substitutions",0))
- .S NUMREF=$G(@GL@(I,"NumberOfRefills",0))-$S(INMTYPE="R":1,1:0)
+ .S NUMREF=$G(@GL@(I,"NumberOfRefills",0))-$S(INMTYPE="R":1,1:0) S:NUMREF<0 NUMREF=0
  .S PAUTH=$G(@GL@(I,"PriorAuthorization",0))
  .S NOTE=$G(@GL@(I,"Note",0))
  .S PASTAT=$G(@GL@(I,"PriorAuthorizationStatus",0))
@@ -114,7 +114,7 @@ MEDS(ERXIEN,MTYPE,MEDTYPE) ; medication prescribed/dispensed/requested segment
  .; place of service admin, provider authorization
  .S FDA(SF,IENS,63.3)=PLOSAD,FDA(SF,IENS,63.4)=PROVAUTH
  .D CFDA^PSOERXIU(.FDA)
- .D UPDATE^DIE(,"FDA","NMIEN") K FDA
+ .I $D(FDA) D UPDATE^DIE(,"FDA","NMIEN") K FDA
  .; ALSO filing for old drug fields - only for Medication Prescribed
  .I INMTYPE="P"!(INMTYPE="MR") D
  ..S FDA(52.49,ERXIEN_",",5.1)=QVAL,FDA(52.49,ERXIEN_",",20.1)=QVAL,FDA(52.49,ERXIEN_",",42)=$$GET1^DIQ(52.45,QUOM,.02,"E")
@@ -128,12 +128,12 @@ MEDS(ERXIEN,MTYPE,MEDTYPE) ; medication prescribed/dispensed/requested segment
  ..S FDA(52.49,ERXIEN_",",5.5)=DAYS,FDA(52.49,ERXIEN_",",20.2)=DAYS,FDA(52.49,ERXIEN_",",5.9)=WDATE,FDA(52.49,ERXIEN_",",6.1)=LASTFD
  ..S FDA(52.49,ERXIEN_",",5.8)=SUBS,FDA(52.49,ERXIEN_",",5.6)=NUMREF,FDA(52.49,ERXIEN_",",20.5)=NUMREF,FDA(52.49,ERXIEN_",",52.2)=RESPNOTE
  ..D CFDA^PSOERXIU(.FDA)
- ..D FILE^DIE(,"FDA") K FDA
+ ..I $D(FDA) D FILE^DIE(,"FDA") K FDA
  .; also file 52.1 with the refills requested value when this is a medication dispensed, and a renewal request
  .I INMTYPE="D",MTYPE="RxRenewalRequest" D
  ..S FDA(52.49,ERXIEN_",",51.2)=PHARMREF
  ..D CFDA^PSOERXIU(.FDA)
- ..D FILE^DIE(,"FDA") K FDA
+ ..I $D(FDA) D FILE^DIE(,"FDA") K FDA
  .S NMIEN=$O(NMIEN(0)),MIEN=$G(NMIEN(NMIEN))
  .D PHARMID(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parses and files pharmacy affairs data
  .D DIAG(ERXIEN,MIEN,MTYPE,MEDTYPE) ;parses and files diagnosis
@@ -190,7 +190,7 @@ DIAG(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file diagnosis data
  .S FDA(SF,IENS,1.1)=PDC,FDA(SF,IENS,1.2)=PDQ,FDA(SF,IENS,1.3)=PDLV,FDA(SF,IENS,2)=PDD
  .; secondary diagnosis code, secondary diagnosis qualifier, secondary office visit date, secondary diagnosis description
  .S FDA(SF,IENS,3.1)=SDC,FDA(SF,IENS,3.2)=SDQ,FDA(SF,IENS,3.3)=SDLV,FDA(SF,IENS,4)=SDD
- D CFDA^PSOERXIU(.FDA)
+ I $D(FDA) D CFDA^PSOERXIU(.FDA)
  D UPDATE^DIE(,"FDA") K FDA
  Q
 DRUGEVAL(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file drug use evaluation data
@@ -221,7 +221,7 @@ DRUGEVAL(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parse and file drug use evaluation data
  .; drug use evaluation co agent description, acknowledgement reason
  .S FDA(SF,IENS,1)=COAD,FDA(SF,IENS,2)=ACKR
  .D CFDA^PSOERXIU(.FDA)
- .D UPDATE^DIE(,"FDA") K FDA
+ .I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  Q
 DRUGCS(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parsing and filing drug coverage status data
  N CSGL,I,SF,IENS,SEQUENCE,DRUGCSC,FDA
@@ -236,5 +236,5 @@ DRUGCS(ERXIEN,MIEN,MTYPE,MEDTYPE) ; parsing and filing drug coverage status data
  .S DRUGCSC=$$PRESOLV^PSOERXA1(DRUGCSC,"DCS") ;resolving pointer
  .S FDA(SF,IENS,.02)=DRUGCSC
  .D CFDA^PSOERXIU(.FDA)
- .D UPDATE^DIE(,"FDA") K FDA
+ .I $D(FDA) D UPDATE^DIE(,"FDA") K FDA
  Q

@@ -1,5 +1,5 @@
-PSSHRQ25 ;BIR/RTR-Create General Dosing Guidelines ;04/25/17
- ;;1.0;PHARMACY DATA MANAGEMENT;**178**;9/30/97;Build 14
+PSSHRQ25 ;BIR/RTR - Create General Dosing Guidelines ; Apr 25, 2017@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,254**;9/30/97;Build 109
  ;External reference to $$SCREEN^XTID supported by DBIA 4631
  ;
 BUILDMSG(COUNT,HASH) ; Build General Dosing Guidelines
@@ -27,6 +27,7 @@ BUILDMSG(COUNT,HASH) ; Build General Dosing Guidelines
  ..S PSSGXMSG=PSSGXMSG_" to "_PSSGX2_" "_PSSHXA("doseHighUnit")_"."
  .S PSSGX3=PSSHXA("maxDailyDose"),PSSGX8=0
  .I PSSGX3=" **unknown** "!('PSSGX3)!(PSSHXA("maxDailyDoseUnit")=" **unknown** ") S PSSGX3="unavailable.",PSSGX8=1
+ .I PSSGX1=" **unknown** ",PSSGX2=" **unknown** ",PSSGX3="unavailable." S PSSGXMSG="" Q   ;254
  .S PSSGX4=$$CONRT() I $E(PSSGX3)="." S PSSGX3=0_PSSGX3
  .S PSSGXMSG=PSSGXMSG_$S(PSSGX4:" Maximum dose rate is ",1:" Maximum daily dose is ")_$S(PSSGX8:PSSGX3,1:PSSGX3_" "_PSSHXA("maxDailyDoseUnit")_".")
  ;
@@ -42,6 +43,7 @@ BUILDMSG(COUNT,HASH) ; Build General Dosing Guidelines
  I PSSGX3=" **unknown** "!('PSSGX3)!(PSSHXA("maxDailyDoseFormUnit")=" **unknown** ") S PSSGX3="unavailable.",PSSGX8=1
  S PSSGX4=$$CONRT() I $E(PSSGX3)="." S PSSGX3=0_PSSGX3
  S PSSGXMSG=PSSGXMSG_$S(PSSGX4:" Maximum dose rate is ",1:" Maximum daily dose is ")_$S(PSSGX8:PSSGX3,1:PSSGX3_" "_PSSHXA("maxDailyDoseFormUnit")_".")
+ I PSSGX1=" **unknown** ",PSSGX2=" **unknown** ",PSSGX3="unavailable." S PSSGXMSG=""   ;254
  Q PSSGXMSG
  ;
  ;
@@ -53,20 +55,21 @@ CONRT() ;Look for continuous route
  N PSSGX9
  S PSSGX9=$P(^TMP($J,BASE,"IN","DOSE",HASH(COUNT,"orderNumber")),U,11)
  I PSSGX9="CONTINUOUS EPIDURAL" Q 1
- I PSSGX9="CONT INTRAARTER INF" Q 1
- I PSSGX9="CONTINUOUS INFILTRAT" Q 1
- I PSSGX9="CONT CAUDAL INFUSION" Q 1
- I PSSGX9="CONT INTRAOSSEOUS" Q 1
- I PSSGX9="CONT INTRATHECAL INF" Q 1
- I PSSGX9="CONTINUOUS INFUSION" Q 1
- I PSSGX9="CONT NEBULIZATION" Q 1
- I PSSGX9="CONT SUBCUTAN INFUSI" Q 1
+ ;*254 FDB 4.5 upgrade route changes
+ I PSSGX9="CONTINUOUS INTRA-ARTERIAL INFUSION" Q 1
+ I PSSGX9="CONTINUOUS INFILTRATION" Q 1
+ I PSSGX9="CONTINUOUS CAUDAL INFUSION" Q 1
+ I PSSGX9="CONTINUOUS INTRAOSSEOUS INFUSION" Q 1
+ I PSSGX9="CONTINUOUS INTRATHECAL INFUSION" Q 1
+ I PSSGX9="CONTINUOUS IV INFUSION" Q 1
+ I PSSGX9="CONTINUOUS NEBULIZATION" Q 1
+ I PSSGX9="CONTINUOUS SUBCUTANEOUS INFUSION" Q 1
  Q 0
  ;
  ;
 INTRO ;Start message
  S PSSGXMSG="General dosing range for "_PSSHXA("drugName")
- I $G(HASH(COUNT,"doseRouteDescription"))'="" S PSSGXMSG=PSSGXMSG_" ("_HASH(COUNT,"doseRouteDescription")_")"
+ I $G(HASH(COUNT,"doseRouteDescription"))'="" S PSSGXMSG=PSSGXMSG_" ("_$$UP^XLFSTR(HASH(COUNT,"doseRouteDescription"))_")"
  S PSSGXMSG=PSSGXMSG_":"
  Q
  ;

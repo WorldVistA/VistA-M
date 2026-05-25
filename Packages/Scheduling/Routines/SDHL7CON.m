@@ -1,11 +1,14 @@
 SDHL7CON ;MS/TG/MS/PB - TMP HL7 Routine;JULY 05, 2018
- ;;5.3;Scheduling;**704,773,812,858**;May 29, 2018;Build 2
+ ;;5.3;Scheduling;**704,773,812,858,879,911**;Aug 13, 1993;Build 15
  ;
  ;  Integration Agreements:
  ;
  ;SD*5.3*773 - Removed unused function TMCONV
  ;SD*5.3*812 - Removed code that sent AA for "No consults found" and then quit the process
  ;SD*5.3*858 - Filter out a MRTC type RTC from being returned to TMP till a future patch restores this feature.
+ ;SD*5.3*879 - Add MRTC support back in by removing the 858 restriction.
+ ;             Also init start & end date params to read less from the files Consult file #123 & RTCS in file #409.85, set all Return error text fields to length 99.
+ ;SD*5.3*911 - Update query to accept OLD or NEW HS input. New HS - both DFN & ICN sent, Else only older DFN sent. New method use ICN to derive a valid dfn, as dfn sometimes invalid.
  Q
  ;
 PARSEQ13 ;Process QBP^Q13 messages from the "TMP VISTA" Subscriber protocol
@@ -56,24 +59,37 @@ PARSEQ13 ;Process QBP^Q13 messages from the "TMP VISTA" Subscriber protocol
  . K @MSGROOT
  . Q
  ;
- N CNT,RDT,HIT,EXTIME,RDF,QPD,QRYDFN,MSGCONID,LST,MYRESULT,HLA,RTCLST
+ N CNT,RDT,HIT,ERROR,EXTIME,RDF,QPD,QRYDFN,QRYDFN2,QRYICN2,MSGCONID,LST,MYRESULT,HLA,RTCLST  ;911 New variables
  ;
- S (MSGCONID,QRYDFN)=""
+ S (MSGCONID,QRYDFN,QRYDFN2,QRYICN2)=""
  S CNT=1
- ;
+ ; Get input variables from msgroot; New HS method will send in DFN^ICN, as delim string. 911
  F  Q:'$D(@MSGROOT@(CNT))  D  S CNT=CNT+1
  . S SEGTYPE=$G(@MSGROOT@(CNT,0))
- . I SEGTYPE="QPD" M QPD=@MSGROOT@(CNT) S QRYDFN=$G(@MSGROOT@(CNT,3)) Q
+ . I SEGTYPE="QPD" M QPD=@MSGROOT@(CNT) D  Q
+ . . S QRYDFN=$G(@MSGROOT@(CNT,3))                                            ;if Old HS, then DFN will be defined. 911
+ . . S QRYDFN2=$G(@MSGROOT@(CNT,3,1,1)),QRYICN2=$G(@MSGROOT@(CNT,3,1,2))      ;if New HS, then both DFN2 & ICN2 should be defined here. 911
  . I SEGTYPE="RDF" M RDF=@MSGROOT@(CNT) Q
  . I SEGTYPE="MSH" S MSGCONID=$G(@MSGROOT@(CNT,9)) Q
  . Q
  ;
- I QRYDFN="" D  Q
- . S ERR="QPD^1^^100^AE^No DFN value sent"
+ ; Modified this orig error text to generic text of missing parameters. 911
+ I QRYDFN="",QRYICN2="" D  Q
+ . S ERR="QPD^1^^100^AE^No Patient ID values sent"
  . D SENDERR(ERR)
  . K @MSGROOT
  . Q
  ;
+ ; Use QRYICN2 if sent, as authoritative Patient ID, by redefining DFN value from an ICN lookup. 911
+ I $G(QRYICN2) S ERROR=0 D  Q:ERROR
+ . S QRYICN2=+QRYICN2 I QRYICN2 S QRYDFN=+$O(^DPT("AICN",QRYICN2,0))
+ . I 'QRYDFN D  Q     ;new error msg created about Patient IDs sent
+ . . S ERROR=1
+ . . S ERR="QPD^1^^100^AE^ICN found no DFN value"
+ . . D SENDERR(ERR)
+ . . K @MSGROOT
+ ;
+ ; Fall thru to this orig error check, i.e. if no valid DFN by now, then error.
  I '$D(^DPT(QRYDFN,0)) D  Q
  . S ERR="QPD^1^^100^AE^Undefined DFN"
  . D SENDERR(ERR)
@@ -81,8 +97,10 @@ PARSEQ13 ;Process QBP^Q13 messages from the "TMP VISTA" Subscriber protocol
  . Q
  S DATAROOT=$NA(^TMP("ORQQCN",$J,"CS"))
  K @DATAROOT
- D LIST(.LST,QRYDFN)
- D RTCLIST(.RTCLST,QRYDFN)
+ ;879 init Start & End dates of data to read and pass these to the below Consult (LIST) & RTC (RTCLIST) tags
+ N SDSDT,SDEDT S SDSDT=$$FMADD^XLFDT(DT,-730),SDEDT=$$FMADD^XLFDT(DT,+730)    ;879
+ D LIST(.LST,QRYDFN,SDSDT,SDEDT)
+ D RTCLIST(.RTCLST,QRYDFN,SDSDT,SDEDT)
  ;
  S HIT=0,EXTIME=""
  ;
@@ -226,7 +244,7 @@ RTCLIST(SDY,SDPT,SDSDT,SDEDT) ; return patient's "Return to Clinic" appointment 
  ;SDPT = dfn of patient
  ;SDSDT = start date (based on CREATE DATE of request)
  ;SDEDT = end date (based on END DATE of request)
- N IDX,IEN,SDEC0,REQDT,CNT,CLINID,CID,STOP,PRVID,CMTS,MRTC,RTCINT,RTCINT,RTCPAR
+ N IDX,IEN,SDEC0,REQDT,CNT,CLINID,CID,STOP,PRVID,CMTS,MRTC,RTCINT,RTCPAR
  S SDY=$NA(^TMP("SDHL7CON",$J,"RTCLIST")) K @SDY
  S SDSDT=$G(SDSDT,"ALL"),SDEDT=$G(SDEDT),CNT=0
  Q:'$G(SDPT)  ; Return nothing if no patient passed
@@ -238,14 +256,16 @@ RTCLIST(SDY,SDPT,SDSDT,SDEDT) ; return patient's "Return to Clinic" appointment 
  . I $P(SDEC0,U,17)'="O" Q
  . S REQDT=$P(SDEC0,U,2) I SDSDT'="ALL",$P(REQDT,".",1)<SDSDT!($P(REQDT,".",1)>SDEDT) Q
  . S CLINID=$P(SDEC0,U,9),CID=$P(SDEC0,U,16),PRVID=$P(SDEC0,U,13),CMTS=$P(SDEC0,U,18),CMTS=$E(CMTS,1,80)
- . S:$P($G(^SDEC(409.85,IEN,3)),"^")=1 MRTC=$P($G(^SDEC(409.85,IEN,3)),"^",3),RTCINT=$P($G(^SDEC(409.85,IEN,3)),"^",2),RTCPAR=$P($G(^SDEC(409.85,IEN,3)),"^",5)
+ . S MRTC=+$P($G(^SDEC(409.85,IEN,3)),"^",3)      ;879 This 3rd piece is sometimes null and sometimes 0, when not a MRTC, so change how init and used below
+ . S:MRTC RTCINT=$P($G(^SDEC(409.85,IEN,3)),"^",2),RTCPAR=$P($G(^SDEC(409.85,IEN,3)),"^",5)
  . S:$G(RTCPAR)="" RTCPAR=IEN
- . S:$G(MRTC)="" MRTC=0 S:$G(RTCINT)="" RTCINT=0
- . Q:$P($G(^SDEC(409.85,IEN,3)),U,1)    ;858 this Requests rec is MRTC related do not return.
+ . ;879 altered quit from ALL MRTC Requests of patch 858, to quit if only if a Parent MRTC Request has children Requests. If Parent Request has no children, then must show parent to TMP.
+ . I MRTC,$P($G(^SDEC(409.85,IEN,3)),"^",5)="",$$CHILDREN^SDHLAPT2(IEN) Q
+ . S:MRTC=0 MRTC=""   ;879
  . I +CLINID D
  . . S CLINNM=$$GET1^DIQ(44,CLINID_",",".01")
  . . S STOP=$$GET1^DIQ(44,CLINID_",",8)_","_$$GET1^DIQ(44,CLINID_",",2503)
- . S CNT=CNT+1,@SDY@(CNT)=IEN_U_REQDT_U_CLINID_U_CID_U_PRVID_U_CMTS_U_$G(MRTC)_U_$G(RTCINT)_U_$G(RTCPAR)
+ . S CNT=CNT+1,@SDY@(CNT)=IEN_U_REQDT_U_CLINID_U_CID_U_PRVID_U_CMTS_U_MRTC_U_$G(RTCINT)_U_$G(RTCPAR)
  S @SDY=CNT
  Q
 PARSESEG(SEG,DATA,HL) ;Generic segment parser

@@ -1,5 +1,5 @@
 IBAMTD ;ALB/CPM - MOVEMENT EVENT DRIVER INTERFACE ; 21-OCT-91
- ;;2.0;INTEGRATED BILLING;**45,52,93,115,132,153,164,156,234,312,339,704**;21-MAR-94;Build 49
+ ;;2.0;INTEGRATED BILLING;**45,52,93,115,132,153,164,156,234,312,339,704,817**;21-MAR-94;Build 2
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  I $G(DGPMA)="",$G(DGPMP)="" Q
@@ -12,6 +12,8 @@ EN ; Process events from the Movement Event Driver.
  ;
  ; -- add admissions to claims tracking
  D INP^IBTRKR
+ ;
+ I '$$CHKELIG^IBAMTS1(DFN) Q  ; quit if patient is exempt based on eligibility  IB*2.0*817
  ;
  ; -- run billing clock query
  D ADM^IBECECQ1

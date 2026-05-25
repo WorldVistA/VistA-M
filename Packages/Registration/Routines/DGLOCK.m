@@ -1,5 +1,5 @@
-DGLOCK ;ALB/MRL,ERC,BAJ,LBD - PATIENT FILE DATA EDIT CHECKS ; 2/14/11 4:36pm
- ;;5.3;Registration;**108,161,247,485,672,673,688,754,797,1040**;Aug 13, 1993;Build 15
+DGLOCK ;ALB/MRL,ERC,BAJ,LBD,JAM - PATIENT FILE DATA EDIT CHECKS ; 2/14/11 4:36pm
+ ;;5.3;Registration;**108,161,247,485,672,673,688,754,797,1040,1143**;Aug 13, 1993;Build 36
 FFP ; DGFFP Access key required
  I '$D(^XUSEC("DGFFP ACCESS",DUZ)) D EN^DDIOL("Fugitive Felon Key required to edit this field.","","!!?4") K X
  Q
@@ -17,7 +17,7 @@ EV2 ;if elig is ver Discharged Due to Disability can't be edited - DG 672
  Q
 SV ;EK Rqrd if Svc Rcrd Ver
  I "NU"'[$E(X) D VET Q:'$D(X)
-SV1 I '$D(^XUSEC("DG ELIGIBILITY",DUZ)),$D(^DPT(DFN,.32)) I $P(^(.32),U,2)]"" D EN^DDIOL("Service Record verfied...Eligibility Key required to edit this field.","","!?4") K X
+SV1 I '$D(^XUSEC("DG ELIGIBILITY",DUZ)),$D(^DPT(DFN,.32)) I $P(^(.32),U,2)]"" D EN^DDIOL("Service Record verified...Eligibility Key required to edit this field.","","!?4") K X
  Q
 MV ;EK Rqrd if Money Ver
  I "NU"'[$E(X) D VET Q:'$D(X)
@@ -57,14 +57,31 @@ SER2 ;NNTL
  D SV I $D(X),$S('$D(^DPT(DFN,.32)):1,$P(^(.32),U,20)'="Y":1,X="N":0,1:0) W !?4,$C(7),"Third Period of Service is not indicated...NO EDITING!" K X
  Q
 TAD ;Temp Add Edit
- I $S('$D(^DPT(DFN,.121)):1,$P(^(.121),U,9)'="Y":1,1:0) W !?4,$C(7),"Requirement for Temporary Address data not indicated...NO EDITING!" K X
+ ; DG*5.3*1143 - Active? field is not set into DB during address edit, do not check it
+ ;I $S('$D(^DPT(DFN,.121)):1,$P(^(.121),U,9)'="Y":1,1:0) W !?4,$C(7),"Requirement for Temporary Address data not indicated...NO EDITING!" K X
  Q
 TADD ;Temp Address Delete?
+ ; If the Active? field not defined, or "N", quit - the field is not changing
  Q:'$D(^DPT(DFN,.121))  I $P(^(.121),"^",9)="N"!($P(^(.121),"^",1,6)="^^^^^") Q
+ ; The Active? flag is being set from Y to N
 ASK W !,"Do you want to delete all temporary address data" S %=2 D YN^DICN I %Y["?" W !,"Answer 'Y'es to remove temporary address information, 'N'o to leave data in file" G ASK
  ; DG*5.3*1040 - Set DGTMOT on timeout. Calling routine checks for this variable to process timeout and cleanup this variable
- I $G(DTOUT) S DGTMOT=1
- Q:%'=1  D EN^DGCLEAR(DFN,"TEMP") Q
+ ; DG*5.3*1143 - quit on timeout
+ I $G(DTOUT) S DGTMOT=1 Q
+ ;
+ ; DG*5.3*1143 - If Real-time address update is ON, capture data in group array and quit
+ I +$G(DGRTAON)=1 D  Q
+ . ; Load the local array with the data currently in the DB to send to ES
+ . D LOADTEMP^DGREGTE2
+ . ; Set "DELETE" node to 0/1 (0=do not delete, 1=delete data)
+ . S DGADDGRP3("DELETE")=(%=1)
+ . ; Set RTA Edit Flag for temp address group
+ . S DGADDEDIT(3)=1
+ ;
+ Q:%'=1
+ ; User has indicated to clean out the data
+ D EN^DGCLEAR(DFN,"TEMP") Q
+ ;
 VN ;Viet Svc
  D SV I $D(X),$S('$D(^DPT(DFN,.321)):1,$P(^(.321),U,1)'="Y":1,1:0) I "UN"'[$E(X) W !?4,$C(7),"Service in Republic of Vietnam not indicated...NO EDITING!" K X
  Q

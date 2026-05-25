@@ -1,6 +1,27 @@
 PRCPEITE ;WISC/RFJ-enter/edit inventory items                       ; 11/6/06 8:40am
-V ;;5.1;IFCAP;**1,98**;Oct 20, 2000;Build 37
+V ;;5.1;IFCAP;**1,98,244**;Oct 20, 2000;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; This routine provides various functionalities for entering and editing 
+ ; inventory items within the IFCAP system. The routine includes functionalities
+ ; for editing all fields (for new items), descriptive elements, stock levels,
+ ; special parameters, and drug accountability dispensing units. It also
+ ; includes utility functions for managing normal levels in supply stations.
+ ; 
+ ; Key Entry Points:
+ ;   ALL       - Edits all fields for a new inventory item.
+ ;   DESCRIP   - Edits description, category, and location fields.
+ ;   LEVELS    - Edits stock levels for an inventory item.
+ ;   SPECIAL   - Edits special parameters and flags for an inventory item.
+ ;   DISPUNIT  - Edits drug accountability dispensing units.
+ ;   EDNORM    - Edits the normal stock level on supply station secondaries.
+ ;
+ ; Integration Control Registrations (ICRs):
+ ; ICR #10103 - $$FMTE^XLFDT
+ ; ICR #10141 - EN^DDIOL
+ ; ICR #10101 - DIC/DIQ^DIC
+ ; ICR #10075 - L +^DIC(1)
+ ;
  Q
  ;
 ALL(PRCPINPT,ITEMDA) ;  edit all fields option (for new items)
@@ -32,7 +53,7 @@ DESCRIP(PRCPINPT,ITEMDA) ;  edit description, category, location fields
  D DESCRIP^PRCPEITF(PRCPINPT,ITEMDA,.PRCPQUIT)
  I PRCPQUIT Q
  S DA(1)=PRCPINPT,DA=ITEMDA,(DIC,DIE)="^PRCP(445,"_PRCPINPT_",1,"
- S DR=".5GROUP CATEGORY;5MAIN STORAGE LOCATION;6"
+ S DR=".5GROUP CATEGORY;.45ABC CLASSIFICATION;5MAIN STORAGE LOCATION;6" ; 244 - Add ABC Classification
  S PRCPPRIV=1
  D ^DIE K PRCPPRIV
  Q

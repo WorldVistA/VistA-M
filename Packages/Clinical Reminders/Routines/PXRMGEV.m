@@ -1,10 +1,19 @@
-PXRMGEV ;SLC/AGP,RFR - Generic entry point to run different Reminder Evaluation ;Apr 07, 2021@13:57
- ;;2.0;CLINICAL REMINDERS;**45,71**;Feb 04, 2005;Build 43
+PXRMGEV ;SLC/AGP,RFR - Generic entry point to run different Reminder Evaluation ;Apr 09, 2025@11:34:42
+ ;;2.0;CLINICAL REMINDERS;**45,71,87**;Feb 04, 2005;Build 35
  Q
- ;
+ ; Reference to ^%DT in ICR #10003
 EN(RESULT,INPUT) ;
  ; INPUT
- ;   INPUT("SUB")=Temp Global Subscript
+ ;   INPUT("SUB")=^TMP subscript to output all evaluations under
+ ;                CAUTION: It is not recommended to mix different evaluation types in
+ ;                         one call with the same output subscript.
+ ;   INPUT("SUB","ROC")=^TMP subscript to output reminder order check evaluations under
+ ;   INPUT("SUB","LR")=^TMP subscript to output reminder list rule evaluations under
+ ;   INPUT("SUB","REMINDERS")=^TMP subscript to output reminder evaluations under
+ ;   INPUT("SUB","TERMS")=^TMP subscript to output reminder term evaluations under
+ ;   NOTE: When specifying ^TMP subscripts for one or more evaluation types, you are
+ ;         required to set INPUT("SUB"); input validation errors are reported under this
+ ;         ^TMP subscript.
  ;
  ; For Reminder Order Checks:
  ;   INPUT("DFN")=DFN                       The patient to perform orders checks on.
@@ -29,18 +38,21 @@ EN(RESULT,INPUT) ;
  ;                          ,"RULES")="" for rules
  ;                          ,"OI")="" for orderable items
  ;
- ; For Reminder List Rules:
- ;   INPUT("LR",LIST RULE NAME)=PNAME^START DATE^END DATE^SECURE^OVERWRITE^RETURN DATA
- ;                LIST RULE NAME        Name of the List Rule to evaluate file 810.4
- ;                PNAME                 Name of the Patient List to create file 810.5
- ;                SECURE                1 or 0 should the list be secure
- ;                OVERWRITE             1 or 0 if an existing patient list with the same name should be overwritten
- ;                START DATE            FM date to start the list rule from
- ;                END DATE              FM date to end the list rule from
+ ; For Reminder List Rule Sets:
+ ;   INPUT("LR",LIST RULE SET NAME,INSTANCE)=PNAME^START DATE^END DATE^SECURE^OVERWRITE^RETURN DATA
+ ;                LIST RULE SET NAME    Reminder list rule set to evaluate; either the rule set's NAME or IEN
+ ;                INSTANCE              Whole number; allows running of same list rule set with different parameters
+ ;                PNAME                 Name of the Patient List to create in file 810.5
+ ;                SECURE                1 or 0; should the list be secure
+ ;                OVERWRITE             1 or 0; if an existing patient list with the same name should be overwritten
+ ;                START DATE            Date to start the list rule from;
+ ;                                      actual date (internal or external), FM symbolic date, or reminder symbolic date
+ ;                END DATE              Date to end the list rule on;
+ ;                                      actual date (internal or external), FM symbolic date, or reminder symbolic date
  ;                RETURN DATA           1 or 0 to determine if data should be return with the patient
  ;
  ; For Reminder Definitions:
- ;   INPUT("DFN")=DFN                       The patient to execute the reminder definition for.
+ ;   INPUT("DFN")=DFN                   The patient to execute the reminder definition for.
  ;   INPUT("REMINDERS",REMINDER)=SAVE_FIEVAL^MAINTENANCE_FORMAT^TODAY
  ;                 REMINDER             Reminder definition to execute; either the definition's IEN,
  ;                                          NAME or PRINT NAME
@@ -50,6 +62,12 @@ EN(RESULT,INPUT) ;
  ;                                      line tag for acceptable values
  ;                 TODAY                Date to use for evaluation in FileMan format
  ;
+ ; For Reminder Terms:
+ ;   INPUT("DFN")=DFN                   The patient to execute the reminder term for.
+ ;   INPUT("TERMS",TERM)=DATE^RETURN FIEVAL^RETURN TEXT
+ ;                                      DATE if defined the date used for the term evaluation or use DT.
+ ;                                      RETURN FIEVAL = 1 the FIEVAL array will be returned in the FIEVAL subscript
+ ;                                      RETRUN TEXT = 1 the Term output will be returned in the DETAIL TEXT subscript
  ; OUTPUT
  ;  ^TMP($J,SUB,0)=-1^ERROR MESSAGE     There is a problem with the INPUT array.
  ;  ^TMP($J,SUB,0)=1                    There is data in the OUTPUT.
@@ -62,10 +80,11 @@ EN(RESULT,INPUT) ;
  ;   ^TMP($J,SUB,ORDER IEN,"TX",N)=TEXT <= ORDER TEXT FROM EN^ORQ1
  ;   ^TMP($J,SUB,ORDER IEN,"OI",OI)="Data from OIS^ORX8" <=ORDERABLE ITEMS
  ;
- ; For Reminder List Rules:
- ;   ^TMP($J,SUB,LIST RULE NAME,DFN)=""
- ;   ^TMP($J,SUB,RULE,DFN,"DATA",TYPE)=VALUE
- ;   ^TMP($J,SUB,LIST RULE NAME,"PATIENT LIST CREATED")=NAME OF PATIENT LIST, from file 810.4
+ ; For Reminder List Rule Sets:
+ ;   ^TMP($J,SUB,LIST RULE SET NAME,INSTANCE)=# OF PATIENTS
+ ;   ^TMP($J,SUB,LIST RULE SET NAME,INSTANCE,DFN)=""
+ ;   ^TMP($J,SUB,LIST RULE SET NAME,INSTANCE,DFN,"DATA",TYPE)=VALUE
+ ;   ^TMP($J,SUB,LIST RULE SET NAME,INSTANCE,"PATIENT LIST CREATED")=NAME OF PATIENT LIST, from file 810.4
  ;
  ; For Reminder Definitions:
  ;   ^TMP($J,SUB,REMINDER)="STATUS^DUE DATE^LAST DONE"
@@ -85,6 +104,12 @@ EN(RESULT,INPUT) ;
  ;              Line X of the maintenance output for COMPONENT REMINDER that is
  ;              executed as a finding, where COMPONENT REMINDER is the PRINT
  ;              NAME of that reminder
+ ;
+ ; For Reminder Terms:
+ ;   ^TMP($J,SUB,"TERMS",NAME)=RESULT
+ ;   ^TMP($J,SUB,"TERMS","FIEVAL")=FIEVAL(ARRAY)
+ ;   ^TMP($J,SUB,"TERMS","DETAIL TEXT")=OUTPUT TEXT
+ ;        RESULT is either 1 for True or 0 for False
  ;
  ; INTERNAL INPUT ARRAY STRUCTURE
  ;  DATA("ROC ORDERS",ORDER IEN (FILE 100))= SET TO ZERO NODE DOCUMENTED IN EN^ORQ1
@@ -111,13 +136,14 @@ EN(RESULT,INPUT) ;
  .D GTORDERS^PXRMGEVA(.DATA)
  I +$G(@RESULT@(0))<0 Q
  D REM^PXRMGEVA(.RESULT,.DATA)
+ I $D(DATA("SUB"))=10 S RESULT=$NA(^TMP($J))
  Q
  ;
 CINPUTS(RESULT,INPUT) ;
- N DGIEN,FAIL,GNAME,NAME,NODE,ROC,ROCIENS,ROCTYPE,RIEN,%DT,X,Y
- I '$D(INPUT("ROC")),'$D(INPUT("REMINDERS")),'$D(INPUT("LR")) D ERROR^PXRMGEVA(.RESULT,"No reminders items defined") Q 1
- I '$D(INPUT("LR")) D  I +$G(@RESULT@(0))<0 Q 1
- .I +$G(INPUT("DFN"))<0 D ERROR^PXRMGEVA(.RESULT,"Patient is not properly defined") Q
+ N DGIEN,FAIL,GNAME,NAME,NODE,RETTYPE,ROC,ROCIENS,ROCTYPE,RIEN,TIEN,%DT,X,Y,INSTANCE
+ I '$D(INPUT("ROC")),'$D(INPUT("REMINDERS")),'$D(INPUT("LR")),'$D(INPUT("TERMS")) D ERROR^PXRMGEVA(.RESULT,"No reminders items defined") Q 1
+ I $D(INPUT("ROC"))!($D(INPUT("REMINDERS"))!($D(INPUT("TERMS")))) D  I +$G(@RESULT@(0))<0 Q 1
+ .I +$G(INPUT("DFN"))<1 D ERROR^PXRMGEVA(.RESULT,"Patient is not properly defined") Q
  .I '$D(^DPT(INPUT("DFN"),0)) D ERROR^PXRMGEVA(.RESULT,"Invalid patient specified") Q
  ;check order checks array
  I $D(INPUT("ROC")) D  I +$G(@RESULT@(0))<0 Q 1
@@ -141,13 +167,20 @@ CINPUTS(RESULT,INPUT) ;
  ...I '$D(^PXD(801,"B",GNAME)) D ERROR^PXRMGEVA(.RESULT,"Reminder Order Check Group: "_GNAME_" not found") S FAIL=1
  ;check list rule array
  I $D(INPUT("LR")) D  I +$G(@RESULT@(0))<0 Q 1
- . S NAME="" F  S NAME=$O(INPUT("LR",NAME)) Q:NAME=""  D
- . .S NODE=$G(INPUT("LR",NAME))
- . .I $P(NODE,U)="" D ERROR^PXRMGEVA(.RESULT,"Patient List Name not define") Q
- . .I $P(NODE,U,2)="" D ERROR^PXRMGEVA(.RESULT,"Start Date not define") Q
- . .I $P(NODE,U,3)="" D ERROR^PXRMGEVA(.RESULT,"End Date not define") Q
- . .I $P(NODE,U,4)="" D ERROR^PXRMGEVA(.RESULT,"Secure not define") Q
- . .I $P(NODE,U,5)="" D ERROR^PXRMGEVA(.RESULT,"Overwrite not define")
+ .S NAME="" F  S NAME=$O(INPUT("LR",NAME)) Q:NAME=""  D
+ ..S RIEN=0
+ ..I NAME'?1.N S RIEN=+$O(^PXRM(810.4,"B",$E(NAME,1,96),0))
+ ..I NAME?1.N S RIEN=NAME
+ ..I ('RIEN)!('$D(^PXRM(810.4,RIEN,0))) D ERROR^PXRMGEVA(.RESULT,"Reminder list rule/rule set """_NAME_""" does not exist") Q
+ ..I $P($G(^PXRM(810.4,RIEN,0)),U,3)'=3 D ERROR^PXRMGEVA(.RESULT,""""_NAME_""" is not a reminder list rule set") Q
+ ..S INPUT("LR",NAME,"IEN")=RIEN
+ ..S INSTANCE="" F  S INSTANCE=$O(INPUT("LR",NAME,INSTANCE)) Q:'+INSTANCE  D
+ ...S NODE=$G(INPUT("LR",NAME,INSTANCE))
+ ...I $P(NODE,U)="" D ERROR^PXRMGEVA(.RESULT,"Patient List Name not defined for """_NAME_""" instance "_INSTANCE) Q
+ ...I $P(NODE,U,2)="" D ERROR^PXRMGEVA(.RESULT,"Start Date not defined for """_NAME_""" instance "_INSTANCE) Q
+ ...I $P(NODE,U,3)="" D ERROR^PXRMGEVA(.RESULT,"End Date not defined for """_NAME_""" instance "_INSTANCE) Q
+ ...I $P(NODE,U,4)="" D ERROR^PXRMGEVA(.RESULT,"Secure not defined for """_NAME_""" instance "_INSTANCE) Q
+ ...I $P(NODE,U,5)="" D ERROR^PXRMGEVA(.RESULT,"Overwrite not defined for """_NAME_""" instance "_INSTANCE)
  ;check reminder definitions array
  I $D(INPUT("REMINDERS")) D  I +$G(@RESULT@(0))<0 Q 1
  .S NAME="" F  S NAME=$O(INPUT("REMINDERS",NAME)) Q:NAME=""  D
@@ -167,5 +200,15 @@ CINPUTS(RESULT,INPUT) ;
  ...D ^%DT
  ...I Y=-1 D ERROR^PXRMGEVA(.RESULT,"Invalid value for TODAY") Q
  ...S $P(INPUT("REMINDERS",RIEN),U,4)=Y
+ ;check reminder terms array
+ I $D(INPUT("TERMS")) D  I +$G(@RESULT@(0))<0 Q 1
+ .S NAME="" F  S NAME=$O(INPUT("TERMS",NAME)) Q:NAME=""  D
+ ..S NODE=INPUT("TERMS",NAME)
+ ..S TIEN=0
+ ..I NAME'?1.N S TIEN=+$O(^PXRMD(811.5,"B",$E(NAME,1,64),0)) S RETTYPE="NAME"
+ ..I NAME?1.N S TIEN=NAME S RETTYPE="IEN"
+ ..I ('TIEN)!('$D(^PXRMD(811.5,TIEN,0))) D ERROR^PXRMGEVA(.RESULT,"Reminder term """_NAME_"""does not exist") Q
+ ..S INPUT("TERMS",TIEN)=NAME_U_NODE_U_RETTYPE
+ ..I NAME'=TIEN K INPUT("TERMS",NAME)
  Q 0
  ;

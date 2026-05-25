@@ -1,5 +1,5 @@
-RAHLEX ;HIRMFO/REL,CRT - RAD/NUC MED HL7 Voice Reporting Exception List; 02/02/99 
- ;;5.0;Radiology/Nuclear Medicine;**12,17,25**;Mar 16, 1998
+RAHLEX ;HIRMFO/REL,CRT - RAD/NUC MED HL7 Voice Reporting Exception List; Oct 30, 2024@12:57:58
+ ;;5.0;Radiology/Nuclear Medicine;**12,17,25,220**;Mar 16, 1998;Build 3
  ; Last Edited by CRT
  ;
  S RAHLAPP="^TMP($J,""RAHLAPP"")" K @RAHLAPP  ; Sending Apps included
@@ -111,7 +111,8 @@ SETTMP ;Create ^TMP workfile with sorted records on...
  ..S RAXIEN="" F  S RAXIEN=$O(^RA(79.3,"AA",RAPPI,RAXIEN)) Q:RAXIEN'>0  D
  ...S RAX=$G(^RA(79.3,RAXIEN,0)) Q:RAX=""
  ...;
- ...S RASEND=$$GET1^DIQ(771,RAPPI,3)
+ ...;S RASEND=$$GET1^DIQ(771,RAPPI,3)
+ ...S RASEND=$$GET1^DIQ(771,RAPPI,.01) Q:RASEND=""  ;p220/KLM - to fix report error on missing facility
  ...;
  ...S RADATE=$P(RAX,U,1) Q:RADATE=""
  ...I (RAHL7SDT]RADATE)!(RADATE]RAHL7EDT) Q

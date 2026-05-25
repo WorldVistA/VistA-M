@@ -1,5 +1,5 @@
-ECPCEU ;BIR/JPW-ECS to PCE Utilities ;7 Jan 97
- ;;2.0; EVENT CAPTURE ;**4,5,7,10,17,18,23,42,54,73,72,95,76**;8 May 96;Build 6
+ECPCEU ;BIR/JPW-ECS to PCE Utilities ;1/7/25  14:51
+ ;;2.0;EVENT CAPTURE ;**4,5,7,10,17,18,23,42,54,73,72,95,76,170**;8 May 96;Build 2
 CLIN ;check for active inactive clinic
  N ECCLDT
  I $L($G(ECDT))>6,+ECDT=ECDT S ECCLDT=ECDT
@@ -44,7 +44,11 @@ ENC S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"ENC D/T")=ECDT
  S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"HNC")=ECHNC
  S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"CV")=ECCV
  S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"SHAD")=ECSHAD
- S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"SERVICE CATEGORY")="X"
+ ;S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"SERVICE CATEGORY")="X"
+ ; Per Shelley Weems, subject matter expert (SME) for the Patient
+ ; Care Encounter (PCE) product, the Service Category passed to PCE
+ ; by Event Capture should be an "A", not an "X" -- EC*2*170
+ S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"SERVICE CATEGORY")="A"
  S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"ENCOUNTER TYPE")="A"
  S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"DSS ID")=ECID
  S ^TMP("ECPXAPI",$J,"ENCOUNTER",1,"CHECKOUT D/T")=ECCKDT

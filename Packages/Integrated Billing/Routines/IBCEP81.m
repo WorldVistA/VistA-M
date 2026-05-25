@@ -1,7 +1,7 @@
 IBCEP81 ;ALB/KJH - NPI and Taxonomy Functions ;19 Apr 2008  5:17 PM
- ;;2.0;INTEGRATED BILLING;**343,391,400,476,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**343,391,400,476,516,824**;21-MAR-94;Build 7
  ;;Per VA Directive 6402, this routine should not be modified.
- ;
+ ;ICR - #5070 - $$QI^XUSNPI(IBNPI) 
  ; Must call at an entry point  
  Q
  ;
@@ -119,7 +119,7 @@ NPIUSED(IBNPI,IBOLDNPI,IBIEN,IBCHECK,IBKEY) ; Check whether NPI is already used 
  . S DIR(0)="Y",DIR("A")="Do you still want to add this NPI to provider "_$$GET1^DIQ(355.93,IBIEN,.01),DIR("B")="NO"
  . S DIR("?")="Answer YES if you wish to associate the NPI from the IB NON/OTHER VA PROVIDER file with the entry in the NEW PERSON file."
  . D ^DIR,EN^DDIOL("") Q
- ; NPI is now or was in the past in use in File 4
+ ; NPI is now or was in the past in use in File 4 ;;$$QI^XUSNPI(IBNPI) added for future ib patch RTW
  I IBNOTIFY=9 D EN^DDIOL("The NPI of "_IBNPI_" is now, or was in the past, associated with "_$$GET1^DIQ(4,$O(^DIC(4,"ANPI",IBNPI,"")),.01),"","!!"),EN^DDIOL(" in the INSTITUTION file.") Q 1
  ; NPI is now or was in the past in use in 355.93
  I IBNOTIFY=11 D EN^DDIOL("The NPI of "_IBNPI_" is now, or was in the past, associated with "_$$GET1^DIQ(355.93,$$DUP(IBNPI),.01),"","!!"),EN^DDIOL(" in the IB NON/OTHER VA BILLING PROVIDER file.") Q 1
@@ -168,7 +168,7 @@ RULES(IBNPI,IBIEN,IBOLDNPI) ;Verify that the NPI meets all rules for usage
  ;Duplicate in 355.93
  ; If facility is sole proprietor, NPI is the one pointed to by the sole proprietor, then not a dup - IB*2*516
  I $P(^IBA(355.93,IBIEN,0),U,17)="Y",$P(^IBA(355.93,IBIEN,0),U,18) S SPIBIEN=$P(^IBA(355.93,IBIEN,0),U,18)
- I DUP'="",DUP'=IBIEN,DUP'=$G(SPIBIEN) Q 11
+ I DUP'="",DUP'=IBIEN,DUP'=$G(SPIBIEN),'$$ID(IBIEN) Q 11  ;RTW IB*2.0*824
  ;Replacing an NPI that is associated to NEW PERSON file with another NPI that is associated with the NEW PERSON file
  I $G(IBOLDNPI)>0,$D(^VA(200,"ANPI",IBOLDNPI)),$D(^VA(200,"ANPI",IBNPI)) Q 14
  ;Already an inactive NPI
@@ -181,7 +181,7 @@ RULES(IBNPI,IBIEN,IBOLDNPI) ;Verify that the NPI meets all rules for usage
  I $E($P(IBVA200,U,4),1,8)="Inactive" Q 13
  I $P(IBVA200,U)="Individual_ID",$P(IBVA200,U,4)["Active" Q 1
  I $P(IBVA200,U)="Organization_ID",$P(IBVA200,U,4)["Active" Q 9
- I $D(^DIC(4,"ANPI",IBNPI)) Q 9
+ I $D(^DIC(4,"ANPI",IBNPI)),$$ID(IBIEN) Q 9  ;RTW IB*2.0*824
  Q 0
  ;
 PRENPI(IBIEN) ;Pre-NPI edit messages
@@ -201,3 +201,11 @@ PRENPI(IBIEN) ;Pre-NPI edit messages
  . W !!,"You are updating ",$S($$GET1^DIQ(355.93,IBIEN,.02,"I")=1:"a FACILITY/GROUP",$$GET1^DIQ(355.93,IBIEN,.02,"I")=2:"an INDIVIDUAL",1:"a")," provider in the"
  . W !,"IB NON/OTHER VA BILLING PROVIDER file.",!
  Q
+ID(IBIEN) ;
+ N IBNX,IBRTN,IBNED,IBNPID,IBDA
+ S (IBNX,IBRTN)=0
+ S IBNX=$O(^DIC(4,IBIEN,9999,"B","NPI",IBNX))
+ S IBDA(1)=IBIEN,IBDA=IBNX,IENS=IBDA_","_IBDA(1)
+ S IBNPID=$$GET1^DIQ(4.9999,IENS,.02,"I")
+ S IBNED=$$GET1^DIQ(4.9999,IENS,.03,"I") S:IBNED IBRTN=1 ;if effective date is there the error should print.
+ Q IBRTN

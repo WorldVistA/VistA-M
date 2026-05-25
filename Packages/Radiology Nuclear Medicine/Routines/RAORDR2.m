@@ -1,5 +1,5 @@
-RAORDR2 ;ABV/SCR/MKN - Refer Pending/Hold Requests Reason for Request ; Jul 08, 2022@13:00:02
- ;;5.0;Radiology/Nuclear Medicine;**148,161,170,190**;Mar 16, 1998;Build 1
+RAORDR2 ;ABV/SCR/MKN - Refer Pending/Hold Requests Reason for Request ; Feb 14, 2025@07:59:30
+ ;;5.0;Radiology/Nuclear Medicine;**148,161,170,190,223**;Mar 16, 1998;Build 4
  ;
  ; Routine/File         IA          Type
  ; -------------------------------------
@@ -122,17 +122,21 @@ GETILOC(RAITYP) ;p170 returns imaging location
  .E  W !!,"There are no consult titles associated with "_$$GET1^DIQ(79.2,RAITYP,.01)_".",!,"Please contact your Radiology ADPAC." Q
  .Q
  Q $S($G(RAOILOC)>0:RAOILOC,1:0)
-CCCHK(RADA,RAY) ;p161 -input transform for entering cc consults to the Imaging Location
- ;Matched on I-TYPE for location and Naming Convention.
+CCCHK(RADA) ;p161 -input transform for entering cc consults to the Imaging Location
+ ;p223 -Matched on I-TYPE for location and Naming Convention in file 71.1235.
  ;Ex: COMMUNITY CARE-IMAGING GENERAL RADIOLOGY-AUTO
+ ;Allows for Special procedure mapping
  ;Allows for site identifier appension
- ;RADA = ILOC
- N RAITYP,RACON,RASTR,RAM
- S RAITYP=$$GET1^DIQ(79.1,RADA,6) S:RAITYP="CT SCAN" RAITYP="CT"
- S RASTR=$P(^GMR(123.5,RAY,0),U)
- S RACON="COMMUNITY CARE-IMAGING "_RAITYP
- I RAITYP="MAMMOGRAPHY" Q $S(($P(RASTR," DIAGNOSTIC-AUTO",1)=RACON)!($P(RASTR," SCREEN-AUTO",1)=RACON):1,1:0)
- E  Q $S($P(RASTR,"-AUTO",1)=RACON:1,1:0)
+ ;p223 updated screen for new CC titles
+ N RAITYP,RACON,RASTR,RAM,RAITI,RARTN,RACIEN
+ S RAITYP=$$GET1^DIQ(79.1,RADA,6),RAITI=$$GET1^DIQ(79.1,RADA,6,"I")
+ S RACON="" F  S RACON=$O(^RA(71.1235,"C",RAITI,RACON)) Q:RACON=""  D
+ .D FIND^DIC(123.5,"","@;.01","B",RACON,"","","","","RARTN")
+ .I $D(RARTN("DILIST",2))=10 S RACIEN=0 F  S RACIEN=$O(RARTN("DILIST",2,RACIEN)) Q:RACIEN=""  D
+ ..S RARY($G(RARTN("DILIST",2,RACIEN)))=$G(RARTN("DILIST","ID",RACIEN,.01))
+ ..Q
+ .Q
+ Q
  ;
 LOCSCRN() ;Screen for user prompt to select the i-loc for the order referral
  N RAI,RAC S (RAI,RAC)=0

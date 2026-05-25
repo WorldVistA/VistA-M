@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: MAIL GROUP
 ZWR
-^XMB(3.8,0)="MAIL GROUP^3.8^360^342"
+^XMB(3.8,0)="MAIL GROUP^3.8^364^346"
 ^XMB(3.8,1,0)="POSTMASTER^PU^y^3^2971212^"
 ^XMB(3.8,1,3)=1
 ^XMB(3.8,2,0)="EN PROJECTS^PU^y^^^"
@@ -677,7 +677,7 @@ ZWR
 ^XMB(3.8,137,2,2,0)="from file 354.71 cannot be transmitted to at least one of the patient's"
 ^XMB(3.8,137,2,3,0)="treating facilities for at least 2 days."
 ^XMB(3.8,137,3)=""
-^XMB(3.8,138,0)="XUMF SERVER^PU^^28^3240926^0^1"
+^XMB(3.8,138,0)="XUMF SERVER^PU^^29^3250612^0^1"
 ^XMB(3.8,138,1,0)="^3.81P^1^1"
 ^XMB(3.8,138,1,1,0)=1
 ^XMB(3.8,138,1,"B",1,1)=""
@@ -697,7 +697,7 @@ ZWR
 ^XMB(3.8,140,2,0)="^^2^2^3010313^"
 ^XMB(3.8,140,2,1,0)="Mail group to send messages regarding accessing images on offline"
 ^XMB(3.8,140,2,2,0)="jukebox platters."
-^XMB(3.8,141,0)="MAG SERVER^PU^y^524^3250101^0"
+^XMB(3.8,141,0)="MAG SERVER^PU^y^581^3260508^0"
 ^XMB(3.8,141,1,0)="^3.81P^1^1"
 ^XMB(3.8,141,1,1,0)=1
 ^XMB(3.8,141,1,"B",1,1)=""
@@ -917,7 +917,7 @@ ZWR
 ^XMB(3.8,177,2,2,0)="the Insurance Verification process."
 ^XMB(3.8,177,3)=1
 ^XMB(3.8,177,6,0)="^3.812^^0"
-^XMB(3.8,178,0)="GMPL CODE SET VERSION UPDATES^PU^n^10^3240930^^1"
+^XMB(3.8,178,0)="GMPL CODE SET VERSION UPDATES^PU^n^12^3251031^^1"
 ^XMB(3.8,178,2,0)="^3.801^2^2^3030414^^^"
 ^XMB(3.8,178,2,1,0)="This mail group will be used to send information about the status of ICD9 "
 ^XMB(3.8,178,2,2,0)="codes attached to problems on problem selection lists."
@@ -982,7 +982,7 @@ ZWR
 ^XMB(3.8,189,2,1,0)="Members of this mail group will receive weekly mail messages regarding"
 ^XMB(3.8,189,2,2,0)="the HL7 transmission of the Transitional Pharmacy Benefit data."
 ^XMB(3.8,189,3)=1
-^XMB(3.8,190,0)="GMRA REQUEST NEW REACTANT^PU^n^19^3240613^^1"
+^XMB(3.8,190,0)="GMRA REQUEST NEW REACTANT^PU^n^25^3260212^^1"
 ^XMB(3.8,190,2,0)="^3.801^6^6^3030827^^^^"
 ^XMB(3.8,190,2,1,0)="When adding a new allergy entry the user is prompted for the reactant.  "
 ^XMB(3.8,190,2,2,0)="If the user cannot find a reactant to match their input then they are "
@@ -1162,7 +1162,7 @@ ZWR
 ^XMB(3.8,219,2,1,0)="Alerts users when status of SD WAIT LIST types(pcmm,clinic,specialty)"
 ^XMB(3.8,219,2,2,0)="change."
 ^XMB(3.8,219,3)=1
-^XMB(3.8,220,0)="XTPM PATCH MONITOR^PU^^5713^3250105^^1"
+^XMB(3.8,220,0)="XTPM PATCH MONITOR^PU^^6210^3260517^^1"
 ^XMB(3.8,220,1,0)="^3.81P^9^4"
 ^XMB(3.8,220,1,1,0)=1
 ^XMB(3.8,220,1,5,0)=65
@@ -1181,7 +1181,7 @@ ZWR
 ^XMB(3.8,220,6,4,0)="John.Stewart2@DOMAIN.EXT"
 ^XMB(3.8,220,6,"B","John.Stewart2@DOMAIN.EXT",4)=""
 ^XMB(3.8,220,6,"B","RICHARD.BARFIELD@DOMAIN.EXT",3)=""
-^XMB(3.8,221,0)="XTPM PATCH MONITOR USER^PU^^3828^3250105^0^1"
+^XMB(3.8,221,0)="XTPM PATCH MONITOR USER^PU^^4317^3260517^0^1"
 ^XMB(3.8,221,1,0)="^3.81P^7^4"
 ^XMB(3.8,221,1,1,0)=1
 ^XMB(3.8,221,1,3,0)=65
@@ -1285,7 +1285,7 @@ ZWR
 ^XMB(3.8,235,2,1,0)="This mail group contains users responsible for DSS extracts. A message is"
 ^XMB(3.8,235,2,2,0)="sent to this group upon completion of package extracts. "
 ^XMB(3.8,235,3)=1
-^XMB(3.8,236,0)="PATCHES^PU^^11297^3250103"
+^XMB(3.8,236,0)="PATCHES^PU^^11877^3260514"
 ^XMB(3.8,236,1,0)="^3.81P^13^8"
 ^XMB(3.8,236,1,1,0)=1
 ^XMB(3.8,236,1,3,0)=17
@@ -1346,7 +1346,7 @@ ZWR
 ^XMB(3.8,240,2,6,0)="  "
 ^XMB(3.8,240,2,7,0)="PER XU*8*449"
 ^XMB(3.8,240,3)=1
-^XMB(3.8,241,0)="TIU CACS^PU^n^28^3240926^^1"
+^XMB(3.8,241,0)="TIU CACS^PU^n^29^3250612^^1"
 ^XMB(3.8,241,2,0)="^^3^3^3070312^"
 ^XMB(3.8,241,2,1,0)="This cross-reference identifies the people who should receive "
 ^XMB(3.8,241,2,2,0)="informational bulletins concerning the implementation of the Text "
@@ -1470,14 +1470,14 @@ ZWR
 ^XMB(3.8,261,2,2,0)="status of Transmitted or Retransmitted is discontinued by a background"
 ^XMB(3.8,261,2,3,0)="process to the Pharmacy Options, e.g. CPRS or Registration packages."
 ^XMB(3.8,261,3)=17
-^XMB(3.8,262,0)="PSS ORDER CHECKS^PU^n^13^3211007^0"
+^XMB(3.8,262,0)="PSS ORDER CHECKS^PU^n^16^3260120^0"
 ^XMB(3.8,262,1,0)="^3.81P^^0"
 ^XMB(3.8,262,2,0)="^3.801^3^3^3121019^"
 ^XMB(3.8,262,2,1,0)="Members of this mail group will receive various notifications that impact"
 ^XMB(3.8,262,2,2,0)="Enhanced Order Checks (drug-drug interactions, duplicate therapy and dosing"
 ^XMB(3.8,262,2,3,0)="checks) introduced with PRE V. 0.5 utilizing a COTS database."
 ^XMB(3.8,262,3)=17
-^XMB(3.8,263,0)="AUTORENEWAL^PU^y^1110^3250105^^17"
+^XMB(3.8,263,0)="AUTORENEWAL^PU^y^1607^3260517^^17"
 ^XMB(3.8,263,2,0)="^^4^4^3090713^"
 ^XMB(3.8,263,2,1,0)="This mail group contains the list of users that will received messages "
 ^XMB(3.8,263,2,2,0)="related to the auto-renewal process. The auto-renewal process is "
@@ -1524,7 +1524,7 @@ ZWR
 ^XMB(3.8,270,1,1,0)=17
 ^XMB(3.8,270,1,"B",17,1)=""
 ^XMB(3.8,270,3)=17
-^XMB(3.8,271,0)="MAG_ZZT_Application_process_^PU^^104^3250101"
+^XMB(3.8,271,0)="MAG_ZZT_Application_process_^PU^^126^3260501"
 ^XMB(3.8,271,1,0)="^3.81P^1^1"
 ^XMB(3.8,271,1,1,0)=17
 ^XMB(3.8,271,1,"B",17,1)=""
@@ -1534,17 +1534,17 @@ ZWR
 ^XMB(3.8,272,1,1,0)=17
 ^XMB(3.8,272,1,"B",17,1)=""
 ^XMB(3.8,272,3)=17
-^XMB(3.8,273,0)="MAG_ZZT_Monthly_Image_Site_U^PU^^109^3250101"
+^XMB(3.8,273,0)="MAG_ZZT_Monthly_Image_Site_U^PU^^131^3260501"
 ^XMB(3.8,273,1,0)="^3.81P^1^1"
 ^XMB(3.8,273,1,1,0)=17
 ^XMB(3.8,273,1,"B",17,1)=""
 ^XMB(3.8,273,3)=17
-^XMB(3.8,274,0)="MAG_ZZT_Ad_Hoc_Image_Site_Us^PU"
+^XMB(3.8,274,0)="MAG_ZZT_Ad_Hoc_Image_Site_Us^PU^^7^3260508"
 ^XMB(3.8,274,1,0)="^3.81P^1^1"
 ^XMB(3.8,274,1,1,0)=17
 ^XMB(3.8,274,1,"B",17,1)=""
 ^XMB(3.8,274,3)=17
-^XMB(3.8,275,0)="MAG_ZZT_INSTALLATION^PU^^120^3241115"
+^XMB(3.8,275,0)="MAG_ZZT_INSTALLATION^PU^^127^3260316"
 ^XMB(3.8,275,1,0)="^3.81P^1^1"
 ^XMB(3.8,275,1,1,0)=17
 ^XMB(3.8,275,1,"B",17,1)=""
@@ -1799,7 +1799,7 @@ ZWR
 ^XMB(3.8,314,6,0)="^3.812^1^1"
 ^XMB(3.8,314,6,1,0)="BA.TRAN@DOMAIN.EXT"
 ^XMB(3.8,314,6,"B","BA.TRAN@DOMAIN.EXT",1)=""
-^XMB(3.8,315,0)="PSO SPMP NOTIFICATIONS^PU^y^^^^"
+^XMB(3.8,315,0)="PSO SPMP NOTIFICATIONS^PU^y^2^3251015^^"
 ^XMB(3.8,315,2,0)="^^1^1^3121220^"
 ^XMB(3.8,315,2,1,0)="This mail group will receive error notifications when the background job responsible for transmitting controlled substance prescriptions to the state fails."
 ^XMB(3.8,315,3)=17
@@ -2060,6 +2060,25 @@ ZWR
 ^XMB(3.8,360,2,2,0)="to receive alerts about AR repayment plans. Mail sent using this group"
 ^XMB(3.8,360,2,3,0)="must not contain any PII or PHI."
 ^XMB(3.8,360,3)=89
+^XMB(3.8,361,0)="IBMH EXCEPTIONS^PU^n^^^^"
+^XMB(3.8,361,3)=89
+^XMB(3.8,362,0)="IB UC REMOTE^PU^n^^^^"
+^XMB(3.8,362,2,0)="^3.801^2^2^3241206^^^^"
+^XMB(3.8,362,2,1,0)=" eMail group to notify designated users via Outlook email of exceptions "
+^XMB(3.8,362,2,2,0)="encountered when processing Urgent Care push to requesting remote site."
+^XMB(3.8,362,3)=89
+^XMB(3.8,363,0)="IB PATIENT ACCUMULATOR^PU^y^^^^"
+^XMB(3.8,363,2,0)="^^2^2^3250522^"
+^XMB(3.8,363,2,1,0)="MailGroup used for notification of HL7 error responses from VDIF"
+^XMB(3.8,363,2,2,0)="regarding the Means Test Billing Clock syncing process."
+^XMB(3.8,363,3)=90
+^XMB(3.8,364,0)="MAGCACHECFG^PU^n^^^^"
+^XMB(3.8,364,2,0)="^^1^1^3240722^"
+^XMB(3.8,364,2,1,0)="Used to transmit changes to the IMAGING SITE PARAMETERS file (#2006.1)."
+^XMB(3.8,364,3)=90
+^XMB(3.8,364,6,0)="^3.812^1^1"
+^XMB(3.8,364,6,1,0)="S.MAG CACHE SETTINGS UPDATE@FOIA.DOMAIN.EXT"
+^XMB(3.8,364,6,"B","S.MAG CACHE SETTINGS UPDATE@FO",1)=""
 ^XMB(3.8,"AB",.5,240,1)=""
 ^XMB(3.8,"AB",.5,319,1)=""
 ^XMB(3.8,"AB",1,3,1)=""
@@ -2463,7 +2482,9 @@ ZWR
 ^XMB(3.8,"B","IB LTC BACK BILLING",161)=""
 ^XMB(3.8,"B","IB MEANS TEST",205)=""
 ^XMB(3.8,"B","IB NEW INSURANCE",4)=""
+^XMB(3.8,"B","IB PATIENT ACCUMULATOR",363)=""
 ^XMB(3.8,"B","IB RX COPAY CAP ERROR",137)=""
+^XMB(3.8,"B","IB UC REMOTE",362)=""
 ^XMB(3.8,"B","IB UNBILLED AMOUNTS",5)=""
 ^XMB(3.8,"B","IBB PFSS CHARGE ERRORS",226)=""
 ^XMB(3.8,"B","IBB PFSS DATA TRANS ERROR",225)=""
@@ -2475,6 +2496,7 @@ ZWR
 ^XMB(3.8,"B","IBCNR EPHARM",244)=""
 ^XMB(3.8,"B","IBH",303)=""
 ^XMB(3.8,"B","IBK",305)=""
+^XMB(3.8,"B","IBMH EXCEPTIONS",361)=""
 ^XMB(3.8,"B","IBN",302)=""
 ^XMB(3.8,"B","IBQ ROLLUP",21)=""
 ^XMB(3.8,"B","IBRFI 277 MESSAGE",325)=""
@@ -2510,6 +2532,7 @@ ZWR
 ^XMB(3.8,"B","LRJ AUF60XT AUDIT TASK REPORT",311)=""
 ^XMB(3.8,"B","LRJ SYS MAP HL TASK REPORT",309)=""
 ^XMB(3.8,"B","MAG SERVER",141)=""
+^XMB(3.8,"B","MAGCACHECFG",364)=""
 ^XMB(3.8,"B","MAG_ZZT_Ad_Hoc_Image_Site_Us",274)=""
 ^XMB(3.8,"B","MAG_ZZT_Application_process_",271)=""
 ^XMB(3.8,"B","MAG_ZZT_Auto_RAID_group_purg",285)=""

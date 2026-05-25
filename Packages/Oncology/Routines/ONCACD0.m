@@ -1,8 +1,8 @@
 ONCACD0 ;HINES OIFO/GWB - NAACCR extract driver ;09/22/11
- ;;2.2;ONCOLOGY;**1,4,5,8,6,10,12,13,14,15,17,19,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,5,8,6,10,12,13,14,15,17,19,20,21,22**;Jul 31, 2013;Build 6
  ;P6 V16
  ;P10 V18
- ;P13 V21, P20 V23
+ ;P13 V21, P20 V23, P21 V24
  ;P14 XML format for State and RCRS
  ;P17 V22
  ;P19 CC option is for State extract only
@@ -25,9 +25,9 @@ EN2 N ACO,BDT,DATE,DIAGYR,EDT,EXTRACT,NCDB,ONCSPIEN,QUEUE,SDT,STAT,STAT1,STAT2,Y
  ;I $D(DIRUT) S OUT=1 K DIRUT Q
  ;S ONCPHI=Y
  ;
- I (STEXT=0)!(STEXT=2)!(STEXT=3) S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V23.0",0))
+ I (STEXT=0)!(STEXT=2)!(STEXT=3) S EXTRACT=$O(^ONCO(160.16,"B","NCDB EXTRACT V25.0",0))
  I (STEXT=1)&(DEVICE=1) D GETREC(.EXTRACT,.OUT) ;p19
- I (STEXT=1)&(DEVICE=0) S ONCRCL=4,EXTRACT=5 W !,"The current record layout (v23.0) is for all states (including SEER states)."
+ I (STEXT=1)&(DEVICE=0) S ONCRCL=4,EXTRACT=5 W !,"The current record layout (v25.0) is for all states (including SEER states)."
  I 'OUT S STAT=$$GETHOSP
  I 'STAT S OUT=1
  I 'OUT S STAT1=$P(STAT,U,1),STAT2=$P(STAT,U,2)
@@ -43,18 +43,18 @@ EN2 N ACO,BDT,DATE,DIAGYR,EDT,EXTRACT,NCDB,ONCSPIEN,QUEUE,SDT,STAT,STAT1,STAT2,Y
  ;
 GETREC(EXTRACT,OUT) ;Select VACCR, STATE record layout
  W !!," Available record layouts:",!
- W !,"  1) VACCR Record Layout v23.0 (VA Registry)"
- W !,"  2) State Record Layout v23.0"
+ W !,"  1) VACCR Record Layout v25.0 (VA Registry)"
+ W !,"  2) State Record Layout v25.0"
  W !
  N DIR,X,Y
- S DIR(0)="SAO^1:VACCR Record Layout v23.0;2:State Record Layout v23.0"
+ S DIR(0)="SAO^1:VACCR Record Layout v25.0;2:State Record Layout v25.0"
  S DIR("A")=" Select record layout: "
  S DIR("?")="Select the record layout to use"
  D ^DIR
  I $D(DIRUT) S OUT=1 K DIRUT Q
  I +Y<1 S OUT=1 Q
- I Y=1 S EXT="VACCR",EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V23.0",0))
- I Y=2 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","STATE EXTRACT V23.0",0))
+ I Y=1 S EXT="VACCR",EXTRACT=$O(^ONCO(160.16,"B","VACCR EXTRACT V25.0",0))
+ I Y=2 S EXT="STATE",EXTRACT=$O(^ONCO(160.16,"B","STATE EXTRACT V25.0",0))
  S ONCRCL=Y
  I ONCRCL=1 D
  .S DIR("A")=" Exclude PHI COMORBIDITY codes: "

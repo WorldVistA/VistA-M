@@ -1,5 +1,5 @@
 MAGGTU4T ;WOIFO/SG/NST/DAC/JSJ/JSL - VERSION CONTROL (TELEREADER) ; Mar 03, 2023@12:01:09
- ;;3.0;IMAGING;**93,94,106,117,122,127,182,219,242,281,292,320,352**;Mar 19, 2002;Build 8
+ ;;3.0;IMAGING;**93,94,106,117,122,127,182,219,242,281,292,320,352,370**;Mar 19, 2002;Build 2
  ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -23,6 +23,7 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE TELEREADER CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq #|                Comment                   |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.370 |   2 |  79 | Aug 2024                                 |
  ;;| 3.0.352 |   1 |  78 | Mar 2023                                 |
  ;;| 3.0.320 |   2 |  76 | Aug 2022                                 |
  ;;| 3.0.292 |   3 |  65 | Feb 2022                                 |

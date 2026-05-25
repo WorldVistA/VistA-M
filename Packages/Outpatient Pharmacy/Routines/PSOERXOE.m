@@ -1,5 +1,5 @@
 PSOERXOE ;ALB/BWF - eRx parsing Utilities ; 11/14/2019 3:46pm
- ;;7.0;OUTPATIENT PHARMACY;**581**;DEC 1997;Build 126
+ ;;7.0;OUTPATIENT PHARMACY;**581,770**;DEC 1997;Build 145
  ;
  Q
  ;
@@ -20,7 +20,6 @@ PERSON(GBL,CNT,PSOSITE,IEN,PTYPE) ;
  Q:'PIEN
  S PIENS=PIEN_","
  D GETS^DIQ(F,PIENS,"**","IE","PSDAT")
- D CONVXML^PSOERXX1("PSDAT")
  S DEAN=$G(PSDAT(F,PIENS,1.6,"E"))
  S NPI=$G(PSDAT(F,PIENS,1.5,"E"))
  S PTAG=$S(PTYPE="P":"Pharmacist",PTYPE="PR":"Prescriber",PTYPE="S":"Supervisor",PTYPE="FP":"FolloupPrescriber",1:"")

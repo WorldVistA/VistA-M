@@ -1,5 +1,5 @@
-ORB3FUP2 ; slc/CLA - Routine to support notification follow-up actions ;8/29/17
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**31,64,88,112,243,434**;Dec 17, 1997;Build 35
+ORB3FUP2 ; SLC/CLA - Routine to support notification follow-up actions ;Feb 04, 2025@13:39:49
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**31,64,88,112,243,434,508**;Dec 17, 1997;Build 39
 RESULT ;STAT, orderer-flagged and site-flagged result follow-up
  ;determine what pkg to get report/results from then do RPTLAB or RPTRAD
  N ORBFILL S ORBFILL=$P($P(XQADATA,"|",2),"@",2)
@@ -243,3 +243,6 @@ RTC ;followup action for RTC order alert
  D RENEW^ORB31(.ORY,XQAID)
  Q
  ;
+PATALERT ;
+ D INFODEL
+ Q

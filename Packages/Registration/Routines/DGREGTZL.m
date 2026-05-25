@@ -1,6 +1,7 @@
-DGREGTZL ;ALB/BDB - Temporary & Confidential Address Edits API ; 11/30/11 10:00am
- ;;5.3;Registration;**851,892**;Aug 13, 1993;Build 9
-EN(RESULT,DFN) ;Let user edit zip+4, city, state, county based on zip-linking
+DGREGTZL ;ALB/BDB,JAM - Temporary & Confidential Address Edits API ; 11/30/11 10:00am
+ ;;5.3;Registration;**851,892,1143**;Aug 13, 1993;Build 36
+EN(RESULT,DFN,DGDEFZIP,DGDEFCITY) ;Let user edit zip+4, city, state, county based on zip-linking
+ ; DG*5.3*1143 - Added 3rd and 4th input parameters - If RTA is active, these are the default values to display for zip code and city
  ; Output: RESULT(field#) = User Input External ^ Internal
  K RESULT
  N DGIND,DGTOT
@@ -33,6 +34,8 @@ EN(RESULT,DFN) ;Let user edit zip+4, city, state, county based on zip-linking
 ZIP(DFN) ;Let user input zip+4
 ZAGN N DIR,DTOUT,DUOUT,DIROUT,DGDATA
  S DIR(0)="2,"_FZIP
+ ; DG*5.3*1143 - Set default value if we have it defined
+ I $G(DGDEFZIP)'="" S DIR("B")=DGDEFZIP
  S DA=DFN
  D ^DIR
  I $D(DTOUT) Q -1
@@ -42,15 +45,15 @@ ZAGN N DIR,DTOUT,DUOUT,DIROUT,DGDATA
  I $D(^XUSEC("EAS GMT COUNTY EDIT",+DUZ)) Q DGZIP
  I DGZIP="" Q DGZIP
  D POSTALB^XIPUTIL(DGZIP,.DGDATA)
-  ;DG*730 - later commented out by DG*760
+ ;DG*730 - later commented out by DG*760
  ;I $G(DGDATA(1,"CITY ABBREVIATION"))'="",$G(DGDATA(1,"CITY ABBREVIATION"))=$G(DGDATA(2,"CITY")) S DGDATA=1 K DGDATA(2)
  I $D(DGDATA("ERROR")) D  G ZAGN
  . W $C(7)," ??"
  Q DGZIP
-CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#FCITY)
+CITY(RESULT,ZIP,DFN) ;Based on zip, let user input city(#FCITY)
  ; Input:
- ;   ZIP - user input zip for the patient primary address
- ;   DFN - Interal entry number of Patient File (#2)
+ ;   ZIP - user input zip for the patient's primary address
+ ;   DFN - Internal entry number of Patient File (#2)
  ; Output:RESULT=-1 (input error or timed or ^ out) 
  ;        or    =user input city
  ;        Array index # of selected city.
@@ -64,7 +67,9 @@ CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#FCITY)
  D FIELD^DID(2,FCITY,"N","LABEL","DGCITY")
  S DGN=""
  I '$D(DGDATA("ERROR")) D
- . S DOLDCITY=$$GET1^DIQ(2,DFN_",",FCITY)
+ . ; DG*5.3*1143 - Use default city passed in if it exists
+ . ;S DOLDCITY=$$GET1^DIQ(2,DFN_",",FCITY)
+ . S DOLDCITY=$S($G(DGDEFCITY)'="":DGDEFCITY,1:$$GET1^DIQ(2,DFN_",",FCITY))
  . S DGSAME=0
  . F  S DGN=$O(DGDATA(DGN)) Q:DGN=""  D
  .. S DGCITI=$P($G(DGDATA(DGN,"CITY")),"*",1)
@@ -84,7 +89,9 @@ CITY(RESULT,ZIP,DFN) ;Base on zip, let user input city(#FCITY)
  . I $D(^XUSEC("EAS GMT COUNTY EDIT",+DUZ)) D
  .. S DGSOC=$G(DGSOC)_";"_99_":"_"FREE TEXT"
  . S DIR(0)="SO^"_$G(DGSOC)
- . S DIR("B")=$$GET1^DIQ(2,DFN_",",FCITY)
+ . ; DG*5.3*1143 - use default city if passed in or city in the patient file
+ . ;S DIR("B")=$$GET1^DIQ(2,DFN_",",FCITY)
+ . S DIR("B")=$S($G(DGDEFCITY)'="":DGDEFCITY,DFN:$$GET1^DIQ(2,DFN_",",FCITY),1:"")
  . S DIR("A")=$G(DGCITY("LABEL"))
 CAGN1 . D ^DIR
  . I $D(DTOUT) S RESULT=-1 Q
@@ -94,6 +101,9 @@ CAGN1 . D ^DIR
  I ($G(Y)=99)!($D(DGDATA("ERROR"))) D
 CAGN2 . I '$D(^XUSEC("EAS GMT COUNTY EDIT",+DUZ)) Q
  . N DIR,X,Y
+ . ; DG*5.3*1143 - use default city if passed in
+ . S DIR("B")=$S($G(DGDEFCITY)'="":DGDEFCITY,DFN:$$GET1^DIQ(2,DFN_",",FCITY),1:"")
+ . S DIR("A")=$G(DGCITY("LABEL"))
  . S DIR(0)="2,"_FCITY
  . S DA=DFN
  . D ^DIR

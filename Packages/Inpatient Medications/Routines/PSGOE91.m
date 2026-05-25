@@ -1,5 +1,5 @@
 PSGOE91 ;BIR/CML - ACTIVE ORDER EDIT (CONT.) ;May 03, 2023@17:45
- ;;5.0;INPATIENT MEDICATIONS;**50,64,58,110,111,136,113,179,265,267,285,315,334,373,366,327,441,451,454**;16 DEC 97;Build 6
+ ;;5.0;INPATIENT MEDICATIONS;**50,64,58,110,111,136,113,179,265,267,285,315,334,373,366,327,441,451,454,455**;16 DEC 97;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;Reference to ^PS(55 in ICR #2191.
  ;Reference to ^PS(50.7 in ICR #2180
@@ -182,7 +182,7 @@ TIMES ;At least one admin time, not more than interval allows.
  S MAX=1440/I
  I MAX<1,$L(X,"-")>1 D EN^DDIOL("This order requires one administration time.") K X Q
  I MAX'<1,$L(X,"-")>MAX D EN^DDIOL("The number of admin times entered is greater than indicated by the schedule.") K X Q  ;Too many times
- I MAX'<1,$L(X,"-")<MAX D EN^DDIOL("The number of admin times entered is fewer than indicated by the schedule.") K X Q  ;Too few times ;P454 Add Kill/Quit
+ I MAX'<1,$L(X,"-")<MAX D EN^DDIOL("The number of admin times entered is fewer than indicated by the schedule.") Q  ;Too few times ;P455 remove K
  Q
  ;
 DOSE ;Make certain at least one dose is given.

@@ -1,5 +1,5 @@
 PSGOE41 ;BIR/CML - REGULAR ORDER ENTRY (CONT.) ;Dec 15, 2021@09:56:53
- ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315,334,373,366,327,319,399,454**;16 DEC 97;Build 6
+ ;;5.0;INPATIENT MEDICATIONS;**50,63,64,69,58,111,136,113,267,315,334,373,366,327,319,399,454,455**;16 DEC 97;Build 2
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ; Reference to ^DICN via DBIA 10009
  ; Reference to %DT via DBIA 10003
@@ -173,7 +173,7 @@ TIMES    ;At least one admin time, not more than interval allows.
  I MAX<1 D  Q
  . I $L(X,"-")'=1 W !,"This order requires one admin time." K X Q
  I MAX'<1,$L(X,"-")>MAX W !,"The number of admin times entered is greater than indicated by the schedule." K X Q  ;Too many times
- I MAX'<1,$L(X,"-")<MAX W !,"The number of admin times entered is fewer than indicated by the schedule." K X Q  ;Too few times ;P454 Add Kill/Quit
+ I MAX'<1,$L(X,"-")<MAX W !,"The number of admin times entered is fewer than indicated by the schedule." Q  ;Too few times ;P455 remove K
  Q
 DOSE ;Make certain at least one dose is given.
  Q:$G(PSGST)="OC"!($G(PSGST)="P")

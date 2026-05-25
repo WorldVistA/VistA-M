@@ -1,5 +1,5 @@
 VAFCTFU1 ;BHM/RGY-Utilities for the Treating Facility file 391.91, CONTINUED ;6 May 2021  1:56 PM
- ;;5.3;Registration;**261,392,448,449,800,856,1042,1055**;Aug 13, 1993;Build 1
+ ;;5.3;Registration;**261,392,448,449,800,856,1042,1055,1159**;Aug 13, 1993;Build 1
 TFL(LIST,DFN) ;for dfn get list of treating facilities
  NEW X,ICN,DA,DR,VAFCTFU1,DIC,DIQ,VAFC
  S X="MPIF001" X ^%ZOSF("TEST") I '$T S LIST(1)="-1^MPI Not Installed" Q
@@ -74,12 +74,13 @@ QUERYTF(PAT,ARY,INDX) ;a query for Treating Facility.
  ;of the entries have DLT populated, return the first record for site.
  I 'INDX F LP=0:0 S LP=$O(^DGCN(391.91,"APAT",PDFN,LP)) Q:'LP  D
  .Q:'$$ISVAMC(LP)  ;**1042,VAMPI-8212 (mko): Skip non-VAMCs
- .S ZTDLT=0,ZTFIEN=$O(^DGCN(391.91,"APAT",PDFN,LP,"")) Q:'ZTFIEN
+ .S ZTDLT=0,ZTFIEN=0  ;**1159 VAMPI-33816 (jfw) - Removed set of ZTFIEN from Global here.
  .S TFIEN=0 F  S TFIEN=$O(^DGCN(391.91,"APAT",PDFN,LP,TFIEN)) Q:'TFIEN  D
  ..Q:'$$ISPATIEN(TFIEN)  ;**1042,VAMPI-8212 (mko): Skip if not a patient record (not "PI" or null)
  ..S ZDLT=$P(^DGCN(391.91,TFIEN,0),"^",3) ;Date last treated
+ ..S:(ZTDLT=0) ZTFIEN=TFIEN  ;**1159 VAMPI-33816 (jfw) - Ensure ZTFIEN defined if DLT is NULL.
  ..I ZDLT>ZTDLT S ZTDLT=ZDLT,ZTFIEN=TFIEN
- .D SET(ZTFIEN,ARY,.CTR)
+ .D:(ZTFIEN) SET(ZTFIEN,ARY,.CTR)  ;**1159 VAMPI-33816 (jfw) - Only SET if PI record found.
  I INDX S LP=0 F  S LP=$O(^DGCN(391.91,"AEVN",PDFN,LP)) Q:'LP  D
  .; please note the following: the AEVN xref is subscripted by pat. dfn
  .; event reason ptr, and the ien of the TFL file.  It is possible

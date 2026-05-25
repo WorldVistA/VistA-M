@@ -1,6 +1,6 @@
-MAGDSTD2 ; OI&T-Clin3/DWM,WOIFO/PMK - rad exams w/o VI images; Jul 06, 2021@08:21:46
- ;;3.0;Support;**231,306**;11/13/2018;Build 1
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTD2 ; OITCLIN/DWM,WOIFO/PMK - rad exams w/o VI images; Jul 06, 2021@08:21:46
+ ;;3.0;IMAGING;**231,306,375**;Mar 19, 2002;Build 3
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
@@ -79,7 +79,8 @@ COUNTS(DTFR,DTTO) ; build list of exams w/o images
  S XDTTO=9999999.9999-XDTTO ; reverse date & time
  ;
  S REVDATE=XDTFR
- F  S REVDATE=$O(^RARPT("AA",REVDATE),-1) Q:REVDATE=""  Q:REVDATE<DTTO  D
+ ;F  S REVDATE=$O(^RARPT("AA",REVDATE),-1) Q:REVDATE=""  Q:REVDATE<DTTO  D  - p375:  report ignoring end date
+ F  S REVDATE=$O(^RARPT("AA",REVDATE),-1) Q:REVDATE=""  Q:REVDATE<XDTTO  D
  . S RPTDATE=9999999.9999-REVDATE ; get regular FM date/time from reverse date/time
  . S RARPT=""
  . F  S RARPT=$O(^RARPT("AA",REVDATE,RARPT))  Q:RARPT=""  D

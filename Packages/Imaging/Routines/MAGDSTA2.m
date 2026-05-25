@@ -1,13 +1,10 @@
-MAGDSTA2 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Aug 19, 2020@16:04:13
- ;;3.0;IMAGING;**231**;MAR 19, 2002;Build 9;Feb 27, 2015
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTA2 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Nov 09, 2022@16:22:06
+ ;;3.0;IMAGING;**231,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -278,3 +275,45 @@ ACNUMCON() ; get and process a consult study
  D HEADER^MAGDSTAA(0,0)
  S Z=$$CONLKUP1^MAGDSTA7(GMRCIEN)
  Q 0
+ ;
+SCROLL ; auto scroll or manual scroll (with Press <Enter> to continue...)
+ N DEFAULT,HELP,IEN,KSITEPAR,PROMPT,X,YESNO
+ S KSITEPAR=$$KSP^XUPARAM("INST")
+ S SITE=$O(^MAG(2006.1,"B",KSITEPAR,"")),IEN=SITE_","
+ S DEFAULT=$$GET1^DIQ(2006.1,SITE,215,"I") ; manual/automatic scroll
+ S YESNO=$S(DEFAULT'="":DEFAULT,1:"no")
+ S HELP(1)="In Manual Scroll Mode, ""Press <Enter> to continue..."" is displayed on the bottom"
+ S HELP(2)="of each screen and the user must respond to continue."
+ S HELP(3)=""
+ S HELP(4)="In Automatic Scroll Mode, the prompt is suppressed and the application continues"
+ S HELP(5)="from screen to screen without requiring any user responses."
+ S PROMPT="Do you want to use Automatic Scroll Mode?"
+ I $$YESNO^MAGDSTQ(PROMPT,YESNO,.X,.HELP)<0 S QUIT=1 Q
+ I DEFAULT'=X D
+ . S MAGFDA(2006.1,IEN,215)=X
+ . D UPDATE^DIE("","MAGFDA",,"MAGERR")
+ . Q
+ S AUTOSCROLL=X
+ Q
+ ;
+REPORT ; get output report file, if any - P333 PMK 07/13/2022
+ N DEFAULT,IEN,KSITEPAR,SITE,X,YESNO
+ S KSITEPAR=$$KSP^XUPARAM("INST")
+ S SITE=$O(^MAG(2006.1,"B",KSITEPAR,"")),IEN=SITE_","
+ S DEFAULT=$$GET1^DIQ(2006.1,SITE,214,"I") ; folder
+ S YESNO=$S(DEFAULT'="":DEFAULT,1:"no")
+ I $$YESNO^MAGDSTQ("Do you want to save the results in an Excel file?",YESNO,.X)<0 Q
+ I DEFAULT'=X D
+ . S MAGFDA(2006.1,IEN,214)=X
+ . D UPDATE^DIE("","MAGFDA",,"MAGERR")
+ . Q
+ Q:X="NO"
+ D INITXTMP^MAGDSTA0(.OUTPUTEXCEL)
+ W !! F J=1:1:IOM W "="
+ W !,"The results are stored in the ^XTMP global in Comma-Separated Values format."
+ W !,"They may be exported to a *.CSV file by a Reflection log and then analyzed"
+ W !,"with Excel.  The results will be automatically removed from ^XTMP in 14 days." ; P333 PMK 08/01/2025
+ W !!,"Use the ""STAT -- Display stats for automatic radiology Q/R runs option"""
+ W !,"with Reflection to access and output the results."
+ W ! F J=1:1:IOM W "="
+ Q

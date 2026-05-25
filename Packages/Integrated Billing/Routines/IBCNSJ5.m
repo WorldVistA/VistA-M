@@ -1,5 +1,5 @@
 IBCNSJ5 ;ALB/TMP - INSURANCE PLAN MAINTENANCE ACTION PROCESSING ; 09-AUG-95
- ;;2.0;INTEGRATED BILLING;**43,516,549,652**;21-MAR-94;Build 23
+ ;;2.0;INTEGRATED BILLING;**43,516,549,652,804**;21-MAR-94;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PL ; -- Insurance Company Plan List
@@ -132,7 +132,9 @@ CV ;Edit coverage limitations from edit patient policy
  . K DIR
  . D PAUSE^VALM1
  . S VALMBCK="R"
- D EDCOV^IBCNSJ51
+ ;IB*804/CKB - call the new Add/Edit Coverage Limitations ListMan screens
+ ;D EDCOV^IBCNSJ51
+ D EN^IBCNSJ54
  D BLD^IBCNSP
  Q
  ;
@@ -143,7 +145,9 @@ CV1 ;Edit coverage limitations from edit plan
  . K DIR
  . D PAUSE^VALM1
  . S VALMBCK="R"
- D EDCOV^IBCNSJ51
+ ;IB*804/CKB - call the new Add/Edit Coverage Limitations ListMan screens
+ ;D EDCOV^IBCNSJ51
+ D EN^IBCNSJ54
  D INIT^IBCNSC4
  Q
  ;

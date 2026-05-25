@@ -1,5 +1,5 @@
-GECSUSEL ;WISC/RFJ-utility selection                                ;01 Nov 93
- ;;2.0;GCS;**2**;MAR 14, 1995
+GECSUSEL ;WISC/RFJ-utility selection ;01 Nov 93
+ ;;2.0;GCS;**2,41**;MAR 14, 1995;Build 7
  Q
  ;
  ;
@@ -42,6 +42,7 @@ BATTYPE(DEFAULT,DONTASK) ;  select batch type parameters
  D BATCHECK
  I '$G(GECS("BATDA")) K GECS("BATDA"),GECS("BATCH"),GECS("SYSID") Q
  W !,"Batch Type: ",GECS("BATCH")
+ D GEC2P41 ;GEC*2*41 - WARNING FOR BATCHES TO BE DISABLED IN THE FUTURE
  Q
  ;
  ;
@@ -105,3 +106,33 @@ BATCHSEL(GECSDICS) ;  select batch number from file 2101.3
  I GECSDICS'="" S DIC("S")=GECSDICS
  W ! D ^DIC I Y'>0 Q 0
  Q +Y
+ ;
+ ;
+GEC2P41 ;;GEC*2*41  check for batch scheduled to be disabled - SSNR, PDL
+ N I,GECB,GECBL,GECMSG,%,%I,XMSUB,XMTEXT,XMY
+ ; INITIALIZE LIST OF BATCHES TO CHECK IN GECBL
+ S I=1,GECBL="^" F  S GECB=$T(GEC2P41B+I) Q:GECB["GEC2P41B_END"  S GECBL($P(GECB,";",3))="",I=I+1
+ D:$D(GECBL(GECS("BATCH")))
+  . D NOW^%DTC
+  . W !!,"**************"
+  . W !,"NOTE: This batch type is scheduled to be disabled in May 2026."
+  . W !,"Please enter a ServiceNOW ticket for 'VistA - Generic Code Sheet'"
+  . W !,"if there are questions/concerns."
+  . W !,"**************"
+  . ;RECORD IN XTMP
+  . S ^XTMP("GEC2P41",0)=$$FMADD^XLFDT(DT,90)_"^"_DT_"^GEC*2*41 - batch type usage"
+  . S ^XTMP("GEC2P41",%)=GECS("BATCH")_"^"_DUZ
+  . ;SEND MSG
+  . S XMY(.5)="",XMY(DUZ)="",XMY("FiscalMgmt@domain.ext")=""
+  . S XMSUB="GEC*2*41 Usage Notification",XMTEXT="GECMSG"
+  . S GECMSG(1)="GEC*2*41 Site "_$G(DUZ(2))_" had unexpected usage of GEC Batch Type "_GECS("BATCH")
+  . D SENDMSG^XMXAPI(DUZ,XMSUB,XMTEXT,.XMY)
+ Q
+GEC2P41B ;;$Text list of batch types to be discontinued (future patch) for SSNR
+ ;;A1BO CENSUS ROLL-UP
+ ;;CONSULTING/ATTENDING
+ ;;DDCSS - MENTAL HEALTH
+ ;;HOSPITAL BASED HOME CARE- GECO
+ ;;VOLUNTARY
+ ;;GEC2P41B_END
+ Q

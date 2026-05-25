@@ -1,5 +1,5 @@
-SROQ30D ;BIR/ADM - 30-DAY READMISSION TRANSMISSION ;10/31/2011
- ;;3.0;Surgery;**176,182**;24 Jun 93;Build 49
+SROQ30D ;BIR/ADM - 30-DAY READMISSION TRANSMISSION ; October 31, 2011
+ ;;3.0;Surgery;**176,182,216**;24 Jun 93;Build 2
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -10,7 +10,7 @@ MSG ; create mail message to server
  S X=$$ACTIVE^XUSER(DUZ) I '+X S XMDUZ=.5
  S XMSUB="VAMC-"_SRASITE_" 30-DAY READMITS ("_SRCNT_") - FY"_$E(SRYR,3,4)_" Q"_SRQTR
  S SRD=^XMB("NETNAME"),ISC=0 I SRD["FO-"!(SRD["ISC-")!(SRD["ISC.")!(SRD["FORUM")!(SRD["TST") S ISC=1
- K XMY I 'ISC S (XMY("G.SRCOSERV@FO-HINES.DOMAIN.EXT"),XMY("G.CARDIAC RISK ASSESSMENTS@DENVER.DOMAIN.EXT"))=""
+ K XMY I 'ISC S (XMY("G.SRCOSERV@SURGERYSRA.DOMAIN.EXT"),XMY("G.CARDIAC RISK ASSESSMENTS@DENVER.DOMAIN.EXT"))=""
  I ISC S XMY("G.SR-QUARTERLY@"_SRD)=""
  S XMTEXT="^TMP(""SRQTR"",$J," N I D ^XMD K ^TMP("SRQTR",$J),XMY,XMTEXT
  I '$D(XMMG) D SITE

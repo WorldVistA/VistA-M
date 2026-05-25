@@ -1,32 +1,25 @@
-ORWORB ; SLC/DEE,REV,CLA,WAT - RPC FUNCTIONS WHICH RETURN USER ALERT ;Aug 13, 2024@09:39:58
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410,377,498,405,596,535**;Dec 17, 1997;Build 20
+ORWORB ; SLC/DEE,REV,CLA,WAT - RPC FUNCTIONS WHICH RETURN USER ALERT ;Oct 29, 2025@09:33:53
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,148,173,190,215,243,296,329,334,410,377,498,405,596,508**;Dec 17, 1997;Build 39
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
- ; Reference to ^DPT( in ICR #10035
- ; Reference to ^XTV(8992 in ICR #2689
- ; Reference to ^VA(200,5 in ICR #4329
- ; Reference to ^XUSEC( in ICR #10076
- ; Reference to SET1^RAO7PC4 in ICR #3563
- ; Reference to $$RESOLVE^TIUSRVLO in ICR #2834
- ; Reference to INP^VADPT in ICR #10061
- ; Reference to $$NOW^XLFDT,$$FMADD^XLFDT in ICR #10103
- ; Reference to $$GET^XPAR,EN^XPAR,GETLST^XPAR in ICR #2263
- ; Reference to GETUSER1^XQALDATA,GETUSER2^XQALDATA in ICR #4834
- ; Reference to DELETE^XQALERT,DELETEA^XQALERT,GETACT^XQALERT in ICR #10081
- ; Reference to ALERTDAT^XQALBUTL,AHISTORY^XQALBUTL in ICR #2788
- ; Reference to ALTDATA^PXRMCALT in ICR #7258
- ; Reference to ^TIU(8925 in ICR #2937
- ; Reference to ^GMR(123 in ICR #2586
- ; Reference to ^SRF( in ICR #7436
- ; Reference to ^PSRX( in ICR #6149
- ; Reference to ^PS(52.41 in ICR #6148
- ; Reference to ^LRO(69,D0,1 in ICR #2407
- ; Reference to ^RAO(75.1 in ICR #3074
- ; Reference to ^RADPT(D0,'DT',D1,'P' in ICR #65
- ; Reference to ^LR( in ICR #525
- ; Reference to $$GET1^DIQ in ICR #2056
+ ; Reference to ^DPT( supported by DBIA 10035
+ ; Reference to ^XTV(8992 supported by DBIA 2689
+ ; Reference to ^XTV(8992.1 supported by DBIA 7063
+ ; Reference to ^VA(200,5 supported by DBIA 4329
+ ; Reference to ^XUSEC( supported by DBIA 10076
+ ; Reference to RAO7PC4 supported by DBIA 3563
+ ; Reference to TIUSRVLO supported DBIA IA 2834
+ ; Reference to VADPT supported by DBIA 10061
+ ; Reference to XLFDT supported by DBIA 10103
+ ; Reference to XPAR supported by DBIA 2263
+ ; Reference to XQALDATA supported by DBIA 4834
+ ; Reference to XQALERT supported by DBIA 10081
+ ; Reference to XQALBUTL supported by DBIA 2788
+ ; Reference to ALTDATA^PXRMCALT supported by DBIA 7258
+ ; Reference to $$GET1^DIQ(200,D0_",",.01) supported by ICR 7143
  ;
  Q
+ ;
 GETLTXT(ORY,ORAID) ;get the long text for an alert
  N ORDATA
  D ALERTDAT^XQALBUTL(ORAID,"ORDATA")
@@ -69,13 +62,11 @@ USERLIST(ORY,STRTDATE,STOPDATE) ;process for obtaining user's notifications
  D REMNONOR^ORQORB(.NONORLST)
  S J=0
  F I=1:1:ORTOT D
- .N ORPROV,ORBIRAD,ORALRTDAT,ORALRTXT
+ .N ORPROV,ORBIRAD
  .S ALRTDFN="",REM=""
  .S ALRT=^TMP("ORB",$J,I)
  .S PRE=$E(ALRT,1,1)
  .S ALRTXQA=$P(ALRT,U,2) Q:ALRTXQA=""  ; XQAID expected
- .D ALERTDAT^XQALBUTL(ALRTXQA,"ORALRTDAT")
- .S ORALRTXT=$G(ORALRTDAT(1.01))
  .S NONOR="" F  S NONOR=$O(NONORLST(NONOR)) Q:NONOR=""  D
  ..I ALRTXQA[NONOR S REM=1  ;allow this type of alert to be Removed
  .S ALRTMSG=$P($P(ALRT,U),PRE_"  ",2)
@@ -88,30 +79,19 @@ USERLIST(ORY,STRTDATE,STOPDATE) ;process for obtaining user's notifications
  ..S ALRTLOC=""
  .. ; *596 ajb
  . . I $E($P(ALRTXQA,";"),1,3)="TIU" D  Q
- . . . N ALRT,NODE,ORIEN,ORREF,ORTIU,X,Y
- . . . S ORPROV="N/A"
- . . . I ORALRTXT="" Q  ; full text of alert data
- . . . S $P(ALRT,U,2)=$P(ORALRTXT,":"),$P(ALRT,U,4)=$S(ALRT[" STAT ":"HIGH",1:"Moderate")
+ . . . N ALRT,NODE,X,XTVDA,Y S XTVDA=$O(^XTV(8992.1,"B",ALRTXQA,0)) Q:'XTVDA
+ . . . S NODE=$G(^XTV(8992.1,XTVDA,1)) Q:NODE=""  ; full text of alert data
+ . . . S $P(ALRT,U,2)=$P($P(NODE,U),":"),$P(ALRT,U,4)=$S(ALRT[" STAT ":"HIGH",1:"Moderate")
  . . . S X=$P(ALRTXQA,";",3),$P(Y,"/",1)=$E(X,4,5),$P(Y,"/",2)=$E(X,6,7),$P(Y,"/",3)=(1700+$E(X,1,3))
  . . . S X=$E($P(X,".",2)_"0000",1,4),$P(Y,"@",2)=$E(X,1,2)_":"_$E(X,3,4),$P(ALRT,U,5)=Y
- . . . S $P(ALRT,U,6)=$P(ORALRTXT,": ",2),$P(ALRT,U,8)=ALRTXQA,$P(ALRT,U,9)=REM_U
+ . . . S $P(ALRT,U,6)=$P($P(NODE,U),": ",2,999),$P(ALRT,U,8)=ALRTXQA,$P(ALRT,U,9)=REM_U
  . . . S J=J+1,^TMP("ORBG",$J,J)=ALRT
- . . . S ORTIU=+$G(ORALRTDAT(2)) D  Q:'ORTIU
- . . . . N ORTIUTXT,ORTIUTXT6
- . . . . I ORTIU Q
- . . . . S ORTIUTXT=$P(ALRTXQA,";"),ORTIUTXT6=$E(ORTIUTXT,1,6)
- . . . . I "^TIUADD^TIUERR^"[ORTIUTXT6 S ORTIU=$E(ORTIUTXT,7,999) Q
- . . . . I ORTIUTXT?3A1.99999999N S ORTIU=$E(ORTIUTXT,4,999)
- . . . S ORIEN=+$P($G(^TIU(8925,ORTIU,12)),U,10) I 'ORIEN D
- . . . . S ORPROV="UNKNOWN"
- . . . . S ORREF=$P($G(^TIU(8925,ORTIU,14)),U,5) Q:ORREF=""
- . . . . I $P(ORREF,";",2)="GMR(123," S ORIEN=$P($G(^GMR(123,+ORREF,0)),U,3) I ORIEN="" S ORPROV="UNKNOWN"
- . . . . I $P(ORREF,";",2)="SRF(" S ORIEN=$P($G(^SRF(+ORREF,0)),U,14) I ORIEN="" S ORPROV="UNKNOWN"
- . . . I +ORIEN>0 S ORPROV=$$GETPRVNM(ORIEN)
  .. ; *596 ajb
  ..I $P(ALRTXQA,",")="OR" D
- ... N NOPROV,P04,ORPOUT
- ... S NOPROV=0
+ ... N ALRTIEN,ORIEN,P04,ORPOUT
+ ... S ALRTIEN=$O(^XTV(8992.1,"B",ALRTXQA,0)) Q:ALRTIEN'>0  ; direct read ICR #7063
+ ... S ORIEN=+$G(^XTV(8992.1,ALRTIEN,2)) ; Q:ORIEN'>0  ; direct read ICR #7063
+ ... S P04=$P($G(^OR(100,ORIEN,0)),U,4) I +P04 S ORPROV=$$GET1^DIQ(200,P04,.01)
  ...S ORN=$P($P(ALRTXQA,";"),",",3)
  ...S URG=$G(URGLIST(ORN))
  ...S ORURG=$S(URG=1:"HIGH",URG=2:"Moderate",1:"low")
@@ -120,8 +100,6 @@ USERLIST(ORY,STRTDATE,STOPDATE) ;process for obtaining user's notifications
  ...S ALRTI=$S(ORN=90:"L",$P(ORN0,U,6)="INFODEL":"I",1:"")
  ...S ALRTDFN=$P(ALRTXQA,",",2)
  ...S ALRTLOC=$G(^DPT(+$G(ALRTDFN),.1))
- ...I $G(ORN)=6,$P(ALRT,U)["Your task #" S ALRTMSG=$E($P(ALRT,U),2,999),NOPROV=1,ORPROV="N/A"
- ...I 'NOPROV S ORPROV=$$GETPROV(ORN,ALRTDFN,.ORALRTDAT)
  ...I $$ISSMIEN^ORBSMART(ORN) D
  ....N ORSMBY
  ....D ALTDATA^PXRMCALT(.ORPOUT,ALRTDFN,ALRTXQA)
@@ -153,16 +131,16 @@ USERLIST(ORY,STRTDATE,STOPDATE) ;process for obtaining user's notifications
  ..I $E(ALRTMSG,1,14)=FWDBY D
  ...S J=J+1,^TMP("ORBG",$J,J)=FWDBY_U_$P($P(ALRTMSG,FWDBY,2),"Generated: ")_$P($P(ALRTMSG,FWDBY,2),"Generated: ",2)
  ..E  S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_U_""""_ALRTMSG_""""
- .I $G(ORPROV)'="" S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_U_ORPROV ; ajb
+ .;I $G(ORPROV)'="" S ^TMP("ORBG",$J,J)=^TMP("ORBG",$J,J)_U_ORPROV ; ajb
  .;if this is for processed alerts, add additional data into pieces 15 through 22
  .I $D(^TMP("ORB",$J,J,"PROCESSED")) D
  ..S $P(^TMP("ORBG",$J,J),U,15)=^TMP("ORB",$J,J,"PROCESSED")
  .;if this is for pending alerts, add "surrogate for" into piece 15
- .I $G(FROMFAST) N DUZIEN,SURRFOR,ORALRTHST D
- ..D AHISTORY^XQALBUTL(ALRTXQA,"ORALRTHST")
- ..S DUZIEN=$O(ORALRTHST(20,"B",DUZ,"")) Q:'DUZIEN
- ..S SURRFOR=+$G(ORALRTHST(20,DUZIEN,3,1,0)) ; get first "surrogate for" and return returns 0 if empty
- ..I SURRFOR S $P(^TMP("ORBG",$J,J),U,15)=$P(^VA(200,SURRFOR,0),U)
+ .I $G(FROMFAST) N ALRTIEN,DUZIEN,SURRFOR D
+ ..S ALRTIEN=$O(^XTV(8992.1,"B",ALRTXQA,0)) Q:'ALRTIEN
+ ..S DUZIEN=$O(^XTV(8992.1,ALRTIEN,20,"B",DUZ,"")) Q:'DUZIEN
+ ..S SURRFOR=+$G(^XTV(8992.1,ALRTIEN,20,DUZIEN,3,1,0)) ; get first "surrogate for" and return returns 0 if empty
+ ..I SURRFOR S $P(^TMP("ORBG",$J,J),U,15)=$$GET1^DIQ(200,SURRFOR_",",.01)
  S ^TMP("ORBG",$J)=""
  S ORY=$NA(^TMP("ORBG",$J))
  K ^TMP("ORB",$J)
@@ -339,117 +317,3 @@ SETSORT(ORERR,SORT,DIR) ;set notification sort method^direction for user
  D EN^XPAR(DUZ_";VA(200,","ORB SORT METHOD",1,SORT,.ORERR)
  I $L($G(DIR)) D EN^XPAR(DUZ_";VA(200,","ORB SORT DIRECTION",1,DIR,.ORERR)
  Q
- ;
-GETPROV(ORN,ORDFN,ORALRTDAT) ;Find Ordering Provider
- ; ORN = NOTIFICATION IEN
- ; ORDFN = ALERT PATIENT DFN
- ; ORALRTDAT = ALERT DATA IN FILE 8992.1
- S ORN=+ORN
- I ORN=0 Q ""
- I +ORDFN=0 Q ""
- N ORDATA,ORIEN,ORIEN1,ORIENLNG,ORIENS,ORNTMP,ORPRV,ORQUIT,P04
- S ORNTMP=U_ORN_U
- S (ORIEN,ORPRV)=""
- S ORDATA=$G(ORALRTDAT(2)) ;data for processing
- ;Notifications with order number at beginning of data
- I "^3^5^6^8^12^14^24^26^31^33^42^43^44^45^47^48^52^55^57^58^59^60^62^68^72^74^82^"[ORNTMP  S ORIEN=+ORDATA
- ;Notifications with order number as 2nd ";" piece
- I "^73^88^91^"[ORNTMP S ORIEN=+$P(ORDATA,";",2)
- ;Possible Multiple Order Numbers (Lapsed Unsigned Order and Preg/Lact Unsafe Orders)
- I ORN=78!(ORN=79) S ORIENS=$P(ORDATA,";",2) D
- . N ORIEN1,ORIENLNG,ORPROV1,X,P04
- . S P04=0
- . S ORIEN=+ORIENS
- . S ORIENLNG=$L(ORIENS,U)
- . I ORIENLNG=1 Q
- . S ORQUIT=0
- . F X=1:1:$L(ORIENS,U) D  Q:ORIEN=""
- .. S ORIEN1=$P(ORIENS,U,X)
- .. I +P04=0 S P04=$P($G(^OR(100,ORIEN1,0)),U,4) Q
- .. I P04'=$P($G(^OR(100,ORIEN1,0)),U,4) S ORIEN=""
- .. Q
- ;New Orders (format of data varies)
- I ORN=50 S ORIEN=+ORDATA I ORIEN=0 D  I +ORIEN=0 Q "N/A"
- . ;New Orders alerts in GUI may display any number of new orders and not
- . ;specifically just the one associated with this alert. Therefore, we
- . ;will quit at next line and not calculate the provider.
- . Q
- . N ORDATA1,ORDT,ORP2,ORPKG,ORSPCMN,PSIEN
- . S ORP2=$P(ORDATA,"|",2)
- . S ORDATA1=$P(ORP2,"@")
- . S ORPKG=$P(ORP2,"@",2)
- . I ORPKG="PS" D
- .. S PSIEN=ORDATA1
- .. I +PSIEN=PSIEN S ORIEN=$P(^PSRX(PSIEN,"OR1"),U,2) Q
- .. S ORIEN=$$GET1^DIQ(52.41,+PSIEN_",",.01)
- . I $E(ORPKG,1,2)="LR" D
- .. S ORDT=$P(ORDATA1,";",2),ORSPCMN=$P(ORDATA1,";",3)
- .. S ORIEN=$P(^LRO(69,ORDT,1,ORSPCMN,0),U,11)
- . I ORPKG="RA" D
- .. N ORIMG
- .. S ORIMG=ORDATA1
- .. I +ORIMG S ORIEN=$$GET1^DIQ(75.1,+ORIMG_",",7)
- . ;I ORPKG="FH" D
- . ;OR,13,50;4546;2990419.100747
- . ;|D;1635;1;2990419.100737;0;;;C;0;1;;;;@FH
- .;. S TEVNT=$P(ORDATA1,";",1)
- .;. S ADM=$P(ORDATA1,";",2)
- .;. S DT=$P(ORDATA1,";",4)
- .;. F  S DIET=$O(^FH(119.8,"AP",ORDFN,DT,"")) Q:DIET=""  D  Q:ORQUIT
- .;.. ;Need to find a way to link to ORDER
- ;Imaging Notifications with format RADTI~RACNI
- I "^21^22^25^32^51^53^67^69^84^"[ORNTMP D
- . N ORACNI,ORADPT0,ORADTI,ORDATA1,ORDATA2,ORIMG,QUIT
- . S QUIT=0
- . I ORDATA?1.N1"@" S ORIEN=+ORDATA Q
- . I ORDATA["|" D  Q:+ORIEN>0
- .. S ORDATA1=$P(ORDATA,"|",1)
- .. I $P(ORDATA1,"@",2)="OR",+ORDATA1>0 S ORIEN=+ORDATA1 Q
- .. S ORDATA2=$P(ORDATA,"|",2)
- .. I $L(ORDATA2,"~")=3 I +ORDATA2>0 S ORIMG=+$P(ORDATA2,"~",1) Q
- .. S ORADTI=$P(ORDATA,"~",2) S:ORADTI="" QUIT=1 Q
- .. S ORACNI=+$P(ORDATA,"~",3) S:ORACNI=0 QUIT=1
- . I ORDATA'["|" D  Q:QUIT=1
- .. I ORDATA["~" D  Q:QUIT=1
- ... S ORADTI=$P(ORDATA,"~",1) S:ORADTI="" QUIT=1 Q
- ... S ORACNI=$P(ORDATA,"~",2) S:ORACNI="" QUIT=1
- .. I ORDATA'["~" D  Q:QUIT=1
- ... S ORADTI=$P(ORDATA,"/",2) S:ORADTI="" QUIT=1 Q
- ... S ORACNI=$P(ORDATA,"/",3) S:ORACNI="" QUIT=1
- . I +$G(ORIMG)=0,$G(ORADTI)'="",$G(ORACNI)'="" S ORIMG=+$P($G(^RADPT(ORDFN,"DT",ORADTI,"P",ORACNI,0)),U,11) I ORIMG=0 Q
- . I +$G(ORIMG)>0 S ORIEN=$$GET1^DIQ(75.1,ORIMG_",",7)
- ;Consult/Request Notifications that begin with the request (Consult) ien
- I "^23^27^30^63^66^89^"[ORNTMP D
- . I +ORDATA>0 S ORIEN=$P($G(^GMR(123,+ORDATA,0)),U,3)
- ;ORDERER-FLAGGED RESULTS (placed in the notifications with order number in first part of data
- ;I "^33^"[ORNTMP D
- ;. N ORDATA1,ORDATA2
- ;. I ORDATA["|" D  Q:+ORIEN>0
- ;.. S ORDATA1=$P(ORDATA,"|",1)
- ;.. I $P(ORDATA1,"@",2)="OR",+ORDATA1>0 S ORIEN=+ORDATA1 Q
- ;.. Q
- ;.. ;The 2nd vertical bar piece may be of several different order types
- ;.. ;(consult and lab (chemistry) to name a couple). For now we will only
- ;.. ;use the OR data if available.
- ;.. S ORDATA2=$P(ORDATA,"|",2)
- ;.. I +ORDATA2>0 S ORIEN=$P($G(^GMR(123,+ORDATA2,0)),U,3)
- ;Laboratory entries
- I ORN=70!(ORN=71) D
- . N ORLRDFN,ORLRDT,ORLRTYP
- . S ORLRDFN=$G(^DPT(ORDFN,"LR")) Q:+ORLRDFN=0
- . S ORLRTYP=$P(ORDATA,U,1),ORLRDT=$P(ORDATA,U,3)
- . S ORIEN=$P($G(^LR(ORLRDFN,ORLRTYP,ORLRDT,"ORUT",1,0)),U,3)
- ;No data to find linked order
- I "^18^19^20^35^36^41^54^56^61^64^65^75^76^77^80^81^83^85^86^87^90^97^"[ORNTMP Q "N/A"
- ;Documentation states these are "Inactive"
- ;I "^28^37^46^"[ORNTMP Q "TBD"
- Q $$GETPRVNM(ORIEN)
- ;
-GETPRVNM(ORIEN) ;
- N ORPRV,P04
- S ORPRV=""
- I +ORIEN=0 Q "UNKNOWN"
- S P04=$P($G(^OR(100,ORIEN,0)),U,4)
- I +P04 S ORPRV=$$GET1^DIQ(200,P04,.01)
- I ORPRV="" S ORPRV="UNKNOWN"
- Q ORPRV

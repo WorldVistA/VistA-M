@@ -1,5 +1,5 @@
 PSOORCPY ;BIR/SAB-copy orders from backdoor ;Oct 20, 2022@15:12
- ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444,468,504,477,441,545,700,753**;DEC 1997;Build 53
+ ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444,468,504,477,441,545,700,753,770**;DEC 1997;Build 145
  ;External reference to LK^ORX2 supported by DBIA 867
  ;External reference to ULK^ORX2 supported by DBIA 867
  ;External reference to ^PSDRUG( supported by DBIA 221
@@ -89,7 +89,7 @@ EX S X=PSODFN_";DPT(" D ULK^ORX2
  ;
 LOCK ;
  I $P($G(PSOPLCK),"^")'=0 Q
- I $$GET1^DIQ(59.7,1,102,"I")="MBM" Q
+ I $$GET1^DIQ(59.7,1,102,"I")="MBM",$D(^XUSEC("PSO ERX WORKLOAD RPH",DUZ)) Q
  W !!,$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2),1:"Another person")_" is working on this patient."
  K DIR S DIR(0)="E",DIR("A")="     Press Return to Continue" D ^DIR K DIR
  Q

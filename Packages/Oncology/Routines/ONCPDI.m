@@ -1,5 +1,5 @@
 ONCPDI ;HINES OIFO/GWB - Patient information ;10/07/11
- ;;2.2;ONCOLOGY;**1,13,19,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,13,19,20,21**;Jul 31, 2013;Build 6
  ;
 PRT ;
  N DI,DIC,DR,DA,DIQ
@@ -24,8 +24,8 @@ PRT ;
  W !,"    Race 5.....................: ",ONC(160,D0,8.4)
  W !,"    Spanish origin.............: ",ONC(160,D0,9)
  W !,"    Sex........................: ",ONC(160,D0,10)
- W !,"    Sexual Orientation.........: ",SOV
- W !,"    Self Identified Gender.....: ",SIG
+ ;W !,"    Sexual Orientation.........: ",SOV
+ ;W !,"    Self Identified Gender.....: ",SIG
  W !,"    Exposure Agent Orange......: ",ONC(160,D0,48)
  W !,"    Exposure Ionizing Radiation: ",ONC(160,D0,50)
  W !,"    Exposure Chemical..........: ",ONC(160,D0,52)

@@ -1,5 +1,5 @@
-PXRHS02 ;ISL/SBW - PCE Visit data extract subroutines ;8-Nov-96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,73,121**;Aug 12, 1996
+PXRHS02 ;ISL/SBW - PCE Visit data extract subroutines ;08/02/2024
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,73,121,247**;Aug 12, 1996;Build 5
 GETREC(PXA,PXCAT,EXTRCODE,IEXDT,PXCNT) ; Get rec and load ^TMP("PXHSV",$J,
  N DIC,DIQ,DR,DA,REC,VISIT,TYPE,LOC,SERCAT,CHKOUT,CLINIC,WALKAPT,EMCODE,ELIG
  N HLOC,HLOCABB,OLOC
@@ -96,4 +96,21 @@ GETPROV(PXVDF,IDT,CNT) ;Entry point to get providers for a visits
  . S IPRIM=REC(9000010.06,DA,.04,"I")
  . S:IPRIM="" IPRIM="Z"
  . S ^TMP("PXHSV",$J,IDT,CNT,"P",IPRIM,PXPDN)=PROV_U_PRIM
+ Q
+ ;
+NONEXISTENTVISIT(VFILENUMBER,VFILEIEN,VISITIEN) ;Send a message that a V-file entry
+ ;is pointing to a non-existent Visit file entry.
+ N FROM,NODE,SUBJECT,VFILEDATA
+ S NODE="PXNEXVMSG"
+ D FILE^DID(VFILENUMBER,"","NAME","VFILEDATA")
+ K ^TMP(NODE,$J)
+ S ^TMP(NODE,$J,1,0)="While producing a health summary, it was found that "_VFILEDATA("NAME")
+ S ^TMP(NODE,$J,2,0)="entry IEN="_VFILEIEN_", points to a non-existent VISIT file entry, IEN="_VISITIEN_"."
+ S ^TMP(NODE,$J,3,0)="This could possibly lead to errors in reminder evaluation, the CPRS"
+ S ^TMP(NODE,$J,4,0)="encounter form, and others. If you see related errors on your system"
+ S ^TMP(NODE,$J,5,0)="and need help resolving them, please enter a SNOW ticket."
+ S FROM="PCE MANAGEMENT"
+ S SUBJECT="NON-EXISTENT VISIT FILE ENTRY"
+ D SEND^PXMSG(NODE,SUBJECT,"",FROM)
+ K ^TMP(NODE,$J)
  Q

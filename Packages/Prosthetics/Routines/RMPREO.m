@@ -1,5 +1,5 @@
-RMPREO ;HINES/HNC - SUSPENSE PROCESSING; MARCH 10, 2005
- ;;3.0;PROSTHETICS;**45,55,83,182,191,212**;Feb 09, 1996;Build 5
+RMPREO ;HINES/HNC - SUSPENSE PROCESSING; Feb 01, 2024@08:51:20
+ ;;3.0;PROSTHETICS;**45,55,83,182,191,212,215**;Feb 09, 1996;Build 3
  ;
  ;HNC #83, add free text ordering provider 3/10/05
  ;
@@ -16,6 +16,10 @@ RMPREO ;HINES/HNC - SUSPENSE PROCESSING; MARCH 10, 2005
  ;
  ;RMPR*3.0*212 Resorts List by SUSPENSE DATE (RMPREO NEW) 
  ;             rather than by IEN (RMPREO).
+ ;
+ ;RMPR*3.0*215 Include CANCELLED requests in suspense processing
+ ;
+ ;  Reference to CRNRSITE^VAFCCRNR supported by icr #7346
  ;
 EN ; -- main entry point for RMPREO
  D ^%ZISC
@@ -50,7 +54,10 @@ INIT ; -- init variables and list array
  S RMPRA="",VALMCNT=0,RRX=""
  ;reverse order display
  F  S RMPRA=$O(^RMPR(668,"C",RMPRDFN,RMPRA),-1) Q:RMPRA=""  D
- .I $P(^RMPR(668,RMPRA,0),U,10)="X" Q
+ . ;
+ . ;  Included cancelled requests for converted sites.  p215 wtc 12/20/23, 2/1/24
+ . ;
+ . I $P(^RMPR(668,RMPRA,0),U,10)="X",'$$CRNRSITE^VAFCCRNR($P($$SITE^VASITE(),U,3)) Q  ;
  .S VALMCNT=VALMCNT+1,LINE=VALMCNT
  .S RRX=$$SETFLD^VALM1(LINE,RRX,"LINE")
  .S RMPRSTAT="" I $P($G(^RMPR(668,RMPRA,8)),U,5)["STAT" S RMPRSTAT="!"    ;RMPR*3*182

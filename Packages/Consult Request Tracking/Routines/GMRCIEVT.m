@@ -1,5 +1,5 @@
-GMRCIEVT ;SLC/JFR - process events and build HL7 message; 6/20/2021 09:23 ; Aug 12, 2024@09:30:42
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,31,121,154,184,189**;DEC 27, 1997;Build 54
+GMRCIEVT ;SLC/JFR - process events and build HL7 message; 6/20/2021 09:23 ; Jan 09, 2025@09:44:47
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,31,121,154,184,189,201**;DEC 27, 1997;Build 7
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ; #7133 GETPAT MPIFRES, #7134 GETICN MPIFXMLI, #2161 HFLNC2, #2164 HLMA, #2271 HLUTIL3, #2701 MPIF001, #3015 VAFCPID, #4648 VAFCTFU2, #10112 VASITE
  ; #2053 DIE, #2056 DIQ, #2171 XUAF4, #2263 XPAR
@@ -123,6 +123,11 @@ NW(GMRCDA,ACTN) ;build new order message for IFC
  Q
  ;
 GENUPD(GMRCDA,GMRCACT) ;build msg and send upon REC, SC or ADD CMT event
+ ;
+ ;  If HL7 message goes to Cerner, hold it until the Cerner order number is received.  wtc 8/8/24
+ ;
+ I '$P(^GMR(123,GMRCDA,0),U,22),$$ISCERNER^GMRCIEVT(GMRCDA) D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,,204) Q  ;
+ ;
  N HL,HLL,SEG,GMRC773,GMRCCRNR,GMRCIQT,OBR,PROSTHCS ; P184
  N EDIPI,ICN,PTACCTNO,FS,CS,REPTTN S PTACCTNO=$P($G(^GMR(123,GMRCDA,"CERNER")),U,3) ; p184
  S SEG=1
@@ -171,7 +176,7 @@ GENUPD(GMRCDA,GMRCACT) ;build msg and send upon REC, SC or ADD CMT event
  I $L($P(^GMR(123,GMRCDA,0),U,19)) D  ;send sig findings
  . S ^TMP("HLS",$J,SEG)=$$OBXSF^GMRCISEG(GMRCDA)
  . S SEG=SEG+1
- I $O(^GMR(123,GMRCDA,40,GMRCACT,1,0)) D  ;load up a comment if there
+ I $O(^GMR(123,GMRCDA,40,GMRCACT,1,0))!($P(^GMR(123,GMRCDA,40,GMRCACT,0),U,2)=21) D  ;load up a comment if there or if IFC from Cerner received.
  . N I
  . K ^TMP("GMRCMT",$J)
  . S GMRCCRNR=$$ISCERNER(GMRCDA) ;MKN 184
@@ -198,6 +203,11 @@ GENUPD(GMRCDA,GMRCACT) ;build msg and send upon REC, SC or ADD CMT event
  Q
  ;
 RSLT(GMRCDA,GMRCACT) ;attach or dis-associate results and update
+ ;
+ ;  If HL7 message goes to Cerner, hold it until the Cerner order number is received.  wtc 8/8/24
+ ;
+ I '$P(^GMR(123,GMRCDA,0),U,22),$$ISCERNER^GMRCIEVT(GMRCDA) D LOGMSG^GMRCIUTL(GMRCDA,GMRCACT,,204) Q  ;
+ ;
  N HL,HLL,SEG,GMRC773,GMRCIQT
  S SEG=1
  K ^TMP("HLS",$J)
@@ -363,16 +373,18 @@ ISCERNER(IEN) ;Is consult going to Cerner?
  ;    1 = Cerner IFC
  ;    0 = Error - see piece 2 for message 
  ;
- N GMRCCNV,GMRCDFN,GMRCKEY,GMRCN,GMRCSITE,GMRCTFL,GMRCX,STA ; p184 WTC 5/1/22
+ ;N GMRCCNV,GMRCDFN,GMRCKEY,GMRCN,GMRCSITE,GMRCTFL,GMRCX,STA ; p184 WTC 5/1/22
+ N GMRCSITE,STA ; P 201 WTC 1/8/25
  S GMRCSITE=$P(^GMR(123,IEN,0),U,23) I 'GMRCSITE Q "0^No ROUTING FACILITY found" Q
  S STA=$$STA^XUAF4(GMRCSITE) I '$L(STA) Q "0^Station not found" ;can't find station num for that site  - p184 WTC 5/1/22
- S GMRCDFN=$$GET1^DIQ(123,IEN_",",.02,"I") I 'GMRCDFN Q "0^No PATIENT file IEN found in consult #"_IEN
- S GMRCKEY=GMRCDFN_U_"PI"_U_"USVHA"_U_$P($$SITE^VASITE,"^",3)
- D TFL^VAFCTFU2(.GMRCTFL,GMRCKEY)
- S (GMRCCNV,GMRCN)=0 F  S GMRCN=$O(GMRCTFL(GMRCN)) Q:'GMRCN  S GMRCX=GMRCTFL(GMRCN) D
- . I $P(GMRCX,U,4)=STA,$P(GMRCX,U,5)="C" S GMRCCNV=1 Q  ; p184 WTC 5/1/22
- ;It is going to Cerner=converted site, so send all messages
- Q GMRCCNV
+ Q $$CRNRSITE^VAFCCRNR(STA) ; P201 WTC 1/8/25
+ ;S GMRCDFN=$$GET1^DIQ(123,IEN_",",.02,"I") I 'GMRCDFN Q "0^No PATIENT file IEN found in consult #"_IEN
+ ;S GMRCKEY=GMRCDFN_U_"PI"_U_"USVHA"_U_$P($$SITE^VASITE,"^",3)
+ ;D TFL^VAFCTFU2(.GMRCTFL,GMRCKEY)
+ ;S (GMRCCNV,GMRCN)=0 F  S GMRCN=$O(GMRCTFL(GMRCN)) Q:'GMRCN  S GMRCX=GMRCTFL(GMRCN) D
+ ;. I $P(GMRCX,U,4)=STA,$P(GMRCX,U,5)="C" S GMRCCNV=1 Q  ; p184 WTC 5/1/22
+ ;It is going to Cerner=converted site.
+ ;Q GMRCCNV
  ;
 LOC(GMRCLOC,GMRCIENS) ;DETERMINE LOCATION
  N LOCNAME
@@ -384,3 +396,4 @@ LOC(GMRCLOC,GMRCIENS) ;DETERMINE LOCATION
 SITE ;SET LOCAL SITE
  S GMRCLOC=$P($$SITE^VASITE,U,2)
  Q
+ ;

@@ -1,5 +1,5 @@
-MAGGAII ;WOIFO/GEK/SG/JSL - RETURNS IMAGE INFO ; 2/20/09 11:37am
- ;;3.0;IMAGING;**93,94,122**;Mar 19, 2002;Build 92;Aug 02, 2012
+MAGGAII ;WOIFO/GEK/SG/JSL/ZEB - RETURNS IMAGE INFO ; 2/20/09 11:37am
+ ;;3.0;IMAGING;**93,94,122,365**;Mar 19, 2002;Build 19;Aug 02, 2012
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -76,6 +76,7 @@ FILENAME(MAGXX,FILETYPE,MAGTYPE,MAGJBOL) ;
  ;
  ;                 D  Consider only deleted "child" images
  ;                 E  Consider only existing "child" images
+ ;                 O  Omit special characters from SHORT DESCRIPTION
  ;
  ;               If neither 'E' nor 'D' flag is provided, then an
  ;               error code is returned.
@@ -166,11 +167,14 @@ INFO(MAGIEN,FLAGS,GRPCNTS) ;
  ;N MAG3P59 ;gek/ out in P94t7
  N MAGMSG,MAGN0,MAGN100,MAGN2,MAGN40,MAGJBOL
  N MAGVST,MDFN,IEN,PLC,PLCODE,RC,TMP,X,ANNOTATED,TMPN2
+ ;*zeb *365 add support for O flag
+ N MAGSDESC,BADCHARS,CHR
  ;
  ;=== Validate control flags
  S FLAGS=$G(FLAGS)
  ;--- Unknown/Unsupported flag(s)
- Q:$TR(FLAGS,"DE")'="" $$IPVE^MAGUERR("FLAGS")
+ ;*zeb *365 add support for O flag
+ Q:$TR(FLAGS,"DEO")'="" $$IPVE^MAGUERR("FLAGS")
  ;--- Missing required flag
  Q:$TR(FLAGS,"DE")=FLAGS $$ERROR^MAGUERR(-6,,"D,E")
  ;
@@ -266,7 +270,13 @@ INFO(MAGIEN,FLAGS,GRPCNTS) ;
  S:PLC="" PLC=$G(MAGJOB("PLC")),PLCODE=$G(MAGJOB("PLCODE"))
  ;
  ;=== SHORT DESCRIPTION field (10) and description of offline JukeBox
- S $P(MAGRES,U,4)=$P(MAGN2,U,4)_$G(MAGJBOL)
+ ;*zeb *365 add support for O flag
+ S MAGSDESC=$P(MAGN2,U,4)
+ I FLAGS["O" D
+ . S BADCHARS="|"
+ . F CHR=0:1:31 S BADCHARS=BADCHARS_$C(CHR)
+ . S MAGSDESC=$TR(MAGSDESC,BADCHARS)
+ S $P(MAGRES,U,4)=MAGSDESC_$G(MAGJBOL)
  ;
  ;=== Various fields
  S $P(MAGRES,U,5)=$P(MAGN2,U,5)  ; PROCEDURE/EXAM DATE/TIME (15)

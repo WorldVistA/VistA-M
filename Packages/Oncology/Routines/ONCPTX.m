@@ -1,5 +1,5 @@
 ONCPTX ;HINES OIFO/GWB - First Course of Treatment ;10/05/11
- ;;2.2;ONCOLOGY;**1,5,6,10,15,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,5,6,10,15,20,21**;Jul 31, 2013;Build 6
  ;
  N DATEDX
  S DATEDX=$P($G(^ONCO(165.5,D0,0)),U,16)
@@ -20,9 +20,9 @@ NCDS ;Surgical Diagnostic and Staging Procedure
  N DASHES S $P(DASHES,"-",80)="-"
  N DA,DI,DIC,DIQ,DR K ONC
  S DIC="^ONCO(165.5,"
- S DR="58.1;58.3;58.4;58.5;235;281;228;229;230;231;232;124"
+ S DR="49;49.9;58.1;58.3;58.4;58.5;235;281;228;229;230;231;232;124"
  S DA=D0,DIQ="ONC(" D EN^DIQ1
- F I=58.1,58.4,235,281 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
+ F I=49,49.9,58.1,58.4,235,281 S X=ONC(165.5,D0,I) D UCASE S ONC(165.5,D0,I)=X
  D FST^ONCOAIP
  W !," SURGICAL DIAGNOSTIC AND STAGING PROCEDURE"
  W !," -----------------------------------------"
@@ -42,6 +42,8 @@ NCDS ;Surgical Diagnostic and Staging Procedure
  W:TXGL'="" !," Treatment Guideline Doc Date.: ",ONC(165.5,D0,232)
  W:DATEDX>3091231 !!," Treatment Status.............: ",ONC(165.5,D0,235)
  W:ONC(165.5,D0,124)'="" !," Date of No Treatment.........: ",ONC(165.5,D0,124)
+ W !!," Date 1st Crs RX CoC..........: ",ONC(165.5,D0,49)
+ W !," Date Initial RX SEER.........: ",ONC(165.5,D0,49.9)
  W !,DASHES
  I COC=38 D ^ONCOCC
  D EXIT
@@ -269,3 +271,4 @@ EXIT ;KILL local varibles
  ;
 CLEANUP ;Cleanup
  K D0
+ Q

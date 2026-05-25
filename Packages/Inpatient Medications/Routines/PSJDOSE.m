@@ -1,11 +1,11 @@
 PSJDOSE ;BIR/MV - POSSIBLE DOSES UTILITY ; 1/6/20 11:08am
- ;;5.0;INPATIENT MEDICATIONS ;**50,65,106,111,216,264,328,338,398**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS ;**50,65,106,111,216,264,328,338,398,449**;16 DEC 97;Build 18
  ;
  ; Reference to ^PSSORPH is supported by DBIA #3234.
  ;
  ;PSJDSFLG: Set to 1 if Dose and DD are not compatible
  ;PSJDSSEL: The selected dose in format:
- ;          Dosage Order^DD IEN^DUPD/BCMA DUPD^1(if BCMA DUPD exist
+ ; Dosage Order^DD IEN^DUPD/BCMA DUPD^1(if BCMA DUPD exist
  ;PSJDSUPD: Set to 1 if need to prompt for the Units Per Dose
  ;
 EDITDOSE ;Editing Dosage Ordered for active order
@@ -36,6 +36,12 @@ SETVAR ;
  S PSJDOSE("WARN1")="         Please verify Dosage."
  Q
  ;
+SETVAR0 ;
+ S PSJDOSE0("WARN")="WARNING: Units Per Dose of 0 can still be administered using BCMA."
+ S PSJDOSE0("WARN1")="         If this is NOT to be given, enter an inactive date or"
+ S PSJDOSE0("WARN2")="         delete the dispense drug."
+ Q
+ ;
 DOSE(PSJDD) ;Prompt for Dosage Ordered
  ;PSJDD: Dispense drug IEN
  ;
@@ -51,7 +57,7 @@ AGAIN ;Prompt for dosage order again
  W:($P(PSJDOX(1),U)'=-1) !!,"Available Dosage(s)"
  F PSJDL=0:0 S PSJDL=$O(PSJDOX(PSJDL)) Q:$S('PSJDL:1,$G(DUOUT):1,1:+PSJDOX(PSJDL)=-1)  D
  . S PSJX=PSJX+1
- . W !?4,$J(PSJX,3),".    ",$P(PSJDOX(PSJDL),U,PSJPIECE)
+ . W !?4,$J(PSJX,3),". ",$P(PSJDOX(PSJDL),U,PSJPIECE)
  . I '(PSJX#16) S DIR(0)="E" D ^DIR
  W !
  K DIR S DIR(0)="F^1:60"  ;*216 - No null dosage
@@ -65,7 +71,7 @@ AGAIN ;Prompt for dosage order again
  ;* If select for the presented list (possible and local doses)
  I $D(PSJDOX(PSJY)) D  G:PSJCONT=0 AGAIN S:PSJCONT="^" PSGOROE1=1 Q
  . NEW X S X=$P(PSJDOX(PSJY),U,PSJPIECE)
- . W "  ",X
+ . W " ",X
  . S PSJCONT=$$CONT(X)
  . I PSJCONT=0!(PSJCONT="^") Q
  . D SELDOSE(PSJY,PSJDD)
@@ -110,12 +116,12 @@ CONT(X) ;Ask if user accepting the dose
 DUPD ;
  NEW PSJX,X
  S PSGUD=1
- W !,"UNITS PER DOSE: "_PSGUD_"// " R X:DTIME W "  ",X I X="^"!'$T S PSGOROE1=1 Q
+ W !,"UNITS PER DOSE: "_PSGUD_"// " R X:DTIME W " ",X I X="^"!'$T S PSGOROE1=1 Q
  S:X="" X=1
- I X="@",'PSGUD W $C(7),"  ??" S X="?" D ENHLP^PSGOEM(53.11,.02) G DUPD
+ I X="@",'PSGUD W $C(7)," ??" S X="?" D ENHLP^PSGOEM(53.11,.02) G DUPD
  I X?1."?" D ENHLP^PSGOEM(53.11,.02) G DUPD
- I X?1.2N1"/"1.2N S X=+$J(+X/$P(X,"/",2),0,2) W "  ("_$E("0",X<1)_X_")"
- I $S($L(X)>12:1,X'=+X:1,X>50:1,X<0:1,1:X?.N1"."5.N) W $C(7),"  ??" S X="?" D ENHLP^PSGOEM(53.11,.02) G DUPD
+ I X?1.2N1"/"1.2N S X=+$J(+X/$P(X,"/",2),0,2) W " ("_$E("0",X<1)_X_")"
+ I $S($L(X)>12:1,X'=+X:1,X>50:1,X<0:1,1:X?.N1"."5.N) W $C(7)," ??" S X="?" D ENHLP^PSGOEM(53.11,.02) G DUPD
  S $P(PSJDSSEL,U,3)=X
  D SETDUPD(X)
  Q
@@ -128,10 +134,10 @@ SETDUPD(X) ;
 EDITDD ;Editing DDs
  NEW DA,DR,DIE
  S DIE="^PS(53.45,",DA=PSJSYSP,DR=2,DR(2,53.4502)=".02//1" D ^DIE
- I '$O(^PS(53.45,PSJSYSP,2,0)) W $C(7),!!,"WARNING:      This order must have at least one dispense drug before pharmacy can",!?9,"verify it!"
+ I '$O(^PS(53.45,PSJSYSP,2,0)) W $C(7),!!,"WARNING: This order must have at least one dispense drug before pharmacy can",!?9,"verify it!"
  Q
 DOSECHK ;
- K PSJDSFLG S PSJDSFLG=0
+ K PSJDSFLG,PSJDSFLG0 S (PSJDSFLG,PSJDSFLG0)=0
  Q:'$P(PSJSYSU,";",4)
  Q:$G(PSGDO)=""
  NEW PSJX,PSJXDD,PSJCNT S PSJCNT=0
@@ -144,6 +150,8 @@ DOSECHK ;
  . I $P(PSJXDD,U,3)'="",$P(PSJXDD,U,3)'>PSJDT Q
  . S PSJCNT=PSJCNT+1
  D DOSECHK1
+ ;PSJ*5*449 call for 0 units per dose warning check
+ D DOSECHK0
  Q
 DOSECHK1 ;
  NEW PSJX,PSJXDD,PSJXUNIT,PSJUNIT,PSJXFLG,PSJTOT,PSJDRGDOSE,PSJUNITNM,PSJDRGUD,CNT
@@ -151,7 +159,7 @@ DOSECHK1 ;
  ;*216 Be sure PSJDT is set
  I '$G(PSJDT) N X,% D NOW^%DTC S PSJDT=X
  S PSJUNIT=$P(PSGDO,+PSGDO,2,$L(PSGDO,+PSGDO))
- S (PSJDSFLG,PSJXFLG,PSJTOT)=0
+ S (PSJDSFLG,PSJXFLG,PSJTOT,PSJDSFLG0)=0
  S PSJX=0 F  S PSJX=$O(^PS(53.45,PSJSYSP,2,PSJX)) Q:'PSJX!PSJDSFLG!PSJXFLG  D
  . S PSJXDD=$G(^PS(53.45,PSJSYSP,2,PSJX,0))
  . S PSJXDUP=$S(+$P(PSJXDD,U,2):$P(PSJXDD,U,2),1:1)
@@ -161,7 +169,7 @@ DOSECHK1 ;
  . I $S('$D(PSJXDOX):1,$P(PSJXDOX(1),U)="":1,1:+PSJXDOX(1)=-1) S PSJXFLG=1 Q
  . S PSJXUNIT=""
  . S:PSJUNIT["/" PSJXUNIT=PSJUNIT
- . I PSJUNIT'["/" F X=1:1:$L(PSJUNIT)  I $E(PSJUNIT,X)'?.N&($E(PSJUNIT,X)'?1" ") S PSJXUNIT=PSJXUNIT_$E(PSJUNIT,X)
+ . I PSJUNIT'["/" F X=1:1:$L(PSJUNIT) I $E(PSJUNIT,X)'?.N&($E(PSJUNIT,X)'?1" ") S PSJXUNIT=PSJXUNIT_$E(PSJUNIT,X)
  . I PSJCNT=1 D ONEDD Q:'PSJDSFLG
  . D BCMAUPD(PSJXDD),DOSE^PSSORPH(.PSJXDOX,+PSJXDD,"U",,PSJXDUP)
  . I PSJCNT=1 D ONEDD Q
@@ -174,11 +182,20 @@ DOSECHK1 ;
  . F UNITCNT=2:1:CNT I PSJUNITNM(UNITCNT)'=PSJUNITNM(1) S UNITERR=1 Q
  . I '$G(UNITERR),$$PTPLANE(.PSJDRGUD,.PSJDRGDOSE,+PSGDO)'=-1,$$PTPLANE(.PSJDRGUD,.PSJDRGDOSE,+PSGDO)<($$SQRT^XLFMTH(CNT)/100) S PSJDSFLG=0
  Q
+DOSECHK0 ;
+ ;PSJ*5.0*449 Warning message for Units per Dose = 0
+ F PSJX=0:0 S PSJX=$O(^PS(53.45,PSJSYSP,2,PSJX)) Q:'PSJX!PSJDSFLG0  D
+ . S PSJXDD=$G(^PS(53.45,PSJSYSP,2,PSJX,0)) Q:PSJXDD=""
+ . I $P(PSJXDD,U,2)'=0 Q
+ . I $P(PSJXDD,U,3)'="",($P(PSJXDD,U,3)'>DT) Q
+ . S PSJDSFLG0=1
+ Q
+ ;
 ONEDD ;
  NEW X S PSJDSFLG=1
  F X=0:0 S X=$O(PSJXDOX(X)) Q:'X!'PSJDSFLG  D
  . I +PSJXDOX(X)'=+PSGDO,(PSJXUNIT=$P(PSJXDOX(X),U,2)),$S(+PSJXDUP=+$P(PSJXDOX(X),U,3):1,1:PSJXDUP=$P(PSJXDOX(X),U,12)) D  Q:PSJDSFLG
- ..;  REMOVED THE ROUNDING FUNCTION FOR 398 - PER SUMPM
+ ..; REMOVED THE ROUNDING FUNCTION FOR 398 - PER SUMPM
  ..; N CHK,DGTS S CHK=+PSGDO/$P(PSJXDOX(X),U,5) S DGTS=$L($P(PSJXDUP,".",2)) S CHK=+$FN(CHK,"",DGTS) I +CHK=+PSJXDUP S PSJDSFLG=0
  .. N CHK,DGTS S CHK=+PSGDO/$P(PSJXDOX(X),U,5) S DGTS=$L($P(PSJXDUP,".",2)) I +CHK=+PSJXDUP S PSJDSFLG=0
  . I +PSJXDOX(X)=+PSGDO,$TR($P(PSJXDOX(X),U,11)," ")=$TR(PSGDO," "),$S(+PSJXDUP=+$P(PSJXDOX(X),U,3):1,1:PSJXDUP=$P(PSJXDOX(X),U,12)) S PSJDSFLG=0
@@ -210,5 +227,12 @@ DSPWARN ;
  NEW PSJDOSE
  D SETVAR
  W !!,PSJDOSE("WARN"),!,PSJDOSE("WARN1"),!
- D PAUSE^VALM1
+ ;PSJ*5*449 MOVE PAUSE TO PSGOE82
+ ;D PAUSE^VALM1
+ Q
+ ;
+DSPWARN0 ;
+ NEW PSJDOSE0
+ D SETVAR0
+ W !!,PSJDOSE0("WARN"),!,PSJDOSE0("WARN1"),!,PSJDOSE0("WARN2"),!
  Q

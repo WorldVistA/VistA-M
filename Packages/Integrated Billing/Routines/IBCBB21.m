@@ -1,5 +1,5 @@
 IBCBB21 ;ALB/AAS - CONTINUATION OF EDIT CHECK ROUTINE FOR UB-04 ;2-NOV-89
- ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400,432,447,461,665,702,727**;21-MAR-94;Build 34
+ ;;2.0;INTEGRATED BILLING;**51,137,210,232,155,291,348,349,403,400,432,447,461,665,702,727,770**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN(IBZPRC92) ;
@@ -64,7 +64,10 @@ EN(IBZPRC92) ;
  . I IBFTP D WARN^IBCBB11("Only the first 3 e-diagnosis codes will print on a UB-04.") Q
  . D WARN^IBCBB11("A HIPAA Compliant EDI Institutional claim cannot contain more than 12"),WARN^IBCBB11("e-diagnosis codes.")
  ;
- I '$O(IBXDATA(0)) S IBER=IBER_"IB071;"   ;Require Diag code NOIS:OKL-0304-72495
+ I '$O(IBXDATA(0)) D
+ . ; IB*770/TAZ - US EBILL-4027 Only a Warning for Dental
+ . I $$FT^IBCEF(IBIFN)=7 D WARN^IBCBB11("A claim must contain an ICD diagnosis.") Q
+ . S IBER=IBER_"IB071;"   ;Require Diag code NOIS:OKL-0304-72495
  ;
  ; Principle diagnosis - updated for ICD-10 **461
  I $O(IBXDATA(0)) S IBDXTYP=$$ICD9^IBACSV(+$P(IBXDATA(1),U),$$BDATE^IBACSV(IBIFN)) D

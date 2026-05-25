@@ -1,62 +1,14 @@
-ORD212 ; COMPILED XREF FOR FILE #100 ; 06/29/23
+ORD212 ; COMPILED XREF FOR FILE #100.845 ; 05/08/26
  ; 
- S DIKZK=1
- S DIKZ(0)=$G(^OR(100,DA,0))
+ S DA(1)=0 S DA=0
+A1 ;
+ I $D(DIKILL) K DIKLM S:DIKM1=2 DIKLM=1 S:DIKM1'=2&'$G(DIKPUSH(2)) DIKPUSH(2)=1,DA(2)=DA(1),DA(1)=DA,DA=0 G @DIKM1
+A S DA(1)=$O(^OR(100,DA(2),8,DA(1))) I DA(1)'>0 S DA(1)=0 G END
+1 ;
+B S DA=$O(^OR(100,DA(2),8,DA(1),"FHIS",DA)) I DA'>0 S DA=0 Q:DIKM1=1  G A
+2 ;
+ S DIKZ(0)=$G(^OR(100,DA(2),8,DA(1),"FHIS",DA,0))
  S X=$P($G(DIKZ(0)),U,1)
- I X'="" S ^OR(100,"AZ",DA,$P(^OR(100,DA,0),U,2))=""
- S X=$P($G(DIKZ(0)),U,2)
- I X'="" D SETALL^ORDD100(DA)
- S X=$P($G(DIKZ(0)),U,2)
- I X'="" X ^DD(100,.02,1,5,1)
- S X=$P($G(DIKZ(0)),U,2)
- I X'="" X ^DD(100,.02,1,7,1)
- S X=$P($G(DIKZ(0)),U,2)
- I X'="" D WS^ORDD100
- S X=$P($G(DIKZ(0)),U,2)
- I X'="" D OI1^ORDD100A(DA)
- S X=$P($G(DIKZ(0)),U,2)
- I X'="" X ^DD(100,.02,1,11,1)
- S DIKZ(.61)=$G(^OR(100,DA,.61))
- S X=$P($G(DIKZ(.61)),U,1)
- I X'="" S ^OR(100,"E",$E(X,1,30),DA)=""
- S DIKZ(0)=$G(^OR(100,DA,0))
- S X=$P($G(DIKZ(0)),U,5)
- I X'="" S ^OR(100,"C",$E(X,1,30),DA)=""
- S DIKZ(3)=$G(^OR(100,DA,3))
- S X=$P($G(DIKZ(3)),U,4)
- I X'="" S ^OR(100,"D",$E(X,1,30),DA)=""
- S X=$P($G(DIKZ(0)),U,8)
- I X'="" D SS^ORDD100
- S X=$P($G(DIKZ(0)),U,8)
- I X'="" D WS^ORDD100
- S X=$P($G(DIKZ(0)),U,8)
- I X'="" D OI1^ORDD100A(DA)
- S X=$P($G(DIKZ(0)),U,9)
- I X'="" D ES^ORDD100A
- S X=$P($G(DIKZ(0)),U,11)
- I X'="" D WS^ORDD100
- S X=$P($G(DIKZ(0)),U,11)
- I X'="" X ^DD(100,23,1,3,1)
-CR1 S DIXR=187
- K X
- S DIKZ(0)=$G(^OR(100,DA,0))
- S X(1)=$P(DIKZ(0),U,2)
- S X(2)=$P(DIKZ(0),U,17)
- S X=$G(X(1))
- I $G(X(1))]"",$G(X(2))]"" D
- . K X1,X2 M X1=X,X2=X
- . S ^OR(100,"AEVNT",X(1),X(2),DA)=""
-CR2 S DIXR=210
- K X
- S DIKZ(0)=$G(^OR(100,DA,0))
- S X(1)=$P(DIKZ(0),U,2)
- S DIKZ(7)=$G(^OR(100,DA,7))
- S X=$P(DIKZ(7),U,1)
- I $G(X)]"" S X=9999999-X
- S:$D(X)#2 X(2)=X
- S X=$G(X(1))
- I $G(X(1))]"",$G(X(2))]"" D
- . K X1,X2 M X1=X,X2=X
- . S ^OR(100,"ARS",X(1),X(2),DA)=""
-CR3 K X
-END G ^ORD213
+ I X'="" K ^OR(100,DA(2),8,DA(1),"FHIS","B",$E(X,1,30),DA)
+ G:'$D(DIKLM) B Q:$D(DIKILL)
+END Q

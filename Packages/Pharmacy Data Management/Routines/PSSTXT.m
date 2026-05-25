@@ -1,5 +1,5 @@
 PSSTXT ;BIR/WRT-Edit DRUG TEXT file routine ; 11/15/01 8:11
- ;;1.0;PHARMACY DATA MANAGEMENT;**29,55,194**;9/30/97;Build 9
+ ;;1.0;PHARMACY DATA MANAGEMENT;**29,55,194,264**;9/30/97;Build 35
 BEGIN S PSSNFI=1,PSSFG=0 W !,"This option enables you to edit entries in the DRUG TEXT file.",!! F PSSQQ=1:1 K DA D ASK Q:PSSFG
 DONE K DA,PSSFG,PSSQQ,PSSNFI,NAME,PSSENT,PSSBEG,PSSEND,PSSSRT,PSSXX
  K %,D,D0,DI,DIE,DLAYGO,DQ,DR,X,Y
@@ -49,8 +49,8 @@ NAME ;
  I $G(X)["^" S PSSFG=1 Q
  I X'="",X'=PSSNAME D
  . I X["@" W "  **DELETIONS ARE NOT ALLOWED!" Q
- . S ^PS(51.7,"B",$E(X,1,30),DA)=""
- . K ^PS(51.7,"B",$E(PSSNAME,1,30),DA)
+ . S ^PS(51.7,"B",$E(X,1,40),DA)=""    ;P264 Changed 30 to 40
+ . K ^PS(51.7,"B",$E(PSSNAME,1,40),DA) ;P264 Changed 30 to 40
  . S $P(^PS(51.7,DA,0),"^",1)=X
  Q
  ;

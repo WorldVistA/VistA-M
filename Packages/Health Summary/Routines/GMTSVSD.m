@@ -1,18 +1,15 @@
-GMTSVSD ; SLC/KER - Vital Signs (Detailed)           ; 01/06/2003
- ;;2.7;Health Summary;**35,49,58,78,107**;Oct 20, 1995;Build 3
- ;                          
- ; External References
- ;   DBIA  4791  EN1^GMVHS
- ;   DBIA 10141  $$VERSION^XPDUTL
- ;   DBIA 10103  $$NOW^XLFDT
- ;                    
- ; Health Summary patch GMTS*2.7*35 will require 
+GMTSVSD ;SLC/KER - Vital Signs (Detailed) ;Jan 17, 2025@14:40
+ ;;2.7;Health Summary;**35,49,58,78,107,147**;Oct 20, 1995;Build 5
+ ;
+ ; Reference to EN1^GMVHS in ICR #4791
+ ;
+ ; Health Summary patch GMTS*2.7*35 will require
  ; Vitals version 4.0, patch GMRV*4.0*7
- ;                     
+ ;
  Q
 EN ; Detailed Vital Signs main control
  N GMRVSTR,GMTSC1,GMTSC2,GMTSC3,GMTSC4,GMTSCNT,GMTSCD,GMTSCHR,GMTSCI
- N GMTSCW1,GMTSCW2,GMTSCW3,GMTSCW4,GMTSCW5,GMTSLN,GMTSMEAS,GMTSMAX
+ N GMTSCW1,GMTSCW2,GMTSCW3,GMTSCW4,GMTSCW5,GMTSLN,GMTSMEAS,GMTSMAX,GMTSMVF
  N GMTSN,GMTSOK,GMTSP,GMTSPSN,GMTSQ,GMTSREM,GMTSROV,GMTST,GMTSTO,GMTSV
  N GMTSVCT,GMTSVD,GMTSVI,GMTSVSD,GMTSVSDT,GMTSVT,X,Y,GMTSLM,GMTSLML
  S GMTSLM=0 S:$D(VALM("BM"))&($G(VALM("LINES"))>0) GMTSLM=1
@@ -20,7 +17,7 @@ EN ; Detailed Vital Signs main control
  S GMTSLO=+($G(GMTSLO)) S:GMTSLO=0 GMTSLO=3 S GMTSLPG=+($G(GMTSLPG)),GMTSDTM=$G(GMTSDTM) S:'$L(GMTSDTM) GMTSDTM=$$DTM
  S:'$D(GMTSTITL)!('$L($G(GMTSTITL))) GMTSTITL="VITALS DETAILED DISPLAY" K ^TMP("GMTSVSD",$J),^UTILITY($J,"GMRVD")
  S (GMTSVCT,GMTSMAX)=$S(+($G(GMTSNDM))>0:+($G(GMTSNDM)),1:1)
- S GMRVSTR("LT")="^C^"
+ S GMRVSTR("LT")="^C^",GMTSMVF=$$IMDSORD^GMTSVS
  D GET D:$D(^UTILITY($J,"GMRVD")) ST K GMRVSTR("LT")
  D GET D:$D(^UTILITY($J,"GMRVD")) ST K ^UTILITY($J,"GMRVD")
  S GMTSCW1=0,GMTSCW2=18,GMTSCW3=36,GMTSCW4=53,GMTSCW5=+($G(IOM))-2
@@ -28,13 +25,12 @@ EN ; Detailed Vital Signs main control
  I '$D(^TMP("GMTSVSD",$J)) Q
  D REM,OUT
  Q
- ;                
+ ;
 GET ; Get Data
  K ^UTILITY($J,"GMRVD") N GMTSMAX
  S GMTSMAX=$S(+($G(GMTSVCT))>0:+($G(GMTSVCT)),1:1) S GMTSMAX=GMTSMAX*100
  S GMRVSTR="T"_";"_"P"_";"_"R"_";"_"BP"_";"_"HT"_";"_"WT"_";"_"CVP"_";"_"PO2"_";"_"CG"_";"_"PN"
  S GMRVSTR(0)=$G(GMTSBEG)_"^"_$G(GMTSEND)_"^"_$G(GMTSMAX)_"^"_1
- ;D EN1^GMRVUT0 S GMTSMAX=+($G(GMTSVCT))
  D EN1^GMVHS S GMTSMAX=+($G(GMTSVCT))
  Q
 NOD ;   No Data Found
@@ -49,7 +45,7 @@ REM ;   Remove Excess Data
  . . . I +($G(GMTST(GMTSVT)))>(GMTSMAX-1) K ^TMP("GMTSVSD",$J,GMTSVD,GMTSVT,GMTSVI) Q
  . . . S GMTST(GMTSVT)=+($G(GMTST(GMTSVT)))+1
  Q
- ;                
+ ;
 OUT ; Output Data
  D HDR Q:$D(GMTSQIT)  N GMTSVD,GMTSVT,GMTSVSDT,GMTSVSD,GMTSVI,GMTSCNT S GMTSCNT=0
  S GMTSVD=0 F  S GMTSVD=$O(^TMP("GMTSVSD",$J,GMTSVD)) Q:GMTSVD<1!(GMTSVD="")  D
@@ -97,7 +93,7 @@ QPARSE ;     Parse Qualifier (wrap)
  I GMTSCHR="/"!(GMTSCHR=",")!(GMTSCHR="-")!(GMTSCHR=")") D  Q:$D(GMTSQIT)
  . S GMTSTO=$E(GMTSREM,1,(GMTSPSN)),GMTSREM=$E(GMTSREM,(GMTSPSN+1),$L(GMTSREM)),GMTSREM=$$TRIM(GMTSREM) D CKP^GMTSUP Q:$D(GMTSQIT)  D:GMTSNPG=1 HDR W ?GMTSCW4,$G(GMTSTO),!
  Q
- ;                
+ ;
  ; Miscellaneous
 FM(X) ;   Format Vitals Measurement
  S X=$$TRIM($G(X)) Q:+X'=X X
@@ -109,22 +105,33 @@ TRIM(X) ;   Trim Blank Spaces
 VO(X) ;   Vital Array Order
  S X=$G(X) Q:X="T" 1 Q:X="P" 2 Q:X="R" 3 Q:X="BP" 4 Q:X="HT" 5 Q:X="WT" 6 Q:X="CG" 7 Q:X="PN" 8 Q:X="CVP" 9 Q:X="PO2" 10 Q ""
 VT(X) ;   Vital Type
- S X=$G(X) Q:X="BP" "BP" Q:X="T" "Temp F (C)" Q:X="R" "Respir" Q:X="P" "Pulse" Q:X="HT" "Ht in (cm)"
- Q:X="WT" "Wt lbs (kg)[BMI]" Q:X="CVP" "CVP cm H2O(mm HG)" Q:X="PO2" "POx (L/Min)(%)" Q:X="CG" "C/G in (cm)" Q:X="PN" "Pain" Q ""
+ S X=$G(X) Q:X="BP" "BP"
+ Q:X="T" $S(GMTSMVF:"Temp C (F)",1:"Temp F (C)")
+ Q:X="R" "Respir" Q:X="P" "Pulse"
+ Q:X="HT" $S(GMTSMVF:"Ht cm (in)",1:"Ht in (cm)")
+ Q:X="WT" $S(GMTSMVF:"Wt kg (lbs)[BMI]",1:"Wt lbs (kg)[BMI]")
+ Q:X="CVP" $S(GMTSMVF:"CVP mmHG (cmH2O)",1:"CVP cmH2O (mmHG)")
+ Q:X="PO2" "POx (L/Min)(%)"
+ Q:X="CG" $S(GMTSMVF:"C/G cm (in)",1:"C/G in (cm)")
+ Q:X="PN" "Pain" Q ""
 VM(X,Y) ;   Vital Type Measurement
- N GMTSMEAS,GMTSID S GMTSMEAS="",(GMTSID,X)=$G(X) Q:"^BP^T^R^P^HT^WT^CVP^PO2^CG^PN^"'[("^"_X_"^") ""
+ N GMTSMEAS,GMTSID S GMTSMEAS="",(GMTSID,X)=$G(X) Q:"^BP^T^R^P^HT^WT^CVP^PO2^CG^PN^"'[(U_X_U) ""
  S Y=$G(Y) Q:'$L(Y) ""
  ;     If data for T, Ht or Wt piece 8 and 13 else  piece 8
- I X="T"!(X="HT")!(X="WT") S GMTSMEAS=$S($P(Y,"^",8)?1A.E:$P(Y,"^",8),1:$P(Y,"^",8)_" ("_$P(Y,"^",13)_")")
- E  S GMTSMEAS=$P(Y,"^",8)
+ I X="T"!(X="HT")!(X="WT") D
+ .I GMTSMVF S GMTSMEAS=$S($P(Y,U,8)?1A.E:$P(Y,U,8),1:$P(Y,U,13)_" ("_$P(Y,U,8)_")")
+ .I 'GMTSMVF S GMTSMEAS=$S($P(Y,U,8)?1A.E:$P(Y,U,8),1:$P(Y,U,8)_" ("_$P(Y,U,13)_")")
+ I X'="T"&(X'="HT")&(X'="WT") S GMTSMEAS=$P(Y,U,8)
  ;     WT - Weight and BMI (piece 14)
- I X="WT",$L($P(Y,"^",14)) S GMTSMEAS=GMTSMEAS_"["_$P(Y,"^",14)_"]"
+ I X="WT",$L($P(Y,U,14)) S GMTSMEAS=GMTSMEAS_"["_$P(Y,U,14)_"]"
  ;     CVP - Central Venous Pressure/CG - Circum/Girth
- I X="CVP"!(X="CG") S GMTSMEAS=$P(Y,"^",8) S:$L($P(Y,"^",13)) GMTSMEAS=GMTSMEAS_" ("_$P(Y,"^",13)_")"
+ I X="CVP"!(X="CG") D
+ .I GMTSMVF S GMTSMEAS=$P(Y,U,13)_" ("_GMTSMEAS_")"
+ .E  I $L($P(Y,U,13)) S GMTSMEAS=GMTSMEAS_" ("_$P(Y,U,13)_")"
  ;     POx - Pulse Oximetry
- I X="PO2" S GMTSMEAS=$P(Y,"^",8) S:$L($P(Y,"^",15))!($L($P(Y,"^",16))) GMTSMEAS=GMTSMEAS_" ("_$P(Y,"^",15)_")("_$P(Y,"^",16)_")"
+ I X="PO2",($L($P(Y,U,15))!($L($P(Y,U,16)))) S GMTSMEAS=GMTSMEAS_" ("_$P(Y,U,15)_")("_$P(Y,U,16)_")"
  ;     PN - Pain
- S:X="PN" GMTSMEAS=$P(Y,"^",8) S:X="PN"&(GMTSMEAS=99) GMTSMEAS="Unable to Respond" ;p.107 changed from "No Response" to "Unable to Respond"
+ I X="PN",(GMTSMEAS=99) S GMTSMEAS="Unable to Respond"
  S X=GMTSMEAS Q X
 VQ(X) ;   Vital Qualifiers
  S X=$G(X),X=$P(X,"^",17) S:$L(X) X=$$AQ(X) Q X
@@ -152,7 +159,7 @@ MC(X) ;   Mix Case for Qualifiers
  Q X
 DTM(X) ;   Current Date and Time
  S X=$$NOW^XLFDT D REGDTM4^GMTSU Q X
-FN(X,Y) ;   Format Number 
+FN(X,Y) ;   Format Number
  N GMTSV S X=$G(X),GMTSV=+($G(X)),Y=$G(Y) S:+Y=Y X=$FN(GMTSV,"",+Y) Q X
 LN(X) ;   Dashed Line
  S X=+($G(X)) Q:X=0 "" N GMTSLN S GMTSLN="",$P(GMTSLN,"-",X)="-" S X=GMTSLN Q X

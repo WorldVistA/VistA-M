@@ -1,11 +1,12 @@
 XUTMONH ;SEA/RDS - TaskMan: Option, XUTMON, Part 3 (Help Driver) ;5/3/94  11:40 ;
- ;;8.0;KERNEL;;Jul 10, 1995
+ ;;8.0;KERNEL;**761**;Jul 10, 1995;Build 6
+ ;;Per VHA VA Directive 6402, this routine should not be modified
  ;
  W !,"Use ZTMON" Q
  ;
 RESET ;Setup parameters for DIR call
  W @IOF
- S DIR(0)="SAOM^S:Schedule List.;W:Waiting Lists.;O:One Waiting List.;J:Job List.;T:Task List.;L:Link Lists."
+ S DIR(0)="SAOM^S:Schedule List.;W:Waiting Lists.;O:One Waiting List.;J:Job List.;T:Task List.;L:Link Lists.;P:Paired Task-Sync List."
  S DIR("A",1)="                    Help For Monitor Taskman Option"
  S DIR("A",2)=""
  S DIR("A",3)="                         Schedule List."
@@ -14,7 +15,8 @@ RESET ;Setup parameters for DIR call
  S DIR("A",6)="                         Job List."
  S DIR("A",7)="                         Task List."
  S DIR("A",8)="                         Link Lists."
- S DIR("A",9)=""
+ S DIR("A",9)="                         Paired Task-Sync List."
+ S DIR("A",10)=""
  S DIR("A")="                    Select Type Of Listing: "
  S DIR("?")="^D HELP^XUTMONH"
  Q
@@ -26,6 +28,7 @@ O G WAIT1^XUTMONH1
 J G JOB^XUTMONH2
 T G TASK^XUTMONH2
 L G LINK^XUTMONH2
+P G PAIR^XUTMONH2
  Q
  ;
 HELP ;Help text for '?'
@@ -35,6 +38,7 @@ HELP ;Help text for '?'
  W !,"Enter J to see all tasks waiting for submanagers."
  W !,"Enter T to see all currently running tasks."
  W !,"Enter L to see all tasks waiting for a dropped link to be restored."
+ W !,"Enter P to see all tasks for a selected Task-Sync Pair."
  Q
  ;
 SCREEN ;Screen out unknown users

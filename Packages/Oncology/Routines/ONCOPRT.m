@@ -1,5 +1,5 @@
 ONCOPRT ;HINES OIFO/GWB - OncoTrax reports ;05/03/12
- ;;2.2;ONCOLOGY;**1,13**;Jul 31, 2013;Build 7
+ ;;2.2;ONCOLOGY;**1,13,22**;Jul 31, 2013;Build 6
  ;This routine invokes Integration Agreement #3151
  ;add to suspense if Disease Index for Casefinding is not already in suspense
 SUS ;[SP Print Suspense List by Suspense Date (132c)]
@@ -116,7 +116,7 @@ DUF ;[DF Print Due Follow-up List by Month Due]
  D DIR
  I $D(DIRUT) K DIRUT Q
  I Y<1 Q
- S DIC("B")=2004
+ S DIC("B")=2008
  I +Y=1 S (BY,FLDS)="[ONCO DUE FOLLOWUP]"
  I +Y=2 S BY="[ONCO DUE FOLLOWUP]",FLDS="[ONCO DUE FOLLOWUP2]"
  S DIS(0)="I $$PFTD^ONCOPRT(D0)=""Y"""
@@ -131,18 +131,18 @@ DEL ;[LF Print Delinquent (LTF) List]
  D DIR
  I $D(DIRUT) K DIRUT Q
  I Y<1 Q
- S DIC("B")=2004
+ S DIC("B")=2008
  I +Y=1 S (BY,FLDS)="[ONCO DELINQUENT(LTF) LIST]"
  I +Y=2 S BY="[ONCO DELINQUENT(LTF) LIST]",FLDS="[ONCO DELINQUENT(LTF) LIST2]"
  S DIS(0)="I $$PFTD^ONCOPRT(D0)=""Y"""
  G PRT60
  ;
-PFTD(IEN) ;DTDX before 2004 not included in followup
+PFTD(IEN) ;DTDX before 2008 not included in followup
  N PFTD,PRI,ONCDT
  S PFTD="N"
  S PRI=0 F  S PRI=$O(^ONCO(165.5,"C",IEN,PRI)) Q:PRI'>0  I $P($G(^ONCO(165.5,PRI,"DIV")),U,1)=DUZ(2) D
  .S ONCDT=$P($G(^ONCO(165.5,PRI,0)),U,16)
- .I ONCDT<3040101 S PFTD="N" Q
+ .I ONCDT<3090101 S PFTD="N" Q
  .S PFTD="Y"
  Q PFTD
  ;

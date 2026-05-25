@@ -1,5 +1,5 @@
-MAGGI14 ;WOIFO/SG - IMAGE FILE API (GROUP PROPERTIES) ; 5/1/09 2:48pm
- ;;3.0;IMAGING;**93**;Dec 02, 2009;Build 163
+MAGGI14 ;WOIFO/SG/ZEB - IMAGE FILE API (GROUP PROPERTIES) ; 5/1/09 2:48pm
+ ;;3.0;IMAGING;**93,365**;Dec 02, 2009;Build 19
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -68,7 +68,8 @@ GRPCH1(GRPIEN,FLAGS) ;
  N CH1IEN,ERR,I,IEN,NODE
  S FLAGS=$G(FLAGS),CH1IEN=0
  ;--- Unknown/Unsupported flag(s)
- Q:$TR(FLAGS,"DE")'="" $$IPVE^MAGUERR("FLAGS")
+ ;*zeb *365 add support for O flag
+ Q:$TR(FLAGS,"ODE")'="" $$IPVE^MAGUERR("FLAGS")
  ;--- Missing required flag
  Q:$TR(FLAGS,"DE")=FLAGS $$ERROR^MAGUERR(-6,,"D,E")
  ;

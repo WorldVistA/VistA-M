@@ -1,5 +1,5 @@
 DPTLK7 ;OAK/ELZ,ARF - MAS PATIENT LOOKUP ENTERPRISE SEARCH ;15 May 2020  2:31 PM
- ;;5.3;Registration;**915,919,926,967,981,1000,1024,1111**;Aug 13, 1993;Build 18
+ ;;5.3;Registration;**915,919,926,967,981,1000,1024,1111,1139**;Aug 13, 1993;Build 2
  ;
 SEARCH(DGX,DGXOLD) ; do a search, pass in what the user entered
  ; DGX is what the user originally entered, name is assumed unless it
@@ -70,7 +70,7 @@ PROMPT I DGX?9N S DGFLDS(.09)=DGX,DGX=""
  I DGDFN=-1 S DPTX="" Q 0
  ;
  ; need to add new patient based on return from selection
- I $D(DGMPIR)>1 K DG20NAME D FORMATR(.DGFLDS,.DGMPIR,.DG20NAME) S DGDFN=$$ADD(.DGFLDS,.DG20NAME) D:DGDFN  G QUIT
+ I $D(DGMPIR)>1 K DG20NAME D FORMATR^DPTLK7A(.DGFLDS,.DGMPIR,.DG20NAME) S DGDFN=$$ADD(.DGFLDS,.DG20NAME) D:DGDFN  G QUIT
  . ;
  . S DGMPIR(+$O(DGMPIR(0)),"DFN")=DGDFN
  . ;
@@ -195,26 +195,27 @@ ASK . D ^DIR I $D(DTOUT)!(X=U) S DGOUT=1 Q
  . K DG20NAME,DGX,DGCOMP
  Q
  ;
+ ;**1139 VAMPI-26417 (jfw) - Convert to new RESIDENTIAL address fields
 ADDRESS(DGFLDS,DGOUT) ;- prompt for address
- N DGRET,FSTR
- ;.111 STREET ADDRESS [LINE 1] (both, free text)
- ;.112 STREET ADDRESS [LINE 2] (both, free text)
- ;.113 STREET ADDRESS [LINE 3] (both, free text)
- ;.114 CITY (both, free text)
- ;.115 STATE (external^internal)
- ;.116 ZIP CODE (both, free text)
- ;.117 COUNTY (external^internal^code)
- ;.1171 PROVINCE (both, free text)
- ;.1172 POSTAL CODE (both, free text)
- ;.1112 ZIP+4 (both, free text)
- ;.1173 COUNTRY (external^internal)
+ N DGRET,DGVAL
+ ; OLD  |  NEW
+ ;.111  | .1151 RESIDENTIAL ADDRESS [LINE 1] (both, free text)
+ ;.112  | .1152 RESIDENTIAL ADDRESS [LINE 2] (both, free text)
+ ;.113  | .1153 RESIDENTIAL ADDRESS [LINE 3] (both, free text)
+ ;.114  | .1154 RESIDENTIAL CITY (both, free text)
+ ;.115  | .1155 RESIDENTIAL STATE (external^internal)
+ ;.117  | .1157 RESIDENTIAL COUNTY (external^internal^code)
+ ;.1171 | .11571 RESIDENTIAL PROVINCE (both, free text)
+ ;.1172 | .11572 RESIDENTIAL POSTAL CODE (both, free text)
+ ;.1112 | .1156  RESIDENTIAL ZIP+4 (both, free text)
+ ;.1173 | .11573 RESIDENTIAL COUNTRY (external^internal)
  ;.121 BAD ADDRESS INDICATOR (external^internal)
  W !,"Patient address--"
  D EN^DGREGAED(,,,.DGRET)
- ; address doesn't prompt for phone but returns it, don't want
- ; to overwrite
- K DGRET(.131)
- M DGFLDS=DGRET
+ ;ReMap from Original address fields to New RESIDENTIAL Address Fields
+ F DGVAL=".111;.1151",".1112;.1156",".112;.1152",".113;.1153",".114;.1154",".115;.1155",".117;.1157",".1171;.11571",".1172;.11572",".1173;.11573"  D
+ .S DGFLDS($P(DGVAL,";",2))=$G(DGRET($P(DGVAL,";")))
+ S DGFLDS(.121)=$G(DGRET(.121))
  Q
 FLDS(DGFLDS,DGNAME,DGOUT) ;- prompt for the various FM fields
  ; Data returned in array
@@ -309,87 +310,19 @@ FORMAT(DGR,DGN,DGF) ; - format data for MPI call
  S:$D(DGF("EDIPI")) DGR("EDIPI")=DGF("EDIPI")
  ;
  ; only include address if deliverable
+ ;**1139 VAMPI-26417 (jfw) - Convert to new RESIDENTIAL address fields
  I $G(DGF(.121))]"" D
- . S:$G(DGF(.111))]"" DGR("ResAddL1")=DGF(.111)
- . S:$G(DGF(.1112))]"" DGR("ResAddZip4")=DGF(.1112)
- . S:$G(DGF(.112))]"" DGR("ResAddL2")=DGF(.112)
- . S:$G(DGF(.113))]"" DGR("ResAddL3")=DGF(.113)
- . S:$G(DGF(.114))]"" DGR("CITY")=DGF(.114)
- . S:$P($G(DGF(.115)),"^",2) DGR("ResAddState")=$P($G(^DIC(5,$P(DGF(.115),"^",2),0)),"^",2)
- . S:$G(DGF(.1171))]"" DGR("ResAddProvince")=DGF(.1171)
- . S:$G(DGF(.1172))]"" DGR("ResAddPCode")=DGF(.1172)
- . S:$P($G(DGF(.1173)),"^")]"" DGR("ResAddCountry")=$P(DGF(.1173),"^")
+ . S:$G(DGF(.1151))]"" DGR("ResAddL1")=DGF(.1151)
+ . S:$G(DGF(.1156))]"" DGR("ResAddZip4")=DGF(.1156)
+ . S:$G(DGF(.1152))]"" DGR("ResAddL2")=DGF(.1152)
+ . S:$G(DGF(.1153))]"" DGR("ResAddL3")=DGF(.1153)
+ . S:$G(DGF(.1154))]"" DGR("CITY")=DGF(.1154)
+ . S:$P($G(DGF(.1155)),"^",2) DGR("ResAddState")=$P($G(^DIC(5,$P(DGF(.1155),"^",2),0)),"^",2)
+ . S:$G(DGF(.11571))]"" DGR("ResAddProvince")=DGF(.11571)
+ . S:$G(DGF(.11572))]"" DGR("ResAddPCode")=DGF(.11572)
+ . S:$P($G(DGF(.11573)),"^")]"" DGR("ResAddCountry")=$P(DGF(.11573),"^")
  Q
  ;
-FORMATR(DGF,DGM,DG20NAME) ; - merge MPI and user input (MPI authorative)
- N DGX,DGY,DGZ
- S DGX=$O(DGM(0)) Q:'DGX
- S DG20NAME("FAMILY")=$G(DGM(DGX,"Surname"))
- S DG20NAME("GIVEN")=$G(DGM(DGX,"FirstName"))
- S DG20NAME("MIDDLE")=$G(DGM(DGX,"MiddleName"))
- S DG20NAME("PREFIX")=$G(DGM(DGX,"Prefix"))
- S DG20NAME("SUFFIX")=$G(DGM(DGX,"Suffix"))
- S DG20NAME("DEGREE")=$G(DGM(DGX,"Degree"))
- ;Reconstruct name
- S DG20NAME=$$NAMEFMT^XLFNAME(.DG20NAME,"F","CFL30")
- ;Format the .01 value
- M DGY=DG20NAME
- S DGF(.01)=$$FORMAT^XLFNAME7(.DGY,3,30,,2)
- S DGF(.02)=$G(DGM(DGX,"Gender"))
- S DGF(.03)=$G(DGM(DGX,"DOB"))
- S DGF(.09)=$G(DGM(DGX,"SSN"))
- S DGF(.2403)=$G(DGM(DGX,"MMN"))
- S DGF(.092)=$G(DGM(DGX,"POBCity"))
- S DGY=$S($G(DGM(DGX,"POBState"))]"":$O(^DIC(5,"C",DGM(DGX,"POBState"),0)),1:"")
- S DGF(.093)=DGY
- S:$G(DGM(DGX,"ResAddL1"))]"" DGF(.111)=DGM(DGX,"ResAddL1")
- S:$G(DGM(DGX,"ResAddL2"))]"" DGF(.112)=DGM(DGX,"ResAddL2")
- S:$G(DGM(DGX,"ResAddL3"))]"" DGF(.113)=DGM(DGX,"ResAddL3")
- S:$G(DGM(DGX,"City"))]"" DGF(.114)=DGM(DGX,"City")
- S:$G(DGM(DGX,"ResAddCity"))]"" DGF(.114)=DGM(DGX,"ResAddCity")
- ;
- S DGY=$S($G(DGM(DGX,"ResAddState"))]"":$O(^DIC(5,"C",DGM(DGX,"ResAddState"),0)),1:"")
- S:DGY DGF(.115)=DGY
- S DGY=$S($G(DGM(DGX,"Country"))]"":$O(^HL(779.004,"B",DGM(DGX,"Country"),0)),1:"")
- S:DGY DGF(.1173)=DGY
- S DGY=$S($G(DGM(DGX,"ResAddCountry"))]"":$O(^HL(779.004,"B",DGM(DGX,"ResAddCountry"),0)),1:"")
- S:DGY DGF(.1173)=DGY
- S:$G(DGM(DGX,"PCode"))]"" DGF(.1172)=DGM(DGX,"PCode")
- S:$G(DGM(DGX,"ResAddPCode"))]"" DGF(.1172)=DGM(DGX,"ResAddPCode")
- S:$G(DGM(DGX,"Province"))]"" DGF(.1171)=DGM(DGX,"Province")
- S:$G(DGM(DGX,"ResAddProvince"))]"" DGF(.1171)=DGM(DGX,"ResAddProvince")
- ;**967, Story 827326 (jfw) - Ensure Dash is removed if exists
- S:$G(DGM(DGX,"ResAddZip4"))]"" DGF(.1112)=$TR(DGM(DGX,"ResAddZip4"),"-","")
- S:$G(DGM(DGX,"ResPhone"))]"" DGF(.131)=DGM(DGX,"ResPhone")
- I $G(DGF(.1112)) D
- . N DGX,DGCNTY
- . D POSTAL^XIPUTIL(DGF(.1112),.DGX)
- . I $G(DGX("FIPS CODE"))]"",$G(DGX("STATE POINTER")) D
- .. S DGCNTY=$$FIND1^DIC(5.01,","_DGX("STATE POINTER")_",","MOXQ",$E($G(DGX("FIPS CODE")),3,5),"C")
- . I $D(DGCNTY) S DGF(.117)=DGCNTY
- ; alias loop
- S DGZ=0 F  S DGZ=$O(DGM(DGX,"ALIAS",DGZ)) Q:'DGZ  D
- . N DGY,DG20NAME
- . I $G(DGM(DGX,"ALIAS",DGZ,"Surname"))]"" D
- .. S DG20NAME("FAMILY")=$G(DGM(DGX,"ALIAS",DGZ,"Surname"))
- .. S DG20NAME("GIVEN")=$G(DGM(DGX,"ALIAS",DGZ,"FirstName"))
- .. S DG20NAME("MIDDLE")=$G(DGM(DGX,"ALIAS",DGZ,"MiddleName"))
- .. S DG20NAME("PREFIX")=$G(DGM(DGX,"ALIAS",DGZ,"Prefix"))
- .. S DG20NAME("SUFFIX")=$G(DGM(DGX,"ALIAS",DGZ,"Suffix"))
- .. S DG20NAME("DEGREE")=$G(DGM(DGX,"ALIAS",DGZ,"Degree"))
- .. ;Reconstruct name
- .. S DG20NAME=$$NAMEFMT^XLFNAME(.DG20NAME,"F","CFL30")
- .. ;Format the .01 value
- .. M DGY=DG20NAME
- .. S DGF("ALIAS",DGZ,.01)=$$FORMAT^XLFNAME7(.DGY,3,30,,2)
- . I $G(DGM(DGX,"ALIAS",DGZ,"SSN"))]"" S DGF("ALIAS",DGZ,1)=DGM(DGX,"ALIAS",DGZ,"SSN")
- S:$G(DGM(DGX,"ICN"))]"" DGF("ICN")=DGM(DGX,"ICN")
- ;
- ; - Story 338378 (elz) handle pseudo SSN
- I $G(DGF(.09))'?9N S DGF(.09)=$$PSEUDO($G(DGF(.01)),$G(DGF(.03)))
- E  K DGF(.0906) ; remove pseudo reason if we have a ssn
- ;
- Q
 ADD(DGF,DG20NAME) ; - stuff in patient
  ; Pass in the fields to set in the DGF array.
  ; Alaso Name components in DG20NAME array.  Returns new DFN
@@ -442,9 +375,10 @@ ADDREQ(DGFLDS) ; - determine if enough address data entered
  N DGOK,FIELD
  S DGOK=1
  ; is US or foreign
- I $$FOR^DGADDUTL($P(DGFLDS(.1173),"^")) D
- . F FIELD=.111,.114,.1171,.1172 S:$G(DGFLDS(FIELD))']"" DGOK=0
- E  F FIELD=.111,.1112,.114,.115 S:$G(DGFLDS(FIELD))']"" DGOK=0
+ ;**1139 VAMPI-26417 (jfw) - Convert to new RESIDENTIAL address fields
+ I $$FOR^DGADDUTL($P(DGFLDS(.11573),"^")) D
+ . F FIELD=.1151,.1154,.11571,.11572 S:$G(DGFLDS(FIELD))']"" DGOK=0
+ E  F FIELD=.1151,.1156,.1154,.1155 S:$G(DGFLDS(FIELD))']"" DGOK=0
  I $L($G(DGFLDS(.131))) S DGOK=1
  Q DGOK
  ;

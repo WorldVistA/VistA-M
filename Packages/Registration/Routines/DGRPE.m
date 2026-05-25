@@ -1,5 +1,5 @@
-DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM,JAM,LEG,ARF - REGISTRATIONS EDITS ;23 May 2017  1:51 PM
- ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887,941,985,997,1014,1040,1044,1056,1067,1064,1085,1111**;Aug 13, 1993;Build 18
+DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM,JAM,LEG,ARF,JAM - REGISTRATIONS EDITS ;23 May 2017  1:51 PM
+ ;;5.3;Registration;**32,114,139,169,175,247,190,343,397,342,454,415,489,506,244,547,522,528,555,508,451,626,638,624,677,672,702,689,735,688,797,842,865,871,887,941,985,997,1014,1040,1044,1056,1067,1064,1085,1111,1143**;Aug 13, 1993;Build 36
  ;
  ;DGDR contains a string of edits; edit=screen*10+item #
  ;
@@ -8,6 +8,24 @@ DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM,JAM,LEG,ARF - REGISTRATIONS EDITS ;23
  I DGRPS=1,DGDR["101," D CEDITS^DGRPECE(DFN)
  I DGRPS=8 D ^DGRPEIS,Q Q  ; family demographic edit...not conventional!!  :)
  I DGRPS=9 D EDIT9^DGRPEIS2,Q Q  ; income screening data ($$$)
+ ; DG*5.3*1143 - Handle group 4, Confidential Address on screen 1.1
+ ; - If this group is included in the string of edits, break the string up so that group 4 edit is done in the proper order 
+ I DGDR["114," D  D Q Q
+ . N DGDRCOPY
+ . S DGDRCOPY=DGDR
+ . N DGDR,DGDR1,DGDR2
+ . ; Get any groups to be edited before and after group 4
+ . S DGDR1=$P(DGDRCOPY,"114,",1)
+ . S DGDR2=$P(DGDRCOPY,"114,",2)
+ . ; Handle the Before group
+ . I DGDR1'="" S DGDR=DGDR1 D ^DGRPE
+ . I +$G(DGTMOT) Q
+ . ; Now edit group 4 which is called directly and not through ^DIE
+ . S DIE("NO^")="" D EN^DGREGTED(DFN,"CONF") K DIE("NO^")
+ . I +$G(DGTMOT) Q
+ . ; Handle the After group
+ . I DGDR2'="" S DGDR=DGDR2 D ^DGRPE
+ ;
  I DGRPS=5,DGDR["501," D
  .I $G(DGPRFLG) D PREG^IBCNBME(DFN) Q
  .D REG^IBCNBME(DFN)
@@ -16,10 +34,6 @@ DGRPE ;ALB/MRL,LBD,BRM,TMK,BAJ,PWC,JAM,JAM,JAM,LEG,ARF - REGISTRATIONS EDITS ;23
  I DGRPS=6,$S(DGDR["601,"!(DGDR["602,")!(DGDR["603,"):1,1:0) D  I QUIT D Q Q  ;Screen 6 subscreens
  .;Use new ListMan screen for Military Service Episodes (DG*5.3*797)
  . I DGDR["601," D EN^DGRP61(DFN)   ; MSEs
- . ; D SETDR("601,",.DR)
- . ; S (DA,Y)=DFN,DIE="^DPT("
- . ; D ^DIE I $D(Y) S QUIT=1
- . ; S DGDR=$P(DGDR,"601,",1)_$P(DGDR,"601,",2,999)
  . I DGDR["602," D EN^DGRP6CL(DFN,.QUIT)  Q:QUIT  ; Conflicts
  . I DGDR["603," D EN^DGRP6EF(DFN,.QUIT)  Q:QUIT  ; Exposures
  I DGRPS=7,(DGDR["702,") D EN^DGRP7CP(DFN,.QUIT) I QUIT D Q Q  ;DG*5.3*842 screen 7 cp subscreen
@@ -70,8 +84,7 @@ SETFLDS(DGDR) ; Set up fields to edit
 103 ;;.091;
  ; DG*5.3*1111 - PAGER moved to DR104^DGRPE1, Email Address Indicator moved to YN1316^DGRPE1
  ;                Handle timeout/exits from either field edit
-104 ;;.134;I '$$DR104^DGRPE1 S Y="@99";@21;S X=$$YN1316^DGRPE1(DFN) I +$G(DGTMOT) S Y="@99";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)="") Y="@25";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)]"") Y="@24";
-104000 ;;.133;S:($P($G(^DPT(DFN,.13)),U,16)="Y")&($G(X)="") Y="@21";S Y="@25";@24;.133///@;@25;.1317///NOW;@99;
+ ; DG*5,3*1143 - Group 4 on screen 1 is read-only - this group edit logic is now on screen 1.1 group 5
  ;105 ;;D DR207^DGRPE;7LANGUAGE DATE/TIME;D LANGDEL^DGRPE;
  ;LANGUAGE DATE/TIME removed from 105 with patch DG*5.3*1085
 105 ;;D DR207^DGRPE1;
@@ -86,14 +99,26 @@ SETFLDS(DGDR) ; Set up fields to edit
  ;CLT, Copy Permanent Mailing Address to Residential Address ;DG*5.3*941
  ; If Perm address is not null, go to update of address. Otherwise give user option to copy residential address to perm.
  ;  and if address is copied quit, otherwise continue with entering in a perm address. 
-112 ;;S:$G(^DPT(DFN,.11))'="" Y="@30";D DR11^DGRPE S:$G(^DPT(DFN,.11))'="" Y="@31";
+ ; DG*5.3*1143 - When checking for empty mailing address, add a check for the local RTA array being empty.
+ ;   If there is a mailing address defined in either, go to edit process, otherwise call DR11^DGRPE1 (tag moved to DGRPE1). (This tag prompts the user to copy residential address to mailing.)
+ ;   After DR11^DGRPE1, add check to see if mailing address defined in the local RTA array
+112 ;;S:$G(^DPT(DFN,.11))'=""!($G(DGADDGRP2(.111))'="") Y="@30";D DR11^DGRPE1 S:$G(^DPT(DFN,.11))'="" Y="@31" S:$G(DGADDGRP2(.111))'="" Y="@31";
  ; DG*5.3*1040 - If no timeout from previous field then proceed to next prompt
 112000 ;;@30;N FLG S FLG(1)=0,FLG(2)=1 D EN^DGREGAED(DFN,.FLG) D:'+$G(DGTMOT) PERMMVQ^DGREGCP1(DFN);@31;
-113 ;;.12105TEMP MAILING ADDRESS ACTIVE;S:X="N" Y="@15";S DIE("NO^")="";.1217TEMP MAILING ADDRESS START DATE;.1218TEMP MAILING ADDRESS END DATE;N RET S RET=1 D EN^DGREGTED(DFN,"TEMP",.RET) S:'RET&('+$G(DGTMOT)) Y=.12105;@15;K DIE("NO^");
-114 ;;.14105//NO;S:X="N" Y="@111" S:X="Y" DIE("NO^")="";.1417;I X']"" W !?4,$C(7),"But I need a Start Date." S Y=.14105;.1418;D DR111^DGRPE;.141;I '$P($$CAACT^DGRPCADD(DFN),U,2) W !?4,"But I need at least one active category." S Y=.14105;
- ; DG*5.3*1014;jam; add K ^DIE("NO^") after enty of confidential address so if we loop back to beginning, we can exit
+ ; DG*5.3*1143 - Tag 113 replaced with call to modified DGREGTED which gets start/end dates
+113 ;;D EN^DGREGTED(DFN,"TEMP");K DIE("NO^");
+ ;113 ;;.12105TEMP MAILING ADDRESS ACTIVE;S:X="N" Y="@15";S DIE("NO^")="";.1217TEMP MAILING ADDRESS START DATE;.1218TEMP MAILING ADDRESS END DATE;
+ ;113000 ;;N RET S RET=1 D EN^DGREGTED(DFN,"TEMP",.RET) S:'RET&('+$G(DGTMOT)) Y=.12105;@15;K DIE("NO^");
+ ; DG*5.3*1143 - Tag 114: No longer used (group 4 on screen 1.1).  Group 4 edit is handled above
+ ;114 ;;.14105//NO;S:X="N" Y="@111" S:X="Y" DIE("NO^")="";.1417;I X']"" W !?4,$C(7),"But I need a Start Date." S Y=.14105;.1418;D DR111^DGRPE;.141;I '$P($$CAACT^DGRPCADD(DFN),U,2) W !?4,"But I need at least one active category." S Y=.14105;
+ ; DG*5.3*1014;jam; add K ^DIE("NO^") after entry of confidential address so if we loop back to beginning, we can exit
  ; DG*5.3*1040 - Add check for variable DGTMOT
-114000 ;;K DR(2,2.141);N RET S RET=1 D EN^DGREGTED(DFN,"CONF",.RET) K DIE("NO^") S:'RET&('+$G(DGTMOT)) Y=.14105;@111;K DIE("NO^");
+ ;114000 ;;K DR(2,2.141);N RET S RET=1 D EN^DGREGTED(DFN,"CONF",.RET) K DIE("NO^") S:'RET&('+$G(DGTMOT)) Y=.14105;@111;K DIE("NO^");
+ ; DG*5.3*1143 - Group 5 added to screen 1.1
+ ; If RTA update flag is on, run DR115^DGRPE1 for group then go to end
+115 ;;I $G(DGRTAON)=1 D DR115^DGRPE1 S Y="@99";.134;I '$$DR104^DGRPE1 S Y="@99";@21;S X=$$YN1316^DGRPE1(DFN) I +$G(DGTMOT) S Y="@99";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)="") Y="@25";S:(X["N")&($P($G(^DPT(DFN,.13)),"^",3)]"") Y="@24";
+115000 ;;.133;S:($P($G(^DPT(DFN,.13)),U,16)="Y")&($G(X)="") Y="@21";S Y="@25";@24;.133///@;@25;.1317///NOW;@99;
+ ;
  ;DG*5.3*1111-Removed FATHER'S NAME & MOTHER'S NAME on PATIENT DATA, SCREEN <2> for Group 1.
 201 ;;.05;.08;.092;.093;.2403;57.4//NOT APPLICABLE;
 202 ;;1010.15//NO;S:X'="Y" Y="@22";S DIE("NO^")="";1010.152;I X']"" W !?4,*7,"But I need to know where you were treated most recently." S Y=1010.15;1010.151;1010.154;S:X']"" Y="@22";1010.153;@22;K DIE("NO^");
@@ -109,10 +134,6 @@ SETFLDS(DGDR) ; Set up fields to edit
  ;  be used to contain any notes. The new and old relationship fields are now entered via DR300^DGRPE 
 301 ;;.211;S:X']"" Y="@31";N RET S RET=$$DR300^DGRP3("K",.224,.212) I $G(DGTMOT)=1!('RET) S Y="@31";.2125//NO;I X="Y" S DGADD=".21" D AD^DGRPE S Y="@30";.221//USA;.213;S:X']"" Y=.216;.214;S:X']"" Y=.216;.215;.216;
 301000 ;;S DGADD=".21" D DR301^DGRPE S:DG4=1 Y=.222;.217;.2207;S Y="@30";.222;.223;@30;K DG4;.219;.21011;@31;
- ;301 ;;.211;S:X']"" Y="@31";.212;.2125//NO;I X="Y" S DGADD=".21" D AD^DGRPE S Y="@30";.221//USA;.213;S:X']"" Y=.216;.214;S:X']"" Y=.216;.215;.216;S DGADD=".21" D DR301^DGRPE S:DG4=1 Y=.222;.217;.2207;
- ;;S Y="@30";.222;.223;@30;K DG4;.219;.21011;@31;
- ;302 ;;.2191;S:X']"" Y="@32";.2192;D DR301^DGRPE S:DG4=1 Y=.2193;.21925//NO;I X="Y" S DGADD=".211" D AD^DGRPE S Y="@30";
- ;302000 ;;.2193;S:X']"" Y=.2196;.2194;S:X']"" Y=.2196;.2195:.2197;.2203;@30;.2199;.211011;@32;
 302 ;;.2191;S:X']"" Y="@32";N RET S RET=$$DR300^DGRP3("K2",.2104,.2192) I $G(DGTMOT)=1!('RET) S Y="@32";.21925//NO;I X="Y" S DGADD=".211" D AD^DGRPE S Y="@301";
 302000 ;;.2101//USA;.2193;S:X']"" Y=.2196;.2194;S:X']"" Y=.2196;.2195;.2196;S DGADD=".211" D DR301^DGRPE S:DG4=1 Y=.2102;.2197;.2203;S Y="@301";.2102;.2103;@301;K DG4;.2199;.211011;@32;
  ;
@@ -135,9 +156,6 @@ SETFLDS(DGDR) ; Set up fields to edit
  ;305 ;;N DGX1,DGX2;I '$L($P($G(^DPT(DFN,.21)),U)) S Y="@372";.3405//NO;I X="Y" S DGX1=1,Y="@371" S:$D(^DPT(DFN,.22)) $P(^(.22),U,2)=$P(^(.22),U,7);@372;.341;S:X']"" DGX1=2,Y="@371";.342;@371;
 305 ;;N DGX1,DGX2;I '$L($P($G(^DPT(DFN,.21)),U)) S Y="@372";.3405//NO;I X="Y" S DGX1=1,Y="@371" S:$D(^DPT(DFN,.22)) $P(^(.22),U,2)=$P(^(.22),U,7);@372;.341;S:X']"" DGX1=2,Y="@371";
 305000 ;;N RET S RET=$$DR300^DGRP3("D",.34015,.342) I $G(DGTMOT)=1!('RET) S Y="@39";@371;
- ;305000 ;;S:$G(DGX1) Y="@38";.343;S:X']"" Y=.346;.344;S:X']"" Y=.346;.345:.347;.2202;.349;.34011;S DGX1=2;@38;
- ;305001 ;;S:$G(DGX1)=2 Y="@381";S DGX2=$G(^DPT(DA,.21));.341///^S X=$P(DGX2,U);.342///^S X=$P(DGX2,U,2);.343///^S X=$P(DGX2,U,3);.344///^S X=$P(DGX2,U,4);@381
- ;305002 ;;S:$G(DGX1)=2 Y="@39";.345///^S X=$P(DGX2,U,5);.346///^S X=$P(DGX2,U,6);.347///^S X=$P(DGX2,U,7);.348///^S X=$P(DGX2,U,8);.349///^S X=$P(DGX2,U,9);.34011///^S X=$P(DGX2,U,11);@39;K DGX1,DGX2;
 305001 ;;S:$G(DGX1) Y="@38";.34012//USA;.343;S:X']"" Y=.346;.344;S:X']"" Y=.346;.345;.346; S DGADD=".34" D DR301^DGRPE S:DG4=1 Y=.34013;.347;.2202;S Y="@391";.34013;.34014;@391;K DG4;.349;.34011;S DGX1=2;@38;
 305002 ;;S:$G(DGX1)=2 Y="@381";S DGX2=$G(^DPT(DA,.21));.341///^S X=$P(DGX2,U);.342///^S X=$P(DGX2,U,2);.343///^S X=$P(DGX2,U,3);.344///^S X=$P(DGX2,U,4);.34012///^S X=$P(DGX2,U,12);.34013///^S X=$P(DGX2,U,13);.34014///^S X=$P(DGX2,U,14);@381
 305003 ;;S:$G(DGX1)=2 Y="@39";.345///^S X=$P(DGX2,U,5);.346///^S X=$P(DGX2,U,6);.347///^S X=$P(DGX2,U,7);.348///^S X=$P(DGX2,U,8);.349///^S X=$P(DGX2,U,9);.34011///^S X=$P(DGX2,U,11);.34015///^S X=$P(DGX2,U,15);@39;K DGX1,DGX2;
@@ -198,20 +216,6 @@ AD ; DG*5.3*1014;jam; Replace code below - store data via Fileman and not direct
 DR109 ;Drop through (use same logic as DR203)
 DR203 S DR(2,2.02)=".01RACE;I $P($G(^DIC(10.3,+$P($G(^DPT(DA(1),.02,DA,0)),""^"",2),0)),""^"",2)=""S"" S Y=""@2031"";.02;@2031;"
  S DR(2,2.06)=".01ETHNICITY;I $P($G(^DIC(10.3,+$P($G(^DPT(DA(1),.06,DA,0)),""^"",2),0)),""^"",2)=""S"" S Y=""@2032"";.02;@2032;"
- Q
-DR11 ;clt; DG*5.3*941 - Called from line tag 112 if Perm address is empty
- Q:$G(^DPT(DFN,.115))=""
- ; DG*5.3*1040 - Quit if timeout from previous field
- Q:$D(DTOUT)
- Q:+$G(DGTMOT)
- ;DG*5.3*1056 removed Permanent from the following comment and message
- ; If Residential Address exists, give user the option of copying residential to mailing address
- W !,"The Patient has no Mailing Address."
- D RESMVQ^DGREGCP1(DFN)
- Q
-DR111 ; Set DR string for Confidential Address categories
- S DR(2,2.141)=".01;1//YES;"
- ;S DR(2,2.14)=".01;1//"_"YES"
  Q
  ;
 DR206 ;DG*5.3*1064; Code for group 6 on screen 2

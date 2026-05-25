@@ -1,5 +1,5 @@
-DGRPP ;ALB/MRL,AEG,LBD,ASF,LEG,RN - REGISTRATION SCREEN PROCESSOR ;Apr 05, 2020@15:16
- ;;5.3;Registration;**92,147,343,404,397,489,689,688,828,797,871,997,1014,1040,1027**;Aug 13, 1993;Build 70
+DGRPP ;ALB/MRL,AEG,LBD,ASF,LEG,RN,JAM - REGISTRATION SCREEN PROCESSOR ;Apr 05, 2020@15:16
+ ;;5.3;Registration;**92,147,343,404,397,489,689,688,828,797,871,997,1014,1040,1027,1143**;Aug 13, 1993;Build 36
  ;
  ;DGRPS    : Screen to edit
  ;DGRPSEL  : If screen 9 (income screening) set to allowable selections
@@ -23,24 +23,67 @@ EN ;
  D STR^DGRPP1 F I=$Y:1:20 W !
  ; remove COPY option DG*5.3*688
  I ("8^9"[DGRPS),($G(DGEFDT)'=DT) S Z="E" D W W "=ENTER new "_(DGISYR+1)_" data,"
- S Z="<RET>" D W W " to ",$S(DGRPS<DGRPLAST:"CONTINUE",1:"QUIT"),", "
- I DGRPAN]"" S Z=DGRPANP D W D
- . I '$G(DGRPV) W " or " S Z="ALL" D W
- . ; jam; DG*5.3*997 - add screen 11.5 to allow group 1 to be expanded in View Reg option - DGRPV=1)
- . W " to "_$S('$G(DGRPV):"EDIT, ",DGRPS=6!(DGRPS=11)!(DGRPS=11.5):"EXPAND, ",1:"")
- S DGRPOUT=0,Z="^N" D W W " for screen N or " S Z="'^'" D W W " to QUIT" I DGRPSEL=""!(DGRPVV(9)'["0")!+$G(DGRPV) W ": "
- I DGRPSEL]"" D MOREHLP^DGRPP1
+ ; DG*5.3*1143 - If RTA editing array is defined (1 or more groups have edits), give a prompt for Save/Discard changes
+ I $D(DGADDEDIT) D
+ . S Z="(S)ave or (D)iscard changes, 1-5 or ALL to EDIT, or '^' to QUIT:" D W
+ ; Otherwise display usual prompts
+ ELSE  D
+ . S Z="<RET>" D W W " to ",$S(DGRPS<DGRPLAST:"CONTINUE",1:"QUIT"),", "
+ . I DGRPAN]"" S Z=DGRPANP D W D
+ . . I '$G(DGRPV) W " or " S Z="ALL" D W
+ . . ; jam; DG*5.3*997 - add screen 11.5 to allow group 1 to be expanded in View Reg option - DGRPV=1)
+ . . W " to "_$S('$G(DGRPV):"EDIT, ",DGRPS=6!(DGRPS=11)!(DGRPS=11.5):"EXPAND, ",1:"")
+ . S DGRPOUT=0,Z="^N" D W W " for screen N or " S Z="'^'" D W W " to QUIT" I DGRPSEL=""!(DGRPVV(9)'["0")!+$G(DGRPV) W ": "
+ . I DGRPSEL]"" D MOREHLP^DGRPP1
+ ;
  G:$E(IOST,1,2)="P-" NEXT  ;RGB/VM 4/28/10 Just go to next screen for non-interactive jobs
- R DGRPANN:DTIME S:'$T DGRPOUT=1 I DGRPANN']"",'DGRPOUT G NEXT
+ ; 1143 - Changes to processing of user input
+ ;R DGRPANN:DTIME S:'$T DGRPOUT=1 I DGRPANN']"",'DGRPOUT G NEXT
+ R DGRPANN:DTIME S:'$T DGRPOUT=1
  ; DG*5.3*1040 - If timed out, clean screen with W @IOF, use variable DGRPOUT to track timeout and exit
  I +$G(DGRPOUT) W @IOF,!!! G QQ
- I $E(DGRPANN)="E",$G(DGNOBUCK),("8^9"[DGRPS) D
- .S DGNOCOPY=1
- . ; remove COPY option DG*5.3*688
- .S DGRPANN=U_DGRPS,DGRPVV(9)="000",DGRPVV(8)="00",DGIAINEW=1
-JUMP ;
- G:DGRPANN="^" Q  G JUMP^DGRPP1:DGRPANN?1"^".N.".".N.".".N I DGRPOUT!(DGRPANN?1"^".E) G Q
+ ;
+ ; DG*5.3*1143 - Handle response when RTA editing array is defined (1 or more of the address groups have edits)
+ ; <RET> is not accepted - repaint the screen
+ I $D(DGADDEDIT) I DGRPANN']"" S X=DGRPS G SCRX
+ ; Jump to another screen is not accepted - repaint the screen
+ I $D(DGADDEDIT) I DGRPANN?1"^"1.E S X=DGRPS G SCRX
  S (DGRPANN,X)=$$UPPER^DGUTL(DGRPANN)
+ ; ^ will discard changes and quit 
+ ; Prompt for confirmation - repaint the screen, if no timeout or exit
+ I $D(DGADDEDIT) I DGRPANN="^" N DGCONFIRM D  I 'DGRPOUT S X=DGRPS G SCRX
+ . S DGCONFIRM=$$DISCONF
+ . I 'DGCONFIRM Q
+ . ; Discard the changes
+ . D DISCARD
+ . W !,"Screen <1.1> changes discarded." D REF
+ ; If timeout or ^, clear screen and quit
+ I +$G(DGRPOUT) W @IOF,!!! G QQ
+ ; Discard changes - refresh the screen if no timeout/exit
+ I $D(DGADDEDIT) I $E(DGRPANN,1,$L(DGRPANN))=$E("DISCARD",1,$L(DGRPANN)) N DGCONF D  I 'DGRPOUT S X=DGRPS G SCRX
+ . S DGCONFIRM=$$DISCONF
+ . I 'DGCONFIRM Q
+ . ; Discard the changes
+ . D DISCARD
+ . W !,"Screen <1.1> changes discarded." D REF
+ ; If timeout or ^, clear screen and quit
+ I +$G(DGRPOUT) W @IOF,!!! G QQ
+ ;
+ ; Save changes
+ I $D(DGADDEDIT) I $E(DGRPANN,1,$L(DGRPANN))=$E("SAVE",1,$L(DGRPANN)) G SAVEADDR
+ ;
+ ; DG*5.3*1143 From this point the user input is processed with RTA not active or no RTA updates pending
+ ;   If user is going to next screen and if RTA flag is set, clean up remaining RTA variables
+ I DGRPANN']"",'DGRPOUT D:$G(DGRTAON)=1 CLEAN^DGRPCADD G NEXT
+ I $E(DGRPANN)="E",$G(DGNOBUCK),("8^9"[DGRPS) D
+ . S DGNOCOPY=1
+ . ; remove COPY option DG*5.3*688
+ . S DGRPANN=U_DGRPS,DGRPVV(9)="000",DGRPVV(8)="00",DGIAINEW=1
+JUMP ;
+ I DGRPANN="^" G Q
+ ; DG*5.3*1143 If user is jumping to a screen, if RTA flag is set clean up RTA variables
+ I DGRPANN?1"^".N.".".N.".".N D:$G(DGRTAON)=1 CLEAN^DGRPCADD G JUMP^DGRPP1
+ I DGRPOUT!(DGRPANN?1"^".E) G Q
  I $E(DGRPANN)="A" S X=DGRPANN,Z="^ALL" D IN^DGHELP I %'=-1 S DGRPANN=DGRPANP
  ;LEG; DG*5.3*997 ; add screen 11.5
  I DGRPANN'?1N.E D ^DGRPH G:DGRPS'=1.1&(DGRPS'=11.5) @("^DGRP"_DGRPS)  G:DGRPS=1.1 ^DGRPCADD  G:DGRPS=11.5 ^DGRP11A
@@ -51,10 +94,14 @@ Q I 'DGELVER D:$S(DGRPOUT:0,'$D(DGRPV):0,'DGRPV:1,1:0) LT^DGRPP1
  K DGDEP,DGINC,DGINR,DGMTC,DGMTED,DGREL,DGTOT,DGSP
  K DGCH,DGGTOT,DGIRI,DGPRI,DGRPSE1,DGNOCOPY
  D SENSCHK
- ;DG*5.3*1027 Setting default values for DGDONE and DGDONE2 used in DGRPC 
+ ; DG*5.3*1027 Setting default values for DGDONE and DGDONE2 used in DGRPC 
  N DGDONE,DGDONE2 S DGDONE=0,DGDONE2=0
+ ; DG*5.3*1143 - Prior to calling consistency checker, clear out RTA flags
+ K DGRTAON,DGRTAHOLD
  I 'DGRPV S DGEDCN=1 D ^DGRPC K DGEDCN
-QQ K DGRPNA,DGRPS,DGRPTYPE,DGRPU,DGRPV,DGRPVV,DGRPW,DGVI,DGVO,DGRPCM,DGELVER,DGRPLAST
+QQ ; DG*5.3*1143 - Discard edits if the RTA Edit Flag is set (edits are pending)
+ I $D(DGADDEDIT) D DISCARD
+ K DGRPNA,DGRPS,DGRPTYPE,DGRPU,DGRPV,DGRPVV,DGRPW,DGVI,DGVO,DGRPCM,DGELVER,DGRPLAST
 Q1 K %DT,C,DGA,DGA1,DGA2,DGAD,DGDR,DGRP,DGRPAG,DGRPAN,DGRPANN,DGRPANP,DGRPD,DGRPSEL,DGRPSELT,DGRPVR,DGRPX,DGAAC
  ; DG*5.3*1040 - clean-up variable DGTMOT
  K DIRUT,DUOUT,DTOUT,DGTMOT
@@ -112,4 +159,35 @@ SCR9 ; see if MT is completed.  Allow only selective editing if so
  I DGRPSELT="S",$D(DGMTC("S")) Q
  I DGRPSELT="D",$D(DGMTC("D")) Q
  S DGFL=1
+ Q
+ ;
+SAVEADDR ; DG*5.3*1143 - (S)ave option from screen 1.1 editing
+ ; Call function to transmit the data and save
+ D RTASEND^DGRPCADD(DFN)
+ ; If a timeout/exit occurred, quit
+ I +$G(DGRPOUT) W @IOF,!!! G QQ
+ ; Whether or not the save was successful, repaint the screen
+ S X=DGRPS G SCRX
+ ; 
+DISCARD  ; DG*5.3*1143 - Discard changes - via "D" option on screen 1.1, timeouts, or user is exiting with ^
+ D DISCARD^DGRPCADD
+ Q
+ ;
+DISCONF() ; DG*5.3*1143 - Confirm if user wants to discard the changes 
+ N DIR,X,Y,DTOUT,DUOUT,DIROUT
+ S DIR(0)="Y"
+ S DIR("A")="Are you sure that you want to DISCARD the changes"
+ S DIR("?")="Please answer Y for YES or N for NO."
+ D ^DIR
+ ; DIRUT defined if the user entered an up-arrow, or timed out
+ I $D(DIRUT) S DGTMOT=1,DGRPOUT=1 Q 0
+ I $G(Y)=0 Q 0
+ Q 1
+ ;
+REF ;End of page prompt (Refresh)
+ N DIR,DTOUT,DUOUT,DIROUT,X,Y
+ S DIR(0)="E"
+ S DIR("A")="Press ENTER to refresh the screen"
+ D ^DIR
+ S:$D(DTOUT) DGTMOT=1,DGRPOUT=1
  Q

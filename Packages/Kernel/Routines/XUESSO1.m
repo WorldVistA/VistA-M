@@ -1,5 +1,5 @@
 XUESSO1 ;SEA/LUKE - Single Sign-on Utilities ; Apr 08, 2022@13:58
- ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466,523,655,659,771**;Jul 10, 1995;Build 8
+ ;;8.0;KERNEL;**165,183,196,245,254,269,337,395,466,523,655,659,771,759**;Jul 10, 1995;Build 40
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 GET(INDUZ) ;Gather identifying data from user's home site.
@@ -151,6 +151,13 @@ FIND    ;
  ; p771 end of FIND.  User not found, try MPI web service
  I RETRY S RETRY=0,SECID=$$MPISECID($G(NETWORK)) G:$G(SECID)]"" FIND
 ADD ;We didn't find anybody under SecID,SSN,VISITED FROM, or NAME so we add a new user
+ ;code falls in from above
+ ;p759 cep start
+ N RAIEN
+ S RAIEN=$P($G(DUZ("REMAPP")),U)
+ I RAIEN,'$$CANADD^XUESSO2($G(DUZ("REMAPP"))) D  Q 0  ;p759 CEP - set error and quit if RA is set AND ra is not allwed to add users
+ .  S XWBSEC="BSE LOGIN ERROR - "_$P($G(^XWB(8994.5,RAIEN,0)),U)_" remote application is not allowed to add new users."
+ ;p759 end
  S DIC(0)="" ;Turn off ^XUA4A7 (work around)
  ;Put the name in the .01 field first.
  D ADDU ;ADDU will set NEWDUZ

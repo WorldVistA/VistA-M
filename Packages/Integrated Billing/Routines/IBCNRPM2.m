@@ -1,5 +1,5 @@
 IBCNRPM2 ;BHAM ISC/CMW - Match Multiple Group Plans to a Pharmacy Plan ;10-MAR-2004
- ;;2.0;INTEGRATED BILLING;**251,276,550,617,711,712**;21-MAR-94;Build 14
+ ;;2.0;INTEGRATED BILLING;**251,276,550,617,711,712,812**;21-MAR-94;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; ;
 EN(IBCNRP,IBCNRI,IBCNRGP) ; -- main entry point for IBCNR PAYERSHEET MATCH (LIST TEMPLATE)
@@ -45,11 +45,11 @@ INIT ; -- init variables and list array
  . S VALMCNT=0
  . W !,*7,"Warning: No Active Group Plans with Pharmacy Coverage Found."
  ;
- N GPIEN,IBGP0,IBCPOLD,X,IBCPD6,IBCNRPP,IBCOV,IBCRVD,LIM
- N IBGNA,IBGNM,IBCNA,IBCNM,IBDAT,MATCH,UNMATCH
+ N DEL,GPIEN,IBGP0,IBCPOLD,X,IBCPD6,IBCNRPP,IBCOV,IBCRVD,LIM
+ N IBGNA,IBGNM,IBCNA,IBCNM,IBDAT,MATCH
  K ^TMP("IBCNR",$J,"PM")
  S VALMCNT=0,VALMBG=1,(IBCNA,IBCNM,GPIEN)=""
- S VALMCNT1=0
+ S VALMCNT1=0,LAST=0
  S (IBIND,IBMULT,IBW)=1
  S MATCH=""
  F  S MATCH=$O(^TMP("IBCNR",$J,"GP",MATCH)) Q:MATCH=""  D
@@ -58,15 +58,28 @@ INIT ; -- init variables and list array
  .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)="                              *** "_^TMP("IBCNR",$J,"GP",MATCH)_" UNMATCHED ***"
  .. D CNTRL^VALM10(VALMCNT,1,80,IORVON,IORVOFF,0)
  .. S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,1)=""
- .. S UNMATCH=^TMP("IBCNR",$J,"GP",MATCH)
+ .I MATCH=.5 D
+ .. S VALMCNT=VALMCNT+1
+ .. ;I VALMCNT1=0 S VALMCNT1=1
+ .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=""
+ .. I VALMCNT1=0 S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,1)=""
+ .. E  S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=""
+ .. S VALMCNT=VALMCNT+1
+ .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)="                              *** "_^TMP("IBCNR",$J,"GP",MATCH)_" DELETED ***"
+ .. D CNTRL^VALM10(VALMCNT,1,80,IORVON,IORVOFF,0)
+ .. I VALMCNT1=0 S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,1)=""
+ .. E  S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=""
  .I MATCH=1 D
  .. S VALMCNT=VALMCNT+1
+ .. ;I VALMCNT1=0 S VALMCNT1=1
  .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=""
- .. S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,UNMATCH)=""
+ .. I VALMCNT1=0 S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,1)=""
+ .. E  S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=""
  .. S VALMCNT=VALMCNT+1
  .. S ^TMP("IBCNR",$J,"PM",VALMCNT,0)="                              *** "_^TMP("IBCNR",$J,"GP",MATCH)_" MATCHED ***"
  .. D CNTRL^VALM10(VALMCNT,1,80,IORVON,IORVOFF,0)
- .. S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,UNMATCH)=""
+ .. I VALMCNT1=0 S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,1)=""
+ .. E  S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=""
  .F  S IBCNA=$O(^TMP("IBCNR",$J,"GP",MATCH,IBCNA)) Q:IBCNA=""  D
  .. F  S IBCNM=$O(^TMP("IBCNR",$J,"GP",MATCH,IBCNA,IBCNM)) Q:IBCNM=""  D
  ... ;get pharm plan id
@@ -95,6 +108,7 @@ INIT ; -- init variables and list array
  .... S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
  .... S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
  .... S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
+ .... S LAST=VALMCNT
  .... ;
  .... I IBCNRPP'="" D    ; If VA PLAN ID exists
  ..... I $P(IBDAT,"^",3)'="" D      ; If Matched Date exists
@@ -106,6 +120,13 @@ INIT ; -- init variables and list array
  .... I IBCNRPP="" D    ; If VA PLAN ID does not exist
  ..... I $P(IBDAT,"^",3)'="" D   ; Match Date w/no Plan ID means Deleted
  ...... S X="          Deleted by: "_$P(IBDAT,"^",4)_"  "_$P(IBDAT,"^",3)
+ ...... S VALMCNT=VALMCNT+1
+ ...... S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
+ ...... S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
+ ...... S ^TMP("IBCNR",$J,"PM","IDX1",VALMCNT1)=GPIEN
+ ...... ;
+ ...... S DELCOM=$$GET1^DIQ(355.3,GPIEN_",",3.01)
+ ...... S X="          Comment: "_DELCOM
  ...... S VALMCNT=VALMCNT+1
  ...... S ^TMP("IBCNR",$J,"PM",VALMCNT,0)=X
  ...... S ^TMP("IBCNR",$J,"PM","IDX",VALMCNT,VALMCNT1)=GPIEN
@@ -128,6 +149,9 @@ EXPND ; -- expand code
  ;
 SEL ;  Select Plan
  ;
+ ;S VALMBG=1
+ ;S VALMLST=LAST
+ S DEL=0
  D S1
  ;
  I 'IBX Q  ; no group selected
@@ -135,14 +159,13 @@ SEL ;  Select Plan
  N DA,DIC,DIE,DR,D,IBSEL,IBPLNOLD,IBUSROLD
  S IBX=0
  F  S IBX=$O(VALMY(IBX)) Q:IBX=""  D
- . ;S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX",IBX,IBX))
  . S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX1",IBX))
  . S IBPLNOLD=$$GET1^DIQ(355.3,IBSEL,6.01,"I")
  . S IBUSROLD=$$GET1^DIQ(355.3,IBSEL,1.08)
  . S DA=IBSEL,DIC="^IBA(355.3,",DIE=DIC,DR="6.01////^S X="_IBCNRP
- . ;S DR=DR_";1.07///NOW;1.08////"_DUZ
  . I IBPLNOLD'=IBCNRP S DR=DR_";1.07///NOW;1.08////"_DUZ
  . I IBPLNOLD=IBCNRP,IBUSROLD="" S DR=DR_";1.07///NOW;1.08////"_DUZ
+ . S DR=DR_";3.01///@"
  . D ^DIE
  D GIPF^IBCNRPM1
  D CLEAN^VALM10
@@ -154,18 +177,19 @@ SEL ;  Select Plan
  Q
  ;
 DEL ; remove a plan from a group
+ ;
+ S DEL=1
  D S1
  ;
- I 'IBX Q  ; no group selected
+ I 'IBX Q   ; no group selected
  ;
  NEW DA,DIC,DIE,DR,IBSEL,IBPLNOLD
  S IBX=0
  F  S IBX=$O(VALMY(IBX)) Q:IBX=""  D
- . ;S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX",IBX,IBX))
  . S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX1",IBX))
  . S IBPLNOLD=$$GET1^DIQ(355.3,IBSEL,6.01,"I")
  . S DA=IBSEL,DIC="^IBA(355.3,",DIE=DIC,DR="6.01///@"
- . I IBPLNOLD'="" S DR=DR_";1.07///NOW;1.08////"_DUZ
+ . I IBPLNOLD'="" S DR=DR_";1.07///NOW;1.08////"_DUZ_";3.01///"_DELCOM
  . D ^DIE
  D GIPF^IBCNRPM1
  D CLEAN^VALM10
@@ -175,22 +199,33 @@ DEL ; remove a plan from a group
  ;
  Q
  ;
-S1 N DIR,DIRUT,DUOUT,DTOUT,DIROUT,IBOK,IBQUIT,Y,X
+S1 N DIR,DIRUT,DUOUT,DTOUT,DIROUT,IBI,IBOK,IBQUIT,VALMBG1,Y,X
+ S VALMBG1=VALMBG,VALMBGO=VALMBG
+ I VALMBG>0 F IBI=VALMBG:1:VALMLST I $P(^TMP("IBCNR",$J,"PM",IBI,0)," ")?1N.N S VALMBG1=IBI Q
+ I (VALMBG1>VALMBG),(VALMBG1<(VALMLST+1)) S VALMBG=VALMBG1
  D EN^VALM2($G(XQORNOD(0))),FULL^VALM1
  S IBX=$O(VALMY(0)),VALMBCK="R"
  ;
- I 'IBX W !!,"No group selected!" D PAUSE^VALM1 Q
+ I 'IBX W !!,"No group selected!" D PAUSE^VALM1 S VALMBG=VALMBGO Q
  I 'IBMULT D  G SPQ
  . D OK^IBCNSM3
  . I IBQUIT S VALMBCK="Q" Q
  . I IBOK S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX",IBX)),VALMBCK="Q"
  ;
- ;S IBSEL=+$G(^TMP("IBCNR",$J,"PM","IDX",IBX))
- ;Q
+ I $G(DEL) D  I 'IBX Q
+ . S DELCOM=$$DELCOM^IBCNRP()
+ . I DELCOM="^" D  Q
+ . . W !!,"A delete reason comment is required."
+ . . W !,"No action taken."
+ . . S VALMBG=VALMBGO
+ . . S IBX=""
+ . . D PAUSE^VALM1
  ;
 SPQ ;
  S DIR(0)="SB^Y:YES;N:NO",DIR("B")="NO",DIR("A")="OK to Continue? "
  D ^DIR K DIR
+ S VALMBG=VALMBGO
+ I $G(DEL) S VALMBG=VALMBG
  I $G(Y)="^" S IBX="" Q
  I $G(Y(0))="NO" S IBX=""
  Q

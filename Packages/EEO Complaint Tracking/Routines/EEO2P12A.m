@@ -1,0 +1,28 @@
+EEO2P12A ;ALB/MJB - Dequeue obsolete EEO tasks ; 07/15/2024
+ ;;2.0;EEO Complaint Tracking;**12**;Apr 27, 1995;Build 6
+ ;
+ Q
+EN ;entry point
+ D DEQUEUE
+ Q
+ ;
+DEQUEUE ;Dequeue scheduled options
+ N EEOLST,EEOLP,EEOLP1,EEOOPT,EEOX,EEOTSK,EEOLST1
+ D BMES^XPDUTL("Starting dequeue of EEO tasks")
+ F EEOLP=1:1 S EEOTSK=$P($TEXT(TSKLST+EEOLP),";;",2) Q:EEOTSK="$$END"  D
+ .D RTN^%ZTLOAD(EEOTSK,"EEOLST")
+ .S EEOX=0 F  S EEOX=$O(EEOLST(EEOX)) Q:'EEOX  S ZTSK=EEOX D DQ^%ZTLOAD
+ F EEOLP1=1:1 S EEOOPT=$P($TEXT(OPTLST+EEOLP1),";;",2) Q:EEOOPT="$$END"  D
+ .D OPTION^%ZTLOAD(EEOOPT,"EEOLST1")
+ .S EEOX=0 F  S EEOX=$O(EEOLST1(EEOX)) Q:'EEOX  S ZTSK=EEOX D DQ^%ZTLOAD
+ .D RESCH^XUTMOPT(EEOOPT,"@",,"@") ;Un-schedule option
+ D BMES^XPDUTL("Dequeuing of EEO tasks complete")
+ Q
+ ;
+TSKLST ;Task List
+ ;;D^EEOEXMT1
+ ;;$$END
+OPTLST ;Option List
+ ;;EEO TASKED BULLETIN
+ ;;EEO TASKED UPLINK BULLETIN
+ ;;$$END

@@ -1,5 +1,5 @@
 ONCSGA8A ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/09/19
- ;;2.2;ONCOLOGY;**10,12,17,19,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**10,12,17,19,20,21,22**;Jul 31, 2013;Build 6
  ;
  ;
 6 ;CERVICAL LN AND UNK PRIMARIES OF HEAD AND NECK
@@ -40,6 +40,7 @@ ONCSGA8A ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/09/19
  ;
 9 ;NASOPHARYNX
  S M=$E(M,2,5)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3241231 D V99^ONCSGA8C Q
  I T="Tis",N="N0",M="M0" S SG=0 Q
  I T="T1",N="N0",M="M0" S SG=1 Q
  I ((T="T1")!(T="T0")),N="N1",M="M0" S SG=2 Q
@@ -427,8 +428,9 @@ ONCSGA8A ;HINES OIFO/RTK - AJCC 8th Ed Automatic Staging Tables ;01/09/19
  I T="T4",M="M0" S SG=3 Q
  I M="M1" S SG=4
  Q
-29 ;NET
+29 ;NET STOMACH
  S M=$E(M,2,5)
+ I $P($G(^ONCO(165.5,D0,0)),"^",16)>3231231 D V299^ONCSGA8C Q
  I ((T="TX")!(T="T0")),((N="NX")!(N="N0")!(N="N1")),M["M1" S SG=4 Q
  I T="T1",N="N0",M="M0" S SG=1 Q
  I T="T1",N="N1",M="M0" S SG=3 Q

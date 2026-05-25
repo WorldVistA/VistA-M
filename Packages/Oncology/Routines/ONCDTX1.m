@@ -1,5 +1,5 @@
 ONCDTX1 ;HINES OIFO/RTK - DELETE @FAC TREATMENT FIELDS; 09/25/98
- ;;2.2;ONCOLOGY;**1,5,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,5,20,22**;Jul 31, 2013;Build 6
  ;
 DELATF ;Delete all treatment @fac
  S $P(^ONCO(165.5,DA,3.1),U,7)="" D SPSATFR    ;50.2
@@ -78,11 +78,11 @@ RADATF ;Radiation @fac
  Q:$P(^ONCO(165.5,DA,3.1),U,12)'=""
  S $P(^ONCO(165.5,DA,3.1),U,13)=""
  I $D(NTDEL) Q
- W:$G(DRATF)'=1 !!,"Deleting data from the following fields...",!
- W !,"  RADIATION @FAC"
- I $G(DRATF)=1 W ?40
- I $G(DRATF)'=1 W !,"  "
- W "RADIATION @FAC DATE"
+ ;W:$G(DRATF)'=1 !!,"Deleting data from the following fields...",!
+ ;W !,"  RADIATION @FAC"
+ ;I $G(DRATF)=1 W ?40
+ ;I $G(DRATF)'=1 W !,"  "
+ ;W "RADIATION @FAC DATE"
  Q
  ;
 CHEMATF ;Chemotherapy @fac

@@ -1,7 +1,11 @@
-ORWRPP1 ; SLC/DCM - Background Report Prints (cont.) ;Dec 02, 2021@12:51:43
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,160,192,263,449,405**;Dec 17, 1997;Build 211
+ORWRPP1 ; SLC/DCM - Background Report Prints (cont.) ; May 24, 2024@15:25:14
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,160,192,263,449,405,618**;Dec 17, 1997;Build 14
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
+ ; Reference to ^%ZTLOAD in ICR# 10063
+ ; Reference to EN1^LR7OSOS1 in ICR# 2983
+ ; Reference to EN^MCARPS2 in ICR# 2757
+ ; Reference to ^XLFDT in ICR# 10103
  ;
 MEDB(ROOT,ORDFN,OREXAMID,ORALPHA,OROMEGA,ORDTRNG,REMOTE,ORMAX,ORFHIE)  ;Print Medicine report
  K ^TMP("MCAR",$J)
@@ -51,6 +55,42 @@ BCMA1B(ROOT,ORDFN,OREXAMID,ORALPHA,OROMEGA,ORDTRNG,REMOTE,ORMAX,ORFHIE)        ;
  S PAGE=1,TEXT="PATIENT MEDICATION LOG BCMA ("_$$FMTE^XLFDT(ORALPHA)_" - "_$$FMTE^XLFDT(OROMEGA)_")"
  D HEAD(ORDFN,PAGE,TEXT,$G(STATION))
  D HURL(.ORY,ORDFN,TEXT,1)
+ I $L($G(ORY)) K @ORY
+ Q
+OTPB(ROOT,ORDFN,OREXAMID,ORALPHA,OROMEGA,ORDTRNG,REMOTE,ORMAX,ORFHIE)        ;Print OTP Dispense
+ N ORY,PAGE,TEXT
+ D
+ . N IO
+ . D OTP^ORWRP1A(.ORY,.ORDFN,.OREXAMID,.ORALPHA,.OROMEGA,.ORDTRNG,.REMOTE,.ORMAX,.ORFHIE)
+ U IO
+ Q:'$L(ORY)
+ S PAGE=1,TEXT="OTP Dispense Report ("_$$FMTE^XLFDT(ORALPHA)_" - "_$$FMTE^XLFDT(OROMEGA)_")"
+ D
+ .;Write out the file
+ .N L,NOHURL,A,OUT
+ .S OUT=0,L=""
+ .F  S L=$O(@ORY@(L)) Q:L=""  Q:OUT  D
+ ..I $Y+4>IOSL D
+ ...S PAGE=PAGE+1
+ ...W !?27,"*** WORK COPY ONLY ***     (continued...)"
+ ...I $G(READ),$G(IOT)'["HFS" R !,"^ TO STOP: ",A:DTIME I A["^" S OUT=1 Q
+ ...W @IOF
+ ...I $G(IOT)["HFS" S $Y=0
+ ...D
+ ....Q:'$G(ORDFN)
+ ....N %,%H,%I,DISYS,ORAGE,ORDOB,ORHLINE,ORL,ORNP,ORPNM,ORPV,ORSEX,ORSSN,ORTS,ORWARD,VA,X,ORI
+ ....D PAT^ORPR03(ORDFN)
+ ....W !,"OTP Dispense Report",?(IOM-$L("Page "_PAGE)),"Page "_PAGE
+ ....S X=ORDOB_" ("_ORAGE_")"
+ ....W !,ORPNM_"   "_ORSSN,?39,$G(ORL(0))_$S($L($G(ORL(1))):"/"_ORL(1),1:""),?(79-$L(X)),X
+ ....S $P(ORHLINE,"=",IOM+1)=""
+ ....W !,ORHLINE
+ ....S X="Printed: "_$$DATE^ORU($$NOW^XLFDT,"MM/DD/CCYY HR:MIN")
+ ....W !?27,"*** WORK COPY ONLY ***",?(IOM-($L(X))-1),X
+ ...W !,"(...continued)"
+ ..Q:'$D(@ORY@(L))
+ ..W !,@ORY@(L)
+ .W !?27,"*** WORK COPY ONLY ***"
  I $L($G(ORY)) K @ORY
  Q
 PROBB(ROOT,ORDFN,OREXAMID,ORALPHA,OROMEGA,ORDTRNG,REMOTE,ORMAX,ORFHIE) ;Print Problem List (Problem Tab)

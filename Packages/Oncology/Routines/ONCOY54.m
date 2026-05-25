@@ -1,4 +1,4 @@
-ONCOY54 ; GENERATED FROM 'ONCOY54' PRINT TEMPLATE (#812) ; 10/17/24 ; (FILE 165.5, MARGIN=80)
+ONCOY54 ; GENERATED FROM 'ONCOY54' PRINT TEMPLATE (#812) ; 04/30/25 ; (FILE 165.5, MARGIN=80)
  G BEGIN
 N W !
 T W:$X ! I '$D(DIOT(2)),DN,$D(IOSL),$S('$D(DIWF):1,$P(DIWF,"B",2):$P(DIWF,"B",2),1:1)+$Y'<IOSL,$D(^UTILITY($J,1))#2,^(1)?1U1P1E.E X ^(1)
@@ -20,7 +20,7 @@ BEGIN ;
  D N:$X>35 Q:'DN  W ?35 S Y=$P(X,U,6) W:Y]"" $E($$SET^DIQ(165.5,245.2,Y),1,40)
  D N:$X>2 Q:'DN  W ?2 W "Neoadjuvant Therapy-TX Effect.:"
  D N:$X>35 Q:'DN  W ?35,$E($P(X,U,7),1,40)
- D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "First Course of Treatment Date:"
+ D T Q:'DN  D N D N:$X>2 Q:'DN  W ?2 W "Date 1st CRS RX COC...........:"
  D N:$X>34 Q:'DN  W ?34 S X="" D DFC^ONCOCOM W $E(X,1,10) K Y(165.5,49)
  D N:$X>2 Q:'DN  W ?2 W "Date of No Treatment..........:"
  S X=$G(^ONCO(165.5,D0,2.1)) D N:$X>34 Q:'DN  W ?34 S Y=$P(X,U,11) S Y(0)=Y S X=Y D DATEOT^ONCOES W $E(Y,1,30)

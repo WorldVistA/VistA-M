@@ -1,0 +1,55 @@
+DVBSIGN2 ;ALB/JD - CAPRI Signature RPCS; August, 22 2024@01:25 ; 8/22/24 1:25am
+ ;;2.7;AMIE;**252**;Apr 10, 1995;Build 92
+ ; Per VHA Directive 6402 this routine should not be modified
+ ; Reference to $$GET1^DIQ(2 in DBIA #10035
+ ;
+ Q
+ ;
+ALRTDATA(DVBRTN,DVBDUZ,DVBST,DVBUT) ;
+ ;New RPC code for CAPRI-12958.  JD - 8/21/24
+ ;RPC: DVBA CAPRI ALERTS DATA
+ ;Returns the data for either the specified worksheet review status of DVBST OR 
+ ;The following worksheet review statuses:
+ ;A=Awaiting Signature, D=Draft/Not ready, O=Outdated Template, P=Review Pending, S=Sent Back
+ ;Fixed the single status issue.  JD - 9/9/24
+ ;Added code for two new parameters DVBDUZ and DVBUT.  JD - 9/9/24
+ ;
+ N DVBCNT,DVBD,DVBDMIE,DVBDMNM,DVBEXS,DVBFLEX,DVBFLGR,DVBFLNW,DVBFRMT
+ N DVBID,DVBIEN,DVBLN,DVBP,DVBPTIE,DVBPTNM,DVBSTAT,DVBSTS,DVBTRIE,DVBUSR
+ S (DVBIEN,DVBSTAT)="",DVBST=$G(DVBST),DVBDUZ=$G(DVBDUZ),DVBUT=$G(DVBUT)
+ S DVBSTS=$S(DVBST'="":DVBST,1:"ADOS")
+ K ^TMP("ALRTDATA",$J)
+ F  S DVBSTAT=$O(^DVB(396.17,"RS",DVBSTAT)) Q:DVBSTAT=""  D
+ . I DVBSTS'[DVBSTAT Q
+ . S DVBIEN=""
+ . F  S DVBIEN=$O(^DVB(396.17,"RS",DVBSTAT,DVBIEN)) Q:DVBIEN=""  D
+ .. S DVBP="" D PASCALCHK^DVBCTPDF(.DVBP,DVBIEN) I DVBP="P" Q  ;CMT worksheets only!
+ .. S DVBDMIE=$$GET1^DIQ(396.17,DVBIEN,2,"I")    ;Document manager IEN
+ .. S DVBTRIE=$$GET1^DIQ(396.17,DVBIEN,10,"I")   ;Transcriber IEN
+ .. S DVBUSR=$S(DVBUT="T":DVBTRIE,1:DVBDMIE)
+ .. I DVBDUZ="",DUZ'=DVBUSR Q
+ .. S DVBPTIE=$$GET1^DIQ(396.17,DVBIEN,.01,"I")  ;Patient IEN
+ .. S DVBPTNM=$$GET1^DIQ(396.17,DVBIEN,.01,"E")  ;Patient name
+ .. S DVBDMNM=$$GET1^DIQ(396.17,DVBIEN,2,"E")    ;Document manager name
+ .. S DVBFRMT=$$GET1^DIQ(396.17,DVBIEN,9,"I")    ;Form title
+ .. S DVBFLNW=$$GET1^DIQ(396.17,DVBIEN,19,"I")   ;Flag new
+ .. I DVBFLNW="" S DVBFLNW=0
+ .. S DVBFLGR=$$GET1^DIQ(396.17,DVBIEN,20,"I")   ;Flag green flag
+ .. I DVBFLGR="" S DVBFLGR=0
+ .. S DVBFLEX=$$GET1^DIQ(396.17,DVBIEN,21,"I")   ;Flag exclamation
+ .. I DVBFLEX="" S DVBFLEX=0
+ .. S DVBID=$$GET1^DIQ(2,DVBPTIE,.0905)          ;ID (First column of the GUI list)
+ .. S DVBLN=DVBIEN_U_DVBID_U_DVBPTIE_U_DVBPTNM_U_DVBDMIE_U_DVBDMNM_U_DVBFRMT_U_DVBSTAT_U_DVBFLNW_U_DVBFLGR_U_DVBFLEX
+ .. S ^TMP("ALRTDATA",$J,DVBIEN)=DVBLN
+ .. I DVBFRMT="" Q
+ .. I DVBFRMT'="MERGED FORM" S ^TMP("ALRTDATA",$J,DVBIEN)=DVBLN_U_1_U_DVBFRMT
+ .. I DVBFRMT="MERGED FORM" D
+ ... S DVBCNT=0,DVBP=0,DVBEXS=""
+ ... F  S DVBP=$O(^DVB(396.17,DVBIEN,1,DVBP)) Q:DVBP=""  D
+ .... S DVBD=^DVB(396.17,DVBIEN,1,DVBP,0),DVBCNT=DVBCNT+1
+ .... S DVBEXS=DVBEXS_","_$P(DVBD,U,2)
+ ... S DVBEXS=$P(DVBEXS,",",2,99999)
+ ... S ^TMP("ALRTDATA",$J,DVBIEN)=DVBLN_U_DVBCNT_U_DVBEXS
+ I $D(^TMP("ALRTDATA"))'>1 S DVBRTN="-1^No data available" Q
+ S DVBRTN=$NA(^TMP("ALRTDATA",$J))
+ Q

@@ -1,5 +1,5 @@
-PXAIVSTV ;ISL/JVS,PKR ISA/KWP - VALIDATE THE VISIT DATA ;09/09/2020
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,15,19,74,111,116,130,124,168,211**;Aug 12, 1996;Build 454
+PXAIVSTV ;ISL/JVS,PKR ISA/KWP - VALIDATE THE VISIT DATA ;Nov 06, 2025@14:14:33
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,15,19,74,111,116,130,124,168,211,244**;Aug 12, 1996;Build 37
  ;
  Q
 ERRSET ;Set the rest of the error data.
@@ -162,51 +162,53 @@ VAL ;--Validate the input.
  ;* .. D ERRSET
  Q
  ;
-VALSCC ;--VALIDATE SERVICE CONNECTIVENESS
- N ERR,ERR1,ERRMSG
- D SCC^PXUTLSCC($G(PXAA("PATIENT")),$G(PXAA("ENC D/T")),$G(PXAA("HOS LOC")),$G(PXAVISIT),$G(AFTER800),.AFTER8A,.ERR)
- ;PX*1*111 - Add HNC
- I $P(ERR,"^",1)=0,$P(ERR,"^",2)=0,$P(ERR,"^",3)=0,$P(ERR,"^",4)=0,$P(ERR,"^",5)=0,$P(ERR,"^",6)=0,$P(ERR,"^",7)=0,$P(ERR,"^",8)=0 Q
+VALSA(PXAERR,PXAVISIT,PXAA,PXSAS) ;
+ N CODE,INVALID,INVCODE,NOTNEED,PXARRAY,ELIG,SC,SUB,TEXT,WARNNUM,VALUE
+ S SC=$G(PXSAS("SC"))
+ D GETPATSA^PXSPECAUTH($G(PXAA("PATIENT")),$G(PXAA("ENC D/T")),$G(PXAA("HOS LOC")),$G(PXAVISIT),.PXARRAY)
+ I SC="" S SC=$P($G(PXARRAY("SC")),U,2)
+ S CODE="" F  S CODE=$O(PXARRAY(CODE)) Q:CODE=""  D
+ .S ELIG=+$P($G(PXARRAY(CODE)),U),DVALUE=$P($G(PXARRAY(CODE)),U,2)
+ .;SA Value not passed in, pt is eligible, a value has been stored in the outpatient classification file.
+ .I $G(PXSAS(CODE))="",ELIG=1,DVALUE'="" S PXSAS(CODE)=DVALUE
+ .S VALUE=$G(PXSAS(CODE))
+ .;SKIPCODE set to 1 for codes that have a relationship to SC values
+ .S SKIPCODE=$S(CODE="AO":1,CODE="IR":1,CODE="EC":1,1:0)
+ .;Only "", -1, 0, 1 are valid values
+ .I VALUE'="",+VALUE<-1!(+VALUE>1) S INVALID(CODE)="",PXSAS(CODE)="" Q
+ .;if SC true no reason to continue validate codes, that have a relationship to SC.
+ .I SKIPCODE,SC=1 Q
+ .;if not eligible, then no value should be passed in
+ .I 'ELIG D  Q
+ ..I VALUE=0!(VALUE=1) S NOTNEED(CODE)="",PXSAS(CODE)=""
+ .;If eligible only 1 or 0 should be passed in
+ .I VALUE=-1!(VALUE="") D
+ ..S INVCODE(CODE)="",PXSAS(CODE)=""
  ;
- S ERRMSG(-1)="Not a valid value"
- S ERRMSG(-2)="Value must be NULL"
- S ERRMSG(-3)="Must be NULL because Service Connected is yes"
- S ERRMSG(0)="No error"
- S ERRMSG(1)="Should be a YES or NO!, not NULL"
+ S WARNNUM=0
+ S CODE="" F  S CODE=$O(INVALID(CODE)) Q:CODE=""  D
+ .S TEXT="Invalid value entered for "_CODE_"."
+ .S WARNNUM=WARNNUM+1,SUB=WARNNUM_"W",PXAERR(SUB)=TEXT
+ S CODE="" F  S CODE=$O(INVCODE(CODE)) Q:CODE=""  D
+ .S TEXT="The veteran is eligible for "_CODE_", but no values were input with the Visit or with V POV."
+ .S WARNNUM=WARNNUM+1,SUB=WARNNUM_"W",PXAERR(SUB)=TEXT
+ S CODE="" F  S CODE=$O(NOTNEED(CODE)) Q:CODE=""  D
+ .S TEXT="The veteran is not eligible for "_CODE_" but a value was input with code."
+ .S WARNNUM=WARNNUM+1,SUB=WARNNUM_"W",PXAERR(SUB)=TEXT
  ;
+ I WARNNUM=0 Q
  S PXADI("DIALOG")=8390001.003
- S PXAERRW=1
- ;
- S PXAERR("1W")=$S($P(AFTER800,"^",1)']"":"NULL",1:$P(AFTER800,"^",1))
- S PXAERR("2W")=$S($P(AFTER800,"^",2)']"":"NULL",1:$P(AFTER800,"^",2))
- S PXAERR("3W")=$S($P(AFTER800,"^",3)']"":"NULL",1:$P(AFTER800,"^",3))
- S PXAERR("4W")=$S($P(AFTER800,"^",4)']"":"NULL",1:$P(AFTER800,"^",4))
- S PXAERR("5W")=$S($P(AFTER800,"^",5)']"":"NULL",1:$P(AFTER800,"^",5))
- ;PX*1*111 - Add HNC
- S PXAERR("16W")=$S($P(AFTER800,"^",6)']"":"NULL",1:$P(AFTER800,"^",6))
- S PXAERR("19W")=$S($P(AFTER800,"^",7)']"":"NULL",1:$P(AFTER800,"^",7))
- S PXAERR("22W")=$S($P(AFTER800,"^",8)']"":"NULL",1:$P(AFTER800,"^",8))
- ;
- S ERR1=$P(ERR,"^",1),PXAERR("6W")=ERRMSG(ERR1)
- S ERR1=$P(ERR,"^",2),PXAERR("7W")=ERRMSG(ERR1)
- S ERR1=$P(ERR,"^",3),PXAERR("8W")=ERRMSG(ERR1)
- S ERR1=$P(ERR,"^",4),PXAERR("9W")=ERRMSG(ERR1)
- S ERR1=$P(ERR,"^",5),PXAERR("10W")=ERRMSG(ERR1)
- ;PX*1*111 - Add HNC
- S PXAERR("11W")=$S($P(AFTER8A,"^",1)']"":"NULL",1:$P(AFTER8A,"^",1))
- S PXAERR("12W")=$S($P(AFTER8A,"^",2)']"":"NULL",1:$P(AFTER8A,"^",2))
- S PXAERR("13W")=$S($P(AFTER8A,"^",3)']"":"NULL",1:$P(AFTER8A,"^",3))
- S PXAERR("14W")=$S($P(AFTER8A,"^",4)']"":"NULL",1:$P(AFTER8A,"^",4))
- S PXAERR("15W")=$S($P(AFTER8A,"^",5)']"":"NULL",1:$P(AFTER8A,"^",5))
- ;
- S ERR1=$P(ERR,"^",6),PXAERR("17W")=ERRMSG(ERR1)
- S ERR1=$P(ERR,"^",7),PXAERR("20W")=ERRMSG(ERR1)
- S ERR1=$P(ERR,"^",8),PXAERR("23W")=ERRMSG(ERR1)
- ;PX*1*111 - Add HNC
- S PXAERR("18W")=$S($P(AFTER8A,"^",6)']"":"NULL",1:$P(AFTER8A,"^",6))
- S PXAERR("21W")=$S($P(AFTER8A,"^",7)']"":"NULL",1:$P(AFTER8A,"^",7))
- S PXAERR("24W")=$S($P(AFTER8A,"^",8)']"":"NULL",1:$P(AFTER8A,"^",8))
+ S PXAERRW("SCC")=1
  D ERR^PXAI("SCC",1)
+ Q
+ ;
+VALSCC ;--VALIDATE SERVICE CONNECTIVENESS
+ N CODE,ERR,ERR1,ERRMSG,PXSAS,VALUE,X
+ F X=1:1:8 D
+ .S VALUE=$P(AFTER800,U,X)
+ .S CODE=$$NODETOCODE^PXSPECAUTH(X)
+ .S PXSAS(CODE)=VALUE
+ D VALSA(.PXAERR,$G(PXAVISIT),.PXAA,.PXSAS)
  Q
  ;
 VPKG(EPKG,PKG) ;Is the Package parameter valid?
@@ -258,4 +260,3 @@ VUSER(USER) ;If the user is passed, validate it.
  . S PXAERR(12)=USER_" is not a valid pointer to the New Person file #200."
  . D ERRSET
  Q
- ;

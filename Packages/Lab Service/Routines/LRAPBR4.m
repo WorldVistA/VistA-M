@@ -1,5 +1,5 @@
-LRAPBR4 ;DALOI/STAFF - Autopsy Browser Display ;04/06/10  15:52
- ;;5.2;LAB SERVICE;**259,317,350,416,464**;Sep 27, 1994;Build 12
+LRAPBR4 ;DALOI/STAFF - Autopsy Browser Display; Feb 07, 2025@14:00
+ ;;5.2;LAB SERVICE;**259,317,350,416,464,583**;Sep 27, 1994;Build 1
  ;
  ; Reference to ^DPT supported by IA #918
  ;
@@ -13,6 +13,8 @@ ENTER ; Entry point
  D BODY
  D:'LRTIU POW
  D:LRTIU ESIGLN^LRAPBR1
+ ;LR*5.2*583: Display performing facility information
+ D PPL^LRAPBR1
  D FOOTER
  Q
  ;

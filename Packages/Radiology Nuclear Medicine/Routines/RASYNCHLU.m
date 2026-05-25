@@ -1,5 +1,5 @@
-RASYNCHLU ;HISC/GJC-Case Number Lookup Synch Logic ; Mar 24, 2023@13:19:45
- ;;5.0;Radiology/Nuclear Medicine;**198**;Mar 16, 1998;Build 1
+RASYNCHLU ;HISC/GJC-Case Number Lookup Synch Logic ; Dec 05, 2024@14:35:25
+ ;;5.0;Radiology/Nuclear Medicine;**198,222**;Mar 16, 1998;Build 1
  ;
  ;Routine              File     IA          Type
  ;----------------------------------------------
@@ -8,6 +8,8 @@ RASYNCHLU ;HISC/GJC-Case Number Lookup Synch Logic ; Mar 24, 2023@13:19:45
 EN ;Entry point for 'Synch Canceled/Completed Exams with CPRS & RIS Orders'
  ;note: RADFN is defined after successfully selecting a radiology patient record from ^RADPA
  ;Returns: RAQS the user selection (globally scoped local)
+ ;
+ ;Note: To save key strokes 'out of synch' will be abbreviated as 'OoS'
  ;
  I '$D(RADFN)#2 W !!?2,"Patient information is missing, exiting the option." QUIT
  N RABS5,RACEXST,RACPRS,RADATE,RADIV,RADTPRT,RAEXDT,RAEXST,RAHDFLG,RAHDR,RAI,RAII,RAIMAGE
@@ -52,17 +54,28 @@ SAVE ; Screen only if entered through Rad/Nuc Med must be canceled/completed exa
  S RAPRC(0)=$G(^RAMIS(71,+$P(RAY3,U,2),0)),RAPRC=$P(RAPRC(0),U)
  S RAOIFN=+$P(RAY3,U,11),RAOIFN(0)=$G(^RAO(75.1,RAOIFN,0))
  ;
+ ;// begin RA*5.0*222 modifications //
  ;we do not care what the RIS order status is; we only care that the CPRS order
- ;status is 'ACTIVE'. Get RIS request status name, check CPRS order to see if active.
+ ;status is 'active' when associated with cancelled exams & when the CPRS order
+ ;status is not 'complete' when associated with completed exams.
+ ;
  S RAREQST=$$GET1^DIQ(75.1,RAOIFN_",",5) ;RIS external
  S RAORIFN=+$P(RAOIFN(0),U,7) ;CPRS ptr to file #100
  S RAORSTS=$$GET1^DIQ(100,RAORIFN_",",5) ;CPRS external
- Q:RAORSTS'="ACTIVE"  ;CPRS order must be ACTIVE
+ ;CPRS order must be 'active' (for OoS cancelled exams)
+ ;or not 'complete' (for OoS completed exams).
  ;
- ;check our active order to see if there are other non-canceled exams tied to it
- ;if true do not discontinue the orders; else discontinue the order(s)
+ I $P(RAEXST(0),U,3)=9,(RAORSTS="COMPLETE") QUIT
  ;
+ ;Note: Only 'active' orders and cancelled exams are checked.
+ I $P(RAEXST(0),U,3)=0,(RAORSTS'="ACTIVE") QUIT
+ ;
+ ;For active orders only: check this specific cancelled exam, for this specific
+ ;'active' CPRS order, to see if there are other non-cancelled exams tied to this
+ ;'active' CPRS order.
+ ;-if true do not discontinue the order; else discontinue the order.
  I $P(RAEXST(0),U,3)=0  Q:$$OTHERS(RAOIFN,RADFN)
+ ;// end RA*5.0*222 modifications //
  ;
  ;-- accession #
  I $P(RAY3,U,31)'="" S RAACC=$P(RAY3,U,31)
@@ -119,13 +132,14 @@ SETUP ;setup basic exam and order data.
  S RAORSTS=$$GET1^DIQ(100,RAORIFN_",",5) ;CPRS external
  QUIT
  ;
-OTHERS(RAOIFN,RADFN) ;are there other non-canceled exams tied
- ;to this order?
+OTHERS(RAOIFN,RADFN) ;For the cancelled exam check only: Are there other
+ ;non-canceled exams tied to the 'active' CPRS order status?
  ; Input: RAOIFN = RIS order IEN
  ;         RADFN = DFN of patient
  ;
- ; returns: RAR: 1 if another non-canceled exam is tied to the RIS order
- ;               else 0 (the default)
+ ; returns: RAR: 1 If another non-canceled exam associated
+ ;                 to the 'active' CPRS order status.
+ ;               0 The else condition (the default)
  N RA0,RA1,RA72,RAA,RAC,RAQ,RAR S (RA1,RAR)=0
  F  S RA1=$O(^RADPT("AO",RAOIFN,RADFN,RA1)) Q:RA1'>0  D  Q:RAR
  .S RA0=0 F  S RA0=$O(^RADPT("AO",RAOIFN,RADFN,RA1,RA0)) Q:RA0'>0  D  Q:RAR

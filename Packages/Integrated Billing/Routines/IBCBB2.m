@@ -1,5 +1,5 @@
 IBCBB2 ;ALB/ARH - CONTINUATION OF EDIT CHECKS ROUTINE (CMS-1500) ;04/14/92
- ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403,432,447,473,488,461,623,641,665,702**;21-MAR-94;Build 53
+ ;;2.0;INTEGRATED BILLING;**51,137,210,245,232,296,320,349,371,403,432,447,473,488,461,623,641,665,702,770**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCRBB2
@@ -16,7 +16,10 @@ EN ;
  S Z=0 F  S Z=$O(IBZPRC92(Z)) Q:'Z  I $P(IBZPRC92(Z),U)["ICPT(",$L($P(IBZPRC92(Z),U,15),",")>4 S IBI="Proc "_$$PRCD^IBCEF1($P(IBZPRC92(Z),U))_" has > 4 modifiers - only first 4 will be used" D WARN^IBCBB11(IBI)
  ;
  ; ICD diagnosis, at least 1 required
- D SET^IBCSC4D(IBIFN,.IBDX,.IBDXO) I '$P(IBDX,U,2) S IBER=IBER_"IB071;"
+ D SET^IBCSC4D(IBIFN,.IBDX,.IBDXO) I '$P(IBDX,U,2) D
+ . ; IB*770/TAZ - US EBILL-4027 Only a Warning for Dental
+ . I $$FT^IBCEF(IBIFN)=7 D WARN^IBCBB11("A claim must contain an ICD diagnosis.") Q
+ . S IBER=IBER_"IB071;"
  ;
  ; Principle diagnosis - updated for ICD-10 **461
  S IBI=$O(IBDXO(0)) I IBI S IBDXTYP=$$ICD9^IBACSV(+$P(IBDXO(IBI),U),$$BDATE^IBACSV(IBIFN)) D
@@ -33,7 +36,10 @@ EN ;
  . I 'IBLOC,$P(IBCPT,U,15)'="",IBTX S Z="At least 1 charge has local box 24K data that will not be transmitted - " S IBLOC=1 D WARN^IBCBB11(Z) S Z="  This data will only print locally" D WARN^IBCBB11(Z)
  . I $P(IBCPT,U)'["ICPT(" S:IBER'["IB092" IBER=IBER_"IB092;" Q
  . S IBY=1 F IBJ=11:1:14 I +$P(IBCPT,"^",IBJ) S IBCPTL(+$P(IBCPT,"^",IBJ))="",IBY=0
- I +IBN S IBER=IBER_"IB072;"
+ I +IBN D
+ . ; IB*770/TAZ - US EBILL-4027 Only a Warning for Dental
+ . I $$FT^IBCEF(IBIFN)=7 D WARN^IBCBB11("CPT procedure is missing an associated diagnosis.") Q
+ . S IBER=IBER_"IB072;"
  ;
  ; CMS-1500: dxs associated with procs must be defined dxs for the bill
  S IBI=0 F  S IBI=$O(IBDX(IBI))  Q:'IBI  S IBDXL(IBDX(IBI))=""
@@ -83,7 +89,8 @@ EN ;
  . ; Start IB*2.0*473 Changed the following two warnings to errors.
  . ;I '$P(IBNDU2,U,11),$P(IBXDATA(IBI),U,11) D WARN^IBCBB11("Purchased service amounts are invalid unless this is a NON-VA bill")
  . ;I IBNVFLG,'$P(IBXDATA(IBI),U,11) D WARN^IBCBB11("Non-VA facility indicated, but no purchased service charge on line# "_IBI)
- . I $G(IBER)'["IB350" I '$P(IBNDU2,U,11),$P(IBXDATA(IBI),U,11) S IBER=IBER_"IB350;"
+ . ;JWS;IB*2.0*770;EBILL-4042;for dental claims, suppress the check below - mainly for ACC claims
+ . I $G(IBER)'["IB350" I '$P(IBNDU2,U,11),$P(IBXDATA(IBI),U,11),$$FT^IBCEF(IBIFN)'=7 S IBER=IBER_"IB350;"
  . I $G(IBER)'["IB351" I IBNVFLG,'$P(IBXDATA(IBI),U,11) S IBER=IBER_"IB351;"
  . ; End IB*2.0*473
  . I $G(IBER)'["IB310" I $D(IBXDATA(IBI,"A")) S IBER=IBER_"IB310;" Q

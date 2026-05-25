@@ -1,5 +1,5 @@
 IBCNBAA ;ALB/ARH/AWC - Ins Buffer: process Accept set-up ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,184,246,416,506,528,668,737**;21-MAR-94;Build 19
+ ;;2.0;INTEGRATED BILLING;**82,184,246,416,506,528,668,737,822**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -18,12 +18,15 @@ ACCEPT(IBBUFDA,IBINSDA,IBGRPDA,IBPOLDA) ; process a buffer entry for acceptance 
  ;    7) buffer ins/group/policy data deleted
  ;    8) buffer entry status updated
  ;
- N DFN,IBX,IBELIG,IBHELP,IBNEWINS,IBNEWGRP,IBNEWPOL,IBNEWSUB,IBMVINS,IBMVGRP,IBMVPOL,IBMVSUB,IBACCPT,IBVAL
+ ;IB*822/CKB - added ASKEB and IBE1
+ N ASKEB,DFN,IBX,IBELIG,IBE1,IBHELP,IBNEWINS,IBNEWGRP,IBNEWPOL,IBNEWSUB,IBMVINS,IBMVGRP,IBMVPOL,IBMVSUB,IBACCPT,IBVAL
  N DIR,X,Y,DIRUT,IBDONE,IBQ,IBYR,IBDA,IBEAB,IBXREF,IBO,IBISEL,IBERR,IBOUT,IBASAV,IBCSAV,IBIEN,IBRIEN,IBSIEN,IBFNAM,IBHOLD,IBXHOLD,IBSEL,IBSOURCE,IBIIU
  N DIERR
  S (IBDONE,IBIEN)=0
  K ^TMP($J,"IB BUFFER SELECTED")  ; initialize selection file
- S IBINSDA=+$G(IBINSDA),IBGRPDA=+$G(IBGRPDA),IBPOLDA=+$G(IBPOLDA),(IBNEWINS,IBNEWGRP,IBNEWPOL,IBNEWSUB,IBMVINS,IBMVGRP,IBMVPOL,IBMVSUB,IBOUT,IBASAV,IBCSAV)=0
+ ;IB*822/CKB - broke line into 2 lines and added ASKEB and IBE1
+ S IBINSDA=+$G(IBINSDA),IBGRPDA=+$G(IBGRPDA),IBPOLDA=+$G(IBPOLDA)
+ S (ASKEB,IBE1,IBELIG,IBNEWINS,IBNEWGRP,IBNEWPOL,IBNEWSUB,IBMVINS,IBMVGRP,IBMVPOL,IBMVSUB,IBOUT,IBASAV,IBCSAV)=0
  S DFN=+$G(^IBA(355.33,+$G(IBBUFDA),60)) I 'DFN G ACCPTQ
  I +IBINSDA,+IBGRPDA,'IBPOLDA S IBPOLDA=$$PTGRP^IBCNBU1(DFN,IBINSDA,IBGRPDA) ; patient already member of plan
  ;
@@ -95,9 +98,22 @@ ACSUB ; -- Subscriber screens
  . ;
  . I +IBMVSUB=4 D SUB^IBCNBAC(1,IBFNAM,.IBHOLD,.IBXHOLD) ; Ind. Accept-Skip Blanks
  ;
-ACEB ;
+ACEB ; -- Eligibility Benefits
  W @IOF
- D ELIG^IBCNBCD(IBBUFDA,IBPOLDA) S IBELIG=$$REPL() I $D(DIRUT) G ACCPTQ
+ ;IB*822/CKB - Only ask if EB data exists
+ N RESPIEN
+ D ELIG^IBCNBCD(IBBUFDA,IBPOLDA)
+ ; Get the last response, determine if it contains EB data
+ S RESPIEN=$O(^IBCN(365,"AF",IBBUFDA,""),-1)
+ I RESPIEN I $O(^IBCN(365,RESPIEN,2,""))'="" S ASKEB=1
+ I ASKEB S IBELIG=$$REPL() I $D(DIRUT) G ACCPTQ
+ ;
+ACE1 ; -- E1 payer response  ;IB*822/CKB 
+ W @IOF
+ N BPSRIEN
+ ; Only ask if E1 data exists
+ S BPSRIEN=$$GET1^DIQ(355.33,IBBUFDA,.17,"I") ;pointer to the E1 BPS RESPONSE entry
+ I BPSRIEN I $D(^BPSR(BPSRIEN)) S IBE1=$$REPLE1() I $D(DIRUT) G ACCPTQ
  ;
 CHECK ; display changes that will be made and ask user for confirmation
  W @IOF
@@ -141,9 +157,18 @@ CHECK ; display changes that will be made and ask user for confirmation
  ;
  ; AWC/ Moved Eligibility/Benefits to Step 7
  S IBX="The Buffer data will"_$S(IBELIG:"",1:" not")_" replace the existing EB data."
+ ;IB*822/CKB - if there was NO data 
+ I +ASKEB=0 S IBX="N/A - No Eligibility/Benefits data"
  W !!,$G(IORVON)_"STEP 7: Eligibility/Benefits"_$J("",52)_$G(IORVOFF) W !,IBX
  ;
- I +IBINSDA,$P(IBMVINS,U,1)=0,+IBGRPDA,$P(IBMVGRP,U,1)=0,+IBPOLDA,$P(IBMVPOL,U,1)=0,$P(IBMVSUB,U,1)=0,+IBELIG=0 W !!!,"This would result in No Change to the existing Insurance data.  Process aborted." D WAIT G ACCPTQ
+ ;IB*822/CKB - added Moved E1 Pharmacy Eligibility to Step 8
+ S IBX="The Buffer data will"_$S(IBE1:"",1:" not")_" replace the existing E1 Pharmacy Eligibility data."
+ ;IB*822/CKB - if there was NO data
+ I +BPSRIEN=0 S IBX="N/A - No E1 Pharmacy Eligibility data"
+ W !!,$G(IORVON)_"STEP 8: E1 Pharmacy Eligibility"_$J("",49)_$G(IORVOFF) W !,IBX
+ ;
+ ;IB*822/CKB - added check for IBE1 (E1 transactions)
+ I +IBINSDA,$P(IBMVINS,U,1)=0,+IBGRPDA,$P(IBMVGRP,U,1)=0,+IBPOLDA,$P(IBMVPOL,U,1)=0,$P(IBMVSUB,U,1)=0,+IBELIG=0,+IBE1=0 W !!!,"This would result in No Change to the existing Insurance data.  Process aborted." D WAIT G ACCPTQ
  ;
  I '$$OK G ACCPTQ
  ;
@@ -240,6 +265,14 @@ REPL() ; ask user if they want to replace eligibility/benefits data in pt. insua
  S IBX=0
  S DIR(0)="YO",DIR("A")="Replace the Pt's Eligibility/Benefits data",DIR("B")="YES"
  S DIR("?")="Enter Yes to replace existing Eligibility/Benefits data with one from eIV response."
+ W ! D ^DIR I +Y=1 S IBX=1
+ Q IBX
+ ;
+REPLE1() ;IB*822/ckb - ask user if they want to replace E1 Pharmacy eligibility data in pt. insurance
+ N DIR,X,Y,IBX
+ S IBX=0
+ S DIR(0)="YO",DIR("A")="Do you want to accept the E1 Pharmacy Eligibility data",DIR("B")="YES"
+ S DIR("?")="Enter Yes to replace existing E1 Pharmacy Eligibility data with one from the E1 response."
  W ! D ^DIR I +Y=1 S IBX=1
  Q IBX
  ;

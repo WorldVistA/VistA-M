@@ -1,5 +1,5 @@
 IBTOBI1 ;ALB/AAS - CLAIMS TRACKING BILLING INFORMATION PRINT ;27-OCT-93
- ;;2.0;INTEGRATED BILLING;**276,377,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**276,377,516,796**;21-MAR-94;Build 34
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 % ;
@@ -63,10 +63,10 @@ BI1 W !,"  Billing Information "
  ;
  I $P(IBTRND,U,19) D
  . S IBLN=IBLN+1,IBD(IBLN,1)="Reason Not Billable: "_$$EXPAND^IBTRE(356,.19,$P(IBTRND,U,19))
- . S IBLN=IBLN+1,IBD(IBLN,1)="Additional Comment: "_$P(IBTRND1,U,8)
+ . S IBLN=IBLN+1,IBD(IBLN,1)="Additional Comment: "_$$ADDCOM(IBTRN)
  . Q
  ;
- I '$P(IBTRND,U,19),$L($P(IBTRND1,U,8))>0 S IBLN=IBLN+1,IBD(IBLN,1)="Additional Comment: "_$P(IBTRND1,U,8)
+ I '$P(IBTRND,U,19),$L($P(IBTRND1,U,8))>0 S IBLN=IBLN+1,IBD(IBLN,1)="Additional Comment: "_$$ADDCOM(IBTRN)
  ;
  S IBD(1,2)="Estimated Recv (Pri): $ "_$J($P(IBTRND,"^",21),8)
  S IBD(2,2)="Estimated Recv (Sec): $ "_$J($P(IBTRND,"^",22),8)
@@ -101,3 +101,11 @@ COMM(DA) ; -- print comments from GROUP plans.
  D ^DIWW
  K ^UTILITY($J,"W")
  Q
+ ;
+ADDCOM(IBTRN) ; -- Get the most recently created Additional Comment File 356 Field 4 - IB,796
+ ;Return is limited to 60 characters - the label is 20
+ N CMTIEN,COMMENT
+ S COMMENT=""
+ S CMTIEN=$O(^IBT(356,IBTRN,4,"A"),-1)
+ I +CMTIEN S COMMENT=$$GET1^DIQ(356.04,(CMTIEN_","_IBTRN_","),1)
+ Q $E(COMMENT,1,60)

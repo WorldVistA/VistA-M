@@ -1,5 +1,5 @@
-SRONIN ;BIR/MAM,ADM - NURSE INTRAOPERATIVE REPORT ;10/24/2011
- ;;3.0;Surgery;**68,50,100,129,134,153,157,175,176,182,184,200,205**;24 Jun 93;Build 12
+SRONIN ;BIR/MAM,ADM - NURSE INTRAOPERATIVE REPORT ; October 24, 2011
+ ;;3.0;Surgery;**68,50,100,129,134,153,157,175,176,182,184,200,205,218**;24 Jun 93;Build 2
  ;** NOTICE: This routine is part of an implementation of a nationally
  ;**         controlled procedure. Local modifications to this routine
  ;**         are prohibited.
@@ -92,7 +92,7 @@ EDIT ; edit report data fields
  D EN2^SROVAR,^SRCUSS S DTIME=SRDTIME K Q3("VIEW")
  ;;**SR*3.0*205 
  ;pause added to allow for system writes to take effect
- I $G(DIE)="^SRF(" W @IOF,!,"Processing for last edits..." H 2 W @IOF
+ I $G(DR(1,130))'=""!($L($G(DIC))>5) W @IOF,!,"Processing for last edits..." H 2 W @IOF
  D WSXR^SRTOVRF(SRTN)
  I '$P(^SRF(SRTN,0),"^",20) D ^SROPCE1
  I $D(SRODR) D ^SROCON1

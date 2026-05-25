@@ -1,5 +1,5 @@
-SDES2PATDATA ;ALB/LAB,RRM,TJB,TJB - VISTA Patient data  version 2; JAN 23, 2024
- ;;5.3;Scheduling;**867,869**;Aug 13, 1993;Build 13
+SDES2PATDATA ;ALB/LAB,RRM,TJB,TJB,MCB - VISTA Patient data  version 2; DEC 11, 2025
+ ;;5.3;Scheduling;**867,869,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  Q
@@ -16,7 +16,7 @@ SDES2PATDATA ;ALB/LAB,RRM,TJB,TJB - VISTA Patient data  version 2; JAN 23, 2024
  ;
  ; This routine should only be used for retrieving data from the Patient file.
  Q
-PATIENTADDON(RETURN,DFN,SDDUZ) ;
+PATIENTADDON(RETURN,DFN) ;
  ;Returns a basic set of data for a specific appointment
  ;
  ; Input
@@ -42,8 +42,7 @@ PATIENTADDON(RETURN,DFN,SDDUZ) ;
  D NEEDVERIFY^SDESPATRPC(.FLAG,DFN,180,90)
  S RETURN("NeedInsuranceVerification")=FLAG
  ; sensitive record
- D SENSITIVE^SDES2UTIL(.SENSITIVE,DFN,SDDUZ)
- ;D PTSEC^DGSEC4(.SENSRET,DFN)
+ D SENSITIVE^SDES2UTIL(.SENSITIVE,DFN,DUZ)
  S RETURN("SensitiveRecord")=$G(SENSITIVE(1))
  ; registration
  I $D(^DGS(41.41,"B",DFN)) D 

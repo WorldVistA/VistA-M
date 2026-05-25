@@ -1,5 +1,5 @@
-RAPCE ;HIRMFO/GJC - Interface with PCE APIs for wrkload, visits ; Apr 28, 2022@08:42:59
- ;;5.0;Radiology/Nuclear Medicine;**10,17,21,26,41,57,56,153,172,174,189**;Mar 16, 1998;Build 1
+RAPCE ;HIRMFO/GJC - Interface with PCE APIs for wrkload, visits ; Mar 28, 2025@11:46:40
+ ;;5.0;Radiology/Nuclear Medicine;**10,17,21,26,41,57,56,153,172,174,189,217,225**;Mar 16, 1998;Build 1
  ;Supported IA #2053 FILE^DIE
  ;Supported IA #4663 SWSTAT^IBBAPI
  ;Controlled IA #1889 DATA2PCE^PXAPI
@@ -87,10 +87,13 @@ ENC(X) ; Set up the '"RAPXAPI",$J,"ENCOUNTER"' nodes
 PCE(RADFN,RADTI,RACNI) ; Pass on the information to the PCE software
  N RASULT
  ; If the PFSS switch is not active then do not pass RACCOUNT parameter to DATA2PCE call.
- I 'RAPFSW S RASULT=$$DATA2PCE^PXAPI("^TMP(""RAPXAPI"",$J)",RAPKG,"RAD/NUC MED",.RAVSIT,"","","","",.@RAEARRY)
+ I 'RAPFSW D 
+ . I $D(ZTQUEUED),$G(RACNI)>1 H RACNI ;p225 - Hang on call to PCE to address duplicate encounters
+ . S RASULT=$$DATA2PCE^PXAPI("^TMP(""RAPXAPI"",$J)",RAPKG,"RAD/NUC MED",.RAVSIT,"","","","",.@RAEARRY)
  ; If the PFSS switch is active then use RACCOUNT parameter in DATA2PCE call.
  I RAPFSW D
  . ; PFSS Requirement 6, 11
+ . I $D(ZTQUEUED),$G(RACNI)>1 H RACNI ;p225 - Hang on call to PCE to address duplicate encounters
  . S RASULT=$$DATA2PCE^PXAPI("^TMP(""RAPXAPI"",$J)",RAPKG,"RAD/NUC MED",.RAVSIT,"","","","",.@RAEARRY,.RACCOUNT)
  . Q
  ;KLM/p172 - PX211 adds new result values that create visits.  We'll check for visit IEN instead.
@@ -111,7 +114,7 @@ PCE(RADFN,RADTI,RACNI) ; Pass on the information to the PCE software
  .. Q
  . Q
  Q
-MULCS(RADFN,RADTI) ; Update the 'Credit recorded' field and the Visit 
+MULCS(RADFN,RADTI) ; Update the 'Credit recorded' field and the Visit
  ;pointer for each case that is complete
  N RACNI S RACNI=0
  F  S RACNI=$O(^RADPT(RADFN,"DT",RADTI,"P",RACNI)) Q:RACNI'>0  D
@@ -121,8 +124,8 @@ MULCS(RADFN,RADTI) ; Update the 'Credit recorded' field and the Visit
  . Q
  Q
 PROC(X) ; Set up the other '"RAPXAPI",$J,"PROCEDURE"' nodes for this case
- ; If same procedure repeated in exam set, add to qty of existing 
- ; 'procedure' node.   Else, if different provider, create new 
+ ; If same procedure repeated in exam set, add to qty of existing
+ ; 'procedure' node.   Else, if different provider, create new
  ; separate 'procedure' nodes
  N X1,X2,X3,RADUP F X1=1:1:X S X2=$G(^TMP("RAPXAPI",$J,"PROCEDURE",X1,"PROCEDURE")) I X2=$P(RA71,"^",9),^("ENC PROVIDER")=$S(RA7003(15)]"":RA7003(15),1:RA7003(12)) D  Q
  . S ^TMP("RAPXAPI",$J,"PROCEDURE",X1,"QTY")=^("QTY")+1
@@ -136,6 +139,7 @@ PROC(X) ; Set up the other '"RAPXAPI",$J,"PROCEDURE"' nodes for this case
  S ^TMP("RAPXAPI",$J,"PROCEDURE",X,"ENC PROVIDER")=$S(RA7003(15)]"":RA7003(15),1:RA7003(12)) ; Pri. Int Staff if exists, else Pri Int Resident
  S ^TMP("RAPXAPI",$J,"PROCEDURE",X,"ORD PROVIDER")=RA7003(14) ; Requesting Physician.
  S ^TMP("RAPXAPI",$J,"PROCEDURE",X,"EVENT D/T")=$$FMADD^XLFDT(RADTE,0,0,0,RACNI) ;For unique entry in V CPT post PX*1.0*211
+ S ^TMP("RAPXAPI",$J,"PROCEDURE",X,"ADD")=1 ;p217/KLM - PCE patch 214 adds the ADD node to force duplicate CPT entries.
  ;KLM/p172 - Pass the radiologist as 'Primary' for the encounter.
  S ^TMP("RAPXAPI",$J,"PROVIDER",X,"NAME")=$S(RA7003(15)]"":RA7003(15),1:RA7003(12)) ; Pri. Int Staff if exists, else Pri Int Resident
  S ^TMP("RAPXAPI",$J,"PROVIDER",X,"PRIMARY")=X

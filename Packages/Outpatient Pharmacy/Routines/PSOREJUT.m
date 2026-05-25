@@ -1,5 +1,5 @@
 PSOREJUT ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427,448,478,528,544,562,702**;DEC 1997;Build 14
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427,448,478,528,544,562,702,748**;DEC 1997;Build 14
  ; Reference to $$IEN59^BPSOSRX in ICR #4412
  ; Reference to DUR1^BPSNCPD3 in ICR #4560
  ; Reference to $$ADDCOMM^BPSBUTL in ICR #4719
@@ -182,6 +182,12 @@ CLOSE(RX,RFL,REJ,USR,REA,COM,COD1,COD2,COD3,CLA,PA,IGNR) ; - Mark a DUR/REFILL T
  ; If not SMA, fall through to here and enter one comment
  ; If IGNR flag is set, add that to the comment string before sending
  S X=$$ADDCOMM^BPSBUTL(RX,RFL,$S($G(IGNR):"IGNORED - ",1:"")_COM)
+ ;
+ ; If the reason the reject is being closed is 6 (IGNORED - NO RESUBMISSION) and the ignore is
+ ; a result of the pharmacist selecting the IGN action, call ^PSOACR to determine if the 
+ ; claim should automatically be closed.
+ I (REA=6)&($G(IGNR)) H 1 D EN^PSOACR(RX,RFL,REJ)
+ ;
  Q
  ;
 FIND(RX,RFL,REJDATA,CODE,BESC,RRRFLG) ; - Returns whether a Rx/fill contains UNRESOLVED rejects

@@ -1,13 +1,10 @@
-MAGDSTA9 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Jul 06, 2021@08:12:09
- ;;3.0;IMAGING;**231,306**;MAR 19, 2002;Build 1
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTA9 ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Aug 12, 2025@09:44:38
+ ;;3.0;IMAGING;**231,306,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -36,15 +33,16 @@ VERIFY ; get the parameters for this run
  Q
  ;
 DISPLAY ; get and display the parameters
- N BATCHSIZE,BEGDATE,DFN,DILOCKTM,DISYS,DOB,ENDDATE,HOURS,IMAGINGSERVICE
- N NAME,OPTION,QRSCP,SCANMODE,SERVICE,SORTORDER,SSN
+ N BATCHSIZE,BEGDATE,CONSULTSERVICES,DFN,DILOCKTM,DISYS,DOB,ENDDATE,HOURS
+ N IMAGINGSERVICE,NAME,OPTION,QRSCP,SCANMODE,SERVICE,SORTORDER,SSN
  ;
  N ACNUMB,STATUS,STUDYDATE,STUDYIEN ; not set
  ;
  S IMAGINGSERVICE=^TMP("MAG",$J,"BATCH Q/R","IMAGING SERVICE")
+ M CONSULTSERVICES=^TMP("MAG",$J,"BATCH Q/R","CONSULT SERVICES") ; P333 PMK 08/12/2025
  S QRSCP=^TMP("MAG",$J,"BATCH Q/R","PACS Q/R RETRIEVE SCP")
  S OPTION=^TMP("MAG",$J,"BATCH Q/R","OPTION")
- S SORTORDER=^TMP("MAG",$J,"BATCH Q/R","SORT ORDER")
+ S SORTORDER=$G(^TMP("MAG",$J,"BATCH Q/R","SORT ORDER")) ; P333 PMK 08/12/2025
  S BEGDATE=$G(^TMP("MAG",$J,"BATCH Q/R","BEGIN DATE"))
  S ENDDATE=$G(^TMP("MAG",$J,"BATCH Q/R","END DATE"))
  S BATCHSIZE=$G(^TMP("MAG",$J,"BATCH Q/R","BATCH SIZE"))
@@ -128,6 +126,10 @@ DISPLAY1 ; just display the parameters - called by ^MAGDSTA1
  . Q
  I $D(STUDYIEN) D
  . W !,$$J("Last Report Number"),STUDYIEN
+ . Q
+ I $D(OUTPUTREPORT) D  ; P333 PMK 11/03/2022
+ . W !,$$J("Report Date"),$P(OUTPUTREPORT,"^",1)
+ . W !,$$J("Report #"),$P(OUTPUTREPORT,"^",2)
  . Q
  Q
  ;

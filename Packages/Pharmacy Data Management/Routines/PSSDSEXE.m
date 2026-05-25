@@ -1,5 +1,5 @@
-PSSDSEXE ;BIR/CMF-Exceptions for Dose call Continuation ;02/24/09
- ;;1.0;PHARMACY DATA MANAGEMENT;**178,206,224**;9/30/97;Build 3
+PSSDSEXE ;BIR/CMF - Exceptions for Dose call Continuation ; Feb 24, 2009@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**178,206,224,254**;9/30/97;Build 109
  ;
  ;Called from PSSDSEXD, this routine takes the results from the call to First DataBank and creates displayable TMP
  ;globals for the calling applications. Typically, PSSDBASA indicates a CPRS call, and PSSDBASB indicates a pharmacy call
@@ -28,6 +28,7 @@ TWEAK2 ;; loop through exception then error globals, look for OR related tweaks
  F  S PSSDWLP=$O(^TMP($J,PSSDBASF,"OUT","DOSE","ERROR",PSSDWLP)) Q:PSSDWLP=""  D 
  .Q:$$TWEAK28(PSSDWLP)
  .Q:$$TWEAK29(PSSDWLP)
+ .Q:$$TWEAK28A^PSSDSEXF(PSSDWLP)   ;254
  D TWEAK200^PSSDSEXF
  Q
  ;;
@@ -173,7 +174,8 @@ TWEAK26(NODE) ;; change CPRS message on Free Text Infusion Rate could not be eva
  S REASON=$$UP^XLFSTR($P(^TMP($J,PSSDBASE,"OUT","EXCEPTIONS","DOSE",PSSDWEX2,PSSDWE2),U,10))
  D:REASON="FREE TEXT INFUSION RATE COULD NOT BE EVALUATED"
  .S DRUGNAME=$P(PSSDBCAR(PSSDWEX2),U,2)
- .S MESSAGE=$$CHECKMSG^PSSDSEXD(PSSDWEX2)_$$MSGEND(PSSDWEX2,DRUGNAME) ;" could not be done for Drug: "_DRUGNAME_", please complete a manual check for appropriate Dosing."
+ .;" could not be done for Drug: "_DRUGNAME_", please complete a manual check for appropriate Dosing."
+ .S MESSAGE=$$CHECKMSG^PSSDSEXD(PSSDWEX2)_$$MSGEND(PSSDWEX2,DRUGNAME)
  .S REASON=""
  .S $P(^(PSSDWE2),U,7)=MESSAGE
  .S $P(^(PSSDWE2),U,10)=REASON
@@ -183,6 +185,7 @@ TWEAK26(NODE) ;; change CPRS message on Free Text Infusion Rate could not be eva
  .D:PSSDBASB 
  ..S ^TMP($J,PSSDBASG,"OUT",PSSDWEX2,"EXCEPTIONS",1)=MESSAGE
  ..S ^TMP($J,PSSDBASG,"OUT",PSSDWEX2,"EXCEPTIONS",2)=REASON
+ .I PSSDBASA D TWEAK26A^PSSDSEXF  ;254
  .S $P(PSSDBCAR(PSSDWEX2),U,27)=1
  .S FLAG=1
  Q FLAG

@@ -1,5 +1,5 @@
 PSODRDUP ;BIR/SAB - Dup drug class checker ;4/30/09 12:32pm
- ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,39,56,130,132,192,207,222,243,305,324**;DEC 1997;Build 6
+ ;;7.0;OUTPATIENT PHARMACY;**11,23,27,32,39,56,130,132,192,207,222,243,305,324,768**;DEC 1997;Build 12
  ;
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
  S $P(PSONULN,"-",79)="-",(STA,DNM)="" K CLS
@@ -62,7 +62,7 @@ ULRX ;
  Q
  ;
 PRSTAT(DA) ;Displays the prescription's status
- N PSOTRANS,PSOREL,CMOP,RXPSTA,PSOX,RFLZRO,PSOLRD,PSORTS
+ N PSOTRANS,PSOREL,CMOP,RXPSTA,PSOX,RFLZRO,PSOLRD,PSORTS,PSORFL,PSOMW
  S RXPSTA="Processing Status: ",PSOLRD=$P($G(^PSRX(RXREC,2)),"^",13)
  D ^PSOCMOPA I $G(PSOCMOP)]"" D  K CMOP,PSOTRANS,PSOREL
  .S PSOTRANS=$E($P(PSOCMOP,"^",2),4,5)_"/"_$E($P(PSOCMOP,"^",2),6,7)_"/"_$E($P(PSOCMOP,"^",2),2,3)
@@ -74,10 +74,16 @@ PRSTAT(DA) ;Displays the prescription's status
  ..W:$$TRANCMOP^PSOUTL(RXREC) ?5,IORVON_IOINHI
  .W ?5,RXPSTA_$S($P(PSOCMOP,"^")=0!($P(PSOCMOP,"^")=2):"Transmitted to CMOP on "_PSOTRANS,$P(PSOCMOP,"^")=1:"Released by CMOP on "_PSOREL,1:"Not Dispensed"),IOINORM_IORVOFF
  I $G(PSOCMOP)']"" D
+ .S PSORFL=0
  .F PSOX=0:0 S PSOX=$O(^PSRX(RXREC,1,PSOX)) Q:'PSOX  D
+ ..S PSORFL=PSOX ;PSO*7*768
  ..S RFLZRO=$G(^PSRX(RXREC,1,PSOX,0))
  ..S:$P(RFLZRO,"^",18)'="" PSOLRD=$P(RFLZRO,"^",18) I $P(RFLZRO,"^",16) S PSOLRD=PSOLRD_"^R",PSORTS=$P(RFLZRO,"^",16)
  .I '$O(^PSRX(RXREC,1,0)),$P(^PSRX(RXREC,2),"^",15) S PSOLRD=PSOLRD_"^R",PSORTS=$P(^PSRX(RXREC,2),"^",15)
  .W !,$J(RXPSTA,24) I +$G(PSORTS) W "Returned to stock on "_$$FMTE^XLFDT(PSORTS,2) Q
- .W $S(PSOLRD="":"Not released locally",1:"Released locally on "_$$FMTE^XLFDT($P(PSOLRD,"^"),2)_" "_$P(PSOLRD,"^",2))_$S($P(^PSRX(RXREC,0),"^",11)="W":" (Window)",1:" (Mail)")
+ .;PSO*7*768 
+ .S PSOMW=""
+ .I PSORFL S PSOMW=$S($P(^PSRX(RXREC,1,PSORFL,0),"^",2)="W":" (Window)",1:" (Mail)")
+ .I PSOMW="" S PSOMW=$S($P(^PSRX(RXREC,0),"^",11)="W":" (Window)",1:" (Mail)")
+ .W $S(PSOLRD="":"Not released locally",1:"Released locally on "_$$FMTE^XLFDT($P(PSOLRD,"^"),2)_" "_$P(PSOLRD,"^",2))_PSOMW
  Q

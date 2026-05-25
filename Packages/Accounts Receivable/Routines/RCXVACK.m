@@ -1,5 +1,6 @@
 RCXVACK ;DAOU/ALA-AR Data Extraction HL7 Query/ACK ;28-JUL-03
- ;;4.5;Accounts Receivable;**201**;Mar 20, 1995
+ ;;4.5;Accounts Receivable;**201,447**;Mar 20, 1995;Build 4
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;** Program Description **
  ;  This program will handle an acknowledgment message
@@ -7,6 +8,7 @@ RCXVACK ;DAOU/ALA-AR Data Extraction HL7 Query/ACK ;28-JUL-03
  ;  Center
  ;
 EN ;  Entry point
+ Q  ; PRCA*4.5*447 Extract has been sunsetted
  ;
  ;  Load the HL7 message into temporary global
  K ^TMP($J,"RCXVACK")

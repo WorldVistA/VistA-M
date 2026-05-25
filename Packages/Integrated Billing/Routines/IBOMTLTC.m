@@ -1,5 +1,5 @@
 IBOMTLTC ;OAKOIFO/ELZ-MT/LTC COPAY REMOTE QUERY ;20-AUG-2002
- ;;2.0;INTEGRATED BILLING;**188**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**188,746**;21-MAR-94;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 QUERY ; main entry point for user to request a query of mt and ltc copay info
@@ -71,6 +71,7 @@ DQ ; tasked entry point
  K ^TMP("IBOMTLTC",$J) D KVAR^VADPT
  S:$D(ZTQUEUED) ZTREQ="@"
  ;
+ D KVAR^VADPT ;IB*2.0*746 
  Q
  ;
 PAUSE(IBNEW) ;
@@ -82,7 +83,7 @@ PAUSE(IBNEW) ;
  I IBP,$E(IOST,1,2)="C-" S DIR(0)="E" D ^DIR I $D(DIRUT) S IBQ=1 Q
  S IBP=IBP+1
  W @IOF,!,"MT and LTC Copay Information ",$$FMTE^XLFDT(IBBDT)," to ",$$FMTE^XLFDT(IBEDT),?IOM-15,"Page: ",IBP
- W !,"Patient:  ",VADM(1)," (",$P(VADM(2),"-",3),")  For Site:  ",$P(IBS(0),"^")," (",$P(IBS(0),"^",2),")",!
+ W !,"Patient:  ",VADM(1)," (DOB ",$P(VADM(3),U,2),")  For Site:  ",$P(IBS(0),"^")," (",$P(IBS(0),"^",2),")",! ;IB*2.0*746
  F X=1:1:IOM W "-"
  Q
  ;

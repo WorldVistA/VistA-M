@@ -1,5 +1,5 @@
-PSSHRVAL ;WOIFO/Alex Vasquez,Timothy Sabat,Steve Gordon - Data Validation routine for drug checks ;01/15/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,160,178**;9/30/97;Build 14
+PSSHRVAL ;WOIFO/AV,TS,SG - Data Validation routine for drug checks ; Jan 15, 2007@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,160,178,254**;9/30/97;Build 109
  ;
  ;
  ;@NOTE: The exception node looks like this.
@@ -155,7 +155,7 @@ CHECKDOS(PSS,PSSHASH) ;
  N DOSEVALUE,DOSE,DOSEUNIT,DOSERATE,FREQ,DURATION,DURRATE,ROUTE,DOSETYPE,DRUGNM,MESSAGE,PSSNOAGE
  DO:$DATA(^TMP($JOB,PSSHASH("Base"),"IN","DOSE",PSS("PharmOrderNum")))
   .;if prospective killed off then GCN bad-no need to go any further
-  .I '$DATA(^TMP($JOB,PSSHASH("Base"),"IN","PROSPECTIVE",PSS("PharmOrderNum"))) Q
+  . I '$DATA(^TMP($JOB,PSSHASH("Base"),"IN","PROSPECTIVE",PSS("PharmOrderNum"))) Q
   . SET PSS("DoseValue")=^TMP($JOB,PSSHASH("Base"),"IN","DOSE",PSS("PharmOrderNum"))
   . SET PSS("Package")=""
   . SET PSS("ReasonSource")=$$GETUCI^PSSHRVL1()
@@ -314,7 +314,7 @@ CHECKGCN(PSS,PSSHASH) ;
   . SET DRUGNM=$P(PSS("DrugValue"),"^",4)
   . S BADGCN=0
   . S:$PIECE(PSS("DrugValue"),"^",1)'?1.N BADGCN=-1
-  . SET MESSAGE=$$GCNREASN^PSSHRVL1(DRUGIEN,DRUGNM,PSS("PharmOrderNum"),BADGCN)
+  . SET MESSAGE=$S('$D(^TMP($J,"SAVE","IN","GCNMSG")):$$GCNREASN^PSSHRVL1(DRUGIEN,DRUGNM,PSS("PharmOrderNum"),BADGCN),1:"")
   . I $L(MESSAGE) SET REASON=$P(MESSAGE,U,2,3),MESSAGE=$P(MESSAGE,U)
   . SET PSS("Counter")=$$NEXTGCN(.PSS,.PSSHASH)
   . SET PSS("I")="^" ;Gcn

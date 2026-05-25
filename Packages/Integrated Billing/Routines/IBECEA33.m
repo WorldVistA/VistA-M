@@ -1,21 +1,44 @@
 IBECEA33 ;ALB/CPM-Cancel/Edit/Add... More Add Utilities ; 23-APR-93
- ;;2.0;INTEGRATED BILLING;**57,52,132,153,167,176,188,618,646,656,677,682,704**;21-MAR-94;Build 49
+ ;;2.0;INTEGRATED BILLING;**57,52,132,153,167,176,188,618,646,656,677,682,704,769**;21-MAR-94;Build 42
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NOCL ; Find the correct clock from the 'bill from' date.
- N IBFLAG,IBECDT,IBECENDT,IBECIEN,IBFLAG1,IBECLDT,IBQRY,IBCLQRY
+ N IBFLAG,IBECDT,IBECENDT,IBECIEN,IBFLAG1,IBECLDT,IBQRY,IBCLQRY,IBECDT1,IBERRMSG,IBQUIT,IBECSTDT,IBECCLDT,IBOVERLAP
+ I (IBCLDA&(IBFR>=IBCLDT)),'$$ICN^IBARXMU(DFN) Q  ;IB*2.0*769 - Exit if no ICN and active click found
  ;IB*704 - Run query for Inpatient Copays when no Queried Billing Clock found
  S IBFLAG=0,IBECDT=-(IBFR)_".9999" F  S IBECDT=$O(^IBE(351,"AIVDT",DFN,IBECDT)) Q:'IBECDT  Q:IBFLAG  S IBECIEN=$O(^IBE(351,"AIVDT",DFN,IBECDT,";"),-1) I IBECIEN D
  .Q:$$GET1^DIQ(351,IBECIEN_",",.04,"I")=3  S IBECENDT=$$GET1^DIQ(351,IBECIEN_",",.1,"I"),IBECENDT=$S(IBECENDT:IBECENDT,1:DT) I IBECENDT>IBFR S IBFLAG=1,IBQRY=$P(^IBE(351,IBECIEN,1),U,5) Q
- I 'IBFLAG,IBXA<4,$$ICN^IBARXMU(DFN) D CCBILL^IBECECQ1(DFN,IBFR) W !!,"No local clock found for service date.",!,"Running Billing Clock Query, please wait."
- I IBFLAG,IBXA<4,'$G(IBQRY),$$ICN^IBARXMU(DFN) S IBFLAG="" D CCBILL^IBECECQ1(DFN,IBFR) W !!,"Billing Clock query required for local clock.",!,"Running Billing Clock Query, please wait." S IBCLQRY=1
- I 'IBFLAG,IBXA<4,$$ICN^IBARXMU(DFN) S IBFLAG1=0,IBECDT1=-(IBFR)_".9999" S IBTRYTIL=$$FMADD^XLFDT($$NOW^XLFDT,,,1) F  Q:$$NOW^XLFDT>IBTRYTIL  Q:IBFLAG1  D
- .H 2 W "." S IBECDT=$O(^IBE(351,"AIVDT",DFN,IBECDT1)) Q:'IBECDT  S IBECIEN=$O(^IBE(351,"AIVDT",DFN,IBECDT,";"),-1) Q:'IBECIEN  D
- ..S IBECLDT=$$GET1^DIQ(351,IBECIEN_",",.04,"I") Q:IBECLDT=3  D
- ...S IBECSTDT=$$GET1^DIQ(351,IBECIEN_",",.03,"I"),IBECENDT=$$GET1^DIQ(351,IBECIEN_",",.1,"I"),IBECENDT=$S(IBECENDT:IBECENDT,IBECLDT=2:($$FMADD^XLFDT(IBECSTDT,365)),1:DT) D
- ....I (IBECENDT>IBFR),$P($$GET1^DIQ(351,IBECIEN_",",14,"I"),".")=DT,$P(^IBE(351,IBECIEN,1),U,5) S IBFLAG1=1 Q
- I $G(IBFLAG1)!($G(IBCLQRY)) S IBY=IBECIEN,IBCLDA=IBY I IBECENDT>=DT D CLDATA^IBAUTL3 D  Q
- .W !!,"  ** Active Billing Clock **   # Inpt Days: ",IBCLDAY,"    ",$$INPT^IBECEAU(IBCLDAY)," 90 days: $",+IBCLDOL,!
+ I 'IBFLAG,IBXA<4,$$ICN^IBARXMU(DFN) W !!,"No local clock found for service date.",!,"Running Billing Clock Query, please wait." D CCBILL^IBECECQ1(DFN,IBFR) S IBCLQRY=1
+ I IBFLAG,IBXA<4,'$G(IBQRY),$$ICN^IBARXMU(DFN) S IBFLAG="" W !!,"Billing Clock query required for local clock.",!,"Running Billing Clock Query, please wait." D CCBILL^IBECECQ1(DFN,IBFR) S IBCLQRY=1
+ I IBFLAG,IBXA<4,$G(IBQRY),$$ICN^IBARXMU(DFN),$$GET1^DIQ(351,IBXA,18,"I") S IBFLAG="" D
+ .W !!,"**********************************WARNING**********************************"
+ .W !,"The local billing clock is out of sync with other facilities.",!,"Please sync billing clock information before creating a copayment to ensure",!,"copayment billing accuracy."
+ .S DIR(0)="Y",DIR("A")="Do you still want to add a charge"
+ .S DIR("?")="Enter 'Y' to continue to add the charge, or 'N' or '^' to quit",DIC("B")="No"
+ .D ^DIR S:Y<1 IBY=-1
+ I $G(IBY)=-1 Q
+ I $G(IBFLAG1),$G(IBERRMSG)="",($G(IBCLQRY)) W !!,"Billing clock query successful and clock has been updated if applicable.",!! S IBY=$S($G(IBECDA):IBECDA,1:$G(IBECIEN)),IBCLDA=IBY I IBY D
+ .S IBECCLDT=$$GET1^DIQ(351,IBCLDA_",",.1,"I"),IBECENDT=$S(IBECCLDT:IBECCLDT,1:DT)
+ .S IBECSTDT=$$GET1^DIQ(351,IBCLDA_",",.03,"I")
+ .I $G(IBECENDT)>=DT,($G(IBFR)>=IBECSTDT) D CLDATA^IBAUTL3 D  Q
+ ..W !!,"  ** Active Billing Clock ** "
+ ..W !!?6,"Begin Date: ",$$DAT1^IBOUTL(IBCLDT),"     # Inpt Days: ",IBCLDAY
+ ..W !?5,"Closed Date: ",$$DAT1^IBOUTL(IBECCLDT),"     ",$$INPT^IBECEAU(IBCLDAY)," 90 Days: $",+IBCLDOL
+ ..S IBQUIT=1
+ Q:$G(IBQUIT)  ;Exit if active clock found
+ I $G(IBFLAG1),$G(IBERRMSG)["Query results contain inconsistent versioning" D
+ .W !!! S IBTEXT=IBERRMSG D WRAP^IBECECX1(0,80,.IBTEXT) S IBX=0 F  S IBX=$O(IBTEXT(IBX)) Q:'IBX  W !,IBTEXT(IBX)
+ .W !!,"The local billing clock is out of sync with other facility(s) below.",!
+ .S IBVRNST="" F  S IBVRNST=$O(IBECARY(IBVRNST)) Q:IBVRNST=""  W !,IBVRNST
+ .W !!,"Please sync billing clock information before creating a copayment to ensure",!,"copayment billing accuracy.",!! D
+ ..S DIR(0)="Y",DIR("A")="Do you still want to continue",DIR("B")="No" D ^DIR K DIR I +Y<1 S IBQUIT=1
+ I $G(IBQUIT) S IBY=-1 Q
+ I '$G(IBFLAG1),$G(IBCLQRY) W !!,"Billing Clock Query was not returned from VDIF and clock could not be synced",!,"with other potential clocks.",! D
+ .W !,"Please try again later, and if the problem persists, submit a trouble ticket.",!
+ .S DIR(0)="Y",DIR("A")="Do you still want to continue",DIR("B")="No" D ^DIR K DIR I +Y<1 S IBY=-1 S IBQUIT=1
+ Q:$G(IBQUIT)
+ S:'$G(IBY) IBY=-1 ;IB*2*769 - If no clock found for timeframe, set IBY=-1
+ I $G(IBFLAG1),$G(IBOVERLAP) W !!,"***",IBERRMSG,"***",!! ;IB*2*769 - Overlapping message
  N IBCLST,IBALR S IBALR=0
  I IBCLDA S IBALR=1 W !!,"The Bill From date is prior to the start of the active clock..."
  D CLSTR^IBECEAU1(DFN,IBFR)

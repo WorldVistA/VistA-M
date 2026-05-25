@@ -1,10 +1,12 @@
-DGPTRI0 ;MJK/JS/ADL/TJ,ISF/GJW,HIOFO/FT - PTF TRANSMISSION ;4/9/15 2:57pm
- ;;5.3;Registration;**850,884**;Aug 13, 1993;Build 31
+DGPTRI0 ;MJK/JS/ADL/TJ,ISF/GJW,HIOFO/FT/BA,CMC - PTF TRANSMISSION ;5/14/24 10:03am
+ ;;5.3;Registration;**850,884,1123**;Aug 13, 1993;Build 13
  ;;ADL;Update for CSV Project;;Mar 27, 2003
  ;
  ; ICDXCODE APIs - 5699
  ; SDCO22 APIs - 1579
  ; XLFSTR APIs - 10104
+ ; Reference to ^DIR in ICR #10026
+ ; Reference to GET1^DIQ in ICR #2056
  ;
  ; -- setup control data
  ; ssn
@@ -66,6 +68,8 @@ DGPTRI0 ;MJK/JS/ADL/TJ,ISF/GJW,HIOFO/FT - PTF TRANSMISSION ;4/9/15 2:57pm
  S X=$$EMGRES^DGUTL(+DG0) S $E(Y,96)=$S("^K^"[(U_X_U):X,1:" ")
  ;Country Code - $E(Y,97,99)
  S X=$$GET1^DIQ(779.004,$P(DG11,U,10)_",",.01),Z=1,L=3 D FORMAT S $E(Y,97,99)=DGVALUE
+ ;Treatment For Acute Suicidal Crisis for COMPACT Act EOC data elements | 1/22/24 - decision made to just do ICD-10 branch
+ S X=$P($G(^DGPT(PTF,70)),U,33) S $E(Y,101)=$S(X="":"",X=1:"Y",1:"N")
  ;[RESERVED] - $E(Y,100,112)
  ;[NOT ALLOCATED] - $E(Y,113,384)
  K DGVALUE,DGVALUE0

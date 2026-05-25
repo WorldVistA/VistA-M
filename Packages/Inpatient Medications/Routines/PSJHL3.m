@@ -1,5 +1,5 @@
-PSJHL3 ;BIR/RLW - PHARMACY ORDER SEGMENTS ; 8/19/14 2:08pm
- ;;5.0;INPATIENT MEDICATIONS;**1,11,14,40,42,47,50,56,58,92,101,102,123,110,111,152,134,226,267,260,281,315,406,364,399**;16 DEC 97;Build 64
+PSJHL3 ;BIR/RLW - PHARMACY ORDER SEGMENTS; Aug 28, 2025@17:25
+ ;;5.0;INPATIENT MEDICATIONS;**1,11,14,40,42,47,50,56,58,92,101,102,123,110,111,152,134,226,267,260,281,315,406,364,399,462**;16 DEC 97;Build 2
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Reference to ^PS(50.606 is supported by DBIA# 2174.
@@ -94,8 +94,9 @@ RXE ; pharmacy encoded order segment
  ;
  S FIELD(1)="^"_$$ESC^ORHLESC($P(NODE2,"^"))_"&"_$P(NODE2,"^",5)_$S($G(PSJBCBU):$G(RMSTR),1:"")_"^^"_$$FMTHL7^XLFDT(PSGPLS)_"^"_$$FMTHL7^XLFDT(PSGPLF)_"^"_$P($G(NODEPT2),"^",4)_"^"_$G(PSGST)  ;*315
  S FIELD(21)="^"_$P(NODE2,"^",5)_"^99PSA^^^"
- I ($G(DOSEOR)']"")!($O(@(PSJORDER_"1,"" "")"),-1)=1) D
- .S (CNT,DDNUM)=0 F  S DDNUM=$O(@(PSJORDER_"1,"_DDNUM_")")) Q:'DDNUM  Q:CNT=1  S DDIEN=+$G(@(PSJORDER_"1,"_DDNUM_",0)")) D
+ ;PSJ*5.0*462: added check in next two lines for variable PSJBCBU
+ I ($G(DOSEOR)']"")!($O(@(PSJORDER_"1,"" "")"),-1)=1)!($G(PSJBCBU)) D
+ .S (CNT,DDNUM)=0 F  S DDNUM=$O(@(PSJORDER_"1,"_DDNUM_")")) Q:'DDNUM  Q:CNT=1&('$G(PSJBCBU))  S DDIEN=+$G(@(PSJORDER_"1,"_DDNUM_",0)")) D
  ..S PSJF1P1=$S($P(@(PSJORDER_"1,"_DDNUM_",0)"),"^",2)="":"1",1:$P(@(PSJORDER_"1,"_DDNUM_",0)"),"^",2))
  ..S:DOSE]"" FIELD(1)=DOSE_"&"_UNIT_"&"_PSJF1P1_"&"_FIELD(1)
  ..S:DOSE="" FIELD(1)=$$FINDDOSE(DDIEN,PSJF1P1,DOSEOR)_FIELD(1)

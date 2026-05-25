@@ -1,5 +1,5 @@
 PSOORFI2 ;BIR/BHW-finish cprs orders cont. ;07/29/96
- ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,46,130,146,177,222,225,338,313,408,612**;DEC 1997;Build 23
+ ;;7.0;OUTPATIENT PHARMACY;**7,15,23,27,46,130,146,177,222,225,338,313,408,612,770**;DEC 1997;Build 145
  ;External reference ^YSCL(603.01 supported by DBIA 2697
  ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference to EN1^ORCFLAG is supported by DBIA 3620
@@ -172,4 +172,11 @@ SIG ;
  ..I $E(^TMP("PSOPO",$J,IEN,0),$L(^TMP("PSOPO",$J,IEN,0)))=" " S ^TMP("PSOPO",$J,IEN,0)=$E(^TMP("PSOPO",$J,IEN,0),1,($L(^TMP("PSOPO",$J,IEN,0))-1))
  S:$O(SIG(0)) SIGOK=1 K MIG
  F D=0:0 S D=$O(^PS(52.41,ORD,"INS1",D)) Q:'D  S PSONEW("INS",D)=^PS(52.41,ORD,"INS1",D,0)
+ Q
+NP ; Next Patient (Used for Workload Processing Users - Hold the PSO ERX WORKLOAD RPH sec. key)
+ S VALMBCK="Q"
+ ; Prevents users from moving to the next patient if current patient still has Active/Not Flagged recrods
+ I $D(^XUSEC("PSO ERX WORKLOAD RPH",DUZ)),$$HASACTPO^PSOORUT3(+$G(DFN)) D  Q
+ . S VALMSG="You must finish all orders before proceeding",VALMBCK="R",XQORM("B")="NP" W $C(7)
+ E  I $P(XQY0,"^")'="PSO LMOE FINISH" S VALMBCK="R"
  Q

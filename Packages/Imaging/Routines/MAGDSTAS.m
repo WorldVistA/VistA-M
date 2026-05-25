@@ -1,13 +1,10 @@
-MAGDSTAS ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Feb 15, 2022@10:52:34
- ;;3.0;IMAGING;**231,306,305**;Mar 19, 2002;Build 3
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTAS ;WOIFO/PMK - Q/R Retrieve of DICOM images from PACS to VistA ; Nov 16, 2022@11:27:26
+ ;;3.0;IMAGING;**231,306,305,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -42,17 +39,25 @@ START(PATTERN) ; Entry point to output statistics
  N ACNUMB,BATCHSIZE,BEGDATE,CMOVEAET,DFN,ENDDATE,HOURS,IMAGINGSERVICE,OPTION,QRSCP
  N RUNTIME,SCANMODE,SORTORDER,STARTIEN,STARTTIME,STATUS,STUDYDATE,STUDYIEN
  N MENUOPTION,S2,X
+ N CSVLIST ; P333 PMK 11/07/2022
  ;
- I $$YESNO^MAGDSTQ("Display statistics for individual "_MYSERVICE_" runs?","y",.X)<0 Q
- I X="YES" D  Q
- . D ONERUN(MYSERVICE)
+ W ! S OK=0 F  D  Q:OK
+ . W !!,"Individual or Cumulative stats or results in Excel format (I, C, E): "
+ . R X:DTIME E  S OK=-1 Q
+ . I X="" S OK=-1 Q
+ . I X["^" S OK=-1 Q
+ . S X=$$UP^MAGDFCNV(X)
+ . I "ICE"[$E(X) S OK=1 Q
+ . I X'["?" W "   ???"
+ . W !,"Please enter ""I"", ""C"", or ""E""."
  . Q
+ Q:OK'=1  ; didn't enter a choice
+ I X="I" D ONERUN(MYSERVICE) Q
+ I X="C" D CUMSTAT(MYSERVICE) Q
+ D EXCELCSV^MAGDSTAX(MYSERVICE,.CSVLIST)
+ Q
  ;
- I $$YESNO^MAGDSTQ("Display cumulative statistics for all "_MYSERVICE_" runs?","y",.X)<0 Q
- I X="NO" D  Q
- . D CONTINUE^MAGDSTQ
- . Q
- ;
+CUMSTAT(MYSERVICE) ; display cumulative statistics for all runs
  K ^TMP("MAG",$J,"BATCH Q/R","DATE"),^("NUMBER")
  S MENUOPTION=""
  F  S MENUOPTION=$O(^MAGDSTT(2006.543,"C",MENUOPTION)) Q:MENUOPTION=""  D

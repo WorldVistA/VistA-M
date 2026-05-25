@@ -1,5 +1,10 @@
-ORWCH ; SLC/KCM/SCM - GUI calls specific to CPRS Chart;01:34 PM  15 Dec 1997 [10:52 AM 13 JUN 2002]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,149**;Dec 17, 1997
+ORWCH ; SLC/KCM/SCM - GUI calls specific to CPRS Chart;Jan 15, 2025@15:40:19
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,109,149,508**;Dec 17, 1997;Build 39
+ ;
+ ; Reference to ^DIC in ICR #10006
+ ; Reference to ^DIR in ICR #10026
+ ; Reference to ^XPAR in ICR #2263
+ ;
 SAVESIZ(ORERR,NAM,VAL) ; save the bounds for a particular control
  ; NAM=frmName or frmName.ctrlName  VAL=left,top,width,height
  D EN^XPAR(DUZ_";VA(200,","ORWCH BOUNDS",NAM,VAL,.ORERR)
@@ -80,4 +85,13 @@ SETPOS(OK,X) ; records window size and position info for the current user
  S X4=$P(X,U,4)
  F I=1:1:$L(X4,",") I +$P(X4,",",I) D
  . D EN^XPAR(DUZ_";VA(200,","ORWCH PAGE SPLIT",I,$P(X4,",",I),.ORERR)
+ Q
+GETNVA(VAL) ;return settings for Non-VA Provider inclusion in forms
+ N RET,A,I
+ D GETLST^XPAR(.RET,"ALL","ORWCH NON-VA PROVIDERS")
+ F I=1:1:RET S A=RET(I) D
+ . I $P(A,",")=""!($P($P(A,",",2),"^")="") Q
+ . S VAL("Non-VA Provider","forms",$P(A,","),$P($P(A,",",2),"^"))=$S($P(A,"^",2)=1:"true",1:"false")
+ S A=$$GET^XPAR("ALL","ORWCH NON-VA PROVS FEATURE")
+ S VAL("Non-VA Provider","featureSwitch")=$S(A=0:"false",1:"true")
  Q

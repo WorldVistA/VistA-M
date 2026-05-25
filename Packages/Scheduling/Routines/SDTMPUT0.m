@@ -1,5 +1,5 @@
 SDTMPUT0 ;MS/SJA - TELEHEALTH SEARCH UTILITY ;Dec 17, 2020
- ;;5.3;Scheduling;**773,779,812,817,821,832,859,863**;Aug 13, 1993;Build 14
+ ;;5.3;Scheduling;**773,779,812,817,821,832,859,863,911**;Aug 13, 1993;Build 15
  ;Reference to ^DGCN(391.91 supported by IA #4943
  ;Reference to ^DIA(920.X,"C") supported by IA #2602
  ;
@@ -28,15 +28,15 @@ EN W @IOF W ?22,"Telehealth Inquiries",!!
  G EN
  ;
 C ; Search by clinic
- K DIC,SDCL,SDNO,NOD0,PNODE,DIV,SDSL,MCD,INST,INSTD,INSF,LTZ,CTRY,TZEX,CHAR4,CHAR4DSC
+ K DIC,SDCL,SDNO,NOD0,PNODE,DIV,SDSL,MCD,INST,INSF,LTZ,CTRY,TZEX,CHAR4,CHAR4DSC
  S DIC="^SC(",DIC(0)="AEMQZ",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))"
  S DIC("A")="Select CLINIC: " D ^DIC K DIC("S"),DIC("A") Q:"^"[X  I +Y'>0 G:+Y<0 C
- S SDCL=Y,(DIV,MCD,INST,INSTD,INSF,LTZ,CTRY,TZEX)=""  ;859
+ S SDCL=Y,(DIV,MCD,INST,INSF,LTZ,CTRY,TZEX)=""  ;859
  S SDNO="",NODE0=$G(^SC(+SDCL,0)),DIV=$P(NODE0,U,15),SDSL=$G(^SC(+SDCL,"SL"))
  I DIV D  ;859
  . S MCD=$G(^DG(40.8,DIV,0))
- . S INSTD=$P(MCD,U,7),INST=$P(NODE0,U,4)
- . S INSF=$G(^DIC(4,INSTD,8)),LTZ=$P(INSF,U),CTRY=$P(INSF,U,2),TZEX=$P(INSF,U,3)
+ . S INST=$P(MCD,U,7)
+ . S INSF=$G(^DIC(4,INST,8)),LTZ=$P(INSF,U),CTRY=$P(INSF,U,2),TZEX=$P(INSF,U,3)
  S CHAR4=$$CHAR4^SDESUTIL($P(SDCL,U,2)) S CHAR4DSC=$S(CHAR4="":"",1:CHAR4_"-"_$$CHAR4DSC^SDTMPUTL(CHAR4))
  W !!,SDASH
  W !,"Clinic",?18,": ",$TR(SDCL,"^","-")
@@ -47,8 +47,6 @@ C ; Search by clinic
  W:'$O(^SC(+SDCL,"PR",0)) ! W "Medical Division",?18,": " W:DIV DIV,"-",$$GET1^DIQ(40.8,DIV,.01)
  W !,"Institution",?18,": " W:INST INST,"-",$$GET1^DIQ(4,INST,.01)
  W !,"Station Number",?18,": ",$$GET1^DIQ(4,INST_",",99,"E")
- W !,"Instit.(derived)",?18,": " W:INSTD INSTD,"-",$$GET1^DIQ(4,INSTD,.01)
- W !,"Station (derived)",?18,": ",$$GET1^DIQ(4,INSTD_",",99,"E")
  W !,"Stop Code",?18,": " I $P(NODE0,U,7) W $P(NODE0,U,7),"-",$$GET1^DIQ(40.7,$P(NODE0,U,7),.01)," (",$$GET1^DIQ(40.7,$P(NODE0,U,7),1),")"
  W !,"Credit Stop Code",?18,": " I $P(NODE0,U,18) W $P(NODE0,U,18),"-",$$GET1^DIQ(40.7,$P(NODE0,U,18),.01)," (",$$GET1^DIQ(40.7,$P(NODE0,U,18),1),")"
  W !,"CHAR4",?18,": " W:$D(CHAR4DSC) CHAR4DSC ;821

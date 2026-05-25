@@ -1,5 +1,5 @@
 RCTCSP4E ;HAF/ASF - CS Debt Referral Stop Reactivate Report ;6/1/2017
- ;;4.5;Accounts Receivable;**350,433**;Mar 26, 2019;Build 7
+ ;;4.5;Accounts Receivable;**350,433,453**;Mar 26, 2019;Build 3
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -151,18 +151,21 @@ QENT ;queue ENTRY
  S DEBTOR=0 F  S DEBTOR=$O(^RCD(340,DEBTOR)) Q:DEBTOR'>0  D DSR
  D PRINT
  Q
-DSR Q:^RCD(340,DEBTOR,0)'?.E1"DPT(".E  ;only top level debtors
+DSR ;
+ N RCDSTAT,LASTDT,LASTIEN,G1  ;PRCA*4.5*453
+ Q:^RCD(340,DEBTOR,0)'?.E1"DPT(".E  ;only top level debtors
  S DEBTNAME=$$GET1^DIQ(340,DEBTOR,.01)
  I RCTCDEBT1'="FIRST",RCTCDEBT1'=DEBTNAME,RCTCDEBT1]DEBTNAME Q  ; before name range
  I RCTCDEBT2'="LAST",RCTCDEBT2'=DEBTNAME,DEBTNAME]RCTCDEBT2 Q   ; after name range
+ D DEBSTAT^RCTCS1(DEBTOR)  ;PRCA*4.5*453
  S SRDT="" F  S SRDT=$O(^RCD(340,DEBTOR,8,"C",SRDT)) Q:SRDT'>0  D
  . Q:(RCTCDATE("BEGIN")\1)>SRDT  ;check date range
  . Q:(RCTCDATE("END")_.99)<SRDT
  . S N1=0 F  S N1=$O(^RCD(340,DEBTOR,8,"C",SRDT,N1)) Q:N1'>0  D
  .. S NN=DEBTNAME
  .. S G=^RCD(340,DEBTOR,8,N1,0),RCDT=$P(G,U,2),RCSR=$P(G,U),G(N1)=G
- .. I RCTCFLG="R"&(RCSR="R") S ^TMP("RCTC",$J,NN,DEBTOR,RCDT)=N1  ;Filter stops
- .. I RCTCFLG="C"&(RCSR="S") S ^TMP("RCTC",$J,NN,DEBTOR,RCDT)=N1 ;Filter reactivates
+ .. I RCTCFLG="R"&(RCSR="R")&($G(RCDSTAT("STOP FLAG"))="R") S ^TMP("RCTC",$J,NN,DEBTOR,RCDT)=N1  ;Filter stops PRCA*4.5*453
+ .. I RCTCFLG="C"&(RCSR="S")&($G(RCDSTAT("STOP FLAG"))="S") S ^TMP("RCTC",$J,NN,DEBTOR,RCDT)=N1 ;Filter reactivates PRCA*4.5*453
  .. I RCTCFLG="B" S ^TMP("RCTC",$J,NN,DEBTOR,RCDT)=N1
  Q
 PRINT ;print for debtor level

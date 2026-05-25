@@ -1,5 +1,5 @@
-PXRMAPI ;SLC/PKR - Clinical Reminders APIs;03/06/2015  07:38
- ;;2.0;CLINICAL REMINDERS;**45**;Feb 04, 2005;Build 566
+PXRMAPI ;SLC/PKR - Clinical Reminders APIs;Jun 10, 2024@11:48:28
+ ;;2.0;CLINICAL REMINDERS;**45,87**;Feb 04, 2005;Build 35
  ;========================================================
 ITEMLIST(RIEN,GNAME,LIST,SUB) ;Return a list of items for an order
  ;check group.
@@ -55,8 +55,31 @@ PUSAGE(IEN) ;Return true if the reminder definition contains a "P"
  S OK=$S(USAGE["P":1,1:0)
  Q OK
  ;
+STATMTCH(REMSTAT,RULESTAT) ;
+ I RULESTAT="D",REMSTAT["DUE" Q 1
+ I RULESTAT="A",REMSTAT'="N/A",REMSTAT'="NEVER",REMSTAT'="CONTRA",REMSTAT'="REFUSED" Q 1
+ I RULESTAT="N",$E(REMSTAT,1)="N"!(REMSTAT="CONTRA")!(REMSTAT="REFUSED") Q 1
+ I RULESTAT="R",REMSTAT["RESOLVE" Q 1
+ Q 0
+ ;
  ;========================================================
 USAGE(IEN) ;Return the Usage for a reminder definition. IEN is the
  ;internal entry number.
  Q $P($G(^PXD(811.9,IEN,100)),U,4)
+ ;
+ISACTIVE(FN,IEN) ;
+ I FN=811.9,$P($G(^PXD(811.9,IEN,0)),U,6)=1 Q 0
+ I FN=801.41,+$P($G(^PXRMD(801.41,IEN,0)),U,3)>0 Q 0
+ Q 1
+ ;
+INFOLIST(RESULTS) ;
+ N IEN,NAME
+ S IEN=0 F  S IEN=$O(^PXD(811.9,"I",IEN)) Q:IEN'>0  D
+ .I $P($G(^PXD(811.9,IEN,0)),U,6)=1 Q
+ .S NAME=$P($G(^PXD(811.9,IEN,0)),U) I NAME="" Q
+ .S RESULTS("RD."_NAME)=IEN_";PXD(811.9,"
+ S IEN=0 F  S IEN=$O(^PXRMD(811.5,"I",IEN)) Q:IEN'>0  D
+ .S NAME=$P($G(^PXRMD(811.5,IEN,0)),U) I NAME="" Q
+ .S RESULTS("RT."_NAME)=IEN_";PXRMD(811.5,"
+ Q
  ;

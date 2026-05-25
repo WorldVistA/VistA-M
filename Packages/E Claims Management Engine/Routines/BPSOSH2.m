@@ -1,5 +1,5 @@
-BPSOSH2 ;BHAM ISC/SD/lwj/DLF - Assemble formatted claim ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,20,23,28**;JUN 2004;Build 22
+BPSOSH2 ;BHAM ISC/SD/LWJ/DLF - Assemble formatted claim ;06/01/2004
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19,20,23,28,40,41**;JUN 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;    5.1 had 14 claim segments (Header, Patient, Insurance, Claim
@@ -27,9 +27,11 @@ BPSOSH2 ;BHAM ISC/SD/lwj/DLF - Assemble formatted claim ;06/01/2004
  ;        segment record will hold the data until we are sure
  ;        we have something to send
  ;
- ; Put together ASCII formatted record per the Payer Sheet Definition
- ; Input:  
- ;   NODES - "100^110^120" or "130^140^150^160^170^180^190^200^210^220^230^240^250^260^270^280^290^300"
+ ; Put together ASCII formatted record per the Payer Sheet Definition.
+ ; Called only by ASCII^BPSECA1.
+ ; Input:
+ ;   NODES - A string of one or more segment IDs, delimited with "^".
+ ;     Will be either "100^110^120" or "130^140^150^ ... ^280^290^300"
  ; Passed by Ref:
  ;  .IEN - Internal Entry Number array
  ;  .BPS - Formatted Data Array with claim and transaction data
@@ -49,10 +51,10 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  . S NODE=$P(NODES,U,INDEX) Q:NODE=""
  . ;
  . ; VA does not support these segments
- . Q:",300,290,280,270,260,250,240,230,220,210,200,170,140,"[NODE
+ . I ",300,290,280,270,260,250,240,220,210,200,170,140,"[(","_NODE_",") Q
  . ;
  . ; Quit if the payer sheet does not have the node
- . Q:'$D(^BPSF(9002313.92,+IEN(9002313.92),NODE,0))
+ . I NODE'=230,'$D(^BPSF(9002313.92,+IEN(9002313.92),NODE,0)) Q
  . ;
  . ; Per NCPDP standard, reversals do not support segments listed below
  . I TYPE="B2",",300,290,280,270,260,250,240,230,220,210,200,170,150,140,"[NODE Q
@@ -64,70 +66,89 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  . S DATAFND=0  ; indicates if data is on the segment for us to send
  . S SEGREC=""  ; segment's information
  . ;
- . D:NODE=180 PROCDUR
+ . ; DUR/PPS Segment
+ . I NODE=180 D PROCDUR
  . ;
- . ;COB fields
- . D:NODE=160 PROCCOB
+ . ; COB Segment
+ . I NODE=160 D PROCCOB
+ . ;
+ . ; Clinical Segment
+ . I NODE=230 D CLINICAL^BPSOSH3
  . ;
  . S ORDER=""
  . F  D  Q:'ORDER
- .. ;
- .. Q:NODE=180  ; DUR/PPS section (repeating), already processed
- .. Q:NODE=160  ; COB data processed earlier
- .. S ORDER=$O(^BPSF(9002313.92,+IEN(9002313.92),NODE,"B",ORDER))
- .. Q:'ORDER
- .. S RECMIEN=""
- .. S RECMIEN=$O(^BPSF(9002313.92,+IEN(9002313.92),NODE,"B",ORDER,RECMIEN))
- .. Q:RECMIEN=""
- .. ;
- .. S MDATA=$G(^BPSF(9002313.92,+IEN(9002313.92),NODE,RECMIEN,0))
- .. Q:MDATA=""
- .. ;
- .. S FLDIEN=$P(MDATA,U,2)
- .. Q:FLDIEN=""
- .. ;
- .. S FDATA=$G(^BPSF(9002313.91,FLDIEN,0))
- .. Q:FDATA=""
- .. S FLDNUM=$P(FDATA,U,1)
- .. Q:FLDNUM=""
- .. ;Check for alphanumeric NCPDP numbers - BPS*1*15
- .. I $P(FLDNUM,".")'?3N S FLDNUM=$$VNUM^BPSECMPS(FLDNUM) Q:'FLDNUM
- .. ;
- .. S FLDID=$P($G(^BPSF(9002313.91,FLDIEN,5)),U)  ; BPS NCPDP FIELD DEFS, (#.06) ID
- .. ;
- .. ;header data
- .. S:NODE<130 FLDDATA=$G(BPS(9002313.02,IEN(9002313.02),FLDNUM,"I"))
- .. ;
- .. ;transaction data
- .. S:NODE>120 FLDDATA=$G(BPS(9002313.0201,IEN(9002313.0201),FLDNUM,"I"))
- .. I $TR($E(FLDDATA,3,999),"0 {}")'="" S DATAFND=1 ;BPS*1*15 - allow for zero in NCPDP ID
- .. ;
- .. ;check if this is the seg id - call this after fld chk since
- .. ;we don't want to send the segment if this is all there is
- .. I (NODE>100)&(FLDNUM=111) S FLDDATA=$$SEGID(NODE)
- .. ;
- .. ; Special code to handle the Submission Clarification Code (420) repeating group
- .. I FLDNUM=420 D SUBCLAR(.DATAFND,.IEN,.SEGREC) Q
- .. ;
- .. ; Special code to handle the Other Amount Claimed repeating group
- .. I FLDNUM=480 D OAMTCLMD(.DATAFND,.IEN,.SEGREC) Q
- .. I FLDNUM=479 Q  ; fields 479 & 480 handled as a pair in OAMTCLMD
- .. ;
- .. Q:FLDDATA=""   ;lje;7/23/03; don't want extra field separators when field is blank for testing for WebMD.
- .. ;
- .. S:NODE=100 SEGREC=SEGREC_FLDDATA  ;no FS on the header rec
- .. S:NODE>100 SEGREC=SEGREC_$C(28)_FLDDATA  ;FS always proceeds fld
+ . . ;
+ . . I NODE=180 Q  ; DUR/PPS section (repeating), already processed
+ . . I NODE=160 Q  ; COB data processed earlier
+ . . I NODE=230 Q  ; Clinical Segment, already processed
+ . . ;
+ . . S ORDER=$O(^BPSF(9002313.92,+IEN(9002313.92),NODE,"B",ORDER))
+ . . I 'ORDER Q
+ . . ;
+ . . S RECMIEN=$O(^BPSF(9002313.92,+IEN(9002313.92),NODE,"B",ORDER,""))
+ . . I RECMIEN="" Q
+ . . ;
+ . . S MDATA=$G(^BPSF(9002313.92,+IEN(9002313.92),NODE,RECMIEN,0))
+ . . I MDATA="" Q
+ . . ;
+ . . S FLDIEN=$P(MDATA,U,2)
+ . . I FLDIEN="" Q
+ . . ;
+ . . S FDATA=$G(^BPSF(9002313.91,FLDIEN,0))
+ . . I FDATA="" Q
+ . . ;
+ . . S FLDNUM=$P(FDATA,U,1)
+ . . I FLDNUM="" Q
+ . . ;
+ . . ;Check for alphanumeric NCPDP numbers - BPS*1*15
+ . . I $P(FLDNUM,".")'?3N S FLDNUM=$$VNUM^BPSECMPS(FLDNUM) Q:'FLDNUM
+ . . ;
+ . . S FLDID=$P($G(^BPSF(9002313.91,FLDIEN,5)),U)  ; BPS NCPDP FIELD DEFS, (#.06) ID
+ . . ;
+ . . ;header data
+ . . I NODE<130 S FLDDATA=$G(BPS(9002313.02,IEN(9002313.02),FLDNUM,"I"))
+ . . ;
+ . . ;transaction data
+ . . I NODE>120 S FLDDATA=$G(BPS(9002313.0201,IEN(9002313.0201),FLDNUM,"I"))
+ . . I $TR($E(FLDDATA,3,999),"0 {}")'="" S DATAFND=1
+ . . ;
+ . . ;check if this is the seg id - call this after fld chk since
+ . . ;we don't want to send the segment if this is all there is
+ . . I (NODE>100)&(FLDNUM=111) S FLDDATA=$$SEGID(NODE)
+ . . ;
+ . . ; Special code to handle the Submission Clarification Code (420) repeating group
+ . . I FLDNUM=420 D SUBCLAR(.DATAFND,.IEN,.SEGREC) Q
+ . . ;
+ . . ; Special code to handle the Other Amount Claimed repeating group
+ . . I FLDNUM=480 D OAMTCLMD(.DATAFND,.IEN,.SEGREC) Q
+ . . I FLDNUM=479 Q  ; fields 479 & 480 handled as a pair in OAMTCLMD
+ . . ;
+ . . I FLDDATA="" Q
+ . . ;
+ . . I NODE=100 S SEGREC=SEGREC_FLDDATA  ;no FS on the header rec
+ . . I NODE>100 S SEGREC=SEGREC_$C(28)_FLDDATA  ;FS always proceeds fld
+ . ;
+ . ; If the current segment is 110/Patient (B1 - Billing Requests only), 
+ . ; add field 335-2C PREGNANCY INDICATOR if data exists and it's not 
+ . ; already populated.
+ . ;
+ . I NODE=110,TYPE="B1" D
+ . . ; Check to see if 335-2C already added to segment.
+ . . I SEGREC[($C(28)_"2C") Q
+ . . S FLDDATA=BPS(9002313.02,IEN(9002313.02),335,"I")
+ . . I FLDDATA'="" S SEGREC=SEGREC_$C(28)_FLDDATA
+ . . Q
  . ;
  . ; If the current segment is 130/Claim (B1 - Billing Requests only), 
  . ; add field 460-ET QUANTITY PRESCRIBED if data exists and it's not 
  . ; already populated.
  . ;
  . I NODE=130,TYPE="B1" D
- .. ; Check to see if 460-ET already added to segment.
- .. I SEGREC[($C(28)_"ET") Q
- .. S FLDDATA=BPS(9002313.0201,IEN(9002313.0201),460,"I")
- .. I FLDDATA'="" S SEGREC=SEGREC_$C(28)_FLDDATA
- .. Q
+ . . ; Check to see if 460-ET already added to segment.
+ . . I SEGREC[($C(28)_"ET") Q
+ . . S FLDDATA=BPS(9002313.0201,IEN(9002313.0201),460,"I")
+ . . I FLDDATA'="" S SEGREC=SEGREC_$C(28)_FLDDATA
+ . . Q
  . ; 
  . ; If no data on this segment, Quit, don't check for addl. fields.
  . ;
@@ -180,8 +201,8 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  . ;
  . I NODE=100 S REC(NODE)=SEGREC   ;no SS when it's the header
  . I NODE>100 D
- .. I '$D(REC(NODE)) S REC(NODE)=REC I REC[$C(29) S REC=""
- .. S REC(NODE)=REC(NODE)_$C(30)_SEGREC  ;SS before the seg
+ . . I '$D(REC(NODE)) S REC(NODE)=REC I REC[$C(29) S REC=""
+ . . S REC(NODE)=REC(NODE)_$C(30)_SEGREC  ;SS before the seg
  ;
  Q
  ;

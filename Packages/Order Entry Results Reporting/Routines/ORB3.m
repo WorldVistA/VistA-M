@@ -1,18 +1,24 @@
-ORB3 ;SLC/CLA,WAT,TC - MAIN ROUTINE FOR OE/RR 3 NOTIFICATIONS ;Nov 18, 2020@09:02:55
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**31,74,91,105,139,190,220,253,265,296,348,350,452,377,453**;Dec 17, 1997;Build 47
+ORB3 ;SLC/CLA,WAT,TC - MAIN ROUTINE FOR OE/RR 3 NOTIFICATIONS ;Aug 05, 2025@07:41:55
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**31,74,91,105,139,190,220,253,265,296,348,350,452,377,453,508**;Dec 17, 1997;Build 39
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;This routine invokes to following ICR(s):
- ;ICR 4156     ;REGISTRATION, COMBAT VETERAN STATUS
- ;ICR 5697     ;SCHEDULING, PCMM MHTC API's
- ;ICR 1252     ;Calls to SDUTL3
- ;ICR 1916     ;Call to SCAPMC
- ;ICR 5697     ;Call to SCMCMHTC
+ ; Reference to ^DGCV in ICR #4156
+ ; Reference to SDUTL3 in ICR #1252
+ ; Reference to SCAPMC in ICR #1916
+ ; Reference to SCMCMHTC in ICR #5697
 EN(ORN,ORBDFN,ORNUM,ORBADUZ,ORBPMSG,ORBPDATA,ORFORCE) ;
  ;
- N ORBENT
+ N ORBENT,CPRSTAB,I,S1
  S ORN=+$G(ORN)
  S ORBENT=$$ENTITY^ORB31($G(ORNUM))
+ ;the following code is to handle the cases where the order check expert system (or other calling application)
+ ;overrides the parameters that define provider recipients and might pass in the ordering provider
+ ;this code will remove any recipients that are labeled as non-va providers since they do not have access to
+ ;the system and, therefore, cannot process alerts
+ S CPRSTAB=$O(^ORD(101.13,"B","NVA",""))
+ S S1=0 F  S S1=$O(ORBADUZ(S1)) Q:'S1  I $$CPRSTAB^ORNEWPERS(S1,CPRSTAB,$$NOW^XLFDT) K ORBADUZ(S1)
+ S S1=0 F  S S1=$O(ORFORCE(S1)) Q:'S1  I $$CPRSTAB^ORNEWPERS(S1,CPRSTAB,$$NOW^XLFDT) K ORFORCE(S1)
  ;
  Q:$$GET^XPAR(ORBENT,"ORB SYSTEM ENABLE/DISABLE",1,"I")="D"
  Q:'$L($G(^ORD(100.9,ORN,0)))
@@ -144,11 +150,12 @@ SPECDUZS ;get DUZs rtn by SPECIAL^ORB3SPEC
  F  S ORBSDUZ=$O(ORBASPEC(ORBSDUZ)) Q:ORBSDUZ=""  S ORBDUZ=ORBSDUZ D USER
  Q
 TITLE ;get provider recips
- N TITLES
+ N TITLES,CPRSTAB
  I $D(ORBU) D
  .S ORBU(ORBUI)=" ",ORBUI=ORBUI+1
  .S ORBU(ORBUI)="Recipients determined by Provider Recipient parameter:",ORBUI=ORBUI+1
  ;
+ S CPRSTAB=$O(^ORD(101.13,"B","NVA",""))
  S TITLES=$$GET^XPAR(ORBENT,"ORB PROVIDER RECIPIENTS",ORN,"I")
  I TITLES["O" D ORDERER
  I TITLES["P" D PRIMARY
@@ -206,6 +213,13 @@ ORDERER ;
  ..... S:ORTRNUM=1 ORTRREC=ORTRREC2
  ..... S:ORTRNUM'=1 ORTRREC=$G(^OR(100,ORNUM,11,1,0))
  ..... I $P(ORTRREC,U,2)=ORBDUZ,$P(ORTRREC2,U,3) K ORBADUZ(ORBDUZ),XQA(ORBDUZ) S ORBDUZ=$P(ORTRREC2,U,3)
+ . ;check to see if provider is a 'non-va' provider. if so, re-route alert
+ . I $G(CPRSTAB)]"" D
+ .. N ORGDUZ
+ .. S ORGDUZ=ORBDUZ
+ .. I $$CPRSTAB^ORNEWPERS(ORBDUZ,CPRSTAB,$$NOW^XLFDT) S OBDUZ="" D ENTERBY D
+ ... I $G(ORBDUZ)]"" S ORFORCE(ORBDUZ)="" Q
+ ... S ORBDUZ=ORGDUZ
  .D USER
  .;if notif = Order Req E/S (#12) or Order Req Co-sign (#37) and
  .;user doesn't have ES authority, send to fellow team members w/ES:

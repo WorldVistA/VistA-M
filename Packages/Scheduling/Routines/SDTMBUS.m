@@ -1,5 +1,5 @@
 SDTMBUS ;MS/TG/MS/PB - TMP HL7 Routine;JULY 05, 2018
- ;;5.3;Scheduling;**704,773**;May 29, 2018;Build 9
+ ;;5.3;Scheduling;**704,773,879**;Aug 13, 1993;Build 31
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; Segment builders common to multiple messages.
@@ -93,8 +93,7 @@ RDT(MSGROOT,DATAROOT,CNT,LEN,HL,FOUND) ;  Build RDT segments for Consults elemen
  . S IEN=$P(^TMP("ORQQCN",$J,"CS",CC,0),U)
  . Q:+IEN=0
  . S CONSULTS=$G(^TMP("ORQQCN",$J,"CS",CC,0))
- . S CONDT=$P(CONSULTS,"^",2),STOPDT=$$FMADD^XLFDT(DT,-730)   ;773 increase Consults lookup from 365 to 730
- . Q:$G(CONDT)<STOPDT  ; 2 years of consults.
+ . ; 879 do not filter here any longer. Removed -730 code. SDHL7CON reads files via start & end dates
  . S DATA=DATA_"|"_"C"_FS_$P(CONSULTS,U)_FS_$$TMCONV^SDTMPHLA($P(CONSULTS,"^",2),INST)_FS_$P(CONSULTS,U,4)_FS_$P(CONSULTS,U,7)
  . D GETS^DIQ(123,+IEN_",",".06;.07;.08;10;17","IE","RDT")
  . S RMTCNID=$G(RDT(123,+IEN_",",".06","I"))
@@ -155,8 +154,7 @@ RTCRDT(MSGROOT,DATAROOT,CNT,LEN,HL,FOUND) ;  Build RDT segments for Return to Cl
  . . S STOP=$$GET1^DIQ(44,CLINID_",",8,"I")_","_$$GET1^DIQ(44,CLINID_",",2503,"I")
  . I +PRVID D
  . . S PRVNM=$$GET1^DIQ(200,PRVID_",",".01")
- . S STOPDT=$$FMADD^XLFDT(DT,-730)          ;773 increase RTCs lookup from 365 to 730
- . Q:$G(REQDT)<STOPDT  ; 2 years of requests
+ . ; 879 do not filter here any longer Removed -730 code. SDHL7CON reads files via start & end dates
  . S DATA=DATA_"|"_"R"_FS_IEN_FS_$$TMCONV^SDTMPHLA(REQDT,$$INST^SDTMPHLA(CLINID))_FS_CLINID_FS_$G(CLINNM)_FS_$$TMCONV^SDTMPHLA(CID,$$INST^SDTMPHLA(CLINID))_FS_$G(STOP)_FS_$G(PRVNM)_FS_FS_FS_CMTS_FS_$G(MULTIRTC)
  . S CNT=CNT+1
  . S @MSGROOT@(CNT)=DATA

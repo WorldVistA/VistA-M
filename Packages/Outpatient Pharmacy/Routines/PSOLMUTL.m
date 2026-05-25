@@ -1,5 +1,5 @@
 PSOLMUTL ;BIR/SAB - listman utilities ;Dec 08, 2021@10:34
- ;;7.0;OUTPATIENT PHARMACY;**19,46,84,99,131,132,148,268,225,305,386,390,622,441,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**19,46,84,99,131,132,148,268,225,305,386,390,622,441,746,765,770**;DEC 1997;Build 145
  ;External reference FULL^VALM1 supported by dbia 10116
  ;External reference $$SETSTR^VALM1 supported by dbia 10116
  ;External reference EN2^GMRAPEMO supported by dbia 190
@@ -11,6 +11,7 @@ EN W @IOF S VALMCNT=0
  D EN^PSOLMPI
 INITQ Q
 HDR ;patient med profile display
+ I '$D(^TMP("PSOHDR",$J)) D PENHDR^PSOPMP1(+$G(DFN))
  K VALMHDR S HDR=^TMP("PSOHDR",$J,1,0),X=""
  I ^TMP("PSOHDR",$J,8,0) S X="<A>"
  E  S PSONOAL="" D ALLERGY^PSOORUT2 S:PSONOAL'="" X="<NO ALLERGY ASSESSMENT>" K PSONOAL
@@ -39,7 +40,7 @@ NEWALL(DFN) ; Enter Allergy info.
  N PSOID D FULL^VALM1,EN2^GMRAPEM0,^PSOORUT2 S VALMBCK="R"
  Q
 NEWSEL ;allows order selection by number instead of action
- S Y=$P(XQORNOD(0),"=",2) N VALMCNT D NEWSEL^PSOORNE2
+ S Y=$P(XQORNOD(0),"=",2) N VALMCNT,XQORM D NEWSEL^PSOORNE2
  ;Resetting eRx side-by-side video formatting variables
  D RESET^PSOERUT0()
  Q
@@ -56,7 +57,8 @@ EDTRNEW ;allows edit selection by number instead of action - renew orders
  N VALMCNT S Y=$P(XQORNOD(0),"=",2) D EDTSEL^PSOORNE4
  Q
 EDTPEN ;allows edit selection by number instead of action - pending orders
- N VALMCNT S Y=$P(XQORNOD(0),"=",2),SEDT=1 G EDTSEL^PSOORNEW
+ ;PSO*7.0*765: initialize ORCHK
+ N VALMCNT S ORCHK=0,Y=$P(XQORNOD(0),"=",2),SEDT=1 G EDTSEL^PSOORNEW
  Q
 HLDHDR ;keeps patient's header info
  S IOTM=VALM("TM"),IOBM=IOSL W IOSC W @IOSTBM W IORC

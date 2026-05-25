@@ -1,5 +1,5 @@
-DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD,JAM,ARF - PATIENT ADDRESS ; 19 Jul 2017  3:03 PM
- ;;5.3;Registration;**658,695,730,688,808,851,872,915,925,941,1010,1040,1056**;Aug 13, 1993;Build 18
+DGADDUTL ;ALB/PHH,EG,BAJ,ERC,CKN,TDM,LBD,JAM,ARF,JAM - PATIENT ADDRESS ; 19 Jul 2017  3:03 PM
+ ;;5.3;Registration;**658,695,730,688,808,851,872,915,925,941,1010,1040,1056,1143**;Aug 13, 1993;Build 36
  Q
 ADDR ; validate/edit Patient address (entry for DG ADDRESS UPDATE option)
  N %,QUIT,DIC,Y,DFN,USERSEL
@@ -29,11 +29,43 @@ ADDRLOOP ;
  .S USERSEL=$TR(USERSEL,"mtb","MTB")  ;DG*5.3*1056 added M for Mailing Address and removed P(ermanent)
  .I USERSEL'="M",USERSEL'="T",USERSEL'="B" D  Q  ;DG*5.3*1056 added M for Mailing Address and removed P(ermanent)
  ..W !,"Invalid selection!"
+ . ; DG*5.3*1143 - For editing Both, check for Real-time address, if not already set, set flag that real-time address update is active
+ . ;  If RTA active, NEW all vars needed for the RTA processing: Group 2 (Mailing) and 3 (Temp) variables, DGRTAHOLD=1 means that address changes are held and processed here
+ .I USERSEL="B" I +$G(DGRTAON)=0 N DGRTAON S DGRTAON=$$ISRTAUON^DGRTAUPD() I DGRTAON=1 N DGADDGRP2,DGADDGRP3,DGRETRY,DGRTAHOLD,DGADDEDIT S DGRTAHOLD=1
  .I (USERSEL="M")!(USERSEL="B") W ! D UPDATE(DFN,"PERM") ;DG*5.3*1056 added M for Mailing Address and removed P(ermanent)
  .I USERSEL="T"!(USERSEL="B") D UPDATE(DFN,"TEMP")
+ . ; DG*5.3*1143 - Check for timeout or user exit and exit the for loop
+ .I $G(DGTMOT)!($G(DUOUT)) S QUIT=1 Q
+ . ; DG*5.3*1143 - If RTA edit flag is set, save the data
+ . ;  If the the update fails, clear out RTA variables. If RETRY flag set, quit without setting QUIT flag.
+ .I $D(DGADDEDIT) S DGRETRY=0 I '$$SAVEADDR() K DGRTAON,DGRTAHOLD,DGADDEDIT,DGADDGRP2,DGADDGRP3 Q:DGRETRY=1
  .S QUIT=1
  L -^DPT(DFN)
  G ADDRLOOP
+ ;
+SAVEADDR() ; DG*5.3*1143 - Save edits made with RTA updates enabled
+ ; If successful, quit 1
+ ; otherwise return 0 and set DGRETRY=1 if user elects to re-enter the data
+ I $$RTASEND^DGRPCADD(DFN) Q 1
+ ; Saving of data failed - determine if the user will retry edits
+ ; If a timeout occurred
+ I $D(DTOUT)!(+$G(DGTMOT)) Q 0
+ ; If user entered "^"
+ I $D(DUOUT) Q 0
+ N X,Y,DIR
+ASK ; Prompt user and allow them to correct the address or quit
+ S DIR("A")="Enter 'E' to re-enter the data or '^' to quit"
+ S DIR(0)="FO"
+ S DIR("?")="Enter 'E' to re-edit the data, or '^' to exit and cancel the address entry/edit."
+ D ^DIR K DIR
+ ; If timeout, set timeout flag
+ I $D(DTOUT) S DGTMOT=1 Q 0
+ ; If user quit with ^
+ I $D(DUOUT) Q 0
+ ; User has opted to retry
+ I X="E"!(X="e") S DGRETRY=1 Q 0
+ G ASK  ; at this point, any other response is not accepted
+ ; 
 ADD(DFN) ; validate/edit Patient address (entry point for routine DGREG)
  ;         Input  -- DFN
  ;
@@ -165,14 +197,16 @@ EDITTADR(DFN) ; Edit Temporary Address
  I '$G(DGADDFG) N DGTMOT S DGTMOT=0 ; DG*5.3*1040 - New only coming from entry point UPDATE directly
  ;
  ; JAM - Patch DG*5.3*941 - Temporary Mailing Address is editable via screen 1.1 group 3 (from screen 1 group 5)
+ ; Patch DG*5.3*1143 - Disable the code below and call Temp address edit with Real-time address update functionality
  ;S DGCH=5,DGRPAN="1,2,3,4,5,",DGDR="",DGRPS=1
- S DGCH=3,DGRPAN="1,2,3,4,5",DGDR="",DGRPS=1.1
- D CHOICE^DGRPP
- D ^DGRPE
+ ;S DGCH=3,DGRPAN="1,2,3,4,5",DGDR="",DGRPS=1.1
+ ;D CHOICE^DGRPP
+ ;D ^DGRPE
+ D EN^DGREGTED(DFN,"TEMP")
  ; DG*5.3*1040; jam; If timeout and this is a direct call to UPDATE, clear the screen prior to quitting
  I $G(DGTMOT),'$G(DGADDFG) W @IOF,!!! Q
- ; Update the Date/Time Stamp
- D UPDDTTM(DFN,TYPE)
+ ; Update the Date/Time Stamp ; DG*5.3*1143 - disable this call.  the update happens via db triggers
+ ;D UPDDTTM(DFN,TYPE)
  Q
 GETTADR(DFN,DGPRIOR) ; Get prior temporary address fields.
  N DGCURR,DGN,DGARRY,DGCIEN,DGST,DGCNTY
@@ -277,3 +311,33 @@ FORIEN(DGC) ;returns a 1 if address is foreign, a 0 if domestic, -1 if DGC is in
  I '$D(^HL(779.004,DGC,0)) Q -1
  I DGC]"",(DGC'=$O(^HL(779.004,"B","USA",""))) S DGFOR=1
  Q DGFOR
+ ;
+PSOPAT(DFN) ; DG*5.3*1143 - New tag - ICR 7620 - called from UPDATE^PSOBAI for address/cell phone update
+ N DA,DIC,X,Y,DGSEL,DIR,DGFLG,DGRETRY,DIE,DR
+PSOASK ; Loop for re-entering data
+ K DIR S DIR(0)="SAO^P:PERMANENT;T:TEMPORARY;B:BOTH"
+ S DIR("A")=" Update (P)ermanent address, (T)emporary, or (B)oth: "
+ S DIR("B")="BOTH" D ^DIR
+ I $D(DIRUT) Q
+ S DGSEL=Y
+ ; Check for Real-time address, if not already set, set flag that real-time address update is active
+ ;  If RTA active, NEW all vars needed for the RTA processing: Group 2 (Mailing) and 3 (Temp), DGADDGRPR (cell), DGRTAHOLD=1 means that address changes are held and processed here
+ I +$G(DGRTAON)=0 N DGRTAON S DGRTAON=$$ISRTAUON^DGRTAUPD() I DGRTAON=1 N DGADDGRP2,DGADDGRP3,DGADDGRP5,DGRETRY,DGRTAHOLD,DGADDEDIT S DGRTAHOLD=1
+ ; Mailing address
+ I DGSEL="P"!(DGSEL="B") S DGFLG(1)=1 D EN^DGREGAED(DFN,.DGFLG) W !
+ ; Check for timeout or user exit
+ I $G(DGTMOT)!($G(DUOUT)) Q
+ ; Temp address
+ I DGSEL="B"!(DGSEL="T") D UPDATE(DFN,"TEMP")
+ ; Check for timeout or user exit
+ I $G(DGTMOT)!($G(DUOUT)) Q
+ ; If RTA is off, address changes above are filed.  Edit cell phone directly and quit
+ I DGRTAON=0 S DA=DFN,DIE="^DPT(",DR=".134" D ^DIE W ! Q
+ ; RTA is active, edit the cell phone
+ D DR115^DGRPE1("C")
+ ; Check for timeout or user exit
+ I $G(DGTMOT)!($G(DUOUT)) Q
+ ; If RTA edit array exists, save the data
+ ; If the the update fails, If RETRY flag set, kill RTA edit flag and go to top loop
+ I $D(DGADDEDIT) S DGRETRY=0 I '$$SAVEADDR() I DGRETRY=1 K DGADDEDIT G PSOASK
+ Q

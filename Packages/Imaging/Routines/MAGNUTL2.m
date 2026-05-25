@@ -1,5 +1,5 @@
-MAGNUTL2 ;WOIFO/NST - VistRad subroutines for RPC calls ; NOV 19, 2018@1:42PM
- ;;3.0;IMAGING;**201,221**;Dec 02, 2009;Build 163
+MAGNUTL2 ;OIT/NST - VistRad subroutines for RPC calls ; NOV 19, 2018@1:42PM
+ ;;3.0;IMAGING;**201,221,365**;Dec 02, 2009;Build 19
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -24,15 +24,31 @@ MAGNUTL2 ;WOIFO/NST - VistRad subroutines for RPC calls ; NOV 19, 2018@1:42PM
  ;
 PRECACHE ; Entry point from HL7 processing, to initiate precache at
  ; time of radiology "Register Patient for Exam" RA REG protocol
- ; Do not process if the exam is being Canceled (RACANC true)
+ ; ZEXCEPT: RACANC,RADFN,RADTI,RACNI ;Set by calling code for assumption
  ;
- Q:'$$GET^XPAR("ALL","MAG PRECACHE RAD REG ENABLED",,"I")  ; IA# 2263 
+ ;*zeb *365 transition to new precache settings
+ Q:$G(RACANC)  ;abort if exam is being canceled
+ Q:'($G(RADFN)&$G(RADTI)&$G(RACNI))  ;abort if required variables not present
+ N ABORT,MAGRET,MAGDATA,MAGCPT,ALLCPTS,CPTIENS
+ S ABORT=1
+ K ^TMP($J,"MAGRAEX")
+ D GETEXAM2^MAGJUTL1(RADFN,RADTI,RACNI,"",.MAGRET) ; Get Exam Data
+ S MAGDATA=$G(^TMP($J,"MAGRAEX",1,1))
+ K ^TMP($J,"MAGRAEX")
+ S MAGCPT=$P(MAGDATA,U,17)
+ S ALLCPTS=$$ALLCPTS()
+ Q:(MAGCPT=""&'ALLCPTS)  ;Abort if CPT code is required and not found
+ S:ALLCPTS ABORT=0
+ I ABORT D
+ . S CPTIENS=$$CPTIENS^MAGNUTL3(MAGCPT)
+ . Q:CPTIENS=-1
+ . S:$$GET1^DIQ(2006.14,CPTIENS,2,"I") ABORT=0
+ Q:ABORT
  ;
  N RET S RET=""
- I '($G(RADFN)&$G(RADTI)&$G(RACNI)&'$G(RACANC)) Q  ; Required vars
  ; MAGJEX2 will call CACHE^MAGNUTL2 after collecting all images to be precached - "C" is a new action
  D PRIOR1^MAGJEX2(.RET,"C"_U_RADFN_U_RADTI_U_RACNI)
- D CPTWI(RADFN,RADTI,RACNI)  ; create work item with CPT code and patient treating facilities
+ D CPTWI(RADFN,RADTI,RACNI,MAGDATA)  ; create work item with CPT code and patient treating facilities
  Q
  ;
 CACHE(RARPT) ; cache this case's images
@@ -78,14 +94,16 @@ NWRKITEM(MAGOUT,RARPT) ;Create New MAG WORK ITEM
  D CRTITEM^MAGVIM01(.MAGOUT,TYPE,SUBTYPE,STATUS,PLACEID,PRIORITY,.MSGTAGS,CRTUSR,CRTAPP)
  Q
  ;
-CPTWI(RADFN,RADTI,RACNI)  ; create work item with CPT code and patient treating facilities
- N MAGCPT,MAGDATA,MAGI,MAGOUT,MAGRET
+ ;*zeb *365 allow MAGDATA to be passed in if it was loaded earlier
+CPTWI(RADFN,RADTI,RACNI,MAGDATA)  ; create work item with CPT code and patient treating facilities
+ N MAGCPT,MAGI,MAGOUT,MAGRET
  N CRTUSR,CRTAPP,ICN,J,MSGTAGS,TYPE,SUBTYPE,STATUS,PLACEID,PRIORITY,SSEP
  ;
- K ^TMP($J,"MAGRAEX")
- D GETEXAM2^MAGJUTL1(RADFN,RADTI,RACNI,"",.MAGRET) ; Get Exam Data
- S MAGDATA=$G(^TMP($J,"MAGRAEX",1,1))
- K ^TMP($J,"MAGRAEX")
+ I '$G(MAGDATA) D
+ . K ^TMP($J,"MAGRAEX")
+ . D GETEXAM2^MAGJUTL1(RADFN,RADTI,RACNI,"",.MAGRET) ; Get Exam Data
+ . S MAGDATA=$G(^TMP($J,"MAGRAEX",1,1))
+ . K ^TMP($J,"MAGRAEX")
  S MAGCPT=$P(MAGDATA,U,17)
  I 'MAGCPT Q  ; No CPT code found
  ;
@@ -138,3 +156,12 @@ GCPRSID(RARPT) ; return SITE, ICN, CPRSContextID
  S ICN=""
  S:$L($T(GETICN^MPIF001)) ICN=$$GETICN^MPIF001(DFN)
  Q PLACEID_"^"_DFN_"^"_ICN_"^"_$TR(MAGCTXID,"^","~")
+ ;
+ ;*zeb *365 added for new settings
+ALLCPTS() ;Returns value of PRECACHE ON RAD EXAM REG field (#351) from IMAGING SITE PARAMETERS (#2006.1) entry for user's division
+ ;Returns "" if unable to find correct site params
+ N ISPIEN
+ S ISPIEN=$O(^MAG(2006.1,"B",$$STA^XUAF4(DUZ(2)),""))
+ Q:ISPIEN="" ""
+ Q $$GET1^DIQ(2006.1,ISPIEN_",",351,"I")
+ ;

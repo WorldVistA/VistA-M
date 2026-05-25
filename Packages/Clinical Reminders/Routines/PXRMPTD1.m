@@ -1,5 +1,5 @@
-PXRMPTD1 ;SLC/PKR,PJH,AGP - Reminder Inquiry print template routines. ;04/05/2016  12:06
- ;;2.0;CLINICAL REMINDERS;**4,12,22,45**;Feb 04, 2005;Build 566
+PXRMPTD1 ;SLC/PKR,PJH,AGP - Reminder Inquiry print template routines. ;Apr 09, 2025@11:51:27
+ ;;2.0;CLINICAL REMINDERS;**4,12,22,45,87**;Feb 04, 2005;Build 35
  ;
  ;=======================================
 AFREQ ; Print baseline FREQUENCY/AGE RANGE.
@@ -72,7 +72,7 @@ XFORM(Y) ;Print transform for field 103 in file #811.9
  F IC=1:1:$L(Y) D
  . S X=$E(Y,IC)
  . I X="*" Q
- . S LIT=$S(X="C":"CPRS",X="X":"DATA EXTRACT",X="R":"REPORTS",X="P":"PATIENT",X="L":"REMINDER PATIENT LIST",X="O":"REMINDER ORDER CHECKS",X="A":"ACTION",1:"")
+ . S LIT=$S(X="B":"BRANCHING LOGIC",X="C":"CPRS",X="I":"INFORMATION PANEL",X="X":"DATA EXTRACT",X="R":"REPORTS",X="P":"PATIENT",X="L":"REMINDER PATIENT LIST",X="O":"REMINDER ORDER CHECKS",X="A":"ACTION",1:"")
  . I LIT'="" S ARRAY(LIT)=""
  ;
  S LIT="",OUTPUT=""

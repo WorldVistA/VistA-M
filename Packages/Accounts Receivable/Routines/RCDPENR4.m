@@ -1,5 +1,5 @@
 RCDPENR4 ;ALB/SAB - EPay National Reports - ERA/EFT Report Utilities ;12/14/15
- ;;4.5;Accounts Receivable;**304,321,326,349**;Mar 20, 1995;Build 44
+ ;;4.5;Accounts Receivable;**304,321,326,349,446**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Read ^DGCR(399) via Private IA 3820
@@ -38,13 +38,14 @@ M1(X,Y) ;
  ;
  ; Retrieve the needed 835 information.
  ; PRCA*4.5*349 - Add Closed Claims filter
-GETERA(RCSDATE,RCEDATE,RCRATE,RCCLM) ;
+GETERA(RCSDATE,RCEDATE,RCRATE,RCCLM,RCPUZ,RCSORT) ;
  ;
  N OKAY,RCAMTBL,RCAMTPD,RCBDIV,RCBILL,RCDATA,RCDIV,RCDOS,RCDTBILL,RCDTLDT,RCEFTPD,RCEFTST,RCEFTTYP ; PRCA*4.5*349
- N RCEOB,RCERAIDX,RCERANUM,RCERARCD,RCIEN,RCINS,RCINSTIN,RCLDATE,RCLIEN,RCMETHOD ; PRCA*4.5*349
+ N RCEOB,RCERAIDX,RCERANUM,RCERARCD,RCIEN,RCINS,RCINSTIN,RCKEEP,RCLDATE,RCLIEN,RCMETHOD ; PRCA*4.5*349
  N RCPAPER,RCPAYER,RCPOSTED,RCPSTAT,RCRATETP,RCTIN,RCTRACE,RCTRBD,RCTRLN,RCTRNTYP ; PRCA*4.5*349
  ;
  S RCLDATE=RCSDATE-.001
+ S RCEDATE=RCEDATE+1
  ;
  F  S RCLDATE=$O(^RCY(344.4,"AFD",RCLDATE)) Q:RCLDATE>RCEDATE  Q:RCLDATE=""  D
  . S RCIEN=""
@@ -56,14 +57,14 @@ GETERA(RCSDATE,RCEDATE,RCRATE,RCCLM) ;
  .. ; Only calculate if status is NULL, Unmatched or Matched to Paper Check
  .. ; GETEFT will have grabbed there rest
  .. S RCEFTST=$P(RCDATA,U,9)
- .. I (RCEFTST=1)!(RCEFTST>2) Q
+ .. I RCPUZ="P" I (RCEFTST=1)!(RCEFTST>2) Q
  .. S RCPSTAT=$$GET1^DIQ(344.4,RCIEN_",",.14,"I") ; PRCA*4.5*349
- .. I 'RCPSTAT!("125"'[RCPSTAT) Q  ; PRCA*4.5*349 - ERA is not posted
+ .. I RCPUZ="P" I 'RCPSTAT!("/1/2/5/"'[("/"_RCPSTAT_"/")) Q  ; PRCA*4.5*349 - ERA is not posted, PRCA*4.5*446 only check if user picked Payment EEOB
  .. ;
  .. S RCERARCD=$P($P(RCDATA,U,7),".",1)  ;get the date of the ERA
  .. S RCTRACE=$P(RCDATA,U,2)             ;get the trace number
  .. S RCTRLN=$L(RCTRACE),RCTRBD=$S(RCTRLN<11:1,1:RCTRLN-9)
- .. S RCTRACE=$E(RCTRACE,RCTRBD,RCTRLN)  ; get the last 10 digits of Trace #
+ .. S RCTRACE=$E(RCTRACE,RCTRBD,RCTRLN)  ;get the last 10 digits of Trace #
  .. S RCTIN=$P(RCDATA,U,3)               ;Payer TIN
  .. S RCINS=$P(RCDATA,U,6)               ;Insurance free text
  .. I RCPAY="A",RCTYPE'="A" D  Q:'OKAY  ; PRCA*4.5*326 If all payers included, check by type
@@ -98,23 +99,41 @@ GETERA(RCSDATE,RCEDATE,RCRATE,RCCLM) ;
  ... S RCAMTBL=$$GET1^DIQ(361.1,RCEOB_",",2.04,"I")
  ... S RCAMTPD=$$GET1^DIQ(361.1,RCEOB_",",1.01,"I")
  ... S RCDTBILL=$$GET1^DIQ(399,RCBILL_",",12,"I")
- ... Q:RCDTBILL=""   ;cant calculate if date first printed is NULL
+ ... Q:RCDTBILL=""   ;can't calculate if date first printed is NULL
  ... S RCMETHOD=$S($$GET1^DIQ(344.41,RCLIEN_","_RCIEN_",",9)="":"MANUAL",1:"AUTOPOST") ; PRCA*4.5*349
- ... S RCPAPER=$P($G(^RCY(344.4,RCLIEN,20)),U,3)  ; Paper EOB ERA?
+ ... I (RCEFTST=3) S RCMETHOD="UNPOSTED"                 ;PRCA*4.5*446 zero payment
+ ... I (RCPSTAT="")!("/0/3/4/"[("/"_RCPSTAT_"/")) S RCMETHOD="UNPOSTED"    ;PRCA*4.5*446 Unmatched
+ ... S RCPAPER=$P($G(^RCY(344.4,RCLIEN,20)),U,3)         ; Paper EOB ERA?
  ... ;ERA not a paper ERA, is the EOB a Paper EOB
- ... S:'RCPAPER RCPAPER=$S($$GET1^DIQ(361.1,RCEOB_",",.17,"I")=0:"ERA",1:"PAPER")
- ... S RCEFTTYP=$S(RCEFTST=2:"PAPER",1:"EFT")
- ... S RCTRNTYP=RCPAPER_"/"_RCEFTTYP
- ... S RCERAIDX=$S(RCTRNTYP="ERA/EFT":1,RCTRNTYP="ERA/PAPER":2,RCTRNTYP="PAPER/EFT":3,1:4)
- ... Q:RCERAIDX=4   ;Paper Check Paper EOB not supported
+ ... S RCERAIDX=""                                       ; PRCA*4.5*446 Initialize RCERAIDX
+ ... I RCEFTST=3 S RCERAIDX=5,RCTRNTYP="ERA/EFT"         ; PRCA*4.5*446 ZERO PAYMENTS
+ ... I 'RCEFTST S RCERAIDX=4,RCTRNTYP="ERA/EFT"          ; PRCA*4.5*446 UNMATCHED ERA, status is null or 0  ***** THIS IS WRONG
+ ... I 'RCERAIDX D                                       ; PRCA*4.5*446 if not ZERO PAYMENTS or UNMATCHED ERA
+ .... S:'RCPAPER RCPAPER=$S($$GET1^DIQ(361.1,RCEOB_",",.17,"I")=0:"ERA",1:"PAPER")
+ .... S RCEFTTYP=$S(RCEFTST=2:"PAPER",1:"EFT")
+ .... S RCTRNTYP=RCPAPER_"/"_RCEFTTYP
+ .... S RCERAIDX=$S(RCTRNTYP="ERA/EFT":1,RCTRNTYP="ERA/PAPER":2,RCTRNTYP="PAPER/EFT":3,1:6)
+ ... Q:RCERAIDX=6   ;Paper Check Paper EOB not supported
  ... ;
  ... S RCPOSTED=$P($G(^RCY(344.4,RCIEN,7)),U)
  ... S RCINSTIN=RCINS_"/"_RCTIN
  ... ;
- ... S RCDATA=RCBILL_U_RCIEN_U_U_RCEOB_U_RCDOS_U_RCAMTBL_U_RCAMTPD_U_RCDTBILL_U_RCERARCD
+ ... ; PRCA*4.5*446 Add logic for filter: PAYMENT EEOBS, UNMATCHED EEOBS, ZERO PAYMENT EEOBS, ALL
+ ... S RCKEEP=0 D  Q:'RCKEEP
+ .... I RCPUZ="A" S RCKEEP=1 Q   ; If user selected ALL EEOBs, keep everything
+ .... I RCPUZ="U" S:((RCEFTST="")!(RCEFTST=0)) RCKEEP=1 Q
+ .... I RCPUZ="Z" S:RCEFTST=3 RCKEEP=1 Q
+ .... S RCKEEP=1 ; If not unmatched and not zero pay, it's a payment EEOB and RCPUZ must be P
+ .... ; PRCA*4.5*446 End filter logic
+ ... ;
+ ... ;PRCA*4.5*446 Zero payment or Unmatched, EFT field is N/A
+ ... N RCEFTFLD S RCEFTFLD="" I (RCPSTAT="")!(RCPSTAT=0)!(RCEFTST=3) S RCEFTFLD="N/A"
+ ... ;
+ ... S RCDATA=RCBILL_U_RCIEN_U_RCEFTFLD_U_RCEOB_U_RCDOS_U_RCAMTBL_U_RCAMTPD_U_RCDTBILL_U_RCERARCD
  ... S RCDATA=RCDATA_U_U_RCPOSTED_U_RCTRACE_U_RCMETHOD_U
  ... S RCDATA=RCDATA_RCTRNTYP_U_RCERANUM_U_RCDIV_U_RCINSTIN_U
- ... S ^TMP("RCDPENR2",$J,"MAIN",RCINSTIN,RCMETHOD,RCERAIDX,RCBILL)=RCDATA
+ ... S ^TMP("RCDPENR2",$J,"MAIN",RCINSTIN,RCMETHOD,RCERAIDX,RCBILL_"/"_RCIEN_"/"_RCAMTBL)=RCDATA   ;PRCA*4.5*446 add pieces to last subscript to make unique
+ ... I RCSORT="A" S ^TMP("RCDPENR2",$J,"MAINAMT",RCMETHOD,RCAMTBL,RCBILL_"/"_RCIEN)=RCDATA_U_RCERAIDX_U_RCBILL  ;PRCA*4.5*446
  ;
  ; Compile the list of payers using the payer TIN.  The Payer IENS are extracted
 TINARY(RCSTART,RCEND) ;
@@ -238,10 +257,11 @@ PRINTRP(RCTITLE,RCDATA,RCRPIEN,RCDISP,RCTFLG) ;
  . D SAVEDATA^RCDPENR1(RCSTR,RCRPIEN)
  Q 1
  ;
-PAYSUM(RCINSTIN) ;Print the Payer Summary portion of the report for one payer. New for ; PRCA*4.5*349
+PAYSUM(RCINSTIN,RCPUZ) ;Print the Payer Summary portion of the report for one payer. New for ; PRCA*4.5*349
  ; Input: RCINSTIN - Payer Name/TIN combination, key to ^TMP global.
+ ;           RCPUZ - P: Payment EEOBs, U: Unmatched EEOBs, Z: Zero Payment EEOBs, A: All       ;PRCA*4.5*446
  ;
- N I,J,RCDATA,RCEFT,RCEFTTXT,RCERA,RCERAFLG,RCERATYP,RCERATXT,RCSTRING ; PRCA*4.5*349
+ N I,I1,I2,I3,J,RCDATA,RCEFT,RCEFTTXT,RCERA,RCERAFLG,RCERATYP,RCERATXT,RCSTRING ; PRCA*4.5*349, PRCA*4.5*446 I1,I2,I3
  ;
  ; Print ERA/EFT combinations for each Insurance Company/Tin combination
  S RCINSTIN="",RCSTOP=0
@@ -249,18 +269,34 @@ PAYSUM(RCINSTIN) ;Print the Payer Summary portion of the report for one payer. N
  . I $Y>(IOSL-7) D ASK^RCDPEADP(.RCSTOP,0) Q:RCSTOP  D HEADER^RCDPENR2
  . D PRINTINS^RCDPENR2(RCINSTIN)
  . ; Print autoposted and manual for all 3 combinations
- . F J="AUTOPOST","MANUAL","TOTAL" Q:RCSTOP  F I=1:1:3 D  Q:RCSTOP  ; PRCA*4.5*349
+ . ; PRCA*4.5*446, add I1,I2,I3
+ . S I1=1,I2=1,I3=5   ; default for RCPUZ="A", ALL
+ . I RCPUZ="U" S I1=4,I3=4         ;Unposted contains Zero Pay and Unmatched
+ . I RCPUZ="Z" S I1=5,I3=5         ;Unposted contains Zero Pay and Unmatched
+ . I RCPUZ="P" S I3=3              ;Don't include Unposted
+ . ;
+ . F J="AUTOPOST","MANUAL","UNPOSTED","TOTAL" Q:RCSTOP  F I=I1:I2:I3 D  Q:RCSTOP  ; PRCA*4.5*349, PRCA*4.5*446 Add I1,I2,I3
+ . . ;
+ . . ; PRCA*4.5*446 filter for RCPUZ
+ . . I (RCPUZ="U")!(RCPUZ="Z") I (J="AUTOPOST")!(J="MANUAL") Q
+ . . I (RCPUZ="U")!(RCPUZ="Z") I J="TOTAL" Q   ; For Unmatched and Zero Pay, there are not 2 categories to total together like Autopost+Manual
+ . . I RCPUZ="P" I J="UNPOSTED" Q
+ . . ;
  . . I J="AUTOPOST",I>1 Q  ; Only EFT/ERA can be auto-posted - PRCA*4.5*349
- . . I (RCAUTO="A"&(J="MANUAL"))!(RCAUTO="N"&(J="AUTOPOST"))!(RCAUTO'="B"&(J="TOTAL")) Q  ; PRCA*4.5*349
+ . . I J="MANUAL",I>3 Q    ; Unmatched and Zero pay are Unposted
+ . . I J="UNPOSTED",I<4 Q  ; Unmatched and Zero pay are Unposted
+ . . I '("/Z/U/"[("/"_RCPUZ_"/")) I (RCAUTO="A"&(J="MANUAL"))!(RCAUTO="N"&(J="AUTOPOST"))!(RCAUTO'="B"&(J="TOTAL")) Q  ; PRCA*4.5*349, PRCA*4.5*446 check RCPUZ
  . . S RCDATA=$G(^TMP("RCDPENR2",$J,"PAYER",RCINSTIN,J,I))
- . . S RCERATYP=$S(I=1:"EFT/ERA",I=2:"PAPER CHECK/ERA",1:"EFT/PAPER EOB")
+ . . S RCERATYP=$S(I=1:"EFT/ERA",I=2:"PAPER CHECK/ERA",I=3:"EFT/PAPER EOB",I=4:"/UNMATCHED ERA",1:"/ZERO PAYMENTS")  ; PRCA*4.5*446
  . . S RCERAFLG=0
  . . S RCEFTTXT=$P(RCERATYP,"/")
  . . S RCERATXT=$P(RCERATYP,"/",2)
- . . S RCEFT=$S(RCEFTTXT="EFT":"AN EFT",1:"A PAPER CHECK")
- . . S RCSTRING=RCERATXT_" MATCHED TO "_RCEFT_" - "_J ; PRCA*4.5*349
+ . . S RCEFT=$S(RCEFTTXT="EFT":"AN EFT",RCEFTTXT="PAPER CHECK":"A PAPER CHECK",1:"")  ; PRCA*4.5*446
+ . . I '((I=4)!(I=5)) S RCSTRING=RCERATXT_" MATCHED TO "_RCEFT_" - "_J ; PRCA*4.5*349, PRCA*4.5**446 If not unmatched or zero pay
+ . . I ((I=4)!(I=5)) S RCSTRING=RCERATXT   ; PRCA*4.5**446 If not unmatched or zero pay
  . . I (RCEFTTXT="EFT"),(RCERATXT["ERA") S RCERAFLG=1
- . . D PRINTGT^RCDPENR3(RCSTRING,RCDATA,RCDISP,RCERAFLG,RCEXCEL)
+ . . I (I=4)!(I=5) S RCERAFLG=1   ; PRCA*4.5*446 If unmatched or zero pay, then set ERA flag
+ . . D PRINTGT^RCDPENR5(RCSTRING,RCDATA,RCDISP,RCERAFLG,RCEXCEL,RCPUZ)  ; PRCA*4.5**446
  ;
  Q RCSTOP
  ;
@@ -288,4 +324,89 @@ GETDIV(RCDIV) ; Retrieve the Division
  I 'VAUTD&($D(VAUTD)'=11) Q -1
  M RCDIV=VAUTD
  Q 1
+ ;
+ASKPUZ() ; EP from RCDPENR2 - added for PRCA*4.5*446
+ ; Input:   N/A
+ ; Returns: -1      - User ^ or timed out
+ ;           P      - Include Payment EEOBs only
+ ;           U      - Include Unmatched EEOBs only
+ ;           Z      - Include Zero payment EEOBs only
+ ;           A      - Include All types
+ ;
+ N DA,DIR,DTOUT,DUOUT,X,Y,DIRUT,DIROUT,RCTYPE,RETURN
+ S RCTYPE=""
+ S DIR("?",1)="Enter 'P' to include only Payment EEOBs"
+ S DIR("?",2)="      'U' to include only Unmatched EEOBs"
+ S DIR("?",3)="      'Z' to include only Zero payment EEOBs"
+ S DIR("?")="      'A' to include all: Payment, Unmatched, Zero payment EEOBs"
+ S DIR(0)="SA^P:PAYMENT EEOBs;U:UNMATCHED EEOBs;Z:ZERO PAYMENT EEOBs;A:ALL"
+ S DIR("A")="(P)AYMENT EEOBs, (U)NMATCHED EEOBs, (Z)ERO PAYMENT EEOBs or (A)LL: "
+ S DIR("B")=$S($G(DEF)'="":DEF,1:"ALL")
+ D ^DIR
+ K DIR
+ I $D(DTOUT)!$D(DUOUT) Q -1
+ Q:Y="" "A"
+ S RETURN=$E(Y)
+ Q RETURN
+ ;
+ASKSORT() ; EP from RCDPENR2 - added for PRCA*4.5*446
+ ; Input:   N/A
+ ; Returns: -1      - User ^ or timed out
+ ;           P      - Sort by Payer
+ ;           A      - Sort by Amount of payment
+ ;
+ N DA,DIR,DTOUT,DUOUT,X,Y,DIRUT,DIROUT,RCTYPE,RETURN
+ S RCTYPE=""
+ S DIR("?",1)="Enter 'P' to sort by Payer"
+ S DIR("?")="      'A' to sort by Amount of payment"
+ S DIR(0)="SA^P:PAYER;A:AMOUNT OF PAYMENT"
+ S DIR("A")="SORT BY (P)AYER or (A)MOUNT OF PAYMENT: "
+ S DIR("B")=$S($G(DEF)'="":DEF,1:"PAYER")
+ D ^DIR
+ K DIR
+ I $D(DTOUT)!$D(DUOUT) Q -1
+ Q:Y="" "P"
+ S RETURN=$E(Y)
+ Q RETURN
+ ;
+GETSDATE()  ;
+ ; PRCA*4.5*446 - Moved from RCDPENR2 for size
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT,RCTODAY
+ ;
+ ;Assume the start date is 45 days prior to the end date
+ ;
+ ;Get the start date.  
+ S RCTODAY=$P($$NOW^XLFDT,".")
+ S DIR("?")="ENTER THE EARLIEST DATE TO INCLUDE ON THE REPORT"
+ S DIR(0)="DA^:"_RCTODAY_":APE",DIR("A")="Start with DATE: "
+ D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
+ Q Y
+ ;
+ ; Retrieve the end date of the report from the user.
+GETEDATE(RCBDATE)  ;
+ ; PRCA*4.5*446 - Moved from RCDPENR2 for size
+ ; RCBDATE - Begin date of the report.  Used as a lower bound
+ ;
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT,RCTODAY
+ ;
+ ; Get the End date first.  Assume the end date is today.
+ S RCTODAY=$P($$NOW^XLFDT,".")
+ S DIR("?")="ENTER THE LATEST DATE TO INCLUDE ON THE REPORT"
+ S DIR("B")=$$FMTE^XLFDT(RCTODAY,2)
+ S DIR(0)="DAO^"_$G(RCBDATE)_":"_RCTODAY_":APE",DIR("A")="Go to DATE: " D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
+ Q Y
+ ;
+ ;Retrieve the Report Type
+GETRATE() ;
+ ; PRCA*4.5*446 - Moved from RCDPENR2 for size
+ ;
+ ;RCMNFLG - Ask to print the Main report (Detailed) report.  0=No, 1=Yes
+ N X,Y,DIC,DTOUT,DUOUT
+ ;
+ S DIC="^DGCR(399.3,",DIC(0)="AEQMN"
+ S DIC("S")="I $P(^(0),U,7)=""i"""
+ D ^DIC K DIC
+ Q +Y
  ;

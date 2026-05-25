@@ -1,10 +1,5 @@
-ORMLR ; SLC/MKB - Process Lab ORM msgs ;Oct 27, 2023@12:13:39
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,92,153,174,195,243,315,535**;Dec 17, 1997;Build 20
- ;Reference to ^LAB(61,"C" in ICR #2388
- ;Reference to ^VA(200 in ICR #4329
- ;Reference to RR^LR7OR1 in ICR #2503
- ;Reference to $$NOW^XLFDT in ICR #10103
- ;
+ORMLR ; SLC/MKB - Process Lab ORM msgs ;11:59 AM  26 Jul 2000
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,92,153,174,195,243,315**;Dec 17, 1997;Build 0
 EN ; -- entry point for LR messages
  I '$L($T(@ORDCNTRL)) Q  ;S ORERR="Invalid order control code" Q
  I ORDCNTRL'="SN",ORDCNTRL'="ZC",ORDCNTRL'="ZP" D  Q:$L($G(ORERR))
@@ -143,6 +138,7 @@ RE ; -- Completed, w/results
  K ^TMP("LRRR",$J),^TMP("LRX",$J)
  S $P(^OR(100,+ORIFN,7),U,2,3)=ORABN_U_ORFIND
  S:'$G(ORNP) ORNP=+$P($G(^OR(100,+ORIFN,0)),U,4)
+ I $L($T(ADD^ORRCACK)) D ADD^ORRCACK(+ORIFN,ORNP) ;Ack stub for prov
  Q
  ;
 OC ; -- Cancelled

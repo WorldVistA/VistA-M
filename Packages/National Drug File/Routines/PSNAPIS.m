@@ -1,5 +1,5 @@
 PSNAPIS ;BIR/DMA-APIs for NDF ; 27 Jan 2010  7:44 AM
- ;;4.0;NATIONAL DRUG FILE;**2,3,47,70,169,108,262,296,448,492**; 30 Oct 98;Build 27
+ ;;4.0;NATIONAL DRUG FILE;**2,3,47,70,169,108,262,296,448,492,576**; 30 Oct 98;Build 25
  ;
  ;Reference to ^PSDRUG supported by DBIA #2192
  ;Reference to ^PS(50.606 supported by DBIA #2174
@@ -7,7 +7,7 @@ PSNAPIS ;BIR/DMA-APIs for NDF ; 27 Jan 2010  7:44 AM
  ;Reference to $$PROD2^PSNAPIS(P1,P3) supported by DBIA #2531
  ;Reference to $$CPTIER^PSNAPIS(P1,P3) supported by DBIA #2531
  ;Reference to ^XTMP supported by DBIA #4770
- ;Referenct to ^PSS50 supported by DBIA #4483
+ ;Reference to ^PSS50 supported by DBIA #4483
  ;
 PSA(NDC,LIST) ;ENTRY FOR DRUG ACCOUNTABILITY
  N Y,PN,PN1,P50,J
@@ -339,3 +339,18 @@ CPTIER3(RETURN,DATE,PSNDRIEN) ;
  ;otherwise return defined copay tier info
  Q RETURN
  ;
+PGX(PSNPGX1,PSNPGX3) ;Return PGx information for VA Product
+ N PSNPGXND
+ I '$G(PSNPGX3) Q "^"
+ S PSNPGXND=$G(^PSNDF(50.68,+PSNPGX3,"PGX"))
+ Q $P(PSNPGXND,"^")_"^"_$P(PSNPGXND,"^",2)
+ ;
+PGXING(PSNING1,PSNING3,PSNLST) ;Return PGx information for VA Product and Ingredients
+ N PSNPGXVA,PSNLP,PSNIPGX K PSNLST
+ I '$G(PSNING3) S PSNLST("PROD")="^"
+ S PSNPGXVA=$G(^PSNDF(50.68,+PSNING3,"PGX"))
+ S PSNLST("PROD")=$P(PSNPGXVA,"^")_"^"_$P(PSNPGXVA,"^",2)
+ S PSNLP="" F  S PSNLP=$O(^PSNDF(50.68,PSNING3,2,PSNLP)) Q:PSNLP=""  I PSNLP D
+ .S PSNIPGX=$G(^PS(50.416,PSNLP,"PGX"))
+ .S PSNLST("ING",PSNLP)=$P($G(^PS(50.416,PSNLP,0)),"^")_"^"_$P(PSNIPGX,"^")_"^"_$P(PSNIPGX,"^",2)
+ Q

@@ -1,5 +1,27 @@
-ORWU1 ;SLC/GRE - General Utilities for Windows Calls ;Aug 4, 2021@15:32:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**149,187,195,215,394,533,519,539,564**;Dec 17, 1997;Build 1
+ORWU1 ;SLC/GRE - General Utilities for Windows Calls ; Jul 19, 2024@09:10:01
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**149,187,195,215,394,533,519,539,564,609**;Dec 17, 1997;Build 23
+ ;
+ ; Reference to ^DIC(3.1 in ICR #1234
+ ; Reference to ^DIC(49 in ICR #4330
+ ; Reference to ^SC(,^SC("B" in ICR #10040
+ ; Reference to ^VA(200(FLD_8,29) in ICR #4329
+ ; Reference to ^VA(200 in ICR #10060
+ ; Reference to ^XUSEC( in ICR #10076
+ ; Reference to LIST^DIC in ICR #2051
+ ; Reference to $$GET1^DIQ in ICR #10015
+ ; Reference to $$SCRDFCS^TIULA3 in ICR #3976
+ ; Reference to $$ISA^USRLM in ICR #1544
+ ; Reference to $$ALL^VASITE in ICR #10112
+ ; Reference to $$NOW^XLFDT in ICR #10103
+ ; Reference to $$NAMEFMT^XLFNAME in ICR #3065
+ ; Reference to $$TITLE^XLFSTR in ICR #10104
+ ; Reference to $$UP^XLFSTR in ICR #10104
+ ; Reference to GETLST^XPAR in ICR #2263
+ ; Reference to $$LKOPT^XPDMENU in ICR #1157
+ ; Reference to $$ACCESS^XQCHK in ICR #10078
+ ; Reference to $$GET^XUA4A72 in ICR #1625
+ ; Reference to $$PROVIDER^XUSER in ICR #2343
+ ; Reference to $$NPI^XUSNPI in ICR #4532
  ;
  Q
  ;
@@ -182,7 +204,7 @@ NP4(ORSS) ; Retrieve Title or Title and Service/Section.
  S ORNPI=$S(ORNPI>0:" [NPI:"_ORNPI_"]",1:"")
  I ORTTL<1 S ORTTL=""                          ; Reset var if none.
  ; DBIA# 1234:
- I ORTTL>0 S ORTTL=$$TITLE^XLFSTR($G(^DIC(3.1,ORTTL,0)))       ; Actual Title value. *533 title case
+ I ORTTL>0 S ORTTL=$$TITLE^XLFSTR($P($G(^DIC(3.1,ORTTL,0)),U)) ; Actual Title value. *533 title case
  S ORSS=$G(ORSS)
  I ORSS D                                      ; Get Service/Section?
  .; DBIA# 4329:

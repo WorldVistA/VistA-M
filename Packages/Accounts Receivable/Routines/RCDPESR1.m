@@ -1,5 +1,5 @@
 RCDPESR1 ;ALB/TMP - Server interface to AR from Austin ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,214,208,202,271,298,321,345,349**;Mar 20, 1995;Build 44
+ ;;4.5;Accounts Receivable;**173,214,208,202,271,298,321,345,349,439**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to $$RXBIL^IBNCPDPU supported by DBIA 4435
@@ -89,18 +89,40 @@ OUTERA(RAW,CT,RCMTXT) ; Format ERA/EEOB for Outlook message
  . S CT=CT+1,@RCMTXT@(CT)=$$MASKPII(@RAW@(Z))
  Q
 OUTEFT(RAW,CT,RCMTXT) ; Format EFT for Outlook message
- ; PRCA*4.5*349 - New Subroutine
+ ; PRCA*4.5*349 - New Subroutine ; PRCA*4.5*439 - Substantial changes to data in outlook message
  ; RAW - Points to raw data from the message
  ; CT - (Passed by Reference) Current message text line count
  ; RCMTXT - Pointer to message text array
- N DATA,I,Z
+ N AMT,DATA,EFTCNT,EFTTOT,I,Z
  Q:RCMTXT=""!(RAW="")
+ S (EFTCNT,EFTTOT)=0
  S I="" F  S I=$O(@RAW@(I)) Q:'I  D
- . S DATA($P(@RAW@(I),U))=$G(@RAW@(I))
- S CT=CT+1,@RCMTXT@(CT)="Trace Number: "_$P($G(DATA("01")),U,2)
- S CT=CT+1,@RCMTXT@(CT)="Dollar Amt: "_$$ZERO^RCDPESR9($P($G(DATA("01")),U,4),1)
- S CT=CT+1,@RCMTXT@(CT)="Payer Name: "_$P($G(DATA("01")),U,5)
- S CT=CT+1,@RCMTXT@(CT)="Payer ID: "_$P($G(DATA("01")),U,6)
+ . S DATA=$G(@RAW@(I))
+ . I $P(DATA,U)="835EFT" D  ;
+ . . S DATA("HEAD",1)="Deposit Number: "_$P(DATA,U,6)
+ . . S DATA("HEAD",2)="Deposit Date: "_$P(DATA,U,7)
+ . . S DATA("HEAD",3)="Deposit Total: "_$$ZERO^RCDPESR9($P(DATA,U,8),1)
+ . I $P(DATA,U)="01" D  ;
+ . . I EFTCNT=0 D  ;
+ . . . S EFTCNT=EFTCNT+1
+ . . . S DATA("EFT",EFTCNT)="*** EFT DETAIL ***"
+ . . S AMT=$$ZERO^RCDPESR9($P(DATA,U,4),1)
+ . . S EFTCNT=EFTCNT+1 S DATA("EFT",EFTCNT)=" "
+ . . S EFTCNT=EFTCNT+1 S DATA("EFT",EFTCNT)="Trace Number: "_$P(DATA,U,2)
+ . . S EFTCNT=EFTCNT+1 S DATA("EFT",EFTCNT)="Dollar Amt: "_AMT
+ . . S EFTCNT=EFTCNT+1 S DATA("EFT",EFTCNT)="Payer Name: "_$P(DATA,U,5)
+ . . S EFTCNT=EFTCNT+1 S DATA("EFT",EFTCNT)="Payer ID: "_$P(DATA,U,6)
+ . . S EFTTOT=EFTTOT+AMT
+ S DATA("HEAD",4)="EFT Total Amt: "_$J(EFTTOT,$L(EFTTOT),2)
+ ;
+ ; Add header data to message
+ S Z=0 F  S Z=$O(DATA("HEAD",Z)) Q:'Z  D
+ . S CT=CT+1,@RCMTXT@(CT)=DATA("HEAD",Z)
+ S CT=CT+1,@RCMTXT@(CT)=" "
+ ; Add EFT data to message
+ S Z=0 F  S Z=$O(DATA("EFT",Z)) Q:'Z  D
+ . S CT=CT+1,@RCMTXT@(CT)=DATA("EFT",Z)
+ ;
  S Z=0 F  S Z=$O(@RAW@(Z)) Q:'Z  D
  . S CT=CT+1,@RCMTXT@(CT)=$G(@RAW@(Z))
  Q
@@ -270,4 +292,5 @@ ERROR2 ; Error condition msgs for msgs
  ;;Message file problem - no message stored.
  ;;Message file problem - message partially stored.
  ;;No valid claims for the site found on the ERA.
+ ;;Deposit does not balance with total of EFTs.
  ;

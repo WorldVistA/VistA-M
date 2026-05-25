@@ -1,5 +1,5 @@
 PSOUTLA1 ;BHAM ISC/RTR-Pharmacy utility program cont. ; 17 Jun 2011  2:21 PM
- ;;7.0;OUTPATIENT PHARMACY;**35,186,218,259,206,388,444**;DEC 1997;Build 34
+ ;;7.0;OUTPATIENT PHARMACY;**35,186,218,259,206,388,444,751**;DEC 1997;Build 8
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to File ^PSDRUG supported by DBIA 221
  ;External reference to File ^PS(59.7 supported by DBIA 694
@@ -205,4 +205,38 @@ WARN1 ;partial del checks    *259
  . S DIR("?")="Enter Y for Yes or N for No."
  . D ^DIR
  . K DIR
+ Q
+ ;
+WARN ;
+ K PSORFKILL ;P751 (used in K52^PSOUTL if fill is deleted)
+ I $G(PSOUNHLD) D  Q
+ .D EN^DDIOL("You cannot delete a refill while removing from Hold! Use the Edit Action.","","$C(7),!!"),EN^DDIOL(" ","","!!")
+ I $G(CMOP(DA))]""&(+$G(CMOP(DA))<3) D  K CMOP Q
+ .D EN^DDIOL("You cannot delete a refill that"_$S(+$G(CMOP(DA))=1:" has been released by",1:" is being transmitted to")_" the CMOP","","!!")
+ .D EN^DDIOL(" ","","!!")
+ K CMOP
+ ;
+ N PSOL,PSR
+ S PSR=0 F  S PSR=$O(^PSRX(DA(1),1,PSR)) Q:'PSR  S PSOL=PSR
+ I DA=PSOL,$P(^PSRX(DA(1),1,DA,0),"^",18) D  Q
+ .D EN^DDIOL("Refill Released! Use the 'Return to Stock' option!","","$C(7),!!"),EN^DDIOL(" ","","!")
+ ;
+ ;Only allow deletion if last refill      *259
+ I $O(^PSRX(DA(1),1,DA)) D  Q
+ .D EN^DDIOL("Only the last refill can be deleted.  Later refills must be deleted first.","","$C(7),!!")
+ .D EN^DDIOL("","","!!")
+ ;
+ ;Warn of In Process, Only delete if answered Yes         ;*259
+ I $$REFIP^PSOUTLA1(DA(1),DA,"R") D  I 'Y Q               ;reset $T
+ . D EN^DDIOL("** Refill has previously been sent to the External Dispense Machine","","!!,?2")
+ . D EN^DDIOL("** for filling and is still Pending Processing","","$C(7),!,?2")
+ . D EN^DDIOL("","","!")
+ . K DIR
+ . S DIR("A")="Do you want to continue? "
+ . S DIR("B")="Y"
+ . S DIR(0)="YA^^"
+ . S DIR("?")="Enter Y for Yes or N for No."
+ . D ^DIR
+ . K DIR
+ S PSORFKILL="Y" ;P751 (used in K52^PSOUTL if fill is deleted)
  Q

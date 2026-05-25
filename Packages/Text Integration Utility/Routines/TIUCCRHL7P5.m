@@ -1,14 +1,13 @@
 TIUCCRHL7P5 ; CCRA/PB - TIU CCRA HL7 Msg Processing; January 6, 2006
- ;;1.0;TEXT INTEGRATION UTILITIES;**344**;Jun 20, 1997;Build 11
+ ;;1.0;TEXT INTEGRATION UTILITIES;**344,371**;Jun 20, 1997;Build 4
  ;
  ;PB - Patch 344 to modify how the note and addendum text is formatted
+ ;PB - Patch 371 removes unused code
  ;
  Q
 DPA ;
  D COMMON^TIUCCRHL7P4
  K T2,T4 S T4="************ DISCHARGE PLANNING ADDENDUM************",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2,T4 S T4=" "_$C(160)_"  VETERAN'S"_$C(160)_"CAREGIVER"_$C(160)_"CONTACT INFO",T2(T4)=$C(160)_$C(160)_"VETERAN'S CAREGIVER CONTACT INFOMATION"_$C(160)
- ;K T2,T4 S T4="Veteran Social:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Date:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Original CCP Note Date (mm/dd/yyyy):",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="CCPN Number:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
@@ -64,8 +63,6 @@ AMA ;
  K T2 S T2("FACILITY COMMUNITY CARE OFFICE CONTACT")=$C(160)_$C(160)_"FACILITY COMMUNITY CARE OFFICE CONTACT"_$C(160) S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Care Coordination Point of Contact: ")=$C(160)_"Care Coordination Point of Contact:  " S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Phone Number: ")=$C(160)_"Phone Number: " S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2 S T2("VETERAN'S CAREGIVER CONTACT INFO")=$C(160)_"VETERAN'S CAREGIVER CONTACT INFO" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;S T2("VETERAN'SCAREGIVERCONTACT INFO")=$C(160)_$C(160)_"VETERAN'S CAREGIVER CONTACT INFOMATION"_$C(160)
  K T2,T4 S T4="Is Veteran's caregiver same as next of kin listed in the demographic section of CPRS (Yes/No)?:  If no, provide the following: ",T2($G(T4))=$C(160)_$G(T4) S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Veteran's Caregiver Point of Contact: ")=$C(160)_"Veteran's Caregiver Point of Contact: " S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2 S T2("Caregiver's Relationship to Veteran: ")=$C(160)_"Caregiver's Relationship to Veteran: " S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
@@ -102,7 +99,6 @@ AMA ;
 DISP ;
  D COMMON^TIUCCRHL7P4
  K T2,T4 S T4="************ DISCHARGE DISPOSITION ADDENDUM"_$C(160)_"************",T2(T4)=$C(10)_"************ DISCHARGE DISPOSITION ADDENDUM************" S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2,T4 S T4="Veteran Social:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Date:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Original CCP Note Date (mm/dd/yyyy):",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="CCPN Number:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
@@ -125,7 +121,6 @@ DISP ;
 DMA ;
  D COMMON^TIUCCRHL7P4
  K T2,T4 S T4="************ DISEASE MANAGEMENT ADDENDUM",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2,T4 S T4="Veteran Social:",T2(T4)=$C(160)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Date:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Original CCP Note Date (mm/dd/yyyy):",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="CCPN Number:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
@@ -134,10 +129,5 @@ DMA ;
  K T2,T4 S T4="Warm handoff (if clinically indicated) to disease management coordinator on",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Additional Notes (Optional):",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T2,T4 S T4="Caregiver's Alternate Phone Number:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2,T4 S T4="Case Management:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2,T4 S T4="Case Management:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2,T4 S T4="Case Management:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2,T4 S T4="Case Management:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
- ;K T2,T4 S T4="Case Management:",T2(T4)=$C(10)_T4 S WORDS=$$REPLACE^XLFSTR(WORDS,.T2)
  K T4,T2,T5
  Q

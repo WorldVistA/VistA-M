@@ -1,5 +1,6 @@
-SDVSIT ;MJK/ALB - Visit Tracking Processing ; 12/19/12 10:13am
- ;;5.3;Scheduling;**27,44,75,96,132,161,219,630**;Aug 13, 1993;Build 2
+SDVSIT ;MJK/ALB,JAS - Visit Tracking Processing ; OCT 24, 2025
+ ;;5.3;Scheduling;**27,44,75,96,132,161,219,630,927**;Aug 13, 1993;Build 15
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
 AEUPD(SDVIEN,SDATYPE,SDOEP) ; -- update one entry in multiple
  ; input: SDVIEN := Visit file pointer
@@ -48,7 +49,7 @@ APPT(DFN,SDT,SDCL,SDVIEN) ; -- process appt
  ;             SDCL = ien of hospital location file entry
  ;           SDVIEN = Visit file pointer [optional]
  ;
- N SDVSIT,SDOE,DA,DIE,DR,SDPT,SDSC,SDCL0,SDDA,SDLOCK
+ N SDVSIT,SDOE,DA,DIE,DR,SDPT,SDSC,SDCL0,SDDA,SDLOCK,SDTR
  ;
  ; -- set lock data and lock
  S SDLOCK("DFN")=DFN
@@ -71,6 +72,27 @@ APPT(DFN,SDT,SDCL,SDVIEN) ; -- process appt
  S SDVSIT("DFN")=DFN,SDVSIT("LOC")=SDCL
  S:$P(SDSC,U,10) SDVSIT("ELG")=$P(SDSC,U,10)
  S:$P(SDPT,U,16) SDVSIT("TYP")=$P(SDPT,U,16)
+ ;
+ ; -- DSS
+ S SDVSIT("SVC")=""
+ S SDVSIT("DSS")=$P($G(^SC(+SDVSIT("LOC"),0)),"^",7)
+  ; - IO
+ S SDTR=9999999-$P(SDT,".")
+ S SDVSIT("IO")=$S($$INP^SDAM2(DFN,SDTR)="I":1,1:0)
+ ; -- SVC
+ I +SDVSIT("DSS") D
+ . ;Default svc based on the dss id
+ . I $P(^DIC(40.7,+SDVSIT("DSS"),0),"^",1)["TELE" S SDVSIT("SVC")="T" ;any TELEphone
+ . E  I $O(^SDVSIT(150.1,"B",+$P(^DIC(40.7,+SDVSIT("DSS"),0),"^",2),0)) S SDVSIT("SVC")="X"
+ . E  I SDVSIT("SVC")="",SDVSIT("DSS")=$P($G(^SC(+SDVSIT("LOC"),0)),"^",7) S SDVSIT("SVC")="A"
+ ;
+ I SDVSIT("SVC")="" S SDVSIT("SVC")="X"
+ I SDVSIT("IO") D
+ . I SDVSIT("SVC")="A" S SDVSIT("SVC")="I"
+ . E  I SDVSIT("SVC")="X" S SDVSIT("SVC")="D"
+ E  D
+ . I SDVSIT("SVC")="I" S SDVSIT("SVC")="A"
+ . E  I SDVSIT("SVC")="D" S SDVSIT("SVC")="X"
  ;
  ; -- call logic to add opt encounter(s)
  S SDVSIT("ORG")=1,SDVSIT("REF")=SDDA,SDOE=$$SDOE(SDT,.SDVSIT,$G(SDVIEN))

@@ -1,5 +1,5 @@
 BPSRES1 ;AITC/MRD - ECME SCREEN RESUBMIT W/EDITS ;10/23/17
- ;;1.0;E CLAIMS MGMT ENGINE;**23,24,32**;JUN 2004;Build 15
+ ;;1.0;E CLAIMS MGMT ENGINE;**23,24,32,40**;JUN 2004;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADDLFLDS(BPS02,BPS59,BPSADDLFLDS,BPSDOS) ; Add fields to a claim.
@@ -216,7 +216,8 @@ SAVE(BPSACTION,BPS59,BPSADDLFLDS,BPSOVRIEN) ; Save into BPS NCPDP OVERRIDES (#90
  . S BPSFIELD=$O(^BPSF(9002313.91,"B",147,"")) I BPSFIELD]"" S BPSFDA(9002313.5111,"+8,+1,",.01)=BPSFIELD,BPSFDA(9002313.5111,"+8,+1,",.02)=BPPHSRV
  . S BPSFIELD=$O(^BPSF(9002313.91,"B",357,"")) I BPSFIELD]"" S BPSFDA(9002313.5111,"+9,+1,",.01)=BPSFIELD,BPSFDA(9002313.5111,"+9,+1,",.02)=BPDLYRS
  . S BPSFIELD=$O(^BPSF(9002313.91,"B",305,"")) I BPSFIELD]"" S BPSFDA(9002313.5111,"+10,+1,",.01)=BPSFIELD,BPSFDA(9002313.5111,"+10,+1,",.02)=BPGENDER
- . S BPSCNT=10
+ . S BPSFIELD=$O(^BPSF(9002313.91,"B",424,"")) I BPSFIELD]"" S BPSFDA(9002313.5111,"+11,+1,",.01)=BPSFIELD,BPSFDA(9002313.5111,"+11,+1,",.02)=BPDIAGNOSIS
+ . S BPSCNT=11
  . Q
  ;
  ; Store additional NCPDP fields which the user chose to add to the
@@ -240,4 +241,61 @@ SAVE(BPSACTION,BPS59,BPSADDLFLDS,BPSOVRIEN) ; Save into BPS NCPDP OVERRIDES (#90
  . Q
  ;
  Q 1
+ ;
+ ; Prompt User for Claim to Resubmit (w/EDITS)
+ ;
+ ; Input values ->  BPROMPT - prompt string
+ ;                 BPERRMES - the message to display when the user tries
+ ;                           to make multi line selection (optional)
+ ;                  Piece
+ ; output values ->     1 - 1 = okay, <0 = errors, 0 = quit
+ ;                      2 - patient ien #2
+ ;                      3 - insurance ien #36
+ ;                      4 - ptr to #9002313.59
+ ;                      5 - 1st line for index(es) in LM "VALM" array
+ ;                      6 - patient's index
+ ;                      7 - claim's index
+ASKLINE(BPROMPT,BPERRMES) ;
+ N BPRET,BPCNT
+ S BPRET="",BPCNT=0
+ F  S BPRET=$$SELLINE^BPSSCRU4(BPROMPT,"C",VALMAR,"") Q:BPRET'<0  D
+ . ;
+ . I BPCNT<1 S BPCNT=BPCNT+1 W !
+ . E  S BPCNT=0 D RE^VALM4
+ . I BPRET=-1 W "Invalid line number" ; (invalid Patient summary line)"
+ . I BPRET=-8 W $S($G(BPERRMES)]"":BPERRMES,1:" Invalid line number")
+ . I BPRET=-4 W "Invalid line number" ; (invalid RX line)"
+ . I BPRET=-2 W "Please select Patient's summary line."
+ . I BPRET=-3 W "Please specify RX line."
+ . I ",-1,-8,-4,-2,-3,"'[(","_BPRET_",") W "Incorrect format."
+ Q BPRET
+ ;
+EDITDT(DFLT,BPRXIEN,BPRXR,BP02) ;Prompt User to choose correct Date of Service
+ ;
+ ; Input value ->  DFLT - The data to use as the default value. If no
+ ;                        default is provided, the Current Date of
+ ;                        Service will be used.
+ ;                          1 - Current Date of Service
+ ;                          2 - Fill Date
+ ;                          3 - Release Date
+ ;              BPRXIEN - Pointer to the PRESCRIPTION file (#52)
+ ;                BPRXR - Refill number for prescription
+ ;                 BP02 - Pointer to the BPS CLAIMS file (#9002313.02)
+ ;
+ ; Output value -> Selected Date of Service in FileMan format
+ ;
+ N BPRLS,BPFIL,BPCUR,DIR,DIRUT,DIROUT,DTOUT,DUOUT,OPT,TMP,X,Y
+ S BPRLS=$$RXRLDT^PSOBPSUT(BPRXIEN,BPRXR)\1  ; release date
+ S BPFIL=$$RXFLDT^PSOBPSUT(BPRXIEN,BPRXR)\1  ; fill date
+ S BPCUR=$$HL7TFM^XLFDT($$GET1^DIQ(9002313.02,BP02,401))  ; current date of service
+ S DFLT=$G(DFLT),DIR("B")=1,DIR("A")="Date of Service"
+ I DFLT=2,BPFIL]"" S DIR("B")=2
+ I DFLT=3,BPRLS]"" S DIR("B")=3
+ S OPT=1
+ S DIR(0)="S^"_OPT_":"_$$FMTE^XLFDT(BPCUR,"5D")_" Current Date of Service",TMP(OPT)=BPCUR
+ I BPFIL'>DT,BPFIL<BPRLS S OPT=OPT+1,DIR(0)=DIR(0)_";"_OPT_":"_$$FMTE^XLFDT(BPFIL,"5D")_" Fill Date",TMP(OPT)=BPFIL
+ I BPRLS'>DT S OPT=OPT+1,DIR(0)=DIR(0)_";"_OPT_":"_$$FMTE^XLFDT(BPRLS,"5D")_" Release Date",TMP(OPT)=BPRLS
+ D ^DIR
+ I $D(DIRUT) S Y="^" Q Y
+ Q TMP(Y)
  ;

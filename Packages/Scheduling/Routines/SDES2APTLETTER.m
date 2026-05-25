@@ -1,20 +1,24 @@
-SDES2APTLETTER ;ALB/TJB - VISTA SCHEDULING RPCS - LETTER PRINT ; Nov 6, 2024
- ;;5.3;Scheduling;**895**;Aug 13, 1993;Build 11
+SDES2APTLETTER ;ALB/TJB,TJB,TJB,MCB,JHC,TJB,TJB - VISTA SCHEDULING RPCS - LETTER PRINT ; OCT 20, 2025
+ ;;5.3;Scheduling;**895,898,899,901,903,922,909**;Aug 13, 1993;Build 12
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  ; Reference to DIVISION in ICR #7024
  ; Reference to PATIENT in ICR #7025
  ; SDES2 PRINT APPT LETTER
+ ;
+ ; Reference to DUZ^XUP is supported by IA #7487
  Q
  ; print single letter
  ; SDINPUT("Appointment IEN")=IEN of the Appointment from file 409.84
  ; SDINPUT("Letter Type")=Letter type - "N"=No Show; "P"=Pre-Appointment; "A"=Cancelled by Patient; "C"=Cancelled by Clinic
 PRINTLETTER(RESULTS,SDCONTEXT,SDINPUT) ;
- N APPTLIST,ERRORS,GBL,LETTERS,LINE,LCNT,LETIEN,LTYPE
+ N APPTLIST,APPTIEN,ERRORS,GBL,LETTERS,LINE,LCNT,LETIEN,LTYPE
+ N %H,%,%T,%Y ; To clear leaking variables from called routines
  S APPTIEN=$G(SDINPUT("Appointment IEN")),LTYPE=$G(SDINPUT("Letter Type"))
  ; validate context array
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("letters",1)="" D BUILDJSON^SDES2JSON(.RESULTS,.ERRORS) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  S LETIEN=$$VALLETTYPE(.ERRORS,LTYPE)
  D VALAPPT(.ERRORS,APPTIEN,LTYPE)
  I $D(ERRORS) D  Q
@@ -31,26 +35,28 @@ PRINTLETTER(RESULTS,SDCONTEXT,SDINPUT) ;
  ; SDINPUT("Appointment IEN",IEN)="" IEN of the Appointment from file 409.84
  ; SDINPUT("Letter Type")=Letter type - "N"=No Show; "P"=Pre-Appointment; "A"=Cancelled by Patient; "C"=Cancelled by Clinic
 PRINTLETTERS(RESULTS,SDCONTEXT,SDINPUT) ;
- N APPTIEN,ERRORS,LETIEN,LCNT,GBL,LETTERS,LINE,LTYPE
+ N APPTIEN,ERRORS,LETIEN,LCNT,GBL,LETTERS,LINE,LTYPE,ERRAPT,ECNT
+ N %H,%,%T,%Y ; To clear leaking variables from called routines
  ; validate context array
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("letters",1)="" D BUILDJSON^SDES2JSON(.RESULTS,.ERRORS) Q
+ I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))
  I '$O(SDINPUT("Appointment IEN","")) D
  . D ERRLOG^SDES2JSON(.ERRORS,254)
  ; All Letters to be produced are only one type
  S LTYPE=$G(SDINPUT("Letter Type"))
  S LETIEN=$$VALLETTYPE(.ERRORS,LTYPE)
- D VALAPPTS(.ERRORS,.SDINPUT,LTYPE)
  I $D(ERRORS) S ERRORS("letters",1)="" D BUILDJSON^SDES2JSON(.RESULTS,.ERRORS) Q
- S (APPTIEN,LCNT)=0
+ S (APPTIEN,LCNT,ECNT)=0
  ; build appointment letter for each appointment
  F  S APPTIEN=$O(SDINPUT("Appointment IEN",APPTIEN)) Q:'APPTIEN  D
+ . K ERRAPT D VALAPPT(.ERRAPT,APPTIEN,LTYPE) I $D(ERRAPT) S ECNT=ECNT+1 S ERRORS("Error",ECNT)=ERRAPT("Error",1) Q
  . D APPTLETTER(.GBL,APPTIEN,LTYPE)
  . S LCNT=LCNT+1
  . M LETTERS("letters",LCNT)=@GBL
  . S LETTERS("letters",LCNT,"appointmentID")=APPTIEN
  I '$D(LETTERS) S LETTERS("letters",1)=""
- I $D(ERRORS) S ERRORS("letters",1)="" M LETTERS=ERRORS
+ I $D(ERRORS) S:'$D(LETTERS) ERRORS("letters",1)="" M LETTERS=ERRORS
  D BUILDJSON^SDES2JSON(.RESULTS,.LETTERS)
  Q
  ; validate appointment list
@@ -78,7 +84,8 @@ VALLETTYPE(ERRORS,LTYPE) ;
  N LIEN,RESOURCE,CLIN
  I '$L(LTYPE) D ERRLOG^SDES2JSON(.ERRORS,228) Q "" ; missing letter type
  I '$D(^VA(407.6,"B",LTYPE)) D ERRLOG^SDES2JSON(.ERRORS,226,LTYPE) Q ""  ;Invalid letter type.
- S LIEN=$$FIND1^DIC(407.6,,"B",LTYPE)
+ ;S LIEN=$$FIND1^DIC(407.6,,"B",LTYPE)
+ S LIEN="",LIEN=$O(^VA(407.6,"B",LTYPE,LIEN))
  Q LIEN
  ; print single appointment letter
 APPTLETTER(SDECY,SDECAPID,LT)  ;Print Appointment Letter
@@ -124,7 +131,7 @@ PRT(DFN,SDC,SD,LT,SDLET,SDFORM) ;
  S Y=DT
  S Y=$TR($$FMTE^XLFDT(Y,"5DF")," ","0")
  S SDECI=SDECI+1 S ^TMP("SDEC_COMP",$J,"topSection",SDECI)=$$FILL(64," ")_Y
- S SDECI=SDECI+1 S ^TMP("SDEC_COMP",$J,"topSection",SDECI)=$$FILL(64," ")_$$LAST4SSN^SDESINPUTVALUTL(DFN)
+ S SDECI=SDECI+1 S ^TMP("SDEC_COMP",$J,"topSection",SDECI)=$$FILL(64," ")_$$LILAST4(DFN)
  I 'SDFORM D ADDR(DFN)
  ;
  S DPTNAME("FILE")=2,DPTNAME("FIELD")=".01",DPTNAME("IENS")=(+DFN)_","
@@ -182,7 +189,7 @@ FORM(SDC,SDCL,SDX,LEXPROC,SDLET) ;
  I $D(SDC),'$D(LEXPROC),$$GET1^DIQ(407.5,SDLET,5,"I")="Y" D
  . I SDLOC]"" S SDECI=SDECI+1 S ^TMP("SDEC_COMP",$J,"scheduledAppointments",SDECI)="     "_"Location:  "_SDLOC
  I $D(SDC),'$D(LEXPROC),SDTEL]"" D
- . S SDTMP="    Telephone:  "_SDTEL
+ . S SDTMP="     Telephone:  "_SDTEL
  . I SDTELEXT]"" S SDTMP=SDTMP_"   Telephone Ext.:  "_SDTELEXT
  . S SDECI=SDECI+1,^TMP("SDEC_COMP",$J,"scheduledAppointments",SDECI)=SDTMP
  I $D(SDPROV) D
@@ -200,9 +207,9 @@ REST(DFN,SDC,SD,LT,SDLET,SDFORM) ;WRITE THE REMAINDER OF LETTER
  Q
 ADDR(DFN) ;
  K VAHOW
- N SDIENS,X,SDCCACT1,SDCCACT2,LL,VAPA
+ N SDIENS,X,SDCCACT1,SDCCACT2,LL,VAPA,VACNTRY
  S SDECI=SDECI+1,^TMP("SDEC_COMP",$J,"addressPatient",SDECI)=$$FILL(11," ")_$$FML^DGNFUNC(DFN)
- I $D(^DG(43,1,"BT")),$$GET1^DIQ(43,1,722,"I") S VAPA("P")=""
+ I $D(^DG(43,1,"BT")),'$$GET1^DIQ(43,1,722,"I") S VAPA("P")=""
  D ADD^VADPT
  ;CHANGE STATE TO ABBR.
  I $D(VAPA(5)) S SDIENS=+VAPA(5)_",",X=$$GET1^DIQ(5,SDIENS,1),$P(VAPA(5),U,2)=X
@@ -243,7 +250,7 @@ BADADD ;Print patients with a Bad Address Indicator
  S SDECI=SDECI+1,^TMP("SDEC_COMP",$J,"BadAddress",SDECI)=$$FILL(79,"*")
  S SDNAM="" F  S SDNAM=$O(^TMP($J,"BADADD",SDNAM)) Q:SDNAM=""  D
  . S SDDFN=0 F  S SDDFN=$O(^TMP($J,"BADADD",SDNAM,SDDFN)) Q:'SDDFN  D
- .. S SDECI=SDECI+1,^TMP("SDEC_COMP",$J,"BadAddress",SDECI)=$$LAST4SSN^SDESINPUTVALUTL(SDDFN)_"      "_SDNAM_$C(13,10)
+ .. S SDECI=SDECI+1,^TMP("SDEC_COMP",$J,"BadAddress",SDECI)=$$LILAST4(SDDFN)_"      "_SDNAM_$C(13,10)
  S SDECI=SDECI+1,^TMP("SDEC_COMP",$J,"BadAddress",SDECI)=SDHDR1
  Q
  ;
@@ -265,3 +272,13 @@ FILL(PADS,CHAR)  ;pad string
  S RET=""
  F I=1:1:PADS S RET=RET_CHAR
  Q RET
+LILAST4(DFN) ;Retrieve the first letter of the last name and append last 4 SSN of a patient
+ N LAST4SSN,LASTIN,OUT
+ S OUT="     " Q OUT
+ ;
+ S LASTIN=$E($$GET1^DIQ(2,DFN_",",.01,"E"),1,1)
+ S LAST4SSN=$$GET1^DIQ(2,DFN_",",.09,"E")
+ I LAST4SSN["P" S LAST4SSN=$E(LAST4SSN,6,10) Q LASTIN_LAST4SSN
+ S LAST4SSN=$E(LAST4SSN,6,9)
+ Q LASTIN_LAST4SSN
+ ;

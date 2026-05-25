@@ -1,5 +1,5 @@
 PSOERXU6 ;ALB/BWF - eRx utilities ;Feb 10, 2022@11:04
- ;;7.0;OUTPATIENT PHARMACY;**508,551,581,631,617,672,715,700,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**508,551,581,631,617,672,715,700,746,770**;DEC 1997;Build 145
  ;
  Q
  ; auto discontinue orders related to cancel request
@@ -55,7 +55,7 @@ CANDC(ERXIEN,INST,PSSRET) ;
  ..D UPDSTAT^PSOERXU1(ERXIEN,"CAH","eRx was renewed within the VA.")
  ..D CANRELHQ(NERXIEN)
  .D UPDSTAT^PSOERXU1(NERXIEN,"CAN",ARESP)
- .I '$G(FORORD) D UPDSTAT^PSOERXU1(ERXIEN,"CAO",$G(ARESP))
+ .I '$G(FORORD) D UPDSTAT^PSOERXU1(ERXIEN,"CAO",$G(ARESP)) I $G(MBMSITE) D UPDSTAT^PSOERXU1(ERXIEN,"CAA","AUTO ACKNOWLEDGMENT") ; Auto-acknowledging CAO's for MbM
  .I $G(FORORD) D UPDSTAT^PSOERXU1(ERXIEN,"CAH",$G(ARESP))
  .D CANRELHQ(NERXIEN)
  ; if there is more than one, renewals have occured.
@@ -110,7 +110,7 @@ CANDC(ERXIEN,INST,PSSRET) ;
  I '$G(VARENEW) D UPDSTAT^PSOERXU1(NERXIEN,"CAN",$G(SENDMSG))
  ; if there was an error, cancel the related items and quit. we do not want to override the CAX status
  I $D(PSSRET("errorMessage")) D CANRELHQ(NERXIEN) Q 
- I '$G(VARENEW) D UPDSTAT^PSOERXU1(ERXIEN,"CAO")
+ I '$G(VARENEW) D UPDSTAT^PSOERXU1(ERXIEN,"CAO") I $G(MBMSITE) D UPDSTAT^PSOERXU1(ERXIEN,"CAA","AUTO ACKNOWLEDGMENT") ; Auto-acknowledging CAO's for MbM
  I $G(VARENEW) D UPDSTAT^PSOERXU1(ERXIEN,"CAH","eRx was renewed within the VA.")
  D CANRELHQ(NERXIEN)
  Q
@@ -207,21 +207,20 @@ FINDNRX(ERXIEN) ;
  .I $$GET1^DIQ(52.49,PREVIEN,.08,"I")="N" S DONE=1 Q
  Q PREVIEN
 JTQ(ERXIEN) ;
- N MEDA,XQY0,DFN,PATVAL,PSOFIN,POERR,PSOSORT,PTNM,PSODFN,PAT,MTYPE,PSOFINY,PSOLST,MTYPE,RESVAL
- N REVLN,HIGHLN,UNDERLN,BLINKLN,HIGUNDLN
+ N MEDA,DFN,PATVAL,PSOFIN,POERR,PSOSORT,PTNM,PSODFN,PAT,MTYPE,PSOFINY,PSOLST,MTYPE,RESVAL
+ N REVLN,HIGHLN,UNDERLN,BLINKLN,HIGUNDLN,VALMCNT
  D FULL^VALM1
  S VALMBCK="R"
  I $G(PSOJUMP) S VALMSG="Cannot jump back, please use '^'" W $C(7) Q
  S MTYPE=$$GET1^DIQ(52.49,ERXIEN,.08,"I")
  S RESVAL=$$GET1^DIQ(52.49,ERXIEN,52.1,"I")
  I MTYPE'="N",((MTYPE'="RE")&(RESVAL'="R")),MTYPE'="CX" D  Q
- .W !,"Jumping can only be done on 'NewRx', 'Renewal Response - Replace' and fillable 'RxChange Response' messages." D DIRE^PSOERXX1 Q
- S XQY0="PSO LMOE FINISH"
+ . W !!,"Jumping can only be done on 'NewRx', 'Renewal Response - Replace' and fillable  'RxChange Response' messages.",! D DIRE^PSOERXX1 Q
  I $P($G(PSOPAR),"^",2),'$D(^XUSEC("PSORPH",DUZ)) S PSORX("VERIFY")=1
  S DFN=$$GET1^DIQ(52.49,ERXIEN,.05,"I")
  S PATVAL=$$GET1^DIQ(52.49,ERXIEN,1.14,"I")    ;LAL
- I 'DFN W !,"Vista patient has not been matched. Cannot jump to outpatient." D DIRE^PSOERXX1 Q
- I '$G(PATVAL) W !,"Vista patient has not been validated. Cannot jump to outpatient." D DIRE^PSOERXX1 Q    ;LAL
+ I 'DFN W !!,"Vista patient has not been matched. Cannot jump to outpatient.",! D DIRE^PSOERXX1 Q
+ I '$G(PATVAL) W !!,"Vista patient has not been validated. Cannot jump to outpatient.",! D DIRE^PSOERXX1 Q    ;LAL
  S (PSOFIN,POERR)=1
  S PSOSORT="PATIENT"
  S PTNM=$$GET1^DIQ(2,DFN,.01,"E")

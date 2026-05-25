@@ -1,5 +1,5 @@
-GMRCIUT1 ;SLC/JFR - UTILITIES FOR INTER-FACILITY CONSULTS ; Jul 31, 2024@05:39:44
- ;;3.0;CONSULT/REQUEST TRACKING;**189**;DEC 27, 1997;Build 54
+GMRCIUT1 ;SLC/JFR - UTILITIES FOR INTER-FACILITY CONSULTS ; Jan 27, 2025@06:04:10
+ ;;3.0;CONSULT/REQUEST TRACKING;**189,205**;DEC 27, 1997;Build 3
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  Q  ;don't start at the top
@@ -99,76 +99,84 @@ FAILPRXY(MSGID,EDIPI,GMRCDA,CRNRORDR,ORDRDESC,ORDRDATE,STA,REASON) ;
  D EN1^XMD
  Q  ;
  ;
-ROUTE(GMRCDA)  ; determine correct routing for IFC msg  <<<<<<<<<============OLD CODE FROM GMRCIEVT.  NOT USED.
+RESP(GMRCAC,GMRCMID,GMRCOC,GMRCDA,GMRCERR,GMRCMSG) ;
+ ;
+ ;  Send ACK or NAK to Cerner followed by rejection comment. P205 wtc 8/15/24
+ ;
  ; Input:
- ; GMRCDA = ien from file 123
+ ;   GMRCAC  = acknowledgement code (AA or AR)
+ ;   GMRCMID = message id from original msg
+ ;   GMRCOC  = order control from original msg ORC
+ ;   GMRCDA  = ien of consult being worked on
+ ;   GMRCERR = only defined if an error is found
+ ;   GMRCMSG = name of array where incoming HL7 stored
  ;
- ; Output:
- ; the logical link to send the message to in format
- ; "GMRC IFC SUBSC^VHAHIN^STATION"
- ;need to understanding their queuing
- N SITE,GMRCLINK,STA
- N DGKEY,DGOUT,CNT,IDS,CERNERID,CONSULTDFN,GMRCDFN,MPIDATA,RETURN,PATARR,X
- S (RETURN,CERNERID,CONSULTDFN)=""
- S SITE=$P(^GMR(123,GMRCDA,0),U,23) I 'SITE Q "" ;no ROUTING FACILITY
- S STA=$$STA^XUAF4(SITE) I '$L(STA) Q "" ;can't find station num for that site
+ N HLA S HLA("HLA",1)=$$MSA^GMRCISEG(GMRCAC,GMRCMID,$G(GMRCERR))
  ;
- D LINK^HLUTIL3(STA,.GMRCLINK,"I")
+ ;  Generate PID segment for Cerner orders.  Insert EDIPI and patient account number.  p184
  ;
- ;WCJ; if no patient - should not happen
- S GMRCDFN=$P(^GMR(123,GMRCDA,0),U,2) I 'GMRCDFN Q ""
+ N DFN,PID,EDIPI,ICN,PTACCTNO,FS,CS,REPTTN,SEGNUM,PTACCTNO,GMRCRSLT ;
+ S SEGNUM=1 ;
+ I $G(GMRCDA) D  ;
+ . S DFN=$P(^GMR(123,GMRCDA,0),U,2),PTACCTNO=$P($G(^GMR(123,GMRCDA,"CERNER")),U,3) ;
+ . I PTACCTNO'="" D  ;
+ .. S HLECH=HL("ECH"),PID=$$EN^VAFCPID(DFN,"1,2,3,7,8,19"),PID=$$ADD2PID^GMRCIUTL(PID,DFN,PTACCTNO) ;
+ .. S SEGNUM=SEGNUM+1,HLA("HLA",SEGNUM)=PID ;
  ;
- ;pull patient Correlation list
- S DGKEY=GMRCDFN_U_"PI"_U_"USVHA"_U_$P($$SITE^VASITE,"^",3)
- D TFL^VAFCTFU2(.DGOUT,DGKEY)
+ I $D(GMRCOC) D
+ . I GMRCOC="NW" S SEGNUM=SEGNUM+1,HLA("HLA",SEGNUM)=$$ORCRESP^GMRCISG1(GMRCDA,"OK","IP")
  ;
- S CNT=0 F  S CNT=$O(DGOUT(CNT)) Q:'CNT  S IDS=$G(DGOUT(CNT)) D
- .I $P(IDS,"^",4)="200CRNR" I $P(IDS,"^",2)="PI" S CERNERID=IDS
- .I $P(IDS,"^",4)=STA I $P(IDS,"^",2)="PI" I $P(IDS,"^",5)="A"!($P(IDS,"^",5)="C") S CONSULTDFN=IDS
+ ;  Generate OBR segment for Cerner orders.  p184
  ;
- ;is consulting site known in the list and if site is Cerner enabled but not known
- I CONSULTDFN'="" D
- . ; if consulting site is known and it is NOT a Cerner enabled site
- . I $P(CONSULTDFN,"^",5)'="C" D  Q
- .. S GMRCLINK=$O(GMRCLINK(0)) I 'GMRCLINK Q  ; no link for that site
- .. S GMRCLINK=GMRCLINK(GMRCLINK) I '$L(GMRCLINK) Q  ;no link name
- .. S RETURN="GMRC IFC SUBSC^"_GMRCLINK_U_STA Q  ;MKN GMRC*3*154 added STA to RETURN
- . ;
- . ; if consulting site is known and it is a Cerner enabled site but patient unknown to Cerner
- . I $P(CONSULTDFN,"^",5)="C",(CERNERID="") S RETURN=$$GETLINK(STA) Q
- . ; if consulting site is known and it is a Cerner enabled site
- . I $P(CONSULTDFN,"^",5)="C",(CERNERID'="") D
- .. ; if Cerner enabled site AND Cerner knows patient set route to VDIF regional router
- .. S RETURN=$$GETLINK(STA) ;MKN GMRC*3*154 added STA to RETURN
- I CONSULTDFN="" D
- . ;
- . ;  If patient not found on converted VistA, call proxy add.  p189 wtc 4/13/2023
- . ;
- . I CERNERID'="" N RTNCODE D  Q:RTNCODE>0  ; WTC 9.8.23
- .. ;
- .. ;  Call proxy add.  If successful, get link name.  Otherwise, allow 201 error to be generated.
- .. ;
- .. N EDIPI ;
- .. S EDIPI=$$EDIPI^GMRCIUTL($$GET1^DIQ(123,GMRCDA,.02,"I")) ;
- .. S RTNCODE=$$ADD^DGPROSAD(EDIPI_"~USDOD~NI~200DOD",STA) ;  ICR 7421
- .. Q:RTNCODE<0  ;  Proxy add failed.  wtc 4/13/2023, 9/26/23
- .. S RETURN=$$GETLINK(STA) ;
- . ;
- . ;  Suppress 201 error if IFC already has a 203 error in the message log.  wtc 11.22.23 p189
- . ;
- . N ACTIEN,SUPPRESS,LOGIEN S SUPPRESS=0,ACTIEN=0 F  S ACTIEN=$O(^GMR(123.6,"AC",GMRCDA,ACTIEN)) Q:'ACTIEN  D  Q:SUPPRESS  ;
- .. S LOGIEN=0 F  S LOGIEN=$O(^GMR(123.6,"AC",GMRCDA,ACTIEN,1,LOGIEN)) Q:'LOGIEN  I $P($G(^GMR(123.6,LOGIEN,0)),U,8)=203 S SUPPRESS=1 Q  ;
- . ;
- . I 'SUPPRESS D LOGMSG^GMRCIUTL(GMRCDA,1,"",201)
- . S RETURN=""
+ I $G(GMRCDA) S SEGNUM=SEGNUM+1,HLA("HLA",SEGNUM)=$$OBR^GMRCISG1(GMRCDA),HLA("HLA",SEGNUM)=$$ADD2OBR^GMRCIUTL(HLA("HLA",SEGNUM),GMRCDA) ;
  ;
- Q RETURN
+ ;  Send ACK/NAK to Cerner.
  ;
-GETLINK(STA) ;  <<<<<<<<<============OLD CODE FROM GMRCIEVT
- N GMRCLINK
- D LINK^HLUTIL3(STA,.GMRCLINK,"I")
- S GMRCLINK(1)=$$GET^XPAR("SYS","GMRC IFC REGIONAL ROUTER",1)
- S GMRCLINK=$O(GMRCLINK(0)) I 'GMRCLINK Q "" ; no link for that site
- S GMRCLINK=GMRCLINK(GMRCLINK) I '$L(GMRCLINK) Q "" ;no link name
- Q "GMRC IFC SUBSC^"_GMRCLINK(1)_U_STA
+ D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"LM",1,.GMRCRSLT) ;-(
+ ;
+ Q:GMRCAC="AA"  ;
+ ;
+ ;  Send rejection comment along with original order message.
+ ;
+ N HL,HLL,HLP,ERRTEXT,OBR,IDX,STA,I ;
+ ;
+ D INIT^HLFNC2("GMRC IFC ORM EVENT",.HL)
+ ;
+ K ^TMP("GMRCIUT1",$J) M ^TMP("GMRCIUT1",$J)=@GMRCMSG ;
+ ;
+ K ^TMP("HLS",$J) S SEGNUM=1,^TMP("HLS",$J,SEGNUM)="PID|"_^TMP("GMRCIUT1",$J,"PID") ;
+ S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="ORC|"_^TMP("GMRCIUT1",$J,"ORC") ;
+ ;
+ ;  Change order control and status to "add comment" (IP/IP).  WTC 10/21/24
+ ;
+ S $P(^TMP("HLS",$J,SEGNUM),"|",2)="IP",$P(^TMP("HLS",$J,SEGNUM),"|",6)="IP" ;
+ ;
+ S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="OBR|"_^TMP("GMRCIUT1",$J,"OBR"),OBR="OBR|"_^TMP("GMRCIUT1",$J,"OBR") ;
+ ;
+ S IDX=0 F  S IDX=$O(^TMP("GMRCIUT1",$J,"OBX",1,IDX)) Q:'IDX  S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="OBX|"_^TMP("GMRCIUT1",$J,"OBX",1,IDX) ;
+ ;
+ S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="OBX|3|TX|^COMMENTS^|1| ||||||P" ;
+ S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="OBX|3|TX|^COMMENTS^|2|Activity Type: Order Rejected||||||P" ;
+ S ERRTEXT="ERR"_GMRCERR_"^GMRCIUTL" ;
+ S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="OBX|3|TX|^COMMENTS^|3|Rejection Reason: "_GMRCERR_" - "_$P($T(@ERRTEXT),";",2)_"||||||P" ;
+ S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="OBX|3|TX|^COMMENTS^|4|Entered At Location: "_$P($$SITE^VASITE(),U,2)_"||||||P" ;
+ S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="OBX|3|TX|^COMMENTS^|5|"_$$FMTE^XLFDT($$NOW^XLFDT())_"||||||P" ;
+ ;
+ S IDX=0 F I=6:1 S IDX=$O(^TMP("GMRCIUT1",$J,"OBX",3,IDX)) Q:'IDX  S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="OBX|3|TX|^COMMENTS^|"_I_"|"_^TMP("GMRCIUT1",$J,"OBX",3,IDX) ;
+ ;
+ S IDX=0 F  S IDX=$O(^TMP("GMRCIUT1",$J,"OBX",5,IDX)) Q:'IDX  S SEGNUM=SEGNUM+1,^TMP("HLS",$J,SEGNUM)="OBX|"_^TMP("GMRCIUT1",$J,"OBX",5,IDX) ;
+ ;
+ S STA=$P($P(OBR,"|",3),"^",2) ;
+ S HLL("LINKS",1)="GMRC IFC SUBSC^"_$$GET^XPAR("SYS","GMRC IFC REGIONAL ROUTER",1)_U_STA ;
+ S HLP("SUBSCRIBER")="^^^^"_$P(HLL("LINKS",1),U,3) ;
+ D GENERATE^HLMA("GMRC IFC ORM EVENT","GM",1,,,.HLP) ;
+ ;
+ ;  Save message in HL7 repository.
+ ;
+ N ERR ;
+ K ^TMP("GMRCIUT1",$J) F IDX=1:1 Q:'$D(^TMP("HLS",$J,IDX))  S ^TMP("GMRCIUT1",$J,IDX,0)=^TMP("HLS",$J,IDX) ;
+ S ERR=$$SAVEHL7X^EHMHL7("GMRCIUT1","IFC","VISTA-"_$$STA^XUAF4($$KSP^XUPARAM("INST")),"CERNER-"_$P($P(OBR,"|",3),"^",2),"|","^",$E(HL("ECH"),2)) ;
+ ;
+ K ^TMP("GMRCIUT1",$J) ;
+ Q
  ;

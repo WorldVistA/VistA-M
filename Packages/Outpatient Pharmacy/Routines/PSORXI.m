@@ -1,5 +1,5 @@
 PSORXI ;IHS/DSD/JCM - logs pharmacy interventions ;03/19/93 11:56
- ;;7.0;OUTPATIENT PHARMACY;**268,324,251,387,390,417**;DEC 1997;Build 7
+ ;;7.0;OUTPATIENT PHARMACY;**268,324,251,387,390,417,737**;DEC 1997;Build 52
  ;External reference to ^APSPQA(32.4 supported by DBIA 2179
  ; This routine is used to create entries in the APSP INTERVENTION file.
 START ;  
@@ -17,6 +17,7 @@ DIC ;
  K DIC,DR,DA,X,Y,DD,DO S DIC="^APSPQA(32.4,",DLAYGO=9009032.4,DIC(0)="L",X=DT
  S DIC("DR")=".02////"_+PSODFN_";.04////"_DUZ_";.05////"_PSODRUG("IEN")_";.06///PHARMACY"
  S DIC("DR")=DIC("DR")_";.07"_$S($G(PSOIVDSN):"////"_$G(PSOIVDSN),$G(PSORX("INTERVENE"))=1:"////18",$G(PSORX("INTERVENE"))=2:"////19",1:"////6")_";.14////0"_";.16////"_$S($G(PSOSITE)]"":PSOSITE,1:"")
+ S DIC("DR")=DIC("DR")_";.15////"_$$GET1^DIQ(52,$G(PSORXIEN),.01) ; PSO*7*737
  D FILE^DICN K DIC,DR,DA
  I Y>0 S PSORXI("DA")=+Y S:$G(PSODAL) PSODAL("DA")=+Y
  E  S PSORXI("QFLG")=1 G DICX
@@ -85,6 +86,12 @@ EN3(PSOIVDST) ; Entry Point for dose interventions without a prescription
  D LOOK I 'PSOIVDSN Q 1
  D START K PSOIVDSN
 EN3X Q 0
+ ;
+ENPGX(PSOIVDST,PSORXIEN) ; entry point for PGx interventions ; pso*7*737
+ ; PSOIVDST = APSP intervention type (external representation)
+ ; PSORXIEN = Prescription IEN from file 52 (populated for VERIFY and REINSTATE actions only)
+ D LOOK,START
+ Q 
  ;
 LOOK ;Find Internal Number of 32.3 file
  S PSOIVDSN=$$FIND1^DIC(9009032.3,"","X",PSOIVDST,"B")

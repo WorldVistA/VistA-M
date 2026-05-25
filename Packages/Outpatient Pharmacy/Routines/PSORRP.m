@@ -1,5 +1,5 @@
 PSORRP ;AITC/BWF - Remote RX report ;8/15/16 5:44pm
- ;;7.0;OUTPATIENT PHARMACY;**454,643**;DEC 1997;Build 35
+ ;;7.0;OUTPATIENT PHARMACY;**454,643,774**;DEC 1997;Build 15
  ;
 EN ; -- main entry point for PSO LM REMOTE RX REPORT
  N PSOREPORT
@@ -153,7 +153,7 @@ BLDLINE(IEN,LINE) ;
  S VALMCNT=$G(VALMCNT)+1
  Q
 SEL ;
- N DIR,ITEM,IEN,IENS,DATA,CNT,F,ARY,SITELBL,PSOPRRF,PSOPRRT,PSOPRRS
+ N DIR,ITEM,IEN,IENS,DATA,CNT,F,ARY,SITELBL,PSOPRRF,PSOPRRT,PSOPRRS,REQPHARM
  S ARY=$NA(^TMP("PSORRD",$J))
  K @ARY
  S CNT=1
@@ -176,7 +176,8 @@ SEL ;
  S SITELBL=$S(PSOPRRF:"Rx Dispensed by Site:            ",1:"Rx Hosted at Site:               ")
  S @ARY@(CNT,0)=SITELBL_$G(DATA(F,IENS,.04,"E")),CNT=CNT+1
  S @ARY@(CNT,0)="Request Type:                    "_$G(DATA(F,IENS,.05,"E")),CNT=CNT+1
- S @ARY@(CNT,0)="Requesting Pharmacist:           "_$S('PSOPRRF:$G(DATA(F,IENS,.06,"E")),1:$G(DATA(F,IENS,.061,"E"))),CNT=CNT+1
+ S REQPHARM=$$REQPHARM(.DATA,IENS)
+ S @ARY@(CNT,0)="Requesting Pharmacist:           "_$S((REQPHARM[","):REQPHARM,'PSOPRRF:$G(DATA(F,IENS,.06,"E")),1:$G(DATA(F,IENS,.061,"E"))),CNT=CNT+1
  S @ARY@(CNT,0)="Quantity:                        "_$G(DATA(F,IENS,.07,"E")),CNT=CNT+1
  S @ARY@(CNT,0)="Days Supply:                     "_$G(DATA(F,IENS,.08,"E")),CNT=CNT+1
  S @ARY@(CNT,0)="Dispensed Date:                  "_$G(DATA(F,IENS,.1,"E")),CNT=CNT+1
@@ -194,6 +195,25 @@ SEL ;
  K @ARY,PSORCNT
  S VALMBCK="R"
  Q
+ ;
+REQPHARM(DATA,IENS) ; Find Requesting Pharmacist from 
+ ; REMOTE PHARMACIST (#92) from PRESCRIPTION (#52) if original fill
+ ; REMOTE PHARMACIST (#92) from REFILL DATE sub-file (#52.1) if refill
+ ; REMOTE PHARMACIST (#92) from PARTIAL DATE sub-file (#52.2) if partial fill.
+ ;
+ N FILLTYPE,FILLNUM,RX,RXIEN,RDATA,RPIENS,FI,RPDATA
+ S FILLTYPE=$G(DATA(F,IENS,.05,"I"))
+ ; FILLTYPE "OP" pull from .064 (HOST PARTIAL IEN), FILLTYPE "OR" pull from .063 (HOST REFILL IEN)
+ S FILLNUM=$S(FILLTYPE="OP":$G(DATA(52.09,IENS,.064,"I")),FILLTYPE="OR":$G(DATA(52.09,IENS,.063,"I")),1:0)
+ S:FILLNUM="" FILLNUM=0
+ S RX=DATA(52.09,IENS,.03,"I")
+ S RXIEN=$O(^PSRX("B",RX,0))
+ S FI=$S(FILLNUM=0:52,FILLTYPE="OP":52.2,FILLTYPE="OR":52.1,1:"")
+ Q:FI="" ""
+ Q:'RXIEN ""
+ S RPIENS=$S(FI=52:RXIEN_",",1:FILLNUM_","_RXIEN_",")
+ D GETS^DIQ(FI,RPIENS,"**","IE","RPDATA")
+ Q $G(RPDATA(FI,RPIENS,92,"E"))
  ;
 EXTHLP ;
  W !,"Selecting 1 will display the list of prescriptions that our local facility has"

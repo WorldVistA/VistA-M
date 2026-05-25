@@ -1,5 +1,5 @@
 FBAAUTL ;AISC/GRR,SBW-Fee Basis Utility Routine ; 4/23/10 3:06pm
- ;;3.5;FEE BASIS;**101,114,108,124,127,158**;JAN 30, 1995;Build 94
+ ;;3.5;FEE BASIS;**101,114,108,124,127,158,192**;JAN 30, 1995;Build 18
  ;;Per VA Directive 6402, this routine should not be modified.
 DATE N FBDT S FBPOP=0 K BEGDATE,ENDDATE K:$G(%DT)'["A" %DT W !!,"**** Date Range Selection ****"
  S FBDT=$S($D(%DT):1,1:0) W ! S %DT=$S(FBDT:%DT,1:"APEX"),%DT("A")="   Beginning DATE : " D ^%DT S:Y<0 FBPOP=1 Q:Y<0  S (%DT(0),BEGDATE)=Y
@@ -148,3 +148,31 @@ CRARC(FBADJ,FBRRMK,FBCRARC) ; compile CARCs and RARCs into an array for batch pr
  . . S FBCRARC(I)=FBCRARC(I)_FBRRMKE_U
  Q
  ;
+GETICN(DFN,DEFAULT) ;Get the ICN of the patient   ;192
+ ;Replaces the calls for SSN
+ ;DEFAULT can be set for customized values when the patient does not have an ICN
+ ;
+ N FBICN
+ ;
+ I '$G(DFN) Q
+ I $G(DEFAULT)="" S DEFAULT=""    ;Default no ICN value is blank
+ ;
+ S FBICN=$$GETICN^MPIF001(DFN)
+ I +FBICN=-1 S FBICN=DEFAULT
+ Q FBICN
+ ;
+WARN(PROMPTC) ;Future Deactivation messaging for a set of Options   ;192
+ ;PROMPTC - boolean, true to prompt Type <Enter> to continue, default = false
+ ;
+ N DIR,MSG
+ ;
+ S MSG(1)=""
+ S MSG(2)="==============================================================="
+ S MSG(3)="       This option is scheduled to be disabled May 2026."
+ S MSG(5)="==============================================================="
+ S MSG(6)=""
+ ;
+ D EN^DDIOL(.MSG)
+ ;
+ I $G(PROMPTC) S DIR(0)="E",DIR("A")="Press RETURN to continue" D ^DIR K DIR
+ Q

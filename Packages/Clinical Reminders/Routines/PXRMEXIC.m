@@ -1,15 +1,19 @@
-PXRMEXIC ;SLC/PKR,PJH - Routines to install repository entry components. ;09/27/2018
- ;;2.0;CLINICAL REMINDERS;**6,12,17,16,18,22,24,26,47,45**;Feb 04, 2005;Build 566
+PXRMEXIC ;SLC/PKR,PJH - Routines to install repository entry components. ;Mar 12, 2025@10:34:59
+ ;;2.0;CLINICAL REMINDERS;**6,12,17,16,18,22,24,26,47,45,87**;Feb 04, 2005;Build 35
+ ;
+ ; Reference to KILLUPDATING^ORIUTL in ICR# 7465
+ ;
+ Q
  ;=================================================
 FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;file entry in repository entry PXRMRIEN. IND120 and JND120 are the
  ;indexes for the component list. ACTION is one of the possible actions.
  I ACTION="S" Q
- N DATA,DUZ0S,EDULIST,FDA,FDAEND,FDASTART,FIELD,FILENUM
+ N CLASS,CLASSFIELDNUM,DATA,DUZ0S,EDULIST,FDA,FDAEND,FDASTART,FIELD,FILENUM
  N IEN,IENS,IENREND,IENROOT,IENRSTR,IENUSED,IND,INDICES
- N LINE,MSG,NAME,NEW01,PXNAT,PXRMEDOK,PXRMEXCH
- N SRCIEN,START,TEMP,TEXT,TFDA,TIENROOT,TIUFPRIV,TNAME,TOPFNUM,VERSN
- N WPLCNT,WPTMP,XUMF
+ N LINE,MSG,NAME,NEW01,PT01,PXNAT,PXRMEDOK,PXRMEXCH
+ N SRCIEN,START,TEMP,TEXT,TFDA,TIENROOT,TIUFPRIV,TNAME,TOPFNUM
+ N UPCNAME,UPCPT01,VERSN,WPLCNT,WPTMP,XUMF
  ;I $G(PXRMIGDS) S DUZ0S=DUZ(0),DUZ(0)="^",XUMF=1
  ;Set PXRMEDOK so files pointing to sponsors can be installed.
  ;Set PXRMEXCH so national entries can be installed and prevent
@@ -45,7 +49,7 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ..;
  ..;If the action is install try to install at the source IEN. If
  ..;an entry already exists at the source IEN put it in the first
- ..;open spot. 
+ ..;open spot.
  .. I ACTION="I" D
  ... S IENUSED=+$$FIND1^DIC(FILENUM,"","QU","`"_SRCIEN)
  ... S IENROOT(SRCIEN)=$S(IENUSED=0:SRCIEN,1:$$LOIEN^PXRMEXU5(FILENUM))
@@ -62,8 +66,34 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  .;
  . S FDA(FILENUM,IENS,FIELD)=DATA
  ;
+ S IENS=$O(FDA(TOPFNUM,""))
+ ;
  ;Initialize the edit history.
  D INIEH(TOPFNUM,IENS,.FDA,.WPTMP)
+ ;
+ ;S CLASSFIELDNUM=$$FLDNUM^DILFD(TOPFNUM,"CLASS")
+ ;I CLASSFIELDNUM>0 D
+ ;.;If there is no Class, default it to local.
+ ;. S CLASS=$G(FDA(TOPFNUM,IENS,CLASSFIELDNUM))
+ ;. I CLASS="" S FDA(TOPFNUM,IENS,100)="LOCAL"
+ ;
+ ;Initialize the Change Log/Edit History.
+ ;S PT01=FDA(TOPFNUM,IENS,.01)
+ ;S UPCPT01=$$UP^XLFSTR(PT01)
+ ;D INIEH(PXRMRIEN,TOPFNUM,PT01,UPCPT01,.FDA,.NAMECHG,.WPTMP)
+ ;
+ ;If there is a Sponsor does it need to be replaced?
+ ;S SPONFIELDNUM=$$FLDNUM^DILFD(TOPFNUM,"SPONSOR")
+ ;I SPONFIELDNUM>0 D
+ ;. S SPONSOR=$G(FDA(TOPFNUM,IENS,SPONFIELDNUM))
+ ;. I (SPONSOR'=""),$D(^PXRMD(811.6,"REP",SPONSOR)) D
+ ;.. S REPSPONIEN=$O(^PXRMD(811.6,"REP",SPONSOR,""))
+ ;.. S FDA(TOPFNUM,IENS,SPONFIELDNUM)="`"_REPSPONIEN
+ ;
+ ;Some older PRD files may contain mixed-case. Make sure
+ ;the appropriate fields in the FDA are uppercase.
+ ;D UPPERCASE^PXRMEXUPC(TOPFNUM,.FDA)
+ ;
  ;Build the IENROOT
  F IND=IENRSTR:1:IENREND D
  . I IND=0 Q
@@ -88,6 +118,7 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  I TOPFNUM=801.48 D DLINKSAV^PXRMEXU5(.FDA) Q:PXRMDONE
  ;Special handling for file 801.41
  I TOPFNUM=801.41 D  Q:PXRMDONE
+ . ;Merge only applies when the silent installer is used.
  . I ACTION="M" D MOU^PXRMEXU5(801.41,SITEIEN,"18*",.FDA,.IENROOT,ACTION,.WPTMP)
  . D DLG^PXRMEXU4(.FDA,.NAMECHG)
  ;
@@ -106,6 +137,8 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;
  ;Special handling for file 811.5.
  I TOPFNUM=811.5 D  Q:'$D(FDA)
+ .;set default usage if not defined
+ .I $G(FDA(811.5,IENS,103))="" S FDA(811.5,IENS,103)="*"
  .;If the site has any findings already mapped merge them in.
  . I (ACTION="M")!(ACTION="U") D MOU^PXRMEXU5(811.5,SITEIEN,"20*",.FDA,.IENROOT,ACTION,.WPTMP)
  . D SFMVPI^PXRMEXIU(.FDA,.NAMECHG,811.52)
@@ -130,6 +163,7 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;Special handling for file 9999999.64: Health Factors.
  I TOPFNUM=9999999.64 D HF^PXRMEXIU(.FDA)
  ;
+ I TOPFNUM=101.71 D EN^PXRMEXUINFOPNL(.FDA) I PXRMDONE=1 Q
  ;
  ;If FDA is not defined at this point the user has opted to abort
  ;the install.
@@ -138,6 +172,7 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  ;If the action is merge, overwrite, or update do a test install
  ;before deleting the original entry.
  I (ACTION="M")!(ACTION="O")!(ACTION="U") D
+ .I TOPFNUM=101.71 Q
  .;Make the .01 unique for the test install.
  . S IENS=$O(FDA(TOPFNUM,""))
  .;Get the length of the .01 field
@@ -151,7 +186,8 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  . S TIENROOT(SRCIEN)=$$LOIEN^PXRMEXU5(TOPFNUM)
  . D UPDATE^DIE("E","TFDA","TIENROOT","MSG")
  . I $D(MSG) D  Q
- .. S TEXT(1)=ATTR("FILE NAME")_" entry "_$G(ATTR("PT01"))_" did not get installed!"
+ .. K TEXT
+ .. S TEXT(1)="FILE^PXRMEXIC, "_ATTR("FILE NAME")_" entry "_$G(ATTR("PT01"))_" did not get installed!"
  .. S TEXT(2)="Examine the following error message for the reason."
  .. S TEXT(3)=""
  .. S TEXT(4)="The test update failed, UPDATE^DIE returned the following error message:"
@@ -163,23 +199,29 @@ FILE(PXRMRIEN,SITEIEN,IND120,JND120,ACTION,ATTR,NAMECHG) ;Read and process a
  .;If the original update worked put the entry at its original ien.
  .;Delete the existing entry.
  . D DELETE^PXRMEXFI(TOPFNUM,SITEIEN)
- D UPDATE^DIE("ES","FDA","IENROOT","MSG")
+ ;
+ D UPDATE^DIE($S(TOPFNUM=101.71:"ESU",1:"ES"),"FDA","IENROOT","MSG")
+ I TOPFNUM=101.71 D KILLUPDATING^ORIUTL
+ ;
  I '$D(MSG),ATTR("FILE NUMBER")=9999999.64 D
- . ;Build a list of health factor categories that need the [C] appended
+ .;Build a list of health factor categories that need the [C] appended
  . N IENS
  . S IENS=$O(FDA(9999999.64,""))
  . I FDA(9999999.64,IENS,.1)'="CATEGORY" Q
- . N L3C,LEN,NAME
+ . N L4C,LEN,NAME
  . S NAME=ATTR("NAME")
- . S LEN=$L(NAME),L3C=$E(NAME,(LEN-2),LEN)
- . I L3C'="[C]" S ^TMP($J,"HFCAT",NAME)=""
+ . S LEN=$L(NAME),L4C=$E(NAME,(LEN-3),LEN)
+ . I L4C'=" [C]" D
+ .. S UPCNAME=$$UP^XLFSTR(NAME)
+ .. S ^TMP("PXRMHFCAT",$J,UPCNAME)=""
  I $D(MSG) D
- . S TEXT(1)=ATTR("FILE NAME")_" entry "_$G(ATTR("PT01"))_" did not get installed!"
+ . K TEXT
+ . S TEXT(1)="FILE^PXRMEXIC, "_ATTR("FILE NAME")_" entry "_$G(ATTR("PT01"))_" did not get installed!"
  . S TEXT(2)="Examine the following error message for the reason."
  . S TEXT(3)=""
  . S TEXT(4)="The update failed, UPDATE^DIE returned the following error message:"
  . D MES^XPDUTL(.TEXT)
- . D AWRITE^PXRMUTIL("MSG")
+ . D AWRITE^PXRMUTIL("MSG") W ! D AWRITE^PXRMUTIL("FDA")
  . W !
  . H 2
  ;
@@ -251,7 +293,7 @@ NAMECHG(FDA,NAMECHG,FILENUM) ;If this component has been copied to a new
  . I (FILENUM<801.41)!(FILENUM>811.9) Q
  .;Once a component has been copied CLASS can no longer be national.
  . S CLASS=$G(FDA(FILENUM,IENS,100))
- . I CLASS["N" S FDA(FILENUM,IENS,100)="LOCAL"
+ . I (CLASS="")!(CLASS["N") S FDA(FILENUM,IENS,100)="LOCAL"
  .;The Sponsor is also removed.
  . K FDA(FILENUM,IENS,101)
  Q

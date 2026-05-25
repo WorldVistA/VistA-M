@@ -1,4 +1,4 @@
-PSOXZA10 ; COMPILED XREF FOR FILE #52 ; 09/03/24
+PSOXZA10 ; COMPILED XREF FOR FILE #52 ; 09/03/25
  ; 
  S DIKZK=1
  S DIKZ(0)=$G(^PSRX(DA,0))
@@ -54,6 +54,9 @@ PSOXZA10 ; COMPILED XREF FOR FILE #52 ; 09/03/24
  I X'="" S ^PSRX("AO",$E(X,1,30),DA)=""
  S X=$P($G(DIKZ("OR1")),U,4)
  I X'="" S ^PSRX("AQ",$E(X,1,30),DA)=""
+ S DIKZ("OF")=$G(^PSRX(DA,"OF"))
+ S X=$P($G(DIKZ("OF")),U,1)
+ I X'="" S ^PSRX("OFIL",$E(X,1,30),DA)=""
  S DIKZ("H")=$G(^PSRX(DA,"H"))
  S X=$P($G(DIKZ("H")),U,1)
  I X'="" S ^PSRX("AH",$E(X,1,30),DA)=""

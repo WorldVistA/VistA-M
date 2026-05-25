@@ -1,5 +1,5 @@
 IBECEA37 ;EDE/WCJ-Multi-site maintain UC VISIT TRACKING FILE (#351.82) - CALLER/REQUESTOR ; 2-DEC-19
- ;;2.0;INTEGRATED BILLING;**663,671,669,677,689,696**;21-MAR-94;Build 3
+ ;;2.0;INTEGRATED BILLING;**663,671,669,677,689,696,761**;21-MAR-94;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; DBIA#1621 %ZTER (ERROR RECORDING)
  ;; DBIA#2729 MESSAGE ACTION API
@@ -38,6 +38,8 @@ AWAY Q  ;thought I was being figurative??? Guess again!
 UPDATED ; Get all in File that were UPDATED and not yet pushed out. They may have gotten to some sites but not all sites
  ; 
  D MULTI("AC",1)   ; "AC" index for updated (1's) records
+ ; IB*2.0*761
+ D EXTEMAIL ; Send email to mail group notifying of any exceptions
  Q
  ;
  ; This was set up to pass in 1 regular index and an internal lookup value which it does an exact match on.
@@ -64,7 +66,6 @@ MULTI(IBINDEX,IBLOOKUP) ;
  ;^TMP("DILIST",1720,0,"MAP")="IEN^.01I^.01^C2^.03I^.04I^.05^.06I^.07I^1.01I"
  ;^TMP("DILIST",1720,1,0)="1^1234567^PATIENT,TEST A^999^3190801^2^999-K909Z09^^^1"
  ; have at them
- ;N IBLOOP,IBDATA,IBIEN,IBDFN,IBSITE,IBFAC,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBEXSITE,IBTFL,IBT,IBICN,IBH,IBX,IBR,IBERR,IBHERE,IBC,IBZ,IBOSITEIN,IBOSITEEX,IBPATPR,IBELGRP
  N IBLOOP,IBDATA,IBIEN,IBDFN,IBSITE,IBFAC,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBEXSITE,IBTFL,IBT,IBICN,IBH,IBX,IBR,IBERR,IBHERE,IBC,IBZ,IBOSITEEX,IBPATPR,IBELGRP
  ;
  S IBPATPR=IBINDEX="B"  ; Set IBPAT flag since behaviour will be even differenter than the others and we may need to check the flag often
@@ -78,11 +79,9 @@ MULTI(IBINDEX,IBLOOKUP) ;
  . S IBIEN=$P(IBDATA,U)
  . S IBDFN=$P(IBDATA,U,2)
  . ;
- . ;S IBOSITEIN=$P(IBDATA,U,4)  ; IEN file 4 (originating site internal)
- . ;I IBOSITEIN'=IBFAC D REMOVE(IBIEN) Q  ; if treatment is not for the current site, don't push out - it was pushed here.  Only originating sites should push.
- . ;S IBOSITEEX=$$GET1^DIQ(4,IBOSITEIN,99)   ; turn external site # into internal one
  . S IBOSITEEX=$P(IBDATA,U,4)  ; IEN file 4 (originating site external)
  . I IBOSITEEX'=IBSITE D REMOVE(IBIEN) Q  ; if treatment is not for the current site, don't push out - it was pushed here.  Only originating sites should push.
+ . W !,"Requesting Site?= ",IBOSITEEX
  . ;
  . K IBTFL
  . S IBT=$$TFL(IBDFN,IBOSITEEX,.IBTFL)
@@ -98,14 +97,11 @@ MULTI(IBINDEX,IBLOOKUP) ;
  . S IBUNIQ=$P(IBDATA,U,9)
  . S:IBUNIQ="" IBUNIQ=IBSITE_"_"_IBIEN  ; The UNIQUE ID = SITE_IEN
  . S IBELGRP=$$GETELGP^IBECEA36(IBDFN,IBVISDT)
- . ;
  . ; send off calls to other treating facilities that this veteran has been seen at
  . ; the calls fire off the RPC (stored procedure) at each site
  . ; DBIA#3144 DIRECT RPC CALLS
  . ; DBIA#3149 XWBDRPC
  . S IBX=0 F  S IBX=$O(IBTFL(IBX)) Q:IBX<1  D
- .. ;I IBPULL,+IBTFL(IBX)'=IBLOOKUP K IBTFL(IBX) Q  ; if it's a pull  from a specific site, only send to site doing the pulling - duh
- .. ;W:'$D(ZTQUEUED) !,"Now sending query to ",$P(IBTFL(IBX),"^",2)," ..."
  .. N IBH
  .. D:'IBPATPR EN1^XWB2HL7(.IBH,+IBTFL(IBX),"IBECEA COPAY SYNCH","",IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ; push one record
  .. D:IBPATPR EN1^XWB2HL7(.IBH,+IBTFL(IBX),"IBECEA COPAY SYNCH","",IBICN,IBOSITEEX)  ; push a request for all records for a patient (used when playing catch up - possibly adding a treating facility)
@@ -121,8 +117,6 @@ MULTI(IBINDEX,IBLOOKUP) ;
  . S IBX=0 F  S IBX=$O(IBTFL(IBX)) Q:IBX<1  D
  .. I $D(IBTFL(IBX,"ERR")) S IBREMOVE=0 Q
  .. ;
- .. ;I IBPULL,+IBTFL(IBX)'=IBLOOKUP Q  ; if it's a pull, only read from site doing the pulling - duh
- .. ;
  .. ; try up to 10 times for 2 seconds each (at each site)
  .. N IBR
  .. F IBC=1:1:10 D RPCCHK^XWB2HL7(.IBR,$P(IBTFL(IBX),U,3)) Q:$G(IBR(0))["Done"  H 2
@@ -136,6 +130,9 @@ MULTI(IBINDEX,IBLOOKUP) ;
  ... I $D(IBHERE)>10 D   ; not sure if was success or failure so save for now
  .... S IBERR=IBERR+1
  .... M ^TMP("IBECEA_COPAY",$J,IBDFN,IBERR,+IBTFL(IBX))=IBHERE
+ .... ;WCJ;IB761; If the site that was just successful had previously logged a user correctable error then remove the error
+ .... I $P(IBTFL(IBX),U)=$$GET1^DIQ(351.82,IBIEN_",","3.03:99"),+$G(IBHERE(0))'<0 D CLEARERR(IBIEN)   ;WCJ;IB761
+ .... I +$G(IBHERE(0))<0 D CHKERR ;IB*2.0*761
  .... I +$G(IBHERE(0))<0 S IBREMOVE=0   ; it failed to leave it
  ... E  D
  .... S IBERR=IBERR+1
@@ -221,4 +218,45 @@ REMOVE(IBIEN) ; remove from UPDATED index - only called if sent to ALL other tre
  S IENS=IBIEN_","
  S FDA(351.82,IENS,1.01)=0
  D FILE^DIE("","FDA","RETURN")
+ D CLEARERR(IBIEN)  ;WCJ;IB761;just in case
  Q
+ ;
+ ;WCJ;IB761; Added CLEARERR tag
+CLEARERR(IBIEN) ; remove from UPDATED index - only called if sent to ALL other treating facilities successfully.
+ N FDA,IENS,RETURN
+ S IENS=IBIEN_","
+ S FDA(351.82,IENS,3.01)="@"
+ S FDA(351.82,IENS,3.02)="@"
+ S FDA(351.82,IENS,3.03)="@"
+ D FILE^DIE("","FDA","RETURN")
+ Q
+ ;
+CHKERR ; Check error code and set file 351.82 fields 3.01, 3.02.&3.03 IB*2.0*761
+ N IBERR,IBERRCD
+ S IBERR="" F  S IBERR=$O(IBHERE(IBERR)) Q:IBERR=""  D
+ . S IBERRCD=+$G(IBHERE(IBERR))
+ . I IBERRCD'<0 Q
+ . ;SET FIELDS 3.01,3.02,3.03 IN File #351.82
+ . S DIE=351.82 S DA=IBIEN
+ . N DIC4IEN S DIC4IEN=$$FIND1^DIC(4,,"X",$P(IBTFL(IBX),U),"D") ;WCJ;IB761; grab internal entry to file 4 from external station number
+ . ; S DR="3.01///1;3.03///"_$P(IBTFL(IBX),U)_";"  ; WCJ;IB761; didn't work since the external station number is not always unique for the VAMC.
+ . S DR="3.01///1;3.03////"_DIC4IEN_";"  ; WCJ;IB761; and shove it in there (//// style)
+ . I IBERRCD=-2 S DR=DR_"3.02///E" ;Exception Reason
+ . I IBERRCD=-3 S DR=DR_"3.02///N" ;Exception Reason
+ . I IBERRCD'=-2&(IBERRCD'=-3) K DIE,DR,DA Q  ;Don't set field if error code is not -2 or -3
+ . D ^DIE
+ Q
+EXTEMAIL ; IB*2.0*761
+ N IBUCIEN,CNT,LINE,XMDUZ,XMTEXT,XMY,XMSUB
+ S (IBUCIEN,CNT)=0
+ K ^TMP($J,"IBUCEXCP")
+ F  S IBUCIEN=$O(^IBUC(351.82,"AT",1,IBUCIEN)) Q:IBUCIEN=""  S CNT=CNT+1
+ I CNT=0 Q
+ S XMSUB="URGENT CARE VISIT EXCEPTIONS NEED REVIEW"
+ S ^TMP($J,"IBUCEXCP",1)="Exceptions occurred during the transmission of Urgent Care visit data to other VAMCs. Please review the VistA Urgent Care Exception Report and/or your VistA MailMan bulletin for further details."
+ S XMTEXT="^TMP($J,""IBUCEXCP"","
+ S XMDUZ=$O(^VA(200,"B","POSTMASTER",0))
+ S XMY("G.IB UC REMOTE")=""
+ D ^XMD
+ Q
+ ;

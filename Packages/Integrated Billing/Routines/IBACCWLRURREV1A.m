@@ -1,0 +1,95 @@
+IBACCWLRURREV1A ;EDE/TAZ - ACC (Automated Community Care) Claims - ADDITIONAL REVIEW SCREEN FOR RUR (cont'd); 12-SEP-2023 ; 12-SEP-2023
+ ;;2.0;INTEGRATED BILLING;**770**;21-MAR-94;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
+ Q
+ ;THIS ROUTINE ALLOWS THE USER TO VIEW THE X12 ENCOUNTER IN READABLE FORMAT.
+ ;
+HI(ABFCNT,DIAGCNT,GETX12TPE) ;Display Diagnosis Codes
+ ;
+ I $G(GETX12TPE)="UBHI" D UBHI(.ABFCNT) Q  ;SPECIAL CASE - CAN NOT DO THE SAME DISPLAY FOR UB AS FOR CMS
+ ;
+ N AMT,CDE,CNT,CODE,DTP,DTQ,HI,POA,STR,TITLE,QC
+ S (HI,TITLE)=""
+ F CNT=2:1:13 D
+ . S CODE=$P(DATA,D,CNT) I CODE="" Q
+ . S TITLE="",QC=$P(CODE,D1,1),IC=$P(CODE,D1,2),DTQ=$P(CODE,D1,3),DTP=$P(CODE,D1,4),AMT=$P(CODE,D1,5),POA=$P(CODE,D1,9)
+ .;
+ . I QC'=HI D
+ .. S HI=QC
+ .. I QC="ABF" S ABFCNT=$G(ABFCNT)+1 S:ABFCNT=1 TITLE="Secondary Dx" Q
+ .. I QC="ABK" S TITLE="Primary Dx" Q
+ .. ;I QC="ABK",($G(IBINOUT)="INPATIENT") S TITLE="Primary Dx" Q
+ .. ;I QC="ABK",($G(IBINOUT)="OUTPATIENT") S TITLE="Billed Dx" Q
+ .. I QC="BBQ" S TITLE="(ICD-10-PCS) Other Procedure Code" S IC=$$ICDLKUP(IC) Q
+ .. I QC="BBR" S TITLE="Principal Procedure" S IC=$$ICDLKUP(IC) Q
+ .. I QC="BF" S TITLE="Additional Code" Q
+ .. I QC="BK" S TITLE="(ICD-9-CM) Primary Code" S IC=$$ICDLKUP(IC) Q
+ .. I QC="BQ" S TITLE="(ICD-9-CM) Other Procedure Code" S IC=$$ICDLKUP(IC) Q
+ .. I QC="BR" S TITLE="(ICD-9-CM) Principal Procedure Code" S IC=$$ICDLKUP(IC) Q
+ .; 
+ . I HI=QC,(QC="ABK"!(QC="ABF")) S DIAGCNT=DIAGCNT+1 S IC=$$ICDLKUP(IC) S IC=((DIAGCNT)_".  ")_IC S DIAGPTRARR(DIAGCNT)=IC  ;TPF;IB*2*770v38;EBILL-5482,5483
+ . ;
+ . Q:U_"ABF"_U_"ABK"_U_"BBQ"_U_"BBR"_U_"BK"_U_"BQ"_U_"BR"_U'[(U_QC_U)
+ . ;
+ . D SET^IBACCWLRURREV(TITLE,IC,"","","1^15","16^80")
+ ;
+ Q
+ ;
+ ;TAZ;IB*2*770v19;EBILL-4938
+ICDLKUP(IC) ;Look up the ICD Code desciption v12
+ N ICDARY,DESC,RSLT
+ S IC=$E(IC,1,3)_"."_$E(IC,4,$L(IC))
+ S RSLT=$$DIAGSRCH^LEX10CS(IC,.ICDARY)  ;ICR #5681 (Supported)
+ S DESC="" D
+ . I RSLT<0 S DESC="Unknown Code" Q
+ . I $G(ICDARY(1,"IDS"))]"" S DESC=ICDARY(1,"IDS") Q
+ . I $G(ICDARY(1,"LEX"))]"" S DESC=ICDARY(1,"LEX") Q
+ . I $G(ICDARY(1,"MENU"))]"" S DESC=ICDARY(1,"MENU") Q
+ . S DESC="Unknown Code"
+ICDLKUPQ ;Exit lookup 
+ Q IC_" - "_DESC
+ ;
+PCSLKUP(IC) ;ICD-PCS LOOKUP
+ N NEWIC   ;LEXPCDAT KILLED BY API CALL
+ S NEWIC=$$PCSDIG^LEX10CS(IC)  ;ICR #5681 (Supported) 
+ Q:'$D(LEXPCDAT) IC_" - Not Found"
+ ;
+ S NEWIC=IC_" - "_$G(LEXPCDAT("PCSDESC"))
+ Q NEWIC
+ ;
+UBHI(ABFCNT) ;Display Diagnosis Codes -UB HAS NO DIAGNOSISI POINTER CODES IN SV1-0. IT HAS SV2
+ N AMT,CDE,CNT,CODE,DTP,DTQ,HI,POA,STR,TITLE
+ S (HI,TITLE)=""
+ F CNT=2:1:13 D
+ . S CODE=$P(DATA,D,CNT) I CODE="" Q
+ . S TITLE="",QC=$P(CODE,D1,1),IC=$P(CODE,D1,2),DTQ=$P(CODE,D1,3),DTP=$P(CODE,D1,4),AMT=$P(CODE,D1,5),POA=$P(CODE,D1,9)
+ . ;
+ . I QC="BBQ"!(QC="BBR") S BBQLEVEL=BBQLEVEL+1
+ . I QC'=HI D
+ .. S HI=QC
+ .. I QC="ABF" S ABFCNT=$G(ABFCNT)+1 S:ABFCNT=1 TITLE="Secondary Dx" Q
+ .. I QC="ABK" S TITLE="Primary Dx" Q
+ .. ;I QC="ABK",($G(IBINOUT)="INPATIENT") S TITLE="Primary Dx" Q
+ .. ;I QC="ABK",($G(IBINOUT)="OUTPATIENT") S TITLE="Billed Dx" Q
+ .. I QC="BBQ" S TITLE="Other Procedure Code" Q  ;(ICD-10-PCS)
+ .. I QC="BBR" S TITLE="Principal Procedure" Q   ;(ICD-10-PCS)
+ .. I QC="BK" S TITLE="(ICD-9-CM) Primary Code" Q
+ .. I QC="BQ" S TITLE="(ICD-9-CM) Other Procedure Code" Q
+ .. I QC="BR" S TITLE="(ICD-9-CM) Principal Procedure Code" Q
+ .;
+ . Q:U_"ABF"_U_"ABK"_U_"BBQ"_U_"BBR"_U_"BK"_U_"BQ"_U_"BR"_U'[(U_QC_U)
+ .;
+ . I HI=QC,(QC="BBQ"!(QC="BBR")) D BBQ(IC,TITLE,.BBQLEVEL) Q
+ . S IC=$$ICDLKUP(IC) D SET^IBACCWLRURREV(TITLE,IC,"","","1^15","16^80")
+ ;
+ Q
+ ;
+BBQ(IC,TITLE,BBQLEVEL) ;EP
+ ;
+ I $G(BBQLEVEL)=1 D
+ .D SET^IBACCWLRURREV("","",1,"")
+ .D SET^IBACCWLRURREV("          ","          ICD/PCS Description","")
+ S IC=$$PCSLKUP(IC)
+ D SET^IBACCWLRURREV(TITLE,IC,"","","1^20","25^80")
+ ;
+ Q

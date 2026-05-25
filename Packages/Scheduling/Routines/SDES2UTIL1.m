@@ -1,5 +1,5 @@
-SDES2UTIL1 ;ALB/MGD/TJB/MGD,TJB,BLB - SDES2 UTILITIES Continued ;FEB 08, 2024
- ;;5.3;Scheduling;**870,861,873,890**;Aug 13, 1993;Build 5
+SDES2UTIL1 ;ALB/MGD/TJB/MGD,TJB,BLB,JDJ - SDES2 UTILITIES Continued ;OCT 23, 2025
+ ;;5.3;Scheduling;**870,861,873,890,919,922**;Aug 13, 1993;Build 7
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  Q
@@ -115,6 +115,122 @@ FLST(PRFLIST,FNUM)  ;build flag list
  ..S PRFLIST(PRFID_";DGPF("_FNUM_",")=$$GET1^DIQ(FNUM,PRFID_",",.01)_U_$$GET1^DIQ(FNUM,PRFID_",",.02,"I")
  Q
  ;
+CREATEAVAIL(RETURN,SDCLINIC,DATES,TIMES,SLOTS,INDEFINITEUNTIL,SDEAS) ;INICSET2(.POP,SDIEN,.FDA,.SDCLINIC,.PROVIDER,.DIAGNOSIS,.SPECIALINSTRUCT,.PRIVLIAGEDUSER)
+ ;
+ N POP,SDAVAIL,I,SDDOWNUM,DOWNUM,EOF,SDTOTALSLOTS,SDDISPPERHR,SDCLINSTARTHR,SDSOH,SLT,IEN,SDCLINDATA,SDSLOTS,SDTIME,SDDATE,TMPINDX
+ N SDRETURN,APPTCNT,ERRARRAY
+ S (POP,SDTOTALSLOTS,APPTCNT)=0
+ D VALIDATE
+ I 'POP D CREATE(SDCLINIC,SDCLINSTARTHR,SLT,SDDOWNUM)
+ I 'POP S SDRETURN("ClinicAvailability","Create")="Pattern Filed"
+ D BUILDER
+ K ERRARRAY
+ Q
+ ;
+VALIDATE ;
+ S SDCLINIC=$G(SDCLINIC)
+ I SDCLINIC'="",'$D(^SC(SDCLINIC,0)) D ERRLOG(19) Q
+ I SDCLINIC="" D ERRLOG(18) Q
+ ;
+ S IEN=SDCLINIC_","
+ D GETS^DIQ(44,IEN,"1912;1914;1917;1918.5","IE","SDCLINDATA","SDMSG")
+ S SLT=$G(SDCLINDATA(44,IEN,1912,"I"))
+ I SLT=""  D ERRLOG(115)
+ I (SLT<10)!(SLT>240)!(SLT?.E1"."1N.N)!($S('(SLT#10):0,'(SLT#15):0,1:1)) D ERRLOG(116)
+ S SDDISPPERHR=$G(SDCLINDATA(44,IEN,1917,"I"))
+ S SDCLINSTARTHR=$G(SDCLINDATA(44,IEN,1914,"I"),"")
+ I SDCLINSTARTHR="" S SDCLINSTARTHR=8
+ ;
+ N STARTTIME,ENDTIME,TMPTIMES
+ S TIMES=$G(TIMES)
+ S SLOTS=$G(SLOTS)
+ I ((TIMES="")&(SLOTS'=""))!((TIMES'="")&(SLOTS="")) D ERRLOG(52,"Times and slots mismatch")
+ I 'POP,$L(TIMES,";")'=$L(SLOTS,";") D ERRLOG(52,"Times and slots mismatch")
+ ;
+ I $P(DATES,"9999999",1)="" D ERRLOG(52,"Date Missing.  Must have a date indicated.") Q
+ I $P(DATES,"9999999",2)'="" D ERRLOG(52,"Indefinite date indicator must be last") Q
+ ;
+ I TIMES'="" D
+ .F I=1:1:$L(TIMES,";") Q:POP  D
+ ..S SDTIME=$P(TIMES,";",I)
+ ..I SDTIME'?4N1"-"4N D ERRLOG(52,"Invalid time format") Q
+ ..I $P(SDTIME,"-",2)>2400 D ERRLOG(52,"Invalid time format") Q
+ ..S STARTTIME=$P(SDTIME,"-",1)
+ ..S ENDTIME=$P(SDTIME,"-",2)
+ ..I +STARTTIME'<+ENDTIME D ERRLOG(52,"Invalid time format") Q
+ ..;Do not allow overlapping time frames
+ ..I $D(TIMES(STARTTIME)) D ERRLOG(52,"Existing entry with same start time") Q
+ ..; STARTTIME can not fall within the previous segment
+ ..S TMPINDX=$O(TIMES(STARTTIME),-1)
+ ..I TMPINDX D  Q:POP
+ ...S TMPTIMES=TIMES(TMPINDX)
+ ...I +$P(TMPTIMES,"-",2)>+STARTTIME D ERRLOG(52,"Start time overlaps existing segment") Q
+ ..; ENDTIME can not fall within a prior segment
+ ..S TMPINDX=$O(TIMES(ENDTIME),-1)
+ ..I TMPINDX D
+ ...S TMPTIMES=TIMES(TMPINDX)
+ ...;Current start time is = or > than previous end time
+ ...I STARTTIME'<+$P(TMPTIMES,"-",2) Q
+ ...; ENDTIME falls within and existing segment
+ ...I +$P(TMPTIMES,"-",1)<+ENDTIME D ERRLOG(52,"End time overlaps existing segment") Q
+ ...; An existing segment falls within STARTTIME and ENDTIME
+ ...I +$P(TMPTIMES,"-",2)<+ENDTIME D ERRLOG(52,"End time overlaps existing segment") Q
+ ..; Is this time segment consistent with slot duration
+ ..I '$$CHECKDURATION(STARTTIME,ENDTIME,SLT) D ERRLOG(52,"Time span not consistent with appointment length")
+ ..;
+ ..S SDSLOTS=+$P(SLOTS,";",I)
+ ..I SDSLOTS=0,$$GET1^DIQ(40.7,$$GET1^DIQ(44,SDCLINIC,8,"I"),1,"I")'="130" D  ;EMERGENCY DEPT EXCEPTION
+ ...I SDSLOTS<1!(SDSLOTS>26) D ERRLOG(125) Q
+ ..S TIMES(STARTTIME)=SDTIME_"^"_SDSLOTS
+ ..S SDTOTALSLOTS=SDTOTALSLOTS+SDSLOTS
+ .I 'POP,$D(TIMES)'>1 D ERRLOG(52,"No valid time segments passed in")
+ .;Can't start prior to clinic opening
+ .I 'POP,+$O(TIMES(""))<(SDCLINSTARTHR*100) D ERRLOG(52,"Appointments can not start prior to clinic opening")
+ ;
+ S DATES=$G(DATES)
+ S SDDATE=$P(DATES,";",1)
+ I SDDATE="" D ERRLOG(45)
+ I SDDATE'="" D
+ .I SDDATE'?7N S SDDATE=$$ISOTFM^SDAMUTDT(SDDATE)  ;vse-2396
+ .I SDDATE'?7N D ERRLOG(46) Q
+ .;I SDDATE<DT D ERRLOG(71) Q
+ .S SDDOWNUM=$$DOW^XLFDT(SDDATE,1),DATES(SDDATE)=""
+ .;D GETAPPT
+ .;I $G(ERRARRAY(SDDATE))=1 D ERRLOG(52,"Pending appointments must be cancelled")
+ ;
+ Q:POP
+ I 'POP,$D(DATES)'>1 D ERRLOG(52,"No valid dates passed in") Q
+ ;
+ S EOF=0
+ F I=2:1:$L(DATES,";") D  Q:EOF
+ .S SDDATE=$P(DATES,";",I)
+ .Q:'SDDATE
+ .I SDDATE=9999999 S DATES(SDDATE)="",EOF=1 Q  ;Indefinitely
+ .I SDDATE'?7N S SDDATE=$$ISOTFM^SDAMUTDT(SDDATE)  ;vse-2396
+ .I SDDATE'?7N D ERRLOG(46) Q
+ .;I SDDATE<DT D ERRLOG(71)
+ .I $G(SDDOWNUM)'=$$DOW^XLFDT(SDDATE,1) D ERRLOG(52,"Schedule days do not match") S EOF=1
+ .S DATES(SDDATE)=""
+ .;D GETAPPT
+ .;I $G(ERRARRAY(SDDATE))=1 D ERRLOG(52,"Pending appointments must be cancelled")
+ .;I $D(SDRETURN("ClinicAvailability","Appt")) D ERRLOG(52,"Pending appointments must be cancelled")
+ ;
+ S SDEAS=$G(SDEAS,"")
+ I $L(SDEAS) S SDEAS=$$EASVALIDATE^SDESUTIL(SDEAS)
+ I SDEAS=-1 D ERRLOG(142)
+ Q
+GETAPPT ;Check if there are any open appts for this date
+ N JSON,SDESERR,A,X
+ S X=""
+ D APPTBYCLINIC^SDESAPPT(.JSON,SDCLINIC,SDDATE_"@0001",SDDATE_"@2359")
+ ;D DECODE^XLFJSON("JSON","A","SDESERR") ;removed the decode
+ ;Remove any canceled appt
+ F  S X=$O(JSON("Appt",X)) Q:'X  D
+ .I $P(JSON("Appt",X,"Status"),"CANCELLED",2)'="" Q
+ .S APPTCNT=APPTCNT+1
+ .M SDRETURN("ClinicAvailability","Appt",APPTCNT)=JSON("Appt",X)
+ .S ERRARRAY(SDDATE)=1
+ Q
 CHECKDURATION(T1,T2,SLT) ;Ensure the appointment lengths align with the time segment
  N H1,H2,M1,M2,SDL,SD1
  S H1=$E(T1,1,2),H2=$E(T2,1,2),M1=$E(T1,3,4),M2=$E(T2,3,4)
@@ -124,12 +240,11 @@ CHECKDURATION(T1,T2,SLT) ;Ensure the appointment lengths align with the time seg
  I SDL*SLT'=+SD1 Q 0
  Q 1
  ;
-CREATE(DA,STARTDAY,SLT,DOW,INDEFINITEUNTIL,DATES,TIMES,SDDISPPERHR,SDRETURN,ERRORS) ;
+CREATE(DA,STARTDAY,SLT,DOW) ;
  ;DA = Clinic IEN  (SDCLINIC)
  ;SLT - Appointment length
- N D0,X,CNT,STARTTIME,T1,T2,NSL,CTR,DR,HY,MAX,SC,SD,SDREB,SDSTRTDT,SDZQ,ST,STR,Y1,INDEFINITELY,STIME,SDRETURN
- N POP,LT,H1,H2,M1,M2,SDTOP,SDREACT,X,SI,ZDX,DH,DO,D,Y,SDEL,HSI,SDJJ,HHY,SDIN,SDRE,SDRE1,I,OK,X1,X2,A,SDA1,SDSOH,RETURN
- S POP=0
+ N D0,X,CNT,STARTTIME,T1,T2,NSL,CTR,DR,HY,MAX,SC,SD,SDREB,SDSTRTDT,SDZQ,ST,STR,Y1,INDEFINITELY,STIME
+ N LT,H1,H2,M1,M2,SDTOP,SDREACT,X,SI,ZDX,DH,DO,D,Y,SDEL,HSI,SDJJ,HHY,SDIN,SDRE,SDRE1,I,OK,X1,X2,A,SDA1
  S STARTTIME=STARTDAY*100
  S (HSI,SI)=$G(SDDISPPERHR,4)
  S:SI=1 SI=4,HSI=1
@@ -152,11 +267,15 @@ CREATE(DA,STARTDAY,SLT,DOW,INDEFINITEUNTIL,DATES,TIMES,SDDISPPERHR,SDRETURN,ERRO
  ..D G3  ;Set up time slots in the T node
  .;
  .D:'POP G5  ;Set up pattern for the date
- K DATES,TIMES
  Q
  ;
 G3 ;
  ;
+ ;SDTOP ??
+ ;SDREACT ??
+ ;SDSOH - Schedule on holidays
+ ;SDIN - Inactivation date
+ ;SDRE - Reactivation date
  ;
  S SDTOP=1 ;????
  S SDZQ=1
@@ -187,9 +306,9 @@ G5 ;
  I $D(Y)=1 S SDEL=1 G D
  I $D(HSI) I HSI=1!(HSI=2) D CKSI1
  F Y=1:1 S DH=$D(Y(Y)),X=X_$S('DH&DO:"]",'DO&DH:"[",Y#SI=1:"|",1:" ")_$S(DH:Y(Y),1:" "),DO=DH I 'DH,$O(Y(Y))="" Q
- ;
+ ; CHECK WITH DARRYL & ANGELA RELATED TO NEXT LINE
  K Y
- I SI+SI+$L(X)>80 K ^SC(DA,"T",D0) S CNT=0,LT=$G(STIME),SDEL=0 S POP=1 D ERRLOG^SDES2JSON(.ERRORS,596) Q
+ I SI+SI+$L(X)>80 K ^SC(DA,"T",D0) S CNT=0,LT=$G(STIME),SDEL=0 D ERRLOG(52,"Availability string exceeds 80 characters") Q
  G D
 CKSI1 F SDJJ=$O(Y(-1)):$S(HSI=1:4,1:2) Q:SDJJ>41  S:$D(Y(SDJJ)) HY(SDJJ)="" I '$D(Y(SDJJ)) Q:$O(Y(SDJJ))=""  S SDJJ=$O(Y(SDJJ-1))-$S(HSI=1:4,1:2)
  F HHY=0:0 S HHY=$O(Y(HHY)) Q:HHY=""  I '$D(HY(HHY)) K Y(HHY)
@@ -207,7 +326,7 @@ D I $D(SDIN),SDIN>D0 S SDRE1=$S(SDRE:SDRE,1:9999999)
  I OK S Y=X,DO=D0 G R
  S DO=9999999
 R K OK
- ;
+ ; CHECK ON AVAILABILITY DATE W D&A THEN REVIEW G1^SDB
 EN1 ;
  S D=D0
  I 'INDEFINITELY G 1
@@ -242,18 +361,24 @@ DAYSINFUTURE(CLINICIEN,STARTDATE) ;
  D APPCK
  I POP D APPERR G:(%-1) OVR S SDREB=1
  S X=D,DO=X+1,^SC(DA,"ST",X,9)=D,SDREACT=1
- S:'$D(^SC(DA,"ST",0)) ^SC(DA,"ST",0)="^44.005DA^^" D B1^SDB1  ;
+ S:'$D(^SC(DA,"ST",0)) ^SC(DA,"ST",0)="^44.005DA^^" D B1^SDB1  ;SD*567 change set of 9 node to selected date
 OVR ;
  I D#100<22 S D=D+7 S POP=0 D:$D(SDIN) CHK2 Q
  S X1=D,X2=7 D C^%DTC S D=X S POP=0 D:$D(SDIN) CHK2 Q
  ;
-APPCK ;
+APPCK ;Are there appointments for this time?
  Q
+ ;Temporary change appointment has already been checked above, quick fix, logic to be removed during rewrite
+ ;F A=D:0 S A=+$O(^SC(DA,"S",A)) Q:A'>0!(A\1-D)  F SDA1=0:0 S SDA1=+$O(^SC(DA,"S",A,1,SDA1)) Q:SDA1'>0  I $P(^SC(DA,"S",A,1,SDA1,0),"^",9)'["C" S POP=1 Q
+ ;Q
 APPERR ;
  N %
+ W *7,!,"THERE ARE ALREADY APPOINTMENTS PENDING ON THIS DATE",!,"ARE YOU SURE YOU WANT TO CHANGE THE EXISTING AVAILABILITY" S %=2 D YN^DICN
+ I '% W !,"IF YOU SAY YES, THE EXISTING APPOINTMENTS MAY BECOME OVERBOOKS WHEN THE NEW AVAILABILITY IS APPLIED",!,"ANSWER YES OR NO" G APPERR
  Q
 DELERR ;
  S Y=D
+ W !,"... " D DT^DIQ W " HAS PENDING APPTS - DELETE AVAILABILITY NOT ALLOWED" Q
 CHK1 Q:'$D(SDIN)
  I Y=SDIN S POP=1
  Q
@@ -276,7 +401,7 @@ ERRLOG(ERNUM,OPTIONALTXT) ;
  S POP=1
  D ERRLOG^SDESJSON(.SDRETURN,$G(ERNUM),$G(OPTIONALTXT))
  Q
-BUILDER ;
+BUILDER ;Convert data to JSON
  N JSONERR
  S JSONERR=""
  D ENCODE^SDESJSON(.SDRETURN,.RETURN,.JSONERR)

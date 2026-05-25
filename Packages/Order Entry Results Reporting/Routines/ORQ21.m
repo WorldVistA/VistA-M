@@ -1,10 +1,10 @@
-ORQ21 ;SLC/MKB,GSS - DETAILED ORDER REPORT CONTINUED ;Sep 14, 2020@12:05:08
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243,361,350,417,377,521,405**;Dec 17, 1997;Build 211
+ORQ21 ;SLC/MKB,GSS - DETAILED ORDER REPORT CONTINUED ; Dec 11, 2024@14:00
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,190,195,215,243,361,350,417,377,521,405,508**;Dec 17, 1997;Build 39
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
- ; DBIA 2400   OEL^PSOORRL   ^TMP("PS",$J)
- ; DBIA 2266   EN30^RAO7PC1  ^TMP($J,"RAE2")
- ; DBIA 2058   ^DIC(9.4, Direct Global Read
+ ; Reference to OEL^PSOORRL and output:^TMP("PS",$J) supported by ICR #2400
+ ; Reference to EN30^RAO7PC1 and output:^TMP($J,"RAE2") supported by ICR #2266
+ ; Reference to ^DIC(9.4, Direct Global Read supported by ICR #2058
  ;
 RAD(TCOM) ; -- add RA data for 2.5 orders
  N RAIFN,CASE,PROC,ORD,ORI,X,ORTTL,ORB
@@ -76,15 +76,16 @@ M3 S:$P(RXN,U,5) CNT=CNT+1,@ORY@(CNT)="Pharmacist:                   "_$P($G(^VA
  I $G(STAT)="ACTIVE/PARKED" S CNT=CNT+1,@ORY@(CNT)="Prescription Status:          "_STAT_" - Order is active. Parked until next fill is requested."
  S:$P(NODE,U,13) CNT=CNT+1,@ORY@(CNT)="NOT TO BE GIVEN" K ^TMP("PS",$J)
  S CNT=CNT+1,@ORY@(CNT)="   " ;blank
- S OR5=$G(^OR(100,ORIFN,5)) I $L(OR5) D  ;SC data
- . N X,Y,I
- . S CNT=CNT+1,@ORY@(CNT)="   " ;blank line
- . S CNT=CNT+1,@ORY@(CNT)="First Party Pay Exemptions"
- . S X="For conditions related to:    "
- . F I=1:1:8 S Y=$P(OR5,U,I) I Y S CNT=CNT+1,@ORY@(CNT)=X_$$SC(I),X=$$REPEAT^XLFSTR(" ",30)
+ N ORENVARRAY,X,Y
+ D GETENVIND^ORSPECAUTH(.ORENVARRAY,ORIFN)   ;508
+ S CNT=CNT+1,@ORY@(CNT)="   " ;blank line
+ S CNT=CNT+1,@ORY@(CNT)="First Party Pay Exemptions"
+ S X="For conditions related to:    "
+ S Y=0
+ F  S Y=$O(ORENVARRAY(Y)) Q:Y'>0  S CNT=CNT+1,@ORY@(CNT)=X_ORENVARRAY(Y),X=$$REPEAT^XLFSTR(" ",30)
  Q
  ;
-BA ;Billing Aware data display
+BA ;Billing Aware data  display
  N DXIEN,DXV,ICD9,ICDR,OCT,ORFMDAT
  S OCT=0,X=""
  ; Get the date of the order for CSV/CTD usage

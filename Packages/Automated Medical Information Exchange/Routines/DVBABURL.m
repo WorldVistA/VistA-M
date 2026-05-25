@@ -1,16 +1,17 @@
 DVBABURL ;ALB/SPH - CAPRI URL ; 8/18/22 5:29pm
- ;;2.7;AMIE;**104,136,143,149,168,181,186,192,205,237,240,238,245**;Apr 10, 1995;Build 3
+ ;;2.7;AMIE;**104,136,143,149,168,181,186,192,205,237,240,238,245,252**;Apr 10, 1995;Build 92
  ;Per VHA Directive 6402 this routine should not be modified
  ;ALB/RTW - added 7=VICAP website
  ;237/240 - added News Server URL 
  ;238 - added DVBA CAPRI CLIN DOC EFOLDER token parameter return
  ;245- removed key check
+ ;252 - created a parameter to hold the CAPRI Documentation Library URL
  ;
 URL(Y,WHICH) ;
  ;This procedure supports the DVBAB GET URL remote procedure 
  S Y=""
  ; 1=VBA's AMIE Worksheet Website
- ; 2=CAPRI training website
+ ; 2=CAPRI documentation library website
  ; 3=VistAWeb website
  ; 5=HIA download website
  ; 6=VIRTUAL VA web service server
@@ -20,7 +21,7 @@ URL(Y,WHICH) ;
  ;10=News Server
  ; 999=Debug/Test Code
  I WHICH=1 S Y="http://152.124.238.193/bl/21/rating/Medical/exams/index.htm"
- I WHICH=2 S Y="http://vaww.demo.domain.ext/"
+ I WHICH=2 S Y=$$GET^XPAR("PKG","DVBAB CAPRI DOC LIBRARY",1,"Q")
  I WHICH=3 D
  . ;I '$$PROD^XUPROD S Y="-1^VistAWeb disabled for non-production systems." Q
  . S Y="https://vistaweb.domain.ext/CapriPage.aspx"
@@ -47,7 +48,7 @@ URL(Y,WHICH) ;
 VVATOKEN(DVBAUTH) ;retrieve and return the Virtual VA authorization credentials
  ;This procedure supports the DVBA GET VVA TOKEN remote procedure and
  ;retrieves the user, password, and token value required to login to the Virtual
- ;VA web service.  The procedure supports returning differerent values based on
+ ;VA web service.  The procedure supports returning different values based on
  ;whether the system is a production system or a test/development system.
  ;  
  ; Returns user^password^token on success; otherwise returns ""

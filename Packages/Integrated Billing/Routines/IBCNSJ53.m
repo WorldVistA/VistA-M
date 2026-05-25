@@ -1,5 +1,5 @@
 IBCNSJ53 ;AITC/DTG - INSURANCE PLAN MAINTENANCE ACTION VIEW SUBSCRIBER ; 15-MAY-2023
- ;;2.0;INTEGRATED BILLING;**763,771,778**;21-MAR-94;Build 28
+ ;;2.0;INTEGRATED BILLING;**763,771,778,804**;21-MAR-94;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -65,7 +65,10 @@ VSUBS ; entry from list template protocol 'IBCNSJ PLAN VIEW SUBSCRIBERS' from th
  S @IBTMP@(2)=XX
  S IBINS0=$G(^IBA(355.3,+IB3553,0))
  ; get plan subscribers
- F IBA=3,4,5 K @IBTMP@(IBA)
+ ;IB*804/DTG add sort to view subscribers
+ ;F IBA=3,4,5 K @IBTMP@(IBA)
+ F IBA=3,4,5,9,10,11 K @IBTMP@(IBA)
+ ;
  S IBPTDFN=0
  F  S IBPTDFN=$O(^DPT("AB",IB36,IBPTDFN)) Q:'IBPTDFN  S IBPTINS=0 D
  .F  S IBPTINS=$O(^DPT("AB",IB36,IBPTDFN,IBPTINS)) Q:'IBPTINS  D
@@ -82,12 +85,15 @@ VSUBS ; entry from list template protocol 'IBCNSJ PLAN VIEW SUBSCRIBERS' from th
  ...S $P(IBPTHOLD,"^",2)=XX
  ...S IBDOB=$$GET1^DIQ(2,IBPTDFN_",",.03,"I"),XX=$$DTC(IBDOB)         ; Patient's DOB
  ...S $P(IBPTHOLD,"^",3)=XX
+ ...S XX=$$DTC5(IBDOB),$P(IBPTHOLD,"^",12)=XX  ;IB*804/DTG add in the 5 digit date for sort
  ...S XX=$P(IBIND,"^",2),XX=$S(XX'="":XX,1:"<NO SUBS ID>")
  ...S $P(IBPTHOLD,"^",4)=XX                         ; Subscriber ID (20 chars max)
  ...S IBEFFDT=$P(IBIND,"^",8),XX=$$DTC(IBEFFDT)   ; Effective Date
  ...S $P(IBPTHOLD,"^",5)=XX
+ ...S XX=$$DTC5(IBEFFDT),$P(IBPTHOLD,"^",13)=XX  ;IB*804/DTG add in the 5 digit date for sort
  ...S IBEXPDT=$P(IBIND,"^",4),XX=$$DTC(IBEXPDT)   ; Expiration Date
  ...S $P(IBPTHOLD,"^",6)=XX
+ ...S XX=$$DTC5(IBEXPDT),$P(IBPTHOLD,"^",14)=XX  ;IB*804/DTG add in the 5 digit date for sort
  ...; Whose Insurance?
  ...S XX=$P(IBIND,"^",6),XX=$S(XX="v":"VET",XX="s":"SPO",XX="o":"OTH",1:"UNK")
  ...S $P(IBPTHOLD,"^",7)=XX
@@ -115,11 +121,19 @@ VSUBS ; entry from list template protocol 'IBCNSJ PLAN VIEW SUBSCRIBERS' from th
  ...;
  ...; 3=ALL, 4=ACTIVE, 5=INACTIVE
  ...; Patient's Name (22 chars) ^ Patient's SSN ^ Patient's DOB ^ Subscriber ID (20 chars max)
- ...; ^ Effective Date ^ Expiration Date ^ Whose Insurance? ^ Patient ID ^ ACTIVE ^ INACTIVE
- ...S @IBTMP@(3,IB3553,IBNAM_"@@"_IBPTDFN_"@@"_IBPTINS)=IBPTHOLD
- ...S @IBTMP@(($S(IBACT=1:4,1:5)),IB3553,IBNAM_"@@"_IBPTDFN_"@@"_IBPTINS)=IBPTHOLD
+ ...; ^ Effective Date ^ Expiration Date ^ Whose Insurance? ^ Patient ID ^ ACTIVE ^ INACTIVE ^^ 4 digit DOB year
+ ...; ^ 4 digit eff dt year ^ 4 digit exp dt year 
+ ...; IB*804/DTG add sort to view subscribers
+ ...;S @IBTMP@(3,IB3553,IBNAM_"@@"_IBPTDFN_"@@"_IBPTINS)=IBPTHOLD
+ ...;S @IBTMP@(($S(IBACT=1:4,1:5)),IB3553,IBNAM_"@@"_IBPTDFN_"@@"_IBPTINS)=IBPTHOLD
+ ...S @IBTMP@(9,IB3553,IBNAM_"@@"_IBPTDFN_"@@"_IBPTINS)=IBPTHOLD
+ ...S @IBTMP@(($S(IBACT=1:10,1:11)),IB3553,IBNAM_"@@"_IBPTDFN_"@@"_IBPTINS)=IBPTHOLD
  ...; total ^ active ^ inactive
  ...S @IBTMP@(0)=+IBCST_U_+IBACCT_U_+IBINACCT
+ ;
+ ;IB*804/DTG add sort to view subscribers
+ ; base set of values
+ D IBASE
  ;
 VSUBX ; quit back
  ;
@@ -133,6 +147,18 @@ DTC(IBDTCK) ; check date return external if valid
  G DTCO
  ;
 DTCO ; date check exit
+ ;
+ Q IBDT
+ ;
+DTC5(IBDTCK) ; check date return external if valid ;IB*804/DTG 4 digit year for sort's
+ ;
+ N IBDT,IBBK S IBDT=""
+ I 'IBDTCK G DTCO
+ S IBDT=$$FMTE^XLFDT(IBDTCK,"5DZ")
+ ;
+ G DTC5O
+ ;
+DTC5O ; date check exit
  ;
  Q IBDT
  ;
@@ -150,7 +176,10 @@ HELP ; -- help code
  W !
  W !," Enter AC to only see active subscribers."
  W !," Enter IN to only see inactive subscribers."
- W !," Enter VA to see all subscribers.",!
+ ; IB*804/DTG add sort to view subscribers
+ ;W !," Enter VA to see all subscribers.",!
+ W !," Enter VA to see all subscribers."
+ W !," Enter ST to sort the subscriber records",!
  S DIR(0)="E",DIR("A")="Press <Enter> to return to View Subscribers"
  D ^DIR
  K DIR,X,Y
@@ -163,6 +192,7 @@ INIT ; -- Load the plan detail segments
  S VALMBG=1,(IBLCNT,VALMCNT)=0
  S IB36=+$G(IBCNS),IB3553=+$G(IBCPOL)
  S IBTMP="^TMP(""IBCNSJ53I"",$J)",(IBCST,IBACCT,IBINACCT,LENEP,LENPT)=0
+ S (IBOSRT,IBSORTA)=0,IBSACT=3  ;IB*804/DTG add sort to view subscribers. default sort type is all
  K @IBTMP
  D NOW^%DTC
  S IBHDT=$$DAT2^IBOUTL($E(%,1,12))
@@ -180,6 +210,7 @@ INIT ; -- Load the plan detail segments
  ;
 ACINI ; active subscribers
  ;
+ S IBSORTA="",IBSACT=4 D IBASE  ; IB*804/DTG VS sort
  D FULL^VALM1
  D HDR("Active")
  D AC
@@ -188,6 +219,7 @@ ACINI ; active subscribers
  ;
 ININI ; inactive subscribers
  ;
+ S IBSORTA="",IBSACT=5 D IBASE  ; IB*804/DTG VS sort
  D FULL^VALM1
  D HDR("Inactive")
  D IS
@@ -196,6 +228,7 @@ ININI ; inactive subscribers
  ;
 ALLINI ; all subscribers
  ;
+ S IBSORTA="",IBSACT=3 D IBASE  ; IB*804/DTG VS sort
  D FULL^VALM1
  D HDR("All")
  D BVA
@@ -213,7 +246,13 @@ HDR(IBDIS) ; -- Plan Subscribers
  S VALM("TITLE")=IBDIS_" Subscribers"
  ;
  S IB1=$E($P(IBA,U,1),1,30) ; ins co name
- S IBL=(30-$L(IB1))+30,IB2=$E(IBSPACE,1,IBL)
+ ; IB*804/DTG include sorts in view subscriber
+ N IB5,IBLA S (IB5,IBLA)=""
+ I '$G(IBSORTA) S IB5="Sort by: NAME"  ;IB*804/DTG added in for sort type if none chosen
+ I $G(IBSORTA) S IB5="Sort by: "_$S(IBSORTA=1:"NAME",IBSORTA=2:"DOB",IBSORTA=3:"EFF DATE",IBSORTA=4:"EXP DATE",1:"")
+ ;S IBL=(30-$L(IB1))+30,IB2=$E(IBSPACE,1,IBL)
+ S IBL=(35-$L(IB1)),IBLA=(25-$L(IB5)),IB2=$E(IBSPACE,1,IBL)_IB5_$E(IBSPACE,1,IBLA)
+ ;
  S IB3="TOTAL SUB: "_($E(IBSPACE,1,(8-($L(+$P(IBC,U,1))))))_(+$P(IBC,U,1))
  S VALMHDR(1)=IB1_IB2_IB3
  ;
@@ -238,7 +277,9 @@ HDR(IBDIS) ; -- Plan Subscribers
 BVA ; Build ALL subscribers
  ;
  N IBLINE,IBTMP1,IBF
- S IBTMP1="^TMP(""IBCNSJ53I"",$J,3,"_IB3553_")"
+ ;IB*804/DTG chage array for sort
+ ;S IBTMP1="^TMP(""IBCNSJ53I"",$J,3,"_IB3553_")"
+ S IBTMP1="^TMP(""IBCNSJ53I"",$J,3)"
  S VALMCNT=0,VALMBG=1,IBLINE=0
  K @VALMAR
  S IBF=$G(^TMP("IBCNSJ53I",$J,0))
@@ -252,25 +293,33 @@ BVA ; Build ALL subscribers
 BPAS ; build items from base into valm display
  ;
  N IBA,IBB,IBC,IBD,IBE,IBNM,IBDFN,IBNODE,X
- S IBA="",X="" F  S IBA=$O(@IBTMP1@(IBA)) Q:IBA=""  D
- . S IBNM=$P(IBA,"@@",1),IBDFN=$P(IBA,"@@",2),IBNODE=$P(IBA,"@@",3)
- . S VALMCNT=VALMCNT+1,IBC=@IBTMP1@(IBA),X="",IBLINE=IBLINE+1
- . S X=$$SETFLD^VALM1($P(IBC,"^",1),X,"SNAME")
- . S X=$$SETFLD^VALM1($P(IBC,"^",2),X,"SSN4")
- . S X=$$SETFLD^VALM1($P(IBC,U,3),X,"DOB10")
- . S X=$$SETFLD^VALM1($P(IBC,"^",4),X,"SUBID")
- . S X=$$SETFLD^VALM1($P(IBC,U,5),X,"EFFDT")
- . S X=$$SETFLD^VALM1($P(IBC,U,6),X,"EXPDT")
- . S X=$$SETFLD^VALM1($P(IBC,"^",7),X,"WHO")
- . S X=$$SETFLD^VALM1($P(IBC,"^",8),X,"PATID")
- . S IBD=$P(IBC,U,9),X=$$SETFLD^VALM1($S(IBD=1:"Y",1:""),X,"ACT")
- . S @VALMAR@(VALMCNT,0)=X
+ ;S IBA="",X="" F  S IBA=$O(@IBTMP1@(IBA)) Q:IBA=""  D
+ ; IB*804/DTG include sorts in view subscriber Change from a single dot '.' level to three dot '.' levels
+ ;S IBA="",X="" F  S IBA=$O(@IBTMP1@(IBA)) Q:IBA=""  D
+ N IBCNTR,IBG
+ S IBCNTR="" F  S IBCNTR=$O(@IBTMP1@(IBCNTR)) Q:IBCNTR=""  S IBG="" D
+ . F  S IBG=$O(@IBTMP1@(IBCNTR,IBG)) Q:IBG=""  S IBA="",X="" D
+ .. F  S IBA=$O(@IBTMP1@(IBCNTR,IBG,IBA)) Q:IBA=""  D
+ ... S IBNM=$P(IBA,"@@",1),IBDFN=$P(IBA,"@@",2),IBNODE=$P(IBA,"@@",3)
+ ... S VALMCNT=VALMCNT+1,IBC=@IBTMP1@(IBCNTR,IBG,IBA),X="",IBLINE=IBLINE+1
+ ... S X=$$SETFLD^VALM1($P(IBC,"^",1),X,"SNAME")
+ ... S X=$$SETFLD^VALM1($P(IBC,"^",2),X,"SSN4")
+ ... S X=$$SETFLD^VALM1($P(IBC,U,3),X,"DOB10")
+ ... S X=$$SETFLD^VALM1($P(IBC,"^",4),X,"SUBID")
+ ... S X=$$SETFLD^VALM1($P(IBC,U,5),X,"EFFDT")
+ ... S X=$$SETFLD^VALM1($P(IBC,U,6),X,"EXPDT")
+ ... S X=$$SETFLD^VALM1($P(IBC,"^",7),X,"WHO")
+ ... S X=$$SETFLD^VALM1($P(IBC,"^",8),X,"PATID")
+ ... S IBD=$P(IBC,U,9),X=$$SETFLD^VALM1($S(IBD=1:"Y",1:""),X,"ACT")
+ ... S @VALMAR@(VALMCNT,0)=X
  Q
  ;
 AC ; active subscriber entry
  ;
  N IBLINE,IBTMP1,IBF
- S IBTMP1="^TMP(""IBCNSJ53I"",$J,4,"_IB3553_")"
+ ;IB*804/DTG chage array for sort
+ ;S IBTMP1="^TMP(""IBCNSJ53I"",$J,4,"_IB3553_")"
+ S IBTMP1="^TMP(""IBCNSJ53I"",$J,4)"
  S VALMCNT=0,VALMBG=1,IBLINE=0
  K @VALMAR
  S IBF=$G(^TMP("IBCNSJ53I",$J,0))
@@ -284,7 +333,9 @@ AC ; active subscriber entry
 IS ; inactive subscriber entry
  ;
  N IBLINE,IBTMP1,IBF
- S IBTMP1="^TMP(""IBCNSJ53I"",$J,5,"_IB3553_")"
+ ;IB*804/DTG chage array for sort
+ ;S IBTMP1="^TMP(""IBCNSJ53I"",$J,5,"_IB3553_")"
+ S IBTMP1="^TMP(""IBCNSJ53I"",$J,5)"
  S VALMCNT=0,VALMBG=1,IBLINE=0
  K @VALMAR
  S IBF=$G(^TMP("IBCNSJ53I",$J,0))
@@ -293,5 +344,158 @@ IS ; inactive subscriber entry
  . S @VALMAR@(2,0)=" ***Group Contains No Inactive Subscribers***"
  ; go through the 5 level
  D BPAS
+ Q
+ ;
+ ;IB*804/DTG new for sort SORT - IBASE
+SORT ; ask sort questions if sort selected then re-build ^TMP("IBCNSJ53I",$J,
+ ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,IBJ,IBQUIT,IBSRF,IBSRNM,IBWORK,X,Y
+ S IBQUIT=0
+ D FULL^VALM1
+ S IBSACT=$G(IBSACT) I IBSACT<3 S IBSACT=3
+ S IBOSRT=IBSORTA
+ K DIR S DIR(0)="S^1:Subscriber Name;2:Date of Birth;3:Effective Date;4:Expiration Date"
+ S DIR("A")="SELECT 1, 2, 3, or 4"
+ S DIR("?")="Select a sort method or Enter '^' to quit"
+ S DIR("B")=$S(IBOSRT=2:"Date of Birth",IBOSRT=3:"Effective Date",IBOSRT=4:"Expiration Date",1:"Subscriber Name")
+ D ^DIR
+ I $E(Y)=U!$D(DIROUT)!$D(DIRUT)!$D(DTOUT)!$D(DUOUT) S Y="^"
+ I $E(Y)=U S IBQUIT=1 G SORTQ
+ S IBSORTA=+Y I Y<1 S IBQUIT=1 G SORTQ
+ I IBSORTA=1 D IBSRTNM G SORTQ
+ S IBJ=$S(IBSORTA=2:"Date of Birth",IBSORTA=3:"Effective Date",IBSORTA=4:"Expiration Date",1:"")
+ I IBJ="" S IBQUIT=1 G SORTQ
+ S Y=$$IBSRQU(IBJ,"",0)
+ I $E(Y)=U!(Y="") S IBQUIT=1 G SORTQ
+ D IBSRTCOM(IBSORTA,IBWORK) G SORTQ
+ ;
+SORTQ ; sort exit point
+ ;
+ I IBQUIT S IBSORTA=IBOSRT I 'IBSORTA D IBASE
+ D FULL^VALM1
+ ; update header and build output array for SHOW^VALM
+ I $G(IBSACT)=3 D HDR("All"),BVA
+ I $G(IBSACT)=4 D HDR("Active"),AC
+ I $G(IBSACT)=5 D HDR("Inactive"),IS
+ S VALMBCK="R",VALMBG=1
+ Q
+ ;
+IBSRTNM ; subscriber name sort type and order
+ ;
+ N X,Y
+ S Y=$$IBSRQU("Subscriber Name","",0)
+ I $E(Y)=U!(Y="") S IBQUIT=1 Q
+ D IBSRTCOM(IBSORTA,IBWORK)
+ Q
+ ;
+ ;
+IBSRQU(IBSRNM,IBSRF,IBSRR) ; get the type
+ ;
+ ; IBSRNM - sort name
+ ;  IBSRF - default response "" =none, 1 =Ascending, 2 =Descending
+ ;  IBSRR - required response 0 or "" =no, 1 =yes
+ ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,IBQUIT,X,Y
+ K DIR S IBSRF=$G(IBSRF)
+ S DIR(0)="S"_($S(+IBSRR:"",1:"O"))_"^1:Ascending "_IBSRNM_";2:Descending "_IBSRNM
+ I IBSRF'="" S DIR("B")=IBSRF
+ S DIR("A")="SELECT 1 or 2"
+ S DIR("?")="Select Ascending or Descending "_IBSRNM_" or Enter '^' to quit"
+ D ^DIR
+ I Y=""&(IBSRF'="") S Y=IBSRF
+ I $E(Y)=U!$D(DIROUT)!$D(DIRUT)!$D(DTOUT)!$D(DUOUT) S Y="^"
+ S IBWORK=""
+ S IBWORK=$S(+Y=2:"-1",1:"1")
+ Q Y
+ ;
+IBSRTCOM(IBSORTA,IBWORK) ; go thru the compiled and sort for display
+ ;
+ ; IBSORTA - Sort Type
+ ; IBWORK  - Sort Order
+ ;
+ ; 3=ALL-9, 4=ACTIVE-10, 5=INACTIVE-11
+ ; Patient's Name (22 chars) ^ Patient's SSN ^ Patient's DOB ^ Subscriber ID (20 chars max)
+ ; ^ Effective Date ^ Expiration Date ^ Whose Insurance? ^ Patient ID ^ ACTIVE ^ INACTIVE ^^ 4 digit DOB year
+ ; ^ 4 digit eff dt year ^ 4 digit exp dt year
+ N IBA,IBC,IBD,IBE,IBF,IBI,IBJ,IBK
+ I IBSORTA="" Q  ; sort not picked
+ ;         1         Subscriber Name
+ ;         2         Date of Birth
+ ;         3         Effective Date
+ ;         4         Expiration Date
+ ;
+ ; cycle through all, active, inactive
+ S IBI=IBSACT K ^TMP("IBCNSJ53I",$J,IBI)
+ ; to save time only clear and sort for the current display
+ S IBI=(IBSACT+6) K ^TMP("IBCNSJ53I",$J,"TEMP"),^TMP("IBCNSJ53I",$J,"TEMPA")
+ S IBA=""  F  S IBA=$O(^TMP("IBCNSJ53I",$J,IBI,IBA)) D:IBA="" IBSRTMV Q:IBA=""  D
+ . S IBB="" F  S IBB=$O(^TMP("IBCNSJ53I",$J,IBI,IBA,IBB)) Q:IBB=""  D
+ .. S IBC=$G(^TMP("IBCNSJ53I",$J,IBI,IBA,IBB)),(IBD,IBJ)=""
+ .. I IBSORTA=1 S IBD=$P(IBC,U,1) S:IBD="" IBD=" " D IBSV Q
+ .. I IBSORTA=2!(IBSORTA=3)!(IBSORTA=4) S IBD="",IBK=$S(IBSORTA=2:12,IBSORTA=3:13,IBSORTA=4:14,1:"") D
+ ... S:IBK IBD=$P(IBC,U,IBK) S IBJ=""
+ ... D DT^DILF(,IBD,.IBJ) S IBD=$G(IBJ) S:IBD="" IBD=" " S:IBD="-1" IBD="  "
+ ... I $E(IBD)'=" " D IBSV Q
+ ... I $E(IBD)=" " D IBSVA Q
+ ;
+ K ^TMP("IBCNSJ53I",$J,"TEMP"),^TMP("IBCNSJ53I",$J,"TEMPA")
+ Q
+ ;
+IBSV ; save in selected item order to temp area
+ ;
+ S ^TMP("IBCNSJ53I",$J,"TEMP",IBD,IBA,IBB)=IBC
+ Q
+ ;
+IBSVA ; save invalid dates in selected item order to temp area
+ ;
+ S ^TMP("IBCNSJ53I",$J,"TEMP",IBD,IBA,IBB)=IBC
+ Q
+ ;
+IBSRTMV ; move from temp and place in viewing order
+ ;
+ N IBCT,IBG,IBH,IBK,IBJ
+ S IBK=$S(IBWORK="-1":"ZZZZZ",1:""),IBCT=0
+ I IBWORK'="-1" D IBSRTA
+ F  S IBK=$O(^TMP("IBCNSJ53I",$J,"TEMP",IBK),IBWORK) Q:IBK=""  D
+ . I $E(IBK)=" " Q
+ . S IBG=$S(IBWORK="-1":"ZZZZZ",1:"")
+ . F  S IBG=$O(^TMP("IBCNSJ53I",$J,"TEMP",IBK,IBG),IBWORK) Q:IBG=""  D
+ .. S IBH=$S(IBWORK="-1":"ZZZZZ",1:"")
+ .. F  S IBH=$O(^TMP("IBCNSJ53I",$J,"TEMP",IBK,IBG,IBH),IBWORK) Q:IBH=""  D
+ ... S IBJ=$G(^TMP("IBCNSJ53I",$J,"TEMP",IBK,IBG,IBH))
+ ... S IBCT=IBCT+1,^TMP("IBCNSJ53I",$J,(IBI-6),IBCT,IBG,IBH)=IBJ
+ I IBWORK="-1" D IBSRTA
+ Q
+ ;
+IBSRTA ; pick up blank and bad date items
+ ;
+ N IBA,IBB,IBC,IBD,IBE
+ I IBWORK'="-1" D
+ . F IBA=" ","  " D IBSRTA1
+ I IBWORK="-1" D
+ . F IBA="  "," " D IBSRTA1
+ Q
+ ;
+IBSRTA1 ; loop through bad/blank dates
+ ;
+ S IBB=$S(IBWORK="-1":"ZZZZZ",1:"")
+ F  S IBB=$O(^TMP("IBCNSJ53I",$J,"TEMP",IBA,IBB),IBWORK) Q:IBB=""  D
+ . S IBC=$S(IBWORK="-1":"ZZZZZ",1:"")
+ . F  S IBC=$O(^TMP("IBCNSJ53I",$J,"TEMP",IBA,IBB,IBC),IBWORK) Q:IBC=""  D
+ .. S IBD=$G(^TMP("IBCNSJ53I",$J,"TEMP",IBA,IBB,IBC))
+ .. S IBCT=IBCT+1,^TMP("IBCNSJ53I",$J,(IBI-6),IBCT,IBB,IBC)=IBD
+ Q
+ ;
+IBASE ; reset levels to base
+ ;
+ ;IB*804/DTG add sort to view subscribers
+ ; base set of values
+ N IBA,IBB,IBC,IBCNT,IBD,IBI
+ F IBA=3,4,5 K ^TMP("IBCNSJ53I",$J,IBA)
+ F IBI=9,10,11 S IBA="",IBCNT=0 F  S IBA=$O(^TMP("IBCNSJ53I",$J,IBI,IBA)) Q:IBA=""  S IBB="" D
+ . F  S IBB=$O(^TMP("IBCNSJ53I",$J,IBI,IBA,IBB)) Q:IBB=""  D
+ .. S IBD=^TMP("IBCNSJ53I",$J,IBI,IBA,IBB),IBCNT=IBCNT+1
+ .. S ^TMP("IBCNSJ53I",$J,(IBI-6),IBCNT,IBA,IBB)=IBD
+ ;
  Q
  ;

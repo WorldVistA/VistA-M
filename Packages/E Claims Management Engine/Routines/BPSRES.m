@@ -1,5 +1,5 @@
 BPSRES ;BHAM ISC/BEE - ECME SCREEN RESUBMIT W/EDITS ;3/12/08  14:01
- ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20,21,23,24,30,32,35**;JUN 2004;Build 14
+ ;;1.0;E CLAIMS MGMT ENGINE;**3,5,7,8,10,11,20,21,23,24,30,32,35,40**;JUN 2004;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$RXRLDT^PSOBPSUT in ICR #4701
@@ -17,7 +17,7 @@ RESED N BPSEL
  ; Select the claim to resubmit
  ;
  W !,"Enter the line number for the claim to be resubmitted."
- S BPSEL=$$ASKLINE("Select item","Please select a SINGLE claim only when using the Resubmit w/EDITS action option.")
+ S BPSEL=$$ASKLINE^BPSRES1("Select item","Please select a SINGLE claim only when using the Resubmit w/EDITS action option.")
  I BPSEL<1 S VALMBCK="R" G XRESED
  ;
  ; Attempt to resubmit the claim, update the content of the screen,
@@ -69,7 +69,8 @@ DOSELCTD(BPRXI) ;
  I $$RXDEL^BPSOS($P(BP59,".",1),+$E($P(BP59,".",2),1,4)) W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"cannot be Resubmitted w/EDITS because it has been deleted in Pharmacy.",! G XRES
  S BPSTATUS=$P($$CLAIMST^BPSSCRU3(BP59),U)
  I BPSTATUS["IN PROGRESS" W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is still In Progress and cannot be Resubmitted w/EDITS",! G XRES
- I BPSTATUS'["E REJECTED" W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is NOT Rejected and cannot be Resubmitted w/EDITS",! G XRES
+ I '$D(^XUSEC("BPS SUPERVISOR",DUZ)),BPSTATUS'["E REJECTED" W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is NOT Rejected and cannot be Resubmitted w/EDITS",! G XRES
+ I $D(^XUSEC("BPS SUPERVISOR",DUZ)),BPSTATUS'["E REJECTED",BPSTATUS'["E PAYABLE" W !!,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"is NOT Rejected and cannot be Resubmitted w/EDITS",! G XRES
  I $P($G(^BPST(BP59,0)),U,14)<2,$$PAYABLE^BPSOSRX5(BPSTATUS),$$PAYBLSEC^BPSUTIL2(BP59) D  G XRES
  . W !,"The claim: ",!,@VALMAR@(+$P(BPRXI,U,5),0),!,"cannot be Resubmitted if the secondary claim is payable.",!,"Please reverse the secondary claim first."
  ;
@@ -88,6 +89,10 @@ DOSELCTD(BPRXI) ;
  . . I $$CLOSED^BPSSCRU1($P(BPSPCLS,U,2)) Q
  . . W !,"The secondary claim cannot be Resubmitted unless the primary is either payable",!,"or closed. Please resubmit or close the primary claim first."
  . . S BPPRIOPN=1
+ ;
+ I BPSTATUS["E PAYABLE" D  I BPQ="^" G XRES
+ . S BPQ=$$YESNO^BPSSCRRS("You have selected a PAYABLE claim.  Do you want to continue")
+ . I BPQ'=1 S BPQ="^"
  ;
  ; Retrieve Date of Service, then prompt for EDIT Information.
  ;
@@ -119,10 +124,28 @@ DOSELCTD(BPRXI) ;
  ;
  I +BPBILL=0 D
  . S BPMSG="ECME RED Resubmit Claim w/Edits"
- . I BPADDLTXT'="" S BPMSG=BPMSG_": "_BPADDLTXT
- . S BPMSG=BPMSG_"-"_$S(BPCOB=1:"p",BPCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59)
- . S BPMSG=$E(BPMSG,1,100)
- . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,BPMSG)
+ . ;
+ . ; If Date of Service additional text exists, create ECME Log entry
+ . I $P(BPADDLTXT,"^")'="" D
+ . . S BPMSG=BPMSG_": "_$P(BPADDLTXT,"^")
+ . . S BPMSG=BPMSG_"-"_$S(BPCOB=1:"p",BPCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59)
+ . . S BPMSG=$E(BPMSG,1,100)
+ . . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,BPMSG)
+ . ;
+ . ; If Diagnosis Code additional text exists, create ECME Log entry
+ . I $P(BPADDLTXT,"^",2)'="" D
+ . . S BPMSG="ECME RED Resubmit Claim w/Edits"
+ . . S BPMSG=BPMSG_": "_$P(BPADDLTXT,"^",2)
+ . . S BPMSG=BPMSG_"-"_$S(BPCOB=1:"p",BPCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59)
+ . . S BPMSG=$E(BPMSG,1,100)
+ . . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,BPMSG)
+ . ;
+ . ; If neither DOS or Dx Code additional text exist, create ECME Log entry
+ . I $P(BPADDLTXT,"^")="",$P(BPADDLTXT,"^",2)="" D
+ . . S BPMSG=BPMSG_"-"_$S(BPCOB=1:"p",BPCOB=2:"s",1:"")_$$INSNAME^BPSSCRU6(BP59)
+ . . S BPMSG=$E(BPMSG,1,100)
+ . . D ECMEACT^PSOBPSU1(+BPRXIEN,+BPRXR,BPMSG)
+ . ;
  . S BPUPDFLG=1,BPCLTOT=1
  ;
 XRES ;
@@ -143,16 +166,18 @@ XRES2 ;
  ;                  BPCOB - (optional) payer sequence (1-primary, 2 -secondary)
  ;                  BPDOSDT - Date of Service, passed by reference 
  ;                  BPSECOND - Array, passed by reference, of COB data
- ;                  BPADDLTXT - Passed by reference, text to add to ECME
- ;                     log if user chooses to use Date of Service on the
- ;                     claim instead of the Release Date.
+ ;                  BPADDLTXT - Passed by reference, text to add to ECME Log
+ ;                              ^ Piece 1 = user chooses to use Date of Service 
+ ;                                          on the claim instead of the Release Date.
+ ;                              ^ Piece 2 = user chooses to submit a Diagnosis Code
  ;  Output Value -> BPQ  - -1 - The user chose to quit
  ;                         "" - The user completed the EDITS
 PROMPTS(BP59,BP02,BPRXIEN,BPRXR,BPCOB,BPDOSDT,BPSECOND,BPADDLTXT) ;
- N %,BP300,BP35401,BPSADDLFLDS,BPCLCD1,BPCLCD2,BPCLCD3,BPCLCDN,BPCLCDX
- N BPDFN,BPFDA,BPFLD,BPGENDER,BPMED,BPOVRIEN,BPPSNCD,BPPREAUT,BPPRETYP
- N BPQ,BPRELCD,BPRELEASEDT,BPSEX,BPSIG,BPSX,DIC,DIR,DIROUT,DIRUT,DTOUT
- N DUOUT,DUP,X,Y
+ N %,BP300,BP35401,BPSADDLFLDS,BPCLCD1,BPCLCD2,BPCLCD3
+ N BPCLCDN,BPCLCDX,BPDFN,BPDIAGNOSIS,BPFDA,BPFLD,BPGENDER
+ N BPMED,BPOVRIEN,BPPSNCD,BPPREAUT,BPPRETYP,BPQ,BPRELCD
+ N BPRELEASEDT,BPSEX,BPSIG,BPSX,DFLTDX,DIC,DIR,DIROUT
+ N DIRUT,DTOUT,DUOUT,DUP,X,Y
  ;
  S BPQ=""
  I +$G(BPCOB)=0 S BPCOB=1
@@ -274,9 +299,9 @@ P1 ;
  S BPADDLTXT=""
  S BPRELEASEDT=$$RELDATE^BPSBCKJ(+BPRXIEN,+BPRXR)
  I BPRELEASEDT]"" D  I BPQ=-1 G XPROMPTS
- . S BPDOSDT=$$EDITDT(1,BPRXIEN,BPRXR,BP02)
+ . S BPDOSDT=$$EDITDT^BPSRES1(1,BPRXIEN,BPRXR,BP02)
  . I BPDOSDT="^" S BPQ=-1 Q
- . I BPDOSDT'=(BPRELEASEDT\1) S BPADDLTXT="Date of Service ("_$$FMTE^XLFDT(BPDOSDT,5)_")"
+ . I BPDOSDT'=(BPRELEASEDT\1) S $P(BPADDLTXT,"^")="Date of Service ("_$$FMTE^XLFDT(BPDOSDT,5)_")"
  . Q
  ;
  ; Patient Residence Code
@@ -335,6 +360,34 @@ P1 ;
  . S BPGENDER=$S(Y="M":1,Y="F":2,Y="N":0,1:3)
  . Q
  ;
+ ; Diagnosis Code, 424-DO
+ ; Default Diagnosis Code from BPS CLAIMS file, field 424
+ ; Only ICD-10-CM codes are allowed for selection
+ ;
+ S BPDIAGNOSIS=""
+ N DIR,X,Y
+ S DIR(0)="PO^80:AEQMZ"
+ S DFLTDX=$P($E($$GET1^DIQ(9002313.0201,1_","_BP02_",",424),3,17)," ")
+ I $G(DFLTDX)'="" S DFLTDX=$E(DFLTDX,1,3)_"."_$E(DFLTDX,4,10)
+ S DIR("B")=DFLTDX
+ S DIR("S")="I $P($G(^ICDS($P(^(1),""^"",1),0)),""^"",1)=""ICD-10-CM"""
+ D ^DIR
+ I ($D(DUOUT))!($D(DTOUT)) S BPQ=-1 G XPROMPTS
+ S BPDIAGNOSIS=$P(Y,U,2)
+ I $D(DIRUT),X="@" D  I $D(DIRUT) S BPQ=-1 G XPROMPTS
+ . K DIR,DIRUT,X,Y
+ . I DFLTDX="" S BPDIAGNOSIS="" Q
+ . S DIR(0)="Y^E"
+ . S DIR("A")="  Are you sure you want to delete "_DFLTDX
+ . S DIR("B")="No"
+ . S BPDIAGNOSIS=DFLTDX
+ . D ^DIR
+ . I Y S BPDIAGNOSIS="REMOVED"
+ ;
+ I BPDIAGNOSIS'="" D
+ . I BPDIAGNOSIS="REMOVED" S $P(BPADDLTXT,"^",2)="Diagnosis Code (Removed)"
+ . E  S $P(BPADDLTXT,"^",2)="Diagnosis Code ("_BPDIAGNOSIS_")"
+ ;
  ; If secondary claim, setup secondary data and allow user to edit.
  ;
  I BPCOB=2 D  I BPQ=-1 G XPROMPTS
@@ -386,63 +439,6 @@ P1 ;
 XPROMPTS ;
  S BPOVRIEN=$S(BPQ=-1:BPQ,$G(BPOVRIEN(1))]"":BPOVRIEN(1),1:-1)
  Q BPOVRIEN
- ;
- ; Prompt User for Claim to Resubmit (w/EDITS)
- ;
- ; Input values ->  BPROMPT - prompt string
- ;                 BPERRMES - the message to display when the user tries
- ;                           to make multi line selection (optional)
- ;                  Piece
- ; output values ->     1 - 1 = okay, <0 = errors, 0 = quit
- ;                      2 - patient ien #2
- ;                      3 - insurance ien #36
- ;                      4 - ptr to #9002313.59
- ;                      5 - 1st line for index(es) in LM "VALM" array
- ;                      6 - patient's index
- ;                      7 - claim's index
-ASKLINE(BPROMPT,BPERRMES) ;
- N BPRET,BPCNT
- S BPRET="",BPCNT=0
- F  S BPRET=$$SELLINE^BPSSCRU4(BPROMPT,"C",VALMAR,"") Q:BPRET'<0  D
- . ;
- . I BPCNT<1 S BPCNT=BPCNT+1 W !
- . E  S BPCNT=0 D RE^VALM4
- . I BPRET=-1 W "Invalid line number" ; (invalid Patient summary line)"
- . I BPRET=-8 W $S($G(BPERRMES)]"":BPERRMES,1:" Invalid line number")
- . I BPRET=-4 W "Invalid line number" ; (invalid RX line)"
- . I BPRET=-2 W "Please select Patient's summary line."
- . I BPRET=-3 W "Please specify RX line."
- . I ",-1,-8,-4,-2,-3,"'[(","_BPRET_",") W "Incorrect format."
- Q BPRET
- ;
-EDITDT(DFLT,BPRXIEN,BPRXR,BP02) ;Prompt User to choose correct Date of Service
- ;
- ; Input value ->  DFLT - The data to use as the default value. If no
- ;                        default is provided, the Current Date of
- ;                        Service will be used.
- ;                          1 - Current Date of Service
- ;                          2 - Fill Date
- ;                          3 - Release Date
- ;              BPRXIEN - Pointer to the PRESCRIPTION file (#52)
- ;                BPRXR - Refill number for prescription
- ;                 BP02 - Pointer to the BPS CLAIMS file (#9002313.02)
- ;
- ; Output value -> Selected Date of Service in FileMan format
- ;
- N BPRLS,BPFIL,BPCUR,DIR,DIRUT,DIROUT,DTOUT,DUOUT,OPT,TMP,X,Y
- S BPRLS=$$RXRLDT^PSOBPSUT(BPRXIEN,BPRXR)\1  ; release date
- S BPFIL=$$RXFLDT^PSOBPSUT(BPRXIEN,BPRXR)\1  ; fill date
- S BPCUR=$$HL7TFM^XLFDT($$GET1^DIQ(9002313.02,BP02,401))  ; current date of service
- S DFLT=$G(DFLT),DIR("B")=1,DIR("A")="Date of Service"
- I DFLT=2,BPFIL]"" S DIR("B")=2
- I DFLT=3,BPRLS]"" S DIR("B")=3
- S OPT=1
- S DIR(0)="S^"_OPT_":"_$$FMTE^XLFDT(BPCUR,"5D")_" Current Date of Service",TMP(OPT)=BPCUR
- I BPFIL'>DT,BPFIL<BPRLS S OPT=OPT+1,DIR(0)=DIR(0)_";"_OPT_":"_$$FMTE^XLFDT(BPFIL,"5D")_" Fill Date",TMP(OPT)=BPFIL
- I BPRLS'>DT S OPT=OPT+1,DIR(0)=DIR(0)_";"_OPT_":"_$$FMTE^XLFDT(BPRLS,"5D")_" Release Date",TMP(OPT)=BPRLS
- D ^DIR
- I $D(DIRUT) S Y="^" Q Y
- Q TMP(Y)
  ;
 BPSKIP(BPSRX,BPSFILL) ; Determine whether to skip the enter/edit of Submission Clarification Codes
  ; This function will return a '1' if the enter/edit of Submission 

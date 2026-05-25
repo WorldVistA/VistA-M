@@ -1,6 +1,6 @@
 RCDPBPL1 ;WISC/RFJ-bill profile options ;1 Jun 99
- ;;4.5;Accounts Receivable;**114**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**114,462**;Mar 20, 1995;Build 12
+ ;;Per VHA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -27,4 +27,18 @@ NEWBILL ;  select a new bill
  I $D(^TMP("RCDPAPLM",$J)) S RCDEBTDA=$P(^PRCA(430,RCBILLDA,0),"^",9)
  ;
  D INIT^RCDPBPLM
+ Q
+ ;
+ELIG ; display patient eligibility  PRCA*4.5*462
+ D FULL^VALM1
+ S VALMBCK="R"
+ D EN^VALM("RCDP ELIGIBILITY")
+ I $G(RCDPFXIT) S VALMBCK="Q"
+ Q
+ ;
+SPAUTH ; display special authority  PRCA*4.5*462
+ D FULL^VALM1
+ S VALMBCK="R"
+ D EN^VALM("RCDP SP AUTHORITY")
+ I $G(RCDPFXIT) S VALMBCK="Q"
  Q

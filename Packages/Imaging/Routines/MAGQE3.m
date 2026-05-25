@@ -1,5 +1,5 @@
-MAGQE3 ;WOIFO/RMP - Support for MAG Enterprise ; 25 Jun 2012 4:20 PM
- ;;3.0;IMAGING;**27,29,30,20,46,135**;Mar 19, 2002;Build 5238;Jul 17, 2013
+MAGQE3 ;WOIFO/RMP/ZEB - Support for MAG Enterprise ; 6 Jan 2026 11:39 AM
+ ;;3.0;IMAGING;**27,29,30,20,46,135,365**;Mar 19, 2002;Build 19;Jul 17, 2013
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -19,7 +19,7 @@ MAGQE3 ;WOIFO/RMP - Support for MAG Enterprise ; 25 Jun 2012 4:20 PM
  ;
 COUNT(SDATE,EDATE,INST,AI,IQ,DUP,TIOP,TGPP,TIEDP,GRPPRNT,IMAGE,DELETED) ;
  N CLIN,CONSENTS,CPTR,D0,DAT,DICOM,DOC,DOCGRP,DOCUMENT,ED0,I,IMPORT
- N NAME,OTHER,PCE,PROC,SD0,TRK,ZNODE,CNODE
+ N NAME,OTHER,PCE,PROC,SD0,TRK,ZNODE,CNODE,ACQDEV ;*zeb *365 +ACQDEV to prevent <SUBSCRIPT> error
  S SD0=$$SDATE^MAGQE1(SDATE,"F")
  S ED0=$$SDATE^MAGQE1(EDATE,"R")
  S D0="" F  S D0=$O(^MAG(2005.02,"B","DOCUMENT",D0)) Q:D0=""  D
@@ -42,7 +42,9 @@ COUNT(SDATE,EDATE,INST,AI,IQ,DUP,TIOP,TGPP,TIEDP,GRPPRNT,IMAGE,DELETED) ;
  . S X=$P($G(^MAG(2005,D0,2)),"^",1)\1 Q:'X  Q:X<SDATE  Q:X>EDATE
  . S:$P(ZNODE,U,12) DUP=DUP+1
  . S PCE=$P(CNODE,"^",5),TRK="" I PCE'="" D
- . . S TRK=$P($G(^MAG(2006.04,$P(CNODE,U,4),0)),U)
+ . . S ACQDEV=$P(CNODE,U,4) ;*zeb *365 prevent <SUBSCRIPT> error when Tracking ID is set but Acquisition Device is not
+ . . S:ACQDEV="" ACQDEV="?"
+ . . S TRK=$P($G(^MAG(2006.04,ACQDEV,0)),U)
  . . S TRK=$S(TRK'="":TRK,1:"?") Q
  . I $P(ZNODE,"^",2)="" D  Q
  . . S GRPPRNT=GRPPRNT+1

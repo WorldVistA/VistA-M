@@ -1,7 +1,9 @@
 DVBAB82 ;ALB/DJS - CAPRI DVBA REPORTS ; 01/24/12
- ;;2.7;AMIE;**42,90,100,119,156,149,179,181,184,185,192,196,193**;Apr 10, 1995;Build 84
+ ;;2.7;AMIE;**42,90,100,119,156,149,179,181,184,185,192,196,193,252**;Apr 10, 1995;Build 92
  ;Per VHA Directive 2004-038, this routine should not be modified.
- ;ALB/RTW added subroutine VBACRPON to allow VBA reprint reqardless of office
+ ;Reference to PRNT^SROESPR in ICR #1203
+ ;Reference to File 133 ^SRO(133) in ICR #2237
+ ;ALB/RTW added subroutine VBACRPON to allow VBA reprint reagrdless of office
  Q
  ;
 START(MSG,RPID,PARM) ; CALLED BY REMOTE PROCEDURE DVBAB REPORTS
@@ -148,13 +150,20 @@ SPRPT ; Report # 8 - OP(Operation Report)
  ;Parameters
  ;=============
  ; DFN : Patient Identification Number
- ; SRTN : Select Operation
+ ; DVBRTN : Select Operation
  ;
- N DFN,SRTN,MAGTMPR2,SRSITE
- I $O(^SRO(133,1))'="B" S SRSITE=1
- S DFN=$P(PARM,"^",1),SRTN=$P(PARM,"^",2),MAGTMPR2=1
+ ;CAPRI-11150;JCS;06/27/2024
+ ;  Report re-write due to interference with RPC Broker
+ ;
+ N DFN,DVBRTN,DVBSITE,DVBSINED,DVBSTAT,DVBDTITL,DVBTIU
+ I $O(^SRO(133,1))'="B" S DVBSITE=1
+ S DFN=$P(PARM,"^",1),DVBRTN=$P(PARM,"^",2)
  D VAL Q:DVBERR
- D ^SROPRPT
+ S DVBSINED=0,DVBSTAT="",DVBTIU=$P($G(^SRF(DVBRTN,"TIU")),"^")
+ I $G(DVBTIU) S DVBSTAT=$$STATUS^SROESUTL(DVBTIU) S:DVBSTAT=7 DVBSINED=1
+ I $G(DVBSINED) S DVBTIU=$P($G(^SRF(DVBRTN,"TIU")),"^") I $G(DVBTIU) D PRNT^SROESPR(DVBRTN,DVBTIU,"Operation Report") Q
+ I 'DVBSINED W !!," * * The Operation Report for this case is not yet available. * *"
+ K ^TMP("SROP",$J),SRPARM,DVBDIRY
  Q
  ;
 CRPON ; Report # - 4 Reprint C&P Final Report
@@ -245,7 +254,7 @@ CIRPT ; Report # 5 - Insufficient Exam Report
  ;    BDD : Benefits Delivery at Discharge / Quick Start
  ;    IDES : Integrated Disability Evaluation System
  ;    ALL : All Others (Original Report w/ all codes except the above)
- ; DVBADLMTR: 0=non-delimted format, ","=delimiter for .csv file for EXCEL
+ ; DVBADLMTR: 0=non-delimited format, ","=delimiter for .csv file for EXCEL
  ;
  N DVBAPRTY,RPTTYPE,BEGDT,ENDDT,RESANS
  U IO

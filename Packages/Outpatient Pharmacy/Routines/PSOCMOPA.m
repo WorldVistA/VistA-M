@@ -1,5 +1,5 @@
 PSOCMOPA ;BIR/HTW-Utility for Hold/Can/Park ;Feb 07, 2019@06:29:42
- ;;7.0;OUTPATIENT PHARMACY;**61,76,443,508,441**;DEC 1997;Build 208
+ ;;7.0;OUTPATIENT PHARMACY;**61,76,443,508,441,768**;DEC 1997;Build 12
  ;External Referrence to file # 550.2 granted by DBIA 2231
  ;Required input:  DA - internal entry # -  ^PSRX
  ;Returns:
@@ -12,6 +12,8 @@ PSOCMOPA ;BIR/HTW-Utility for Hold/Can/Park ;Feb 07, 2019@06:29:42
  N X,XN,BATCH,TDT,BIEN
  K PSOCMOP
  S (CMOP("L"),X)=0  F  S X=$O(^PSRX(DA,1,X)) Q:'X  S CMOP("L")=X
+ ;PSO*7*768 QUIT IF THE FILL IS NOT CMOP
+ I CMOP("L")>0,$P(^PSRX(DA,1,CMOP("L"),0),U,2)'="M" Q
  I $O(^PSRX(DA,4,0)) F X=0:0 S X=$O(^PSRX(DA,4,X)) Q:'X  D
  .S XN=$G(^PSRX(DA,4,X,0)),BATCH=$P($G(XN),"^") Q:$G(BATCH)']""
  .S BIEN=$O(^PSX(550.2,"B",BATCH,"")) Q:$G(BIEN)']""  S TDT=$P(^PSX(550.2,BIEN,0),"^",6)

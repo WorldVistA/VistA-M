@@ -1,5 +1,5 @@
 MAGDHOWE ;WOIFO/PMK/JSJ - Clinical Specialty MWL & HL7 Editor ; Apr 27, 2022@11:43:08
- ;;3.0;IMAGING;**138,231,278**;Mar 19, 2002;Build 138
+ ;;3.0;IMAGING;**138,231,278,370**;Mar 19, 2002;Build 2
  ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -300,7 +300,7 @@ LOOKUP(ITEM,NAME,FILE,FIELDS,REQUIRED) ; lookup entry
  I $G(DTOUT) Q -1  ;P278 JSJ handle timeout to prevent passing through required field
  I Y="^" Q -1
  I Y="^^" Q -2
- I Y=-1 S ITEM="" Q 0
+ I Y=-1!(Y="") S ITEM="" Q 0  ;P370 GEF
  I FILE="2005.85",Y]"" S Y=$G(TMP(Y),-999)  ;P278 JSJ
  S ITEM=$$GETVALUE(FILE,+Y,FIELDS)
  Q 1

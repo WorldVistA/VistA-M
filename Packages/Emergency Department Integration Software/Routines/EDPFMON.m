@@ -1,5 +1,5 @@
-EDPFMON ;SLC/MKB - ED Monitor at facility ; 3/16/23 1:46pm
- ;;2.0;EMERGENCY DEPARTMENT;**16,20**;May 2, 2012;Build 7
+EDPFMON ;SLC/MKB - ED Monitor at facility ; 5/22/25 10:23am
+ ;;2.0;EMERGENCY DEPARTMENT;**16,20,37**;May 2, 2012;Build 3
  ;External reference ^ORX8 supported by DBIA 871
  ;
 EN(MSG) ; -- main entry point for EDP MONITOR where MSG contains HL7 msg
@@ -149,10 +149,11 @@ SDAM ; -- send bulletin on check-in
  S:'EDPEVENT EDPEVENT=4
  Q:$G(SDAMEVT)'=EDPEVENT
  ;
- N EDPLST,X,FOUND
- D GETLST^XPAR(.EDPLST,"ALL","EDPF LOCATION","I")
- S X="",FOUND=0
- F  S X=$O(EDPLST(X)) Q:X=""  I $P(SDATA,U,4)=EDPLST(X) S FOUND=1 Q
+ N EDPLST,X,FOUND,EDPSUB,EDPSDSITE
+ D ENVAL^XPAR(.EDPLST,"EDPF LOCATION")
+ S X="",FOUND=0,EDPSUB=""
+ F  S X=$O(EDPLST(X)) Q:X=""  D
+ .F  S EDPSUB=$O(EDPLST(X,EDPSUB)) Q:EDPSUB=""  I $P(SDATA,U,4)=EDPLST(X,EDPSUB) S FOUND=1,EDPSDSITE=$P(X,";") Q
  I $P(SDATA("AFTER","STATUS"),"^",4)="" Q  ; Check-in deleted *20
  Q:'FOUND
  ;
@@ -165,7 +166,7 @@ SDAM ; -- send bulletin on check-in
  S MSG(3)="ptNm="_$P(^DPT(DFN,0),U)
  S MSG(4)="ssn="_$P(^DPT(DFN,0),U,9)
  S MSG(5)="hloc="_HLOC
- S MSG(6)="site="_DUZ(2)
+ S MSG(6)="site="_EDPSDSITE
  S MSG(7)="time="_DATE  ; appt date to match PCE
  D SEND(.MSG)
  Q

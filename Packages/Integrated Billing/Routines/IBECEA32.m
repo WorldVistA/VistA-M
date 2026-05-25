@@ -1,5 +1,5 @@
 IBECEA32 ;ALB/CPM-Cancel/Edit/Add... Add Utilities ; Aug 09, 2023
- ;;2.0;INTEGRATED BILLING ;**57,188,704**; 21-MAR-94;Build 49
+ ;;2.0;INTEGRATED BILLING ;**57,188,704,769**; 21-MAR-94;Build 42
  ;Per VA Directive 6402, this routine should not be modified
  ;
 CLUPD ; Handle the updating of the billing clock when adding a charge.
@@ -29,16 +29,21 @@ CHMPVAQ K IBPM,IBSL,IBCVA
  Q
  ;
 ADD ; Prompt user to add a new billing clock.
- N DIE,DA,DR,DIR,DIRUT,DUOUT,DTOUT,X,Y,IBCCUPDF
+ N DIE,DA,DR,DIR,DIRUT,DUOUT,DTOUT,X,Y,IBCCUPDF,IB351IEN,ZTREQ,ZTRTN,ZTDESC,ZTSAVE,ZTIO,ZTDTH ;IB*2*769 - Include variables for taskman load
  W !!,"Since this patient has no active clock to cover this charge, I would like to",!,"set up an active clock as follows:"
  W !!?5,"Clock Begin Date: ",$$DAT1^IBOUTL(IBFR),! W:IBXA=1!(IBXA=2) ?4,"1st 90 days copay: $",IBCHG,! W:IBXA=3 ?5,"# Inpatient days: ",IBUNIT,!
  S DIR(0)="Y",DIR("A")="Is it okay to set up a new clock with "_$S(IBXA=4:"this",1:"these")_" value"_$E("s",IBXA'=4),DIR("?")="Enter 'Y' or 'YES' to create a new clock, or 'N', 'NO', or '^' to quit."
  D ^DIR I 'Y!($D(DIRUT))!($D(DUOUT)) W !,"A new clock will not be established.  Be sure this patient's clock is correct." Q
  W !!,"Creating a new, active billing clock...  "
  S IBCLDT=IBFR,IBCCUPDF=1 D CLADD^IBAUTL3 Q:IBY<0
- I IBXA'=4 S DIE="^IBE(351,",DA=IBCLDA,DR=$S(IBXA=3:.09,1:.05)_"////"_$S(IBXA=3:IBUNIT,1:IBCHG)_";13////"_DUZ_";14///NOW;16///1" D ^DIE
+ I IBXA'=4 S DIE="^IBE(351,",DA=IBCLDA,DR=$S(IBXA=3:.09,1:.05)_"////"_$S(IBXA=3:IBUNIT,1:IBCHG)_";13////"_DUZ_";14///NOW" D ^DIE ;Remove setting of Query Sent field, handled in dsr update from query 
  W "done."
- D EN^IBECECU1(DFN,IBCLDA)
+ ;Add a call to send an HL7 message to synchronize clocks
+ ;IB*2*769 - If query not set, run query and queue dft
+ I $P($G(^IBE(351,IBCLDA,1)),U,5)="" S IB351IEN=IBCLDA D EN^IBECECQ1(DFN) D  Q
+ .S ZTRTN="EN^IBECECU1("_DFN_","_IBCLDA_",1)",ZTSAVE("*")="",ZTDESC="Queue Billing Clock Sync update to allow time for query to run."
+ .S ZTDTH=$$HADD^XLFDT($H,,,10,),ZTIO="" D ^%ZTLOAD
+ I $P($G(^IBE(351,IBCLDA,1)),U,5) D EN^IBECECU1(DFN,IBCLDA,1)
  Q
  ;
 FEPR ; Issue prompts for Inpatient Fee Services

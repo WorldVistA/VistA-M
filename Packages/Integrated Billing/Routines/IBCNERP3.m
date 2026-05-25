@@ -1,5 +1,5 @@
 IBCNERP3 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT PRINT ; 03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,528,602,702,737,752**;21-MAR-94;Build 20
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528,602,702,737,752,806**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification
@@ -47,7 +47,7 @@ PRINT(RTN,BDT,EDT,PYR,PAT,TYP,SRT,PGC,PXT,MAX,CRT,TRC,EXP,IPRF,IBRDT,IBOUT,IBFEE
  N OPRT1,OPRT2 ; Original values for PRT1 and PRT2, respectively
  N IBHDR,IBDTA ; IB*702/ new vars
  S EORMSG="*** END OF REPORT ***"
- S NONEMSG="* * * N O  D A T A  F O U N D * * *"
+ S NONEMSG="***   NO  DATA  FOUND   ***"
  S (SORT1,SORT2)=""
  S IBFEED=$G(IBFEED) S:IBFEED="" IBFEED=MAX  ;IB*752/DTG if IBFEED is null set to MAX
  ;
@@ -58,7 +58,7 @@ PRINT(RTN,BDT,EDT,PYR,PAT,TYP,SRT,PGC,PXT,MAX,CRT,TRC,EXP,IPRF,IBRDT,IBOUT,IBFEE
  ;
  ; If global does not exist - display No Data message
  ; I '$D(^TMP($J,RTN)) D @IBHDR W !,?(80-$L(NONEMSG)\2),NONEMSG,!!
- I 'IBDTA  D @IBHDR W ! W:$G(IBOUT)="R" ?23 W NONEMSG W:$G(IBOUT)="R" !! G PRINTEOR
+ I 'IBDTA  D @IBHDR W ! W:$G(IBOUT)="R" ?27 W NONEMSG W:$G(IBOUT)="R" !! G PRINTEOR
  ; IB*702/DTG end no form feed between no data the header and end of report
  ;
  F  S SORT1=$O(^TMP($J,RTN,SORT1)) Q:SORT1=""  D  Q:PXT!$G(ZTSTOP)
@@ -75,7 +75,9 @@ PRINT(RTN,BDT,EDT,PYR,PAT,TYP,SRT,PGC,PXT,MAX,CRT,TRC,EXP,IPRF,IBRDT,IBOUT,IBFEE
  ;
  I $G(ZTSTOP)!PXT G PRINTX
  S (CNFLG,ERFLG)=0
- I $Y+1>IBFEED!('PGC) D HEADER:IBOUT="R" I $G(ZTSTOP)!PXT G PRINTX
+ ;IB*806/DTG manage extra form feed/header
+ ;I $Y+1>IBFEED!('PGC) D HEADER:IBOUT="R" I $G(ZTSTOP)!PXT G PRINTX
+ I $Y+1>$S($G(RTN)="IBCNERP1":MAXCNT,1:IBFEED)!('PGC) D HEADER:IBOUT="R" I $G(ZTSTOP)!PXT G PRINTX
  ; IB*702/DTG start EOR message
 PRINTEOR ; IB*702 come here for eor if no data
  W ! W:$G(IBOUT)="R" ?30 W EORMSG W:$G(IBOUT)="R" !
@@ -98,12 +100,12 @@ XLDATA ; Excel output  ; 528
  ;W $G(REFQ)_U_$G(REFID)_U_$G(RFIDSC)_U_$G(PROCD)_U_$G(REFID2)_U_$G(PRIDC)_U_$G(MLIST)_U_$G(EMPST)_U_$G(GOVAFL)_U_$G(DTMP)_U_$G(SRVRNK)_U_$G(MDESC)
  W !,$S(SRT=1:PYRNM,1:PTNM)_U_$S(SRT=1:PTNM,1:PYRNM)_U_PTSSN_U_PTDOB_U_$P(RPTDATA(13),U)_U_$P(RPTDATA(13),U,2)_U_$P(RPTDATA(1),U,2)_U_$P(RPTDATA(1),U,4)_U_$P(RPTDATA(14),U)_U_$P(RPTDATA(14),U,2)
  W U_RPTDATA(8)_U_$P(RPTDATA(1),U,18)_U_$P(RPTDATA(1),U,16)_U_$P(RPTDATA(1),U,11)
- W U_$P(RPTDATA(1),U,12)_U_$P(RPTDATA(0),U,7)_U_$P(RPTDATA(0),U,9)_U_$P(RPTDATA(1),U,20)
+ ;W U_$P(RPTDATA(1),U,12)_U_$P(RPTDATA(0),U,7)_U_$P(RPTDATA(0),U,9)_U_$P(RPTDATA(1),U,20)
+ W U_$P(RPTDATA(1),U,12)_U_$P(RPTDATA(0),U,7)_U_$P(RPTDATA(0),U,9)  ;IB*806/DTG remove policy number
  Q
  ;
 GTDT ; Get Eligibility/Group Plan Information
  ;^TMP("EIV RESP. EB DATA",$J,"DISP",1,0) 
- ;S SEL=$$TRIM^XLFSTR($E(Y(0),1,30),"R")
  N LN,OUT,DATA
  S (REFID,REFQ,RFIDSC,PROCD,REFID2,PRIDC,EMPST,MLIST,DTMP,GOVAFL,SRVRNK,MDESC)=""
  S LN=0
@@ -143,7 +145,8 @@ GTDT ; Get Eligibility/Group Plan Information
  Q
  ;
 HEADER ; Print hdr info
- N X,Y,DIR,DTOUT,DUOUT,OFFSET,HDR,LIN,HDR
+ N X,Y,DIR,DTOUT,DUOUT,OFFSET,HDR,LIN
+ N HDRA,HDRB,HDRC ;IB*806/DTG header change
  I CRT,PGC>0,'$D(ZTQUEUED) D  I PXT G HEADERX
  . I MAX<51 F LIN=1:1:(IBFEED-$Y) W !  ;IB*752/DTG change MAX to IBFEED
  . S DIR(0)="E" D ^DIR K DIR
@@ -168,24 +171,39 @@ HEADER ; Print hdr info
  . S HDR=$$FMTE^XLFDT(BDT,"5Z")_" - "_$$FMTE^XLFDT(EDT,"5Z")
  . S OFFSET=80-$L(HDR)\2
  . W !,?OFFSET,HDR
+ . ; IB*806/DTG header change
  . ; Disp SORT1 rng
- . S HDR=""
- . I SRT=1,PYR="" S HDR="All Payers"
- . I SRT=2,PAT="" S HDR="All Patients"
- . I HDR="" D
- ..  I SRT=1 S HDR=$P($G(^IBE(365.12,PYR,0)),U,1) Q
- ..  S HDR=$P($G(^DPT(PAT,0)),U,1)
- . S OFFSET=80-$L(HDR)\2
- . W !,?OFFSET,HDR
+ . ;S HDR=""
+ . ;I SRT=1,PYR="" S HDR="All Payers"
+ . ;I SRT=2,PAT="" S HDR="All Patients"
+ . ;I HDR="" D
+ . S HDRA=""
+ . I SRT=1,PYR="" S HDRA="All Payers"
+ . I SRT=2,PAT="" S HDRA="All Patients"
+ . I HDRA="" D
+ ..  ;I SRT=1 S HDR=$P($G(^IBE(365.12,PYR,0)),U,1) Q
+ ..  ;S HDR=$P($G(^DPT(PAT,0)),U,1)
+ ..  I SRT=1 S HDRA=$P($G(^IBE(365.12,PYR,0)),U,1) Q
+ ..  S HDRA=$P($G(^DPT(PAT,0)),U,1)
+ . ;S OFFSET=80-$L(HDR)\2
+ . ;W !,?OFFSET,HDR
  . ; Disp SORT2 rng
- . S HDR=""
- . I SRT=1,PAT="" S HDR="All Patients"
- . I SRT=2,PYR="" S HDR="All Payers"
- . I HDR="" D
- .. I SRT=1 S HDR=$P($G(^DPT(PAT,0)),U,1) Q
- .. S HDR=$P($G(^IBE(365.12,PYR,0)),U,1)
- . S OFFSET=80-$L(HDR)\2
- . W !,?OFFSET,HDR
+ . ;S HDR=""
+ . ;I SRT=1,PAT="" S HDR="All Patients"
+ . ;I SRT=2,PYR="" S HDR="All Payers"
+ . ;I HDR="" D
+ . S HDRB=""
+ . I SRT=1,PAT="" S HDRB="All Patients"
+ . I SRT=2,PYR="" S HDRB="All Payers"
+ . I HDRB="" D
+ .. ;I SRT=1 S HDR=$P($G(^DPT(PAT,0)),U,1) Q
+ .. ;S HDR=$P($G(^IBE(365.12,PYR,0)),U,1)
+ .. I SRT=1 S HDRB=$P($G(^DPT(PAT,0)),U,1) Q
+ .. S HDRB=$P($G(^IBE(365.12,PYR,0)),U,1)
+ . ;S OFFSET=80-$L(HDR)\2
+ . ;W !,?OFFSET,HDR
+ . S HDRC=HDRA_", "_HDRB,OFFSET=80-$L(HDRC)\2 I OFFSET<1 S OFFSET=1
+ . W !,?OFFSET,HDRC
  W !
  ; Build disp
  I SORT1'="",SORT2'="" D
@@ -235,9 +253,8 @@ PHDL ; - Print the header line for the Excel spreadsheet  ; 528
  . S EHDR="Sorted by: "_$S(SRT=1:"Payer",1:"Patient")_" Name"
  . S EHDR=EHDR_"^Responses Displayed: "_$S(TYP="M":"Most Recent",1:"All")
  . W !,EHDR S EHDR=""
- . ; IB*702/DTG start remove policy exp date
+ . ; IB*702/DTG remove policy exp date
  . ;I $G(IPRF)=1 W !,"Earliest Policy Expiration Date: ",$$FMTE^XLFDT(EXP,"5Z")
- . ; IB*702/DTG end remove policy exp date
  . S EHDR=$$FMTE^XLFDT(BDT,"5Z")_" - "_$$FMTE^XLFDT(EDT,"5Z")
  . W !,EHDR
  . ; Disp SORT1 rng
@@ -274,6 +291,7 @@ PHDL ; - Print the header line for the Excel spreadsheet  ; 528
  ;W X
  S X=$S(SRT=1:"Payer",1:"Patient")_U_$S(SRT=1:"Patient",1:"Payer")_"^Patient SSN^Patient DOB^Subscriber^Subscriber ID^Subscriber DOB^Subscriber Sex^Group Name^Group ID"
  S X=X_"^Pt Relationship to Subscriber^Member ID^Date of Death^Effective Date^Expiration Date"
- S X=X_"^Response Date^Trace #^Policy Number"
+ ;S X=X_"^Response Date^Trace #^Policy Number"  ; IB(806/DTG remove policy number
+ S X=X_"^Response Date^Trace #"
  W X
  Q

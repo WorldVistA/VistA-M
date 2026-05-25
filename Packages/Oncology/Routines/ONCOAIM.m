@@ -1,5 +1,5 @@
 ONCOAIM ;HINES OIFO/GWB - Create additional primaries for a patient ;03/08/11
- ;;2.2;ONCOLOGY;**1,4,15,17,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,15,17,20,22**;Jul 31, 2013;Build 6
  ;
 EN ;Add additional primaries for patient
  D KILL
@@ -96,11 +96,12 @@ CR ;Create Primary
  ;
  L +^ONCO(165.5,ONCOD0P,0):0
  S DIE="^ONCO(165.5,"
- S DR="W !;.05////^S X=AC;.06////^S X=SEQ;.07//^S X=ACAY;.04;155;3;20;22.3//^S X=MO;21"
+ S DR="W !;.05////^S X=AC;.06////^S X=SEQ;.07//^S X=ACAY;.04;155;3;20;22.3//^S X=MO;21;6;7"
  ;S DR="W !;.05////^S X=AC;.06////^S X=SEQ;.07//^S X=ACAY;.04;155;3//^S X=XD;20;22.3//^S X=MO;21//^S X=CS"
  S ACN=AC_"/"_SEQ,DA=ONCOD0P
  D ^DIE
  L -^ONCO(165.5,ONCOD0P,0)
+ D MSG
  G PID:$D(Y)=0 D KLN G EX
  ;
 PID ;Continue defining Primary Record
@@ -115,6 +116,26 @@ UPDT ;Update 00 to 01, update 60 to 61
  W !!?5,"The following up-dating has occurred:",!! D SDA^ONCOCOM H 2
  Q
  ;
+MSG ;display message
+ W !!,"NOTE: Beginning in 2025, non-analytic cases only require a minimal"
+ W !,"dataset, which includes all data items listed above (including"
+ W !,"histology/behavior code) as well as Schema Discriminator/s, if"
+ W !,"applicable.  See https://staging.seer.cancer.gov/ and choose View"
+ W !,"EOD Data and applicable diagnosis year to find out if the case has"
+ W !,"schema discriminators.  Sites that require schema discriminators"
+ W !,"may include but are not limited to the following: some Head and"
+ W !,"Neck schemas, Esophagus, Stomach, Bile and Cystic Ducts, GIST,"
+ W !,"some Eye, Soft Tissue, Urethra, Ill-Defined Other, some Lymphomas"
+ W !,"and some hematopoietic cancers."
+ W !," "
+ W !,"For non-analytic cases: After entering the histology and schema"
+ W !,"discriminator/s (if applicable), set the ABSTRACT STATUS to"
+ W !,"Minimal Data.  If histology and schema discriminator/s are not"
+ W !,"available at the time the case is accessioned, leave ABSTRACT"
+ W !,"STATUS = Incomplete and change to Minimal Data only after"
+ W !,"histology and applicable schema discriminator/s have been entered.",!
+ W ! R "Enter RETURN to continue ",ZZA:DTIME
+ Q
 KLN ;KILL entry
  S DA=ONCOD0P,DIK="^ONCO(165.5," D ^DIK,KILL
  R !?5,"<ENTRY DELETED> - press RETURN to continue->",DA:DTIME
@@ -135,3 +156,4 @@ EX ;Exit
  ;
 CLEANUP ;Cleanup
  K ONCOACN,ONCOD0,ONCOD0P,ONCONM,ONCOP,ONCOPN,ONCOSIT,Y
+ Q

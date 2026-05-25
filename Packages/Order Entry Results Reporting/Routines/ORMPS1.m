@@ -1,5 +1,5 @@
-ORMPS1 ;SLC/MKB - Process Pharmacy ORM msgs cont ;Nov 17, 2020@13:57:35
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**86,92,94,116,134,152,158,149,190,195,215,265,275,243,280,350,382,397,413,405**;Dec 17, 1997;Build 211
+ORMPS1 ;SLC/MKB - Process Pharmacy ORM msgs cont ; Dec 11, 2024@14:00
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**86,92,94,116,134,152,158,149,190,195,215,265,275,243,280,350,382,397,413,405,508**;Dec 17, 1997;Build 39
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -120,7 +120,6 @@ OUT2 S NTE=$$NTE^ORMPS3(6) I NTE D  ;Prov Comm ;D:'NTE PCOMM^ORMPS2
  . S ORDIALOG(SIG,1)="^TMP(""ORWORD"",$J,"_SIG_",1)"
  . S ORDIALOG(PI,"FORMAT")="@" ;PI already included in Sig
 OUT3 I '$G(ORQT(1))!('NTE) D DOSETEXT^ORCDPS2 ;reset Instructions text, Sig
- S ZSC=$$ZSC^ORMPS3,X=$P(ZSC,"|",2) I X?2.3U S ORDIALOG(SC,1)=$S(X="SC":1,1:0)
  Q
 IV ; -- new IV order
  N IVTYP,IVTYPE S IVTYP=$P(ZRX,"|",7) I IVTYP="",$$NUMADDS^ORMPS3'>1 G UDOSE

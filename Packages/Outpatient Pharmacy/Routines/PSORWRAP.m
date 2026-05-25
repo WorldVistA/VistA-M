@@ -1,5 +1,5 @@
-PSORWRAP ;AITC/BWF - Remote RX API wrapper ;12/12/16 3:21pm
- ;;7.0;OUTPATIENT PHARMACY;**454,475,541,559,643**;DEC 1997;Build 35
+PSORWRAP ;AITC/BWF,RBD - Remote RX API wrapper ;12 Dec 2024  4:27 PM
+ ;;7.0;OUTPATIENT PHARMACY;**454,475,541,559,643,774**;DEC 1997;Build 15
  ;External reference to ^HLCS(870 supported by DBIA 3550
  ;
  Q
@@ -38,10 +38,14 @@ PROCESS ;
  S DFN=$$GET1^DIQ(52,RXIEN,2,"I")
  I RXFTYP="RF" D
  .D REMREF^PSORREF(.RET,RXNUM,RXFDATE,MW,RPHARM,RPHONE,RFSITE,.RX0,.RX2,.RXSTA,.RPROV,.SIG,.RREF0,.ROR1,.RX3)
+ .I $E($G(RET(0)))'=0 D UNPARK^PSORRPA1   ; If No Errors, then Unpark - RBD *774
  .D BLDACK(.RET,DFN,RXFTYP,RX0,RX2,RXSTA,RPROV,SIG,RREF0,"",ROR1,RX3)
+ .D EN^PSOHLSN1(RXIEN,"XX","","OneVA "_$S($G(RREF0)]"":"Ref",1:"Original F")_"ill")   ; RBD *774 Fix Last Fill column not updating on Dispensing site
  I RXFTYP="PF" D
  .D PAR^PSORRPA1(.RET,RXNUM,RXFDATE,MW,QTY,DSUPP,REMARKS,RPHARM,RPHONE,RFSITE,.RX0,.RX2,.RXSTA,.RPROV,.SIG,.RPAR0,.ROR1,.RX3,.RREF0)
+ .I $E($G(RET(0)))'=0 D UNPARK^PSORRPA1   ; If No Errors, then Unpark - RBD *774
  .D BLDACK(.RET,DFN,RXFTYP,RX0,RX2,RXSTA,RPROV,SIG,RREF0,RPAR0,ROR1,RX3)
+ .D EN^PSOHLSN1(RXIEN,"XX","","OneVA Partial Fill")   ; RBD *774 Fix Last Fill column not updating on Dispensing site
  Q
  ;
  ;Build Acknowledgement to show Rx was filled or in error
@@ -130,6 +134,10 @@ BLDACK(DAT,DFN,TYPE,RX0,RX2,RXSTA,RPROV,SIG,RREF0,RPAR0,ROR1,RX3) ;
  I $G(RPAR0)]"" D
  .S $P(^TMP("HLA",$J,CNT),HLFS,20)=$P(^TMP("HLA",$J,CNT),HLFS,20)_ORRS_"C"_ORCS_$$GET1^DIQ(200,$P(RPAR0,U,7),.01)  ; seq #3
  .S $P(^TMP("HLA",$J,CNT),HLFS,20)=$P(^TMP("HLA",$J,CNT),HLFS,20)_ORRS_"PP"_ORCS_$$GET1^DIQ(200,$P(RPAR0,U,17),.01)   ; seq #4
+ ;
+ I $G(RREF0)']""&($G(RPAR0)']"") D     ; Must be Orig. Fill so stuff CLERK CODE / PROVIDER at Rx Level - RBD *774
+ .S $P(^TMP("HLA",$J,CNT),HLFS,20)=$P(^TMP("HLA",$J,CNT),HLFS,20)_ORRS_"C"_ORCS_$$GET1^DIQ(200,$P(RX0,U,16),.01)  ; seq #3
+ .S $P(^TMP("HLA",$J,CNT),HLFS,20)=$P(^TMP("HLA",$J,CNT),HLFS,20)_ORRS_"RP"_ORCS_$$GET1^DIQ(200,$P(RX0,U,4),.01)   ; seq #4
  ;
  S $P(^TMP("HLA",$J,CNT),HLFS,20)=$P(^TMP("HLA",$J,CNT),HLFS,20)_ORRS_"FP"_ORCS_$$GET1^DIQ(200,$P(ROR1,U,5),.01)   ; seq #5
  N DATA

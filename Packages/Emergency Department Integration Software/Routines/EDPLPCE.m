@@ -1,5 +1,5 @@
-EDPLPCE ;SLC/KCM - Create a Visit ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;**2,12**;Feb 24, 2012;Build 2
+EDPLPCE ;SLC/KCM - Create a Visit ; 9/30/25 2:51pm
+ ;;2.0;EMERGENCY DEPARTMENT;**2,12,42**;May 2, 2012;Build 6
  ;
  ; DBIA#  SUPPORTED
  ; -----  ---------  ------------------------------------
@@ -166,6 +166,8 @@ TS4VISIT(DFN,LOC,TS,PRVVISIT) ; Return visit time if there is already a visit
  .. S VCAT="" F  S VCAT=$O(^AUPNVSIT("AET",DFN,VTM,VLOC,VCAT)) Q:VCAT'="P"  D
  ... S NEWTS=VTM
  ... S PRVVISIT=$O(^AUPNVSIT("AET",DFN,VTM,VLOC,VCAT,""))
+ ... I PRVVISIT  D
+ .... I $P($G(^AUPNVSIT(PRVVISIT,0)),U,7)="E" S PRVVISIT="",NEWTS=""
  Q:NEWTS NEWTS
  Q TS
  ;

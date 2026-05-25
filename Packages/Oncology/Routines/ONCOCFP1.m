@@ -1,5 +1,5 @@
 ONCOCFP1 ;HINES OIFO/RVD - [PT Automatic Casefinding-PTF Search 1] ;09/10/15
- ;;2.2;ONCOLOGY;**7,10,13,14,17,18**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**7,10,13,14,17,18,21**;Jul 31, 2013;Build 6
  ;
  ; rvd - 0403/12 p56. Use ICD API (#3990) instead of direct global call
 L10 ;
@@ -62,9 +62,11 @@ L10 ;
  W !,?3,"D72.11_           Hypereosonophilic syndrome (HES] (9964/3)"
  W !,?3,"K31.A22           Gastric intestinal metaplasia with high grade dysplasia"
  W !,?3,"N85.02            Endometrial intaepithelial neoplasia (EIN)"
+ W !,?3,"R85.613           High grade squamous intraepithelial lesion on cytologic smear of anus (HGSIL)"
  W !?3,"R85.614           Cytologic evidence of malignacy on smear of anus"
  W !?3,"R87.614           Cytologic evidence of malignacy on smear of cervix"
- W !?3,"R86.624           Cytologic evidence of malignacy on smear of vagina"
+ W !?3,"R87.623           High grade squamous intraepithelial lesion on cytologic smear of vagina (HGSIL)"
+ W !?3,"R87.624           Cytologic evidence of malignacy on smear of vagina"
  W !?3,"R90.0             Intracranial space-occupying lesion found on diagnostic imaging"
  W !?3,"                  of central nervous system"
  w !
@@ -120,7 +122,7 @@ FD10 ;Check for valid ICD10 CM code for Oncology.
  I ((IC10="D72.110")!(IC10="D72.111")!(IC10="D72.118")!(IC10="D72.119")) S CI10=1 Q
  I ((IC10="D47.Z")!(IC10="D47.Z1")!(IC10="D47.Z9")!(IC10="D44.3")!(IC10="D44.4")!(IC10="D44.5")) S CI10=1 Q
  I ((IC10="D47.1")!(IC10="D47.3")!(IC10="D47.4")!(IC10="D47.02")!(IC10="D47.9")!(IC10="D49.6")!(IC10="D49.7")) S CI10=1 Q
- I ((IC10="R85.614")!(IC10="R87.614")!(IC10="R87.624")!(IC10="K31.A22")!(IC10="R90.0")) S CI10=1 Q
+ I ((IC10="R85.613")!(IC10="R85.614")!(IC10="R87.614")!(IC10="R87.623")!(IC10="R87.624")!(IC10="K31.A22")!(IC10="R90.0")) S CI10=1 Q
  ;I ($E(IC10)="D"),(($E(IC10,2,7)>00)&($E(IC10,2,7)<09.9999)) S CI10=1 Q
  I ($E(IC10)="D"),(($E(IC10,2,7)>31.9999)&($E(IC10,2,7)<33.9999)) S CI10=1 Q
  I ($E(IC10)="D"),(($E(IC10,2,7)>35.2000)&($E(IC10,2,7)<35.4001)) S CI10=1 Q

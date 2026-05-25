@@ -1,5 +1,5 @@
 IBECEA38 ;EDE/WCJ-Multi-site maintain UC VISIT TRACKING FILE (#351.82) - RPC RETURN ; 2-DEC-19
- ;;2.0;INTEGRATED BILLING;**663,671,669,696**;21-MAR-94;Build 3
+ ;;2.0;INTEGRATED BILLING;**663,671,669,696,761**;21-MAR-94;Build 27
  ;;Per VA Directive 6402, this routine should not be modified.
  ;; DBIA#1621 %ZTER (ERROR RECORDING)
  ;; DBIA#10053 grab field .097 from file 2
@@ -25,6 +25,8 @@ RETURN(IBR,IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ;
  ; OUTPUT:
  ;        results are returned in the results array as described in INPUT section
  ;        "-1^Error message"
+ ;        "-2^Error message" if patent eligibility group mismatch IB*2.0*761
+ ;        "-3^Error message" if noremaining Free Days. IB*2.0*761
  ;        "0^No action taken (nor needed) message"
  ;        "1^Success message"
  ; 
@@ -66,7 +68,8 @@ RETURN(IBR,IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ;
  ;I $$GETELGP^IBECEA36(IBDFN,IBVISDT)'=IBELGRP D  Q
  I $$GETELGP^IBECEA36(IBDFN,IBVISDT)'=IBELGRP,$S('$$GET1^DIQ(2,IBDFN,.097,"I"):1,IBVISDT<$$GET1^DIQ(2,IBDFN,.097,"I"):0,1:1) D  Q
  . N Y S Y=IBVISDT X ^DD("DD")
- . S @IBR@(1)="-1^Patient's eligibility group differs between sites for date of service "_Y_"."
+ . ;IB*2.0*761 updated return code for eligibility issue
+ . S @IBR@(1)="-2^Patient's eligibility group differs between sites for date of service "_Y_"." ;IB*2.0*761
  . S @IBR@(2)="-1^Site# "_IBSITE_" = "_$$GETELGP^IBECEA36(IBDFN,IBVISDT)
  . S @IBR@(3)="-1^Site# "_IBOSITEEX_" = "_IBELGRP
  . Q
@@ -101,8 +104,9 @@ RETURN(IBR,IBICN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,IBUNIQ,IBELGRP) ;
  I '$G(^TMP("DILIST",$J,0)) D  Q
  . S IBADDED=$$ADD(IBDFN,IBOSITEEX,IBVISDT,IBSTAT,IBBILL,IBCOMM,0,IBUNIQ,.IBRETURN)
  . I 'IBADDED D  Q
+ . . ;IB*2.0*761 updated return code for no free visits left
  .. S @IBR@(1)="-1^Unable to ADD record at site# "_IBSITE_"."
- .. S:IBRETURN["MAX free" @IBR@(2)=-1_U_IBRETURN
+ .. S:IBRETURN["MAX free" @IBR@(2)=-3_U_IBRETURN ;IB*2.0*761
  . S @IBR@(1)="1^successfully added" Q
  . Q
  Q

@@ -1,11 +1,13 @@
 RCXVFTP ;DAOU/ALA-FTP AR Data Extract Batch Files ;08-SEP-03
- ;;4.5;Accounts Receivable;**201,256,292,395**;Mar 20, 1995;Build 9
+ ;;4.5;Accounts Receivable;**201,256,292,395,447**;Mar 20, 1995;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
  ;  This code will ftp a batch file
  ;
 EN(FILE,DIREC) ;
+ Q  ; PRCA*4.5*447 Extract has been sunsetted
+ ;
  ;  Input Parameter
  ;    FILE = Filename
  ;    DIREC = Directory

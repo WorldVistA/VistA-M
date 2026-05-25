@@ -1,5 +1,5 @@
-ONCOTNM2 ;Hines OIFO/RTK - TNM Codes input transform & help ;9/29/16  15:38
- ;;2.2;ONCOLOGY;**6**;Jul 31, 2013;Build 10
+ONCOTNM2 ;HINES OIFO/RTK - TNM Codes input transform & help ;9/29/16  15:38
+ ;;2.2;ONCOLOGY;**6,22**;Jul 31, 2013;Build 6
  ;
  ;New input transform and help -- NAACCR Vol II V16
  ; This will replace all the codes specific to Topography & Histology
@@ -19,7 +19,7 @@ INPUT ;
  Q
  ;
 TCLIN ;
- I X="cX"!(X="c0")!(X="pA")!(X="pIS")!(X="pISU")!(X="pISD") Q
+ I X="cX"!(X="c0")!(X="pA")!(X="cIS")!(X="pIS")!(X="pISU")!(X="pISD") Q
  I X="c1MI"!(X="c1")!(X="c1A")!(X="c1A1")!(X="c1A2")!(X="c1B") Q
  I X="c1B1"!(X="c1B2")!(X="c1C")!(X="c1D")!(X="c2")!(X="c2A") Q
  I X="c2A1"!(X="c2A2")!(X="c2B")!(X="c2C")!(X="c2D")!(X="c3") Q
@@ -75,7 +75,7 @@ HELP ;
  Q
 TCLINHP ;
  W !?5,"PLEASE SELECT FROM THE FOLLOWING CODES FOR CLINICAL T"
- W !?8,"cX",?16,"c0",?24,"pA",?32,"pIS",?40,"pISU",?48,"pISD",?56,"c1MI"
+ W !?8,"cX",?16,"c0",?24,"pA",?32,"cIS",?40,"pIS",?48,"pISU",?56,"pISD",?62,"c1MI"
  W !?8,"c1",?16,"c1A",?24,"c1A1",?32,"c1A2",?40,"c1B",?48,"c1B1",?56,"c1B2"
  W !?8,"c1C",?16,"c1D",?24,"c2",?32,"c2A",?40,"c2A1",?48,"c2A2",?56,"c2B"
  W !?8,"c2C",?16,"c2D",?24,"c3",?32,"c3A",?40,"c3B",?48,"c3C",?56,"c3D"

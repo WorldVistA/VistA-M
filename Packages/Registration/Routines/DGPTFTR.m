@@ -1,5 +1,6 @@
 DGPTFTR ;ALB/JDS,HIOFO/FT - TRANSMISSION OF PTF ;8/20/15 3:47pm
- ;;5.3;Registration;**37,415,530,601,614,645,787,850,884**;Aug 13, 1993;Build 31
+ ;;5.3;Registration;**37,415,530,601,614,645,787,850,884,1134**;Aug 13, 1993;Build 2
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; VA(200) - #10060
  ; XMB(3.9) - #10113
@@ -87,6 +88,12 @@ XMIT ;transmit message with PTF segments
  W !,"Transmission Queued" S DGIDN(DGID)=XMZ
  F DGK=0:0 S DGK=$O(DGSTCNT("P",DGK)) Q:DGK'>0  D REC
  S DGFIRST=1
+ ;
+ ;DG*5.3*1134 Reset DGSTCNT array - When multiple emails are generated, the
+ ;email IEN of the earlier email is being overwritten/stored with the latter email
+ ;IEN when REC is called above. DGSTCNT is set/will be reset at PWR+10.
+ K DGSTCNT("P")
+ ;
  K DGK S DGCNT=1,DGID=DGID+1,J=DGJ Q:J'>0  D SETTRAN^DGPTUTL1 G:'DGOUTX PWR
  Q
  ;

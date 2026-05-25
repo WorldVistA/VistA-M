@@ -1,5 +1,6 @@
 XUTMONH2 ;SEA/RDS - TaskMan: Option, XUTMON, Part 5 (Help Modules) ;5/12/94  12:12
- ;;8.0;KERNEL;;Jul 10, 1995
+ ;;8.0;KERNEL;**761**;Jul 10, 1995;Build 6
+ ;;Per VHA VA Directive 6402, this routine should not be modified
  ;
  Q
  ;
@@ -29,3 +30,11 @@ LINK ;Display Link Lists
  I 'ZTC W !!,"The Link List is empty."
  W ! S DIR(0)="E",DIR("A")=$S(ZTC:"End of listing.  ",1:"")_"Press RETURN to continue" D ^DIR Q
  ;
+PAIR ;Display Paired Task-Sync List
+ N DIR,DIRUT,DTOUT,DUOUT,XUIO,XUFLAG
+ S DIR(0)="PO^14.8:AEMQ"
+ S DIR("?")="     Answer should be a Task-Sync pair you want to see."
+ D ^DIR K DIR
+ S XUFLAG=$P($P(Y,U,2),"~",1),XUIO=$P($P(Y,U,2),"~",2)
+ I XUFLAG'="",XUIO'="" D LIST^XUTMSYNC
+ Q

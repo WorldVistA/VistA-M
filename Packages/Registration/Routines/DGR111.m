@@ -1,5 +1,5 @@
-DGR111 ;ALB/TGH,LMD,JAM,BDB,ARF - Health Benefit Plan Main Menu - List Manager Screen ;4/11/13 10:56am 
- ;;5.3;Registration;**871,987,985,1006,1014**;Aug 13, 1993;Build 42
+DGR111 ;ALB/TGH,LMD,JAM,BDB,ARF,JAM - Health Benefit Plan Main Menu - List Manager Screen ;4/11/13 10:56am 
+ ;;5.3;Registration;**871,987,985,1006,1014,1149**;Aug 13, 1993;Build 4
  ;
 EN(DFN) ;Main entry point to invoke the DGEN HBP PATIENT list
  ; Input  -- DFN      Patient IEN
@@ -35,7 +35,7 @@ INIT ;Build patient HBP current screen
  ;
 GETHBP(DFN) ;Load HBPs from HBP array into TMP(VALMAR global for display
  ; INPUT:    DFN = Patient IEN
- N DGHBP,DGSEL,DGDATA,Z,HBPSRC,BRACKET,DGHBIEN,DGPNAME
+ N DGHBP,DGSEL,DGDATA,Z,HBPSRC,BRACKET,DGHBIEN,DGPNAME,Y
  S VALMCNT=0,(DGDATA,HBPSRC)=""
  D GETHBP^DGHBPUTL(DFN)
  S DGHBP=""
@@ -49,7 +49,9 @@ GETHBP(DFN) ;Load HBPs from HBP array into TMP(VALMAR global for display
  . I $P($G(^DGHBP(25.11,DGHBIEN,0)),"^",4)="Y" S DGPNAME="zz "_DGHBP
  . E  S DGPNAME=DGHBP
  . S VALMCNT=VALMCNT+1
- . S Z=$E(BRACKET)_VALMCNT_$E(BRACKET,2)_"  "_DGPNAME
+ . ; DG*5.3*1149 - Add Effective Date field
+ . S Y=$P(HBP("CUR",DGHBP),"^",6) D DD^%DT
+ . S Z=$E(BRACKET)_VALMCNT_$E(BRACKET,2)_"  "_DGPNAME_$J(" ",57-$L(DGPNAME))_" "_Y
  . S DGSEL(VALMCNT)=DGPNAME
  . D SET^VALM10(VALMCNT,Z,VALMCNT)
  Q

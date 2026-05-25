@@ -1,6 +1,6 @@
 DGDEATH ;ALB/MRL,PJR,DJS - PROCESS DECEASED PATIENTS ;Sep 17, 2020@09:34
- ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901,926,939,944,950,1020**;Aug 13, 1993;Build 11
- ;Modifications to this routine MUST be reviewed and approved by the IAM Team at mvitechlead@domain.ext
+ ;;5.3;Registration;**45,84,101,149,392,545,595,568,563,725,772,863,901,926,939,944,950,1020,1152**;Aug 13, 1993;Build 1
+ ;Modifications to this routine MUST be reviewed and approved by the IAM Team at vaoitoedidmdevelopers@domain.ext
  ;
 GET N DGMTI,DATA,DGDWHO,DTOUT,DUOUT,DIRUT,DIROUT,DIR,DIE,DA,DFN,DR,DIC,DGDNEW,DGDSON,DGDOCT,DGUPDATE
  S DGDTHEN="" W !! S (DIE,DIC)="^DPT(",DIC(0)="AEQMZ" D ^DIC G Q:Y'>0 S (DA,DFN)=+Y
@@ -126,6 +126,8 @@ DEMOG ; list main demographics
  S SOURCE=$G(DTHINFO(2,DFN_",",.353,"E"))
  S DELTM=$G(DTHINFO(2,DFN_",",.354,"E"))
  S DELBY=$G(DTHINFO(2,DFN_",",.355,"E"))
+ ;**1152 VAMPI-32269 changed by if coming from processing HL7 message
+ I $G(HL("ETN"))'="" S DELBY="HL7 message "_$G(HL("MTN"))_"-"_$G(HL("ETN")) I $G(HL("SAN"))["MPIF" S DELBY=DELBY_" From VA MPI Primary View"
  D LINE("")
  D LINE("             LAST EDITED BY: "_DELBY)
  D LINE("    DATE/TIME LAST MODIFIED: "_DELTM)

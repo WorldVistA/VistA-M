@@ -1,8 +1,5 @@
-ORRCQLPT  ; SLC/TH - CPRS Query Tools - Libraries ;Oct 27, 2023@12:14:25
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**535**;Dec 17, 1997;Build 20
- ;Reference to ^TIU(8925 in ICR #2937 (Field .02)
- ;Reference to DEM^VADPT in ICR #10061
- ;Reference to $$FMTHL7^XLFDT in ICR #10103
+ORRCQLPT  ; SLC/TH - CPRS Query Tools - Libraries ; 25 Jul 2003  9:31 AM
+ ;;1.0;CARE MANAGEMENT;;Jul 15, 2003;Build 0
  ;
 PTDFN(VAL,ID) ; Return patient info given an order, consult, or note
  N DFN,X,X0,X1,X101

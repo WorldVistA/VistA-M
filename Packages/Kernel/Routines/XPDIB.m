@@ -1,5 +1,5 @@
 XPDIB ;SFISC/RSD - Backup installed Package ; Mar 20, 2023@14:49:13
- ;;8.0;KERNEL;**10,58,108,178,713,738,750,755,768,778,785,796**;Jul 10, 1995;Build 4
+ ;;8.0;KERNEL;**10,58,108,178,713,738,750,755,768,778,785,796,826**;Jul 10, 1995;Build 1
  ;Per VHA Directive 2004-038, this routine should not be modified.
 EN ;
  ;p713 - added support to create Build from Transport Global to create a backup
@@ -57,7 +57,7 @@ BLD(XPDST,XPDMP) ;XPDST=Install #,XPDMP=master build or first Install # of multi
  ;reset ^XTMP back to original value
  S $P(^XTMP("XPDI",XPDST,"BLD",XPDBLD,0),U)=XPDI,XPDTB(XPDTB)=XPDA_"^"_XPDNM
  ;change TRACK NATIONALLY(5)=no, ALPHA/BETA TESTING(20),INSTALLATION MSG(21),ADDRESS(22),Build number(63)
- S %=XPDA_",",XPD(9.6,%,5)="n",XPD(9.6,%,20)="n",XPD(9.6,%,21)="n",XPD(9.6,%,22)="n",XPD(9.6,%,63)=0
+ S %=XPDA_",",XPD(9.6,%,5)="y",XPD(9.6,%,20)="",XPD(9.6,%,21)="",XPD(9.6,%,22)="",XPD(9.6,%,63)=0 ;p826 changes from XPD(9.6,%,5)="y", and set TEST #=1.01
  S XPD(9.6,%,3)="XPDI",XPDI(1,0)=XPDSBJ,XPDI(2,0)=" " ;DESCRIPTION(3)
  ;add warning msg and file Description
  D WARN("XPDI",3),FILE^DIE("","XPD")

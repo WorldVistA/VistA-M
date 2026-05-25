@@ -1,5 +1,5 @@
 PSOERHL0 ;BIRM/MFR - eRx History Log View - Listman Driver ;04/12/23
- ;;7.0;OUTPATIENT PHARMACY;**700,746**;DEC 1997;Build 106
+ ;;7.0;OUTPATIENT PHARMACY;**700,746,770,803**;DEC 1997;Build 1
  ;
 EN(PSOERXID) ;Menu option entry point
  N PSOSRTBY,PSORDER,UNDLN,HIGHLN,REVLN,LASTLINE,VALMCNT
@@ -89,7 +89,7 @@ SETSORT(SORTBY) ;Building the list (line by line)
  . . K RET D TXT2ARY^PSOERXD1(.RET,VAL1,,60)
  . . F II=1:1:+$O(RET(""),-1) S LINE=LINE+1 S ^TMP("PSOERXHL",$J,LINE,0)=$S(II=1:"Status Comments: ",1:"")_RET(II),HIGHLN(LINE)="1^80"
  ;
- N OERR,ORSTAT,IEN,DATETM,FLGDT,FLGBY,FLGREA,UNFLGDT,UNFLGBY,UNFLGRE,X1,X2
+ N OERR,ORSTAT,IEN,DATETM,FLGDT,FLGBY,FLGREA,UNFLGDT,UNFLGBY,UNFLGRE,X1,X2,FLG
  S OERR=$$GET1^DIQ(52.49,PSOERXID,.12)
  S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)=""
  S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)="Order:",REVLN(LINE)="1^6"
@@ -97,25 +97,24 @@ SETSORT(SORTBY) ;Building the list (line by line)
  S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)=X1,UNDLN(LINE)="1^80"
  I 'OERR S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)="No Order History Available"
  I OERR D
- . S ORSTAT=$$GET1^DIQ(100,OERR_",",5,"E")     ;Order Status
- . S DATETM=$$GET1^DIQ(100,OERR_",",31,"I")    ;Date/Time
+ . S ORSTAT=$$GET1^DIQ(100,OERR,5,"E")     ;Order Status  ;p803 moved current and next 3 lines outside FLG loop
+ . S DATETM=$$GET1^DIQ(100,OERR,31,"I")    ;Date/Time
  . S X2=$$FMTE^XLFDT(DATETM,"2Z"),$E(X2,24)=OERR,$E(X2,43)=ORSTAT
  . S LINE=LINE+1 S ^TMP("PSOERXHL",$J,LINE,0)=X2
- . S IEN=0    ;ORDER LOOP
- . S IEN=$O(^PS(52.41,"B",OERR,IEN))
- . I IEN D
- . . S FLGDT=$$GET1^DIQ(52.41,IEN,33)        ;Date/Time FLAGGED   ^PS(52.41,  NODE FLG PIECE 1 FLD#33
- . . S FLGBY=$$GET1^DIQ(52.41,IEN,34,"I")    ;Flagged By          ^PS(52.41,  NODE FLG PIECE 2 FLD#34
- . . S FLGREA=$$GET1^DIQ(52.41,IEN,35)       ;Reason for FLAG     ^PS(52.41,  NODE FLG PIECE 3 FLD#35
- . . S UNFLGDT=$$GET1^DIQ(52.41,IEN,36)      ;Date/Time UNFLAGGED ^PS(52.41,  NODE FLG PIECE 4 FLD#36
- . . S UNFLGBY=$$GET1^DIQ(52.41,IEN,37,"I")  ;UNFLAGGED By        ^PS(52.41,  NODE FLG PIECE 5 FLD#37
- . . S UNFLGRE=$$GET1^DIQ(52.41,IEN,38)      ;Reason for UNFLAG   ^PS(52.41,  NODE FLG PIECE 6 FLD#38
- . . I $G(FLGDT)'="" S LINE=LINE+1 S ^TMP("PSOERXHL",$J,LINE,0)="Date/Time Flagged:"_" "_$$FMTE^XLFDT(FLGDT,"2Z")
- . . I $G(FLGBY)'="" S LINE=LINE+1 S ^TMP("PSOERXHL",$J,LINE,0)="Flagged By:"_" "_$E($$GET1^DIQ(200,FLGBY,.01),1,26)
- . . I $G(FLGREA)'="" S LINE=LINE+1 S ^TMP("PSOERXHL",$J,LINE,0)="Reason for Flag:"_" "_$G(FLGREA),HIGHLN(LINE)="1^80"
- . . I $G(UNFLGDT)'="" S LINE=LINE+1 S ^TMP("PSOERXHL",$J,LINE,0)="Date/Time Unflagged:"_" "_$$FMTE^XLFDT(UNFLGDT,"2Z")
- . . I $G(UNFLGBY)'="" S LINE=LINE+1 S ^TMP("PSOERXHL",$J,LINE,0)="Unflagged By:"_" "_$E($$GET1^DIQ(200,UNFLGBY,.01),1,26)
- . . I $G(UNFLGRE)'="" S LINE=LINE+1 S ^TMP("PSOERXHL",$J,LINE,0)="Reason for Unflag:"_" "_$G(UNFLGRE),HIGHLN(LINE)="1^80"
+ . S FLG=0 F  S FLG=$O(^OR(100,OERR,8,FLG)) Q:'FLG  D
+ . . I '$D(^OR(100,OERR,8,FLG,3)) Q
+ . . S FLGDT=$$GET1^DIQ(100.008,FLG_","_OERR,33)             ;Date/Time Flagged
+ . . S FLGBY=$E($$GET1^DIQ(100.008,FLG_","_OERR,34),1,26)    ;Flagged By
+ . . S FLGREA=$$GET1^DIQ(100.008,FLG_","_OERR,35)            ;Flagged Reason
+ . . S UNFLGDT=$$GET1^DIQ(100.008,FLG_","_OERR,36)           ;Date/Time Un-flagged
+ . . S UNFLGBY=$E($$GET1^DIQ(100.008,FLG_","_OERR,37),1,26)  ;Un-flagged By
+ . . S UNFLGRE=$$GET1^DIQ(100.008,FLG_","_OERR,38)           ;Un-flagged Reason
+ . . I $G(FLGDT)'="" S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)="Date/Time Flagged:"_" "_$$FMTE^XLFDT(FLGDT,"2Z"),HIGHLN(LINE)="20^18"
+ . . I $G(FLGBY)'="" S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)="Flagged By:"_" "_FLGBY,HIGHLN(LINE)="13^50"
+ . . I $G(FLGREA)'="" S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)="Reason for Flag:"_" "_$G(FLGREA),HIGHLN(LINE)="18^62"
+ . . I $G(UNFLGDT)'="" S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)="",LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)="Date/Time Unflagged:"_" "_$$FMTE^XLFDT(UNFLGDT,"2Z"),HIGHLN(LINE)="22^18"
+ . . I $G(UNFLGBY)'="" S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)="Unflagged By:"_" "_UNFLGBY,HIGHLN(LINE)="15^50"
+ . . I $G(UNFLGRE)'="" S LINE=LINE+1,^TMP("PSOERXHL",$J,LINE,0)="Reason for Unflag:"_" "_$G(UNFLGRE),HIGHLN(LINE)="20^60"
  ;
  N ERXHUB,PSRX,AUD,ZAUD,IENS,PRESE,PRESI,DATETIME,FLDNAME,EDITEDBY,FILL,COMMENT,X,X1,X2
  S ERXHUB=$P(^PS(52.49,PSOERXID,0),"^",1)
@@ -195,7 +194,7 @@ SETSORT(SORTBY) ;Building the list (line by line)
  . S FLAG=1,RESIEN=PSOERXID,REQIEN=$$RESOLV^PSOERXU2(PSOERXID)   ;If the message is a Response
  . S REQTYPE=$$GET1^DIQ(52.49,REQIEN,.08,"I")
  . I ",N,RE,CN,CX,"[(","_REQTYPE_",") S REQIEN=""
- I ",N,"[(","_MTYPE_",") D                                       ;If the message is a New eRx
+ I ",N,RE,"[(","_MTYPE_",") D                                       ;If the message is a New eRx
  . D GETDATA^PSOERHL1(PSOERXID)
  . F  S RELMES=$O(^PS(52.49,PSOERXID,201,"B",RELMES)) Q:'RELMES  D
  . . S RELTYPE=$$GET1^DIQ(52.49,RELMES,.08,"I")
@@ -258,4 +257,3 @@ EXIT ;
  Q
  ;
 HELP Q
- ;

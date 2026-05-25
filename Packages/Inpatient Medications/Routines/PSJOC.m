@@ -1,8 +1,10 @@
 PSJOC ;BIR/MV - NEW ORDER CHECKS DRIVER ; 9/10/14 10:53pm
- ;;5.0;INPATIENT MEDICATIONS;**181,260,252,257,281,256,364,426**;16 DEC 97;Build 4
+ ;;5.0;INPATIENT MEDICATIONS;**181,260,252,257,281,256,364,426,447**;16 DEC 97;Build 49
  ;
  ; Reference to ^PSODDPR4 is supported by DBIA# 5366.
  ; Reference to ^PSSHRQ2 is supported by DBIA# 5369.
+ ; Reference to ^PS(52.6 is supported by DBIA# 1231.
+ ; Reference to ^PS(52.7 is supported by DBIA# 2173.
  ;
  ;*364 - add Hazardous Handle & Dispose flags alert message.
  ;
@@ -14,8 +16,8 @@ OC(PSPDRG,PSJPTYP) ;
  ;       P2 is the Inpatient Order Number (for PSJ use only)
  ;PSJOCERR(DRUG NAME)="Reason text". Where Drug Name can be either OI name or AD/SOL name.
  NEW PSJOCERR
- ;Quit OC if FDB link is down.  PSGORQF is defined if user wish to stop the order process
- I $$SYS^PSJOCERR() Q
+ ;Quit OC if FDB link is down but still perform PGx OC.  PSGORQF is defined if user wish to stop the order process
+ I $$SYS^PSJOCERR() D PGX  Q
  ;
  I $D(PSJDGCK) W !!,"Building MEDS profile please wait...",!
  D BLD^PSODDPR4(DFN,"PSJPRE",.PSPDRG,PSJPTYP)
@@ -37,7 +39,7 @@ DISPLAY ;
  K CRIV,CROCPFLG,CROCNR,PSJDGCKX
  I $G(PSGORQF) Q
  Q:'$$DSPSERR()
- W !!,"Now Processing Enhanced Order Checks! Please wait...",! S PSJTOFFL=1
+ W !!,"Now Processing Enhanced Order Checks! Please wait...",!! S PSJTOFFL=1
  ; If there are no OC or errors to display, this var will trigger a pause before continue /w the order
  S PSJPAUSE=1
  D DRUGERR
@@ -56,6 +58,11 @@ DISPLAY ;
  I '$G(PSJDERF2)&('$G(PSJDRGIF))&('$G(PSJDUPTF)) K PSJPAUSE H 2
  I $G(PSJDERF2)&('$G(PSJDRGIF))&('$G(PSJDUPTF))&(($Y+3)<IOSL) S PSJPAUSE=1 ;error but no drug interaction or dup therapy
  I '$D(PSJDGCK) D:$G(PSJPAUSE) PAUSE^PSJLMUT1
+ D PGX
+ Q
+PGX ;Perform PGx check
+ I $D(PSPDRG) D EN^PSJOCPGX(.PSPDRG)
+ I $G(PSGORQF) D PAUSE^PSJLMUT1 Q
  Q
  ;
 GMRAOC ;Display allergy & CPRS OC regardless if FDB is connected
@@ -70,7 +77,7 @@ ALLERGY ;Do allergy order check
  D FULL^VALM1
  I $G(PSIALLFL) K PSIALLFL Q
  W !!,"Now doing allergy checks.  Please wait..."
- N PSJAOC,DACNT,PSJDGFLG,PSJDGDRG S PSJAOC=1
+ N PSJAOC,DACNT,PSJDGFLG,PSJDGDRG,PSJCKDRG S PSJAOC=1
  I '$D(PSJDGCK) D   ;sort by generic dispensed drug name
  .NEW PSJDD,PSJGDDN,PSJALGCT,PSJALLGS S PSJDD=""
  .F  S PSJDD=$O(PSJALLGY(PSJDD)) Q:'PSJDD!(PSJDD'?1N.N)  S PSJGDDN="",PSJGDDN=$$GET1^DIQ(50,PSJDD,.01) D
@@ -122,7 +129,7 @@ DSPORD(ON,PSJNLST,PSJCLINF) ;Display the order data
  Q
  ;
 DRUGERR ;Display drug level errors
- NEW PSJPON,PSJN,PSJNV,PSJDSPFG,PSJPERR,PSJX,PSJLINEF
+ NEW PSJPON,PSJN,PSJNV,PSJDSPFG,PSJPERR,PSJX,PSJLINEF,PSJDERR2
  ;Only display the exceptions once per patient. Use the exception from prospective drug if exception(s) existed for the 
  ; same drug on the profile.
  ;PSJEXCPT(PSJDNM_REASON) - Array for invalid drugs that already display to once within a pt selection
@@ -139,12 +146,11 @@ DRUGERR ;Display drug level errors
  .. I ($P(PSJPON,";",3)'="PROFILE") Q
  .. I '$$ERRCHK("PROFILE",$P(PSJNV,U,3)_$P(PSJNV,U,10)) Q
  .. D DSPDRGER()
- I PSJDSPFG D PAUSE^PSJLMUT1 S PSJDERR2=1
+ I PSJDSPFG D PAUSE^PSJLMUT1 W @IOF S PSJDERR2=1
  Q
 DSPDRGER(PSJDSFLG) ;
  NEW PSJTXT
  S PSJTXT=$P(PSJNV,U,7)
- ;W:$G(PSGCOPY)!($G(PSIVCOPY)) !
  S X="Enhanced Order Checks cannot "
  I $G(PSJDSFLG),(PSJTXT[X) S PSJTXT="Dosing Checks could not "_$P(PSJTXT,X,2)
  S PSJDSPFG=1
@@ -153,7 +159,6 @@ DSPDRGER(PSJDSFLG) ;
  W !
  D WRITE^PSJMISC(PSJTXT,,79)
  I $P(PSJNV,U,10)]"" D WRITE^PSJMISC("Reason(s): "_$P(PSJNV,U,10),3,79) S PSJDERF2=1
- ;W !
  Q
 ERRCHK(PSJTYPE,PSJX) ;
  ;PSJTYPE - Either "PROFILE" or "PROSPECTIVE"

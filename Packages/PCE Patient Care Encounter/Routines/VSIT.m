@@ -1,5 +1,10 @@
-VSIT ;ISD/MRL,RJP,PKR - Visit Tracking ;03/29/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,111,118,164,211**;Aug 12, 1996;Build 454
+VSIT ;ISD/MRL,RJP,PKR - Visit Tracking ;Aug 04, 2025@08:53:23
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,111,118,164,211,244**;Aug 12, 1996;Build 37
+ ;
+ ; Reference to $$GETCUR^DGNTAPI in ICR #3547
+ ; Reference to $$FILEHNC^DGNTAPI1 in ICR #3546
+ ; Reference to $$SWSTAT^IBBAPI in ICR #4663
+ ;
  ; Patch PX*1*76 changes the 2nd line of all VSIT* routines to reflect
  ; the incorporation of the module into PCE.  For historical reference,
  ; the old (VISIT TRACKING) 2nd line is included below to reference VSIT
@@ -98,9 +103,10 @@ SUB ; - subtract from dependency count
 UPD ;Update Visit File
  Q:$G(VSIT("IEN"))<1
  Q:'$D(^AUPNVSIT(VSIT("IEN"),0))
- N FDA,HNC,IENS,MSG,VSITDR,VSITFLD
+ N FDA,HNC,IENS,MSG,SAS,VSITDR,VSITFLD
  S IENS=VSIT("IEN")_","
  S VSIT("MDT")=$$NOW^XLFDT
+ M SAS=VSIT(900) K VSIT(900),VSIT(800)
  D FLD^VSITFLD
  S VSITDR=""
  F  S VSITDR=$O(VSIT(VSITDR)) Q:VSITDR=""  D
@@ -108,6 +114,7 @@ UPD ;Update Visit File
  . S VSITFLD=$P(^TMP("VSITDD",$J,VSITDR),";",2) ;Field
  . S FDA(9000010,IENS,VSITFLD)=VSIT(VSITDR)
  L +^AUPNVSIT(+VSIT("IEN")):DILOCKTM
+ D BLDFDA^PXSPECAUTH(.FDA,VSIT("IEN"),.SAS,0)
  D FILE^DIE("","FDA","MSG")
  L -^AUPNVSIT(+VSIT("IEN"))
  I $D(MSG) D  Q
@@ -117,7 +124,8 @@ UPD ;Update Visit File
  K ^TMP("VSITDD",$J)
  ;
  ;PX*1*111 - Update NTR file for Head & Neck
- S HNC=$P($G(^AUPNVSIT(VSIT("IEN"),800)),U,6)
+ S HNC=$$SAVALUEFORVISIT^PXSPECAUTH(VSIT("IEN"),"HNC")
+ ;S HNC=$P($G(^AUPNVSIT(VSIT("IEN"),800)),U,6)
  I HNC'=1 Q
  N DGARR,PXDFN,SDRES
  S PXDFN=$P(^AUPNVSIT(VSIT("IEN"),0),U,5)
@@ -133,7 +141,7 @@ PKG2IEN(PKG) ;Pass in package name space and
  ;
 PKG(PKG,VALUE) ;-Entry point to add package to multiple in tracking parameters
  ;-PKG=Package Name Space
- ;-VALUE=Value on the ON/OFF flag under package multiple 
+ ;-VALUE=Value on the ON/OFF flag under package multiple
  ;--1=ON  0=OFF
  Q $$PKG^VSIT0($G(PKG),$G(VALUE))
  ;
@@ -175,7 +183,7 @@ LOOKUP(IEN,FMT,WITHIEN) ; -- Lookup a visit and return all of its information
  ;         If E(xternal) format is requested the format is: ^external
  ;         External values, if requested, are always returned in the
  ;         second pieces of the array elements.
- ;  
+ ;
  Q:$G(IEN)']"" -1
  S:+IEN'=IEN IEN=$$VID2IEN(IEN) ;PX*1.0*118
  Q:'($D(^AUPNVSIT(+IEN,0))#2) -1

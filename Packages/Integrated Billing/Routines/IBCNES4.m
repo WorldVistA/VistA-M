@@ -1,5 +1,5 @@
 IBCNES4 ;ALB/JNM - eIV elig/Benefit screen ; 06/08/2016
- ;;2.0;INTEGRATED BILLING;**549,702,763**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**549,702,763,806**;21-MAR-94;Build 19
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point for IBCNB ELIG PAYER SUMMARY action protocol
@@ -52,25 +52,34 @@ INITX ;
  S VALMCNT=LN
  Q
  ;
+ ; IB*806/DTG made changes to bring in line with the RR report
 INIT2(IBVF) ; allows changing IBVF just for this routine
  N INIEN,X1,TEMP,NOLBL
+ ;
+ N IBA,IBB,IBCT,IBI3,IBI3Q,IBI4,IBI4T,IBLI,IBSA,IBSB,IBSADDR,IBSAR,IBSCTY,IBSUBGET
+ N IBSUBER,IBTDT,IBTDT1,IBTDT2,IBTDT3,IBVFS,IENS,PTRIEN  ;IB*806/DTG
+ ;
  S INIEN=IBVDA,NOLBL=$G(IBNOLBL),IBNOLBL=0
+ S IENS=INIEN_","  ;IB*806/DTG
  D SET1("Payer Summary - from Payer's Response",,1,1)
  I $$GET1^DIQ(IBVF,INIEN,.07,"I")'>0 D WAITING Q  ; If Response requested but not yet received
  S IBNOLBL=NOLBL
  D SET1("Subscriber",$$GET1^DIQ(IBVF,INIEN,13.01))
  D SET1("Subscriber ID",$$GET1^DIQ(IBVF,INIEN,13.02))
  D SET1("Subscriber DOB",$$FMTE^XLFDT($$GET1^DIQ(IBVF,INIEN,1.02)))
- D SET1("Subscriber SSN",$$GET1^DIQ(IBVF,INIEN,1.03))
+ ;D SET1("Subscriber SSN",$$GET1^DIQ(IBVF,INIEN,1.03))  ;IB*806/DTG removed ssn
  D SET2("Subscriber Sex",$$GET1^DIQ(IBVF,INIEN,1.04))
  D SET1("Group Name",$$GET1^DIQ(IBVF,INIEN,14.01))
  D SET1("Group ID",$$GET1^DIQ(IBVF,INIEN,14.02))
  D SET1("Whose Insurance",$$GET1^DIQ(IBVF,INIEN,1.08))
- I +$G(IBVEBCOL) S TEMP="Pt. Rel. to Subscriber"
- E  S TEMP="Patient Relationship to Subscriber"
- D SET1(TEMP,$$GET1^DIQ(IBVF,INIEN,1.09))
+ ;I +$G(IBVEBCOL) S TEMP="Pt. Rel. to Subscriber"  ;IB*806/DTG
+ ;E  S TEMP="Patient Relationship to Subscriber"  ;IB*806/DTG
+ S TEMP="HIPAA Relationship to Sub"  ;IB*806/DTG
+ S PTRIEN=$$GET1^DIQ(IBVF,INIEN,8.01,"I")  ;Pt. Rel to Sub - HIPAA
+ ;D SET1(TEMP,$$GET1^DIQ(IBVF,INIEN,1.09))  ;IB*806/DTG
+ D SET2(TEMP,$$GET1^DIQ(365.037,PTRIEN_",",.02,"E"))  ;IB*806/DTG
  D SET1("Member ID",$$GET1^DIQ(IBVF,INIEN,1.18))
- D SET1("COB",$$GET1^DIQ(IBVF,INIEN,1.13))
+ D SET2("COB",$$GET1^DIQ(IBVF,INIEN,1.13))    ;IB*806/DTG change to SET2
  D SET1("Service Date",$$GET1^DIQ(IBVF,INIEN,1.1))
  D SET2("Date of Death",$$GET1^DIQ(IBVF,INIEN,1.16))
  D SET1("Effective Date",$$GET1^DIQ(IBVF,INIEN,1.11))
@@ -79,16 +88,66 @@ INIT2(IBVF) ; allows changing IBVF just for this routine
  D SET2("Payer Updated Policy",$$GET1^DIQ(IBVF,INIEN,1.19))
  D SET1("Response Date",$$GET1^DIQ(IBVF,INIEN,.07))
  D SET2("Trace #",$$GET1^DIQ(IBVF,INIEN,.09))
- D SET1("Policy Number",$$GET1^DIQ(IBVF,INIEN,1.2))
+ ;D SET1("Policy Number",$$GET1^DIQ(IBVF,INIEN,1.2))  ;IB*806/DTG removed
+ ;
+ ;IB*806/DTG add display of sub addr 5.01,5.02,5.03,5.04,5.05,5.06,5.07
+ D GETS^DIQ(IBVF,IENS,"4.01;5.01:5.07","IEN","IBSUBGET","IBSUBER")
+ S IBSADDR=$G(IBSUBGET(IBVF,IENS,5.01,"E"))
+ S IBSA=$G(IBSUBGET(IBVF,IENS,5.02,"E")) I IBSA'="" S IBSADDR=IBSADDR_" "_IBSA
+ S IBSCTY=$G(IBSUBGET(IBVF,IENS,5.03,"E"))
+ S IBSA=$G(IBSUBGET(IBVF,IENS,5.04,"I")),IBSA=$S(IBSA:$P($G(^DIC(5,IBSA,0)),U,2),1:"")
+ S IBSB=$G(IBSUBGET(IBVF,IENS,5.05,"E"))
+ ;
+ I IBSCTY'=""!(IBSA'="")!(IBSB'="") D
+ . S IBSCTY=IBSCTY_" "_IBSA_" "_IBSB
+ I IBSADDR'=""!(IBSCTY'="") D
+ . D SET1("  Sub Address",IBSADDR)
+ . D SET1(,"               "_IBSCTY)   ;City, State
+ S IBSA=$G(IBSUBGET(IBVF,IENS,5.06,"E")) I IBSA'="" D SET1("      Country",IBSA)
+ S IBSA=$G(IBSUBGET(IBVF,IENS,5.07,"E")) I IBSA'="" D SET1("  Subdivision",IBSA)
+ S IBSA=$G(IBSUBGET(IBVF,IENS,4.01,"E")) I IBSA'="" D SET1("   Error Text",IBSA)
+ ;
+ ; IB*806/DTG get the subscriber/patient/other dates
+ K IBSUBGET D GETS^DIQ(IBVF,IENS,"7*","IEN","IBSUBGET","IBSUBER")
+ S IBVFS=$S(IBVF=365:"365.07",1:"")
+ I 'IBVFS!('$D(IBSUBGET(IBVFS))) G INIT3S
+ ;
+ K IBSAR
+ S IBCT=0,IBLI="" F  S IBLI=$O(IBSUBGET(IBVFS,IBLI)) Q:IBLI=""  D
+ . S IBI3=$G(IBSUBGET(IBVFS,IBLI,.03,"I")) I 'IBI3 Q  ; must have the qualifer
+ . S IBI3Q=$$X12^IBCNERP2(365.026,IBI3)
+ . S IBI4=$G(IBSUBGET(IBVFS,IBLI,.04,"E")),IBI4T=$S(IBI4["C":"S",IBI4["D":"P",1:"O")
+ . S IBTDT="",IBTDT1=$G(IBSUBGET(IBVFS,IBLI,.02,"I")) I IBTDT1="" Q  ; must have the date
+ . ; massage the dates
+ . D  ;
+ .. S IBTDT1=$TR(IBTDT1," ","")
+ .. S IBTDT2=$$FMTE^XLFDT($$HL7TFM^XLFDT($P(IBTDT1,"-",1)),"5Z")
+ .. S IBTDT3=$$FMTE^XLFDT($$HL7TFM^XLFDT($P(IBTDT1,"-",2)),"5Z")
+ .. I IBTDT3="-1" S IBTDT3=""  ;IB*806/dtg Payers sometimes send bad dates ie:99991231
+ .. I IBTDT2="-1" S IBTDT2=""
+ .. S IBTDT=IBTDT2 I IBTDT1["-" S IBTDT=IBTDT_" - "_IBTDT3
+ . ;
+ . S IBCT=$G(IBSAR(IBI4T,0))+1,IBSAR(IBI4T,0)=IBCT
+ . S IBSAR(IBI4T,IBCT)=IBI3Q_U_IBTDT
+ ;
+ F IBA="S","P","O" D
+ . I $O(IBSAR(IBA,0)) D SET1(),SET1($S(IBA="S":"Subscriber",IBA="P":"Patient",1:"Other")_" Dates",,1,1)
+ . ;
+ . S IBCT=0 F  S IBCT=$O(IBSAR(IBA,IBCT)) Q:'IBCT  S IBB=$G(IBSAR(IBA,IBCT)) I IBB'="" D
+ . . D SET1($P(IBB,U,1),$P(IBB,U,2))  ;,SET2("",$P(IBB,U,2))
+ ;
+INIT3S ; skip around tag for S/P/O dates not there
+ ;
  D SET1()
  S IBNOLBL=0
- D SET1("Contact Information",,1,1)
- S X1=0 F  S X1=$O(^IBCN(365,IBVDA,3,X1)) Q:X1'=+X1  D
+ ;D SET1("Contact Information",,1,1)  ; IB*806/DTG
+ I $O(^IBCN(IBVF,IBVDA,3,0)) D SET1("Contact Information",,1,1)
+ S X1=0 F  S X1=$O(^IBCN(IBVF,IBVDA,3,X1)) Q:X1'=+X1  D
  . N DATA,STRTLINE,QFILE,QIEN
  . S STRTLINE=LN
  . S QFILE=365.03,QIEN=X1_","_IBVDA
  . S DATA=$$GET1^DIQ(QFILE,QIEN,.01)
- . I DATA'="" D SET1(DATA)
+ . I DATA'="" D SET1("Contact Person",DATA)
  . D SET4($$GETQUAL(.02),$$GET1^DIQ(QFILE,QIEN,1))
  . D SET4($$GETQUAL(.04),$$GET1^DIQ(QFILE,QIEN,2))
  . D SET4($$GETQUAL(.06),$$GET1^DIQ(QFILE,QIEN,3))

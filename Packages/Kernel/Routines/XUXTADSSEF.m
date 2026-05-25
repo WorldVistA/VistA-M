@@ -1,0 +1,453 @@
+XUXTADSSEF ;SLC/JLA - Service/Section Edit Form callback API's ; OCT 30, 2024@12:30
+ ;;8.0;KERNEL;**807**;Oct 30, 2024;Build 56;
+ ;
+ ;
+ ; External API'S
+ ;
+ ; FileMan/ScreenMan API's
+FMDIC D ^DIC Q 
+FMDIE D ^DIE Q
+FMDIK D ^DIK Q
+CNVDT D ^%DT Q
+FMTE(AY) Q $$FMTE^XLFDT($G(AY),)
+ ;
+ ; XUXTAD API's
+ ; COMMENTING OUT THE NON FILEMAN VERSIONS OF THE CODE
+ ;GASSI(AXUXTADSSIA) Q $$GASSI^XUXTADAPI($G(AXUXTADSSIA))
+ ;GASSIN(AXUXTADSSIA) Q $$GASSIN^XUXTADAPI($G(AXUXTADSSIA))
+ ;GSSCDCR(AXUXTADSSIEN) Q $$GSSCDCR^XUXTADAPI($G(AXUXTADSSIEN))
+ ;GSSOCS(AXUXTADSSIEN) Q $$GSSOCS^XUXTADAPI($G(AXUXTADSSIEN))
+ ;ISSA(AXUXTADSSIEN) Q $$ISSA^XUXTADAPI($G(AXUXTADSSIEN))
+GASSI(AXUXTADSSIA) Q $$GASSIFM^XUXTADAPI($G(AXUXTADSSIA))
+GASSIN(AXUXTADSSIA) Q $$GASSINFM^XUXTADAPI($G(AXUXTADSSIA))
+GSSCDCR(AXUXTADSSIEN) Q $$GSSCDCRFM^XUXTADAPI($G(AXUXTADSSIEN))
+GSSOCS(AXUXTADSSIEN) Q $$GSSOCSFM^XUXTADAPI($G(AXUXTADSSIEN))
+ISSA(AXUXTADSSIEN) Q $$ISSAFM^XUXTADAPI($G(AXUXTADSSIEN))
+ ;
+ ;
+ ; If AXUXTADYN is true then Save today's date in the Date Closed global
+ ; else clear the Date Closed global
+ ;
+ ; Returns
+ ;   0^Error message when an error occurs
+ ;   1^Success message
+ ;
+ ; W $$CLOSESS^XUXTADSSEF(1049,1)
+CLOSESS(AXUXTADSSIEN,AXUXTADYN) ;
+ NEW XUXTADSSIEN,XUXTADYN,XUXTADRTNVAL,XUXTADSSIA ;,XUXTADSSFILE
+ S XUXTADRTNVAL=0,XUXTADSSIA="CLOSESSSSI"
+ S XUXTADSSIEN=+$G(AXUXTADSSIEN)
+ ; Get All Service/Section IEN's
+ D GASSI(XUXTADSSIA)
+ ;S XUXTADSSFILE=49 ; File number of SERVICE/SECTION file
+ ;I (XUXTADSSIEN'>0)!'$D(^DIC(XUXTADSSFILE,XUXTADSSIEN,0)) D  G CLOSESSDN
+ I (XUXTADSSIEN'>0)!('$D(@XUXTADSSIA@(XUXTADSSIEN))) D  G CLOSESSDN
+ . S XUXTADRTNVAL="0^Invalid Service/Section IEN: "_XUXTADSSIEN
+ S XUXTADYN=$G(AXUXTADYN)
+ I $L(XUXTADYN)=0 D  G CLOSESSDN
+ . S XUXTADRTNVAL="0^Undefined Yes/No parameter"
+ S XUXTADYN=(XUXTADYN?1(1"Y",1"y"))
+ I XUXTADYN D  G CLOSESSDN
+ . S XUXTADRTNVAL=$$SDCRDTG(XUXTADSSIEN,"T","DC")
+ I 'XUXTADYN D  G CLOSESSDN
+ . S XUXTADRTNVAL="1^Cancelling Close Service Section"
+ . KILL ^TMP("SS",$J)
+CLOSESSDN ;
+ K @XUXTADSSIA
+ Q XUXTADRTNVAL
+ ;
+ ;
+ ; If AXUXTADYN is true then Save today's date in the Date Re-opened global
+ ; else clear the Date Re-opened global
+ ;
+ ; Returns
+ ;   0^Error message when an error occurs
+ ;   1^Success message
+ ;
+ ; W $$REOPENSS^XUXTADSSEF(1049,1)
+REOPENSS(AXUXTADSSIEN,AXUXTADYN) ;
+ NEW XUXTADSSIEN,XUXTADYN,XUXTADRTNVAL,XUXTADSSIA ;,XUXTADSSFILE
+ S XUXTADRTNVAL=0,XUXTADSSIA="REOPENSSSSI"
+ S XUXTADSSIEN=+$G(AXUXTADSSIEN)
+ ; Get All Service/Section IEN's
+ D GASSI(XUXTADSSIA)
+ ;S XUXTADSSFILE=49 ; File number of SERVICE/SECTION file
+ ;I (XUXTADSSIEN'>0)!'$D(^DIC(XUXTADSSFILE,XUXTADSSIEN,0)) D  G REOPENDN
+ I (XUXTADSSIEN'>0)!('$D(@XUXTADSSIA@(XUXTADSSIEN))) D  G REOPENDN
+ . S XUXTADRTNVAL="0^Invalid Service/Section IEN: "_XUXTADSSIEN
+ S XUXTADYN=$G(AXUXTADYN)
+ I $L(XUXTADYN)=0 D  G REOPENDN
+ . S XUXTADRTNVAL="0^Undefined Yes/No parameter"
+ S XUXTADYN=(XUXTADYN?1(1"Y",1"y"))
+ I XUXTADYN D  G REOPENDN
+ . S XUXTADRTNVAL=$$SDCRDTG(XUXTADSSIEN,"T","DR")
+ I 'XUXTADYN D  G REOPENDN
+ . S XUXTADRTNVAL="1^Cancelling Re-open Service Section"
+ . KILL ^TMP("SS",$J)
+REOPENDN ;
+ K @XUXTADSSIA
+ Q XUXTADRTNVAL
+ ;
+ ;
+ ; Save Service/Section IEN and a Date Closed Record Date (Date Closed or Date Re-opened) to global ^TMP("SS",$J)
+ ;
+ ;   AXUXTADSSIEN   - A Service/Section IEN
+ ;   AXUXTADDCRDATE - A Date Closed record date in external form 
+ ;   AXUXTADNODE    - A "DC" or "DR" XUXTADNODE
+ ;
+ ; Returns
+ ;   0^Error message when an error occurs
+ ;   1^Success message
+ ;
+ ; W $$SDCRDTG^XUXTADSSEF(AXUXTADSSIEN,AXUXTADDCRDATE,AXUXTADNODE)
+SDCRDTG(AXUXTADSSIEN,AXUXTADDCRDATE,AXUXTADNODE) ;
+ NEW XUXTADSSIEN,XUXTADDCRDATE,XUXTADNODE,XUXTADRTNVAL,XUXTADDCDRT,XUXTADSSIA ;,XUXTADSSFILE
+ NEW X,Y
+ I '$D(VERBOSE) NEW VERBOSE S VERBOSE=0
+ I VERBOSE W !,"SDCRDTG^XUXTADSSEF(",$G(AXUXTADSSIEN),",",$G(AXUXTADDCRDATE),",",$G(AXUXTADNODE),") Called"
+ S XUXTADRTNVAL=0,XUXTADSSIA="SDCRDTGSSI"
+ S XUXTADSSIEN=+$G(AXUXTADSSIEN)
+ ; Get All Service/Section IEN's
+ D GASSI(XUXTADSSIA)
+ ;S XUXTADSSFILE=49 ; File number of SERVICE/SECTION file
+ ;I (XUXTADSSIEN'>0)!'$D(^DIC(XUXTADSSFILE,XUXTADSSIEN,0)) D  G SDCRDTGDN
+ I (XUXTADSSIEN'>0)!('$D(@XUXTADSSIA@(XUXTADSSIEN))) D  G SDCRDTGDN
+ . S XUXTADRTNVAL="0^Invalid Service/Section IEN: "_XUXTADSSIEN
+ S X=$G(AXUXTADDCRDATE)
+ D CNVDT
+ I Y<1 D  G SDCRDTGDN
+ . S XUXTADRTNVAL="0^Invalid Date Closed Record date"
+ S XUXTADDCRDATE=Y
+ S XUXTADNODE=$G(AXUXTADNODE)
+ I ($L(XUXTADNODE)=0)!(XUXTADNODE'?1(1"DC",1"DR")) D  G SDCRDTGDN
+ . S XUXTADRTNVAL="0^Invalid Date Node: "_XUXTADNODE_", DC or DR only"
+ KILL ^TMP("SS",$J)
+ S ^TMP("SS",$J,"SSIEN")=XUXTADSSIEN
+ S ^TMP("SS",$J,XUXTADNODE)=XUXTADDCRDATE
+ I XUXTADNODE="DC" S XUXTADDCDRT="Closed"
+ E  S XUXTADDCDRT="Re-opened"
+ I $L(XUXTADDCRDATE)'>0 D  G SDCRDTGDN
+ . S XUXTADRTNVAL="0^Date "_XUXTADDCDRT_" Reset"
+ S XUXTADRTNVAL="1^Service/Section will be "_XUXTADDCDRT_" on Save or Exit"
+SDCRDTGDN ;
+ I VERBOSE W !,"SDCRDTG^XUXTADSSEF Exiting  Response: ",XUXTADRTNVAL,!!
+ K @XUXTADSSIA
+ Q XUXTADRTNVAL
+ ;
+ ;
+ ; Save a Date Closed or Date Re-opened that has been put in the global 
+ ; ^TMP("SS",$J,"DC") or ^TMP("SS",$J,"DR") respectively to the Service/Section file (^DIC(49)). 
+ ; Called when the User Exits or Saves the Form
+ ;
+ ; Returns
+ ;   0^Error message when an error occurs
+ ;   1^Success message
+ ;
+ ; W $$SVDCDR^XUXTADSSEF
+SVDCDR() ;
+ NEW XUXTADSSIEN,XUXTADDCDT,XUXTADRTNVAL
+ S XUXTADRTNVAL=0
+ ; Save Date Closed or Date Re-opened based on globals setup in the call to SDCRDTG(AXUXTADSSIEN,AXUXTADDCRDATE,AXUXTADNODE)
+ S XUXTADSSIEN=$G(^TMP("SS",$J,"SSIEN"))
+ I $L(XUXTADSSIEN)'>0 D  G SVDCDRDN
+ . S XUXTADRTNVAL="1^Service/Section edits saved"
+ S XUXTADDCDT=$G(^TMP("SS",$J,"DC"))
+ I $L(XUXTADDCDT)>0 D  G SVDCDRDN
+ . S XUXTADRTNVAL=$$DCRSAVE(XUXTADSSIEN,XUXTADDCDT)
+ S XUXTADDCDT=$G(^TMP("SS",$J,"DR"))
+ I $L(XUXTADDCDT)>0 D  G SVDCDRDN
+ .  S XUXTADRTNVAL=$$DRSAVE(XUXTADSSIEN,XUXTADDCDT)
+ S XUXTADRTNVAL="0^Service/Section Date global not set"
+SVDCDRDN ;
+ I +XUXTADRTNVAL S ^TMP("SS",$J,"SSSAVED")=$P(XUXTADRTNVAL,"^",2)
+ Q XUXTADRTNVAL
+ ;
+ ;
+ ; Form Post Save is called when the user Saves or Exits
+ ;   Saves the Date Closed Record Date if one exists in ^TMP("SS",$J,)
+ ;   Get the Close Service/Section and Re-open Service/Section form only fields enable/disabled status
+ ;   Get the current Service/Section Open/Closed status 
+ ;
+ ; Returns
+ ;   SDCU^SDRU^HMSG^SSOCS
+ ;   SDCU  - Set Date Closed Uneditable
+ ;   SDRU  - Set Date Re-opened Uneditable
+ ;   HMSG  - Service/Section Date Closed/Date Reopened Help message
+ ;   SSOCS - Service/Section Open Close Status: Closed or Open
+ ;
+ ; W $$FMPS^XUXTADSSEF(XUXTADSSIEN)
+FMPS(AXUXTADSSIEN) ;
+ NEW XUXTADRTNVAL,XUXTADSSOCS,XUXTADBPVAL
+ I '$D(VERBOSE) NEW VERBOSE S VERBOSE=0
+ ; Save the Date Closed/Date Re-opened
+ S XUXTADRTNVAL=$$SVDCDR
+ I VERBOSE W !,"$$SVDCDR returned XUXTADRTNVAL: ",XUXTADRTNVAL,!
+ S XUXTADBPVAL=$$BLKPRE(AXUXTADSSIEN)
+ I VERBOSE W !,"$$BLKPRE(",AXUXTADSSIEN,") returned XUXTADBPVAL: ",XUXTADBPVAL,!
+ S XUXTADSSOCS=$$GSSOCS(AXUXTADSSIEN)
+ I VERBOSE W !,"$$GSSOCS(",AXUXTADSSIEN,") returned XUXTADSSOCS: ",XUXTADSSOCS,!
+ I (+XUXTADSSOCS) S $P(XUXTADBPVAL,"^",4)=$P(XUXTADSSOCS,"^",2)
+ S $P(XUXTADBPVAL,"^",3)=$P(XUXTADRTNVAL,"^",2)
+ I VERBOSE W !,"$$FMPS(",AXUXTADSSIEN,") returned: ",XUXTADBPVAL,!
+ Q XUXTADBPVAL
+ ;
+ ;
+ ; Set the Form Only fields CLOSE SERVICE/SECTION and RE-OPEN SERVICE/SECTION uneditable property
+ ; based on if Users are assigned to the service/section with IEN=AXUXTADSSIEN and the current 
+ ; Date Closed field and Date Re-opened field.
+ ; This is called in the PRE ACTION of the Block SERVICE/SECTION EDIT PG
+ ; 
+ ;   AXUXTADSSIEN  - A Service/Section IEN
+ ;
+ ; Returns
+ ;   SDCU^SDRU^HMSG^DC
+ ;   SDCU - Set Date Closed Uneditable
+ ;   SDRU - Set Date Re-opened Uneditable
+ ;   HMSG - Service/Section Date Closed/Date Reopened Help message
+ ;   DC   - Date Closed 
+ ;
+ ; W $$BLKPRE^XUXTADSSEF(AXUXTADSSIEN)
+BLKPRE(AXUXTADSSIEN) ;
+ NEW XUXTADSSIEN,XUXTADUSRLNKS,XUXTADSSN,XUXTADCDCR,XUXTADCDC
+ NEW XUXTADCDR,XUXTADRTNVAL,XUXTADSSIA ;,XUXTADSSFILE
+ S XUXTADRTNVAL="1^1^^^",XUXTADSSIA="BLKPRESSI"
+ S XUXTADSSIEN=+$G(AXUXTADSSIEN)
+ ; Get All Service/Section IEN's
+ D GASSIN(XUXTADSSIA)
+ ;S XUXTADSSFILE=49 ; File number of SERVICE/SECTION file
+ ;I (XUXTADSSIEN'>0)!('$D(^DIC(XUXTADSSFILE,XUXTADSSIEN))) D  G BLKPREDN
+ I (XUXTADSSIEN'>0)!('$D(@XUXTADSSIA@(XUXTADSSIEN))) D  G BLKPREDN
+ . S $P(XUXTADRTNVAL,"^",3)="Invalid Service/Section IEN: "_XUXTADSSIEN
+ S XUXTADUSRLNKS=$$ISSA(XUXTADSSIEN)
+ ;S XUXTADSSN=$P(^DIC(XUXTADSSFILE,XUXTADSSIEN,0),"^")
+ S XUXTADSSN=@XUXTADSSIA@(XUXTADSSIEN)
+ I XUXTADUSRLNKS>0 D
+ . S $P(XUXTADRTNVAL,"^",3)="Service/Section "_XUXTADSSN_" has users assigned and cannot be Closed/Re-opened!"
+ I XUXTADUSRLNKS=0 D
+ . ; Get the current Date Closed Record
+ . S XUXTADCDCR=$$GSSCDCR(XUXTADSSIEN),XUXTADCDC=$P(XUXTADCDCR,"^",1),XUXTADCDR=$P(XUXTADCDCR,"^",2)
+ . I ($L(XUXTADCDC)>0) D
+ .. I ($L(XUXTADCDR)>0) D
+ ... S $P(XUXTADRTNVAL,"^",1)=0,$P(XUXTADRTNVAL,"^",2)=1
+ ... S $P(XUXTADRTNVAL,"^",3)="Service/Section "_XUXTADSSN_" has no users assigned and can be Closed"
+ .. I ($L(XUXTADCDR)=0) D
+ ... S $P(XUXTADRTNVAL,"^",1)=1,$P(XUXTADRTNVAL,"^",2)=0
+ ... S $P(XUXTADRTNVAL,"^",3)="Service/Section "_XUXTADSSN_" has no users assigned and can be Re-opened"
+ ... S X=XUXTADCDC D CNVDT
+ ... I Y>0 S $P(XUXTADRTNVAL,"^",4)=$$FMTE(Y)
+ . I ($L(XUXTADCDC)=0) D 
+ .. S $P(XUXTADRTNVAL,"^",1)=0,$P(XUXTADRTNVAL,"^",2)=1
+ .. S $P(XUXTADRTNVAL,"^",3)="Service/Section "_XUXTADSSN_" has no users assigned and can be Closed"
+BLKPREDN ; 
+ K @XUXTADSSIA
+ Q XUXTADRTNVAL
+ ;
+ ;
+ ; Save the new Date Closed record with IEN: AXUXTADDCIEN for the Service/Section with IEN: AXUXTADSSIEN 
+ ; in the Service/Section file (49)
+ ; 
+ ;   AXUXTADSSIEN  - A Service/Section IEN
+ ;   AXUXTADDCIEN  - A Date Closed record date (IEN)
+ ;
+ ; Returns
+ ;   0^Error message when an error occurs
+ ;   1^Success message
+ ;
+ ; W $$DCRSAVE^XUXTADSSEF(1049,3241008)
+ ;
+DCRSAVE(AXUXTADSSIEN,AXUXTADDCIEN) ;
+ NEW XUXTADSSIEN,XUXTADDCIEN,XUXTADCDCR,XUXTADCDC,XUXTADCDR,XUXTADADDED
+ NEW XUXTADGRDC,XUXTADSSIA,XUXTADSSFILE,XUXTADDCNODE
+ NEW DIC,X,Y
+ I '$D(VERBOSE) NEW VERBOSE S VERBOSE=0
+ I VERBOSE W !,"DCRSAVE^XUXTADSSEF(",$G(AXUXTADSSIEN),",",$G(AXUXTADDCIEN),") Called"
+ S XUXTADADDED=0,XUXTADSSIA="DCRSAVESSI"
+ S XUXTADSSIEN=+$G(AXUXTADSSIEN)
+ ; Get All Service/Section IEN's
+ D GASSI(XUXTADSSIA)
+ S XUXTADSSFILE=49 ; File number of SERVICE/SECTION file
+ S XUXTADDCNODE=3  ; Date Closed node
+ ;I (XUXTADSSIEN'>0)!('$D(^DIC(XUXTADSSFILE,XUXTADSSIEN))) D  G DCRSAVEDN
+ I (XUXTADSSIEN'>0)!('$D(@XUXTADSSIA@(XUXTADSSIEN))) D  G DCRSAVEDN
+ . S XUXTADADDED="0^Invalid Service/Section IEN: "_XUXTADSSIEN
+ S XUXTADDCIEN=+$G(AXUXTADDCIEN)
+ I XUXTADDCIEN'>0 D  G DCRSAVEDN
+ . S XUXTADADDED="0^Invalid Date Closed IEN: "_XUXTADDCIEN
+ S:'$D(U) U="^"
+ ; Set the Global root of subfile Date Closed
+ S XUXTADGRDC="^DIC("_XUXTADSSFILE_","_XUXTADSSIEN_","_XUXTADDCNODE_","
+ ; Get the current Date Closed Record
+ S XUXTADCDCR=$$GSSCDCR(XUXTADSSIEN)
+ I $L(XUXTADCDCR)=0 G NEWDCR
+ ; Check here to see if XUXTADDCIEN is equal to the last Re-opened Date.
+ ; If it is then delete the last Re-opened date field
+ S XUXTADCDC=$P(XUXTADCDCR,U,1)
+ S XUXTADCDR=$P(XUXTADCDCR,U,2)
+ I $L(XUXTADCDR)=0 D  G DCRSAVEDN
+ . S XUXTADADDED="0^Service/Section is already closed"
+ I XUXTADCDR=XUXTADDCIEN D  G DCRSAVEDN
+ . S XUXTADADDED=$$ESSDRF(XUXTADSSIEN,XUXTADCDC,"@")    ; Delete the Service/Section Date Re-opened field
+ . I $P(XUXTADADDED,U) S XUXTADADDED="1^Re-open Service/Section is cancelled, Service/Section is closed"
+ ; Make sure XUXTADDCIEN is after the last Re-opened Date.
+ I XUXTADCDR>XUXTADDCIEN D  G DCRSAVEDN
+ . S XUXTADADDED="0^Service/Section closed date must be after the last date re-opened"
+NEWDCR ;
+ S DIC=XUXTADGRDC,DIC(0)="ML"
+ S X=XUXTADDCIEN
+ D FMDIC
+ I Y=-1 D  G DCRSAVEDN
+ . S XUXTADADDED="0^WRITE USING DIC: "_DIC_", X: "_X_" FAILED" G DCRSAVEDN
+ I $P(Y,U,3)=1 S XUXTADADDED="1^Service/Section Closed"
+DCRSAVEDN ;
+ I VERBOSE W !,"DCRSAVE^XUXTADSSEF Exiting  Response: ",XUXTADADDED,!!
+ K @XUXTADSSIA
+ Q XUXTADADDED
+ ;
+ ;
+ ; Save the new Date Re-opened field : AXUXTADDTRE to the most recent Date Closed record 
+ ; for the Service/Section with IEN: AXUXTADSSIEN in the Service/Section file (49)
+ ; 
+ ;   AXUXTADSSIEN  - A Service/Section IEN
+ ;   AXUXTADDTRE   - A Date Re-opened date
+ ;
+ ; Returns
+ ;   0^Error message when an error occurs
+ ;   1^Success message
+ ;
+ ; W $$DRSAVE^XUXTADSSEF(1049,3241103)
+ ;
+DRSAVE(AXUXTADSSIEN,AXUXTADDTRE) ;
+ NEW XUXTADSSIEN,XUXTADDTRE,XUXTADCDCR,XUXTADCDC,XUXTADCDR,XUXTADADDED
+ NEW XUXTADGRDC,XUXTADSSIA,XUXTADSSFILE,XUXTADDCNODE
+ NEW DIE,DA,DR,DIK
+ I '$D(VERBOSE) NEW VERBOSE S VERBOSE=0
+ I VERBOSE W !,"DRSAVE^XUXTADSSEF(",$G(AXUXTADSSIEN),",",$G(AXUXTADDTRE),") Called"
+ S XUXTADADDED=0,XUXTADSSIA="DRSAVESSI"
+ S XUXTADSSIEN=+$G(AXUXTADSSIEN)
+ ; Get All Service/Section IEN's
+ D GASSI(XUXTADSSIA)
+ S XUXTADSSFILE=49 ; File number of SERVICE/SECTION file
+ S XUXTADDCNODE=3  ; Date Closed node
+ ;I (XUXTADSSIEN'>0)!('$D(^DIC(XUXTADSSFILE,XUXTADSSIEN))) D  G DRSAVEDN
+ I (XUXTADSSIEN'>0)!('$D(@XUXTADSSIA@(XUXTADSSIEN))) D  G DRSAVEDN
+ . S XUXTADADDED="0^Invalid Service/Section IEN: "_XUXTADSSIEN
+ S XUXTADDTRE=+$G(AXUXTADDTRE)
+ I XUXTADDTRE'>0 D  G DRSAVEDN
+ . S XUXTADADDED="0^Invalid Date Re-opened: "_XUXTADDTRE
+ S:'$D(U) U="^"
+ ; Set the Global root of subfile Date Closed
+ S XUXTADGRDC="^DIC("_XUXTADSSFILE_","_XUXTADSSIEN_","_XUXTADDCNODE_","
+ ; Get the current Date Closed Record
+ S XUXTADCDCR=$$GSSCDCR(XUXTADSSIEN)
+ ; If we don't have a Date closed record, then the Service/Section is already open
+ I $L(XUXTADCDCR)=0 D  G DRSAVEDN
+ . S XUXTADADDED="0^Service/Section is already open"
+ ; Check here to see if XUXTADDTRE is equal to the current Date Closed.
+ ; If it is then delete the current Date Closed record
+ S XUXTADCDC=$P(XUXTADCDCR,U,1)
+ S XUXTADCDR=$P(XUXTADCDCR,U,2)
+ I $L(XUXTADCDR)>0 D  G DRSAVEDN
+ . S XUXTADADDED="0^Service/Section is already open"
+ S DA=XUXTADCDC,DA(1)=XUXTADSSIEN
+ I XUXTADCDC=XUXTADDTRE D  G DRSAVEDN
+ . S XUXTADADDED=$$DSSDCR(XUXTADSSIEN,XUXTADCDC)    ; Delete the Service/Section Date Closed Record
+ . I $P(XUXTADADDED,U) S XUXTADADDED="1^Close Service/Section cancelled, Service/Section is Re-opened"
+ ; Make sure XUXTADDTRE is after the current Date Closed Date.
+ I XUXTADCDC>XUXTADDTRE D  G DRSAVEDN
+ . S XUXTADADDED="0^Service/Section re-opened date must be after the current date closed"
+ ; Setup the DIE call
+ S DIE=XUXTADGRDC    ; Global root of subfile
+ S DR="1////"_XUXTADDTRE
+ D FMDIE
+ S XUXTADADDED="1^Service/Section Re-opened"
+DRSAVEDN ;
+ I VERBOSE W !,"DRSAVE^XUXTADSSEF Exiting  Response: ",XUXTADADDED,!!
+ K @XUXTADSSIA
+ Q XUXTADADDED
+ ;
+ ;
+ ; Delete the Service/Section Date Closed Record with IEN: AXUXTADDCRIEN,
+ ; and Service/Section with IEN: AXUXTADSSIEN in the Service/Section file (49)
+ ; 
+ ;   AXUXTADSSIEN  - A Service/Section IEN
+ ;   AXUXTADDCRIEN - A Date Closed IEN (Internal form)
+ ;
+ ; Returns
+ ;   0^Error message when an error occurs
+ ;   1^Success message
+ ; 
+ ; W $$DSSDCR^XUXTADSSEF(1049,3241103)
+DSSDCR(AXUXTADSSIEN,AXUXTADDCRIEN) ;
+ NEW XUXTADSSIEN,XUXTADDCRIEN,XUXTADDELETED,XUXTADSSIA,XUXTADSSFILE,XUXTADDCNODE
+ NEW DIK,DA
+ I '$D(VERBOSE) NEW VERBOSE S VERBOSE=0
+ I VERBOSE W !,"DSSDCR^XUXTADSSEF(",$G(AXUXTADSSIEN),",",$G(AXUXTADDCRIEN),") Called"
+ S XUXTADDELETED=0,XUXTADSSIA="DSSDCRSSI"
+ S XUXTADSSIEN=+$G(AXUXTADSSIEN)
+ ; Get All Service/Section IEN's
+ D GASSI(XUXTADSSIA)
+ S XUXTADSSFILE=49 ; File number of SERVICE/SECTION file
+ S XUXTADDCNODE=3  ; Date Closed node
+ ;I (XUXTADSSIEN'>0)!('$D(^DIC(XUXTADSSFILE,XUXTADSSIEN))) D  G DSSDCRDN
+ I (XUXTADSSIEN'>0)!('$D(@XUXTADSSIA@(XUXTADSSIEN))) D  G DSSDCRDN
+ . S XUXTADDELETED="0^Invalid Service/Section IEN: "_XUXTADSSIEN
+ S XUXTADDCRIEN=+$G(AXUXTADDCRIEN)
+ I (XUXTADDCRIEN'>0) D  G DSSDCRDN
+ . S XUXTADDELETED="0^Invalid Date Closed IEN: "_XUXTADDCRIEN
+ S DA=XUXTADDCRIEN,DA(1)=XUXTADSSIEN
+ S DIK="^DIC("_XUXTADSSFILE_","_XUXTADSSIEN_","_XUXTADDCNODE_","    ; Global root of subfile
+ I VERBOSE W !,"DIK: ",DIK,! ZW DA
+ D FMDIK
+ S XUXTADDELETED="1^Service/Section Date Closed record deleted. IEN: "_XUXTADDCRIEN
+DSSDCRDN ;
+ I VERBOSE W !,"DSSDCR^XUXTADSSEF Exiting  Response: ",XUXTADDELETED,!!
+ K @XUXTADSSIA
+ Q XUXTADDELETED
+ ;
+ ;
+ ; Edit the Service/Section Date Re-opened field in the Date Closed Record with IEN: AXUXTADDCRIEN
+ ; and Service/Section with IEN: AXUXTADSSIEN in the Service/Section file (49)
+ ; 
+ ;   AXUXTADSSIEN  - A Service/Section IEN
+ ;   AXUXTADDCRIEN - A Date Closed IEN (Internal form)
+ ;   AXUXTADDRV    - A Date Re-opened value (Internal form,"@" for deletion)
+ ;
+ ; Returns
+ ;   0^Error message when an error occurs
+ ;   1^Success message
+ ; 
+ ; W $$ESSDRF^XUXTADSSEF(1049,3241103,3241104)
+ ; W $$ESSDRF^XUXTADSSEF(1049,3240910,"@")
+ESSDRF(AXUXTADSSIEN,AXUXTADDCRIEN,AXUXTADDRV) ;
+ NEW XUXTADSSIEN,XUXTADDCRIEN,XUXTADDRV,XUXTADEDITED,XUXTADSSIA
+ NEW XUXTADSSFILE,XUXTADDCNODE
+ NEW DIE,DA,DR
+ I '$D(VERBOSE) NEW VERBOSE S VERBOSE=0
+ I VERBOSE W !,"ESSDRF^XUXTADSSEF(",$G(AXUXTADSSIEN),",",$G(AXUXTADDCRIEN),",",$G(AXUXTADDRV),") Called"
+ S XUXTADEDITED=0,XUXTADSSIA="ESSDRFSSI"
+ S XUXTADSSIEN=+$G(AXUXTADSSIEN)
+ ; Get All Service/Section IEN's
+ D GASSI(XUXTADSSIA)
+ S XUXTADSSFILE=49 ; File number of SERVICE/SECTION file
+ S XUXTADDCNODE=3  ; Date Closed node
+ ;I (XUXTADSSIEN'>0)!('$D(^DIC(XUXTADSSFILE,XUXTADSSIEN))) D  G ESSDRFDN
+ I (XUXTADSSIEN'>0)!('$D(@XUXTADSSIA@(XUXTADSSIEN))) D  G ESSDRFDN
+ . S XUXTADEDITED="0^Invalid Service/Section IEN: "_XUXTADSSIEN
+ S XUXTADDCRIEN=+$G(AXUXTADDCRIEN)
+ I (XUXTADDCRIEN'>0) D  G ESSDRFDN
+ . S XUXTADEDITED="0^Invalid Date Closed IEN: "_XUXTADDCRIEN
+ S XUXTADDRV=$G(AXUXTADDRV)
+ I $L(XUXTADDRV)'>0 D  G ESSDRFDN
+ . S XUXTADEDITED="0^Invalid Date Re-opened value: "_XUXTADDRV
+ S DA=XUXTADDCRIEN,DA(1)=XUXTADSSIEN
+ S DIE="^DIC("_XUXTADSSFILE_","_XUXTADSSIEN_","_XUXTADDCNODE_","    ; Global root of subfile
+ I VERBOSE W !,"DIE: ",DIE,", XUXTADDRV: ",XUXTADDRV,! ZW DA
+ S DR="1////"_XUXTADDRV
+ D FMDIE
+ S XUXTADEDITED="1^Service/Section Date Closed record edited."
+ESSDRFDN ;
+ I VERBOSE W !,"ESSDRF^XUXTADSSEF Exiting  Response: ",XUXTADEDITED,!!
+ K @XUXTADSSIA
+ Q XUXTADEDITED
+ ;
+ ;

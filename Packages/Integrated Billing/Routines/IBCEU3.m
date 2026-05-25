@@ -1,5 +1,5 @@
 IBCEU3 ;ALB/TMP - EDI UTILITIES FOR 1500 CLAIM FORM ;12/29/05 9:58am
- ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400,432,488,519,592,608**;21-MAR-94;Build 90
+ ;;2.0;INTEGRATED BILLING;**51,137,155,323,348,371,400,432,488,519,592,608,805**;21-MAR-94;Build 1
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BOX19(IBIFN) ; New Box 19 added for patch 488.  This is for workman's comp?
@@ -214,6 +214,7 @@ TEXT24(FLD,IBXSAVE,IBXDATA,IBSUB) ; Format the text line of box 24 by fld
  ... I NUM=10 S $P(LET,",",I)="J"
  ... I NUM=11 S $P(LET,",",I)="K"
  ... I NUM=12 S $P(LET,",",I)="L"
+ ... I NUM>12 S $P(LET,",",I)=""  ;IB*2.0*805
  .. S IBVAL=$TR(LET,","),IBS=45,IBE=48  ; diagnosis pointer
  . I FLD="F" S IBVAL=$P(IBDAT,U,8)*$P(IBDAT,U,9),IBS=49,IBE=57 D
  .. ; total charges  **519 returned field length back to 8, 9 is too long for BOX24F

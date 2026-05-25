@@ -1,5 +1,5 @@
 IVMPTRN9 ;ALB/KCL,CN,BRM,TDM,EG,LBD,TGH,JAM,HM,KUM - HL7 FULL DATA TRANSMISSION (Z07) BUILDER (CONTINUED) ;12/7/12 2:56pm
- ;;2.0;INCOME VERIFICATION MATCH;**9,11,19,12,21,17,46,50,53,34,49,58,79,99,116,105,115,152,160,164,180,193,201**;21-OCT-94;Build 17
+ ;;2.0;INCOME VERIFICATION MATCH;**9,11,19,12,21,17,46,50,53,34,49,58,79,99,116,105,115,152,160,164,180,193,201,217**;21-OCT-94;Build 3
  ;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ;
@@ -130,7 +130,8 @@ GOTO ; place to break up the routine
  ; create (RF1) segment
  S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=$$RF1^IVMPTRNA(DFN,"SAD")
  ; IVM*2.0*164 - Add Residential Address Change
- F RF1TYP="CAD","CPH","PNO","EAD","PHH","RAD" D   ;Create Optional RF1 Segments
+ ; IVM*2.0*217 - Add Confidential Phone Number Change
+ F RF1TYP="CAD","CPH","PNO","EAD","PHH","RAD","PHC" D   ;Create Optional RF1 Segments
  . S RF1SEG=$$RF1^IVMPTRNA(DFN,RF1TYP) Q:RF1SEG=""
  . S IVMCT=IVMCT+1,^TMP("HLS",$J,IVMCT)=RF1SEG
  ;

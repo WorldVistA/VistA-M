@@ -1,5 +1,5 @@
 BPSOSRX8 ;ALB/SS - ECME REQUESTS ;10-JAN-08
- ;;1.0;E CLAIMS MGMT ENGINE;**7,10,11,20**;JUN 2004;Build 27
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,10,11,20,40,41**;JUN 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;check parameters for EN^BPSNCPDP
@@ -23,6 +23,7 @@ CHCKPAR(BRXIEN,BRX,BWHERE,DFN,PNAME) ;
 PRINTSCR(BWHER) ;
  I ",AREV,CRLB,CRLR,CRLX,CRRL,PC,PL,"[(","_BWHER_",") Q 0
  Q 1  ;print messages to the screen
+ ;
  ;check if any IB DATA is missing
  ;returns 
  ; 0 - passed
@@ -38,6 +39,7 @@ IBDATAOK(MOREDATA,BPSARRY) ;
  ; Check if IB says to bill
  I '$G(MOREDATA("BILL")) Q BPRESP_U_"Flagged by IB to not 3rd Party Insurance bill through ECME.^D^2"
  Q 0
+ ;
  ;Get Site
 GETSITE(BRXIEN,BFILL) ;
  I '$G(BRXIEN) Q ""
@@ -45,8 +47,8 @@ GETSITE(BRXIEN,BFILL) ;
  Q $$RXSUBF1^BPSUTIL1(BRXIEN,52,52.1,+BFILL,8,"I")
  ;
  ; Store general information/parameters into MOREDATA
- ; In instances where duz is null set it equal to .5 (postmaster)
-BASICMOR(BWHERE,DOS,BPSITE,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,MOREDATA) ;
+ ; In instances where DUZ is null set it equal to .5 (postmaster)
+BASICMOR(BWHERE,DOS,BPSITE,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,MOREDATA,BPSDX,BPSPREG) ;
  N I
  S MOREDATA("USER")=$S('DUZ:.5,1:DUZ)
  S MOREDATA("RX ACTION")=$G(BWHERE)
@@ -58,12 +60,16 @@ BASICMOR(BWHERE,DOS,BPSITE,REVREAS,DURREC,BPOVRIEN,BPSCLARF,BPSAUTH,BPSDELAY,MOR
  I $G(BPSCLARF)]"" S MOREDATA("BPSCLARF")=BPSCLARF
  I $TR($G(BPSAUTH),"^")]"" S MOREDATA("BPSAUTH")=BPSAUTH
  I $G(BPSDELAY)]"" S MOREDATA("BPSDELAY")=BPSDELAY
+ I $G(BPSDX)]"" S MOREDATA("BPSDX")=BPSDX
+ I $G(BPSPREG)]"" S MOREDATA("BPSPREG")=BPSPREG
  Q
- ;====== Prepare ret. value
+ ;
+ ;====== Prepare return value
  ;return RESPONSE ^ CLMSTAT ^ Display= D ^ seconds to HANG
 RSPCLMS(BPREQTYP,RESPONSE,MOREDATA,BPADDINF) ;
  N ELIG
  S ELIG=$G(MOREDATA("ELIG"))
+ ;
  I BPREQTYP="C",RESPONSE=0 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",ELIG="V":"Veteran ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
  I BPREQTYP="C",RESPONSE>0 Q RESPONSE_U_"No claim submission made: "_$S($G(BPADDINF)'="":BPADDINF,1:"Unable to queue claim submission.")_"^D"
  I BPREQTYP="U",RESPONSE=0 Q RESPONSE_U_"Reversing prescription "_BRX_".^D^2"
@@ -72,3 +78,4 @@ RSPCLMS(BPREQTYP,RESPONSE,MOREDATA,BPADDINF) ;
  I BPREQTYP="UC",RESPONSE=0 Q RESPONSE_U_$S(ELIG="T":"TRICARE ",ELIG="C":"CHAMPVA ",ELIG="V":"Veteran ",1:"")_"Prescription "_BRX_$S(ELIG="T":"",ELIG="C":"",1:" successfully")_" submitted to ECME for claim generation.^D^"
  I BPREQTYP="UC",RESPONSE>0,RESPONSE'=10 Q RESPONSE_U_"No claim submission made: "_$S($G(BPADDINF)'="":BPADDINF,1:"Unable to queue claim submission.")_"^D"
  Q ""
+ ;

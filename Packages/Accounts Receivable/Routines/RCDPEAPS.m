@@ -1,5 +1,5 @@
 RCDPEAPS ;ALB/DMB - ERA STATUS CHANGE AUDIT REPORT ;Nov 25, 2015
- ;;4.5;Accounts Receivable;**304,326,432**;Mar 20, 1995;Build 16
+ ;;4.5;Accounts Receivable;**304,326,432,439**;Mar 20, 1995;Build 29
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -32,7 +32,7 @@ RANGE ; Select date range for audit transactions
  . S ZTRTN="RUN^RCDPEAPS(RCERA,RCRANGE)"
  . S ZTIO=ION
  . S ZTSAVE("*")=""
- . S ZTDESC="ERA STATUS CHANGE AUDIT REPORT"
+ . S ZTDESC="ERA AUTO-POST STATUS AUDIT REPORT"
  . D ^%ZTLOAD
  . W !,$S($D(ZTSK):"REQUEST QUEUED TASK="_ZTSK,1:"REQUEST CANCELLED")
  . D HOME^%ZIS
@@ -122,7 +122,7 @@ HEADER(RCNOW,RCPG,RCHR,RCRANGE) ;
  N LINE
  W @IOF
  S RCPG=RCPG+1
- S LINE="EDI Lockbox ERA Status Change Audit Report"
+ S LINE="EDI Lockbox ERA Auto-Post Status Audit Report"
  W ?(IOM-$L(LINE)\2),LINE
  S LINE="Page: "_RCPG_" "
  W ?(IOM-$L(LINE)),LINE

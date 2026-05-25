@@ -1,13 +1,10 @@
-MAGDSTV1 ;WOIFO/PMK - Study Tracker - VistA Query/Retrieve user ; Apr 25, 2022@09:21:50
- ;;3.0;IMAGING;**231,305**;Mar 19, 2002;Build 3
- ;; Per VHA Directive 2004-038, this routine should not be modified.
+MAGDSTV1 ;WOIFO/PMK - Study Tracker - VistA Query/Retrieve user ; Nov 16, 2022@12:05:44
+ ;;3.0;IMAGING;**231,305,333**;Mar 19, 2002;Build 2
+ ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -44,35 +41,46 @@ SOPUIDR ; Called from batch retrieve for a SOP Instance Retrieval
  ;
  ;
 ENTRY(MODE,SHOWRRSL) ; called from ^MAGDSTQ for a VistA Q/R client
- N CMOVEAET,GATEWAYHOSTNAME,I,IEN2006541,KEY,REQUESTDATETIME,VALUE,X,ZERONODE
+ N CMOVEAET,GATEWAYHOSTNAME,I,IEN2006541,KEY,REQUESTDATETIME,VALUE,X,ZERONODE1,ZERONODE2
  S MODE=$G(MODE)
  I MODE'="Q",MODE'="R" D  Q
  . W !,"Illegal mode in ENTRY^"_$T(+0),": ",MODE
  . D CONTINUE^MAGDSTQ
  . Q
+ ;
  K ^XTMP(MAGXTMP,HOSTNAME,$J,QRSTACK,"MESSAGE") ; remove any previous query error message
  S SHOWRRSL=$G(SHOWRRSL) ; 1 = show retrieval results
  ;
  ; store the request on the queue
  L +^MAGDSTT(2006.541):10 ; foreground process
- S ZERONODE=$G(^MAGDSTT(2006.541,0))
- S $P(ZERONODE,"^",1,2)="DICOM VISTA Q/R REQUEST QUEUE^2006.541"
- S IEN2006541=$O(^MAGDSTT(2006.541," "),-1)+1 ; Next number
- S $P(ZERONODE,"^",3)=IEN2006541
- S $P(ZERONODE,"^",4)=$P(ZERONODE,"^",4)+1 ; Total count
- S ^MAGDSTT(2006.541,0)=ZERONODE
+ S DIVISION=$G(DUZ(2),0) ; user's logon division -- P333 PMK 07/05/2022
+ S ZERONODE1=$G(^MAGDSTT(2006.541,0))
+ I $O(^MAGDSTT(2006.541,"B",DIVISION,""))="" D
+ . S $P(ZERONODE1,"^",1,2)="DICOM VISTA Q/R REQUEST QUEUE^2006.541"
+ . S ^MAGDSTT(2006.541,"B",DIVISION,DIVISION)=""
+ . S $P(ZERONODE1,"^",3)=DIVISION
+ . S $P(ZERONODE1,"^",4)=$P(ZERONODE1,"^",4)+1
+ . S ^MAGDSTT(2006.541,0)=ZERONODE1
+ . S ^MAGDSTT(2006.541,DIVISION,0)=DIVISION
+ . Q
+ S ZERONODE2=$G(^MAGDSTT(2006.541,DIVISION,1,0))
+ S $P(ZERONODE2,"^",1,2)="DICOM VISTA Q/R REQUESTS^2006.5411"
+ S IEN2006541=$O(^MAGDSTT(2006.541,DIVISION,1," "),-1)+1 ; Next number
+ S $P(ZERONODE2,"^",3)=IEN2006541
+ S $P(ZERONODE2,"^",4)=$P(ZERONODE2,"^",4)+1 ; Total count
+ S ^MAGDSTT(2006.541,DIVISION,1,0)=ZERONODE2
  S REQUESTDATETIME=$$NOW^XLFDT
- S ^MAGDSTT(2006.541,IEN2006541,0)=REQUESTDATETIME_"^"_MODE_"^"_MAGXTMP_"^"_HOSTNAME_"^"_$J_"^"_QRSTACK_"^"_DUZ
+ S ^MAGDSTT(2006.541,DIVISION,1,IEN2006541,0)=REQUESTDATETIME_"^"_MODE_"^"_MAGXTMP_"^"_HOSTNAME_"^"_$J_"^"_QRSTACK_"^"_DUZ
  S KEY="" F I=1:1 S KEY=$O(^TMP("MAG",$J,"Q/R QUERY",QRSTACK,KEY)) Q:KEY=""  D
  . S VALUE=^TMP("MAG",$J,"Q/R QUERY",QRSTACK,KEY)
  . S VALUE=$TR(VALUE,"^","~") ; change ^'s in names to ~'s
- . S ^MAGDSTT(2006.541,IEN2006541,1,I,0)=KEY_"^"_VALUE
- . S ^MAGDSTT(2006.541,IEN2006541,1,"B",KEY,I)=""
+ . S ^MAGDSTT(2006.541,DIVISION,1,IEN2006541,1,I,0)=KEY_"^"_VALUE
+ . S ^MAGDSTT(2006.541,DIVISION,1,IEN2006541,1,"B",KEY,I)=""
  . Q
- S ^MAGDSTT(2006.541,"B",REQUESTDATETIME,IEN2006541)="" ; create B-xref
+ S ^MAGDSTT(2006.541,DIVISION,1,"B",REQUESTDATETIME,IEN2006541)="" ; create B-xref
  S I=I-1
- S ^MAGDSTT(2006.541,IEN2006541,1,0)="^2006.5411A^"_I_"^"_I
- S ^MAGDSTT(2006.541,0)=ZERONODE
+ S ^MAGDSTT(2006.541,DIVISION,1,IEN2006541,1,0)="^2006.5411A^"_I_"^"_I
+ S ^MAGDSTT(2006.541,DIVISION,1,0)=ZERONODE2
  L -^MAGDSTT(2006.541)
  ;
  I MODE="Q" D
@@ -100,7 +108,7 @@ WAIT(CMOVEAET) ; wait up to ten minutes for response from DICOM Gateway
  S TIMESTAMP=$$NOW^XLFDT ; time at the beginning of the wait
  ;
  ; check that the gateway surrogated picked up the Q/R request
- F I=1:1:10 D  Q:SUCCESS 
+ F I=1:1:30 D  Q:SUCCESS  ; longer query time - P333 PMK 11/16/2022
  . S X=$G(^XTMP(MAGXTMP,HOSTNAME,$J,QRSTACK,"WORKING...",IEN2006541))
  . I $L(X) D  Q
  . . S GATEWAYHOSTNAME=$P(X,"^",3)
@@ -159,25 +167,30 @@ WAIT(CMOVEAET) ; wait up to ten minutes for response from DICOM Gateway
  Q SUCCESS
  ;
 KILL ; truncate the DICOM VISTA Q/R REQUEST QUEUE file (#2006.541)
- N PROMPT,X
- S X=$P($G(^MAGDSTT(2006.541,0)),"^",3)
- I X="" D  Q
+ N DIVISION,PROMPT,X
+ L +^MAGDSTT(2006.541):10 ; foreground process
+ S DIVISION=$G(DUZ(2),0) ; user's logon division -- P333 PMK 07/05/2022
+ S X=$P($G(^MAGDSTT(2006.541,DIVISION,1,0)),"^",3)
+ I X="" D
  . W !!,"The DICOM VISTA Q/R REQUEST QUEUE entries have already been deleted."
  . Q
- I X=1 D
- . W !!,"There is one entry in the DICOM VISTA Q/R REQUEST QUEUE."
- . S PROMPT="Do you want to remove it?"
- . Q
  E  D
- . W !!,"There are "_X_" entries in the DICOM VISTA Q/R REQUEST QUEUE."
- . S PROMPT="Do you want to remove them?"
+ . I X=1 D
+ . . W !!,"There is one entry in the DICOM VISTA Q/R REQUEST QUEUE."
+ . . S PROMPT="Do you want to remove it?"
+ . . Q
+ . E  D
+ . . W !!,"There are "_X_" entries in the DICOM VISTA Q/R REQUEST QUEUE."
+ . . S PROMPT="Do you want to remove them?"
+ . . Q
+ . I $$YESNO^MAGDSTQ(PROMPT,"n",.X)>0,X="YES"  D
+ . . K ^MAGDSTT(2006.541,DIVISION,1)
+ . . S ^MAGDSTT(2006.541,DIVISION,1,0)="DICOM VISTA Q/R REQUESTS"_"^"_2006.5411_"^^"
+ . . W !!,"The DICOM VISTA Q/R REQUEST QUEUE file has been truncated."
+ . . Q
+ . E  W !!,"The DICOM VISTA Q/R REQUEST QUEUE file has not been truncated."
  . Q
- I $$YESNO^MAGDSTQ(PROMPT,"n",.X)>0,X="YES"  D
- . K ^MAGDSTT(2006.541)
- . S ^MAGDSTT(2006.541,0)="DICOM VISTA Q/R REQUEST QUEUE"_"^"_2006.541_"^^"
- . W !!,"The DICOM VISTA Q/R REQUEST QUEUE file has been truncated."
- . Q
- E  W !!,"The DICOM VISTA Q/R REQUEST QUEUE file has not been truncated."
+ L -^MAGDSTT(2006.541)
  Q
  ;
 ENABLED() ; check if monitor is active - P305 PMK 03/15/2022

@@ -1,18 +1,42 @@
-IBCNBLE2 ;ALB/ESG - Expand ins buffer - e-Pharmacy entry ;14-Oct-2010
- ;;2.0;INTEGRATED BILLING;**435**;21-MAR-94;Build 27
+IBCNBLE2 ;ALB/ESG - Expand ins buffer - ePharmacy entry ;14-Oct-2010
+ ;;2.0;INTEGRATED BILLING;**435,822**;21-MAR-94;Build 21
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
- ; References to BPS RESPONSES file (#9002313.03) supported by IA 4813
- ; Called by IBCNBLE when expanding an e-Pharmacy buffer entry
+ ; References to BPS RESPONSES file (#9002313.03) in ICR #4813
+ ;
+ ; Called by IBCNBLE when expanding an ePharmacy buffer entry
  ; Variable IB0 is the 0 node of file 355.33
+ ;IB*822/CKB - 'e-Pharmacy' has been changed to 'ePharmacy' throughout this routine 
  ;
 EN ; Entry point
  N RESPIEN,RSPSUB,ZR,ZM,BPSR,BPSM,BPSMD,BPSMCOB,IBY,IBL,IBLINE,TEXT
  ;
  S RESPIEN=+$P(IB0,U,17) I 'RESPIEN G EX
  I '$D(^BPSR(RESPIEN,0)) G EX
+ ;IB*822/CKB - moved the building of the display to DISPLAY tag
+ D DISPLAY
+EX ;
+ Q
+ ;
+ ; EN1 is called by the action Pharmacy Elig (PE) under Policy Edit/View (VP)
+ ; ??Variable IB0 is the 0 node of file 355.33??
+ ;
+EN1(RESPIEN) ;IB*822/CKB
+ N BPSM,BPSMD,BPSMCOB,BPSR,IBL,IBLINE,IBPE,IBY,RSPSUB,TEXT,ZM,ZR
+ ; 
+ S IBPE=1
+ D DISPLAY
+EX1 ;
+ Q
+ ;
+ ;------------------------------------------------------------------------------------------------
+ ;
+DISPLAY ;IB*822/CKB - call from EN or EN1 to display the ePharmacy
  S ZR=RESPIEN_","
  D GETS^DIQ(9002313.03,ZR,".01:999","IEN","BPSR")   ; get all fields at top level except raw data
+ ;
+ ;IB*822/CKB - from EN1, if BPS RESPONSE isn't found display "no data found"
+ I ($G(IBPE)=1)&('$D(BPSR)) D NODATA Q
  ;
  S RSPSUB=+$O(^BPSR(RESPIEN,1000,0)),ZM=0
  I RSPSUB D
@@ -21,7 +45,7 @@ EN ; Entry point
  . Q
  ;
  D SET^IBCNBLE(" ")
- S IBY=$J("",22)_"e-Pharmacy Eligibility Response Data"
+ S IBY=$J("",22)_"ePharmacy Eligibility Response Data" ;IB*822/CKB - removed the '-'
  D SET^IBCNBLE(IBY,"B")
  ;
  S IBL="Transmission Status: "
@@ -118,6 +142,8 @@ EN ; Entry point
  ;
  S IBL="Payer-reported DOB: "
  S IBY=$G(BPSR(9002313.03,ZR,304,"E"))
+ ;IB*822/CKB - if the date exists, formatted it to be readable
+ I IBY'="" S IBY=$$DATE(IBY)
  S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,28,51)
  I IBY'="" D SET^IBCNBLE(IBLINE)
  ;
@@ -128,12 +154,20 @@ EN ; Entry point
  ;
  S IBL="Help Desk Phone: "
  S IBY=$G(BPSM(9002313.0301,ZM,550,"E"))
+ ;IB*822/CKB - get the description from file for the Help Desk Phone # qual, if it exists
  I IBY'="" D
- . N HDPQ
- . S HDPQ=$G(BPSM(9002313.0301,ZM,549,"E")) Q:HDPQ=""    ; help desk phone# qualifier
- . S HDPQ=$S(+HDPQ=1:"Switch",+HDPQ=2:"Intermediary",+HDPQ=3:"Processor/PBM",1:"Other")
- . S IBY=IBY_" ("_HDPQ_")"
- . Q
+ . N BPSIEN,DESC,HDPQ
+ . S HDPQ=$G(BPSM(9002313.0301,ZM,549,"E"))
+ . S BPSIEN=$O(^BPS(9002313.44,"B",HDPQ,""))
+ . I BPSIEN'="" D
+ .. S DESC=$$GET1^DIQ(9002313.44,BPSIEN,.02)
+ .. S IBY=IBY_" ("_DESC_")"
+ ;I IBY'="" D
+ ;. N HDPQ
+ ;. S HDPQ=$G(BPSM(9002313.0301,ZM,549,"E")) Q:HDPQ=""    ; help desk phone# qualifier
+ ;. S HDPQ=$S(+HDPQ=1:"Switch",+HDPQ=2:"Intermediary",+HDPQ=3:"Processor/PBM",1:"Other")
+ ;. S IBY=IBY_" ("_HDPQ_")"
+ ;. Q
  S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,28,51)
  I IBY'="" D SET^IBCNBLE(IBLINE)
  ;
@@ -162,6 +196,13 @@ EN ; Entry point
  . ;
  . S IBL="Coverage Code: "
  . S IBY=$G(BPSMD(9002313.0301,ZM,139,"E"))
+ . ;IB*822/CKB - add description of the Coverage code, if code exists
+ . I IBY'="" D
+ .. N BPSIEN,BPSDESC
+ .. S BPSIEN=$O(^BPS(9002313.45,"B",IBY,""))
+ .. I BPSIEN'="" D
+ ... S BPSDESC=$$GET1^DIQ(9002313.45,BPSIEN,.02)
+ ... S IBY=IBY_" ("_BPSDESC_")"
  . S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,25,54)
  . D SET^IBCNBLE(IBLINE)
  . ;
@@ -187,11 +228,15 @@ EN ; Entry point
  . ;
  . S IBL="Next Effective Date: "
  . S IBY=$G(BPSMD(9002313.0301,ZM,140,"E"))
+ . ;IB*822/CKB - if the date exists, formatted it to be readable
+ . I IBY'="" S IBY=$$DATE(IBY)
  . S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,25,54)
  . D SET^IBCNBLE(IBLINE)
  . ;
  . S IBL="Next Termination Date: "
  . S IBY=$G(BPSMD(9002313.0301,ZM,141,"E"))
+ . ;IB*822/CKB - if the date exists, formatted it to be readable
+ . I IBY'="" S IBY=$$DATE(IBY)
  . S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,25,54)
  . D SET^IBCNBLE(IBLINE)
  . ;
@@ -215,10 +260,17 @@ EN ; Entry point
  .. ;
  .. S IBL="Payer ID Qual: "
  .. S IBY=$G(BPSMCOB(9002313.035501,ZC,339,"E"))
+ .. ;IB*822/CKB - add description of the Payer ID Qual code, if code exists
+ .. I IBY'="" D
+ ... N BPSIEN,BPSDESC
+ ... S BPSIEN=$O(^BPS(9002313.43,"B",IBY,""))
+ ... I BPSIEN'="" D
+ .... S BPSDESC=$$GET1^DIQ(9002313.43,BPSIEN,.02)
+ .... S IBY=IBY_" ("_BPSDESC_")"
  .. S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,22,57)
  .. I IBY'="" D SET^IBCNBLE(IBLINE)
  .. ;
- .. S IBL="Payer ID: "
+ .. S IBL="ID: "                                       ;IB*822/CKB - changed from 'Payer ID' to 'ID'
  .. S IBY=$G(BPSMCOB(9002313.035501,ZC,340,"E"))
  .. S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,22,57)
  .. I IBY'="" D SET^IBCNBLE(IBLINE)
@@ -250,22 +302,49 @@ EN ; Entry point
  .. ;
  .. S IBL="Patient Rel Code: "
  .. S IBY=$G(BPSMCOB(9002313.035501,ZC,143,"E"))
+ .. ;IB*822/CKB - add description of the Patient Rel code, if code exists
+ .. I IBY'="" D
+ ... N BPSIEN,BPSDESC
+ ... S BPSIEN=$O(^BPS(9002313.19,"B",IBY,""))
+ ... I BPSIEN'="" D
+ .... S BPSDESC=$$GET1^DIQ(9002313.19,BPSIEN,.02)
+ .... S IBY=IBY_" ("_BPSDESC_")"
  .. S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,22,57)
  .. I IBY'="" D SET^IBCNBLE(IBLINE)
  .. ;
  .. S IBL="Benefit Effective: "
  .. S IBY=$G(BPSMCOB(9002313.035501,ZC,144,"E"))
+ .. ;IB*822/CKB - if the date exists, formatted it to be readable
+ .. I IBY'="" S IBY=$$DATE(IBY)
  .. S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,22,57)
  .. I IBY'="" D SET^IBCNBLE(IBLINE)
  .. ;
  .. S IBL="Benefit Term: "
  .. S IBY=$G(BPSMCOB(9002313.035501,ZC,145,"E"))
+ .. ;IB*822/CKB - if the date exists, formatted it to be readable
+ .. I IBY'="" S IBY=$$DATE(IBY)
  .. S IBLINE=$$SETL^IBCNBLE("",IBY,IBL,22,57)
  .. I IBY'="" D SET^IBCNBLE(IBLINE)
  .. ;
  .. Q
  . Q
  ;
-EX ;
+ ;IB*822/CKB - If called from Pharmacy Elig (PE) add a Blank line to the end
+ I $G(IBPE)=1 D SET^IBCNBLE(" ")
  Q
  ;
+DATE(X) ;IB*822/CKB - make the date readable, convert YYYYMMDD to MM/DD/YYYY
+ Q $E(X,5,6)_"/"_$E(X,7,8)_"/"_$E(X,1,4)
+ ;
+NODATA ;IB*822/CKB - if BPS RESPONSE is not found display no data found
+ ;Display screen heading
+ D SET^IBCNBLE(" ")
+ S IBY=$J("",22)_"ePharmacy Eligibility Response Data"
+ D SET^IBCNBLE(IBY,"B")
+ ;
+ D SET^IBCNBLE(" ")
+ S IBL="No ePharmacy Eligibility Data found."
+ S IBLINE=$$SETL^IBCNBLE("","",IBL,24,55)
+ D SET^IBCNBLE(IBLINE)
+ D SET^IBCNBLE(" ")
+ Q

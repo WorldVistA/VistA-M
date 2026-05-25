@@ -1,8 +1,8 @@
-ORWOTHER ;SLC/AGP - Other Information Panel RPC ;06/03/2020
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**485,377,531**;Dec 17, 1997;Build 17
+ORWOTHER ;SLC/AGP - Other Information Panel RPC ;Sep 24, 2025@10:09:27
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**485,377,531,508**;Dec 17, 1997;Build 39
  ;
  ;
- ; Reference to ^PXRMCOVID19 supported by ICR #7146
+ ; Reference to ^PXRMBANNER supported by ICR #7146
  ;
  ;
 SHWOTHER(RESULT,USER) ;
@@ -26,7 +26,7 @@ DETAIL(RESULT,DFN,TYPE) ;
  I TYPE<1 S ^TMP(SUB,$J,1,0)="No identifer defined" Q
  I DFN<1 S ^TMP(SUB,$J,1,0)="Non-existent patient" Q
  I '$D(^DPT(DFN)) S ^TMP(SUB,$J,1,0)="Non-existent patient" Q
- S TEMP=$$CLICKTEXT^PXRMCOVID19(SUB,RIEN,DFN,TYPE)
+ S TEMP=$$CLICKTEXT^PXRMBANNER(SUB,RIEN,DFN,TYPE)
  I TEMP'=1 S ^TMP(SUB,$J,1,0)=$P(TEMP,U,2) Q
  Q
  ;

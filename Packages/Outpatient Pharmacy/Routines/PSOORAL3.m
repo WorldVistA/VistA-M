@@ -1,5 +1,5 @@
-PSOORAL3 ;BHAM ISC/MV - Build Listman activity log extension ; 12/4/07 12:25pm
- ;;7.0;OUTPATIENT PHARMACY;**643**;DEC 1997;Build 35
+PSOORAL3 ;BHAM ISC/MV,RBD - Build Listman activity log extension ;18 Feb 2025  8:56 AM
+ ;;7.0;OUTPATIENT PHARMACY;**643,774**;DEC 1997;Build 15
 ACT ;activity log
  N CNT,PSORDATA,PSOTXT,PSOTXT1,PSOTXT2,X
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Activity Log:"
@@ -44,20 +44,24 @@ REMDATA(PSOIEN,P1) ;
  Q:$G(P1)="" ""
  S PSOPF=0,PSOP2=$P(P1,U,2),PSOP3=$P(P1,U,3),PSOP4=$P(P1,U,4)
  S PSOFLG=$S($P(P1,U,5)["HL7 ID":1,1:0)
- I $S(PSOP2="P":1,PSOP2="X":1,PSOP2="N":1,1:0),$S(PSOP4=6:1,PSOP4=0:1,PSOP2="P":1,1:0) S PSOCHK=$$PFCHK(PSOIEN,$P(P1,U),,PSOFLG) Q:PSOCHK]"" PSOCHK
+ I $S(PSOP2="P":1,PSOP2="X":1,PSOP2="N":1,1:0),$S(PSOP4=6:1,PSOP2="P":1,1:0) S PSOCHK=$$PFCHK(PSOIEN,$P(P1,U),,PSOFLG) Q:PSOCHK]"" PSOCHK  ; took out PSOP4=0 from $S  *774* WLC
  I $S(PSOP2="X":1,PSOP2="N":1,1:0),$S(((PSOP4>0)&(PSOP4<6)):+PSOP4,((PSOP4>6)&(PSOP4<13)):1,1:0) S PSOCHK=$$RFCHK(PSOIEN,PSOP4,PSOFLG)
+ I $S(PSOP2="X":1,PSOP2="N":1,1:0),PSOP4=0 S PSOCHK=$$RFCHK(PSOIEN,PSOP4,PSOFLG)   ; RBD *774 Original Fill path (PSOP4 = 0)
  Q $G(PSOCHK)
  ;
 RFCHK(PSOIEN,PSOP4,PSOFLG) ;
  NEW PSOX1,PSOX2,PSOXRF,PSOXDIC4,PSOXRF,PSORFDT,PSOSNUM,PSOSNUMX,PSOSNAME
  Q:'+$G(PSOIEN) ""
- Q:'+$G(PSOP4) ""
+ Q:$G(PSOP4)="" ""    ; Q:'+$G(PSOP4) ""  RBD *774 PSOP4 = 0 (denoting Original Fill) allowed through
  I PSOP4>6 S PSOP4=PSOP4-1
- S PSOXRF=$G(^PSRX(PSOIEN,1,PSOP4,"RF")),PSOSNUM=$P(PSOXRF,U)
+ S:PSOP4=0 PSOXRF=$G(^PSRX(PSOIEN,"OF"))   ; RBD *774 Pick top-file level "OF" node when PSOP4 = 0
+ S:PSOP4>0 PSOXRF=$G(^PSRX(PSOIEN,1,PSOP4,"RF"))   ; RBD *774 Check PSOP4 > 0 before accessing "RF" node
+ S PSOSNUM=$P(PSOXRF,U)   ; RBD *774 Moved this to its own line since PSOXRF can be from "OF" now also
  S PSOSNAME="",PSOX1=""
  I PSOSNUM]"" S PSOSNAME=$$STATION(PSOSNUM)
  S:PSOSNAME]"" PSOX1=$S(+$G(PSOFLG):" at ",1:" Processed at ")_PSOSNAME
- S PSOX2=PSOX1_U_$P(PSOXRF,U,2,6)
+ I PSOP4=0 S PSOX2=PSOX1_U_$P(PSOXRF,U,2,3)_U_U_$P(PSOXRF,U,4,5)   ; RBD *774 PSOP4 = 0: Use "OF" node
+ S:PSOP4>0 PSOX2=PSOX1_U_$P(PSOXRF,U,2,6)   ; RBD *774 Check PSOP4 > 0 ("RF" node path)
  Q $G(PSOX2)
  ;
 PFCHK(PSOIEN,PSODT,PSOLBL,PSOFLG) ;
@@ -85,11 +89,13 @@ LBLDATA(PSOIEN,LBL) ;
  Q:$G(LBL)="" ""
  ;check if label entry is related to a refill
  S PSOTXT="",PSORDATA="",PSORN=+$P(LBL,U,2),PSOLBLDT=$P(LBL,U)
- I (PSORN>0),(PSORN<12) D
- .S PSOX1=$G(^PSRX(PSOIEN,1,PSORN,"RF"))
+ I (PSORN>-1),(PSORN<12) D    ; RBD *774 Update 0 to -1 so Original Fill covered
+ .S:PSORN=0 PSOX1=$G(^PSRX(PSOIEN,"OF"))   ; RBD *774 Use "OF" node when PSORN = 0
+ .S:PSORN>0 PSOX1=$G(^PSRX(PSOIEN,1,PSORN,"RF"))   ; RBD *774 Use "RF" node when PSORN > 0
  .S PSOSNAME=$$STATION($P(PSOX1,U))
  .S:PSOSNAME]"" PSOTXT=" Printed at "_PSOSNAME
- .S PSORDATA=PSOTXT_U_$P(PSOX1,U,2,6)
+ .S:PSORN=0 PSORDATA=PSOTXT_U_$P(PSOX1,U,2,3)_U_U_$P(PSOX1,U,4,5)   ; RBD *774 PSORN = 0: Pull info from "OF" node
+ .S:PSORN>0 PSORDATA=PSOTXT_U_$P(PSOX1,U,2,6)   ; RBD *774 PSORN > 0: Pull info from "RF" node
  ;If there's no Refill with the same date as the label log date, check the partial fill entries.
  I PSORN,($G(PSORDATA)="") S PSORDATA=$$PFCHK(PSOIEN,PSOLBLDT,1)
  Q PSORDATA

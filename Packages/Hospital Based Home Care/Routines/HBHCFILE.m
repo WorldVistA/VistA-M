@@ -1,5 +1,5 @@
 HBHCFILE ; LR VAMC(IRMS)/MJT- HBHC Build/Verify Transmission File; May 05, 2021@14:33
- ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,8,9,10,16,21,24,27,32**;NOV 01, 1993;Build 58
+ ;;1.0;HOSPITAL BASED HOME CARE;**2,5,6,8,9,10,16,21,24,27,32,36**;NOV 01, 1993;Build 1
  ;
  ;
  ; Reference/ICR
@@ -13,6 +13,7 @@ HBHCFILE ; LR VAMC(IRMS)/MJT- HBHC Build/Verify Transmission File; May 05, 2021@
  I ($D(^HBHC(634.1,"B")))!($D(^HBHC(634.2,"B")))!($D(^HBHC(634.3,"B")))!($D(^HBHC(634.5,"B")))!($D(^HBHC(634.7,"B"))) W $C(7),!!,"Records containing errors exist and must be corrected before transmit",!,"file can be created or updated.",!! H 3 Q
 EN ; Entry point
  I $P(^HBHC(631.9,1,0),U,8)]"" W $C(7),!,"File Update in progress.  Please try again later." H 3 Q
+ I $P(^HBHC(631.9,1,0),U,6)]"" W $C(7),!,"Austin transmission in progress. Please try again later." H 3 Q  ;p36
  ;HBH*1.0*32: At least one parent site must be defined.
  I $O(^HBHC(631.9,1,1,"B",""))="" D  Q
  . W !!,"No parent sites are defined at this facility."
@@ -46,6 +47,7 @@ NUMBER ; Edit Number of Visit Days to Scan system parameter
  K %DT S X="T"-($S(HBHCDIR'=DIR("B"):HBHCDIR,1:DIR("B"))) D ^%DT
  I (Y_".9999")'<HBHCLSDT D DD^%DT W $C(7),!!,"Date Range is invalid.  Transmit Month Ending Date of:  ",HBHCCKDT,"  must",!,"be closer to today than the Number of Days to Scan Date:  ",Y,".",! G NUMBER
 CLEANUP ; Cleanup ^HBHC(634) if new transmit cycle => all records flagged as transmitted
+ Q:$$CHKXMIT  ;p36
  I ('$D(^HBHC(631,"AE","F")))&('$D(^HBHC(631,"AF","F")))&('$D(^HBHC(632,"AC","F")))&('$D(^HBHC(633.2,"AC","F"))) K ^HBHC(634) S ^HBHC(634,0)="HBHC TRANSMIT^634"
  ; Flag used to control killing HBHCDAT, HBHCDTE, & HBHCNOW in HBHCAPPT
  S HBHCFLAG=1
@@ -88,3 +90,13 @@ MAIL ; Send completed mail message
  S XMDUZ="HBHC Build Transmit File Mail Group",XMSUB=$P(HBHCDAT,"@")_" HBHC Build Transmit File",XMY(DUZ)="",XMTEXT="TMP("
  D ^XMD
  Q
+CHKXMIT() ; p36 Return 1 (true) if HBHC transmission process is running.
+ N HBHCXFLG,HBHCCTR S HBHCXFLG=0,HBHCCTR=0
+ F  Q:HBHCXFLG  Q:HBHCCTR>9  D
+ .I $P(^HBHC(631.9,1,0),U,6)=1 D
+ ..W:'HBHCCTR $C(7),!,"File Transmission in progress. Waiting."
+ ..H 1 W "." S HBHCCTR=HBHCCTR+1
+ .E  S HBHCXFLG=1
+ W:HBHCCTR>9 $C(7),!!,"File Transmission in progress. Please try again later."
+ Q:HBHCCTR>9 1
+ Q 0

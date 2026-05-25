@@ -1,14 +1,14 @@
 IBARXMQ ;LL/ELZ-RX COPAY RPC QUERY ROUTINE (MILL BILL) ;10-OCT-2000
- ;;2.0;INTEGRATED BILLING;**150,156,186,199,563,676**;21-MAR-94;Build 34
+ ;;2.0;INTEGRATED BILLING;**150,156,186,199,563,676,746**;21-MAR-94;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; main entry point for users to request a query of rx bills from all possible facilities
- N DIC,X,Y,DFN,IBT,IBTFL,%,%ZIS,ZTSAVE,POP,ZTSK,DIR,IBDT,IBPAT,IBROOT
+ N DIC,X,Y,DFN,IBT,IBTFL,%,%ZIS,ZTSAVE,POP,ZTSK,DIR,IBDT,IBPAT,IBROOT,IBDOB
  ;
  ; select patient, and get pt info
  N DPTNOFZY S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
  S DIC="^DPT(",DIC(0)="AEMNQ" D ^DIC Q:Y<1  S DFN=+Y
- D DEM^VADPT S IBPAT=VADM(1)_"^"_VA("BID") D KVAR^VADPT
+ D DEM^VADPT S IBPAT=VADM(1)_"^"_VA("BID"),IBDOB=$P(VADM(3),U,2) D KVAR^VADPT ;IB*2.0*746
  ;
  ; ask for month / year
  S DIR(0)="D^::AEMP",DIR("A")="For What Month/Year" D ^DIR Q:Y<1
@@ -80,7 +80,7 @@ HEAD ; prints header info
  I IBP>0,$E(IOST,1,2)="C-" S DIR(0)="E" D ^DIR Q:$D(DIRUT)
  S IBP=IBP+1
  W @IOF,!,"Medication Co-Pay Billing Summary",?IOM-10,"Page: ",IBP
- W !,"Patient: ",$P(IBPAT,"^")," (",$P(IBPAT,"^",2),")",?IOM-11,$$FMTE^XLFDT(IBDT),!
+ W !,"Patient: ",$P(IBPAT,"^")," (",IBDOB,")",?IOM-11,$$FMTE^XLFDT(IBDT),! ;IB*2.0*746
  F X=0:1:IOM-1 W "-"
  W !,"Station          AR Bill      Date     Tier Brief Description      Billed  Not B",! F X=0:1:IOM-1 W "-"
  Q

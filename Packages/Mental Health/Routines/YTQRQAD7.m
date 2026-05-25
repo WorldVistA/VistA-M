@@ -1,5 +1,5 @@
 YTQRQAD7 ;BAL/KTL - RESTful Calls to handle MHA Web RPCs ; 7/19/2021
- ;;5.01;MENTAL HEALTH;**181,187,202,204,250**;Dec 30, 1994;Build 26
+ ;;5.01;MENTAL HEALTH;**181,187,202,204,250,258**;Dec 30, 1994;Build 2
  ;
  ; Reference to EN^XPAR in ICR #2263
  ; Reference to ORQQCN in ICR #1671
@@ -34,7 +34,7 @@ SETASMTP(ARGS,DATA) ; Set last Assig Pref
  . Q:$TR(HTTPREQ(II)," ")=""
  . S CNT=CNT+1,YSWPARR(CNT,0)=HTTPREQ(II)
  D CHKPRMA(.YSWPARR,"")
- I $G(YSWPARR(1,0))="" K HTTPREQ
+ I $G(YSWPARR(1,0))="" Q "/api/mha/assignmentparam/pref/OK"  ;K HTTPREQ Don't take any action
  ;
  S YSRET=$$SETPARAM("YS MHA_WEB LAST ASSIGN SET","/api/mha/assignmentparam/pref/",.HTTPREQ,,"LAST ASSIGNMENT")
  Q YSRET
@@ -197,8 +197,8 @@ CHKPRMA(YSWPARR,DFLT) ;Check Last Assign
  .. S FILEN=$S(J="location":44,1:200)
  .. S INSTN=$G(INSTARR(J,"name")) S:INSTN="" INSTN=$G(INSTARR(J,"displayName"))
  .. S INSTN=$$UP^XLFSTR(INSTN),INSTN=$$TRIM^XLFSTR(INSTN)
- .. S JEIN=$$FNDB(INSTN,FILEN)
  .. S INSTI=$G(INSTARR(J,"id"))
+ .. S JEIN=$$FNDB(INSTN,FILEN,INSTI)
  .. I JEIN'=INSTI S CHGF=1
  K YSWPARR,TMPARR
  I CHGF=1 S YSWPARR(1,0)=DFLT Q
@@ -207,15 +207,20 @@ CHKPRMA(YSWPARR,DFLT) ;Check Last Assign
  . S I=0 F  S I=$O(TMPARR(I)) Q:+I=0  D
  .. S YSWPARR(I,0)=TMPARR(I)
  Q
-FNDB(FNAM,FILEN) ;Return IEN if entry found("B" xref)
+FNDB(FNAM,FILEN,INSTI) ;Return IEN if entry found("B" xref)
  N IEN,STAT
+ N II
  S (IEN,STAT)=0
  I +FILEN=0 Q STAT
  I $G(FNAM)="" Q STAT
  I FILEN=200 D
- . S IEN=+$O(^VA(FILEN,"B",FNAM,""))
+ . S II=0
+ . F  S II=+$O(^VA(FILEN,"B",FNAM,II)) Q:II=0!(II=INSTI)
+ . S:II=INSTI IEN=II
  I FILEN=44 D
- . S IEN=+$O(^SC("B",FNAM,""))
+ . S II=0
+ . F  S II=+$O(^SC("B",FNAM,II)) Q:II=0!(II=INSTI)
+ . S:II=INSTI IEN=II
  Q IEN
 CHKPRMI(YSWPARR,DFLT,CHGF) ;Check inact inst
  N INSTARR,TMPARR,I,J,INSTN,ISTAT,ERR

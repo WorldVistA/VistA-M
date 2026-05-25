@@ -1,5 +1,5 @@
 ONCDTX ;HINES OIFO/GWB - Delete treatment data ;06/23/10
- ;;2.2;ONCOLOGY;**1,5,15,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,5,15,20,22**;Jul 31, 2013;Build 6
  ;
 DEL ;Delete all First Course of Treatment data
  I '$D(DATEDX) Q
@@ -18,7 +18,10 @@ DEL ;Delete all First Course of Treatment data
  S $P(^ONCO(165.5,DA,3),U,41)="" D SOSNR
  S $P(^ONCO(165.5,DA,3.1),U,33)="" D SOSN
  S $P(^ONCO(165.5,DA,3),U,33)=""
- S $P(^ONCO(165.5,DA,3),U,6)="" D RAD
+ I $P($G(^ONCO(165.5,DA,0)),U,16)<3180000 D
+ .S $P(^ONCO(165.5,DA,3),U,6)="" D RAD
+ I $P($G(^ONCO(165.5,DA,0)),U,16)>3171231 D
+ .S $P(^ONCO(165.5,DA,3),U,4)="" D RAD
  S $P(^ONCO(165.5,DA,3),U,35)=""
  S $P(^ONCO(165.5,DA,3),U,13)="" D CHE
  S $P(^ONCO(165.5,DA,3),U,16)="" D HOR
@@ -135,7 +138,8 @@ SOSN ;SURG PROC/OTHER SITE (F) (165.5,139.4)
  Q
  ;
 RAD ;RADIATON (165.5,51.2)
- Q:$P(^ONCO(165.5,DA,3),U,6)'=""
+ I $P($G(^ONCO(165.5,DA,0)),U,16)<3180000,$P(^ONCO(165.5,DA,3),U,6)'="" Q
+ I $P($G(^ONCO(165.5,DA,0)),U,16)>3171231,$P(^ONCO(165.5,DA,3),U,4)'="" Q
  S TXDT=$P(^ONCO(165.5,DA,3),U,4)_"R"
  S $P(^ONCO(165.5,DA,3),U,4)=""
  K ^ONCO(165.5,"ATX",DA,TXDT)
@@ -150,22 +154,28 @@ RAD ;RADIATON (165.5,51.2)
  S $P(^ONCO(165.5,DA,3),U,7)=""
  S $P(^ONCO(165.5,DA,"BLA2"),U,16)=""
  S $P(^ONCO(165.5,DA,3),U,35)=""
+ S $P(^ONCO(165.5,DA,"NCR18B"),U,1)=""
+ S $P(^ONCO(165.5,DA,"NCR18B"),U,2)=""
+ S $P(^ONCO(165.5,DA,"NCR18B"),U,3)=""
+ N PCNUM F PCNUM=1:1:21 D
+ .S $P(^ONCO(165.5,DA,"RAD18"),U,PCNUM)=""
  K ^ONCO(165.5,DA,15)
  I $D(NTDEL) Q
- W !!,"Deleting data from the following fields...",!
- W !,"  RADIATION"
- W !,"  DATE RADIATION STARTED"
- W !,"  LOCATION OF RADIATION TX"
- W !,"  RADIATION TREATMENT VOLUME"
- W !,"  REGIONAL TREATMENT MODALITY"
- W !,"  REGIONAL DOSE:cGy"
- W !,"  BOOST TREATMENT MODALITY"
- W !,"  BOOST DOSE:cGy"
- W !,"  NUMBER OF TXS TO THIS VOLUME"
- W !,"  RADIATION/SURGERY SEQUENCE"
- W !,"  DATE RADIATION ENDED"
- W !,"  REASON FOR NO RADIATION"
- W !,"  RX TEXT-RADIATION"
+ W !!,"Deleting data from the RADIATION fields...",!
+ ;W !!,"Deleting data from the following fields...",!
+ ;W !,"  RADIATION"
+ ;W !,"  DATE RADIATION STARTED"
+ ;W !,"  LOCATION OF RADIATION TX"
+ ;W !,"  RADIATION TREATMENT VOLUME"
+ ;W !,"  REGIONAL TREATMENT MODALITY"
+ ;W !,"  REGIONAL DOSE:cGy"
+ ;W !,"  BOOST TREATMENT MODALITY"
+ ;W !,"  BOOST DOSE:cGy"
+ ;W !,"  NUMBER OF TXS TO THIS VOLUME"
+ ;W !,"  RADIATION/SURGERY SEQUENCE"
+ ;W !,"  DATE RADIATION ENDED"
+ ;W !,"  REASON FOR NO RADIATION"
+ ;W !,"  RX TEXT-RADIATION"
  N COC,DRATF
  D CHKCOC^ONCATF
  I (COC="00")!(COC=30)!(COC=31)!(COC=32)!(COC=33)!(COC=40)!(COC=41) Q

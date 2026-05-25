@@ -1,5 +1,5 @@
 IBCNERTC ;AITC/HN - Covered by Health Insurance ;03-MAR-2017
- ;;2.0;INTEGRATED BILLING;**593**;21-MAR-94;Build 31
+ ;;2.0;INTEGRATED BILLING;**593,822**;21-MAR-94;Build 21
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;**Program Description**
@@ -90,4 +90,122 @@ XREF ;Build the "ACHI" cross reference
  . D ENALL^DIK
  . S DIK(1)="8^ACHI"
  . D ENALL^DIK
+ ;
+ ;
+DBR ; IB*822/DTG run in background the selected insurance patients verified date check
+ ;
+ N ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTQUEUED,ZTUCI,ZTCPU,ZTPRI,ZTSAVE,ZTKIL,ZTSYNC,ZTSK
+ ;
+ ; run now
+ S ZTDTH=$$NOW^XLFDT()
+ ;
+ ; Set up the other TaskManager variables
+ S ZTRTN="SPEC^IBCNERTC"
+ S ZTSAVE("IBBINSEL")=""
+ S ZTDESC="Daily Selected Ins Patient Verify Date Check"
+ S ZTIO=""
+ D ^%ZTLOAD            ; Call TaskManager
+ ;
+DBRX ; Exit
  Q
+ ;
+ER ; Unlock the eIV Nightly Task and return to log error
+ L -^TMP("IBCNERTCS")
+ I $D(ZTQUEUED) S ZTREQ="@"
+ D ^%ZTER
+ D UNWIND^%ZTER
+ Q
+ ;
+ ;
+SPEC ; IB*822/DTG  run re-verify for Specific Insurances
+ ;
+ ;
+ ;Quit if VAMC Site is MANILA (#358) & EIV is disabled for MANILA.
+ I $P($$SITE^VASITE,U,3)=358,$$GET1^DIQ(350.9,"1,",51.33,"I")="N" Q
+ ;
+ N $ES,$ET
+ S $ET="D ER^IBCNERTC"
+ ; Check lock
+ L +^TMP("IBCNERTCS"):1 I '$T D  G SPECX
+ . I '$D(ZTSK) W !!,"The Check of Selected Ins. Patients verified date is already running, please retry later." D PAUSE^VALM1
+ ;
+ S IBBINSEL=$G(IBBINSEL)
+ I IBBINSEL="" D  G SPECX:'IBBINSEL
+ . S IBBINSEL=+$$FIND1^DIC(200,,"MX","IB,AUTOINS FILEUPDATE") Q:IBBINSEL
+ . I '$D(ZTSK) W !!,"Missing the default proxy user" D PAUSE^VALM1
+ ;
+ ; process the selected insurance companies
+ ;
+ N FDA,IBA,IBB,IBC,IBCO,IBCON,IBD,IBER,IBERT,IBFRDY,IBFRSHDY,IBI,IBINIEN,IBINST,IBLEN,IBPLAN
+ N IBPTDFN,IBPTINIE,IBPTRINS,IBRET,IBRETURN,IBTDT,IBUSER
+ ;
+ S IBFRSHDY=$$GET1^DIQ(350.9,"1,",51.01,"I")
+ S IBRETURN="^TMP(""IBCNERTCA"","_$J_")",IBER="IBERT"
+ ;
+ F IBI=1:1 S IBCON=$P($T(SPECLST+IBI),";;",2) Q:IBCON=""  D SPECP
+ ;
+ G SPECX
+ ;
+ Q
+ ;
+SPECX ; Purge task record - if queued
+ K ^TMP("IBCNERTCA",$J)
+ L -^TMP("IBCNERTCS")
+ Q
+ ;
+SPECLST ; list of specified Insurance Companies
+ ;;US DEPART OF LABOR MED DFEC
+ ;;US DEPT OF LABOR MED DCMWC
+ ;;US DEPT OF LABOR MED DEEOIC
+ ;;US DEPART OF LABOR PHARM DFEC
+ ;;US DEPT OF LABOR PHARM DCMWC
+ ;;US DEPT OF LABOR PHARM DEEOIC
+ ;;CAMP LEJEUNE (WNR)
+ ;;IVF - WNR
+ ;;VHA DIRECTIVE 1029 WNR
+ ;;REGIONAL COUNSEL (02)
+ ;;OFFICE OF REGIONAL COUNSEL
+ ;;
+ ;
+SPECP ; process insurance name
+ ;
+ N IBCHKDT,IBOK
+ ;get insurance IENs for name from B cross
+ S IBTDT=$$NOW^XLFDT  ; set the file time for each insurance company
+ S IBINIEN=0 F  S IBINIEN=$O(^DIC(36,"B",IBCON,IBINIEN)) Q:'IBINIEN  D
+ . S IBINST=+$$GET1^DIQ(36,IBINIEN_",",.05,"I") I IBINST Q  ; only process active Insurance Co's with that name
+ . ; get the list of patients who are: 1) active ins co,  (2) active plans,
+ . ; (3) patient is active
+ . K @IBRETURN,@IBER
+ . ;
+ . D INSSUB^IBCNINSU(IBINIEN,.IBRETURN,.IBER)
+ . S IBA=$G(@IBER) I IBA'="" Q  ; error on lookup
+ . I '$D(@IBRETURN) Q  ; no data returned
+ . ;
+ . S IBTDT=$$NOW^XLFDT  ; set the file date/time for each insurance company
+ . ;
+ . ; now we have the data in IBRETURN
+ . ; structure is ^TMP("IBCNERTCA",$J,Ins IEN,Plan IEN, PT DFN, PT (2.312) insurance IEN)
+ . ; IBINIEN is already set
+ . K IBA
+ . ; IBRETURN="^TMP(""IBCNERTCA"","_$J_")"
+ . S IBPLAN=0 F  S IBPLAN=$O(^TMP("IBCNERTCA",$J,IBINIEN,IBPLAN)) Q:'IBPLAN  D
+ .. S IBPTDFN=0 F  S IBPTDFN=$O(^TMP("IBCNERTCA",$J,IBINIEN,IBPLAN,IBPTDFN)) Q:'IBPTDFN  D
+ ... S IBPTINIE=0 F  S IBPTINIE=$O(^TMP("IBCNERTCA",$J,IBINIEN,IBPLAN,IBPTDFN,IBPTINIE)) Q:'IBPTINIE  D
+ ... . ;
+ ... . S IBA=$G(^TMP("IBCNERTCA",$J,IBINIEN,IBPLAN,IBPTDFN,IBPTINIE)),IBPTRINS=IBPTINIE_","_IBPTDFN_","
+ ... . ; verify
+ ... . S IBD=$$GET1^DIQ(2.312,IBPTRINS,"1.03","I")  ; last verified date
+ ... . ;
+ ... . I +IBFRSHDY&($P(IBD,".",1)'=""&($$FMDIFF^XLFDT(DT,$P(IBD,".",1),1)<IBFRSHDY)) Q  ; the verify dt difference is less than fresh days
+ ... . ;
+ ... . K FDA S IBTDT=$$NOW^XLFDT
+ ... . S FDA(2.312,IBPTRINS,1.03)=IBTDT
+ ... . S FDA(2.312,IBPTRINS,1.04)=IBBINSEL  ; proxy user IB,AUTOINS FILEUPDATE
+ ... . S FDA(2.312,IBPTRINS,1.05)=IBTDT
+ ... . S FDA(2.312,IBPTRINS,1.06)=IBBINSEL  ; proxy user IB,AUTOINS FILEUPDATE
+ ... . D FILE^DIE("","FDA")
+ ... . K FDA
+ ;
+ Q
+ ;

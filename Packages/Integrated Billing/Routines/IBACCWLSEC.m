@@ -1,0 +1,165 @@
+IBACCWLSEC ;EDE/TPF - ACC (Automated Community Care) Encounters - User Group Security ; 12-SEP-2023 ; 12-SEP-2023
+ ;;2.0;INTEGRATED BILLING;**770**;21-MAR-2024;Build 119
+ ;;Per VA Directive 6402, this routine should not be modified.
+ Q
+ ;This routine is called by option [IBACC WL ACC CLAIMS WORKLIST  ACC Claims Worklist
+ ;and acts as a gatekeeper to direct the user to the appropriate work list, displays and action item menu
+ ;given their assigned security key.
+ ;
+ ;IA #6286 (API IA #3277)
+ ;
+ ;D EN^IBACCWLSEC
+EN ;EP - ENTRY POINT FOR USER GROUP SECURITY
+ ;CALLED BY OPTION: IBACC WL ACC CLAIMS WORKLIST
+ N ACCTSTENV,IBSORT,IBDAYSMAX,IBBILLER,IBDIV,IBQUIT,IBUSERKEYSTR,MAXNUMBER,MAXGRRPNUM,NODATA,PIECE,PUBLISHINGON,PUBLISHUPDATE,REP,ROLE,SESSIONKEY,SESSMEMORY,USERGROUP  ;GLOBAL SESSION VARS
+ N IBICAMEFROMEE  ;IF TRUE SIGNIFIES A RELOAD CAME FROM ACTION ITEM 'EE ACC Expand Encounter'
+ N TSTIBINTEGSITE    ;TESTING FOR INTEGRATED SITES ONLY  ;TPF;IB*2*770v9
+ N IBPARENT,IBACCWLEELEV,IBACCWLRURREVLEV,IBACCWLVELEV  ;TPF;IB*2*770v38;EBILL-5485 PARENT OR CHILD WL? AND LEVEL OF CHILD INSTANTIATION 
+ ;
+ I '$D(^IBA(364.9,0))!'($P($G(^IBA(364.9,0)),U,4)) D  Q
+ .W !!,"FILE #364.9 ACC X12 ENCOUNTERS HAS NOT BEEN FOUND ON YOUR SYSTEM!!"
+ .W !,"CONTACT YOUR SITE MANAGER."
+ .S DIR(0)="E"
+ .D ^DIR
+ ;
+ S PUBLISHINGON=1    ;DETERMINES WHETHER AN ACTION TAKEN UPDATES OTHER WL DATA ARRAYS (I.E. UPDATES OTHER USER'S DIPLAY SCREENS) IN REAL TIME 
+ S MAXNUMBER=$P($G(^IBA(364.9,0)),U,4)
+ I MAXNUMBER>999 S MAXNUMBER=1000  ;THROTTLE NO MATTER HOW MANY ENTRIES
+ ;
+ ;MOVED TO HERE FROM SECKEYS API TO USE GLOBALLY
+ S REP("IBACCBILL")="Billing"
+ S REP("IBACCFRT")="Facility Revenue"
+ ;S REP("IBACCPTF")="Facility Revenue PTF"    ;TPF;IB*2*770v13;EBILL-????
+ S REP("IBACCPTF")="PTF"    ;MJL;IB*2*770v51;EBILL-5978
+ S REP("IBACCRUR")="Revenue Utilization Review"
+ S REP("IBACCIV")="Insurance Verification"
+ S REP("IBACCSUP")="Supervisor"
+ ;
+ Q:'$$SECKEYS(.IBUSERKEYSTR,.SESSIONKEY)
+ ;
+ I ($L(IBUSERKEYSTR,U)>1!(IBUSERKEYSTR="None")) D  Q:'$D(SESSIONKEY)!$G(NODATA)   ;,((DUZ(0)="@")!($$ISTESTER^IBACCWLUTIL(DUZ)))   ;TPF;IB*2*770v9
+ .;
+ .W !!,"Choose your role."   ;TPF;IB*2*770v9
+ .N DIR,DIRUT,DIROUT,DUOUT,DTOUT,PROMPT,ROLE,SETOFCODES,X,Y
+ .S PROMPT=""
+ .F PIECE=1:1 S ROLE=$P(SESSIONKEY,U,PIECE) Q:ROLE=""  D
+ ..I ROLE="None" S ROLE="SUP"
+ ..Q:ROLE=""
+ ..I ROLE[("SUP"),'$$ISITME^IBACCWLUTIL(DUZ) Q
+ ..S PROMPT=PROMPT_$E(ROLE,6,$L(ROLE))_":"_ROLE_";"
+ .;
+ .S DIR(0)="SO"_U_PROMPT
+ .I PROMPT[("IBACCFRT") S DIR("B")="FRT"   ;TPF;IB*2*770v47;EBILL-6033
+ .E  S DIR("B")=$P(PROMPT,":")
+ .D ^DIR
+ .I $D(DUOUT)!$D(DTOUT)!$D(DIROUT)!$D(DIRUT) K SESSIONKEY W !!,"NO ROLE CHOSEN. EXITING WORKLIST!!" Q
+ .S SESSIONKEY=$G(Y(0))
+ .;
+ .N Y D GETENV^%ZOSV  ;S ACCTSTENV=Y[("vaausapptas801.aac.domain.ext")  ;TPF;IB*2*770v9
+ .I Y[("vaausapptas801.aac.domain.ext") D  Q:'$D(SESSIONKEY)   ;TPF;IB*2*770v7    ;TPF;IB*2*770v9
+ ..N DIR,DIRUT,DIROUT,DUOUT,DTOUT,X,Y
+ ..W !!,"CHOOSE INTEGRATED SITES"      ;TPF;IB*2*770v18;EBILL-4623
+ ..S DIR("?",1)="As a tester you can test the Special Lookup restrictions for Integrated Sites"
+ ..S DIR("?",2)="which limit how you can enter Station/Division/Integrated Site numbers at the"
+ ..S DIR("?",3)="DIVISION/STATION/FACILITY GROUP: prompt."
+ ..S DIR("?",4)="If you enter an integrated Site number here you will be restricted to entering"
+ ..S DIR("?",5)="Integrated Site numbers belonging to the integrated site you chose."
+ ..S DIR("?",6)="Otherwise there will be no restriction and you can enter any site numbers you"
+ ..S DIR("?",7)="wish and thus mimicking a 'normal' site"
+ ..S DIR("?")="Press Return"
+ ..S DIR(0)="SO^528:NORTHEAST;636:CENTRAL PLAINS I;589:CENTRAL PLAINS II;657:CENTRAL PLAINS III"
+ ..S DIR("A")="Enter the Integrated Site"
+ ..S DIR("B")=""
+ ..D ^DIR
+ ..I $D(DUOUT)!$D(DTOUT)!$D(DIROUT) K SESSIONKEY Q
+ ..S TSTIBINTEGSITE=+Y  ;TPF;IB*2*770v9
+ ..S:TSTIBINTEGSITE=0 TSTIBINTEGSITE="NA"
+ .;
+ ;BEGIN TPF;IB*2*770v45;EBILL-6028 REMOVE DOT SECTION SO EVERYINE GETS THIS PROMPT
+ S MAXGRRPNUM=$$GRPTOTAL($P(SESSIONKEY,"IBACC",2))
+ ;TPF;IB*2*770v5
+ I MAXGRRPNUM=0 D  Q
+ .W !!,"NO DATA FOUND FOR WORK GROUP "_$P(SESSIONKEY,"IBACC",2) S NODATA=1
+ .W !
+ .N DIR
+ .S DIR(0)="E"
+ .D ^DIR
+ ;
+ I MAXGRRPNUM<MAXNUMBER S MAXNUMBER=MAXGRRPNUM
+ N DIR
+ ;BEGIN TPF;IB*2*770v46;EBILL-6028
+ W !!
+ S DIR(0)="NO^1:"_MAXGRRPNUM
+ ;S DIR("A")="Enter Max Number of records to pull"
+ S DIR("A")="Limit Number of records to pull"  ;TPF;IB*2*770v58;EBILL-6389
+ ;S DIR("?",1)="Enter the maximum number of records you wish to display in your worklist."
+ ;S DIR("?",2)="The number displayed will depend on your filter criteria and the"
+ ;S DIR("?",3)="number of encounters assigned to your work group."
+ ;S DIR("?",4)=" "
+ ;S DIR("?",5)="You cannot enter more than the total assigned to your workgroup which is "_$G(MAXGRRPNUM)_"."
+ ;S DIR("?",6)=" "
+ ;BEGIN TPF;IB*2*770v58;EBILL-6389
+ S DIR("?",1)="The number of encounters returned to worklist does not exceed the limit"
+ S DIR("?",2)="entered at prompt; processing starts with oldest encounters and returns"
+ S DIR("?",3)="results based on filter criteria until limit is met."
+ S DIR("?",4)=" "
+ S DIR("?",5)="Cannot enter more than the total available to the worklist which is "_$G(MAXGRRPNUM)_"."
+ S DIR("?",6)=" "
+ ;END TPF;IB*2*770v58;EBILL-6389
+ S DIR("?")="Press Return to Continue"
+ ;END TPF;IB*2*770v36;EBILL-5774,5775
+ S DIR("B")=$G(MAXNUMBER)
+ D ^DIR
+ I $D(DUOUT)!$D(DTOUT)!$D(DIROUT) K SESSIONKEY Q
+ S MAXNUMBER=Y
+ ;END TPF;IB*2*770v46;EBILL-6028
+ ;
+ W !!
+ ;
+ S USERGROUP=$P(SESSIONKEY,"IBACC",2)
+ S IBPARENT=1  ;TPF;IB*2*770vPURPLE;EBILL-5385 ALL STANDARD WORKGROUP WLs ARE PARENTS - DISPLAY MUTLIPLE RECORDS
+ D EN^VALM("IBACC WL "_SESSIONKEY)
+ ;
+ Q
+ ;
+ ;S IBUSERKEYSTR=$$GETKEYS^IBACCWL()
+SECKEYS(IBUSERKEYSTR,SESSIONKEY,REP) ;EP - GET ACC KEYS ASSIGNED TO USER
+ ;
+ N IBACCKEYS,NEWLMTEMP,KEYIEN,KEYS,RET
+ S IBACCKEYS(1)="IBACCBILL"          ;RBT  - REIMBURSABLE BILLING TECHNICISN
+ S IBACCKEYS(2)="IBACCFRT"           ;FRT  - FACILITY REVENUE TECHNICIAN
+ S IBACCKEYS(3)="IBACCPTF"          ;PTF  - FACILITY REVENUE TECHNICIAN PTF  TPF;;IB*2*770v12;EBILL-4550
+ S IBACCKEYS(4)="IBACCRUR"           ;RUR  - RUR NURSE
+ S IBACCKEYS(5)="IBACCSUP"           ;SUP  - SUPERVISOR - ASSIGNED IF DEVELOPER OR OWNER IF IBACCSUP SECURITY KEY
+ S IBACCKEYS(6)="IBACCIV"            ;IV   - INSURANCE VERIFICATION
+ ;
+ D OWNSKEY^XUSRB(.RET,.IBACCKEYS)  ;IA #3277 (Supported)
+ ;
+ S IBUSERKEYSTR=""
+ S KEYIEN=0
+ F  S KEYIEN=$O(RET(KEYIEN)) Q:'KEYIEN  D
+ .Q:'RET(KEYIEN)
+ .S KEYS=IBACCKEYS(KEYIEN)
+ .S IBUSERKEYSTR=IBUSERKEYSTR_U_$P(IBACCKEYS(KEYIEN),U)
+ S IBUSERKEYSTR=$E(IBUSERKEYSTR,2,9999)
+ S:IBUSERKEYSTR=U!(IBUSERKEYSTR="") IBUSERKEYSTR="None"
+ ;
+ S SESSIONKEY=IBUSERKEYSTR
+ ;
+ S NEWLMTEMP=$$REPLACE^XLFSTR(IBUSERKEYSTR,.REP)
+ S IBUSERKEYSTR=NEWLMTEMP
+ ;
+ Q 1
+ ;
+ ;TPF;IB*2*770v16;EBILL-EBILL
+GRPTOTAL(GROUP) ;EP - CALC NUMBER OF ENTRIES PER WORK GROUP "AC" X-REF
+ N CNT,IBIFN,IEN
+ S IEN=0
+ S CNT=0
+ ;
+ F  S IEN=$O(^IBA(364.9,"AC",GROUP,IEN)) Q:IEN=""  D
+ .Q:$P($G(^IBA(364.9,IEN,0)),U,16)>1    ;SKIP STATUS = CLOSED OR PURGED
+ .S IBIFN=$P($G(^IBA(364.9,IEN,2)),U,2)
+ .I $$TRANSMITTED^IBACCWLUTIL1(IBIFN) Q
+ .S CNT=CNT+1
+ Q CNT

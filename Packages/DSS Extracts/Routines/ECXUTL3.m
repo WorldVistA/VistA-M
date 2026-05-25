@@ -1,5 +1,5 @@
 ECXUTL3 ;ALB/GTS - Utilities for DSS Extracts ;9/4/18  13:18
- ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149,154,166,170,184,187**;Dec 22,1997;Build 163
+ ;;3.0;DSS EXTRACTS;**11,24,32,33,35,37,39,42,46,92,105,120,144,149,154,166,170,184,187,196**;Dec 22,1997;Build 28
  ;
  ; Reference to ^DPT( in ICR #1850
  ; Reference to $$GETSTAT^DGMSTAPI in ICR #2716
@@ -102,7 +102,7 @@ PAT(ECXDFN,ECXDATE,ECXDATA,ECXPAT) ;Return basic patient data for extract
  . S ECXPAT("SSN")=$P(VADM(2),U),ECXPAT("MARITAL")=$P(VADM(10),U)
  . S ECXPAT("DOB")=$$ECXDOB^ECXUTL($P(VADM(3),U))
  . S ECXPAT("SEX")=$P(VADM(5),U),ECXPAT("RELIGION")=$P(VADM(9),U)
- . S ECXPAT("SIGI")=$P(VADM(14,5),U,2) ;184 - Add SIGI Code
+ . S ECXPAT("SIGI")="" ;$P(VADM(14,5),U,2) ;184 - Add SIGI Code; 196 - Remove SIGI Code
  . S DIC=10,DR=2,DA=+VADM(8),DIQ="ECXAR",DIQ(0)="I" D EN^DIQ1
  . S ECXPAT("RACE")=$G(ECXAR(10,DA,DR,"I")),ECXPAT=1
  . ;add new race and ethnicity fields for FY2003

@@ -1,5 +1,5 @@
 IBNCPDPU ;OAK/ELZ - UTILITIES FOR NCPDP ;Jun 06, 2014@19:13:12
- ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452,511,534,550,624,711**;21-MAR-94;Build 18
+ ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452,511,534,550,624,711,798**;21-MAR-94;Build 25
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to ECMEACT^PSOBPSU1 in ICR #4702
@@ -345,7 +345,7 @@ ECMEMTCH(IBECME,IBDAT,IBPNAME,IBERR) ; Attempt ECME# look up with either 7 digit
  . S IBKEY=ECMENUM_";"_IBDAT ; The ECME Number (BC ID) for the "AG" xref
  . S BILLDA=""
  . ; Search Backward
- . F  S BILLDA=$O(^DGCR(399,"AG",IBKEY,BILLDA),-1) Q:BILLDA=""  D  Q:IBFOUND
+ . F  S BILLDA=$O(^DGCR(399,"AECME",IBKEY,BILLDA),-1) Q:BILLDA=""  D  Q:IBFOUND    ;Replace index "AG" with "AECME", IB*2.0*798
  .. I 'BILLDA Q  ; IEN must be numeric
  .. I '$D(^DGCR(399,BILLDA,0)) Q  ; Corrupted index
  .. S IBMATCH=1

@@ -1,16 +1,12 @@
-GMTSPSO9 ;RS/DLC - OP Rx Summary Component by Select Med ;Jun 14, 2021@12:10:06
- ;;2.7;Health Summary;**125,115**;Oct 20, 1995;Build 190
+GMTSPSO9 ;RS/DLC - OP Rx Summary Component by Select Med ;Jan 14, 2026@15:27
+ ;;2.7;Health Summary;**125,115,147**;Oct 20, 1995;Build 5
  ;
  ; This is a copy of GMTSPSO7 with modifications to enable selections by class
- ; External References
- ;   DBIA    330  ^PSOHCSUM, ACS^PSOHCSUM
- ;   DBIA  10035  ^DPT(  file #2
- ;   DBIA  10011  ^DIWP
- ;   DBIA   4820  PROF^PSO52API
- ;   DBIA   2858  ^PSDRUG
- ;   DBIA   6263  ^UTILITY
- ;   DBIA   4828  PSS^PSS59P7
- ;   DBIA   4662  NAME^PSS50P7
+ ;
+ ; REFERENCE     ICR NUMBER
+ ; ========================
+ ; ^TMP("PSOO",    330
+ ; ^PSOHCSUM       330
  ;
 MAIN ; OP Rx HS Component
  N SELMED,SELMEDOI,ECD,GMR,IX,PSOBEGIN,PSOACT,GMX,GMTOP,GMTSI
@@ -21,15 +17,13 @@ MAIN ; OP Rx HS Component
  D PROF^PSO52API(DFN,"GMTSPS",1,9999999)
  I +$G(^TMP($J,"GMTSPS",DFN,0))<1,'$D(^TMP($J,"GMTSPS",DFN,"ARC")) Q
  I '$G(^TMP($J,"GMTSPS",DFN,0)),$D(^TMP($J,"GMTSPS",DFN,"ARC")) D CKP^GMTSUP Q:$D(GMTSQIT)  W "Patient Has Archived OP Prescriptions",!
- ;I '$D(^PS(55,DFN,"P")),'$D(^("ARC")) Q
- ;I '$O(^PS(55,DFN,"P",0)),$D(^PS(55,DFN,"ARC")) D CKP^GMTSUP Q:$D(GMTSQIT)  W "Patient Has Archived OP Prescriptions",!
  I $L($T(ACS^PSOHCSUM))>0 D ACS^PSOHCSUM I '$D(^TMP("PSOO",$J)) Q
  I $L($T(ACS^PSOHCSUM))'>0 D ^PSOHCSUM I '$D(^TMP("PSOO",$J)) Q
  S GMTSLO=GMTSLO+3
  S (GMTOP,GMX,IX)=0
  ;---filter first before directing to print/wrt
  F  S IX=$O(^TMP("PSOO",$J,IX)) Q:IX'>0  S GMR=$G(^(IX,0)) D
- .S SELMED=+$P(GMR,U,3),SELMEDOI=$$GET1^DIQ(50,SELMED,2.1,"I")
+ .S SELMED=+$P(GMR,U,3),SELMEDOI=$$GETOI(SELMED)
  .S GMTSI=0
  .F  S GMTSI=$O(GMTSEG(GMTSEGN,50.7,GMTSI)) Q:GMTSI'>0  D
  ..I SELMEDOI=GMTSEG(GMTSEGN,50.7,GMTSI) D WRT
@@ -82,3 +76,10 @@ HEAD ; Prints Header
  W ?18,"Rx #",?31,"Stat",?45,"Qty",?54,"Issued",?65,"Filled",?76,"Rem"
  W:$Y'>(IOSL-GMTSLO)!(+($G(GUI))>0) !
  Q
+GETOI(GMTS50IEN) ; Return pharmacy orderable item given DRUG file (#50) IEN
+ K ^TMP($J,"GMTSOI")
+ D DATA^PSS50(GMTS50IEN,,,,0,"GMTSOI")
+ N GMTSRETURN
+ S GMTSRETURN=$P($G(^TMP($J,"GMTSOI",GMTS50IEN,2.1)),U)
+ K ^TMP($J,"GMTSOI")
+ Q GMTSRETURN

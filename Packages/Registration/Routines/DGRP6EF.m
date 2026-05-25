@@ -1,5 +1,5 @@
-DGRP6EF ;ALB/TMK,EG,BAJ,JLS,ARF,JAM,ARF,JMM - REGISTRATION SCREEN 6 FIELDS FOR EXPOSURE FACTORS ;05 Feb 2015  11:06 AM
- ;;5.3;Registration;**689,659,737,688,909,1014,1018,1075,1084,1090,1103,1118,1121**;Aug 13,1993;Build 14
+DGRP6EF ;ALB/TMK,EG,BAJ,JLS,ARF,JAM,ARF,JMM,JDB - REGISTRATION SCREEN 6 FIELDS FOR EXPOSURE FACTORS ;05 Feb 2015  11:06 AM
+ ;;5.3;Registration;**689,659,737,688,909,1014,1018,1075,1084,1090,1103,1118,1121,1140**;Aug 13,1993;Build 10
  ;
 EN(DFN,QUIT) ; Display Environmental exposure factors/allow to edit
  N I,IND,DG321,DG322,DGCT,DIR,Z,X,Y,DIE,DR,DA,DGNONT
@@ -41,7 +41,9 @@ EN1 D CLEAR^VALM1
  I DGELV S Z="<2>"
  S DGCT=DGCT+1,DIR("A",DGCT)=Z_"     ION Rad.: "_$$YN^DGRP6CL(DG321,3)_$J("",8)_"Reg: "_$$DAT^DGRP6CL(DG321,11,12)_"Method: "
  S:$P(DG321,U,12)>10 $P(DG321,U,12)="" S DIR("A",DGCT)=DIR("A",DGCT)_$P($T(SELTBL+$P(DG321,U,12)),";;",2) ;DG*5.3*1090 increased number of RADIATION EXPOSURE METHOD from 7 to 10
- S Z=$E(IND)_"3"_$E(IND,2)
+ ;DG*5.3*1140 group 3 is display only always.
+ ;S Z=$E(IND)_"3"_$E(IND,2)
+ S Z="<3>"
  ;Env Contam name changed to SW Asia Conditions, DG*5.3*688
  S DGCT=DGCT+1,DIR("A",DGCT)=Z_" SW Asia Cond: "_$$YN^DGRP6CL(DG322,13)_$J("",8)_"Reg: "_$$DAT^DGRP6CL(DG322,14,12)_"  Exam: "_$$DAT^DGRP6CL(DG322,15,11)
  S DGNONT=0 I $$GETSTAT^DGNTAPI1(DFN)>2,'$D(^XUSEC("DGNT VERIFY",DUZ)) S DGNONT=1
@@ -50,9 +52,13 @@ EN1 D CLEAR^VALM1
  ;
  ; DG*5.3*909 Display Camp Lejeune info in entirety
  N DG3217CL S DG3217CL=$G(^DPT(DFN,.3217))
- N DGCLE S DGCLE=$$CLE^DGENCLEA(DFN)
- I DGCLE=1,$G(^DPT(DFN,.32171))=1 S DGCLE=0
- S IND=$S('DGCLE:"<>",1:IND)
+ ;DG*5.3*1140 Make Camp Lejeune read only
+ ;N DGCLE S DGCLE=$$CLE^DGENCLEA(DFN)
+ N DGCLE S DGCLE=0
+ ;DG*5.3*1140 next line is extraneous, DGCLE '= 1, and IND will always be "<>"
+ ;I DGCLE=1,$G(^DPT(DFN,.32171))=1 S DGCLE=0
+ ;S IND=$S('DGCLE:"<>",1:IND)
+ S IND="<>"
  S Z=$E(IND)_"5"_$E(IND,2)
  S DGCT=DGCT+1,DIR("A",DGCT)=Z_" Camp Lejeune: "
  S DIR("A",DGCT)=DIR("A",DGCT)_$$YN^DGRP6CL(DG3217CL,1)
@@ -77,19 +83,30 @@ EN1 D CLEAR^VALM1
  ; DG*5.3*1121 - The display informational message has been updated for Persian Gulf indicator
  I DGELV D
  . S DGCT=DGCT+1,DIR("A",DGCT)=" "
- . S DGCT=DGCT+1,DIR("A",DGCT)="Only VES users may enter/edit Agent Orange, ION Radiation Exposure,"
- . S DGCT=DGCT+1,DIR("A",DGCT)="Toxic Exposure Risk Activity (TERA), or Persian Gulf."
+ . ;DG*5.3*1090 changing text of screen note
+ . ;S DGCT=DGCT+1,DIR("A",DGCT)="Only VES users may enter/edit Agent Orange, ION Radiation Exposure,"
+ . ;S DGCT=DGCT+1,DIR("A",DGCT)="Toxic Exposure Risk Activity (TERA), or Persian Gulf."
+ . S DGCT=DGCT+1,DIR("A",DGCT)="VistA users may only enter/edit N/T Radium."
+ . S DGCT=DGCT+1,DIR("A",DGCT)="All others must be entered through VES."
  . S DGCT=DGCT+1,DIR("A",DGCT)=" "
  ;
  S DGCT=DGCT+1,DIR("A",DGCT)=" "
- N DGENDTXT S DGENDTXT=$S(DGNONT&DGCLE:"3,5",DGNONT&'DGCLE:"3",'DGNONT&DGCLE:"5",1:"4")  ; DG*5.3*909 Determine available choices based also on Camp Lejeune eligibility
+ ;DG*5.3*1140 Changing text of DIR("A") to reflect that only 4, N/T Radium is selectable
+ ;N DGENDTXT S DGENDTXT=$S(DGNONT&DGCLE:"5",DGNONT&'DGCLE:"3",'DGNONT&DGCLE:"5",1:"4")  ; DG*5.3*909 Determine available choices based also on Camp Lejeune eligibility
+ N DGENDTXT S DGENDTXT=4  ; DG*5.3*909 Determine available choices based also on Camp Lejeune eligibility
  S DIR("A")=$S('$G(DGRPV):"SELECT AN ENVIRONMENTAL FACTOR (1-"_DGENDTXT_") OR (Q)UIT: ",1:"PRESS RETURN TO CONTINUE ")  ;DG*5.3*909 Camp Lejeune choice added
  ; DG*5.3*1075 If DGELV flag is set, no edit of groups 1 and 2
- I DGELV S DIR("A")=$S('$G(DGRPV):"SELECT AN ENVIRONMENTAL FACTOR (3-"_DGENDTXT_") OR (Q)UIT: ",1:"PRESS RETURN TO CONTINUE ")
+ ;DG*5.3*1140 Changing text of the user prompt.
+ ;I DGELV S DIR("A")=$S('$G(DGRPV):"SELECT AN ENVIRONMENTAL FACTOR (3-"_DGENDTXT_") OR (Q)UIT: ",1:"PRESS RETURN TO CONTINUE ")
+ I DGELV S DIR("A")=$S('$G(DGRPV):"SELECT AN ENVIRONMENTAL FACTOR ("_DGENDTXT_") OR (Q)UIT: ",1:"PRESS RETURN TO CONTINUE ")
  ;Env Contam name changed to SW Asia Conditions, DG*5.3*688
- S DIR(0)=$S('$G(DGRPV):"SA^1:A/O Exp;2:ION Rad;3:SW Asia Cond;"_$S(DGNONT:"",1:"4:N/T Radium;")_$S(DGCLE:"5:Camp Lejeune;",1:"")_"Q:QUIT",1:"EA")  ; DG*5.3*909 Camp Lejeune choice added
+ ;S DIR(0)=$S('$G(DGRPV):"SA^1:A/O Exp;2:ION Rad;3:SW Asia Cond;"_$S(DGNONT:"",1:"4:N/T Radium;")_$S(DGCLE:"5:Camp Lejeune;",1:"")_"Q:QUIT",1:"EA")  ; DG*5.3*909 Camp Lejeune choice added
+ ; DG*5.3*1140 Removed 3:SW Asia Cond from previous line to prevent edits to group 3
+ S DIR(0)=$S('$G(DGRPV):"SA^1:A/O Exp;2:ION Rad;"_$S(DGNONT:"",1:"4:N/T Radium;")_$S(DGCLE:"5:Camp Lejeune;",1:"")_"Q:QUIT",1:"EA")  ; DG*5.3*909 Camp Lejeune choice added
  ; DG*5.3*1075 If DGELV, no edit of groups 1 and 2
- I DGELV S DIR(0)=$S('$G(DGRPV):"SA^3:SW Asia Cond;"_$S(DGNONT:"",1:"4:N/T Radium;")_$S(DGCLE:"5:Camp Lejeune;",1:"")_"Q:QUIT",1:"EA")  ; DG*5.3*909 Camp Lejeune choice added
+ ;I DGELV S DIR(0)=$S('$G(DGRPV):"SA^3:SW Asia Cond;"_$S(DGNONT:"",1:"4:N/T Radium;")_$S(DGCLE:"5:Camp Lejeune;",1:"")_"Q:QUIT",1:"EA")  ; DG*5.3*909 Camp Lejeune choice added
+ ; DG*5.3*1140 Removed 3:SW Asia Cond from previous line to prevent edits to group 3
+ I DGELV S DIR(0)=$S('$G(DGRPV):"SA^"_$S(DGNONT:"",1:"4:N/T Radium;")_$S(DGCLE:"5:Camp Lejeune;",1:"")_"Q:QUIT",1:"EA")  ; DG*5.3*909 Camp Lejeune choice added
  I '$G(DGRPV) S DIR("B")="QUIT"
  I 'DGCLE,$G(^DPT(DFN,.32171))=1,$P($G(XQY0),U)'="DG REGISTRATION VIEW" D
  . S DGHECMSG(1)="Camp Lejeune data has been verified by HEC, please "

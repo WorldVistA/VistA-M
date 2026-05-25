@@ -1,5 +1,7 @@
-PXKFVST ;ISL/JVS - Fields for VISIT file ;05/10/2018
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,56,111,130,124,164,168,211**;Aug 12, 1996;Build 454
+PXKFVST ;ISL/JVS - Fields for VISIT file ;Aug 04, 2025@08:47:07
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,56,111,130,124,164,168,211,244**;Aug 12, 1996;Build 37
+ ;
+ ; Reference to DIC(40.7; FIELD 1 in ICR #557
  ;
  ;  Adding or Editing of data in a particular field can be controlled
  ;by adding a ~ as a delimiter and the letters A and/or E to the
@@ -14,7 +16,7 @@ PXKFVST ;ISL/JVS - Fields for VISIT file ;05/10/2018
  ; 4. If only the ~E is added the data can only be edited in
  ;    this file for this field. (not a likely possibility)
  ;
- ; The word "OPTION" in front of the line of text below tells the 
+ ; The word "OPTION" in front of the line of text below tells the
  ;software to determine, based on the data, the appropriateness
  ;of using either a "///" or "////" stuff in a DIE call.
  ;
@@ -24,7 +26,7 @@ PXKFVST ;ISL/JVS - Fields for VISIT file ;05/10/2018
  ;to proceed without any errors. $P(,," * ",2) are the nodes and
  ;piece numbers of the fields used to determine duplicates in the
  ;file (node+piece (e.g., 12+4)). $P(,," * ",3) is a flag use to
- ;determine if duplicates are allowed in this visit file. 
+ ;determine if duplicates are allowed in this visit file.
  ;If it is set to 0 then no duplicate checks will occur. If it is
  ;set to 1 then the file will be checked for duplicates based on
  ;the information in $P 2.
@@ -105,13 +107,14 @@ UPD ;Up date visit file using visit tracking
  I $G(PXKAV(0,23))]"" S VSIT("USR")=$G(PXKAV(0,23))
  I $G(PXKAV(0,26))]"" S VSIT("ACT")=$G(PXKAV(0,26)) ;PX*1.0*164 Set Patient Account Number reference
  ;Classification questions
- N PXP,PXV,PXN
- ;AO, IR, and EC not applicable if SC answered YES (1)
- ;I $G(PXKAV(800,1))=1 F PXP=2:1:4 S PXKAV(800,PXP)="@"
- F PXP=1:1:8 D
- .S PXV=$G(PXKAV(800,PXP))
- .S PXN=$P("SC^AO^IR^EC^MST^HNC^CV^SHAD","^",PXP)
- .I PXV'="" S VSIT(PXN)=PXV
+ M VSIT(900)=PXKAV(900)
+ ;N PXP,PXV,PXN
+ ;;AO, IR, and EC not applicable if SC answered YES (1)
+ ;;I $G(PXKAV(800,1))=1 F PXP=2:1:4 S PXKAV(800,PXP)="@"
+ ;F PXP=1:1:8 D
+ ;.S PXV=$G(PXKAV(800,PXP))
+ ;.S PXN=$P("SC^AO^IR^EC^MST^HNC^CV^SHAD","^",PXP)
+ ;.I PXV'="" S VSIT(PXN)=PXV
  D UPD^VSIT
  K VSIT("DSS"),VSIT("COD"),VSIT("SC"),VSIT("AO"),VSIT("IR"),VSIT("EC")
  K VSIT("LOC"),VSIT("INS"),VSIT("ELG"),VSIT("MDT")

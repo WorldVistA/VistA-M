@@ -1,5 +1,5 @@
-PSSHRQ23 ;WOIFO/AV,TS,SG - Parses out drugsNotChecked and DrugDoseCheck XML ;09/20/07
- ;;1.0;PHARMACY DATA MANAGEMENT;**136,178,206,224**;9/30/97;Build 3
+PSSHRQ23 ;WOIFO/AV,TS,SG - Parses out drugsNotChecked and DrugDoseCheck XML ; Sep 20, 2007@16:00
+ ;;1.0;PHARMACY DATA MANAGEMENT;**136,178,206,224,254**;9/30/97;Build 109
  ;
  ; @authors - Alex Vazquez, Tim Sabat, Steve Gordon
  ; @date    - September 19, 2007
@@ -231,9 +231,10 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  . . QUIT
  . DO:PSS("childName")="doseRouteDescription"
  . . SET HASH(COUNT,"doseRouteDescription")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child")) I HASH(COUNT,"doseRouteDescription")="" D
- . . . N PSSNORTE
+ . . . N PSSNORTE,PSSERRCD
+ . . . S PSSERRCD=$G(^TMP($J,BASE,"OUT","DOSE","ERROR",HASH(COUNT,"orderNumber"),1,"TEXT"))  ;; Newcode for FDB-4590
  . . . F PSSNORTE=6,7,31 S $P(PSSDBCAR(HASH(COUNT,"orderNumber")),"^",PSSNORTE)=1
- . . . S $P(PSSDBCAR(HASH(COUNT,"orderNumber")),"^",32)=" for "_$P(PSSDBCAR(HASH(COUNT,"orderNumber")),"^",9)_" route: "
+ . . . S $P(PSSDBCAR(HASH(COUNT,"orderNumber")),"^",32)=$S(PSSERRCD="FDB dosing information is not available for this drug.":": ",1:" for "_$P(PSSDBCAR(HASH(COUNT,"orderNumber")),"^",9)_" route: ")
  . . QUIT
  . DO:PSS("childName")="doseFormHigh"
  . . SET HASH(COUNT,"doseFormHigh")=$$GETTEXT^PSSHRCOM(DOCHAND,PSS("child"))
@@ -363,15 +364,8 @@ DOSEREAD(DOCHAND,NODE,HASH,COUNT,MSGHASH,MSGCNT,BASE) ;
  .I $G(HASH(COUNT,"maxDailyDoseStatusCode"))=5,$G(HASH(COUNT,"maxDailyDoseMessage"))["frequency check failed" S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1
  Q:$P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",29)
  I $G(HASH(COUNT,"frequencyLow"))'>0!($G(HASH(COUNT,"frequencyHigh"))'>0) Q
- N PSSLFREQ,PSSHFREQ,PSSOFREQ
- S PSSOFREQ=$$ORDFREQ^PSSDSUTL($P($G(PSSDBAR("FREQZZ")),"^",2)) Q:'PSSOFREQ  ;PSSOFREQ = Order Frequency
- I PSSOFREQ["." S PSSOFREQ=$$ROUNDNUM^PSSDSUTL(PSSOFREQ)
- S PSSLFREQ=$G(HASH(COUNT,"frequencyLow")) S:PSSLFREQ["." PSSLFREQ=$$ROUNDNUM^PSSDSUTL(PSSLFREQ)
- S PSSHFREQ=$G(HASH(COUNT,"frequencyHigh")) S:PSSHFREQ["." PSSHFREQ=$$ROUNDNUM^PSSDSUTL(PSSHFREQ)
- I (PSSLFREQ<.01!(PSSHFREQ<.01)),((PSSOFREQ<PSSLFREQ)!(PSSOFREQ>PSSHFREQ)) S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
- I PSSOFREQ<1,PSSLFREQ'<1,PSSHFREQ'<1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1 Q
- I PSSOFREQ'<1,PSSLFREQ<1,PSSHFREQ<1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1
- ;
+ I '$P($G(PSSDBCAR($G(HASH(COUNT,"orderNumber")))),"^",33) D
+ . I $G(HASH(COUNT,"frequencyStatusCode"))'=1 S $P(PSSDBCAR($G(HASH(COUNT,"orderNumber"))),"^",29)=1
  QUIT
  ;;
 MSG(HASH,COUNT,TYPE) ;
@@ -381,19 +375,33 @@ MSG(HASH,COUNT,TYPE) ;
  ;  TYPE-Either "R" for Daily dose Range or "S" for maximum single dose
  ;
  ;returns: ^TMP error global
- N MSG,REASON
+ N MSG,REASON,STATUS    ;254
  S MSG=$$DOSEMSG^PSSHRVL1(HASH(COUNT,"drugName"),TYPE)
+ I TYPE="S",HASH(COUNT,"singleDoseMessage")=" " S MSG="Dosing Checks could not be performed for Drug: "_HASH(COUNT,"drugName")    ;254
+ S STATUS=""            ;254
  D
  .I TYPE="R" D  Q
  ..S REASON=$G(HASH(COUNT,"rangeDoseMessage"))
  .I TYPE="S" D  Q
+ ..N MAINMSG
  ..S REASON=$G(HASH(COUNT,"singleDoseMessage"))
+ ..S MAINMSG=$G(MSGHASH(COUNT,"text")) I $L(MAINMSG)'>1 S MAINMSG=$$MAINMSG()    ;254 This is to get the main message if no detailed message
+ ..S STATUS=$G(HASH(COUNT,"singleDoseStatus"))    ;254
+ ..I REASON=" ",STATUS'="Excluded",MAINMSG'=" " S REASON=MAINMSG
+ ..I REASON=" ",STATUS="Excluded",MAINMSG=" " S REASON="FDB dosing information is not available for this drug."
  .I TYPE="D" D  Q
  ..S REASON=$G(HASH(COUNT,"dailyDoseMessage"))
  .I TYPE="M" D  Q
+ ..S STATUS=$G(HASH(COUNT,"maxDailyDoseStatus"))  ;254
+ ..I STATUS="Excluded" S REASON=" " Q
  ..S REASON=$G(HASH(COUNT,"maxDailyDoseMessage"))
  S HASH(COUNT,"msg")=MSG
- S HASH(COUNT,"text")=$S(REASON="":"Unavailable",1:REASON)
+ S HASH(COUNT,"text")=$S(REASON=" ":"Unavailable",1:REASON)
+ S HASH(COUNT,"severity")=$G(MSGHASH(COUNT,"severity"))   ;254
+ S HASH(COUNT,"type")=$G(MSGHASH(COUNT,"type"))           ;254
+ I TYPE'="S",STATUS="Excluded" Q               ;254
+ I TYPE'="S",HASH(COUNT,"text")="Unavailable" Q
+ I TYPE="S",((STATUS="Excluded")!(STATUS="NotApplicable")),REASON'["FDB dosing information" Q
  D WRTNODE(COUNT,"DOSE",.HASH)
  Q
  ;
@@ -404,3 +412,11 @@ CHKVAL(HASH,I,SUB) ;
  ;Returns: If node has value
  ;
  Q $L($G(HASH(I,SUB)))
+ ;
+MAINMSG()  ; Getting the top level message text from MOCHA in FDB reply XML 254
+ N RTN,SQ
+ S RTN=" ",SQ=0
+ F  S SQ=$O(^TMP($J,"OUT XML",SQ)) Q:'SQ  D:^(SQ)="<text>"  Q:RTN'=" "
+ . S RTN=$P(^TMP($J,"OUT XML",$O(^TMP($J,"OUT XML",SQ))),"<")
+ I RTN="" S RTN=" "
+ Q RTN

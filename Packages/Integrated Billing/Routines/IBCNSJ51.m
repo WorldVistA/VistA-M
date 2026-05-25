@@ -1,8 +1,10 @@
 IBCNSJ51 ;ALB/TMP - INSURANCE PLAN MAINTENANCE ACTION PROCESSING  (continued); 15-AUG-95
- ;;2.0;INTEGRATED BILLING;**43,631,664**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**43,631,664,804**;21-MAR-94;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EDCOV ; Add/edit limitations of coverage for a plan in IBCPOL
+ ;IB*804/CKB - this code has been replaced with EN^IBCNSJ54 which uses ListMan
+ ;Q
  ;/IB*2.0*631/vd - Added the variables IBALL and OPTN (for US4555)
  N DIC,DIE,DR,DONE,DONE1,IB1,IBALL,IBCOV,IBCNT,IBEDT,IBEDT1,IBOK,IBOUT,IBQUIT,IBTYP,OPTN,Z
  G:'$G(IBCPOL) EDCOVEX

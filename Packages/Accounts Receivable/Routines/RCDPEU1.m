@@ -1,5 +1,5 @@
 RCDPEU1 ;AITC/CJE - ELECTRONIC PAYER UTILITIES ; 7/1/19 1:08pm
- ;;4.5;Accounts Receivable;**326,332,349,432**;Mar 20, 1995;Build 16
+ ;;4.5;Accounts Receivable;**326,332,349,432,446**;Mar 20, 1995;Build 15
  ;Per VA Directive 6402, this routine should not be modified.
  Q
 SELPAY(PARAM) ; EP
@@ -271,7 +271,7 @@ CLOSEDC(DEF) ;EP
  S RCCLM=""
  S DIR("?")="Enter ALL to select all claims or CLOSED to select only closed claims."
  S DIR(0)="SA^A:ALL;C:CLOSED"
- S DIR("A")="Inlcude (A)LL Claims or only (C)LOSED Claims: "
+ S DIR("A")="Include (A)LL Claims or only (C)LOSED Claims: "   ; PRCA*4.5*446 fix typo "Inlcude" -> "Include"
  S DIR("B")=$S($G(DEF)'="":DEF,1:"ALL")
  D ^DIR
  K DIR

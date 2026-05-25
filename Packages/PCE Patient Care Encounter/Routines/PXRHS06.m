@@ -1,5 +1,5 @@
-PXRHS06 ;ISL/SBW - PCE Visit Treatment data extract ;12/10/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**13**;Aug 12, 1996
+PXRHS06 ;ISL/SBW - PCE Visit Treatment data extract ;08/02/2024
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**13,247**;Aug 12, 1996;Build 5
 TREAT(DFN,ENDDT,BEGDT,OCCLIM,CATCODE) ; Control branching
  ;INPUT  : DFN      - Pointer to PATIENT file (#2)
  ;         ENDDT    - Ending date/time in internal FileMan format
@@ -66,6 +66,11 @@ TREAT(DFN,ENDDT,BEGDT,OCCLIM,CATCODE) ; Control branching
  . . D EN^DIQ1
  . . Q:'$D(REC)
  . . S VDATA=$$GETVDATA^PXRHS03(+REC(9000010.15,DA,.03,"I"))
+ . .;If the VISIT file entry does not exist, skip this entry.
+ . . I VDATA=-1 D  Q
+ . . . N VISITIEN
+ . . . S VISITIEN=+REC(9000010.15,DA,.03,"I")
+ . . . D NONEXISTENTVISIT^PXRHS02(9000010.15,DA,VISITIEN)
  . . Q:$G(CATCODE)'[$P(VDATA,U,3)  ;Only get data with passed serv. cat.
  . . S TREAT=REC(9000010.15,DA,.01,"E")
  . . S TRDT=REC(9000010.15,DA,1201,"I")

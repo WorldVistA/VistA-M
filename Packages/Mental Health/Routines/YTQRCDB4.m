@@ -1,5 +1,5 @@
 YTQRCDB4 ;BAL/KTL - Report Builder Header ; 03/08/2024
- ;;5.01;MENTAL HEALTH;**224**;Dec 30, 1994;Build 17
+ ;;5.01;MENTAL HEALTH;**224,236**;Dec 30, 1994;Build 25
  ;
  ; Reference to DIQ in ICR #2056
  ; Reference to VADPT in ICR #10061
@@ -44,7 +44,7 @@ LOADTLT(TLT) ; Load template for RPT into .TLT split by "|" chars
  I $L(FRAG) S LN=LN+1,TLT(LN)=FRAG_LF
  Q
 HDR ;Standard report header
- ;;|
+ ;;|<.Inst_Name.>
  ;;| Date Given: <.Date_Given.>
  ;;| Clinician: <.Staff_Ordered_By.>
  ;;| Location: <.Location.>
@@ -87,9 +87,11 @@ GETDATA ;
  S LP=0 F  S LP=$O(RSTR(LP)) Q:'LP  S RSTR(LP)=$$REPLACE^XLFSTR(RSTR(LP),.SWAP)
  Q
 ADMINFO(ADATA,ADMIN) ;
- N CLIN,DATA,MYNAME
+ N CLIN,DATA,MYNAME,INSTN
  S DATA=^YTT(601.84,ADMIN,0)
  S CLIN=$$GET1^DIQ(601.84,ADMIN_",",5,"I")
+ S INSTN=$$GET1^DIQ(601.84,ADMIN_",",2,"I")
+ S INSTN=$$GET1^DIQ(601.71,INSTN_",",2)
  S MYNAME("FILE")=200
  S MYNAME("FIELD")=.01
  S MYNAME("IENS")=CLIN_","
@@ -97,6 +99,7 @@ ADMINFO(ADATA,ADMIN) ;
  S ADATA("DATE")=$$FMTE^XLFDT($P($G(^YTT(601.84,ADMIN,0)),U,4),"5DZ")
  S ADATA("ORDERED")=$$NAMEFMT^XLFNAME(.MYNAME,"F","MCXc")         ;Ordered by
  S ADATA("LOC")=$$TITLE^XLFSTR($$GET1^DIQ(601.84,ADMIN_",",13))   ;Location
+ S ADATA("INSTN")=INSTN
  Q
 PATINFO(PDATA,DFN) ;
  N MYNAME,DOB,VA,VADM
@@ -122,6 +125,7 @@ SWAPIT ;
  S SWAP("<.DLL_String.>")="Complex Instrument"
  Q 
 SWAP ;
+ ;;<.Inst_Name.>;;ADATA("INSTN")
  ;;<.Date_Given.>;;ADATA("DATE")
  ;;<.Staff_Ordered_By.>;;ADATA("ORDERED")
  ;;<.Location.>;;ADATA("LOC")

@@ -1,6 +1,6 @@
 BPSNCPD9 ;ALB/DMB - Eligibility Verification Entry Point ;09/21/2010
- ;;1.0;E CLAIMS MGMT ENGINE;**10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**10,11,39**;JUN 2004;Build 14
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ; Main entry point for eligibility verification claims
@@ -71,7 +71,7 @@ EN(DFN,BPSARRY) ;
  D LOG^BPSOSL(IEN59,$T(+0)_"-Start of eligibility verification","DT")
  ;
  ; If override flag is set, prompt for override values - TEST ONLY
- I $$CHECK^BPSTEST D GETOVER^BPSTEST(DFN,POLICY,"",RXACT,"E",1) W !
+ I '$G(IBAPPTEIV),$$CHECK^BPSTEST D GETOVER^BPSTEST(DFN,POLICY,"",RXACT,"E",1) W !
  ;
  ; If there is a person code or relationship code, create the Override record for the Person Code and Relationship code
  ; Quit if error occurs

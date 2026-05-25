@@ -1,5 +1,5 @@
-EDPQLE ;SLC/KCM - Retrieve Log Entry ;2/28/12 08:33am
- ;;2.0;EMERGENCY DEPARTMENT;**6,2,12**;Feb 24, 2012;Build 2
+EDPQLE ;SLC/KCM - Retrieve Log Entry ; 1/9/25 10:52am
+ ;;2.0;EMERGENCY DEPARTMENT;**6,2,12,31**;Feb 24, 2012;Build 4
  ;
  ; DBIA#  SUPPORTED
  ; -----  ---------  ------------------------------------
@@ -162,8 +162,9 @@ BEDS ; add a list of available room/beds for this area
  S SEQ=0 F  S SEQ=$O(SEQ(SEQ)) Q:'SEQ  D
  . S BED=0 F  S BED=$O(SEQ(SEQ,BED)) Q:'BED  D
  .. S X0=^EDPB(231.8,BED,0)
- .. ; QUIT if inactive bed
+ .. ; QUIT if inactive bed or if "Display When" is Never
  .. I $P(X0,U,4) Q
+ .. I $P(X0,U,7)=2 Q
  .. ; QUIT if occupied, unless own bed or multi-assign
  .. S MULTI=+$P(X0,U,9) S:MULTI=3 MULTI=0 ; single non-ed
  .. S OCCUPIED=$D(^EDP(230,"AL",EDPSITE,AREA,BED))!$D(^EDP(230,"AH",EDPSITE,AREA,BED))

@@ -1,8 +1,8 @@
-PXRMINTR ;SLC/PKR,PJH - Input transforms for Clinical Reminders. ;06/27/2024
- ;;2.0;CLINICAL REMINDERS;**4,12,16,18,26,45,88**;Feb 04, 2005;Build 13
- ;References          ICR#
- ;^AUTTHF             3083
- ;^LAB(60,LABTEST,0)  91
+PXRMINTR ;SLC/PKR,PJH - Input transforms for Clinical Reminders. ;Mar 12, 2025@10:33:45
+ ;;2.0;CLINICAL REMINDERS;**4,12,16,18,26,45,88,87**;Feb 04, 2005;Build 35
+ ;
+ ;   Reference to ^AUTTHF in ICR#3083
+ ;   Reference to ^LAB(60,LABTEST,0) in ICR#91
  ;
  ;=======================================================
 VASP(DA,X) ;Check for valid associate sponsor in file 811.6.
@@ -43,7 +43,7 @@ VCLASS(X) ;Check for valid CLASS field, ordinary users cannot create
  E  Q 1
  ;
  ;=======================================================
-VDT(X) ;Check for a valid date/time. Input transform on 
+VDT(X) ;Check for a valid date/time. Input transform on
  ;beginning date/time and ending date/time fields.
  N FMDATE,PXRMINTR,VALID
  S PXRMINTR=1
@@ -51,7 +51,7 @@ VDT(X) ;Check for a valid date/time. Input transform on
  I X?7N0.1"."0.6N D DT^DILF("ST",X,.FMDATE,"","MSG")
  I X'?7N0.1"."0.6N S FMDATE=$$CTFMD^PXRMDATE(X)
  S VALID=$S(FMDATE=-1:0,1:1)
- I 'VALID D 
+ I 'VALID D
  . N TEXT
  . S TEXT=X_" is not a valid date/time"
  . D EN^DDIOL(TEXT)
@@ -262,7 +262,9 @@ VUSAGE(X) ;Check X to see if it contains valid USAGE codes.
  ;This is part of the input transform for this field. The length of the
  ;USAGE field is 10 characters. The valid codes are:
  ;   A - Action
+ ;   B - Branching Logic
  ;   C - CPRS
+ ;   I - Informmation Panel
  ;   L - Reminder Patient List
  ;   O - Reminder Order Checks
  ;   P - Patient
@@ -276,12 +278,49 @@ VUSAGE(X) ;Check X to see if it contains valid USAGE codes.
  N TEMP,TEXT
  S TEMP=$$UP^XLFSTR(X)
  S TEMP=$TR(TEMP,"A","")
+ S TEMP=$TR(TEMP,"B","")
  S TEMP=$TR(TEMP,"C","")
+ S TEMP=$TR(TEMP,"I","")
  S TEMP=$TR(TEMP,"L","")
  S TEMP=$TR(TEMP,"O","")
  S TEMP=$TR(TEMP,"P","")
  S TEMP=$TR(TEMP,"R","")
  S TEMP=$TR(TEMP,"X","")
+ S TEMP=$TR(TEMP,"*","")
+ ;At this point TEMP should be NULL,if it is not then there are
+ ;bad codes.
+ S LEN=$L(TEMP)
+ I LEN=1 D  Q 0
+ . S TEXT=TEMP_" is not a valid USAGE code!"
+ . D EN^DDIOL(TEXT)
+ . I '$D(DIQUIET) H 2
+ I LEN>1 D  Q 0
+ . S TEXT=TEMP_" are not valid USAGE codes!"
+ . D EN^DDIOL(TEXT)
+ . I '$D(DIQUIET) H 2
+ Q 1
+ ;
+ ;=======================================================
+VRTUSAGE(X) ;Check X to see if it contains valid USAGE codes.
+ ;This is part of the input transform for this field. The length of the
+ ;USAGE field is 5 characters. The valid codes are:
+ ;   B - Branching Logic
+ ;   D - Reminder Definition
+ ;   I - Informmation Panel
+ ;   L - Reminder Patient List
+ ;   O - Reminder Order Checks
+ ;   * - All of the above, except I
+ N LEN
+ S LEN=$L(X)
+ I (LEN>5)!(LEN<1) Q 0
+ ;
+ N TEMP,TEXT
+ S TEMP=$$UP^XLFSTR(X)
+ S TEMP=$TR(TEMP,"B","")
+ S TEMP=$TR(TEMP,"D","")
+ S TEMP=$TR(TEMP,"I","")
+ S TEMP=$TR(TEMP,"L","")
+ S TEMP=$TR(TEMP,"O","")
  S TEMP=$TR(TEMP,"*","")
  ;At this point TEMP should be NULL,if it is not then there are
  ;bad codes.

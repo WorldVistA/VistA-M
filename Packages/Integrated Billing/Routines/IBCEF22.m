@@ -1,5 +1,5 @@
 IBCEF22 ;ALB/TMP - FORMATTER SPECIFIC BILL FUNCTIONS ;06-FEB-96
- ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488,516,577,608,623,641,727,759**;21-MAR-94;Build 24
+ ;;2.0;INTEGRATED BILLING;**51,137,135,155,309,349,389,432,488,516,577,608,623,641,727,759,770**;21-MAR-94;Build 119
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  OVERFLOW FROM ROUTINE IBCEF2
@@ -126,7 +126,10 @@ HOS(IBIFN) ; Extract rev codes for episode billed on a UB-04 into IBXDATA
  . ;I IBXDATA(IBLN,"CPLNK") S $P(IBXDATA(IBLN),U,11,12)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),1)),U,7,8),"-")
  . ; VAD;IB*2.0*577 - Added Unit/Basis of Measurement to line level of claim.
  . I IBXDATA(IBLN,"CPLNK") D
- . . S $P(IBXDATA(IBLN),U,11,13)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),1)),U,7,8),"-")_U_$P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),2)),U)
+ . . ;JWS;1/15/26;IB*2.0*770;EBILL-6367;if pieces 7 and 8 are not defined, ends up with no ^ delimiter, resulting in miss alignment of [13]
+ . . ;S $P(IBXDATA(IBLN),U,11,13)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),1)),U,7,8),"-")_U_$P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),2)),U)
+ . . S $P(IBXDATA(IBLN),U,11)=$TR($P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),1)),U,7),"-")
+ . . S $P(IBXDATA(IBLN),U,12)=$P($G(^DGCR(399,IBIFN,"CP",IBXDATA(IBLN,"CPLNK"),1)),U,8),$P(IBXDATA(IBLN),U,13)=$P($G(^(2)),U)
  . . I +$P(IBXDATA(IBLN),U,12) S $P(IBXDATA(IBLN),U,12)=$S($P(IBXDATA(IBLN),U,12)#1:+$J($P(IBXDATA(IBLN),U,12),0,3),1:$P(IBXDATA(IBLN),U,12))
  . ;
  . ; Extract line lev COB data for sec or tert bill

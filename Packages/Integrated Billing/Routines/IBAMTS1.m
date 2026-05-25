@@ -1,5 +1,5 @@
 IBAMTS1 ;ALB/CPM - PROCESS NEW OUTPATIENT ENCOUNTERS ; 22-JUL-93
- ;;2.0;INTEGRATED BILLING;**20,52,132,153,166,156,167,247,339,614,760**;21-MAR-94;Build 25
+ ;;2.0;INTEGRATED BILLING;**20,52,132,153,166,156,167,247,339,614,760,817,795**;21-MAR-94;Build 4
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
 NEW ; Appointment fully processed - prepare a new charge.
@@ -22,11 +22,13 @@ NEW ; Appointment fully processed - prepare a new charge.
  I '$$CHKS G NEWQ
  ;
  ; - quit if AO/IR/SWA/MST/HNC/CV/SHAD exposure is indicated, or SC related
- D CLSF(0,.IBCLSF)
- I IBCLSF[1 G NEWQ
+ I $$GETSA(IBOE)[1 G NEWQ  ; IB*2.0*795
  ;
  ; - quit if the Pt is Visit Copay exempt based on HRfS flag  (IB*2.0*614)
  I $$CHKHRFS^IBAMTS3(DFN,IBDAT) G NEWQ
+ ;
+ I '$$CHKELIG(DFN) G NEWQ  ; quit if patient is exempt based on eligibility  IB*2.0*817
+ ;
  ;
  S IBSL="409.68:"_IBOE
  ;
@@ -60,7 +62,7 @@ BLD ; - build the charge. May also enter from IBAMTS2 (requires IBSL)
 CLOCK I '$D(^IBE(351,"ACT",DFN)) S IBCLDT=IBDAT D CLADD^IBAUTL3
  ;
 NEWQ I IBY<0 D ^IBAERR1
- K IBDISP,IBCLSF,IBCLDA,IBMED,IBCLDT,IBN,IBBS,IBTEMP
+ K IBDISP,IBCLDA,IBMED,IBCLDT,IBN,IBBS,IBTEMP  ; IB*2.0*795
  K IBUNIT,IBFR,IBTO,IBSL,IBEVDA,IBX,IBDESC,IBATYP,IBCHG
  Q
  ;
@@ -130,19 +132,6 @@ INPT(DFN,VAINDT) ; Was the patient an inpatient at VAINDT?
  N VADMVT D ADM^VADPT2
  Q VADMVT>0
  ;
-CLSF(IBUPD,Y) ; Examine classification questions.
- ;  Input:   IBUPD  --  0 if event just checked out
- ;                      1 if event is being updated
- ;               Y  --  array to place output
- ;  Output:  indicators returned as  ao^ir^sc^swa^mst^hnc^cv^shad [1|yes, 0|no]
- ;             if IBUPD=0, Y is returned as a single string
- ;             if IBUPD=1, Y("BEFORE"),Y("AFTER") are defined.
- N X,ZA,ZB S:'$G(IBUPD) Y="" S:$G(IBUPD) (Y("BEFORE"),Y("AFTER"))=""
- S X=0 F  S X=$O(^TMP("SDEVT",$J,SDHDL,IBORG,"SDOE",IBOE,"CL",X)) Q:'X  S ZB=$G(^(X,0,"BEFORE")),ZA=$G(^("AFTER")) D
- .I '$G(IBUPD) S:ZA $P(Y,"^",+ZA)=+$P(ZA,"^",3) Q
- .S $P(Y("BEFORE"),"^",+ZB)=+$P(ZB,"^",3),$P(Y("AFTER"),"^",+ZA)=+$P(ZA,"^",3)
- Q
- ;
 OLDRATE(IBRTED,IBFR) ; See if the copay rate effective date is too old.
  ;  Input:   IBRTED  --  Charge Effective Date
  ;             IBFR  --  Visit Date
@@ -189,3 +178,27 @@ CHKPRIM ;  check to see if patient has been billed for primary
  S IBBILLED=0
  Q
  ;
+CHKELIG(DFN) ; check if patient eligibilities prevent billing  IB*2.0*817
+ ;
+ ; DFN - patient's DFN
+ ;
+ ; Reurns 1 if patient should be billed, 0 otherwise
+ N ELSTR,RES,VAEL,Z
+ S ELSTR="^WORLD WAR II^"
+ S RES=1
+ D ELIG^VADPT
+ S Z=0 F  S Z=$O(VAEL(1,Z)) Q:'Z  I ELSTR[(U_$P(VAEL(1,Z),U,2)_U) S RES=0 Q
+ Q RES
+ ;
+GETSA(IBOE) ; get special authority flags  IB*2.0*795
+ ;
+ ; IBOE - ien in file 409.68
+ ;
+ ; returns string of SA flags: "sc^ao^ir^swa^mst^hnc^cv^shad" [1|yes, 0|no]
+ ;
+ N CNT,IBSA,IBVST,IENS,RES,Z
+ S RES=""
+ S IBVST=$$GET1^DIQ(409.68,IBOE,.05,"I") I IBVST'>0 Q RES
+ S IENS=IBVST_"," D GETS^DIQ(9000010,IENS,"80001:80008","I","IBSA")
+ S (CNT,Z)=0 F  S Z=$O(IBSA(9000010,IENS,Z)) Q:'Z  S CNT=CNT+1,$P(RES,U,CNT)=IBSA(9000010,IENS,Z,"I")
+ Q RES

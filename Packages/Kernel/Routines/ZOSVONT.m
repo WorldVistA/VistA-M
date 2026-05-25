@@ -1,5 +1,5 @@
-%ZOSV ;SFISC/AC - $View commands for Open M for NT.  ;09/15/08  12:12
- ;;8.0;KERNEL;**34,94,107,118,136,215,293,284,385,425,440,499**;Jul 10, 1995;Build 14
+%ZOSV ;SFISC/AC - $View commands for Open M for NT.  ;09/25/24  12:12
+ ;;8.0;KERNEL;**34,94,107,118,136,215,293,284,385,425,440,499,800**;Jul 10, 1995;Build 9
  ;Per VHA Directive 2004-038, this routine should not be modified
 ACTJ() ;# Active jobs
  N %,V,Y S V=$$VERSION()
@@ -66,7 +66,11 @@ PROGMODE() ;Check if in PROG mode
  Q $ZJOB#2
  ;
 PRGMODE ;
- N X,XMB,XQZ,XUCI,XUSLNT,XUVOL,Y,ZTPAC
+ N X,XMB,XQZ,XUCI,XUSLNT,XUVOL,Y,ZTPAC,PRGMOD
+ ;p800, allow Programmer Mode access to only those users holding the XUPROGMODE security key.
+ S PRGMOD=+$P($Q(^DIC(19.1,"B","XUPROGMODE")),",",4) ;p800
+ I '$D(^VA(200,+DUZ,51,PRGMOD,0)) W !,"ACCESS PROHIBITED: Unauthorized access." Q  ;p800
+ K PRGMOD ;p800
  W ! S ZTPAC=$S('$D(^VA(200,+DUZ,.1)):"",1:$P(^(.1),U,5)),XUVOL=^%ZOSF("VOL")
  S X="" X ^%ZOSF("EOFF") R:ZTPAC]"" !,"PAC: ",X:60 D LC^XUS X ^%ZOSF("EON") I X'=ZTPAC W "??"_$C(7) Q
  S XMB="XUPROGMODE",XMB(1)=DUZ,XMB(2)=$I D ^XMB:$L($T(^XMB)) D BYE^XUSCLEAN K ZTPAC,X,XMB

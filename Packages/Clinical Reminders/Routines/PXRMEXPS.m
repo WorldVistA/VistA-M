@@ -1,15 +1,16 @@
-PXRMEXPS ;SLC/PKR - Packing save routines. ;02/14/2022
- ;;2.0;CLINICAL REMINDERS;**12,16,18,22,24,26,45,80**;Feb 04, 2005;Build 7
+PXRMEXPS ;SLC/PKR - Packing save routines. ;Jan 29, 2025@15:18:22
+ ;;2.0;CLINICAL REMINDERS;**12,16,18,22,24,26,45,80,87**;Feb 04, 2005;Build 35
  ;
- ;DBIA
- ;3085         AUTTEDT(EDUIEN,10         
- ;3083         AUTTHF(
- ;5246         GMT(142.5
- ;5247         GMT(142
+ ;ICR          Reference
+ ;3085         ^AUTTEDT(EDUIEN,10
+ ;3083         ^AUTTHF(
+ ;5246         ^GMT(142.5
+ ;5247         ^GMT(142
  ;5446         BEG^ORORDDSC
  ;5447         $$OBJBYNAM^TIUCHECK
  ;3372         ^TIU(8927.1
  ;3110         $P(^ORD(101.41,IEN,0),U,4)
+ ;
  ;==========================================
 ADD(FILENUM,IEN,PACKLIST,NF) ;
  S NF=+$O(PACKLIST(FILENUM,"IEN"),-1)+1
@@ -101,6 +102,7 @@ GETSRTN(FILENUM) ;Return the save routine according to the file number.
  I FILENUM=9999999.15 Q "SGEN^PXRMEXPS"
  I FILENUM=9999999.28 Q "SGEN^PXRMEXPS"
  I FILENUM=9999999.64 Q "SHF^PXRMEXPS"
+ I FILENUM=101.71 Q "SIP^PXRMEXPS"
  Q "NORTN^PXRMEXPS"
  ;
  ;==========================================
@@ -127,7 +129,7 @@ SCF(FILENUM,IEN,PACKLIST) ;Reminder computed findings.
  ;
  ;==========================================
 SDEF(FILENUM,RIEN,PACKLIST,NODIALOG) ;Reminder definitions.
- N DIALOG,ENODE,EO,FINDING,FINUM,FNUM,GBL,IEN,NF,ROUTINE,SPON
+ N DIALOG,ENODE,EO,FINDING,FINUM,FNUM,GBL,IEN,NF,ROUTINE
  D SGENR(FILENUM,RIEN,.PACKLIST)
  ;Process the finding multiple.
  S FINUM=0
@@ -145,10 +147,12 @@ SDEF(FILENUM,RIEN,PACKLIST,NODIALOG) ;Reminder definitions.
  I DIALOG>0,'$D(PACKLIST(801.41,"IEN",DIALOG)) D SDIALOG(801.41,DIALOG,.PACKLIST)
  Q
  ;
+ ;==========================================
 SDIALFUN(FILENUM,IEN,PACKLIST) ; Dialog Function File
  D SGENR(FILENUM,IEN,.PACKLIST)
  Q
  ;
+ ;==========================================
 SDIALLNK(FILENUM,IEN,PACKLIST) ; Dialog Link File
  D SGENR(FILENUM,IEN,.PACKLIST)
  N FUNC,ROUTINE
@@ -212,11 +216,11 @@ SDIALOG(FILENUM,DIEN,PACKLIST) ;Reminder dialogs.
  .. D @ROUTINE
  ;Check for a term and a replacement element/group.
  I $D(^PXRMD(801.41,DIEN,"BL")) D
- .S SEQ=0 F  S SEQ=$O(^PXRMD(801.41,DIEN,"BL","B",SEQ)) Q:SEQ'>0  D
- ..S IDX=$O(^PXRMD(801.41,DIEN,"BL","B",SEQ,"")) Q:IDX'>0
- ..S TEMP=$G(^PXRMD(801.41,DIEN,"BL",IDX,0))
- ..S EVALITEM=$P(TEMP,U,2)
- ..I EVALITEM["811.9" D
+ . S SEQ=0 F  S SEQ=$O(^PXRMD(801.41,DIEN,"BL","B",SEQ)) Q:SEQ'>0  D
+ .. S IDX=$O(^PXRMD(801.41,DIEN,"BL","B",SEQ,"")) Q:IDX'>0
+ .. S TEMP=$G(^PXRMD(801.41,DIEN,"BL",IDX,0))
+ .. S EVALITEM=$P(TEMP,U,2)
+ .. I EVALITEM["811.9" D
  ... S ROUTINE=$$GETSRTN(811.9)_"(811.9,+EVALITEM,.PACKLIST,1)"
  ... D @ROUTINE
  .. I EVALITEM["811.5" D
@@ -239,23 +243,26 @@ SDIALOG(FILENUM,DIEN,PACKLIST) ;Reminder dialogs.
  .. S IEN=$P(^PXRMD(801.41,DIEN,51,IND,0),U,1)
  .. S ROUTINE=$$GETSRTN(801.41)_"(801.41,IEN,.PACKLIST)"
  .. D @ROUTINE
- .. ;S IEN=$P(^PXRMD(801.41,DIEN,51,IND,0),U,2) I +$G(IEN)'>0 Q
- .. ;D @ROUTINE
- .. ; check for linking on result group
+ .. ; Check for linking on result group
  .. S IND1=0 F  S IND1=$O(^PXRMD(801.41,DIEN,51,IND,1,IND1)) Q:IND1'>0  D
  ... S IEN=$P($G(^PXRMD(801.41,DIEN,51,IND,1,IND1,0)),U,2) Q:IEN'>0
  ... S ROUTINE=$$GETSRTN(801.48)_"(801.48,IEN,.PACKLIST)"
  ... D @ROUTINE
  ;Check for linking
  S IND=0 F  S IND=$O(^PXRMD(801.41,DIEN,10,IND)) Q:IND'>0  D
- .S IEN=$P($G(^PXRMD(801.41,DIEN,10,IND,"LINK")),U) Q:IEN'>0
- .S ROUTINE=$$GETSRTN(801.48)_"(801.48,IEN,.PACKLIST)"
- .D @ROUTINE
+ . S IEN=$P($G(^PXRMD(801.41,DIEN,10,IND,"LINK")),U) Q:IEN'>0
+ . S ROUTINE=$$GETSRTN(801.48)_"(801.48,IEN,.PACKLIST)"
+ . D @ROUTINE
+ Q
+ ;
+SIP(FILENUM,IEN,PACKLIST) ;
+ I IEN'>0 Q
+ D SGENR(FILENUM,IEN,.PACKLIST)
  Q
  ;
  ;==========================================
 SED(FILENUM,IEN,PACKLIST) ;Education topics.
- N IND,NF,NSUB,SUBLIST
+ N IND,NF,NSUB,SPONSOR,SUBLIST
  D EXISTS(FILENUM,IEN,.PACKLIST)
  D ADD(FILENUM,IEN,.PACKLIST,.NF)
  S NSUB=0
@@ -266,6 +273,12 @@ SED(FILENUM,IEN,PACKLIST) ;Education topics.
  . S NF=NF+1
  . S PACKLIST(FILENUM,NF)=SUBLIST(IND)
  . S PACKLIST(FILENUM,"IEN",SUBLIST(IND))=NF
+ . ;Sponsor
+ . ;S SPONSOR=+$P(^AUTTEDT(SUBLIST(IND),100),U,2)
+ . ;I SPONSOR>0 D SSPONSOR(FILENUM,SPONSOR,.PACKLIST)
+ ;Sponsor
+ ;S SPONSOR=+$P(^AUTTEDT(IEN,100),U,2)
+ ;I SPONSOR>0 D SSPONSOR(FILENUM,SPONSOR,.PACKLIST)
  Q
  ;
  ;==========================================
@@ -302,15 +315,15 @@ SGEN(FILENUM,IEN,PACKLIST) ;General save routine, used for everything that
  ;==========================================
 SGENR(FILENUM,IEN,PACKLIST) ;General reminder global save routine, used for
  ;reminder globals that do not require special handling.
- N SPON
+ N SPONSOR
  D SGEN(FILENUM,IEN,.PACKLIST)
- S SPON=+$$GET1^DIQ(FILENUM,IEN,101,"I")
- I SPON>0 D SGEN(811.6,SPON,.PACKLIST)
+ S SPONSOR=+$$GET1^DIQ(FILENUM,IEN,101,"I")
+ I SPONSOR>0 D SGEN(811.6,SPONSOR,.PACKLIST)
  Q
  ;
  ;==========================================
 SHF(FILENUM,IEN,PACKLIST) ;Health factors.
- N CAT,HF,NF
+ N CAT,HF,NF,SPONSOR
  ;All health factor references covered by DBIA #3083.
  ;If the health factor is a category then it has to be coming from
  ;a health summary so include all the health factors in the category.
@@ -328,6 +341,9 @@ SHF(FILENUM,IEN,PACKLIST) ;Health factors.
  S NF=NF+1
  S PACKLIST(FILENUM,NF)=CAT
  S PACKLIST(FILENUM,"IEN",CAT)=NF
+ ;Sponsor
+ ;S SPONSOR=+$P(^AUTTHF(IEN,100),U,2)
+ ;I SPONSOR>0 D SSPONSOR(FILENUM,SPONSOR,.PACKLIST)
  Q
  ;
  ;==========================================
@@ -344,19 +360,19 @@ SHST(FILENUM,IEN,PACKLIST) ;Health Summary Type
  N CNT,FNUM,GBL,HSC,ITEM,NODE,ROUTINE,SEL
  D SGEN(FILENUM,IEN,.PACKLIST)
  S CNT=0 F  S CNT=$O(^GMT(142,IEN,1,CNT)) Q:CNT'>0  D
- .S HSC=$P($G(^GMT(142,IEN,1,CNT,0)),U,2)
- .S ROUTINE=$$GETSRTN(142.1)_"(142.1,HSC,.PACKLIST)"
- .D @ROUTINE
+ . S HSC=$P($G(^GMT(142,IEN,1,CNT,0)),U,2)
+ . S ROUTINE=$$GETSRTN(142.1)_"(142.1,HSC,.PACKLIST)"
+ . D @ROUTINE
  .;Loop through selection item, variable pointer
- .S SEL=0 F  S SEL=$O(^GMT(142,IEN,1,CNT,1,SEL)) Q:SEL'>0  D
- ..S NODE=$P($G(^GMT(142,IEN,1,CNT,1,SEL,0)),U)
- ..I NODE'="" D
- ...S ITEM=$P(NODE,";",1)
- ...S GBL=$P(NODE,";",2)
- ...S FNUM=$$GETFNUM(GBL)
- ...S ROUTINE=$$GETSRTN(FNUM)_"(FNUM,ITEM,.PACKLIST)"
- ...I ROUTINE="NOROUTINE" Q
- ...D @ROUTINE
+ . S SEL=0 F  S SEL=$O(^GMT(142,IEN,1,CNT,1,SEL)) Q:SEL'>0  D
+ .. S NODE=$P($G(^GMT(142,IEN,1,CNT,1,SEL,0)),U)
+ .. I NODE'="" D
+ ... S ITEM=$P(NODE,";",1)
+ ... S GBL=$P(NODE,";",2)
+ ... S FNUM=$$GETFNUM(GBL)
+ ... S ROUTINE=$$GETSRTN(FNUM)_"(FNUM,ITEM,.PACKLIST)"
+ ... I ROUTINE="NOROUTINE" Q
+ ... D @ROUTINE
  Q
  ;
  ;==========================================
@@ -413,7 +429,6 @@ SODIALOG(FILENUM,IEN,PACKLIST) ;Order dialogs.
  S TYPE=$P($G(^ORD(101.41,IEN,0)),U,4)
  D BEG^ORORDDSC(.OUTPUT,IEN,TYPE,.CNT)
  S CNT=CNT+1,^TMP($J,SUB,IEN,CNT)=$$REPEAT^XLFSTR("-",79)
- ;D EN^ORORDDSC(IEN,"ORDER DIALOG")
  Q
  ;
  ;==========================================
@@ -442,7 +457,7 @@ SRECR(FILENUM,IEN,PACKLIST) ;Reminder extract counting rule.
  ;
  ;==========================================
 SRT(FILENUM,TIEN,PACKLIST) ;Reminder terms.
- N FNUM,GBL,IEN,NF,ROUTINE,SPON
+ N FNUM,GBL,IEN,NF,ROUTINE,SPONSOR
  N ITEM,NUM,RIEN
  D EXISTS(FILENUM,TIEN,.PACKLIST)
  D ADD(FILENUM,TIEN,.PACKLIST,.NF)
@@ -455,8 +470,8 @@ SRT(FILENUM,TIEN,PACKLIST) ;Reminder terms.
  . S IEN=""
  . F  S IEN=$O(^PXRMD(811.5,TIEN,20,"E",GBL,IEN)) Q:IEN=""  D @ROUTINE
  ;Sponsor
- S SPON=+$P(^PXRMD(811.5,TIEN,100),U,2)
- I SPON>0 D SGEN(811.6,SPON,.PACKLIST)
+ ;S SPONSOR=+$P(^PXRMD(811.5,TIEN,100),U,2)
+ ;I SPONSOR>0 D SGEN(811.6,SPONSOR,.PACKLIST)
  Q
  ;
  ;==========================================
@@ -473,9 +488,9 @@ SROC(FILENUM,ROCIEN,PACKLIST) ;Reminder Order Checks.
  . D @ROUTINE
  ;loop through rules and packed definitions or terms
  S SUB=0 F  S SUB=$O(^PXD(801,ROCIEN,3,SUB)) Q:SUB'>0  D
- .S RIEN=$P($G(^PXD(801,ROCIEN,3,SUB,0)),U) Q:RIEN'>0
- .S ROUTINE=$$GETSRTN(801.1)_"(801.1,RIEN,.PACKLIST)"
- .D @ROUTINE
+ . S RIEN=$P($G(^PXD(801,ROCIEN,3,SUB,0)),U) Q:RIEN'>0
+ . S ROUTINE=$$GETSRTN(801.1)_"(801.1,RIEN,.PACKLIST)"
+ . D @ROUTINE
  Q
  ;
  ;==========================================
@@ -485,20 +500,32 @@ SRULE(FILENUM,RULEIEN,PACKLIST) ;Reminder Order Check Rules.
  N OLIST,RIEN,ROUTINE,TIEN,TLIST
  I $D(^PXD(801.1,RULEIEN,3,4))>0 D
  .;search for TIU Objects
- .D TIUSRCH^PXRMEXU1("^PXD(801.1,",RULEIEN,",4",.OLIST,.TLIST)
- .I $D(OLIST)>0 D
- ..S ROUTINE=$$GETSRTN(8925.1)_"(8925.1,.OLIST,.PACKLIST)"
- ..D @ROUTINE K OLIST
- .K TLIST
- .;packed term up only
+ . D TIUSRCH^PXRMEXU1("^PXD(801.1,",RULEIEN,",4",.OLIST,.TLIST)
+ . I $D(OLIST)>0 D
+ .. S ROUTINE=$$GETSRTN(8925.1)_"(8925.1,.OLIST,.PACKLIST)"
+ .. D @ROUTINE K OLIST
+ . K TLIST
+ .;Pack term up only
  S TIEN=$P($G(^PXD(801.1,RULEIEN,2)),U) I TIEN>0 D  Q
- .S ROUTINE=$$GETSRTN(811.5)_"(811.5,TIEN,.PACKLIST)"
- .D @ROUTINE
- ;packed definition up if defined
+ . S ROUTINE=$$GETSRTN(811.5)_"(811.5,TIEN,.PACKLIST)"
+ . D @ROUTINE
+ ;Pack definition up if defined
  S RIEN=$P($G(^PXD(801.1,RULEIEN,3)),U) I RIEN>0 D
- .S ROUTINE=$$GETSRTN(811.9)_"(811.9,RIEN,.PACKLIST,1)"
- .D @ROUTINE
+ . S ROUTINE=$$GETSRTN(811.9)_"(811.9,RIEN,.PACKLIST,1)"
+ . D @ROUTINE
  Q
+ ;
+ ;==========================================
+ ;SSPONSOR(FILENUM,SPONSORIEN,PACKLIST) ;Reminder sponsors.
+ ;FILENUM identifies the file the Sponsor is being saved for.
+ ;N ASSOCIATED,IND
+ ;D SGEN(811.6,SPONSORIEN,.PACKLIST)
+ ;If there are any ASSOCIATED SPONSORS save them.
+ ;S IND=0
+ ;F  S IND=+$O(^PXRMD(811.6,SPONSORIEN,2,IND)) Q:IND=0  D
+ ;. S ASSOCIATED=$P(^PXRMD(811.6,SPONSORIEN,2,IND,0),U,1)
+ ;. D SGEN(811.6,ASSOCIATED,.PACKLIST)
+ ;Q
  ;
  ;==========================================
 STIUOBJ(FILENUM,OLIST,PACKLIST) ;
@@ -522,8 +549,8 @@ STIUOBJ(FILENUM,OLIST,PACKLIST) ;
 STIUTEMP(FILENUM,TLIST,PACKLIST) ;
  N CNT,IEN,NAME
  S CNT=0 F  S CNT=$O(TLIST(CNT)) Q:CNT'>0  D
- .S NAME=TLIST(CNT)
- .S IEN=$O(^TIU(8927.1,"B",NAME,"")) Q:IEN'>0
- .D SGEN(FILENUM,IEN,.PACKLIST)
+ . S NAME=TLIST(CNT)
+ . S IEN=$O(^TIU(8927.1,"B",NAME,"")) Q:IEN'>0
+ . D SGEN(FILENUM,IEN,.PACKLIST)
  Q
  ;

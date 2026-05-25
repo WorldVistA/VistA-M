@@ -1,5 +1,5 @@
 SDTMPHLB ;MS/PB - TMP HL7 Routine;MAY 29, 2018
- ;;5.3;Scheduling;**704,733,714,773,888**;AUG 13, 1993;Build 8
+ ;;5.3;Scheduling;**704,733,714,773,888,894**;AUG 13, 1993;Build 8
  Q
 EN(CLINID) ; Entry to the routine to build an HL7 message
  ;notification to TMP about a new appointment in a TeleHealth Clinic
@@ -8,7 +8,7 @@ EN(CLINID) ; Entry to the routine to build an HL7 message
  ;
  ;need to parse data from the file based on clinic, need to get VISN, overbooks and clinic status and privileged users
  ;default provider and default provider email.
- N STOP,SSTOP,PSTOP,MSG,RTN,UPDTTM
+ N STOP,SSTOP,PSTOP,MSG,RTN,UPDTTM,ACTDT,INACTDT
  S PSTOP=$P(^SC(CLINID,0),"^",7),SSTOP=$P(^SC(CLINID,0),"^",18)
  I ($G(PSTOP)=""&($G(SSTOP)="")) Q 0 ;if both PSTOP and SSTOP are null, the clinic is not a tele health clinic so quit
  S:$G(PSTOP)'="" STOP=$$CHKCLIN^SDTMPHLA($G(PSTOP)) ;if STOP=0, primary stop code is not a tele health stop code so check secondary stop code to see if it is a tele health clinic
@@ -162,11 +162,11 @@ VISN(INSTNUM) ;
  .S VISN=$P(VISN," ",2)
  Q VISN
  ;
-ACT ;888 Correct logic bug
- N INACTDT,ACTDT
- S INACTDT=CLIN(44,CLINID_",",2505,"I"),ACTDT=CLIN(44,CLINID_",",2506,"I")
- S ACT="I"
- I INACTDT="",ACTDT="" S ACT="A" Q
- I INACTDT="" S ACT="A" Q
- I ((INACTDT'="")&(INACTDT>DT))!((ACTDT'="")&(ACTDT'>DT)) S ACT="A"
+ACT ;894 Pass Inactivate Date and Reactivate Date to HL7
+ N IADT,ADT
+ S IADT=CLIN(44,CLINID_",",2505,"I"),ADT=CLIN(44,CLINID_",",2506,"I")
+ S ACTDT=$S('ADT:"",1:$$TMCONV^SDTMPHLA(ADT,$$INST^SDTMPHLA(CLINID))),INACTDT=$S('IADT:"",1:$$TMCONV^SDTMPHLA(IADT,$$INST^SDTMPHLA(CLINID))) S ACT="I"
+ I IADT="",ADT="" S ACT="A" Q
+ I IADT="" S ACT="A" Q
+ I ((IADT'="")&(IADT>DT))!((ADT'="")&(ADT'>DT)) S ACT="A"
  Q

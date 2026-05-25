@@ -1,5 +1,5 @@
 PRCAAPR1 ;WASH-ISC@ALTOONA,PA/RGY - PATIENT ACCOUNT PROFILE ;2/12/97  11:48 AM
- ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301,315,350,343,404,405,406**;Mar 20, 1995;Build 5
+ ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303,301,315,350,343,404,405,406,448,459**;Mar 20, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*343 Ensure displayed phone number has format 111-222-3333
@@ -7,6 +7,7 @@ PRCAAPR1 ;WASH-ISC@ALTOONA,PA/RGY - PATIENT ACCOUNT PROFILE ;2/12/97  11:48 AM
 HDR ;Head for Account profile
  S X="",$P(X,"=",23)="" W @IOF,!,X,"   A c c o u n t   P r o f i l e   ",X
 HDR1 N DMC,IBRX,RSN,TOP4,TOP6,DPTFLG,RCACCTN,RCCV ;PRCA*4.5*405
+ N RPIEN,RPIENS,SCPER  ; PRCA*4.5*448
  S IBRX=0,DPTFLG=0
  ;
  ; PRCAAPR cleans up BILL, COUNT, DEBT, DTOUT, DIC, OUT, PRCADB, SEL, X
@@ -34,8 +35,13 @@ HDR1 N DMC,IBRX,RSN,TOP4,TOP6,DPTFLG,RCACCTN,RCCV ;PRCA*4.5*405
  . S PRCAPHN=$P(X("ADD"),"^",7),PRCAPHN=$E(PRCAPHN,1,3)_"-"_$E(PRCAPHN,4,6)_"-"_$E(PRCAPHN,7,10)
  . S $P(X("ADD"),"^",7)=PRCAPHN
  W !,"Phone #: ",$S($P(X("ADD"),"^",7)]"":$P(X("ADD"),"^",7),1:"N/A")
- I PRCADB["DPT(" W ?51,"RX Copay Exempt: " S IBRX=$$RXST^IBARXEU(+PRCADB,DT) W $S($P(IBRX,U)=1:"YES",$P(IBRX,U)=0:"NO",1:"N/A")
- I PRCADB["DPT(" W !?57,"CV Status: " S RCCV=$$CVEDT^DGCV(+PRCADB,DT) W $S($P(RCCV,U,3)>0:"YES",1:"NO") I $P(RCCV,U,2) W !?52,"CV Status Ends: ",$$SLH^RCFN01($P(RCCV,U,2))
+ I PRCADB["DPT(" D  ; PRCA*4.5*448
+ .W ?51,"RX Copay Exempt: " S IBRX=$$RXST^IBARXEU(+PRCADB,DT) W $S($P(IBRX,U)=1:"YES",$P(IBRX,U)=0:"NO",1:"N/A")
+ .W !?57,"CV Status: " S RCCV=$$CVEDT^DGCV(+PRCADB,DT) W $S($P(RCCV,U,3)>0:"YES",1:"NO")
+ .S SCPER=$$GETSC(+PRCADB) W !,"SC Combined %: ",$S(SCPER>-1:SCPER_"%",1:"N/A")
+ .I $P(RCCV,U,2) W ?52,"CV Status Ends: ",$$SLH^RCFN01($P(RCCV,U,2))
+ .W !,"SC/SA: ",$$GETSA(+PRCADB)
+ .Q
  ; *108 add exemption reason/dmc info
  I IBRX>0,($P(IBRX,U)=1) S DIC="^IBE(354.2,",DIC(0)="M",X=+$P(IBRX,"^",3) D ^DIC I Y>0 W !,?54,"(",$P(Y,"^",2),")"
  I $D(^RCD(340,"DMC",1,+DEBT)) S DMC=$G(^RCD(340,+DEBT,3)) D
@@ -172,3 +178,55 @@ TPOPV(DFN,EVDT) ;
  . ; attach EOB indicator '%' to bill # when applicable
  . S PRCAEEOB=$$COMP3^PRCAAPR(PRCAIFN)
  Q PRCAEEOB
+ ;
+GETSC(DFN) ; get SC %  PRCA*4.5*448
+ ;
+ ; DFN - patient's DFN
+ ;
+ ; returns SC % if service connected = yes, or -1 otherwise.
+ ;
+ N RES,VAEL
+ S RES=-1
+ I DFN>0 D ELIG^VADPT S:$P(VAEL(3),U) RES=$P(VAEL(3),U,2)
+ Q RES
+ ;
+GETSA(DFN) ; get SC/SA codes  PRCA*4.5*448
+ ;
+ ; DFN - patient's DFN
+ ;
+ ; returns a comma-separated list of SC/SA codes.
+ ;
+ N RES,TMPARY,VASV,Z
+ S RES=""
+ I DFN>0 D
+ .D SVC^VADPT
+ .I VASV(2) S RES="AO, "  ; agent orange
+ .I $$DISABLED^DGENCDA(DFN) S RES=RES_"CD, "  ; catastrophically disabled
+ .S Z=$$GETCUR^DGNTAPI(DFN,"TMPARY") I Z>0,$P(TMPARY("HNC"),U)="Y" S RES=RES_"CHN, "  ; cancer of head/neck
+ .I $$GET1^DIQ(2,DFN,.321701,"I")="Y" S RES=RES_"CL, "  ; camp Lejeune
+ .I VASV(3) S RES=RES_"IO, "  ; radiation
+ .I $$GET1^DIQ(2,DFN,.541,"I")="Y" S RES=RES_"MOH, "  ; medal of honor
+ .S Z=$$GETSTAT^DGMSTAPI(DFN) I $P(Z,U)>0,$P(Z,U,2)="Y" S RES=RES_"MST, "  ; MST
+ .I $P(VASV(15),U) S RES=RES_"PACT, "  ; PACT act
+ .I VASV(9),$P(VASV(9,1),U)=3 S RES=RES_"PH, "  ; purple heart confirmed
+ .I VASV(4) S RES=RES_"POW, "  ; prisoner of war
+ .I VASV(14) S RES=RES_"SHAD, "  ; project 112 / SHAD
+ .I $$GET1^DIQ(2,DFN,.322013,"I")="Y" S RES=RES_"SWA, "  ; sw asia
+ .Q
+ Q $S(RES'="":$E(RES,1,$L(RES)-2),1:"None")
+ ;
+GETDFN(DBIEN) ; Get the DFN for the patient / Debtor ; PRCA*4.5*459
+ N TEMP
+ I '$D(^RCD(340,DBIEN,0)) Q ""
+ S TEMP=$P(^RCD(340,DBIEN,0),U)
+ I $P(TEMP,";",2)'["DPT" Q ""
+ Q +TEMP
+ ;
+SVCINFO ; print Service connected % and SA list ; PRCA*4.5*459
+ N X,C,Y,DFN,SC
+ S X=$G(^PRCA(430,D0,0)),Y=$P(X,U,9),DFN=$$GETDFN(Y) S:'DFN DFN=$P(X,U,7)
+ S C=$P(^DD(430,9,0),U,2) D Y^DIQ:Y
+ S SC=$$GETSC^PRCAAPR1(DFN)
+ W !,?0,"SC(%): ",$S(SC>-1:SC,1:"NA"),?39,"SA: ",$$GETSA^PRCAAPR1(DFN)
+ ;W !,?0,"SC(%): ",$$GETSC^PRCAAPR1(DFN),?39,"SA: ",$$GETSA^PRCAAPR1(DFN)
+ ;

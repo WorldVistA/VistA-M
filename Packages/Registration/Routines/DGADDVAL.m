@@ -1,5 +1,5 @@
 DGADDVAL ;ALB/JAM - UAM Address Validation ;28 May 2020  10:33 AM
- ;;5.3;Registration;**1014,1040**;Aug 13, 1993;Build 15
+ ;;5.3;Registration;**1014,1040,1143**;Aug 13, 1993;Build 36
  ;
 EN(DGINPUT,DGTYPE) ; Main entry point 
  ; Input:  DGINPUT (Required, pass by reference) - Array containing the address to be validated
@@ -70,6 +70,13 @@ EN(DGINPUT,DGTYPE) ; Main entry point
  . I $D(DGADDR(1,$P(DGFLDS,",",5))) D
  . . S DGX=DGINPUT($P(DGFLDS,",",5)),DGINPUT($P(DGFLDS,",",5))=$P(DGX,"^",2)_"^"_$P(DGX,"^",1)
  . . ; If the State code is empty, put the original State code in the array - Confidential Address needs the State code to file
- . . I $P(DGINPUT($P(DGFLDS,",",5)),"^",1)="" S $P(DGINPUT($P(DGFLDS,",",5)),"^",1)=DGSTATECD
+ . . ; DG*5.3*1143 - only do this if this is a domestic address
+ . . I 'DGFORGN I $P(DGINPUT($P(DGFLDS,",",5)),"^",1)="" S $P(DGINPUT($P(DGFLDS,",",5)),"^",1)=DGSTATECD
  . S DGX=DGINPUT($P(DGFLDS,",",10)),DGINPUT($P(DGFLDS,",",10))=$P(DGX,"^",2)_"^"_$P(DGX,"^",1)
+ ; DG*5.3*1143 - Put the State field back in DGINPUT to the format used for Mailing and Res addresses
+ I DGTYPE="R"!(DGTYPE="P") D
+ . I $D(DGADDR(1,$P(DGFLDS,",",5))) D
+ . . S DGX=DGINPUT($P(DGFLDS,",",5)),DGINPUT($P(DGFLDS,",",5))=$P(DGX,"^",1)_"^"_$P(DGX,"^",2)
+ . . ; If domestic address, if the State code is empty, put the original State code in the array - Address needs the State code to get the county for display
+ . . I 'DGFORGN I $P(DGINPUT($P(DGFLDS,",",5)),"^",2)="" S $P(DGINPUT($P(DGFLDS,",",5)),"^",2)=DGSTATECD
  Q 1

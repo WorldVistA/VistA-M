@@ -1,5 +1,6 @@
-LRAPSL ;AVAMC/REG/CYM - ANATOMIC PATH SLIDE LABELS ;2/13/98  13:41 ;
- ;;5.2;LAB SERVICE;**72,201**;Sep 27, 1994
+LRAPSL ;AVAMC/REG/CYM - ANATOMIC PATH SLIDE LABELS; Jan 15, 2025@01:48
+ ;;5.2;LAB SERVICE;**72,201,579**;Sep 27, 1994;Build 1
+ ;
  D ^LRAP G:'$D(Y) END I LRSS="AU" D AU^LRAPBS1 G:J END S:'$D(LRW(0)) LRW(0)=$O(^LAB(60,"B","AUTOPSY H & E",0))
 ASK S LRZ=1,%DT="",X="T" D ^%DT S LRY=$E(Y,1,3)+1700 W !,"Enter year: ",LRY,"// " R X:DTIME G:'$T!(X[U) END S:X="" X=LRY
  S %DT="EQ" D ^%DT G:Y<1 ASK S LRY=$E(Y,1,3),LRH(0)=LRY+1700 W "  ",LRH(0)
@@ -38,4 +39,5 @@ CK I LRR S:'F F=1 Q
  S:$P(X,"^",7)="" F=1 Q
 HELP W $C(7),!!,"Enter numbers only",! Q
 END D V^LRU Q
-SET K ^TMP($J) S (LR("FORM"),LR("LINE"))=1,LR(12)=$S(DUZ("AG")="V":"VAMC "_+$$SITE^VASITE,1:$E($$INS^LRU,1,9)),LR(6)=0,LR(1)=($E(LRY,1,3)+1700)_"-",LRXREF="A"_LRSS_"A" Q
+ ;LR*5.2*579: Pulling third piece for proper label generation.
+SET K ^TMP($J) S (LR("FORM"),LR("LINE"))=1,LR(12)=$S(DUZ("AG")="V":"VAMC "_$P($$SITE^VASITE,U,3),1:$E($$INS^LRU,1,9)),LR(6)=0,LR(1)=($E(LRY,1,3)+1700)_"-",LRXREF="A"_LRSS_"A" Q

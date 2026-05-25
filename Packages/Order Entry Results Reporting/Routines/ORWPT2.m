@@ -1,5 +1,5 @@
-ORWPT2 ; SLC/JLC - Patient Lookup Functions (cont) ; Aug 29, 2023@11:35
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**485,608**;Dec 17, 1997;Build 15
+ORWPT2 ; SLC/JLC - Patient Lookup Functions (cont) ;05/15/24  11:25
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**485,608,508**;Dec 17, 1997;Build 39
  ;
  ; Reference to OUTPTPR^SDUTL3 in ICR #1252
  ; Reference to ^AUPNVSIT in ICR #2028
@@ -9,7 +9,7 @@ ORWPT2 ; SLC/JLC - Patient Lookup Functions (cont) ; Aug 29, 2023@11:35
  ; Reference to INP^VADPT in ICR #10061
  ; Reference to FMTE^XLFDT in ICR #10103
  ; Reference to GUIBS5A^DPTLK6 in ICR #3593
- ; Reference to STATUS^PXRMCOVID19 in ICR #7146
+ ; Reference to STATUS^PXRMBANNER in ICR #7146
  ; Reference to GET^XPAR in ICR #2263
  ;
  Q
@@ -19,7 +19,7 @@ COVID(Y,DFN) ; return COVID-19 statuses
  S RIEN=+$$GET^XPAR("ALL","OR OTHER INFO REMINDER",1,"I")
  I RIEN=0 S Y="-1^No Reminder definition is defined"
  ;ICR #7146
- S Y=$$STATUS^PXRMCOVID19(DFN,RIEN)
+ S Y=$$STATUS^PXRMBANNER(DFN,RIEN)
  Q Y
  ;
 IDINFO(REC,DFN) ; Return more identifying info for a patient

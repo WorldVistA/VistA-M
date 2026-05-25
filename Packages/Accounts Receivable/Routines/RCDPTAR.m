@@ -1,5 +1,5 @@
 RCDPTAR ;ALB/TJB - EFT TRANSACTION AUDIT REPORT ;1/02/15
- ;;4.5;Accounts Receivable;**303,321,326,380,371,424**;Mar 20, 1995;Build 11
+ ;;4.5;Accounts Receivable;**303,321,326,380,371,424,439,446**;Mar 20, 1995;Build 15
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -23,7 +23,7 @@ EN ; Main entry point for this report
  ;
  ; PRCA*4.5*380 - Ask if display sum. rpt. by Dep. Date or Dep. Num.
  S RCREP2=0
- S:RCREP="S" RCREP2=$$ASKSUM2()
+ S:RCREP="S" RCREP2=$$ASKSUM2^RCDPTAR2()
  Q:RCREP2=-1
  ;
  I RCREP="S",RCREP2=1 D SUM^RCDPTAR1
@@ -31,21 +31,7 @@ EN ; Main entry point for this report
  I RCREP="D" D DET
  Q
  ;
- ; PRCA*4.5*380 - New Subroutine added
-ASKSUM2() ; Ask the user if they want to display the summary report by Deposit Date
- ; or by Deposit Number
- ; Input:   None
- ; Returns: -1 - User quit or timed out
- ;           1 - Display Summary report by Deposit Date
- ;           2 - Display Summary report by Deposit Number
- N DIR,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
- S DIR(0)="SOA^EFTS:EFTS by Date;DATE:Deposit Number"
- S DIR("A")="(E)FTs by Date or (D)eposit? "
- S DIR("B")="DEPOSIT"
- D ^DIR
- I $D(DTOUT)!$D(DUOUT) Q -1
- I $E(Y,1)="E" Q 1
- Q 2
+ ; PRCA*4.5*439 Moved subroutine ASKSUM2 to RCDPTAR2 because of space, PRCA*4.5*380 - New Subroutine added
  ;
 DET ; Entry point for detailed report
  ; Input: variable RCREP defined and equal to "D"
@@ -68,20 +54,19 @@ DET1 ; Prompt for user selection criteria
  S DIR("A")="Search for EFT by"
  ; End PRCA*4.5*424 changes
  D ^DIR
- I $D(DTOUT)!$D(DUOUT)!(Y="") Q                 ;PRCA*4.5*371 Changed G DETQ to Q
+ I $D(DTOUT)!$D(DUOUT)!(Y="") Q
  S RCDET=Y
  ;
  ; Do lookup of EFTs based on the user selection above
  S RCDATA=""
  ; PRCA*4.5*424 - Move subroutine RC to RCDPTAR2 for size and add FMS doc ID search
  D @($S(RCDET="N":"DN",RCDET="D":"DT",RCDET="R"!(RCDET="F"):"RC^RCDPTAR2",1:"TR")_"(.RCDATA)")
- ;PRCA*4.5*371 Moved lines that were here to new method SHOWONE
  Q
  ;
 SHOWONE(STOP) ; Prompt for device and output data for one EFT
  ; Input:   STOP    - Initially set to 0
  ; Output:  STOP    - 1 user entered '^', 0 otherwise
- ;PRCA*4.5*371 - Added Method
+ ;I '$L($G(RCDBAL)) S RCDBAL=1   ; If RCDBAL wasn't passed, reset the value
  N %ZIS,ZTSK,ZTRTN,ZTIO,ZTDESC,ZTSAVE,POP
  S %ZIS="QM"
  D ^%ZIS
@@ -96,7 +81,7 @@ SHOWONE(STOP) ; Prompt for device and output data for one EFT
  . W !,$S($D(ZTSK):"REQUEST QUEUED TASK="_ZTSK,1:"REQUEST CANCELLED")
  . D HOME^%ZIS
  U IO
- D RUN(RCDATA)
+ D RUN(RCDATA)  ; Add parameter RCDBAL PRCA*4.5*439
  Q
  ;
 RUN(RCDATA) ; Compile and output the report
@@ -117,47 +102,76 @@ DN(RCDATA) ; Lookup by Deposit Number
  ; Output:  RCDATA  - passed by refence - see subroutine EFTDATA for delimited list of fields
  ; Note variable RCDEFLUP is needed by LOOKUP^RCDPUDEP, which is called by the .01 field
  ;
- N DIC,DTOUT,DUOUT,LOCKIEN,RCDEFLUP,STOP,USERDN,Y   ;PRCA*4.5*371 Added STOP
- S STOP=0                                           ;PRCA*4.5*371 Added line
+ N DIC,DTOUT,DUOUT,LOCKIEN,RCBAL,RCDBAL,RCDBAL1,RCDEFLUP,STOP,USERDN,Y
+ S STOP=0
  ;
-DN2 ; Lookup Deposit Number                         ;PRCA*4.5*371 Added looping Tag
- W !
- S DIC="^RCY(344.1,",DIC(0)="QEAMn",DIC("A")="Select DEPOSIT: ",DIC("W")="D DICW^RCDPUDEP"
- S RCDEFLUP=1
- D ^DIC
- I $G(DTOUT)!$G(DUOUT)!(Y=-1) S RCDATA=-1 Q
+DN2 ; Lookup Deposit Number
+ ; PRCA*4.5*439 Begin
+ N ARR,CDDT,CTR
+ N RCDDT,RCDIEN,RCDNUM,XRCDT1,XRCDT2,RCEFTCNT,RCLOOP,RCSTOP,XX ; PRCA*4.5*439 add RCDIEN,RCLOOP
+ N RCDNUM
+ S RCLOOP=0
+ S RCDNUM=$$ASKDNUM^RCDPTAR1()                  ; Select deposit number
+ I RCDNUM=-1 S RCDATA=-1 Q                      ; Quit if user did not select a valid deposit number
  ;
- S LOCKIEN=+$O(^RCY(344.3,"ARDEP",+Y,""))
- I 'LOCKIEN D  G DN2                                ;PRCA*4.5*371 Changed Q to G DN2
+ S LOCKIEN=+$O(^RCY(344.3,"C",RCDNUM,""))
+ I 'LOCKIEN D  G DN2
  . W !!,"EFT NOT FOUND - please check Deposit"
  . D PAUSE
  ;
- ; Get EFT pointer
- S RCDATA=$$EFT(LOCKIEN)
+DN3 ; Lookup Deposit Number by Deposit Date
+ I RCLOOP,$G(CTR)<2 Q                          ; PRCA*4.5*439
+ S CTR=0,RCDDT="",CDDT="",RCSTOP=0
+ F  D  Q:RCDDT'=""  Q:RCSTOP
+ . I CTR=0 W !,"Select Deposit:"                ; Move inside loop, PRCA*4.5*439
+ . S CDDT=$O(^RCY(344.3,"ADEP2",RCDNUM,CDDT),-1)
+ . I CDDT="" D  Q                               ; No more Deposit Dates to display for Deposit Number
+ . . Q:CTR=0
+ . . S RCDDT=$$SELDT^RCDPTAR1(CTR,.ARR,RCLOOP)  ; Final selection choice ; PRCA*4.5*439 add RCLOOP to call
+ . . I RCDDT=-1 S RCSTOP=1
+ . S CTR=CTR+1,ARR(CTR)=CDDT
+ . S XX=$$FMTE^XLFDT(CDDT,"5DZ")
+ . W !,$J(CTR,3)," ",RCDNUM," on: ",XX
+ . S RCDIEN="",RCDBAL="1^0^0"
+ . F  S RCDIEN=$O(^RCY(344.3,"ADEP2",RCDNUM,CDDT,RCDIEN)) Q:'RCDIEN  D  ; PRCA*4.5*439
+ . . S RCDBAL1=$$DEPBAL^RCDPTAR2(RCDIEN)        ; Is deposit in balance with EFT totals, PRCA*4.5*439
+ . . S $P(RCDBAL,U,3)=$P(RCDBAL,U,3)+$P(RCDBAL1,U,3)
+ . . S:'$P(RCDBAL1,U,1) $P(RCDBAL,U,1)=0        ;Check for out of balance PRCA*4.5*446
+ . W $J($P(RCDBAL,U,3),19,2)                    ; Deposit total
+ . I 'RCDBAL W " **UNBALANCED**"                ; Add UNBALANCED indicator if deposit is not in balance, PRCA*4.5*439
+ . I CTR#10=0 D  Q:RCDDT'=""                    ; Ask selection every 10 times
+ . . S RCDDT=$$SELDT^RCDPTAR1(CTR,.ARR,RCLOOP)  ; PRCA*4.5*439 add RCLOOP to parameters
+ . . I RCDDT=-1 S RCSTOP=1
+ Q:RCDDT=""  Q:RCSTOP                           ; No Deposit Date selected
  ;
- ;PRCA*4.5*371 - Added lines Begin
+DN4 S RCDATA=$$DEPEFTS^RCDPTAR1(RCDNUM,RCDDT,.RCEFTCNT)
+ S RCLOOP=1                                     ; PRCA*4.5*439
+ I RCDATA=0 G DN3
+ ;
  Q:RCDATA=-1
  Q:RCDATA=""                                    ; No EFTs found
  D SHOWONE(.STOP)                               ; Display output
  Q:STOP
- G DN2
- ;PRCA*4.5*371 - Added lines End
+ I RCEFTCNT=1 G DN3                             ; Don't loop back to EFT selection if only one,  PRCA*4.5*439
+ G DN4                                          ; Otherwise, go back to DN4 to select a different EFT
+ ; PRCA*4.5*439 - End Modified code block
  Q
  ;
 DT(RCDATA) ; Deposit Date
  ; Input:   RCDATA  - null on entry
  ; Output:  RCDATA  - passed by refence - see subroutine EFTDATA for delimited list of fields
  ;
- ;PRCA*4.5*371 Added STOP below
- N CNT,DATA,DEPIEN,DIR,DIROUT,DIRUT,DTOUT,DUOUT,ITEM,LINE,LIST,RCDT,RCI,RCIEN,STOP,X,Y
- S STOP=0                                       ;PRCA*4.5*371 Added line
+ N CNT,DATA,DEPIEN,DIR,DIROUT,DIRUT,DTOUT,DUOUT,ITEM,LINE,LIST,RCDBAL,RCDT,RCI,RCIEN,RCLOOP,STOP,X,Y
+ S (RCLOOP,STOP)=0
  ;
 DT1 ; Ask the user for the Deposit Date
  K DIR
- S DIR(0)="DAO^:"_DT_":APE",DIR("B")="T"
+ S DIR(0)="DAO^:"_DT_":APE"
+ S DIR("B")=$S($G(RCLOOP):"",1:"T") ; PRCA*4.5*439
  S DIR("A")="Select DEPOSIT DATE: "
  D ^DIR
  I $D(DTOUT)!$D(DUOUT) S RCDATA=-1 Q
+ I $G(RCLOOP),Y="" S RCDATA=-1 Q  ; PRCA*4.5*439
  S RCDT=Y
  ;
  ; Build List
@@ -173,11 +187,13 @@ DT1 ; Ask the user for the Deposit Date
  . . S CNT=CNT+1
  . . ; Code below is similiar to DICW^RCDPUDEP code
  . . S LINE=$J(CNT,3)_". "_$P(DATA,U,1)
+ . . S RCDBAL=$$DEPBAL^RCDPTAR2(RCIEN)
  . . S $E(LINE,19)="by: "_$E($P($G(^VA(200,+$P(DATA,"^",6),0)),"^"),1,15)
  . . I '$P(DATA,"^",7) S $P(DATA,"^",7)="???????"
  . . S $E(LINE,39)="on: "_$E($P(DATA,"^",7),4,5)_"/"_$E($P(DATA,"^",7),6,7)_"/"_$E($P(DATA,"^",7),2,3)
  . . S $E(LINE,52)="amt: $"_$J($P(DATA,"^",4),10,2)
- . . S $E(LINE,70)=$P("N/A^OPEN^DEPOSITED^CONFIRMED^PROCESSED^VOID","^",+$P(DATA,"^",12)+1)
+ . . I 'RCDBAL S $E(LINE,69)="UNBALANCED" ;Check deposit balance, change 70 -> 69 PRCA*4.5*439
+ . . I RCDBAL S $E(LINE,69)=$P("N/A^OPEN^DEPOSITED^CONFIRMED^PROCESSED^VOID","^",+$P(DATA,"^",12)+1)  ;Check deposit balance, change 70 -> 69 PRCA*4.5*439
  . . S LIST(CNT)=RCIEN_"^"_$P(DATA,U,1)_"^"_LINE
  ;
  ; If no deposits in the LIST, display a message and try again
@@ -185,16 +201,15 @@ DT1 ; Ask the user for the Deposit Date
  . W !,"Date ",$$DATE^RCDPRU(RCDT)," does not have any valid deposits, please try again...",!
  ;
  ; If only one deposit in the list, use it
- I CNT=1 D  Q:STOP  G DT1                       ;PRCA*4.5*371 Changed Q to Q:STOP G DT1
+ I CNT=1 D  Q:STOP  G DT1
  . S RCDATA=$$EFT(+LIST(CNT))
  . ;
- . ;PRCA*4.5*371 Begin Added lines 
  . Q:RCDATA=-1
  . Q:RCDATA=""                                  ; No EFTs found
  . D SHOWONE(.STOP)                             ; Display output
- . ;PRCA*4.5*371 End Added lines 
+ . S RCLOOP=1                                   ; PRCA*4.5*439
  ;
-DT2 ; Multiple entries found so prompt for the one that is wanted ;PRCA*4.5*371 Added looping Tag
+DT2 ; Multiple entries found so prompt for the one that is wanted
  W !!,"Deposits on ",$$DATE^RCDPRU(RCDT)
  K DIR,ITEM
  S DIR(0)="SAO^"
@@ -212,22 +227,22 @@ DT2 ; Multiple entries found so prompt for the one that is wanted ;PRCA*4.5*371 
  I Y="" G DT1
  S RCDATA=$$EFT(ITEM(Y))
  ;
- ;PRCA*4.5*371 - Added lines Begin
  Q:RCDATA=-1
  Q:RCDATA=""                                    ; No EFTs found
+ S RCDBAL=$$DEPBAL^RCDPTAR2(ITEM(Y))            ; Reset unbalanced flag. Set again once deposit is selected, PRCA*4.5*439
  D SHOWONE(.STOP)                               ; Display output
+ S RCLOOP=1                                     ; PRCA*4.5*439
  Q:STOP
  G DT2
- ;PRCA*4.5*371 - Added lines End
  Q
  ;
 TR(RCDATA) ; Lookup by Trace Number
  ; Input:   RCDATA  - null on entry
  ; Output:  RCDATA  - passed by refence - see subroutine EFTDATA for delimited list of fields
- N D,DIC,DTOUT,DUOUT,STOP,X,Y                   ;PRCA*4.5*371 Added STOP
- S STOP=0                                       ;PRCA*4.5*371 Added line
+ N D,DIC,DTOUT,DUOUT,STOP,X,Y
+ S STOP=0
  ;
-TR2 ; Use "F" index in EDI EFT Detail file      ;PRCA*4.5*371 Added looping Tag
+TR2 ; Use "F" index in EDI EFT Detail file
  W !
  S DIC="^RCY(344.31,",DIC(0)="QEASn",D="F",DIC("A")="Select TRACE: "
  ; DIC("W") may need to be fixed if Trace numbers go over 32 characters. The fields
@@ -237,13 +252,11 @@ TR2 ; Use "F" index in EDI EFT Detail file      ;PRCA*4.5*371 Added looping Tag
  I $D(DTOUT)!$D(DUOUT)!(Y=-1) S RCDATA=-1 Q
  S RCDATA=$$EFTDATA(+Y)
  ;
- ;PRCA*4.5*371 - Added lines Begin
  Q:RCDATA=-1
  Q:RCDATA=""                                    ; No EFTs found
  D SHOWONE(.STOP)                               ; Display output
  Q:STOP
  G TR2
- ;PRCA*4.5*371 - Added lines End
  Q
  ;
 EFT(LOCKIEN) ; Select a single EFT Number
@@ -263,20 +276,18 @@ EFT(LOCKIEN) ; Select a single EFT Number
  ; If only one EFT, select it and quit
  I CNT=1 S Y=1 G EFT1
  ;
- ; Display and the let the user select the EFT
- N DIR,DIRUT,DIROUT,DTOUT,DUOUT,ROW,TRANS,X
- S DIR(0)="SO^"
- S DIR("A")="Select item from list"
- S DIR("L",1)="Select single EFT:"
- F ROW=1:1:CNT-1 D
- . S DATA=LIST(ROW),LOCKIEN=$P(DATA,U,2),EFTIEN=$P(DATA,U,3),TRANS=$$GET1^DIQ(344.31,EFTIEN_",",.01,"I")
- . S DIR(0)=DIR(0)_ROW_":"_TRANS_";"
- . S DIR("L",(ROW+1))=$J(ROW,3)_". "_TRANS_$$DISPLAY(EFTIEN,LOCKIEN) ; PRCA*4.5*326
- S DATA=LIST(CNT),LOCKIEN=$P(DATA,U,2),EFTIEN=$P(DATA,U,3),TRANS=$$GET1^DIQ(344.31,EFTIEN_",",.01,"I")
- S DIR(0)=DIR(0)_CNT_":"_TRANS
- S DIR("L")=$J(CNT,3)_". "_TRANS_$$DISPLAY(EFTIEN,LOCKIEN) ; PRCA*4.5*326
- D ^DIR
- I $D(DTOUT)!$D(DUOUT)!(Y="") Q -1
+ ; Display list of EFTs. Manual display and reading so we can put data on two lines. PRCA*4.5*439
+ N ROW,TRANS,X
+ W !!,"Deposit #: "_$J($$GET1^DIQ(344.3,LOCKIEN_",",.06),10)_"   "
+ W "Deposit Date: "_$$DATE^RCDPRU($$GET1^DIQ(344.3,LOCKIEN_",",.07,"I"),"2DZ")
+ I '$$DEPBAL^RCDPTAR2(LOCKIEN) W "  **UNBALANCED**" ; Check for unbalanced deposit PRCA*4.5*439
+ N LCNT,QUIT   ; RCA*4.5*439
+ S LCNT=0,QUIT=0,Y=-1
+ F ROW=1:1:CNT D  Q:QUIT
+ . S DATA=LIST(ROW),EFTIEN=$P(DATA,U,3)
+ . D DISPLAY(ROW,EFTIEN)
+ S Y=$$READ(1,ROW,CNT)
+ I Y'>0 Q -1
  ;
 EFT1 ;
  Q LIST(Y)
@@ -300,25 +311,24 @@ EFTDATA(EFTIEN) ; Get associated records for this EFT
  I DEPIEN S BATCHIEN=$O(^RCY(344,"AD",DEPIEN,""))
  Q ERAIEN_U_LOCKIEN_U_EFTIEN_U_DEPIEN_U_BATCHIEN
  ;
-DISPLAY(EFTIEN,LOCKIEN) ; Display EFT detail during user selection process
- ; Input: EFTIEN - IEN for EFT (#344.31)
- ;        LOCKIEN - IEN for LOCKBOX DEPOSIT (#344.3)
- ; Return: X1_"    "_X2_"    "_X3_"    "_X4_"    "_X5
- ; where   X1=PAYER NAME
- ;         X2=TRACE NUMBER
- ;         X3=AMOUNT OF PAYMENT
- ;         X4=DEPOSIT NUMBER
- ;         X5=DEPOSIT DATE
- N SUFX,X ; Added Suffix - PRCA*4.5*326
- S EFTIEN=$G(EFTIEN)
- S LOCKIEN=$G(LOCKIEN)
- S SUFX=$$GET1^DIQ(344.31,EFTIEN_",",.14) ; PRCA*4.5*326
- S:SUFX SUFX="."_SUFX ; PRCA*4.5*326
- S X=SUFX_$J("",4-$L(SUFX)) ; PRCA*4.5*326
- S X=X_$$GET1^DIQ(344.31,EFTIEN_",",.02)_"    "_$$GET1^DIQ(344.31,EFTIEN_",",.04)_"    " ; PRCA*4.5*326
- S X=X_$$GET1^DIQ(344.31,EFTIEN_",",.07)_"    "_$$GET1^DIQ(344.3,LOCKIEN_",",.06)_"    "
- S X=X_$$DATE^RCDPRU($$GET1^DIQ(344.3,LOCKIEN_",",.07,"I"),"2DZ")
- Q X
+DISPLAY(ROW,EFTIEN,TRANS) ; Display EFT detail during user selection process  ; PRCA*4.5*439 Modified display
+ ; Input: ROW    - Current row number
+ ;        EFTIEN - IEN for EFT (#344.31)
+ ;        TRANS  - EFT transaction number e.g. 999.1
+ ;
+ ; Output is written to the screen
+ N PAYER,SUFX,TRANS
+ S TRANS=$$GET1^DIQ(344.31,EFTIEN_",",.01,"I")
+ S SUFX=$$GET1^DIQ(344.31,EFTIEN_",",.14)
+ S:SUFX SUFX="."_SUFX
+ S PAYER=$$GET1^DIQ(344.31,EFTIEN_",",.02)
+ ;
+ W !,$E(ROW_".     ",1,5)                            ; Row Number
+ W $J(TRANS_SUFX,9)                                  ; EFT number with suffix
+ W " "_$E(PAYER,1,45)_$E($J("",45),1,45-$L(PAYER))   ; Payer Name
+ W " "_$J($$GET1^DIQ(344.31,EFTIEN_",",.07),19)      ; Amount
+ W !,$J(" ",15)_$$GET1^DIQ(344.31,EFTIEN_",",.04)    ; Trace number
+ Q
  ;
 COMPILE(RCDATA) ; Compile data for display
  ; Input: RCDATA - see subroutine EFTDA for delimited list of fields
@@ -390,14 +400,16 @@ REPORT(RCDATA) ; Print out the report
  ; Input: RCDATA - see subroutine EFTDA about for delimited list of fields
  ; Output: Write statements
  ;
- N CNT,DATE,DATA,LINES,RCHR,RCNOW,RCPG,RCSCR
+ N CNT,DATE,DATA,LINES,RCDBAL,RCHR,RCNOW,RCPG,RCSCR
  ;
  ; Initialize Report Date, Page Number and String of underscores
  S RCSCR=$S($E($G(IOST),1,2)="C-":1,1:0)
  S RCNOW=$$UP^XLFSTR($$NOW^RCDPRU()),RCPG=0,RCHR="",$P(RCHR,"-",IOM+1)=""
  ;
+ S RCDBAL=$$DEPBAL^RCDPTAR2($P(RCDATA,U,2))
+ ;
  U IO
- D HEADER(RCNOW,.RCPG,RCHR,RCDATA)
+ D HEADER^RCDPTAR2(RCNOW,.RCPG,RCHR,RCDATA,RCDBAL)  ; Add parameter RCDBAL PRCA*4.5*439
  I $G(RCDATA)=""!'$D(^TMP("RCDPTAR",$J)) W !,"No data found"
  ;
  ; Display the detail
@@ -415,32 +427,7 @@ REPORT(RCDATA) ; Print out the report
  I $D(ZTQUEUED) S ZTREQ="@" Q
  D ^%ZISC
  ;
- ; PRCA*4.5*371 - STOP if user enters '^'
  I RCPG,RCSCR S STOP=$S('$$PAUSE():1,1:0)
- Q
- ;
-HEADER(RCNOW,RCPG,RCHR,RCDATA) ; Print Header Section
- ; Input: RCNOW - DATE/TIME in external format
- ;        RCPG - Current page number
- ;        RCHR - Line of "-" to margin width
- ;        RCDATA - See subroutine EFTDA about for delimited list of fields
- ; Output: Write statements
- ;
- N EFTDATA,LINE
- S EFTDATA=$G(^RCY(344.31,+$P(RCDATA,U,3),0))
- ;
- W @IOF
- S RCPG=RCPG+1
- W "EFT TRANSACTION AUDIT REPORT"
- S LINE=RCNOW_"   PAGE: "_RCPG_" "
- W ?(IOM-$L(LINE)),LINE
- ; Added EFT line identifier nnn.nn - PRCA*4.5*326
- W !,"EFT#: ",$$AGED(+$P(RCDATA,U,3)),$$GET1^DIQ(344.31,$P(RCDATA,U,3)_",",.01,"E"),?19,"DEPOSIT#: ",$P($G(^RCY(344.3,+$P(RCDATA,U,2),0)),U,6),?42,"EFT TOTAL AMT: "_$S($P(EFTDATA,U,16)="D":"-",1:"")_$P(EFTDATA,U,7)
- W !,"EFT TRACE#: ",$P(EFTDATA,U,4)
- W !,"DATE RECEIVED: ",$$DATE^RCDPRU($P(EFTDATA,U,12)),?26,"PAYER/ID: "_$P(EFTDATA,U,2)_"/"_$P(EFTDATA,U,3)
- ;
- W !,"DATE",?10,"ACTION/DETAILS",?51,"STATUS"
- W !,RCHR
  Q
  ;
 PAUSE() ; Pause at end of each page for user input
@@ -462,7 +449,7 @@ CHKP(RCNOW,RCPG,RCHR,RCDATA,RCSCR,LINES) ; Check if we need to do a page break
  ;
  I $Y'>(IOSL-LINES) Q
  I RCSCR,'$$PAUSE S RCPG=0 Q
- D HEADER(RCNOW,.RCPG,RCHR,RCDATA)
+ D HEADER^RCDPTAR2(RCNOW,.RCPG,RCHR,RCDATA)
  Q
  ;
 AGED(EFTIEN) ; Check if EFT is locked or stale
@@ -478,3 +465,15 @@ AGED(EFTIEN) ; Check if EFT is locked or stale
  I $D(TRARRY("ERROR")) Q "**"
  I $D(TRARRY("WARNING")) Q "*"
  Q ""
+ ; Read EFT line manually PRCA*4.5*439
+READ(BEG,END,CNT) ; Read number of EFT line from 1 to END
+ ; Input: BEG - Begining of current numeric range displayed
+ ;        END - End of numeric current range displayed
+ ;        CNT - Number of last record in the list
+ N DIR,DTOUT,DUOUT,DIRUT,X,Y
+ S DIR(0)="NOA^"_BEG_":"_END
+ I END'=CNT S DIR("A",1)="Press <Enter> to see more, '^' to exit this list,  OR"
+ S DIR("A")="CHOOSE "_BEG_"-"_END_": "
+ D ^DIR
+ I $D(DTOUT)!($D(DUOUT)) Q -1
+ Q Y

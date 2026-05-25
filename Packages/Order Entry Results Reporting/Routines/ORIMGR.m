@@ -1,0 +1,305 @@
+ORIMGR ; SLC/AGP - Information panel VISTA manager ;Jun 11, 2025@08:21:33
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**508**;Dec 17, 1997;Build 39
+ ;
+ ; Reference to FORMAT^PXRMTEXT supported by DBIA # 6935
+ ;
+ Q
+ ;
+BLDIARRAY(TIDX,PKGIDX,IARRAY) ;
+ N CNT,NODE,PCNT,PIDX,PSEQ,SCNT,SSEQ,SIDX
+ K IARRAY
+ S SSEQ=0,SCNT=0,CNT=0
+ F  S SSEQ=$O(^ORI(101.71,TIDX,"PKG",PKGIDX,"LOC","B",SSEQ)) Q:SSEQ'>0  D
+ .S SIDX=0
+ .F  S SIDX=$O(^ORI(101.71,TIDX,"PKG",PKGIDX,"LOC","B",SSEQ,SIDX)) Q:SIDX'>0  D
+ ..S NODE=$G(^ORI(101.71,TIDX,"PKG",PKGIDX,"LOC",SIDX,0)),SCNT=SCNT+1
+ ..S IARRAY("sections",SCNT,"id")=SIDX,IARRAY("sections",SCNT,"name")=$P($G(^ORI(101.73,$P(NODE,U,2),0)),U)
+ ..S IARRAY("sections",SCNT,"seq")=SSEQ
+ ..S IARRAY("sectionSequence",SSEQ)=SCNT
+ ..S IARRAY("sectionIdSequence",SIDX)=SCNT
+ ..S PSEQ=0,PCNT=0
+ ..F  S PSEQ=$O(^ORI(101.71,TIDX,"PKG",PKGIDX,"LOC",SIDX,"ITM","B",PSEQ)) Q:PSEQ'>0  D
+ ...S PIDX=0
+ ...F  S PIDX=$O(^ORI(101.71,TIDX,"PKG",PKGIDX,"LOC",SIDX,"ITM","B",PSEQ,PIDX)) Q:PIDX'>0  D
+ ....S NODE=$G(^ORI(101.71,TIDX,"PKG",PKGIDX,"LOC",SIDX,"ITM",PIDX,0))
+ ....S PCNT=PCNT+1
+ ....S IARRAY("sections",SCNT,"items",PCNT,"id")=PIDX
+ ....S IARRAY("sections",SCNT,"items",PCNT,"name")=$P(NODE,U,2)
+ ....S IARRAY("sections",SCNT,"items",PCNT,"seq")=PSEQ
+ ....S IARRAY("sectionSequence",SSEQ,"itemSequence",PSEQ)=PCNT
+ ....S IARRAY("itemSequence","section",SSEQ)=SCNT
+ Q
+ ;
+FINDBYNAME(FILE,PROMPT,SCREEN,DICZERO,DLAYGO) ;
+ N DIC,DTOUT,DUOUT,Y
+ S DIC=FILE
+ I SCREEN'="" S DIC("S")=SCREEN
+ S DIC("A")=PROMPT
+ S DIC(0)=$S($G(DICZERO)'="":DICZERO,1:"AEMQ")
+ D ^DIC
+ I ($D(DTOUT)) S Y=U
+ I ($D(DUOUT)) S Y="^^"
+ Q Y
+ ;
+FORMATLONGTEXT(LABEL,TEXTIN,NUM,LM,RM,PAD,SUB,CNT) ;
+ ;use for inquiry, build word-processing fields to be used later
+ ;because of DIWP API
+ ;
+ N IDX,NBL,NLINES,TEXTOUT,TMP
+ I RM<1 S RM=50
+ S NBL=0
+ S TMP=$$RJ^XLFSTR(LABEL,LM,PAD) I NUM=0 S CNT=CNT+1,^TMP(SUB,$J,CNT)=TMP Q
+ D FORMAT^PXRMTEXT(0,RM,NUM,.TEXTIN,.NLINES,.TEXTOUT)
+ F IDX=1:1:NLINES D
+ .I IDX=1 S TMP=TMP_TEXTOUT(IDX) D SETTEXT(TMP,"",SUB,.CNT,LM,PAD) Q
+ .S TMP=$$RJ^XLFSTR(" ",LM,PAD)_TEXTOUT(IDX),NBL=1 D SETTEXT(TMP,"",SUB,.CNT,LM,PAD)
+ I NBL=1 S CNT=CNT+1,^TMP(SUB,$J,CNT)=" "
+ Q
+ ;
+HEADER(TEXT) ;Display Header (see DHD variable).
+ N TEMP,TEXTLEN,TEXTUND
+ S TEXTUND=$TR($J("",IOM)," ","-")
+ S TEMP=$$NOW^XLFDT_"  Page "_DC
+ S TEXTLEN=$L(TEMP)
+ W TEXT
+ W ?(IOM-TEXTLEN),TEMP
+ W !,TEXTUND,!!
+ Q
+ ;
+INQ(DIC,DA,FLDS,HTEXT) ;
+ N BY,CNT,DC,DHD,FR,IDX,L,NOW,TO
+ S L=0
+ S BY="NUMBER"
+ S (FR,TO)=+DA
+ I $L(HTEXT)>0 D
+ . S NOW=$$NOW^XLFDT
+ . S NOW=$$FMTE^XLFDT(NOW,"1P")
+ . S DHD="W ?0 D HEADER^ORIMGR("""_HTEXT_""")"
+ E  S DHD="@@"
+ D EN1^DIP
+ Q
+ ;
+INQPANEL ;
+ N CNT,DIWF,DIWL,END,FILL,HEAD,NAME,NODE,SECSEQ,SIDX,SUB,X
+ S DIWF="C80N",DIWL=2,CNT=0
+ S SUB="ORIMGR INQPANEL" K ^TMP(SUB,$J)
+ S SECSEQ=0
+ F  S SECSEQ=$O(^ORI(101.71,D1,"PKG",D0,"LOC","B",SECSEQ)) Q:SECSEQ'>0  D
+ .S SIDX=$O(^ORI(101.71,D1,"PKG",D0,"LOC","B",SECSEQ,"")) Q:SIDX'>0
+ .S NODE=$G(^ORI(101.71,D1,"PKG",D0,"LOC",SIDX,0))
+ .S NAME=$P($G(^ORI(101.73,$P(NODE,U,2),0)),U)
+ .S HEAD="--- Begin Section Sequence: "_SECSEQ_" -"
+ .S FILL=75-$L(HEAD) F X=1:1:FILL S HEAD=HEAD_"-"
+ .S CNT=CNT+1,^TMP(SUB,$J,CNT)=$$RJ^XLFSTR(HEAD,75," ")
+ .D INQSECTION(D1,D0,SIDX,SUB,.CNT)
+ .S END="--- End Section Sequence: "_SECSEQ_" -"
+ .S FILL=75-$L(END) F X=1:1:FILL S END=END_"-"
+ .S CNT=CNT+1,^TMP(SUB,$J,CNT)=$$RJ^XLFSTR(END,75," ")
+ .S CNT=CNT+1,^TMP(SUB,$J,CNT)=" "
+ S CNT=0 F  S CNT=$O(^TMP(SUB,$J,CNT)) Q:CNT'>0  D
+ .S X=^TMP(SUB,$J,CNT) D ^DIWP
+ Q
+ ;
+OTHERFILES(FN) ;
+ N ACT,DA,DIE,DIDEL,DINUSE,DR,FLDS,GBL,HEAD,PRMPT,ISNEW,NAME,PNAME,TNAME,Y
+ S GBL=$S(FN=101.75:"^OR(101.75,",FN=101.73:"^ORI(101.73,",FN=101.74:"^ORE(101.74,",1:"") I GBL="" Q
+ S PRMPT="Select "_$S(FN=101.75:"plugin: ",FN=101.73:"component: ",1:"editor: ")
+ S TNAME=$S(FN=101.75:"[OR EDIT M PLUGIN]",FN=101.73:"[ORI EDIT COMPONENT]",1:"[ORE EDIT EDITOR]")
+ S PNAME=$S(FN=101.75:"[OR PRINT M PLUGIN]",FN=101.73:"[ORI PRINT COMPONENT]",1:"[ORE PRINT EDITOR]")
+ S HEAD=$S(FN=101.75:"OR PRINT M PLUGIN",FN=101.73:"ORI PRINT COMPONENT",1:"ORE PRINT EDITOR")
+ S DA=$$FINDBYNAME(GBL,PRMPT,"",$S($G(ORIMGR)=1:"AELMQ",1:"AEMQ"),FN)
+ I +DA'>0 Q
+ S NAME=$P(DA,U,2),ISNEW=$P(DA,U,3)
+ S DA=+DA
+ D INQ(GBL,DA,PNAME,HEAD)
+ Q
+ ;
+PANELUI ;
+ ;S ORIMGR=1
+ N ASK,CNT,DA,DIWF,DIWL,IARRAY,NAME,PKG,PKGIDX,SIDX,SUB,TIDX,TMP
+ S TIDX=+$O(^ORI(101.71,"B","NATIONAL","")) I TIDX=0 W !,"Cannot find national panel entry." Q
+ S PKG=$$LU^ORIRPC(9.4,"ORDER ENTRY/RESULTS REPORTING","X") I +PKG<1 W !,"Could not find the ORDER ENTRY/RESULTS REPORTING package file entry." Q
+ S PKGIDX=+$O(^ORI(101.71,TIDX,"PKG","B",PKG,"")) I PKGIDX=0 W !,"Could not find the ORDER ENTRY/RESULTS REPORTING entry in the National entry." Q
+ D BLDIARRAY(TIDX,PKGIDX,.IARRAY)
+ S DA(1)=TIDX,DA=PKGIDX,NAME=$P($G(^ORI(101.71,TIDX,0)),U)
+ S ASK=$$YESNO("View entire "_NAME_" entry",3) I +ASK<0 Q
+ I +ASK=1 D INQ("^ORI(101.71,",.DA,"[ORI PANEL INQUIRY]","Information Panel Inquiry") Q
+ S DIWF="C80N",DIWL=2
+ D SHOWSECTIONS(.IARRAY)
+ S ASK=$$PROMPTSECTION(TIDX,PKGIDX,"QEA","") I +ASK<1 Q
+ S SIDX=+ASK
+ S TMP=$P($G(^ORI(101.73,$P($G(^ORI(101.71,TIDX,"PKG",PKGIDX,"LOC",SIDX,0)),U,2),0)),U)
+ S ASK=$$YESNO("View entire "_TMP_" entry",3) I +ASK<0 Q
+ S SUB="ORIMGR INQASK",CNT=0 K ^TMP(SUB,$J)
+ I ASK=1 D INQSECTION(TIDX,PKGIDX,SIDX,SUB,.CNT) G INQASKX
+ D SHOWITEMS(.IARRAY,SIDX)
+ S ASK=$$PROMPTITEM^ORIMGR(TIDX,PKGIDX,SIDX,"QEA","") I ASK<0 Q
+ I ASK>0 D INQITEM(TIDX,PKGIDX,SIDX,+ASK,SUB,.CNT)
+INQASKX ;
+ W !
+ S CNT=0 F  S CNT=$O(^TMP(SUB,$J,CNT)) Q:CNT'>0  W !,^TMP(SUB,$J,CNT)
+ Q
+INQITEM(TIDX,PIDX,SIDX,IIDX,SUB,CNT) ;
+ N CDRPC,CL,EDITOR,END,ETYPE,FN,HEAD,IMG,NAME,NODE,NOTAPP,NUM,IDX,RIDX,RIEN,TEXTIN,TMP
+ S NODE=$G(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,0))
+ ;Default values for information item
+ S EDITOR=0
+ S NAME=$P(NODE,U,2)
+ D SETTEXT("Name: ",NAME,SUB,.CNT,28," ")
+ D SETTEXT("Status: ",$S($P(NODE,U,3)="false":"DISABLED",$P(NODE,U,3)="locked":"LOCKED FOR EDITING",1:"ENABLED"),SUB,.CNT,28," ")
+ I $P(NODE,U,7)'="" D SETTEXT("Mandatory: ",$S($P(NODE,U,7)=1:"YES",1:"NO"),SUB,.CNT,28," ")
+ K TEXTIN
+ S IDX=0,NUM=0 F  S IDX=$O(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"DESC",IDX)) Q:IDX'>0  D
+ .S TEXTIN(IDX)=^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"DESC",IDX,0),NUM=NUM+1
+ D FORMATLONGTEXT("Description: ",.TEXTIN,NUM,28,42," ",SUB,.CNT)
+ K TEXTIN
+ S TEXTIN(1)=$P(NODE,U,5)
+ D FORMATLONGTEXT("Display Text: ",.TEXTIN,1,28,42," ",SUB,.CNT)
+ S CL=$S(+$P(NODE,U,6)>0:$P($G(^ORI(101.73,$P(NODE,U,6),0)),U),1:"")
+ S IMG=$S(+$P(NODE,U,8)>0:$P($G(^ORI(101.73,$P(NODE,U,8),0)),U),1:"")
+ D SETTEXT("Abbreviation: ",$P(NODE,U,4),SUB,.CNT,28," ")
+ D SETTEXT("Color: ",CL,SUB,.CNT,28," ")
+ D SETTEXT("Image: ",IMG,SUB,.CNT,28," ")
+ ;
+ ;Evaluation Items
+ S CNT=CNT+1,^TMP(SUB,$J,CNT)=" "
+ S NODE=$G(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,10))
+ S ETYPE=$S($P(NODE,U)="C":"Code",$P(NODE,U)="RD":"Reminder Definition",$P(NODE,U)="RT":"Reminder Term",1:"None")
+ D SETTEXT("Evaluation Type: ",ETYPE,SUB,.CNT,28," ")
+ I ETYPE["R" D
+ .S TMP=$S($P(NODE,U,2)["PXRMD(811.5":"RT.",1:"RD."),FN=+$P($P(NODE,U,2),"(",2)
+ .D SETTEXT("Reminder Component: ",TMP_$$GET1^DIQ(FN,+$P(NODE,U,2)_",",.01),SUB,.CNT,28," ")
+ .S TMP=$P(NODE,U,3) D SETTEXT("Reminder Status: ",$S(TMP="T":"True",TMP="F":"False",TMP="D":"Due",TMP="A":"Applicable",TMP="N":"N/A",1:""),SUB,.CNT,28," ")
+ I $P(NODE,U)="C",+$P(NODE,U,4)>0 S TMP=$P($G(^OR(101.75,$P(NODE,U,4),0)),U) D SETTEXT("Evaluation Code: ",TMP,SUB,.CNT,28," ")
+ ;
+ ;Applicable Values
+ S NODE=$G(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,20))
+ S CL=$S(+$P(NODE,U,4)>0:$P($G(^ORI(101.73,$P(NODE,U,4),0)),U),1:"")
+ S IMG=$S(+$P(NODE,U,5)>0:$P($G(^ORI(101.73,$P(NODE,U,5),0)),U),1:"")
+ S CNT=CNT+1,^TMP(SUB,$J,CNT)=" "
+ K TEXTIN S TEXTIN(1)=$P(NODE,U,3)
+ D FORMATLONGTEXT("Applicable Display Text: ",.TEXTIN,1,28,42," ",SUB,.CNT)
+ S CL=$S(+$P(NODE,U,6)>0:$P($G(^ORI(101.73,$P(NODE,U,6),0)),U),1:"")
+ S IMG=$S(+$P(NODE,U,8)>0:$P($G(^ORI(101.73,$P(NODE,U,8),0)),U),1:"")
+ D SETTEXT("Applicable Abbreviation: ",$P(NODE,U,4),SUB,.CNT,28," ")
+ D SETTEXT("Applicable Color: ",CL,SUB,.CNT,28," ")
+ D SETTEXT("Applicable Image: ",IMG,SUB,.CNT,28," ")
+ D SETTEXT("Display On Not Applicable: ",$S($P(NODE,U)>0:"True",1:"False"),SUB,.CNT,28," ")
+ ;
+ ;Action Values
+ S NODE=$G(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,30))
+ S TMP=$P($G(^ORI(101.73,$P(NODE,U),0)),U)
+ S CNT=CNT+1,^TMP(SUB,$J,CNT)=" "
+ D SETTEXT("Action ",TMP,SUB,.CNT,28," ")
+ S TMP=$P(NODE,U,2) D SETTEXT("Form Type: ",$S(TMP["Emb":"Embedded",TMP["Non":"Non Modal",TMP["Mod":"Modal",1:"Unknown"),SUB,.CNT,28," ")
+ I $P(NODE,U,3)>0 S TMP=$P($G(^OR(101.75,$P(NODE,U),0)),U) D SETTEXT("Detail Code: ",TMP,SUB,.CNT,28," ")
+ I $P(NODE,U,5)>0 S TMP=$P($G(^ORE(101.74,+$P(NODE,U,5),0)),U) D SETTEXT("Editor: ",TMP,SUB,.CNT,28," ")
+ D SETTEXT("Call Detail RPC: ",$P(NODE,U,4),SUB,.CNT,28," ")
+ ;
+ K TEXTIN
+ S IDX=0,NUM=0 F  S IDX=$O(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"DTXT",IDX)) Q:IDX'>0  D
+ .S TEXTIN(IDX)=^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"DTXT",IDX,0),NUM=NUM+1
+ D FORMATLONGTEXT("Detail Text: ",.TEXTIN,NUM,28,42," ",SUB,.CNT)
+ ;
+ K TEXTIN S TEXTIN(1)=$P($G(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"URL")),U)
+ D FORMATLONGTEXT("URL: ",.TEXTIN,1,28,42," ",SUB,.CNT)
+ ;
+ S RIDX=0 F  S RIDX=$O(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"REQD",RIDX)) Q:RIDX'>0  D
+ .S NODE=$G(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,"REQD",RIDX,0))
+ .S RIEN=+$P(NODE,U)
+ .S TMP=$P($G(^ORI(101.73,RIEN,0)),U)
+ .S CNT=CNT+1,^TMP(SUB,$J,CNT)=" "
+ .D SETTEXT("Required Data: ",TMP,SUB,.CNT,28," ")
+ .D SETTEXT("Required: ",$S($P(NODE,U,2)>0:"True",1:"False"),SUB,.CNT,28," ")
+ .K TEXTIN S TEXTIN(1)=$P($G(^ORI(101.73,RIEN,30)),U) D FORMATLONGTEXT("Error Message: ",.TEXTIN,1,28,42," ",SUB,.CNT)
+ .S IDX=0 F  S IDX=$O(^ORI(101.73,RIEN,40,IDX)) Q:IDX'>0  D
+ ..S NODE=$G(^ORI(101.73,RIEN,40,IDX,0))
+ ..I IDX>1 S CNT=CNT+1,^TMP(SUB,$J,CNT)=" "
+ ..D SETTEXT("Property Name: ",$P(NODE,U,1),SUB,.CNT,28," ")
+ ..D SETTEXT("Required ",$S($P(NODE,U,2)="Y":"Yes",$P(NODE,U,2)="O":"Or",1:"No"),SUB,.CNT,28," ")
+ Q
+ ;
+INQSECTION(TIDX,PIDX,SIDX,SUB,CNT) ;
+ N CL,END,FILL,HEAD,IIDX,ISEQ,IMG,NAME,NODE,TEXTIN,TMP,X
+ S NODE=$G(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,0))
+ S NAME=$P($G(^ORI(101.73,$P(NODE,U,2),0)),U)
+ D SETTEXT("Name: ",NAME,SUB,.CNT,20," ")
+ D SETTEXT("Disabled: ",$S($P(NODE,U,6)="true":"DISABLED",$P(NODE,U,6)="false":"ENABLED",1:""),SUB,.CNT,20," ")
+ K TEXTIN
+ S TEXTIN(1)=$P(NODE,U,3) D FORMATLONGTEXT("Display Text: ",.TEXTIN,1,20,50," ",SUB,.CNT)
+ D SETTEXT("Abbreviation: ",$P(NODE,U,4),SUB,.CNT,20," ")
+ S CL=$S(+$P(NODE,U,5)>0:$P($G(^ORI(101.73,$P(NODE,U,5),0)),U),1:"")
+ S IMG=$S(+$P(NODE,U,8)>0:$P($G(^ORI(101.73,$P(NODE,U,8),0)),U),1:"")
+ D SETTEXT("Color: ",CL,SUB,.CNT,20," ")
+ D SETTEXT("Image: ",IMG,SUB,.CNT,20," ")
+ S ISEQ=0
+ F  S ISEQ=$O(^ORI(101.71,1,"PKG",PIDX,"LOC",SIDX,"ITM","B",ISEQ)) Q:ISEQ'>0  D
+ .S IIDX=$O(^ORI(101.71,1,"PKG",PIDX,"LOC",SIDX,"ITM","B",ISEQ,"")) Q:IIDX'>0
+ .S NODE=$G(^ORI(101.71,TIDX,"PKG",PIDX,"LOC",SIDX,"ITM",IIDX,0))
+ .;Default values for information item
+ .S NAME=$P(NODE,U,2)
+ .S HEAD="-- Begin Item Sequence: "_ISEQ_" -"
+ .S TMP=70-$L(HEAD) F X=1:1:TMP S HEAD=HEAD_"-"
+ .S CNT=CNT+1,^TMP(SUB,$J,CNT)=" "
+ .D SETTEXT(HEAD,"",SUB,.CNT,70," ")
+ .D INQITEM(TIDX,PIDX,SIDX,IIDX,SUB,.CNT)
+ .S END="-- End Item Sequence: "_ISEQ_" -"
+ .S TMP=70-$L(END) F X=1:1:TMP S END=END_"-"
+ .D SETTEXT(END,"",SUB,.CNT,70," ")
+ Q
+ ;
+SETTEXT(LBL,VALUE,SUB,CNT,RM,PAD) ;
+ S CNT=CNT+1
+ S ^TMP(SUB,$J,CNT)=$$RJ^XLFSTR(LBL,RM,PAD)_VALUE
+ Q
+ ;
+PROMPTITEM(TIDX,PKGIDX,SECIDX,ARGS,SCREEN) ;
+ N DIC,Y
+ S DIC="^ORI(101.71,"_TIDX_",""PKG"","_PKGIDX_",""LOC"","_SECIDX_",""ITM"","
+ S DIC(0)=ARGS
+ S DIC("A")="Select item sequence: "
+ I $G(SCREEN)'="" S DIC("S")=SCREEN
+ S DIC("?")=$S(ARGS["L":"Select an existing item or add a new item",1:"Select an existing item")
+ S DIC("??")="^D HELP^ORIHELP(6)"
+ D ^DIC
+ Q Y
+ ;
+PROMPTSECTION(TIDX,PKGIDX,ARGS,SCREEN) ;
+ N DIC,Y
+ S DIC="^ORI(101.71,"_TIDX_",""PKG"","_PKGIDX_",""LOC"","
+ S DIC(0)=ARGS
+ S DIC("A")="Select section sequence: "
+ I $G(SCREEN)'="" S DIC("S")=SCREEN
+ S DIC("?")=$S(ARGS["L":"Select an existing section or add a new section",1:"Select an existing section")
+ S DIC("??")="^D HELP^ORIHELP(5)"
+ D ^DIC
+ Q Y
+ ;
+SHOWITEMS(IARRAY,SECIDX) ;
+ N IDX,SCNT
+ W !,"Section Information Items"
+ W !,$$LJ^XLFSTR("Seq:",5)_$$LJ^XLFSTR("Name:",65)_"num#"
+ S SCNT=+$G(IARRAY("sectionIdSequence",SECIDX)) Q:SCNT'>0
+ S IDX=0 F  S IDX=$O(IARRAY("sections",SCNT,"items",IDX)) Q:IDX'>0  D
+ .W !,$$LJ^XLFSTR(IARRAY("sections",SCNT,"items",IDX,"seq"),5)_$$LJ^XLFSTR(IARRAY("sections",SCNT,"items",IDX,"name"),65)_IARRAY("sections",SCNT,"items",IDX,"id")
+ Q
+ ;
+SHOWSECTIONS(IARRAY) ;
+ N IDX,SEQ
+ W !,"Information Sections:"
+ W !,$$LJ^XLFSTR("Seq:",5)_$$LJ^XLFSTR("Name:",65)_"Num#"
+ S SEQ=0 F  S SEQ=$O(IARRAY("sectionSequence",SEQ)) Q:SEQ'>0  D
+ .S IDX=IARRAY("sectionSequence",SEQ)
+ .W !,$$LJ^XLFSTR(IARRAY("sections",IDX,"seq"),5)_$$LJ^XLFSTR(IARRAY("sections",IDX,"name"),65)_IARRAY("sections",IDX,"id")
+ Q
+ ;
+YESNO(PROMPT,HELP) ;
+ N DIR,DIROUT,DIRUT,DUOUT,DTOUT,Y
+ S DIR("A")=PROMPT
+ S DIR(0)="Y^"
+ S DIR("??")="^D HELP^ORIHELP("_HELP_")"
+ S DIR("?")="Select Yes to view everything. Select No to view a specific item."
+ D ^DIR
+ I $D(DTOUT)!($D(DUOUT))!($D(DIROUT))!($D(DIRUT)) Q -1
+ Q Y
+ ;

@@ -1,5 +1,5 @@
-XTRCMP ;SF-ISC/RWF - Compare two routines. ;12/01/2005
- ;;7.3;TOOLKIT;**92**;Apr 25, 1995;Build 1
+XTRCMP ;SF-ISC/RWF - Compare two routines. ;12/30/2024
+ ;;7.3;TOOLKIT;**92,159**;Apr 25, 1995;Build 8
 A ;Compare two routines in account
  N DIR,DIRUT,RTN1,RTN2,%N,XCNP,DIF,%DEBUG,XTEND,%ZIS,ZTDESC,ZTRTN,ZTSAVE
  N %,%1,%2,%3,%4,%H,%T,%Y,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
@@ -23,7 +23,7 @@ CHECK ;
 LOAD(X) ;Load Routine from Disk, Line count in XCNP.
  S XCNP=0 X ^%ZOSF("LOAD")
  Q
-RSEL S DIR(0)="F^1:8^D TEST^XTRCMP(X)",DIR("?")="Routine name to do compare on."
+RSEL S DIR(0)="F^1:16^D TEST^XTRCMP(X)",DIR("?")="Routine name to do compare on."
  D ^DIR K DIR
  Q
 TEST(X) ;Test if Routine is on Disk
@@ -60,7 +60,7 @@ TIN ;Read one routine from tape
  ;Cache has more than just the name. 32 char max name.
  F I=2:1:32 Q:($E(RTN1,I)'?1AN)
  S RTN1=$E(RTN1,1,I-1)
- I (RTN1'?1.8AN)&(RTN1'?1"%".7AN) S X="" Q
+ I (RTN1'?1.16AN)&(RTN1'?1"%".17AN) S X="" Q
  K ^TMP($J,1)
  F I=1:1 R X:10 Q:X=""  S ^TMP($J,1,I,0)=$TR(X,$C(9)," ")
  S X=RTN1,O=I-1 U IO

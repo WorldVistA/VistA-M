@@ -1,5 +1,5 @@
 ONCACD1 ;HINES OIFO/GWB - Extract NAACCR/STATE/VACCR data ;09/06/11
- ;;2.2;ONCOLOGY;**1,4,5,8,9,13,14,15,17,18,20**;Jul 31, 2013;Build 5
+ ;;2.2;ONCOLOGY;**1,4,5,8,9,13,14,15,17,18,20,21**;Jul 31, 2013;Build 6
  ;
  ;P5 added in RQRS the Analytic Cases selection.
  ;P8 allows BLANK in TNM Clin/Path data fields & others.
@@ -38,7 +38,7 @@ SETUP ;Loop through appropriate cross-reference
  .S ONCX21=1
  .S ONCTYPE="""A"""
  .I EXTRACT=7 S ONCTYPE="""I"""
- .S ONCDIC="""http://naaccr.org/naaccrxml/naaccr-dictionary-230.xml"""
+ .S ONCDIC="""http://naaccr.org/naaccrxml/naaccr-dictionary-240.xml"""
  .S ONC11=" baseDictionaryUri="
  .S ONC22=" recordType=",ONC33=" timeGenerated=",ONC44=" specificationVersion="
  .W "<?xml version=""1.0"" encoding=""UTF-8""?>",!

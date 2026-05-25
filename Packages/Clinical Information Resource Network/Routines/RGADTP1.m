@@ -1,5 +1,5 @@
 RGADTP1 ;BIR/DLR-ADT PROCESSOR TO RETRIGGER A08 or A04 MESSAGES WITH AL/AL (COMMIT/APPLICATION) ACKNOWLEDGEMENTS - CONTINUED ;7/19/21  12:43
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**26,27,42,45,44,47,48,59,61,64,67,71,76**;30 Apr 99;Build 1
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**26,27,42,45,44,47,48,59,61,64,67,71,76,78**;30 Apr 99;Build 1
  ;
 PIDP(MSG,ARRAY,HL) ;process PID segment
  N ID,IDS,PIDAA,PIDNTC
@@ -104,7 +104,15 @@ PIDP(MSG,ARRAY,HL) ;process PID segment
  .. S ARRAY(.132)=$$FREE^RGRSPARS(PID(15))
  . I ADRTYPE="N" D
  .. S ARRAY("POBCITY")=$$FREE^RGRSPARS($P(ADDR,COMP,3))  ;POB city
- .. S ARRAY("POBSTATE")=$$STATE^RGRSPARS($P(ADDR,COMP,4))  ;POB state
+ .. ;**78 Story VAMPI-27524 (jfw) - Add POB Province/Country
+ .. S ARRAY("POBCOUNTRY")=$$COUNTRY($P(ADDR,COMP,6))  ;POB country
+ .. S ARRAY("POBSTATE")=$$STATE^RGRSPARS($P(ADDR,COMP,4)),ARRAY("POBPROVINCE")="""@"""  ;POB state
+ .. S:($P(ARRAY("POBSTATE"),"^",2)=1) ARRAY("POBSTATE")="""@"""
+ .. S:((ARRAY("POBCOUNTRY")'="""@""")&(ARRAY("POBCOUNTRY")'="USA")) ARRAY("POBPROVINCE")=$$FREE^RGRSPARS($P(ADDR,COMP,4)),ARRAY("POBSTATE")="""@"""  ;POB province
+ I $G(ARRAY("POBCITY"))=HL("Q")!($G(ARRAY("POBCITY"))="") S ARRAY("POBCITY")="""@"""
+ I $G(ARRAY("POBSTATE"))=HL("Q")!($G(ARRAY("POBSTATE"))="") S ARRAY("POBSTATE")="""@"""
+ I $G(ARRAY("POBPROVINCE"))=HL("Q")!($G(ARRAY("POBPROVINCE"))="") S ARRAY("POBPROVINCE")="""@"""
+ I $G(ARRAY("POBCOUNTRY"))=HL("Q")!($G(ARRAY("POBCOUNTRY"))="") S ARRAY("POBCOUNTRY")="""@"""
  ;
  ;marital status
  S ARRAY(.05)=$$MARITAL^RGRSPARS(PID(17))
@@ -187,3 +195,17 @@ NAMARR ;parse legal and alias names ;**61 MVI_2970 (dri)
 QTON(X) ;**71,Story 841921 (mko): Convert two quotes to null
  Q $S(X="""""":"",1:X)
  ;
+ ;**78 Story VAMPI-27524 (jfw) - Validate Country value
+ ;INPUT CNTRY - Country Postal Name from HL7 Message
+ ;OUTPUT - Entry Exists - .01 value returned
+ ;         Not Exists - @ returned
+COUNTRY(CNTRY) ;
+ N CNTRYF,CNTRYCDE,CNTRYIEN
+ S CNTRYF=$$FREE^RGRSPARS(CNTRY)
+ Q:CNTRYF="" ""
+ Q:CNTRYF="""@""" """@"""
+ S CNTRYIEN=$$FIND1^DIC(779.004,,"M",CNTRY)
+ Q:(CNTRYIEN=0) """@"""
+ S CNTRYCDE=$$GET1^DIQ(779.004,CNTRYIEN_",",.01,"I")
+ Q:(CNTRYCDE'="") CNTRYCDE
+ Q """@"""

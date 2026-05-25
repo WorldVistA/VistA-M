@@ -1,27 +1,26 @@
-ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;Dec 4, 2023@14:09
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350,424,377,519,539,405,596,588,608**;Dec 17, 1997;Build 15
+ORWU ;SLC/KCM - GENERAL UTILITIES FOR WINDOWS CALLS ;Dec 31, 2025@12:58
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,148,149,187,195,215,243,350,424,377,519,539,405,596,588,608,629,508**;Dec 17, 1997;Build 39
  ;
- ; Reference to ^%ZIS(1 supported by IA #2963
- ; Reference to ^%ZIS(2 supported by IA #2964
- ; Reference to ^DIC(3.1 supported by IA #1234
- ; Reference to ^SC supported by IA #10040
- ; Reference to ^VA(200 supported by IA #10060
- ; Reference to ^XUSEC( supported by IA #10076
- ; Reference to ^%DT supported by IA #10003
- ; Reference to WIN^DGPMDDCF supported by IA #1246
- ; Reference to FIND^DIC supported by IA #2051
+ ; Reference to ^%ZIS(1 in ICR #2963
+ ; Reference to ^%ZIS(2 in ICR #2964
+ ; Reference to ^SC in ICR #10040
+ ; Reference to ^VA(200 in ICR #10060
+ ; Reference to ^XUSEC( in ICR #10076
+ ; Reference to ^%DT in ICR #10003
+ ; Reference to WIN^DGPMDDCF in ICR #1246
+ ; Reference to FIND^DIC in ICR #2051
  ; Reference to ^DID IN ICR #2052
- ; Reference to ^DILFD supported by IA #2055
- ; Reference to $$SITE^VASITE supported by IA #10112
- ; Reference to ^XLFJSON supported by IA #6682
- ; Reference to ^XLFSTR supported by IA #10104
- ; Reference to ^XPAR supported by IA #2263
- ; Reference to ^XPDUTL supported by IA #10141
- ; Reference to ^XQCHK supported by IA #10078
- ; Reference to $$KSP^XUPARAM supported by IA #2541
- ; Reference to $$PROD^XUPROD supported by IA #4440
- ; Reference to ^XUSHSHP supported by IA #10045
- ; Reference to $$DECRYP^XUSRB supported by IA #12241
+ ; Reference to ^DILFD in ICR #2055
+ ; Reference to $$SITE^VASITE in ICR #10112
+ ; Reference to ^XLFJSON in ICR #6682
+ ; Reference to ^XLFSTR in ICR #10104
+ ; Reference to ^XPAR in ICR #2263
+ ; Reference to ^XPDUTL in ICR #10141
+ ; Reference to ^XQCHK in ICR #10078
+ ; Reference to $$KSP^XUPARAM in ICR #2541
+ ; Reference to $$PROD^XUPROD in ICR #4440
+ ; Reference to ^XUSHSHP in ICR #10045
+ ; Reference to $$DECRYP^XUSRB1 in ICR #2241
  ;
  Q
 DT(Y,X,%DT) ; Internal Fileman Date/Time
@@ -269,7 +268,7 @@ MOBAPP(VAL,ORAPP) ;set ^TMP($J,"OR MOB APP")
  Q
  ;
 JSYSPARM(RESULTS,USER) ;
- N TEMP
+ N TEMP,PROMPT
  S RESULTS=$NA(^TMP($J,"ORWU SYSPARAM"))
  S TEMP("reEvaluateReminders")=+$$GET^XPAR("USR^SYS","PXRM DIALOG EVAL DEFINITION",1,"I")
  D  ;Copy/Paste Words to Count as a Copy
@@ -307,6 +306,7 @@ JSYSPARM(RESULTS,USER) ;
  S TEMP("orCPRSExceptionLog","winMessageLogSize")=+$$GET^XPAR("ALL","OR CPRS WIN MESSAGE LOG SIZE",1,"I")
  S TEMP("orCPRSExceptionLog","RPCLogSize")=+$$GET^XPAR("ALL","OR CPRS RPC EXCEPTION LOG SIZE",1,"I")
  S TEMP("orCPRSExceptionLog","includeModuleInfo")=+$$GET^XPAR("ALL","OR CPRS EXCEPTION MODULE INFO",1,"I")
+ S TEMP("retainedRPCMax")=+$$GET^XPAR("PKG","OR CPRS LAST BROKER RPC MAX",1,"I")
  D  ;CPRS Exception Email
  . N CNT2,ORLIST
  . D GETLST^XPAR(.ORLIST,"ALL","OR CPRS EXCEPTION EMAIL","Q")
@@ -323,9 +323,13 @@ JSYSPARM(RESULTS,USER) ;
  S TEMP("ResponsiveGUI")=$$GET^XPAR("ALL","ORWCH PAUSE INPUT")
  D GETSERIES^ORFEDT(.TEMP)
  D ACCESS^ORACCESS(.TEMP,USER)
+ D GETNVA^ORWCH(.TEMP)
  D SIGI^ORWPAR1(.TEMP)
  ;D ENCODE^VPRJSON("TEMP","RESULTS","ERROR")
  S TEMP("vitals","gmvMetricFirst")=+$$GET^XPAR("ALL","ORQQVI METRIC FIRST",1,"I")
+ D RETURNPARAMS^ORSPECAUTH(.TEMP)
+ S PROMPT=$$GET^XPAR("ALL","OR SENSITIVE PATIENT PROMPT",1,"I")
+ S TEMP("sensitivePatientPrompt")=$S(PROMPT]"":PROMPT,1:"Do you want to continue accessing this patient record?")
  D ENCODE^XLFJSON("TEMP",$NA(^TMP($J,"ORWU SYSPARAM")),"ERROR")
  Q
  ;

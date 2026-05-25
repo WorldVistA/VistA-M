@@ -1,5 +1,5 @@
 XWBSEC ;ISF/VYD,ISD/HGW - RPC BROKER ; 7/21/16 4:34pm
- ;;1.1;RPC BROKER;**3,6,10,35,53,64**;Mar 28, 1997;Build 12
+ ;;1.1;RPC BROKER;**3,6,10,35,53,64**;Mar 28, 1997;Build 0
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 CHKPRMIT(XWBRP) ;checks to see if remote procedure is permitted to run

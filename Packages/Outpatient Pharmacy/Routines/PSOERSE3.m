@@ -1,16 +1,15 @@
 PSOERSE3 ;ALB/RM - PSO ERX SINGLE ERX DISPLAY INIT section continuation ;Jan 30, 2024@12:43:34
- ;;7.0;OUTPATIENT PHARMACY;**746,769**;DEC 16, 1997;Build 26
- ;
- Q
+ ;;7.0;OUTPATIENT PHARMACY;**746,769,770**;DEC 16, 1997;Build 145
  ;
 DISPRX ;continuation of PSOERSE2 routine
- N VADRGNME,ERXCOMM,SLOOP,VASIG,FSVPIN,COMARY,COM,FSSIG
+ N VADRGNME,ERXCOMM,VLOOP,SLOOP,VASIG,FSVPIN,COMARY,COM,FSSIG,VAPIARY,VASARY,DRMANVAL
  I "RR,CA,CN,IE"'[MTYPE!(MTYPE="N") D
  . I MTYPE="RE",$$GET1^DIQ(52.49,PSOIEN,52.1,"I")'="R" Q
  . S LINE=LINE+1 D SET^VALM10(LINE,"")
  . S PSNF="" I $G(VADRGIEN) S PSNF=$S($P(^PSDRUG(VADRGIEN,0),"^",9):"***(N/F)***",1:"") ;p689
  . S LINE=LINE+1
  . S VADRGNME=VADRG_" "_$P($$VADRSCH^PSOERXUT(VADRGIEN),"^",3)_PSNF
+ . S DRMANVAL=$$GET1^DIQ(52.49,PSOIEN,1.5,"I")
  . D SET^VALM10(LINE,"Vista Drug"_$S($G(DRMANVAL):"[v]",1:"")_": "_VADRGNME)
  . D CNTRL^VALM10(LINE,$S($G(DRMANVAL):15,1:13),$L(VADRGNME),IOINHI,IOINORM)
  . D ADDITEM^PSOERX1A(.LINETXT,"Vista Qty: ",$G(VAQTY),1,25)
@@ -82,11 +81,11 @@ ALG(LINE) ;
  K ^TMP("PSOPI",$J)
  Q
  ;
-DSPLYDUE(ERXIEN,LINE,DSPLYTO,TMPGL) ;Display the Prescriber Drug Use Evaluation
+DSPLYDUE(ERXIEN,LINE,DSPLYTO,TMPGBL) ;Display the Prescriber Drug Use Evaluation
  ;Inputs: (r) ERXIEN  - Pointer to the ERX HOLDING QUEUE file (#52.49)
  ;        (r) LINE    - List Manager line
  ;        (o) DSPLYTO - Vista=0 (default), CPRS=1
- ;        (o) TMPGL   - The temporary global if the DUE is displayed in CPRS
+ ;        (o) TMPGBL  - The temporary global if the DUE is displayed in CPRS
  ;
  N PDRGDUE,PDUEHDR,DUECNT,COAGENT,REASON,RESULT,ACK,PDUETOTAL,DDOT
  I '+$G(DSPLYTO) S DSPLYTO=0
@@ -123,3 +122,84 @@ DSPLYDUE(ERXIEN,LINE,DSPLYTO,TMPGL) ;Display the Prescriber Drug Use Evaluation
  . . I DUECNT'=+$G(PDUETOTAL) S LINE=LINE+1,@TMPGBL@(LINE,0)=DDOT
  I +$G(DSPLYTO)=1 S LINE=LINE+1,@TMPGBL@(LINE,0)=""
  Q
+ ;
+ACCEPT ; Validate All Matches (Patient/Provider/Drug) & Accept eRx
+ N PASSTRHU,ERXSTS,DIR D FULL^VALM1 S VALMBCK="R"
+ S PASSTRHU=0 I $$GET1^DIQ(52.49,ERXIEN,.08,"I")="RE",$$GET1^DIQ(52.49,ERXIEN,52.1,"I")'="R" S PASSTRHU=1
+ S ERXSTS=$$GET1^DIQ(52.49,ERXIEN,1)
+ I ERXSTS="RJ"!(ERXSTS="RM")!($E(ERXSTS,1,3)="REM")!(ERXSTS="PR")!(ERXSTS="CXP")!(ERXSTS="RXP") D  Q
+ . W !!,"Cannot accept a prescription with a status of 'Rejected', 'Removed',",!,"or 'Processed",!
+ . K DIR S DIR(0)="E" D ^DIR
+ ; MbM site won't validate the patient
+ I 'PASSTRHU D
+ . I 'PASSTRHU,'$$GET1^DIQ(52.49,ERXIEN,1.7,"I") D
+ . . I '$G(MBMSITE) W !!,"Validating Patient..." D ACVAL^PSOERX1B(ERXIEN,"P",1)
+ . . I $G(MBMSITE) W !!,"Patient has not been validated!",!,$C(7) K DIR S DIR(0)="E" D ^DIR
+ . I '$$GET1^DIQ(52.49,ERXIEN,1.3,"I") D
+ . . W !!,"Validating Provider..." D ACVAL^PSOERX1B(ERXIEN,"PR",1)
+ . I '$$GET1^DIQ(52.49,ERXIEN,1.5,"I") D
+ . . W !!,"Validating Drug/SIG..." D ACVAL^PSOERX1B(ERXIEN,"D",1)
+ ;
+ I PASSTRHU!($$GET1^DIQ(52.49,ERXIEN,1.7,"I")&$$GET1^DIQ(52.49,ERXIEN,1.3,"I")&$$GET1^DIQ(52.49,ERXIEN,1.5,"I")) D
+ . N DIR,PSOIEN
+ . ;Accepting the eRx
+ . S PSOIEN=ERXIEN D SETUP^PSOERX1F
+ E  D:$G(MBMSITE) REF^PSOERSE1 Q
+ S VALMBCK="Q" I $G(MBMSITE) D REF^PSOERSE1
+ Q
+ ;
+NEXTDRUG  ; Automatically Selects the Next Drug
+ N NEXTERX,FROMLIST
+ ;
+ I '$G(EPATIEN) S EPATIEN=$$GET1^DIQ(52.49,+$G(PSOIEN),.04,"I") I 'EPATIEN Q
+ S FROMLIST='$G(PSOIEN),VALMBCK="Q"
+ ; - Locking the eRx Patient
+ S NEXTERX=$$NEXTERX^PSOERSE3(EPATIEN,+$G(PSOIEN))
+ I 'NEXTERX S NEXTERX=$$NEXTERX^PSOERSE3(EPATIEN,0) I 'NEXTERX Q
+ S (ERXIEN,PSOIEN)=NEXTERX
+ I $G(PRINTFLG)'="VD" D EN^PSOERXD1
+ E  D INIT^PSOERXD1,HDR^PSOERXD1 S VALMBCK="R" Q
+ I FROMLIST D EN^PSOERSE1(PSOIEN)
+ E  D INIT^PSOERSE1,HDR^PSOERSE1
+ I FROMLIST K PSOIEN
+ Q
+ ;
+NEXTERX(ERXPAT,ERXIEN) ; Returns the next Actionable eRx for the Patient 
+ ; Input:(r) ERXPAT - Pointer to the ERX EXTERNAL PATIENT file (#52.46)
+ ;       (r) ERXIEN - Current eRx - Pointer to the ERX HOLDING QUEUE file (#52.49)
+ ;Output: NEXTERX   - Next eRx for the eRx Patient
+ N NEXTERX,ERX,BEGDATE,ENDDATE,MSGDT,STATUS
+ S (NEXTERX,ERX)=0,BEGDATE=$$FMADD^XLFDT(DT,-PSOLKBKD)-.1,ENDDATE=DT+.99,MSGDT=BEGDATE
+ F  S MSGDT=$O(^PS(52.49,"PAT2",ERXPAT,MSGDT)) Q:'MSGDT!(MSGDT>ENDDATE)  D  I NEXTERX Q
+ . F  S ERX=$O(^PS(52.49,"PAT2",ERXPAT,MSGDT,ERX)) Q:'ERX  D  I NEXTERX Q
+ . . I ERX'>ERXIEN Q
+ . . S STATUS=$$GET1^DIQ(52.49,ERX,1)
+ . . I $F(",RJ,RM,REM,PR,E,RXA,CXA,CAA,CAN,CXP,RXP,RXA,ICA,CNP,CRP,CRC,RRC,CXC,CNE,CRN,CRR,CRX,CXQ,RXA,RXC,RRN,RRX,RRR,RRP,IRA,",","_$E(STATUS,1,3)_",") Q
+ . . S NEXTERX=ERX
+ Q NEXTERX
+ ;
+EDITDRUG ; Edit Drug fields from Single eRx View/Display
+ N Y,CURPAGE,XQORM
+ S VALMBCK="R",CURPAGE=VALMBG
+ S Y=$P(XQORNOD(0),"=",2) I Y']"" Q
+ ;
+ I +Y'=1,'$$GET1^DIQ(52.49,PSOIEN,3.2,"I")!'$D(^PS(52.49,PSOIEN,21)) D  S VALMBCK="R" Q
+ . S VALMSG="You must update the Dispense Drug first!" W $C(7)
+ ;
+ D EDIT^PSOERX1A("D",Y)
+ D REF^PSOERSE1 S VALMBG=+$G(CURPAGE)
+ Q
+ ;
+MISSINGPI(ERXIEN) ; Returns whether it is likely the eRx should have Patient Instructions entered or not
+ ; Input: (r) ERXIEN  - Pointer to the ERX HOLDING QUEUE file (#52.49)
+ ;Output: MISSINGPI   - 0: Pat.Instr. not likely missing | 1: Pat.Instr. is likely missing
+ ;
+ N SUGRXIEN,MSGTYPE
+ I '$D(^PS(52.49,+$G(ERXIEN),0)) Q 0
+ I $$GET1^DIQ(52.49,ERXIEN,1.4,"I")'=1 Q 0   ; Not auto-matched
+ I '$F(",N,RE,",","_$E($$GET1^DIQ(52.49,ERXIEN,.08,"I"))_",") Q 0
+ I '$F(",I,N,W,H,",","_$E($$GET1^DIQ(52.49,ERXIEN,1,"E"))_",") Q 0
+ I $$GET1^DIQ(52.49,ERXIEN,27)'="" Q 0
+ S SUGRXIEN=$$GET1^DIQ(52.49,ERXIEN,.15,"I") I 'SUGRXIEN Q 0
+ I $$VARXPI^PSOERUT(SUGRXIEN)="" Q 0
+ Q 1

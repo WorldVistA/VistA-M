@@ -1,5 +1,5 @@
 PSOORFI3 ;BIR/RTR-finish CPRS orders by Clinic ; 4/26/11 2:05pm
- ;;7.0;OUTPATIENT PHARMACY;**15,27,32,46,84,99,130,117,139,172,225,300,384,372,505,557,700**;DEC 1997;Build 261
+ ;;7.0;OUTPATIENT PHARMACY;**15,27,32,46,84,99,130,117,139,172,225,300,384,372,505,557,700,770**;DEC 1997;Build 145
  ;SC(-2675,40.8-728,51.2-2226,50.607-2221,55-2228,PSSLOCK-2789,DPT-10035,ORX2-867
  ;
  K ^TMP($J,"PSOCL"),^TMP($J,"PSOCLX"),PSOCLIN,PSOCLINF,PSOXINST
@@ -74,7 +74,10 @@ L1 ;Lock single order
  ; Altering Lock Timout for MbM sites for this specific Lock to support volume eRx Processing
  S MBMSITE=$S($$GET1^DIQ(59.7,1,102,"I")="MBM":1,1:0)
  I $G(MBMSITE) S SAVELKTM=DILOCKTM,DILOCKTM=.01
- K PSOMSG D PSOL^PSSLOCK(+ORD_"S") I '$G(PSOMSG) W !!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"This Order is being edited by another person."),! K DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR
+ K PSOMSG D PSOL^PSSLOCK(+ORD_"S")
+ ; Allowing eRx Workload Processing users to enter their own tagged order 
+ I $D(^XUSEC("PSO ERX WORKLOAD RPH",DUZ)),$P(PSOMSG,"^",2)[$$GET1^DIQ(200,DUZ,.01) S $P(PSOMSG,"^",1)=1
+ I '$G(PSOMSG) W !!,$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"This Order is being edited by another person."),! K DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR
  I $G(MBMSITE) S DILOCKTM=SAVELKTM
  Q
 UL1 ;Unlock single order

@@ -1,10 +1,11 @@
 IBDF18E4 ;ALB/DHH - ENCOUNTER FORM - MISC INTERFACES utilities ;19-JUN-01
- ;;3.0;AUTOMATED INFO COLLECTION SYS;**37**;APR 24, 1997
+ ;;3.0;AUTOMATED INFO COLLECTION SYS;**37,72**;APR 24, 1997;Build 1
  ;
  ;-- this routine is to be called after PXCA is called in order to 
  ;   send additional information to other packages that PCE does not
  ;   send to currently
  ;
+ Q  ;IBD*3*72 removes GAF functionality from AICS
 GAF ;send GAF information to Mental Health
  ;
  ;-- GAF information is filed with Mental Health only if the following
@@ -15,6 +16,7 @@ GAF ;send GAF information to Mental Health
  ;          DATE  = Encounter Date/Time
  ;          VISIT = Inpatient or Outpatient Visit
  ;
+ Q  ;IBD*3*72 removes GAF functionality from AICS
  N DIG1,DIG2,DIG3,EPROV,SCORE,PROV,DATE,VISIT,X,DFN
  S (SCORE,PROV,DATE,VISIT)=""
  ;

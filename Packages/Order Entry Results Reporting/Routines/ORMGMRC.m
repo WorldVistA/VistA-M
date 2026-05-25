@@ -1,10 +1,5 @@
-ORMGMRC ; SLC/MKB - Process Consult ORM msgs ;Oct 27, 2023@12:13:26
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,26,68,92,153,174,195,255,243,280,350,415,519,535**;Dec 17, 1997;Build 20
- ;Reference to ^VA(200 in ICR #4329
- ;Reference to ^DIE in ICR #10018
- ;Reference to $$NOW^XLFDT in ICR #10103
- ;Reference to $$UP^XLFSTR in ICR #10104
- ;
+ORMGMRC ; SLC/MKB - Process Consult ORM msgs ;Sep 10, 2020@14:17:35
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,26,68,92,153,174,195,255,243,280,350,415,519**;Dec 17, 1997;Build 0
 EN ; -- entry point for GMRC messges
  I '$L($T(@ORDCNTRL)) Q  ;S ORERR="Invalid order control code" Q
  I ORDCNTRL'="SN",ORDCNTRL'="ZP",'ORIFN!('$D(^OR(100,+ORIFN,0))) S ORERR="Invalid OE/RR order number" Q
@@ -125,6 +120,8 @@ RE ; -- Completed, w/results
  S I=+ORC,X="" F  S I=$O(@ORMSG@(I)) Q:I<1  S SEG=$G(@ORMSG@(I)) Q:$E(SEG,1,3)="ORC"  I $E(SEG,1,3)="OBX",$P(SEG,"|",4)["SIG FINDINGS" S X=$P(SEG,"|",6) Q
  S $P(^OR(100,DA,7),U,2)=$S(X="Y":1,1:"")
  S:'$G(ORNP) ORNP=+$P($G(^OR(100,+ORIFN,0)),U,4)
+ I $P(ORC,"|",17)["MAINTENANCE" Q  ;group update - no CM ack needed
+ I $L($T(ADD^ORRCACK)) D ADD^ORRCACK(+ORIFN,ORNP) ;Ack stub for prov
  Q
  ;
 UA ; -- Unable to Accept [ack]

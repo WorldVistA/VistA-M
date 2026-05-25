@@ -1,10 +1,5 @@
-ORX1 ; SLC/DCM - OE/RR Nature of Order entry points ;Apr 24, 2024@07:20:01
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**92,242,535**;Dec 17, 1997;Build 20
- ;Reference to ^DIC(9.4,"C" in ICR #2058
- ;Reference to ^DIC in ICR #10006
- ;Reference to MIX^DIC1 in ICR #10007
- ;Reference to ^DIE in ICR #10018
- ;Reference to ^DIR in ICR #10026
+ORX1 ; slc/dcm - OE/RR Nature of Order entry points ;12/26/96  09:49
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**92,242**;Dec 17, 1997;Build 0
  ;
 NA(DEFAULT,REQUIRD,FB,DIRA,DC,LIST) ;Function to get Nature of order
  ;DEFAULT [not required] =Free text code or pointer to Nature of order (file 100.02).
@@ -125,32 +120,4 @@ EDN S DIC="^ORD(100.02,",DIC(0)="AEQM",DIC("A")="Select NATURE OF ORDER: "
  D ^DIC Q:Y<1
  S DA=+Y,DIE=DIC,DR=".12;.13;.15;.16" D ^DIE
  W ! G EDN
- Q
- ;
-EDITOVR ; -- Edit Override Reason
- N X,Y,DA,DIC,DIE,DLAYGO,DR,DTOUT,DUOUT,NATIONAL W !
-EOVR1 S DIC=100.04,DIC(0)="AELNQ",DIC("A")="Select OVERRIDE REASON: ",DLAYGO=100.04,DIC("DR")=".01"
- D ^DIC Q:Y'>0
- S NATIONAL=+$P($G(^ORD(100.04,+Y,0)),U,5)
- S DA=+Y
- I 'NATIONAL D
- . S DIE=DIC,DIDEL=100.04,DR=".01;.02;.03;.04;.05///0" D ^DIE
- I NATIONAL D
- . N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
- . S DIR(0)="YA"
- . S DIR("A")="Do you want to view the contents of the Override Reason? "
- . S DIR("A",1)=""
- . S DIR("A",2)="     *************************************************"
- . S DIR("A",3)="     * You have selected a National Override Reason. *"
- . S DIR("A",4)="     *          You CANNOT edit this entry.          *"
- . S DIR("A",5)="     *************************************************"
- . S DIR("A",6)=""
- . S DIR("B")="NO"
- . D ^DIR
- . I Y=1 D
- .. N DIQ
- .. S DIQ(0)="R"
- .. W !
- .. D EN^DIQ
- W ! G EOVR1
  Q

@@ -1,5 +1,5 @@
-VSITPUT1 ;ISD/RJP - Continued...Verify/set fields and file visit record ;6/20/96
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**76**;Aug 12, 1996
+VSITPUT1 ;ISD/RJP - Continued...Verify/set fields and file visit record ;Dec 15, 2025@09:36:01
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**76,244**;Aug 12, 1996;Build 37
  ; Patch PX*1*76 changes the 2nd line of all VSIT* routines to reflect
  ; the incorporation of the module into PCE.  For historical reference,
  ; the old (VISIT TRACKING) 2nd line is included below to reference VSIT
@@ -16,7 +16,7 @@ VSITPUT1 ;ISD/RJP - Continued...Verify/set fields and file visit record ;6/20/96
  . S DIC(0)=""
  . S X=+VSIT("VDT")
  . D FILE^DICN
- . L:+Y>0 +^AUPNVSIT(+Y)
+ . L:+Y>0 +^AUPNVSIT(+Y):DILOCKTM
  . K DLAYGO,DIC,DD,DO,X
  D:'+$G(DINUM)
  . N VSITI
@@ -24,7 +24,7 @@ VSITPUT1 ;ISD/RJP - Continued...Verify/set fields and file visit record ;6/20/96
  . F  S VSITI=VSITI+1 L +^AUPNVSIT(VSITI):1 Q:$T&'$D(^AUPNVSIT(VSITI))  L -^AUPNVSIT(VSITI)
  . S ^AUPNVSIT(VSITI,0)=VSIT("VDT")
  . S ^AUPNVSIT("B",VSIT("VDT"),VSITI)=""
- . L +^AUPNVSIT(0)
+ . L +^AUPNVSIT(0):DILOCKTM
  . S ^AUPNVSIT(0)=$P(^AUPNVSIT(0),"^",1,2)_"^"_VSITI_"^"_($P(^(0),"^",4)+1)
  . L -^AUPNVSIT(0)
  . L:VSITI'>0 -^AUPNVSIT(VSITI)
@@ -39,6 +39,15 @@ VSITPUT1 ;ISD/RJP - Continued...Verify/set fields and file visit record ;6/20/96
  . S:$G(VSITREC(812))]"" ^AUPNVSIT(+Y,812)=VSITREC(812)
  . S DA=+Y,DIK="^AUPNVSIT(" D IX1^DIK K DIK
  . L -^AUPNVSIT(DA)
+ . ;
+ . I $D(VSITREC(900)) D
+ .. N FDA900,MSG,PXSAS
+ .. M PXSAS=VSITREC(900)
+ .. D BLDFDA^PXSPECAUTH(.FDA900,DA,.PXSAS,0)
+ .. D UPDATE^DIE("","FDA900","","MSG")
+ .. I $D(MSG) D
+ ... W !,"ADD/EDIT Failed:"
+ ... D AWRITE^PXUTIL("MSG")
  L -^XTMP("VSIT CREATE",+$G(VSIT("PAT")),+VSIT("VDT"))
  K DD,DO,DA,DIC,DIK,X,Y,DLAYGO
  Q
