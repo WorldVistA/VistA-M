@@ -1,5 +1,5 @@
 PXRMMST ;SLC/PKR - Routines for dealing with MST. ;07/29/2010
- ;;2.0;CLINICAL REMINDERS;**4,6,17,18**;Feb 04, 2005;Build 152
+ ;;2.0;CLINICAL REMINDERS;**4,6,17,18,NNN**;Feb 04, 2005;Build 152
  ;Use of DGMSTAPI supported by DBIA #2716.
  ;====================================================
 GSYINFO(TYPE) ;Return the Clinical Reminders MST synchronization date
@@ -68,6 +68,17 @@ STCODE(TERM) ;Return the MST status code based on the term name.
  N STCODE
  S STCODE=$S(TERM="VA-MST DECLINES REPORT":"D",TERM="VA-MST NEGATIVE REPORT":"N",TERM="VA-MST POSITIVE REPORT":"Y",1:"U")
  Q STCODE
+ ;
+ ;====================================================
+MSTPOS(HFPTR) ;Return 1 if the health factor pointed to by HFPTR (file
+ ;#9999999.64) is a finding mapped to the VA-MST POSITIVE REPORT
+ ;reminder term, otherwise return 0. Used by PCE (VST^PXCEMST) to
+ ;auto-set the encounter MST "APPLIES TO THIS ENCOUNTER" indicator.
+ N TERMIEN
+ I +$G(HFPTR)'>0 Q 0
+ S TERMIEN=+$O(^PXRMD(811.5,"B","VA-MST POSITIVE REPORT",""))
+ I TERMIEN'>0 Q 0
+ Q $S($D(^PXRMD(811.5,TERMIEN,20,"E","AUTTHF(",+HFPTR)):1,1:0)
  ;
  ;====================================================
 SYNCH ;Synchronize the MST history file.
