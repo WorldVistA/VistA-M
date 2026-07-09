@@ -47,13 +47,17 @@ SETVARA ;Set the after visit variables.
  ;
 SETVARB ;Set the before variables.
  N BEFOR0,BEFOR12,BEFOR220,BEFOR811,BEFOR812
- N IENB,PXAAX,PXBCNT,PXBKY,PXBSKY,PXBSAM
- D HF^PXBGHF(PXAVISIT)
+ N IENB,PXAHFDA
  ;
+ ;Find the existing V HEALTH FACTOR entry, if any, for this health
+ ;factor on this encounter and get its IEN.  Walk the "AD" (by visit)
+ ;cross reference and match on the health factor pointer in the .01
+ ;field.  This replaces a call to HF^PXBGHF, which gathered far more
+ ;data than is needed just to locate the IEN.
  S IENB=""
- I PXBCNT>0 D
- . S PXAAX("HEALTH FACTOR")=$P($G(^AUTTHF(PXAA("HEALTH FACTOR"),0)),U,1)
- . S IENB=$O(PXBKY(PXAAX("HEALTH FACTOR"),IENB))
+ S PXAHFDA=0
+ F  S PXAHFDA=$O(^AUPNVHF("AD",PXAVISIT,PXAHFDA)) Q:PXAHFDA'>0  D  Q:IENB
+ . I $P($G(^AUPNVHF(PXAHFDA,0)),U,1)=PXAA("HEALTH FACTOR") S IENB=PXAHFDA
  I $G(IENB) D
  . S BEFOR0=$G(^AUPNVHF(IENB,0))
  . S BEFOR12=$G(^AUPNVHF(IENB,12))
