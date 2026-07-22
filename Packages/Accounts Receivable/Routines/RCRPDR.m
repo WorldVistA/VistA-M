@@ -1,5 +1,5 @@
 RCRPDR ;EDE/YMG - REPAYMENT PLAN DELINQUENT / DEFAULT LETTER REPORTS; 12/28/2020
- ;;4.5;Accounts Receivable;**378,389,429**;Mar 20, 1995;Build 7
+ ;;4.5;Accounts Receivable;**378,389,429,442**;Mar 20, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -116,7 +116,7 @@ CALC(RPIEN,MAMNT) ; calculate amount due and "current through" date
  ;
  ; returns amount due ^ "current through" date, or "" if no missing payments were found
  ;
- N CNT,LSTDT,N0,RPDT,TOTAL,UPDT,Z
+ N CBAL,CNT,LSTDT,N0,RPDT,TOTAL,UPDT,Z
  I $G(MAMNT)'>0 Q ""
  S LSTDT=$O(^RCRP(340.5,RPIEN,2,"B",""),-1) ; last due date in the schedule  PRCA*4.5*429
  ; loop backwards from today's date, count entries with no payment and no forbearance
@@ -132,7 +132,8 @@ CALC(RPIEN,MAMNT) ; calculate amount due and "current through" date
  .I DT'>$O(^RCRP(340.5,RPIEN,2,"B",LSTDT),-1) S Z=$E(DT,6,7) I Z>21,Z<28 S CNT=CNT+1,UPDT=$O(^RCRP(340.5,RPIEN,2,"B",UPDT))
  .Q
  S TOTAL=MAMNT*CNT ; total amount owed for missed payments
- Q TOTAL_U_UPDT
+ S CBAL=$$CBAL^RCRPU3(RPIEN)  ; PRCA*4.5*442
+ Q $S(TOTAL>CBAL:CBAL,1:TOTAL)_U_UPDT  ; PRCA*4.5*442
  ;
 ASKCLR() ; display "clear print queue?" prompt
  ;

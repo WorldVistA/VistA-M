@@ -1,5 +1,5 @@
 FBNHAMI2 ;AISC/CMR-CNH STAYS IN EXCESS OF 90 DAYS ;1DEC00
- ;;3.5;FEE BASIS;**25**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**25,194**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  W !!,"Use of this option will provide you with all 'ACTIVE' stays that are in excess",!,"of 90 days.  The active stays are as of the date you choose.",!
  S %DT="APEX",%DT("A")="Enter Effective Date : " D ^%DT G END:Y<0 S FBDT=Y
@@ -30,7 +30,8 @@ SET ;SETS UP TMP GLOBAL
 PRINT ;
  I $E(IOST,1,2)["C-",$Y+2>IOSL S DIR(0)="E" D ^DIR K DIR I 'Y S FBAAOUT=1 Q
  I $Y+2>IOSL W @IOF D HED
- W !,$E(FBNAME,1,15),?18,FBID
+ I $G(FBSSNRF)="" W !,$E(FBNAME,1,15),?18,FBID
+ I $G(FBSSNRF)=1 W !,$E(FBNAME,1,15),?18,$$SSNL4^FBAAUTL(FBID)
  D DEM^VADPT S FBMS=$E($P(VADM(10),"^",2),1) K VA,VADM
  W ?32,FBMS,?35,$$DATX^FBAAUTL($E(FBADT,1,7)),?45,$J(FBLOS,6),?53,$E(FBVNAME,1,27)
  Q

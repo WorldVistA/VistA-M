@@ -1,6 +1,10 @@
-IBCNEDE3 ;AITC/CKB - eIV Appointment Extract ;23-OCT-2023
- ;;2.0;INTEGRATED BILLING;**778**;21-MAR-94;Build 28
+IBCNEDE3 ;AITC/CKB - eIV Appointment Extract ; 23-OCT-2023
+ ;;2.0;INTEGRATED BILLING;**778,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;
+ ; Reference to ^XLFDT  in ICR #10103
+ ; Reference to ^XLFSTR  in ICR #10104
  ;
  ;IB*778/CKB - this routine is called by IBCNEDE2 which is used for the Appointment Extract
  ;
@@ -286,6 +290,44 @@ TQMAXSV(DFN,PAYER,SUBID,GRPNUM) ; Returns MAX(TQ Service Date) for Patient & Pay
 TQMAXSVX ;TQMAXSV exit
  Q TQMAXSV
  ;
+TQEXIST(DFN,PIEN,SUBID,GRPNUM,FRESHNESS) ;IB*827/CKB - Looks at the TQ file for an existing entry
+ ; This tag is being used by the eIV Appointment Extract
+ ;
+ ;INPUT:
+ ; DFN - Patient DFN
+ ; PIEN - Payer IEN
+ ; SUBID - Subscriber ID
+ ; GRPNUM - Group Number
+ ; FRESHNESS - number of Freshness days (ie. 180 or 360 for Medicare)
+ ;
+ ;OUTPUT:
+ ; 1 - if an entry exists in the TQ with the same DFN/PIEN/SUBID/GRPNUM within Freshness days
+ ; 0 - if not found in the TQ
+ ;
+ N DA,EXIST,SVDT
+ S EXIST=0
+ ;
+ I ($G(DFN)="")!($G(PIEN)="")!($G(FRESHNESS)="") G TQEXIT
+ ;
+ ; Loop thru ALL entries in the TQ file
+ S SVDT=DT-FRESHNESS
+ F  S SVDT=$O(^IBCN(365.1,"AD",DFN,PIEN,SVDT)) Q:'SVDT!(EXIST=1)  D
+ . S DA=0 F  S DA=$O(^IBCN(365.1,"AD",DFN,PIEN,SVDT,DA)) Q:'DA!(EXIST=1)  D
+ .. N STS,TQNAME,TQSUBID
+ .. ; Strip/remove any non-alph char's from the Subscriber ID in the TQ file
+ .. S TQSUBID=$$STRIP^IBCNEDE3($$GET1^DIQ(365.1,DA_",",.16))  ;HL7 SUBSCRIBER ID FIELD
+ .. I SUBID'="",TQSUBID'=SUBID Q
+ .. ; Compare GRPNUM against the GROUP NUMBER stored in the TQ file
+ .. I GRPNUM'="",$$GET1^DIQ(365.1,DA_",",1.03)'=GRPNUM Q
+ .. ; Get TQ Status - ignore if 7=Cancelled / 5=Communication Failure
+ .. S STS=$$GET1^DIQ(365.1,DA_",",.04,"I") I (STS=7)!(STS=5) Q
+ .. ; If Match is found, set EXIST=1
+ .. S EXIST=1
+ .. Q
+ ;
+TQEXIT ;TQEXIST exit
+ Q EXIST
+ ;
 BFEXIST(DFN,INSNAME,SUBID,GRPNUM) ;Checks for the existence in the Buffer
  ;used by the Appointment Extract - logic from BFEXIST^IBCNEUT5
  ;INPUT:
@@ -323,3 +365,52 @@ BFEXIST(DFN,INSNAME,SUBID,GRPNUM) ;Checks for the existence in the Buffer
  .  Q
 BFEXIT ;BFEXIST exit
  Q EXIST
+ ;
+BFCHECK(DFN,INSNAME,SUBID,GRPNUM) ;IB*827/CKB - Checks for the existence in the Buffer
+ ; if there is a Buffer entry perform additional checks
+ ;INPUT:
+ ;     DFN - Patient DFN
+ ; INSNAME - Insurance Company Name File 36 - Field .01
+ ;   SUBID - Subscriber ID
+ ;  GRPNUM - Group Number
+ ;
+ ;OUTPUT:
+ ; 1 - Save to the TQ
+ ; 0 - do NOT save to the TQ
+ ;
+ N BSUBID,BUFFNAME,IEN,SAVE
+ S SAVE=1
+ S INSNAME=$$UP^XLFSTR(INSNAME),INSNAME=$$TRIM^XLFSTR(INSNAME)
+ I ('DFN)!(INSNAME="") S SAVE=0 G BFCHECKX
+ ; if pt is NOT in the buffer, SAVE to the TQ
+ I '$D(^IBA(355.33,"C",DFN)) S SAVE=1 G BFCHECKX
+ ;
+ S IEN=0 F  S IEN=$O(^IBA(355.33,"C",DFN,IEN)) Q:'IEN!(SAVE=0)  D
+ . N BSUBID,BUFFNAME,SYMBOL
+ . ;If status is NOT 'Entered', Quit - SAVE to the TQ
+ . I $P($G(^IBA(355.33,IEN,0)),U,4)'="E" S SAVE=1 Q
+ . ;
+ . ;Look for a matching Buffer entry (patient/insurance/subscriber id/group number)
+ . ;  If Ins Buffer Ins Co Name (trimmed) is NOT EQUAL to the
+ . ;   Ins Co Name passed in (trimmed), Quit - SAVE to the TQ
+ . S BUFFNAME=$$TRIM^XLFSTR($P($G(^IBA(355.33,IEN,20)),U))
+ . I $$UP^XLFSTR(BUFFNAME)'=INSNAME S SAVE=1 Q
+ . ;  Compare the SUBID and GRPNUM match against the Subscriber ID (strip/
+ . ;   remove any non-alph char's) and Group Number stored in the Buffer
+ . ;   if the Buffer SUBID and GRPNUM are NOT EQUAL, Quit - SAVE to the TQ
+ . S BSUBID=$$STRIP^IBCNEDE3($P($G(^IBA(355.33,IEN,90)),U,3))
+ . I SUBID'="",BSUBID'=SUBID S SAVE=1 Q
+ . I GRPNUM'="",($P($G(^IBA(355.33,IEN,90)),U,2))'=GRPNUM S SAVE=1 Q
+ . ;
+ . ;Matching Buffer entry found - Get and evaluate the Buffer Symbol
+ . ;  Get the Buffer Symbol (355.33,.12 IIV STATUS - pointer to IIV SYMBOL file #365.15) 
+ . S SYMBOL=$$SYMBOL^IBCNBLL(IEN)
+ . ; If Buffer Symbol is NULL OR "!", do NOT save to the TQ, Quit 
+ . I (SYMBOL=" ")!(SYMBOL="!") S SAVE=0 Q
+ . ; If the Buffer Symbol if "a" OR "r" (E1 transactions), SAVE to the TQ
+ . I (SYMBOL="a")!(SYMBOL="r") S SAVE=1 Q
+ . ;Safety value to avoid a duplicate entry ie, for symbol +,-, etc (should not hit this)
+ . S SAVE=0
+ . Q
+BFCHECKX ;BFCHECK Exit
+ Q SAVE

@@ -1,6 +1,10 @@
-IBCNEDE2 ;DAOU/DAC - eIV Appointment Extract ;23-SEP-2015
- ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593,595,621,659,743,778**;21-MAR-94;Build 28
+IBCNEDE2 ;DAOU/DAC - eIV Appointment Extract ; 23-SEP-2015
+ ;;2.0;INTEGRATED BILLING;**184,271,249,345,416,438,506,549,593,595,621,659,743,778,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to ^SDAMA301  in ICR #4433
+ ; Reference to ^XLFDT  in ICR #10103
+ ; Reference to ^XLFSTR  in ICR #10104
  ;
  ;IB*778/CKB - rewrote the eIV Appointment Extract from scratch, reusing the routine IBCNEDE2.
  ;             Any modifications based on patches prior to 778 are no longer applicable for this
@@ -129,6 +133,9 @@ EN ; Loop through designated cross-references for updates
  .. ;
  .. ; Drop to the Buffer and quit, had an issue with Insurance Co or Payer or Policy
  .. I (SYMBOL)!(IBPQ=1) D  Q
+ ... ;IB*827/CKB - If IEN for Payer AND if there is a TQ entry (within Freshness days) Quit, do NOT save to Buffer
+ ... I +PIEN I $$TQEXIST^IBCNEDE3(DFN,PIEN,SUBID,GRPNUM,$S(MFLG:MFRESHDAY,1:FRESHDAY)) Q
+ ... ; If there isn't an existing Buffer entry, drop to the Buffer
  ... I '$$BFEXIST^IBCNEDE3(DFN,INSNAME,SUBID,GRPNUM) D PT^IBCNEBF(DFN,INREC,SYMBOL,"",1)
  .. ;
  .. ; If MEDICARE (MFLG) and GRPNUM="PART A" or "PART B", check for the existence in array IBFNDTQ
@@ -145,7 +152,6 @@ EN ; Loop through designated cross-references for updates
  .. S ADDTQ=1,(FSCSEND,TQFOUND)=0,TQENT=""
  .. ;
  .. ; Update service dates for inquiry to be transmitted
- .. ;   sets TQFOUND, FSCSEND and TQENT
  .. D TQUPDSV^IBCNEDE3(DFN,PIEN,SRVICEDT,SUBID,GRPNUM)
  .. ; Check to see if a new entry can be added to the TQ file
  .. ;   sets ADDTQ
@@ -164,6 +170,10 @@ EN ; Loop through designated cross-references for updates
  ... I FSCSEND,TQENT I CNT'>MAXCNT D XMIT1^IBCNEDEP(TQENT) S CNT=CNT+1      ; Increment counter of entries sent to FSC
  .. ; If ADDTQ is set to '0', DO NOT create a new entry (safety valve)
  .. I 'ADDTQ Q
+ .. ;
+ .. ;IB*827/CKB - before adding to the TQ, if entry doesn't pass the Buffer entry checks
+ .. ;              set ADDTQ=0 and Quit
+ .. I ADDTQ I '$$BFCHECK^IBCNEDE3(DFN,INSNAME,SUBID,GRPNUM) S ADDTQ=0 Q
  .. ;
  .. ;   Determine if the Subscriber ID should be included/saved to the TQ
  .. ; The policy has a subscriber ID on file - include subscriber ID

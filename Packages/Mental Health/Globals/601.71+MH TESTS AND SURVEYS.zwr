@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: MH TESTS AND SURVEYS
 ZWR
-^YTT(601.71,0)="MH TESTS AND SURVEYS^601.71s^346^333"
+^YTT(601.71,0)="MH TESTS AND SURVEYS^601.71s^347^334"
 ^YTT(601.71,1,0)="MMPI2^^Minnesota Multiphasic Personality Inventory 2"
 ^YTT(601.71,1,1)="^S.R. Hathaway and J.C. McKinley^NCS Pearson^^2900000"
 ^YTT(601.71,1,2)="YSP^Y^Y^Y^Y"
@@ -3132,6 +3132,18 @@ ZWR
 ^YTT(601.71,346,10,0)="^601.71101P^1^1"
 ^YTT(601.71,346,10,1,0)=19
 ^YTT(601.71,346,10,"B",19,1)=""
+^YTT(601.71,347,0)="C-SSRS_V2^^Columbia Suicide Severity Rating Scale (C-SSRS) - Version 2"
+^YTT(601.71,347,1)="2^Posner, Brent, Lucas, Gould, Stanley, Brown, Fisher, Zelazny, Burke, Oquendo, Mann"
+^YTT(601.71,347,2)="^Y^N^N^Y"
+^YTT(601.71,347,6)="TEITELBAUM,LEVI^3250722^^3260107.0851^Y"
+^YTT(601.71,347,7)="Columbia-Suicide Severity Rating Scale (C-SSRS) © 2016 The Columbia Lighthouse Project. Scale may be reproduced without permission."
+^YTT(601.71,347,8)="Posner K, et al (2011). The Columbia-SSRS: Initial Validity and Internal Consistency Findings from 3 Multisite Studies with Adolescents and Adults.^N^N^Y^Y^Y"
+^YTT(601.71,347,9)="DLLSTR^YTSCSSR2^1^Y^YTQRQAD6^CSSRSV2"
+^YTT(601.71,347,10,0)="^601.71101P^2^2"
+^YTT(601.71,347,10,1,0)=6
+^YTT(601.71,347,10,2,0)=16
+^YTT(601.71,347,10,"B",6,1)=""
+^YTT(601.71,347,10,"B",16,2)=""
 ^YTT(601.71,"B","16PF",90)=""
 ^YTT(601.71,"B","AAQ-2",170)=""
 ^YTT(601.71,"B","AAQ-II-7",344)=""
@@ -3185,6 +3197,7 @@ ZWR
 ^YTT(601.71,"B","BSS",14)=""
 ^YTT(601.71,"B","BUSS",16)=""
 ^YTT(601.71,"B","C-SSRS",228)=""
+^YTT(601.71,"B","C-SSRS_V2",347)=""
 ^YTT(601.71,"B","C19-YRS",309)=""
 ^YTT(601.71,"B","CAD-MDD",282)=""
 ^YTT(601.71,"B","CAD-PTSD-DX",283)=""

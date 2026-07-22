@@ -1,5 +1,5 @@
 FBNHRAT1 ;AISC/CMR - ENTER RATES CONT. ;9/19/2014
- ;;3.5;FEE BASIS;**17,154**;JAN 30, 1995;Build 12
+ ;;3.5;FEE BASIS;**17,154,194**;JAN 30, 1995;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
 VENDAT ;set up rate if contract exists
  N FBRATE,FBCFDT,FBCTDT,FBI,FBCNUM,FBNRFDT,FBNRTDT
@@ -29,7 +29,8 @@ SET(FBFR,FBTO,FBDFN) ;set up rate array for pt
  ;output FBFND=1 to indicate that a gap was found to create a rate for
  ;       FBNHARUP (optional) changed from 1 to 11 if rate added
  S FBFND=1
- W !!,*7,"Patient: ",$$NAME^FBCHREQ2(FBDFN),?40,"SSN: ",$$SSN^FBAAUTL(FBDFN)
+ I $G(FBSSNRF)="" W !!,*7,"Patient: ",$$NAME^FBCHREQ2(FBDFN),?40,"SSN: ",$$SSN^FBAAUTL(FBDFN)
+ I $G(FBSSNRF)=1 W !!,*7,"Patient: ",$E($$NAME^FBCHREQ2(FBDFN),1,22)," (",$$SSN^FBAAUTL(FBDFN,1),")",?40,"ICN: ",$$GETICN^FBAAUTL(FBDFN)
  W !,?5,"Rate must be entered for the following period: ",$$DATX^FBAAUTL(FBFR)," - ",$$DATX^FBAAUTL(FBTO)
  I $G(FBNHARUP)'="N" S FBRATE=1 ; when not "N" allow rate to be added
  D DISPLAY^FBAAVD1 K FBX I '$G(FBRATE) D:$G(FBDDT) CKSET(FBFR,FBTO) Q

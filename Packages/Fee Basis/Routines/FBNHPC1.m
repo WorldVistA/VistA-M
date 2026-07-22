@@ -1,5 +1,5 @@
 FBNHPC1 ;AISC/CMR-POST COMMITMENTS TO 1358 cont. ;9/20/94
- ;;3.5;FEE BASIS;**153**;JAN 30, 1995;Build 14
+ ;;3.5;FEE BASIS;**153,194**;JAN 30, 1995;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;FB*3.5*153 Added calls to tag 'CHKSITOB' to insure obligation found in file
@@ -34,7 +34,8 @@ PRT S FBNAME="" F  S FBNAME=$O(^TMP($J,"FBNHPC",FBNAME)) Q:FBNAME']""!($G(FBOUT)
  .S Y(0)=$G(^TMP($J,"FBNHPC",FBNAME,FBCNT)),FBSSN=$P(Y(0),"^"),FBTRDYS=$P(Y(0),"^",2),FBDEFP=$P(Y(0),"^",3),FBSEQ=$P(Y(0),"^",4),FBVEN=$P(Y(0),"^",5)
  .I $Y+3>IOSL,$E(IOST,1,2)["C-" S DIR(0)="E" D ^DIR K DIR S:'Y FBOUT=1 Q:FBOUT
  .I ($Y+3)>IOSL W @IOF D HED
- .W !,FBSEQ,?7,$E(FBNAME,1,20),?30,FBSSN,?44,$E($$VNAME^FBNHEXP(FBVEN),1,20),?66,FBTRDYS,?70,$J($FN(FBDEFP,",",2),10)
+ . I $G(FBSSNRF)="" W !,FBSEQ,?7,$E(FBNAME,1,20),?30,FBSSN,?44,$E($$VNAME^FBNHEXP(FBVEN),1,20),?66,FBTRDYS,?70,$J($FN(FBDEFP,",",2),10)
+ . I $G(FBSSNRF)=1 W !,FBSEQ,?7,$E(FBNAME,1,20),?30,$$SSNL4^FBAAUTL(FBSSN),?44,$E($$VNAME^FBNHEXP(FBVEN),1,20),?66,FBTRDYS,?70,$J($FN(FBDEFP,",",2),10)
  Q
  ;
 HED W !?11,"C O M M U N I T Y   N U R S I N G   H O M E   R E P O R T",!

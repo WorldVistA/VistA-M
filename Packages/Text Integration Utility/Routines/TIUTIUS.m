@@ -1,5 +1,5 @@
-TIUTIUS ; MILW/JMC - Functions to search TIU documents; May 24, 2006 ; 2/16/16 1:49pm
- ;;1.0;TEXT INTEGRATION UTILITIES;**296,324,346**;JUN 20, 1997;Build 1;Build 13
+TIUTIUS ; MILW/JMC - Functions to search TIU documents ; Sep 10, 2025@16:50:10
+ ;;1.0;TEXT INTEGRATION UTILITIES;**296,324,346,369**;JUN 20, 1997;Build 4;Build 13
  ;
  ;
 TASK(AUMTDA) ; Task searching of document for specified text
@@ -127,7 +127,7 @@ SENDXQA ; Send Kernel alert to appropriate team or team device
  S AUMTI=0
  F  S AUMTI=$O(AUMTXQA(AUMTI)) Q:AUMTI=""  D
  . K XQA,XQADATA,XQADFN,XQAID,XQAMSG,XQAROU,XQATEXT
- . S XQAID="TIUADD"_AUMTDA,XQADATA=AUMTDA_"^",XQAROU="ACTADD^TIUALRT"
+ . S XQAID="TIUTXT"_AUMTDA,XQADATA=AUMTDA_"^",XQAROU="ACTTXT^TIUALRT"
  . S XQAMSG=TIUPNM_" ("_TIUSSN_"): ("_AUMTHL(0)_") "_$P($G(^TIU(8925.71,AUMTI,2)),"^")
  . S AUMTK=0
  . F  S AUMTK=$O(^TIU(8925.71,AUMTI,4,AUMTK)) Q:'AUMTK  D

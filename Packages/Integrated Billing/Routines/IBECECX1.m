@@ -1,5 +1,5 @@
 IBECECX1 ;BSL/DVA - BILLING  EXTRACTION AND FILING UTILITIES FOR IN PATIENT ACCUMULATOR INTERFACE ; 16 May 2022  8:47 AM
- ;;2.0;INTEGRATED BILLING;**704,769**;21-MAR-94;Build 42
+ ;;2.0;INTEGRATED BILLING;**704,769,844**;21-MAR-94;Build 7
  ;Per VA Directive 6402, this routine should not be modified.
  ; 
  ; Reference to ^DGPT("AAD",^DGPT( in ICR #418
@@ -65,12 +65,12 @@ EN(DFN) ;Retrieve existing Billing clock if present for this patient
 INPT(DFN) ;Gather inpatient data
  ; Retrieve most recent Admission and Discharge dates from the PTF file
  N IBIEN1
- S (IBADMIT,IBDISCH)="",IBSTATION=$P($$SITE^VASITE,U,3)
+ S (IBADMIT,IBDISCH)="",IBSTATION=$P($$SITE^VASITE,U,3) ; moved up 1 line to prevent IBSTATION undef  IB*2.0*844 (v2)
+ I $G(IBNGHTSK) S IBADMIT=$$FMTHL7^XLFDT($$FMADD^XLFDT(DT,-1)),IBDISCH="" Q  ; Modify to prevent '00' in last-day-of-month IB*2.0*844
  Q:'$D(^DGPT("AAD",DFN))  ;quit if nothing found
  S IBADMIT="9999999.9999",IBADMIT=$O(^DGPT("AAD",DFN,IBADMIT),-1),IBADM1=IBADMIT,IBIEN1=$O(^DGPT("AAD",DFN,IBADMIT,0)),IBDISCH=$P($G(^DGPT(IBIEN1,70)),U)
  S IBOADMIT=$$FMTHL7^XLFDT(IBADMIT),IBADMIT=$$FMTHL7^XLFDT($P(IBADMIT,"."))                ;convert admission date to HL7
  I IBDISCH'="" S IBODISCH=$$FMTHL7^XLFDT(IBDISCH),IBDISCH=$$FMTHL7^XLFDT($P(IBDISCH,"."))  ;Get discharge dates (HL7 format), no times needed
- I $G(IBNGHTSK) S IBADMIT=$$FMTHL7^XLFDT(DT-1),IBDISCH=""
  Q
  ;
 CCINPT(DFN,IBADMIT) ;Gather inpatient data for CC billing

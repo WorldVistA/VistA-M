@@ -1,5 +1,5 @@
 IBCNILK ;ALB/FA - Insurance Company Selection ; 02-OCT-2015
- ;;2.0;INTEGRATED BILLING;**549,713,737,763**;21-MAR-94;Build 29
+ ;;2.0;INTEGRATED BILLING;**549,713,737,763,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  ;;
  ;
@@ -19,7 +19,7 @@ EN(WHICH,PIEN,FILTER) ;EP
  ;                               range (inclusive, case insensitive)
  ;                           4 - Search for Name(s) that are blank (null)
  ;                           5 - Filter by Selected Payer only
- ;IB*737/CKB - changed what was Filter '4' to '5' and updated '4'. When the Coverage Limitations Report was added,
+ ;IB*737/CKB - changed Filter '4' to '5' and updated '4'. When the Coverage Limitations Report was added,
  ; it uses '4' to 'search for Name(s) that are blank (null)' when calling $$FILTER^IBCNINSU.
  ;
  ;                       B - Begin with text if A=1, Contains Text if A=2 or
@@ -77,61 +77,14 @@ GETFILT() ; Gets the Insurance company filter
  ;           C - Range End text (only present when A=3)
  ;         -1 if a valid filter was not selected
  ;          ^ if user wants to exit
- N DIR,DIROUT,DIRUT,DTOUT,DUOUT,FILTER,X,XX,Y
+ N FILTER
  ;
  ; First ask what kind of filter to use
- ;IB*763/CKB - 'Select' was modified to 'SELECT' in several places below
+ ;IB*763/CKB - 'Select' was modified to 'SELECT' in several within 
+ ;                      what is now GETFILT^IBCNILK1
+ ;IB*827/DW - Due to routine size, moved the code of GETFILT to IBCNILK1
  ;
- W !
- S DIR(0)="SA^1:Begins with;2:Contains;3:Range"
- S DIR("A")="     SELECT 1, 2 or 3: "  ;IB*763/CKB
- S DIR("A",1)=" 1 - Select Insurance Companies that Begin with: XXX"
- S DIR("A",2)=" 2 - Select Insurance Companies that Contain: XXX"
- S DIR("A",3)=" 3 - Select Insurance Companies in Range: XXX - YYY"
- S DIR("B")=1
- S DIR("?",1)="Select the type of filter to determine what Insurance Companies"
- S DIR("?",2)="will be displayed as follows:"
- S DIR("?",3)="   Begins with - Displays all insurance companies that begin with"
- S DIR("?",4)="                 the specified text (inclusive, case insensitive)"
- S DIR("?",5)="   Contains    - Displays all insurance companies that contain"
- S DIR("?",6)="                 the specified text (inclusive, case insensitive)"
- S DIR("?",7)="   Range       - Displays all insurance companies within the "
- S DIR("?")="                 the specified range (inclusive, case insensitive)"
- S XX="1:Begins with;2:Contains;3:Range"
- D ^DIR
- I Y="^" Q Y ;IB*713/CKB - allow user to exit
- I $D(DTOUT)!$D(DUOUT) Q -1                 ; No valid search selected
- S FILTER=Y
- ;
- ; Next ask for 'Begin with', 'Contains' or 'Range Start' text
- W !
- K DIR
- S DIR(0)="F^1;30"
- S XX=$S(FILTER=1:"that begin with",FILTER=2:"that contain",1:"Start of Range")
- S DIR("A")="     SELECT Insurance Companies "_XX   ;IB*763/CKB
- I FILTER=1 D
- . S DIR("?")="Enter the text the each Insurance Company will begin with"
- I FILTER=2 D
- . S DIR("?")="Enter the text the each Insurance Company will contains"
- I FILTER=3 D
- . S DIR("?")="Enter the starting range text"
- D ^DIR K DIR
- I Y="^" Q Y ;IB*713/CKB - allow user to exit
- I $D(DTOUT)!$D(DUOUT) Q -1                 ; No valid search selected
- S $P(FILTER,"^",2)=Y
- Q:$P(FILTER,"^",1)'=3 FILTER
- ;
- ; Finally, ask for 'Range End' text if using a range filter
- W !
- K DIR
- S DIR(0)="F^1;30"
- S DIR("A")="     SELECT Insurance Companies End of Range"   ;IB*763/CKB
- S DIR("B")=$P(FILTER,"^",2)
- S DIR("?")="Enter the ending Range text"
- D ^DIR
- I Y="^" Q Y ;IB*713/CKB - allow user to exit
- I $D(DTOUT)!$D(DUOUT) Q -1                 ; No valid search selected
- S $P(FILTER,"^",3)=Y
+ S FILTER=$$GETFILT^IBCNILK1()
  Q FILTER
  ;
 HDR(SELECTED) ;EP
@@ -231,9 +184,9 @@ BLDLN(ICTR,IIEN) ;EP
  ; Output:  LINE    - Formatted for setting into the list display
  N LINE,LINEI,XX
  S:$D(^TMP("IBCNILKA",$J,IIEN)) ICTR=ICTR_">"       ; Mark as selected
- S LINE=$$SETSTR^VALM1(ICTR,"",1,4)                 ; Selection #
+ S LINE=$$SETSTR^VALM1(ICTR,"",1,6)                 ; Selection #  ;IB*827 was (...1,4)
  S XX=$$GET1^DIQ(36,IIEN_",",.01)
- S LINE=$$SETSTR^VALM1(XX,LINE,7,30)                ; Ins Co Name
+ S LINE=$$SETSTR^VALM1(XX,LINE,8,30)                ; Ins Co Name  ;IB*827 was (...7,30)
  S XX=+$$GET1^DIQ(36,IIEN_",",.05,"I")
  S XX=$S(XX:"I",1:"A")
  S LINE=$$SETSTR^VALM1(XX,LINE,41,1)                ; Active/Inactive
@@ -252,9 +205,17 @@ HELP ;EP
  ; Help code
  ; Input: None
  D FULL^VALM1
+ ; IB*827/DW Reworded text
+ W !!,"After the Insurance Company selection number, an '>' indicates that this"
+ W !,"      Insurance Company has already been selected.",!
+ ;W @IOF,"A '>' after the Insurance Company selection number indicates that this Insurance"
+ ;W !,"Company has already been selected.",!
+ I $G(VALMANS)="?" D   ;IB*827/DW Added
+ . N DIR,X,Y
+ . S DIR(0)="E",DIR("A")="Press <Enter> to return back to the list of Insurance Companies"
+ . D ^DIR
+ . K DIR,X,Y
  S VALMBCK="R"
- W @IOF,"A '>' after the Insurance Company Selection number indicates that this Insurance"
- W !,"Company has already been selected."
  Q
  ;
 EXIT ;EP
@@ -265,7 +226,7 @@ EXIT ;EP
  Q
  ;
 SEL ;EP
- ; Protocol Action to de-select an already selected insurance company
+ ; Protocol Action to select insurance companies
  ; Input:   NUMSEL                  - Current number of selected insurance
  ;                                    companies
  ;          ^TMP("IBCNILK",$J)     - Current Array of displayed Ins Cos
@@ -274,7 +235,7 @@ SEL ;EP
  ; Output:  NUMSEL                  - Updated number of selected insurance
  ;                                    companies
  ;          ^TMP("IBCNILKA,$J,IIEN)- Updated Array of selected Ins Cos
- ;          Selected Insurance Company is removed from the worklist 
+ ;          Selected Insurance Company is added to the worklist 
  ;          Error message displayed (potentially)
  N DIR,DIROUT,DIRUT,DLINE,DTOUT,DUOUT,ERROR,IEN,IIENS,IX,LINE,PROMPT
  S VALMBCK="R",ERROR=0
@@ -296,6 +257,34 @@ SEL ;EP
  D:ERROR PAUSE^VALM1
  Q
  ;
+SELALL ; EP
+ ;IB*827/DW new action added "Choose All"
+ ;
+ ; Protocol Action to select all insurance companies in this ListMan regardless
+ ; of the page it is on
+ ;
+ ; Input:   NUMSEL                  - Current number of selected insurance
+ ;                                    companies
+ ;          ^TMP("IBCNILK",$J)     - Current Array of displayed Ins Cos
+ ;          ^TMP("IBCNILKIX",$J)   - Current Index of displayed Ins Cos
+ ;          ^TMP("IBCNILKA,$J,IIEN)- Current Array of selected Ins Cos
+ ; Output:  NUMSEL                  - Updated number of selected insurance
+ ;                                    companies
+ ;          ^TMP("IBCNILKA,$J,IIEN)- Updated Array of selected Ins Cos
+ ;          Selected Insurance Company is added to the worklist 
+ ;          Error message displayed (potentially)
+ N DIR,DIROUT,DIRUT,DLINE,DTOUT,DUOUT,ERROR,IEN,IIENS,IX,LINE,PROMPT
+ S VALMBCK="R",ERROR=0
+ ;
+ S NUMSEL=0  ; reset # of selected, tag MARK counts the # selected as it loops thru all
+ ;
+ S LINE=0 F  S LINE=$O(^TMP("IBCNILKIX",$J,LINE)) Q:'LINE  D    ;loop thru all possible companies
+ . S IIEN=^TMP("IBCNILKIX",$J,LINE)
+ . D MARK(1,IIEN,LINE,.NUMSEL)              ; Show the selection mark
+ D HDR                                      ; Update the header
+ D:ERROR PAUSE^VALM1
+ Q
+ ;
 UNSEL(SELECTED) ;EP
  ; Protocol Action to deselect an already selected insurance company
  ; Input:   SELECTED                - 1 - Called from IBCN INS CO ACTIVE UNSELECT
@@ -304,7 +293,7 @@ UNSEL(SELECTED) ;EP
  ;          NUMSEL                  - Current number of selected insurance
  ;                                    companies
  ;          ^TMP("IBCNILK",$J)     - Current Array of displayed Ins Cos
- ;          ^TMP("IBCNILKS",$J)    - Current Array of selecte Ins Cos
+ ;          ^TMP("IBCNILKS",$J)    - Current Array of selected Ins Cos
  ;          ^TMP("IBCNILKIX",$J)   - Current Index of displayed Ins Cos
  ;          ^TMP("IBCNILKA,$J,IIEN)- Current Array of selected Ins Cos
  ; Output:  NUMSEL                  - Current number of selected insurance

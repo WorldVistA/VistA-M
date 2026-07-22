@@ -1,5 +1,5 @@
 ONCODIS ;HINES OIFO/GWB - OncoTrax Banner ;09/13/11
- ;;2.2;ONCOLOGY;**1,4,7,5,8,6,9,11,10,12,13,14,15,16,17,18,19,20,21,22**;Jul 31, 2013;Build 6
+ ;;2.2;ONCOLOGY;**1,4,7,5,8,6,9,11,10,12,13,14,15,16,17,18,19,20,21,22,23**;Jul 31, 2013;Build 6
  ;
 MAIN ;OncoTrax Banner
  S RC=$$CHKVER^ONCSAPIV()
@@ -10,7 +10,7 @@ MAIN ;OncoTrax Banner
 LOGO ;Display banner
  W @IOF W !!!!!! F I=1:1:9 W !,?22,$P($T(DISP+I),";",3)
  W !!,?22,"Department of Veterans Affairs"
- W !?22,"OncoTraX V2.2 Patch 22.v6" Q
+ W !?22,"OncoTraX V2.2 Patch 23.v6" Q
 DISP ;
  ;;VVVV            VVAA
  ;; VVVV          VVAAAA

@@ -1,5 +1,11 @@
-TIUSRVT4 ; SLC/PKS Remove all terminated user Templates. ; [3/15/01 12:15pm]
- ;;1.0;TEXT INTEGRATION UTILITIES;**110**;Jun 20, 1997
+TIUSRVT4 ; SLC/PKS - Remove all terminated user Templates ;09/25/25  13:41
+ ;;1.0;TEXT INTEGRATION UTILITIES;**110,369**;Jun 20, 1997;Build 4
+ ;
+ ; Reference to ^DIR in ICR #10026
+ ; Reference to NOW^%DTC in ICR #10000
+ ; Reference to $$GET1^DIQ in ICR #2056
+ ; Reference to EDITPAR^XPAREDIT in ICR #2336
+ ; Reference to ^VA(200 in ICR #10060
  ;
  ; Variables used herein:
  ;
@@ -15,7 +21,7 @@ TIUSRVT4 ; SLC/PKS Remove all terminated user Templates. ; [3/15/01 12:15pm]
  ;     TIUSTAT = Status of user.
  ;     TIUTMP  = Call return array value holder.
  ;     TIUTPLT = Template IEN.
- ;            
+ ;
  Q
  ;
 CTRL ; Main control section.
@@ -44,7 +50,7 @@ EACH ; Process template deletion for each user found who has any.
  .;
  .; Check user's status - look for terminated users:
  .I '$D(^VA(200,TIUSR,0)) Q        ; No user record.
- .I '$L($P($G(^VA(200,TIUSR,0)),"^",1)) Q  ; Invalid user data.
+ .I '$L($$GET1^DIQ(200,TIUSR,.01)) Q  ; Invalid user data.
  .S TIUSTAT=$$GET1^DIQ(200,TIUSR,9.2,"I",,.TIUERR) ; Termination date?
  .I 'TIUSTAT Q                     ; Active user.
  .I TIUSTAT>TIUNOW Q               ; User terminated on a future date.
@@ -75,6 +81,7 @@ BLD(TIUIEN,TIUARY) ; Build array of templates for user.
  ;
  N TIUIDX
  ;
+ I +TIUIEN'>0 Q
  S TIUIDX=$O(TIUARY(" "),-1)+1
  S TIUARY(TIUIDX)=TIUIEN
  S TIUIDX=0
@@ -95,7 +102,7 @@ VERIF() ; Verify that user really wants to execute this option:
  S DIR("T")=120  ; Two minute maximum timeout for response.
  S DIR("A")="   Delete all non-shared templates for all terminated users (Y/N)"
  S DIR("?")="   Templates for terminated users will be permanently lost..."
- S DIR("B")="NO" ; Default. 
+ S DIR("B")="NO" ; Default.
  ;
  ; Define DIR input requirements:
  S DIR(0)="YO^1:2:0"

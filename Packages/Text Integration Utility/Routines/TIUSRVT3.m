@@ -1,5 +1,9 @@
-TIUSRVT3 ; SLC/PKS Remove a user's non-shared Templates. ; [6/26/01 9:17am]
- ;;1.0;TEXT INTEGRATION UTILITIES;**110**;Jun 20, 1997
+TIUSRVT3 ; SLC/PKS - Remove a user's non-shared Templates. ; Sep 22, 2025@15:36:20
+ ;;1.0;TEXT INTEGRATION UTILITIES;**110,369**;Jun 20, 1997;Build 4
+ ;
+ ; Reference to ^DIR in ICR #10026
+ ; Reference to $$GET^XPAR in ICR #2263
+ ; Reference to ^VA(200 in ICR #10060
  ;
  ; Variables used herein:
  ;
@@ -11,19 +15,20 @@ TIUSRVT3 ; SLC/PKS Remove a user's non-shared Templates. ; [6/26/01 9:17am]
  ;    TIUIEN  = Template IEN holder.
  ;    TIUNM   = Holder variable for name of user.
  ;    TIUNUM  = Loop counter from this routine.
- ;    TIUPAR  = Current setting of auto-cleanup parameter.  
+ ;    TIUPAR  = Current setting of auto-cleanup parameter.
  ;    TIURARY = Returned array; zero node will contain user's DUZ and
  ;              AROOT IEN (if any) or error message (RPC use only).
  ;    TIUSR   = DUZ of user to process.
  ;    TIUTMP  = Call return array values holder.
  ;    TIUTPLT = Template IEN.
  ;    X,Y     = Variables for FM call.
- ;            
+ ;
  Q
  ;
 SELUSR ; Call here for manual selection of TIUSR from NEW PERSON file.
  ;
- N DIR,TIUCNT,TIUGET,TIUIDX,TIUNM,TIUNUM,TIUTPLT,TIURARY,TIUSR,X,Y
+ N DA,DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y ; New all potential ^DIR variables
+ N TIUCNT,TIUGET,TIUIDX,TIUNM,TIUNUM,TIUTPLT,TIURARY,TIUSR
  ;
  ; Get input for user:
  S TIUSR=""          ; Default.
@@ -31,18 +36,16 @@ SELUSR ; Call here for manual selection of TIUSR from NEW PERSON file.
  S DIR("A")="  Enter/select user for whom templates will be deleted: "
  S DIR("?")="Specify user for template cleanup."
  D ^DIR
- S TIUSR=Y
- K DIR,X,Y                             ; Clean up from FM call.
- I TIUSR<1 S TIUSR="" Q                ; No acceptable entry.
- S TIUSR=+TIUSR                        ; Selected user's DUZ.
- I TIUSR="" Q        ; Punt here if there's a problem.
+ S TIUSR=+Y                            ; Selected user's DUZ.
+ S TIUNM=$P(Y,U,2)                     ; Selected user's NAME.
+ I TIUSR<1 Q                           ; No acceptable entry.
+ K DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y    ; Clean up from FM call.
  ;
  ; Confirm before deletion:
- S TIUNM=$P($G(^VA(200,TIUSR,0)),U,1)
  S DIR("T")=120  ; Two minute maximum timeout for response.
  S DIR("A")="   Delete all non-shared templates for user "_TIUNM_" (Y/N)"
  S DIR("?")="   Non-shared templates for this user will be permanently lost..."
- S DIR("B")="NO" ; Default. 
+ S DIR("B")="NO" ; Default.
  ;
  ; Define DIR input requirements:
  S DIR(0)="YO^1:2:0"
@@ -130,6 +133,7 @@ BLD(TIUIEN,TIUARY) ; Recursively build an array of templates.
  ;
  N TIUIDX
  ;
+ I +TIUIEN'>0 Q
  S TIUIDX=$O(TIUARY(" "),-1)+1
  S TIUARY(TIUIDX)=TIUIEN
  S TIUIDX=0

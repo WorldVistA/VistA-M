@@ -1,13 +1,10 @@
-MAGGTU4D ;WOIFO/SG/NST/JSL/GEK/DAC/JSJ/MKN - VERSION CONTROL (CLINICAL DISPLAY); Apr 23, 2023@10:41
- ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181,191,188,216,234,225,256,258,316,290,315,351,334,379**;Mar 19, 2002;Build 1
+MAGGTU4D ;WOIFO/SG/NST/JSL/GEK/DAC/JSJ/MKN/DWM - VERSION CONTROL (CLINICAL DISPLAY); Apr 21, 2026@10:41
+ ;;3.0;IMAGING;**93,94,106,117,122,131,149,138,156,161,167,181,191,188,216,234,225,256,258,316,290,315,351,334,379,385**;Mar 19, 2002;Build 10
  ;; Per VA Directive 6402, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
  ;; | No permission to copy or redistribute this software is given. |
- ;; | Use of unreleased versions of this software requires the user |
- ;; | to execute a written test agreement with the VistA Imaging    |
- ;; | Development Office of the Department of Veterans Affairs,     |
- ;; | telephone (301) 734-0100.                                     |
+ ;; |                                                               |
  ;; | The Food and Drug Administration classifies this software as  |
  ;; | a medical device.  As such, it may not be changed in any way. |
  ;; | Modifications to this software may result in an adulterated   |
@@ -23,9 +20,9 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ;;==================================================================
  ;;| Version |Build|Seq # | Comment                                 |
  ;;|---------+-----+------------------------------------------------|
+ ;;| 3.0.385 |   3 |  206 | Apr 2026
  ;;| 3.0.379 |   1 |  205 | Apr 2025                                |
  ;;| 3.0.334 |   5 |  204 | Apr 2023                                |
- ;;| 3.0.351 |   1 |  203 | Jan 2023                                |
  ;;==================================================================
  ;
  ; Each row of the version control table contains the version and
@@ -35,12 +32,13 @@ CLVERCT ;***** VERSION CONTROL TABLE FOR THE CLINICAL DISPLAY CLIENTS
  ; Sort order of the rows does not matter. However, the reversed
  ; order of patch sequential numbers is recommended.
  ; NOTE:
- ;  Patch 379 removed support for patch 379
- ;  Patch 334 removed support for patch 351
- ;  Patch 351 removed support for patch 315
+ ;  Patch 385 removed support for patch 351
+ ;  Patch 379 removed support for patch 315
+ ;  Patch 334 removed support for patch 290
+ ;  Patch 351 removed support for patch 316
  ;  Patch 315 removed support for patch 258
  ;  Patch 290 removed support for patch 256
- ;  Patch 316 removed support for patch 290 (will be released after patch 316)
+ ;  Patch 316 removed support for patch 225
  ;  Patch 258 removed support for patch 234
  ;  Patch 256 removed support for patch 216
  ;  Patch 225 removed patches prior to patch 216

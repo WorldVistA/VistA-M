@@ -1,5 +1,5 @@
 PSOERX1D ;ALB/JSG - eRx Utilities ; 11/27/2019 11:02am
- ;;7.0;OUTPATIENT PHARMACY;**581,617,746,769,770**;DEC 1997;Build 145
+ ;;7.0;OUTPATIENT PHARMACY;**581,617,746,769,770,814**;DEC 1997;Build 6
  ;
  ;The rule numbers correspond to the last 4 digits of RTC story #'s and are abbreviations
  ;  for the various conditions which control what is printed on the Summary Detail screen or
@@ -232,7 +232,7 @@ PRTVIEW(PSOIEN,CHGMESRQ,RESPVAL,RULE,NO311) ; Set values for MRC variables
  .W !,"No Medication information available on the Response."
  I RULE?1(1"1061".E,1"1062P".E,1"1062UD".E),NO311 D
  .W !!,"eRx Reference #: ",$$GET1^DIQ(52.49,PSOIEN,.01,"E")
- .W !,"Message ID: ",$$GET1^DIQ(52.49,PSOIEN,25,"E")
+ .W !,"CCP MSH ID: ",$$GET1^DIQ(52.49,PSOIEN,25,"E") ;p814
  I RULE?1(1"1062P".E,1"1062UD".E),NO311 D
  .S CMTS=$$GET1^DIQ(52.49,PSOIEN,30,"I")
  .S SUBS=$$GET1^DIQ(52.49,PSOIEN,5.8,"I")

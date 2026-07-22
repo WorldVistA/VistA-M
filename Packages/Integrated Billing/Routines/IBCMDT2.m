@@ -1,6 +1,8 @@
 IBCMDT2 ;ALB/VD - INSURANCE PLANS MISSING DATA REPORT (COMPILE) ; 10-APR-15
- ;;2.0;INTEGRATED BILLING ;**549**; 10-APR-15;Build 54
+ ;;2.0;INTEGRATED BILLING ;**549,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to ^DIQ in ICR #2056
  ;
 EN ; Queued Entry Point for Report.
  ;  Required variable input:  FLTRS,IBAI, IBAPL, IBGRN, IBPTY, IBTFT, IBEPT,
@@ -9,8 +11,10 @@ EN ; Queued Entry Point for Report.
  ;
  ; - compile report data
  N IBI,IBIC1,IBCNS
+ N IBLINCT S IBLINCT=0  ;IB*827/DTG initialize count for dots
  S IBI=0 K ^TMP($J,"PR")
  S IBIC1=""
+ I CRT W "Compiling..",!  ;IB*827/DTG write dots
  F  S IBIC1=$O(^TMP("IBCMDT",IBNMSPC,IBIC1)) Q:IBIC1=""  D
  . S IBCNS=0
  . F  S IBCNS=$O(^TMP("IBCMDT",IBNMSPC,IBIC1,IBCNS)) Q:'IBCNS  D
@@ -20,6 +24,7 @@ EN ; Queued Entry Point for Report.
 GATH ; Gather all data for a company.
  N IBCPS,IBCPT,IBCST
  S IBI=IBI+1,(IBCPT,IBCPS,IBCST)=0 ; initialize counters
+ S IBLINCT=IBLINCT+1 I CRT&(IBLINCT#1000=0) W "."  ;IB*827/DTG write dots
  D PLAN ; gather plan info
  ;
  ; - set final company info
@@ -34,6 +39,7 @@ PLAN ; Gather Insurance Plan information, if necessary
  S IBPTR=0
  S POSWT=$S($$GET1^DIQ(36,IBCNS,.13)="PRESCRIPTION ONLY":1,1:0)
  F  S IBPTR=$O(^IBA(355.3,"B",IBCNS,IBPTR)) Q:'IBPTR  D
+ . S IBLINCT=IBLINCT+1 I CRT&(IBLINCT#1000=0) W "."  ;IB*827/DTG write dots
  . S PLNDATA=$$PLANINF(IBPTR,POSWT)
  . Q:(+PLNDATA=-2)                          ; Skip inactive plans.
  . ;
@@ -113,11 +119,13 @@ GCVLIMS(IBI,PLAN,RECIND) ; Obtain Plans that may have Coverage Limits missing.
  N FOUND,IBCAT,IBCOV,IBCPTR,IBCSTA,IBCVDAT,IBEFDT,IBRECDT,IBRECN,IBREC,VAL
  S (FOUND,IBCPTR)=0
  I '$D(^IBA(355.32,"APCD",PLAN)) D  Q +FOUND
+ . S IBLINCT=IBLINCT+1 I CRT&(IBLINCT#1000=0) W "."  ;IB*827/DTG write dots
  . I '+$G(IBMDTSPC("IBCLM")) Q
  . S FOUND=1,IBCPTR=IBCPTR+1
  . S ^TMP($J,"PR",IBI,IBPTR,IBCPTR)="This plan has no coverage limitations defined."
  S IBCAT=0
  F  S IBCAT=$O(^IBE(355.31,IBCAT)) Q:'+IBCAT  D
+ . S IBLINCT=IBLINCT+1 I CRT&(IBLINCT#1000=0) W "."  ;IB*827/DTG write dots
  . I '$D(^IBA(355.32,"APCD",PLAN,IBCAT)) D  Q
  . . S IBCOV=$$GET1^DIQ(355.31,IBCAT,.01)
  . . S IBEFDT="#######",IBCSTA="#######"
@@ -129,6 +137,7 @@ GCVLIMS(IBI,PLAN,RECIND) ; Obtain Plans that may have Coverage Limits missing.
  . F  S IBRECDT=$O(^IBA(355.32,"APCD",PLAN,IBCAT,IBRECDT)) Q:IBRECDT=""  D
  . . S IBRECN=""
  . . F  S IBRECN=$O(^IBA(355.32,"APCD",PLAN,IBCAT,IBRECDT,IBRECN)) Q:IBRECN=""  D
+ . . . S IBLINCT=IBLINCT+1 I CRT&(IBLINCT#1000=0) W "."  ;IB*827/DTG write dots
  . . . S IBEFDT=$$DAT1^IBOUTL($$GET1^DIQ(355.32,IBRECN,.03,"I"))
  . . . I +$G(IBMDTSPC("IBCLM")) S IBEFDT=$S(+$L(IBEFDT):IBEFDT,1:"#######")   ; Effective Date
  . . . S IBCOV=$$GET1^DIQ(355.32,IBRECN,.02)

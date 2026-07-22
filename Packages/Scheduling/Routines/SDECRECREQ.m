@@ -1,6 +1,6 @@
-SDECRECREQ   ;ALB/SAT/JSM,WTC,LAB,LEG,KML - VISTA SCHEDULING RPCS (SOURCE FROM SDEC08) ;April 20, 2022
- ;;5.3;Scheduling;**790,792,805,815**;Aug 13, 1993;Build 4
- ;;Per VHA Directive 2004-038, this routine should not be modified
+SDECRECREQ   ;ALB/SAT/JSM,WTC,LAB,LEG,KML,AGW - VISTA SCHEDULING RPCS (SOURCE FROM SDEC08) ;MAY 22,2026
+ ;;5.3;Scheduling;**790,792,805,815,945**;Aug 13, 1993;Build 2
+ ;;Per VHA Directive 6402, this routine should not be modified
  ;
  ; Reference to ^DPT (Patient File) is supported by IA #7030
  Q
@@ -44,6 +44,7 @@ RECREQ(SDECY,SDECAPTID,SDAPTYP,NEWPID,SDECTYP) ;for Recall Requests
  ;**790 corrected REQUEST ptr and added Contact Attempts
  S CANCHANGEPID=$S($G(SDECTYP)="PC":1,$G(SDECTYP)="C":0,1:"")
  S SDECFDA(409.85,"+1,",49)=CANCHANGEPID
+ S SDECFDA(409.85,"+1,",9.5)=$E($$NOW^XLFDT,1,12)
  D UPDATE^DIE("","SDECFDA","IEN40985")
  ;I $G(NEWPID)'="" D
  I $G(NEWPID)="" S PIDH=$P(SD409840REC,U,20)

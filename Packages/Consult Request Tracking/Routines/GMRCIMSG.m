@@ -1,5 +1,5 @@
-GMRCIMSG ;SLC/JFR - IFC MESSAGE HANDLING ROUTINE; 09/26/02 00:23 ; Jan 27, 2025@06:03:38
- ;;3.0;CONSULT/REQUEST TRACKING;**22,28,51,44,154,184,189,205**;DEC 27, 1997;Build 3
+GMRCIMSG ;SLC/JFR - IFC MESSAGE HANDLING ROUTINE; 09/26/02 00:23 ; Jul 31, 2025@14:29:21
+ ;;3.0;CONSULT/REQUEST TRACKING;**22,28,51,44,154,184,189,205,207**;DEC 27, 1997;Build 10
  ;
  ; Reference to EN^RMPRFC3 supported by #4661
  ; #2053 DIE, #4838 MAGDTR01, #2165 HLMA1, #10103 XLFDT, #2263 XPAR, #2171 XUAF4, #2541 XUPARAM
@@ -101,11 +101,13 @@ EHRMCHK(ORCSEG,OBRSEG) ; Check for EHRM
  S GMRCOBR4=$P($P(OBRSEG,"|",4),"^",2)          ; Text (string) component of the Universal Identifier 
  S GMRCSTAT=$P(ORCSEG,"|")                      ; Control Code
  I GMRCSTAT="OD" S GMRCSTAT=$P(ORCSEG,"|",5)    ; Status
- I (GMRCSTAT'="NW")&(GMRCSTAT'="DC") Q 0        ; Only process NW and DC
+ I GMRCSTAT'="NW",GMRCSTAT'="DC",GMRCSTAT'="IP" Q 0        ; Only process NW, DC and IP - P207 WTC 5/8/25
  ; EHRM Prosthetics NW requires incoming Placer Facility = Local Facility, Universal Service ID contains PROSTHETICS IFC or PSAS
  I GMRCSTAT="NW" I ($$IEN^XUAF4(GMRCORC2)=$$KSP^XUPARAM("INST")),((GMRCOBR4["PROSTHETICS IFC")!(GMRCOBR4["PSAS")) Q 1
  ; EHRM Prosthetics DC requires incoming Placer Facility = Local Facility, Placer Facility = Filler Facility, Universal Service ID contains PROSTHETICS IFC or PSAS
  I GMRCSTAT="DC" I ($$IEN^XUAF4(GMRCORC2)=$$KSP^XUPARAM("INST")),(GMRCORC2=GMRCORC3),((GMRCOBR4["PROSTHETICS IFC")!(GMRCOBR4["PSAS")) Q 1
+ ; EHRM Prosthetics IP requires incoming Placer Facility = Local Facility, Placer Facility = Filler Facility, Universal Service ID contains PROSTHETICS IFC or PSAS
+ I GMRCSTAT="IP" I ($$IEN^XUAF4(GMRCORC2)=$$KSP^XUPARAM("INST")),(GMRCORC2=GMRCORC3),((GMRCOBR4["PROSTHETICS IFC")!(GMRCOBR4["PSAS")) Q 1 ; P207 WTC 5/8/25
  Q 0
  ;
 ORRIN ;process IFC responses

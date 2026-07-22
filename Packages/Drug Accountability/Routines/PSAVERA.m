@@ -1,8 +1,8 @@
-PSAVERA ;BHM/DBM - Change verified invoice data;16AUG05
- ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**21,36,40,53,63,70,80**; 10/24/97;Build 2
+PSAVERA ;BHM/DBM - Change verified invoice data; May 01, 2024@14:00
+ ;;3.0;DRUG ACCOUNTABILITY/INVENTORY INTERFACE;**21,36,40,53,63,70,80,84**; 10/24/97;Build 16
  ;
- ;References to ^DIC(51.5 are covered by IA #1931
- ;References to ^PSDRUG( are covered by IA #2095
+ ; Reference to ^DIC(51.5 in ICR #1931
+ ; Reference to ^PSDRUG( in ICR #2095
  D Q
  D HOME^%ZIS S XX="VERIFIED INVOICE ALTERATION SCREEN" W @IOF,!!,?((IOM/2)-($L(XX)/2)),XX,!!
 ORDR ;Get Order Number
@@ -34,7 +34,33 @@ LINEASK ;ask for line number
  S PSAODUOU=PSADUOU
  ;; *63
  S PSA581="" F  S PSA581=$O(^PSD(58.81,"PV",PSAINV,PSA581)) Q:'PSA581  I $P(^PSD(58.81,PSA581,0),U,5)=PSADRG S PSABFR(581)=$G(^PSD(58.81,PSA581,0))
- S:$G(PSABFR(581)) PSDTRN=$P(PSABFR(581),U,1),PSABFR("Q")=$S($G(^PSD(58.81,PSDTRN,4)):$P(^PSD(58.81,PSDTRN,4),"^",3),1:$P(^PSD(58.81,PSDTRN,0),"^",6)) ; <*63 RJS >
+ ;
+ ;PSA*3.0*84 start
+ N PSASTOP
+ S PSASTOP=0
+DUOU ;
+ I '$G(PSADUOU) D
+ . N DIE,DA,DIR,DR,X,Y
+ . S DIE="^PSDRUG("_PSADRG_",1,",(DA,DA(1))=PSASUB,DR="403"
+ . D ^DIE
+ . ;User entered "^"
+ . I $G(Y) S PSASTOP=1
+ . Q:PSASTOP
+ . I $G(X)="",$$GET1^DIQ(50.1,PSASUB_","_PSADRG_",",403)="" D
+ . . W !,"Dispense Units per Order Unit must be populated"
+ . . W !,"for this line item before proceeding."
+ . . D DUOU
+ . I $G(X) S PSADUOU=+X
+ . ;PSADRG, PSAQTY, PSADUOU might not be defined if user
+ . ;answered above prompts more than once.
+ Q:PSASTOP
+ I $G(PSAQTY),$G(PSADUOU) S PSABFR("Q")=PSAQTY*PSADUOU
+ ;Setting PSASTOP here so won't ask Drug/Order Unit more than once
+ ;if user answered above prompts more than once.
+ S PSASTOP=1
+ W !
+ ;PSA*3.0*84 end
+ ;
 DRG W !,"Select (D)rug or (O)rder Unit " R AN:DTIME G Q:AN["^"!(AN="") W $S("Dd"[AN:"rug","oO"[AN:"rder Unit",1:"??") I "DdOo"'[AN W !,"Enter a 'D' to edit the Drug, or 'O' to edit the order unit",! K AN G DRG
  I "Dd"'[AN D ^PSAVERA3 G Q  ;;*63
  ;Get either new name of drug or supply item description

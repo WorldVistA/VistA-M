@@ -1,5 +1,5 @@
 PSOBPSU2 ;BIRM/MFR,RBD - BPS (ECME) Utilities 2 ;31 Mar 2025  9:34 AM
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482,512,544,562,660,681,703,704,774**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,341,290,358,359,385,421,459,482,512,544,562,660,681,703,704,774,782**;DEC 1997;Build 11
  ; Reference to ^VA(200 in ICR #10060
  ; Reference to DUR1^BPSNCPD3 in ICR #4560
  ; Reference to $$NCPDPQTY^PSSBPSUT in ICR #4992
@@ -67,6 +67,10 @@ RXACT(RX,RFL,COMM,TYPE,USR) ; - Add an entry to the ECME Activity Log (PRESCRIPT
  I '$D(^VA(200,+USR,0)) S USR=DUZ
  I '$D(^VA(200,+USR,0)) S USR=.5
  S:$G(PSOPHDUZ)]"" USR=PSOPHDUZ   ; RBD *774 Set USR to OneVA's PSOPHDUZ if defined
+ ;
+ ; For log entries resulting from ePharmacy billing parameters for 8e/8g/Ineligible patients,
+ ; edit IBRESULT, piece 2, to display properly in ECME Log.
+ I COMM["ePharmacy Claim: " S COMM=$P(COMM,"ePharmacy Claim: ",2)
  ;
  N PSOTRIC
  S PSOTRIC=$$TRIC^PSOREJP1(RX,RFL,"")

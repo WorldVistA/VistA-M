@@ -1,5 +1,5 @@
 IBNCPLOG ;BHAM ISC/SS - IB ECME EVNT REPORT ;3/5/08  14:02
- ;;2.0;INTEGRATED BILLING;**342,339,363,383,411,435,452,534,550,647**;21-MAR-94;Build 10
+ ;;2.0;INTEGRATED BILLING;**342,339,363,383,411,435,452,534,550,647,813**;21-MAR-94;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;store data related to the IB calls made by ECME package in the file #366.14
@@ -16,6 +16,11 @@ IBNCPLOG ;BHAM ISC/SS - IB ECME EVNT REPORT ;3/5/08  14:02
 LOG(IBIBD,DFN,IBPROC,IBRESULT,IBJOB,IBDTTM,IBUSR) ;Store the data
  N NDX,Z,REF,IBDATE,IBDTIEN,IBEVNIEN,IBIBDTYP,IBRETV,IBPTR
  S IBRESULT=$G(IBRESULT)
+ ;
+ ; For log entries resulting from ePharmacy billing parameters for 8e/8g/Ineligible patients,
+ ; edit IBRESULT, piece 2, to display properly in ECME Billing Events.
+ I $P(IBRESULT,U,2)["ePharmacy Claim: " S $P(IBRESULT,U,2)=($P($P(IBRESULT,U,2),"ePharmacy Claim: ",2))
+ I $P(IBRESULT,U,2)[", Billing Parameter set" S $P(IBRESULT,U,2)=($P($P(IBRESULT,U,2),","))
  ;
  I '$G(IBJOB) S IBJOB=$J
  I '$G(IBDTTM) S IBDTTM=$$NOW^XLFDT()

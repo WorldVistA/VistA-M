@@ -1,5 +1,5 @@
-BPSOSSG ;BHAM ISC/SD/lwj/FLS - Special gets for formats ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11,20,24,28**;JUN 2004;Build 22
+BPSOSSG ;BHAM ISC/SD/LWJ/FLS - Special gets for formats ;06/01/2004
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,10,11,20,24,28,42**;JUN 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -10,7 +10,7 @@ FLD420 ; Submission Clarification Code
  ;
  Q:'$G(BPS(9002313.0201))  ; must have entry IEN
  ;
- N BPSCNTR,CNT,FDA,MSG,FLDIEN,SCC,I
+ N BPSCNTR,CNT,FDA,FLDIEN,I,LEN,MSG,SCC
  K BPS(9002313.0354)  ; results from UPDATE^DIE
  S FLDIEN=$O(^BPSF(9002313.91,"B",420,""))  ;Get IEN for field 420 from NCPDP BPS FIELD DEFS
  ; Are there overrides?
@@ -19,13 +19,15 @@ FLD420 ; Submission Clarification Code
  . S SCC=BPS("OVERRIDE","RX",BPS(9002313.0201),FLDIEN)
  . F I=1:1:3 S BPS("RX",BPS(9002313.0201),"Submission Clarif Code",I)=$P(SCC,"~",I)
  Q:'$O(BPS("RX",BPS(9002313.0201),"Submission Clarif Code",0))  ; no values found
+ S LEN=2
+ I $G(NCPVERS)="F6",$G(FLDIEN) S LEN=$$GET1^DIQ(9002313.91,FLDIEN,.02)
  S (CNT,BPSCNTR)=0
  F  S CNT=$O(BPS("RX",BPS(9002313.0201),"Submission Clarif Code",CNT)) Q:'CNT  D
  .I BPS("RX",BPS(9002313.0201),"Submission Clarif Code",CNT)="" Q
  .S BPSCNTR=BPSCNTR+1  ; ien for (#354.01) SUBMISSION CLARIFICATION MLTPL
  .S FDA(9002313.02354,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",.01)=BPSCNTR
  .; 420-DK Submission Clarification Code
- .S FDA(9002313.02354,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",420)="DK"_$$NFF^BPSECFM(BPS("RX",BPS(9002313.0201),"Submission Clarif Code",CNT),2)
+ .S FDA(9002313.02354,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",420)="DK"_$$NFF^BPSECFM(BPS("RX",BPS(9002313.0201),"Submission Clarif Code",CNT),LEN)
  ;
  I BPSCNTR D UPDATE^DIE("","FDA","BPS(9002313.0354)","MSG")
  I $D(MSG) D  Q  ; if error, log it and quit
@@ -88,15 +90,18 @@ FLD480 ; Other Amount Claimed Submitted field
  Q:'$G(BPS(9002313.0201))  ; must have Transaction subfile IEN
  Q:'$O(BPS("RX",BPS(9002313.0201),"Other Amt Value",0))  ; nothing to do
  ;
- N BPSCNTR,CNT,FDA,MSG
+ N BPSCNTR,CNT,FDA,FLDIEN,LEN,MSG
  K BPS(9002313.0601)  ; results from UPDATE^DIE
+ S FLDIEN=$O(^BPSF(9002313.91,"B",480,""))  ;Get IEN for field 480 from NCPDP BPS FIELD DEFS
+ S LEN=8
+ I $G(NCPVERS)="F6",$G(FLDIEN) S LEN=$$GET1^DIQ(9002313.91,FLDIEN,.02)
  S (CNT,BPSCNTR)=0
  F  S CNT=$O(BPS("RX",BPS(9002313.0201),"Other Amt Value",CNT)) Q:'CNT  D
  . I +BPS("RX",BPS(9002313.0201),"Other Amt Value",CNT)=0 Q
  . S BPSCNTR=BPSCNTR+1  ; ien for "PRICING REPEATING FIELDS SUB-FIELD^^480^3"
  . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",.01)=BPSCNTR
  . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",479)="H8"_$$ANFF^BPSECFM($G(BPS("RX",BPS(9002313.0201),"Other Amt Qual",CNT)),2)
- . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",480)="H9"_$$DFF^BPSECFM($G(BPS("RX",BPS(9002313.0201),"Other Amt Value",CNT)),8)
+ . S FDA(9002313.0601,"+"_BPSCNTR_","_BPS(9002313.0201)_","_BPS(9002313.02)_",",480)="H9"_$$DFF^BPSECFM($G(BPS("RX",BPS(9002313.0201),"Other Amt Value",CNT)),LEN)
  ;
  I BPSCNTR D UPDATE^DIE("","FDA","BPS(9002313.0601)","MSG")
  I $D(MSG) D  Q

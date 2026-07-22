@@ -1,5 +1,5 @@
 RCRPENTR ;EDE/SAB - CREATE NEW REPAYMENT PLAN;11/16/2020  7:40 AM
- ;;4.5;Accounts Receivable;**377,381,378,389,422**;Mar 20, 1995;Build 13
+ ;;4.5;Accounts Receivable;**377,381,378,389,422,442**;Mar 20, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -7,10 +7,11 @@ ENTER ; Main Entry Point
  ;
  N RCAUTO,RCDBTR,RCCTS,RCACPL,RCTOT,RCBLCH,RCALLFLG,RCDONE,RCSVFLG,Z
  ;
+ W @IOF  ; PRCA*4.5*442
  F  D  Q:+RCDBTR=0
  . ;
  . S RCDONE=0
- . W @IOF
+ . W !!  ; PRCA*4.5*442
  . ;Ask user for Debtor to build the plan for
  . S RCDBTR=$$GETDBTR^RCRPU
  . Q:+RCDBTR=0
@@ -26,9 +27,8 @@ ENTER ; Main Entry Point
  . . W !,"A new plan was not created.",!
  . . D PAUSE^RCRPU ;Any key to continue prompt
  . ;Otherwise, print the list of Active Bills
- . W !,"This Debtor does not have a Repayment Plan",!!,"List of Active Bills:",!!
+ . W !,"This Debtor does not have a Repayment Plan",!!,"List of Active Bills:",!  ; PRCA*4.5*442
  . S RCCTS=$$GETACTS^RCRPU(+RCDBTR)
- . W @IOF
  . D PRTACTS^RCRPU(+RCCTS)
  . ;Ask user which Active bills to add to new plan (single, range, or all)
  . S RCBLCH=$$GETBILLS^RCRPU(+RCCTS)
@@ -37,7 +37,6 @@ ENTER ; Main Entry Point
  . I RCBLCH="" D  Q
  . . W !,"No Bills selected",!
  . . D PAUSE^RCRPU
- . . W @IOF
  . ;Display Bills selected if All Bills not selected
  . I 'RCALLFLG D  Q:'RCDONE
  . . S RCDONE=$$ECHOBL^RCRPADD($P(RCBLCH,U,2))

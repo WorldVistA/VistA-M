@@ -1,5 +1,5 @@
 FBAAVS ;AISC/GRR-DISPLAY VENDOR PAYMENT RECORDS ;7/17/2003
- ;;3.5;FEE BASIS;**4,61**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**4,61,194**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 RDP W !! S DIC="^FBAAC(",DIC(0)="AEQM",DIC("A")="Select Patient: " D ^DIC K DIC("A") G Q:X="^"!(X=""),RDP:Y<0 S DFN=+Y
  S:'$D(^FBAAC(DFN,1,0)) ^FBAAC(DFN,1,0)="^162.01P^0^0"
@@ -13,7 +13,8 @@ EN1 ; display payments for veteran (DFN) and vendor (DA)
  F D=0:0 S D=$O(^FBAAC(DFN,DA,"AD",D)) Q:D'>0!(FBAAOUT)  F B=0:0 S B=$O(^FBAAC(DFN,DA,"AD",D,B)) Q:B'>0!(FBAAOUT)  F K=0:0 S K=$O(^FBAAC(DFN,1,DA,1,B,1,K)) Q:K'>0!(FBAAOUT)  S L=^(K,0) D MORE,WRT
  W ! K B,C,D,T
  Q
-HED W @IOF,"Patient Name: ",$P(^DPT(DFN,0),"^",1),?50,"SSN: ",$P(^(0),"^",9),!!,?2,"VENDOR: ",$P(^FBAAV(DA,0),"^",1),!?5,$P(^FBAAV(DA,0),"^",3) S FBST=$P(^FBAAV(DA,0),"^",5)
+HED I $G(FBSSNRF)="" W @IOF,"Patient Name: ",$P(^DPT(DFN,0),"^",1),?50,"SSN: ",$P(^(0),"^",9),!!,?2,"VENDOR: ",$P(^FBAAV(DA,0),"^",1),!?5,$P(^FBAAV(DA,0),"^",3) S FBST=$P(^FBAAV(DA,0),"^",5)
+ I $G(FBSSNRF)=1 W @IOF,"Patient Name: ",$E($P(^DPT(DFN,0),"^",1),1,27)," (",$$SSN^FBAAUTL(DFN,1),")",?50,"ICN: ",$$GETICN^FBAAUTL(DFN),!!,?2,"VENDOR: ",$P(^FBAAV(DA,0),"^",1),!?5,$P(^FBAAV(DA,0),"^",3) S FBST=$P(^FBAAV(DA,0),"^",5)
  W !?5,$P(^FBAAV(DA,0),"^",4)_", "_$P($G(^DIC(5,+FBST,0)),U)_"   "_$P(^FBAAV(DA,0),"^",6)
  W !,?10,"('*' Reimb. to Patient  '+' Cancel. Activity   '#' Voided Payment)"
  W !,?2,"SVC DATE",?12,"CPT-MOD",?22,"REV.CODE",?32,"UNITS",?39,"PATIENT ACCOUNT NO.",?61,"INVOICE #",?72,"BATCH #"

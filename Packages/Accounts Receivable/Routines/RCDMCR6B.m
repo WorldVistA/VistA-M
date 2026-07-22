@@ -1,5 +1,5 @@
 RCDMCR6B ;ALB/YG - 50-100 Percent SC Exempt Charge Reconciliation Report - Input/output; Apr 9, 2019@21:06
- ;;4.5;Accounts Receivable;**347,454**;Mar 20, 1995;Build 4
+ ;;4.5;Accounts Receivable;**347,454,464**;Mar 20, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; See RCDMCR6A for detailed description
@@ -28,8 +28,7 @@ COLLECT(STOPIT,ARTYPE) ; Get the report data
  . . S ELIG=$S($P(DMCELIG,U,2)'="":"SC"_$P(DMCELIG,U,2),$P(DMCELIG,U,3)'="":"Pension",$P(DMCELIG,U,4)'="":"A&A",$P(DMCELIG,U,5)'="":"HouseBnd",1:"")
  . . ; business decision for now is to only show SC%.  A&A, Pension and HB are off the report.
  . . Q:ELIG'?1"SC".E
- . . ; business decision is to change from .3012 (SC AWARD DATE) to .3014 (EFF. DATE COMBINED SC% EVAL.)
- . . S EXEMPTDT=$$GET1^DIQ(2,DFN_",",.3014,"I")
+ . . S EXEMPTDT=$$GETEFFDT^RCDMCRUT(DFN,50,100)  ; PRCA*4.5*464
  . . I DFN'>0 D KVAR^VADPT Q
  . . D DEM^VADPT
  . . I $G(VAERR)>0 D KVAR^VADPT Q
@@ -100,8 +99,8 @@ COLLECT(STOPIT,ARTYPE) ; Get the report data
  . . . . I OPTDT>EOCDT S EOCDT=OPTDT
  . . . . I DISCHDT>EOCDT S EOCDT=DISCHDT
  . . . . I RXDT>EOCDT S EOCDT=RXDT
- . . . . I EXEMPTDT="" S ^TMP($J,"RCDMCR6","DETAIL",NAME,SSN," ",1)=U_U_ELIG_U_"NODATE" Q
- . . . . I EOCDT'>EXEMPTDT Q
+ . . . . I EXEMPTDT=0 S ^TMP($J,"RCDMCR6","DETAIL",NAME,SSN," ",1)=U_U_ELIG_U_"NODATE" Q
+ . . . . I EOCDT<EXEMPTDT Q  ; PRCA*4.5*464
  . . . . S DSTATUS=$S(DSTATUS="CANCELLATION":"ARCXLD",DSTATUS="COLLECTED/CLOSED":"C/C",1:DSTATUS)
  . . . . S ^TMP($J,"RCDMCR6","DETAIL",NAME,SSN,BILLNO,IBCNT)=SERVDT_U_RXDT_U_ELIG_U_EXEMPTDT_U_RXNUM_U_RXNAM_U_DSTATUS
  K ^TMP($J,"RCDMCR6","ARIB")

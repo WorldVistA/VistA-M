@@ -1,5 +1,5 @@
 IBJDF42 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (PRINT);15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,204,568,618,651,705,739**;21-MAR-94;Build 3
+ ;;2.0;INTEGRATED BILLING;**123,204,568,618,651,705,739,841**;21-MAR-94;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Print the Follow-up report.
@@ -95,6 +95,7 @@ WPAT ; - Write patient data.
  W:$P(IBP,U,7)'="" " ("_$P(IBP,U,7)_")"
  W:$P(IBP,U,8) ?53,"Date of Death: ",$$DAT1^IBOUTL($P(IBP,U,8))
  W !,"Eligibilities    : " S X=$$ELIG($P(IBP,U,3))
+ I $P(IBP,U,11)=1 S X=X_", PACT ACT"  ; IB*2.0*841
  F I=1:1 Q:X=""  W ?19,$E(X,1,61) S X=$E(X,62,999) I X'="" W !
  S X=$$INFO(IBAI)
  I X'="" D

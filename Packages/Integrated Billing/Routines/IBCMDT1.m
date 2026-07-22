@@ -1,6 +1,9 @@
 IBCMDT1 ;ALB/VD - INSURANCE PLANS MISSING DATA REPORT (DRIVER 1) ; 10-APR-15
- ;;2.0;INTEGRATED BILLING ;**549**; 10-APR-15;Build 54
+ ;;2.0;INTEGRATED BILLING ;**549,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to ^DIQ in ICR #2056
+ ; Reference to ^DIR in ICR #10026
  ;
 SLAI ; Prompt user to select all or subset of insurance companies 
  ; Count ins. companies with plans
@@ -9,11 +12,19 @@ SLAI ; Prompt user to select all or subset of insurance companies
  ; 1 -- run report for all insurance companies with plans
  ;
  N A,B
- S (A,B)=0
- F  S A=$O(^IBA(355.3,"B",A)) Q:'A  S B=B+1
- S DIR(0)="SA^1:List All "_B_" Ins. Companies;2:List Only Ins. Companies That You Select"
- W !!,"     There are "_B_" insurance companies associated with plans.",!
- S DIR("A",1)="1. List All "_B_" Active Ins. Companies"
+ ;IB*827/DTG make sure insurance is found and is active
+ ;S (A,B)=0
+ ;F  S A=$O(^IBA(355.3,"B",A)) Q:'A  S B=B+1
+ N IBC S (A,B,IBC)=0 F  S A=$O(^IBA(355.3,"B",A)) Q:'A  I $D(^DIC(36,A)) D  ;
+ . D GETS^DIQ(36,+A_",",".01;.05","I","IBC")
+ . I $G(IBC(36,+A_",",.01,"I"))="" Q  ;name not defined
+ . I '$G(IBC(36,+A_",",.05,"I")) S B=B+1  ;1=Inactive, 0=Active
+ ; IB*827/DTG update question/message to include 'with plans'
+ ;S DIR(0)="SA^1:List All "_B_" Ins. Companies;2:List Only Ins. Companies That You Select"
+ ;W !!,"     There are "_B_" insurance companies associated with plans.",!
+ ;S DIR("A",1)="1. List All "_B_" Active Ins. Companies"
+ S DIR(0)="SA^1:List All "_B_" Ins. Companies With Plans;2:List Only Ins. Companies That You Select"
+ S DIR("A",1)="1. List All "_B_" Active Ins. Companies With Plans"
  S DIR("A",2)="2. List Only Active Ins. Companies That You Select"
  S DIR("A")="     SELECT 1 or 2:  "
  S DIR("?",1)="Enter a code from the list:  1 or 2.  Only insurance"
@@ -51,7 +62,8 @@ SLGRN ; Prompt user to report missing Group Numbers
  S DIR(0)="YO"
  S DIR("A")="Display Active Group(s) missing Group Number"
  S DIR("B")="YES"
- S DIR("?",1)="If you say yes, the report will print X's when Group Number is missing."
+ ;S DIR("?",1)="If you say yes, the report will print X's when Group Number is missing."
+ S DIR("?",1)="If you say yes, the report will print #'s when Group Number is missing."  ;IB*827/DTG change X to #
  S DIR("?")="If you say no, missing Group Number will not be indicated."
  W ! D ^DIR K DIR
  I $D(DIRUT) S STOP=1 G SLGRNQ
@@ -67,7 +79,8 @@ SLPTY ; Prompt user to report missing Type of Plan
  S DIR(0)="YO"
  S DIR("A")="Display Active Group(s) missing Type of Plan"
  S DIR("B")="YES"
- S DIR("?",1)="If you say yes, the report will print X's when Type of Plan is missing."
+ ;S DIR("?",1)="If you say yes, the report will print X's when Type of Plan is missing."
+ S DIR("?",1)="If you say yes, the report will print #'s when Type of Plan is missing."  ;IB*827/DTG change X to #
  S DIR("?")="If you say no, missing Type of Plan will not be indicated."
  W ! D ^DIR K DIR
  I $D(DIRUT) S STOP=1 G SLPTYQ
@@ -83,7 +96,8 @@ SLTFT ; Prompt user to report missing Timely Filing Time Frame
  S DIR(0)="YO"
  S DIR("A")="Display Active Group(s) missing Timely Filing Time Frame"
  S DIR("B")="YES"
- S DIR("?",1)="If you say yes, the report will print X's when Timely Filing Time Frame"
+ ;S DIR("?",1)="If you say yes, the report will print X's when Timely Filing Time Frame"
+ S DIR("?",1)="If you say yes, the report will print #'s when Timely Filing Time Frame"  ;IB*827/DTG change X to #
  S DIR("?",2)="is missing."
  S DIR("?")="If you say no, missing Timely Filing Time Frame will not be indicated."
  W ! D ^DIR K DIR
@@ -100,7 +114,8 @@ SLEPT ; Prompt user to report missing Electronic Plan Type
  S DIR(0)="YO"
  S DIR("A")="Display Active Group(s) missing Electronic Plan Type"
  S DIR("B")="YES"
- S DIR("?",1)="If you say yes, the report will print X's when Electronic Plan Type is missing."
+ ;S DIR("?",1)="If you say yes, the report will print X's when Electronic Plan Type is missing."
+ S DIR("?",1)="If you say yes, the report will print #'s when Electronic Plan Type is missing."  ;IB*827/DTG change X to #
  S DIR("?")="If you say no, missing Electronic Plan Type will not be indicated."
  W ! D ^DIR K DIR
  I $D(DIRUT) S STOP=1 G SLEPTQ
@@ -116,7 +131,8 @@ SLCLM ; Prompt user to report missing Coverage Limitations
  S DIR(0)="YO"
  S DIR("A")="Display Active Group(s) missing Coverage Limitations"
  S DIR("B")="YES"
- S DIR("?",1)="If you say yes, the report will print X's when Coverage Limitations is missing."
+ ;S DIR("?",1)="If you say yes, the report will print X's when Coverage Limitations is missing."
+ S DIR("?",1)="If you say yes, the report will print #'s when Coverage Limitations is missing."  ;IB*827/DTG change X to #
  S DIR("?")="If you say no, missing Coverage Limitations will not be indicated."
  W ! D ^DIR K DIR
  I $D(DIRUT) S STOP=1 G SLCLMQ
@@ -132,7 +148,8 @@ SLBIN ; Prompt user to report missing Banking Identification Numbers (BIN)
  S DIR(0)="YO"
  S DIR("A")="Display Active Group(s) missing BIN"
  S DIR("B")="YES"
- S DIR("?",1)="If you say yes, the report will print X's when Banking Identification Number"
+ ;S DIR("?",1)="If you say yes, the report will print X's when Banking Identification Number"
+ S DIR("?",1)="If you say yes, the report will print #'s when Banking Identification Number"  ;IB*827/DTG change X to #
  S DIR("?",2)="(BIN) is missing."
  S DIR("?",3)="If you say no, missing Banking Identification Number (BIN) will not be"
  S DIR("?")="indicated."
@@ -150,7 +167,8 @@ SLPCN   ; Prompt user to report missing Processor Control Numbers (PCN)
  S DIR(0)="YO"
  S DIR("A")="Display Active Group(s) missing PCN"
  S DIR("B")="YES"
- S DIR("?",1)="If you say yes, the report will print X's when Processor Control Number"
+ ;S DIR("?",1)="If you say yes, the report will print X's when Processor Control Number"
+ S DIR("?",1)="If you say yes, the report will print #'s when Processor Control Number"  ;IB*827/DTG change X to #
  S DIR("?",2)="(PCN) is missing."
  S DIR("?",3)="If you say no, missing Processor Control Number (PCN) will not be"
  S DIR("?")="indicated."

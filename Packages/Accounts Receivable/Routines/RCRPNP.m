@@ -1,13 +1,16 @@
 RCRPNP ;EDE/SAB - REPAYMENT PLAN UTILITIES;12/31/2020  8:40 AM
- ;;4.5;Accounts Receivable;**378,389,423,422**;Mar 20, 1995;Build 13
+ ;;4.5;Accounts Receivable;**378,389,423,422,442**;Mar 20, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
 MAIN ; Entry Point for the nightly process
  ;
+ N RCMSG
+ S RCMSG=0  ; PRCA*4.5*442
  D UPDSTAT
  D ADDBILLS
+ I RCMSG D MSGREV^RCRPWLUT  ; send Mailman notification for plans that need 36 months review  PRCA*4.5*442
  D UPDCS
  Q
  ;
@@ -39,11 +42,10 @@ UPDSTAT ;Review all active plans to determine their current status.
  ...S RCFLG36=$$GET1^DIQ(340.5,RCIENS,1.06,"I")
  ...S RCFLG60=+$$GET1^DIQ(340.5,RCIENS,1.01,"I")
  ...D CHKFLGS^RCRPU1(RCI,$$REMPMNTS^RCRPU3(RCI,$$GET1^DIQ(340.5,RCIENS,.06,"I")),RCFLG36,RCFLG60)
- ...I $$GET1^DIQ(340.5,RCIENS,1.06,"I")=0 D MSGREV^RCRPWLUT
+ ...I $$GET1^DIQ(340.5,RCIENS,1.06,"I")=0 S RCMSG=1  ; PRCA*4.5*442
  ...Q
  ..Q
  .Q
- ;
  ; Update Processing time metrics
  S RCSTEND=$H
  D UPDMET^RCSTATU(2.03,$$HDIFF^XLFDT(RCSTEND,RCSTSTRT,2))
@@ -51,16 +53,15 @@ UPDSTAT ;Review all active plans to determine their current status.
  ;
 ADDBILLS ;Review a debtor and all non referred, Active bills to the plan.
  ;
- N RCACTDT,RCBILLDA,RCRPIEN,RCSTAT,RCACTIVE,RCDBTR,RCSTP,RCD0,RCRPSTAT,RCD7,RCAMT,RCMNPY,RCNOMN,RCNWLN,RCRPD0
- N RCNWMN,RCNWMOD,RCPLNBL,RCRMLN,RCSTSTRT,RCSTEND,RCREV36
+ N RCACTDT,RCAUDIT,RCBILLDA,RCRPIEN,RCSTAT,RCACTIVE,RCDBTR,RCSTP,RCD0,RCRPSTAT,RCD7,RCAMT,RCMNPY,RCNOMN,RCNWLN,RCRPD0
+ N RCNWMN,RCNWMOD,RCPLNBL,RCRMLN,RCSTSTRT,RCSTEND
  N RCFLG36,RCFLG60,RCIENS,RCQUIT
  ;
  ; Start calculating execution time
  S RCSTSTRT=$H
  ;
  S RCACTDT=$$DT^XLFDT
- S (RCREV36,RCRPIEN)=0  ; PRCA*4.5*389
- F  S RCRPIEN=$O(^RCRP(340.5,RCRPIEN)) Q:'RCRPIEN  D
+ S RCRPIEN=0 F  S RCRPIEN=$O(^RCRP(340.5,RCRPIEN)) Q:'RCRPIEN  D
  .; Check to see if the plan is active.  If not, skip it and grab the next
  .S RCRPD0=$G(^RCRP(340.5,RCRPIEN,0)) Q:RCRPD0=""
  .Q:'+$P(RCRPD0,U,12)  ; Quit if the Repayment Plan's AUTO ADD field is not set to Yes (it is No or NULL)
@@ -71,13 +72,13 @@ ADDBILLS ;Review a debtor and all non referred, Active bills to the plan.
  .S RCFLG60=+$$GET1^DIQ(340.5,RCIENS,1.01,"I")
  .S RCFLG36=$$GET1^DIQ(340.5,RCIENS,1.06,"I")
  .S RCRMLN=$$REMPMNTS^RCRPU3(RCRPIEN,$$GET1^DIQ(340.5,RCIENS,.06,"I"))
- .D:RCRPSTAT'=1 CHKFLGS^RCRPU1(RCRPIEN,RCRMLN,RCFLG36,RCFLG60)
+ .I RCRPSTAT'=1 D CHKFLGS^RCRPU1(RCRPIEN,RCRMLN,RCFLG36,RCFLG60) S:$$GET1^DIQ(340.5,RCIENS,1.06,"I")=0 RCMSG=1  ; PRCA*4.5*442
  .I RCFLG60 Q  ; don't add bills if plan length > 57 months PRCA*4.5*423
  .; Find the Debtor.
  .S RCDBTR=$$GET1^DIQ(340.5,RCIENS,.02,"I")
  .; Loop through the Active Bills for the Debtor
  .S RCACTIVE=$O(^PRCA(430.3,"B","ACTIVE",""))  ; Get the Active Status IEN
- .S (RCQUIT,RCBILLDA)=0 ;  PRCA*4.5*423
+ .S (RCAUDIT,RCQUIT,RCBILLDA)=0 ;  PRCA*4.5*442
  .; Loop through all bills or until plan is flagged for review.
  .F  S RCBILLDA=$O(^PRCA(430,"AS",RCDBTR,RCACTIVE,RCBILLDA)) Q:'RCBILLDA  Q:RCQUIT  D
  ..; Only look at First Party Bills
@@ -113,19 +114,23 @@ ADDBILLS ;Review a debtor and all non referred, Active bills to the plan.
  ..I RCNOMN'=RCNWMN D
  ...D UPDTERMS^RCRPU1(RCRPIEN,RCMNPY_"^"_RCNWMN)
  ...D ADJSCHED^RCRPENTR(RCRPIEN,RCNOMN,RCNWMN)
- ...I RCRPSTAT'=1,RCRMLN>36,RCFLG36'=1 S RCREV36=1  ; PRCA*4.5*422
+ ...I RCRPSTAT'=1,RCRMLN>36,RCFLG36'=1 S RCMSG=1  ; PRCA*4.5*442
  ...Q
- ..D:RCRPSTAT'=1 CHKFLGS^RCRPU1(RCRPIEN,RCRMLN,RCFLG36,RCFLG60)  ; PRCA*4.5*422
- ..I RCRPSTAT'=1,+$$GET1^DIQ(340.5,RCIENS,1.01,"I") S RCQUIT=1 ;  PRCA*4.5*422
- ..;
- ..;Update Audit Log
- ..D UPDAUDIT^RCRPU2(RCRPIEN,$$DT^XLFDT,"A","")
+ ..I RCRPSTAT'=1 D
+ ...S RCFLG60=+$$GET1^DIQ(340.5,RCIENS,1.01,"I")
+ ...S RCFLG36=$$GET1^DIQ(340.5,RCIENS,1.06,"I")
+ ...D CHKFLGS^RCRPU1(RCRPIEN,RCRMLN,RCFLG36,RCFLG60)
+ ...I RCFLG60 S RCQUIT=1
+ ...Q
+ ..; set flag for audit log update
+ ..S RCAUDIT=1  ; PRCA*4.5*442
  ..;
  ..;Update the AR Metrics File with activity
  ..D UPDMET^RCSTATU(1.02,1)
  ..Q
+ .; Update Audit Log
+ .I RCAUDIT D UPDAUDIT^RCRPU2(RCRPIEN,$$DT^XLFDT,"A","")  ; PRCA*4.5*442
  .Q
- I RCREV36 D MSGREV^RCRPWLUT  ; send Mailman notification for plans that need 36 months review  PRCA*4.5*422
  ; Update Processing time metrics
  S RCSTEND=$H
  D UPDMET^RCSTATU(2.02,$$HDIFF^XLFDT(RCSTEND,RCSTSTRT,2))

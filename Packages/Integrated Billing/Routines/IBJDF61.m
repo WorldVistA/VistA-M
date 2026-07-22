@@ -1,5 +1,5 @@
 IBJDF61 ;ALB/RB - MISC. BILLS FOLLOW-UP REPORT (COMPILE) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,356,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**123,159,356,618,841**;21-MAR-94;Build 5
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
 ST ; - Tasked entry point.
@@ -86,7 +86,7 @@ ST ; - Tasked entry point.
  . . S IBOI=$$OTH(DFN,$P(IBIN,"@@",2),IBFR) ; Get other insurance carrier.
  . . I $G(IBEXCEL) Q
  . . I '($D(^TMP("IBJDF6P",$J,IBDIV,IBCAT,IBIN,$P(IBPTDB,U)))#10) D
- . . . S ^TMP("IBJDF6P",$J,IBDIV,IBCAT,IBIN,$P(IBPTDB,U))=$P(IBPTDB,U,2)_" "_$P(IBPTDB,U,6)_U_$P(IBPTDB,U,3,4)_U_IBOI
+ . . . S ^TMP("IBJDF6P",$J,IBDIV,IBCAT,IBIN,$P(IBPTDB,U))=$P(IBPTDB,U,2)_" "_$P(IBPTDB,U,6)_U_$P(IBPTDB,U,3,4)_U_IBOI_U_$P(IBPTDB,U,7)  ; IB*2.0*841
  . . S ^TMP("IBJDF6P",$J,IBDIV,IBCAT,IBIN,$P(IBPTDB,U),IBBN)=IBDP_U_IBFR_U_IBTO_U_IBOR_U_IBBA
  . I 'IBPDFLG D
  . . S IBLP=+$P($$PYMT^IBJD1(IBA),U,2)
@@ -122,8 +122,8 @@ PTDB(X) ; - Find Patient/Debtor and decide to include the AR.
  ;    Input: X=Pointer to the AR in file #430 plus all IBS* variables
  ;   Output: Y=Sort key (name or last 4) and Patient/Debtor IEN(file #2) 
  ;             ^ Patient/Debtor name (1st 25 chars) ^ Age ^ SSN
- ;             ^ Processed by (File #200) ^ Current VA Employee? (*=Yes)
- N AGE,ALL,ARZ,CAT,DEB,DA,DFN,DIC,DIQ,DR,END,IBZ,INI,KEY,NAME,PRC,SSN
+ ;             ^ Processed by (File #200) ^ Current VA Employee? (*=Yes) ^ Patient's DOB
+ N AGE,ALL,ARZ,CAT,DEB,DA,DFN,DIC,DIQ,DR,END,IBZ,INI,KEY,NAME,PRC,SSN,PATDOB  ; IB*2.0*841
  N VA,VADM,VAERR,Y,IBPTFLG
  ;
  S Y="" I '$G(X) G PDQ
@@ -136,7 +136,7 @@ PTDB(X) ; - Find Patient/Debtor and decide to include the AR.
  . I '$D(^DGCR(399,X,0)) Q
  . S IBZ=^DGCR(399,X,0),DFN=+$P(IBZ,"^",2)
  . S INI=IBSNF,END=IBSNL,ALL=IBSNA
- . D DEM^VADPT S NAME=VADM(1),SSN=$P(VADM(2),"^",2),AGE=VADM(4)
+ . D DEM^VADPT S NAME=VADM(1),SSN=$P(VADM(2),"^",2),AGE=VADM(4),PATDOB=$P(VADM(3),U)  ; IB*2.0*841
  . S KEY=$S(IBSN="N":NAME,1:$P(SSN,"-",3))
  . ; - Look for Debtor (All the other Categories)
  I 'IBPTFLG  D  I 'DFN S Y="" G PDQ
@@ -153,7 +153,7 @@ PTDB(X) ; - Find Patient/Debtor and decide to include the AR.
  I INI]KEY!(KEY]END) S Y="" G PDQ
  ;
  S KEY=KEY_"@@"_DFN
-PDC S Y=KEY_U_$E(NAME,1,25)_U_AGE_U_SSN_U_PRC_U_$$VAEMP(+$TR(SSN,"-"))
+PDC S Y=KEY_U_$E(NAME,1,25)_U_AGE_U_SSN_U_PRC_U_$$VAEMP(+$TR(SSN,"-"))_U_$G(PATDOB)  ; IB*2.0*841
 PDQ Q Y
  ;
 PHDL ; - Print the header line for the Excel spreadsheet

@@ -1,5 +1,5 @@
 FBAADEM1 ;AISC/DMK - DISPLAY PATIENT DEMOGRAPHICS ;6/5/2009
- ;;3.5;FEE BASIS;**13,51,103,108,139**;JAN 30, 1995;Build 127
+ ;;3.5;FEE BASIS;**13,51,103,108,139,194**;JAN 30, 1995;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
 EN N FBDX,FBFDT,FBI,FBRR,FBT,FBTYPE,FBV,FBZ,PSA,FBDC
  S:'$D(FBPROG) FBPROG="I 1"
@@ -8,7 +8,8 @@ EN N FBDX,FBFDT,FBI,FBRR,FBT,FBTYPE,FBV,FBZ,PSA,FBDC
  ;
  I $O(^FBAAA(DFN,1,0)) D  Q:FBAAOUT
  . D HANG:$Y+5>IOSL Q:FBAAOUT
- . W !,"Patient Name: ",VADM(1),?55,"Pt.ID: ",$P(VADM(2),"^",2)
+ . I $G(FBSSNRF)="" W !,"Patient Name: ",VADM(1),?55,"Pt.ID: ",$P(VADM(2),"^",2)     ;194
+ . I $G(FBSSNRF)=1 W !,"Patient Name: ",$E(VADM(1),1,32)," (",$P($P(VADM(2),"^",2),"-",3),")",?55,"ICN: ",$$GETICN^FBAAUTL(DFN)   ;194
  . W !!,"AUTHORIZATIONS:",!
  . K FBAUT
  . S FBZ=0,FBFDT="9999999"
@@ -61,7 +62,8 @@ DC ; JLG-FB*3.5*139-ICD10 REMEDIATION- determine diagnosis code based on authori
  Q
  ;
 HANG I $E(IOST,1,2)="C-" S DIR(0)="E" D ^DIR K DIR S:'Y FBAAOUT=1
- W @IOF I 'FBAAOUT W !,"Patient Name: ",VADM(1),?55,"Pt.ID: ",$P(VADM(2),"^",2),!
+ I $G(FBSSNRF)="" W @IOF I 'FBAAOUT W !,"Patient Name: ",VADM(1),?55,"Pt.ID: ",$P(VADM(2),"^",2),!       ;194
+ I $G(FBSSNRF)=1 W @IOF I 'FBAAOUT W !,"Patient Name: ",VADM(1)," (",$P($P(VADM(2),"^",2),"-",3),")",?55,"ICN: ",$$GETICN^FBAAUTL(DFN),!     ;194
  Q
  ;
 PDF S:Y Y=$$FMTE^XLFDT(Y,5)  ; TRANSLATE TO DISPLAY DATE

@@ -1,5 +1,5 @@
 FBNHPLT ;AISC/GRR-PRINT CNH PAYMENTS AND TOTALS FOR A MONTH ;1DEC00
- ;;3.5;FEE BASIS;**25**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**25,194**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
 ASK S %DT(0)=-DT,%DT="AEPMX",%DT("A")="Community Nursing Home Payment List for which Month/Year: " D ^%DT K %DT G END:X="^"!(X=""),ASK:Y<0
  S FBPAYDT=$E(+Y,1,5)_"00",VAR="FBPAYDT",VAL=FBPAYDT,PGM="START^FBNHPLT" D ZIS^FBAAUTL G:FBPOP END W !
@@ -15,12 +15,17 @@ PVHED I $Y+3>IOSL W @IOF D HED
  Q
 HED W "Community Nursing Home Payment List & Totals for: ",$P("January^February^March^April^May^June^July^August^September^October^November^December","^",+$E(FBPAYDT,4,5))," ",(1700+$E(FBPAYDT,1,3)),!
  D NOW^%DTC S Y=% X ^DD("DD") W ?10,"Processed: ",Y,!
- W "Vendor Name",?50,"Vendor ID",!,?8,"Veteran Name",?39,"   SSN",?51,"Amount Paid",!,Q
+ I $G(FBSSNRF)="" W "Vendor Name",?50,"Vendor ID",!,?8,"Veteran Name",?39,"   SSN",?51,"Amount Paid",!,Q   ;194
+ I $G(FBSSNRF)=1 W "Vendor Name",?50,"Vendor ID",!,"Veteran Name",?39,"ICN",?60,"Amount Paid",!,Q       ;194
  Q
-MORE S FBNAME=$$NAME^FBCHREQ2(DFN),SSN=$$SSN^FBAAUTL(DFN),FBAP=$P(FBZ,"^",9),FBVTOT=FBVTOT+FBAP
+MORE I $G(FBSSNRF)="" S FBNAME=$$NAME^FBCHREQ2(DFN),SSN=$$SSN^FBAAUTL(DFN),FBAP=$P(FBZ,"^",9),FBVTOT=FBVTOT+FBAP   ;194
+ N FBPID  ;194
+ I $G(FBSSNRF)=1 S FBNAME=$$NAME^FBCHREQ2(DFN),SSN=$$SSN^FBAAUTL(DFN),FBPID=$$GETICN^FBAAUTL(DFN),FBAP=$P(FBZ,"^",9),FBVTOT=FBVTOT+FBAP  ;194
  I $Y+3>IOSL D PVHED
- W !,?8,FBNAME,?39,SSN,?51,$J(FBAP,7,2)
+ I $G(FBSSNRF)="" W !,?8,FBNAME,?39,SSN,?51,$J(FBAP,7,2)   ;194
+ I $G(FBSSNRF)=1 W !,$E(FBNAME,1,30)," (",$P(SSN,"-",3),")",?39,FBPID,?60,$J(FBAP,7,2)
  Q
-TOT W !,?51,"-------",!,?35,"Vendor Total:",?51,$J(FBVTOT,7,2) Q
+TOT I $G(FBSSNRF)="" W !,?51,"-------",!,?35,"Vendor Total:",?51,$J(FBVTOT,7,2) Q  ;194
+ I $G(FBSSNRF)=1 W !,?60,"-------",!,?44,"Vendor Total:",?60,$J(FBVTOT,7,2) Q      ;194
 SETUP I $P(FBZ,"^",14)="",$P(FBZ,"^",12)=7,'$D(^FBAAI(IFN,"FBREJ")) S ^TMP($J,$P(FBZ,"^",3),$P(FBZ,"^",4),IFN)=""
  Q

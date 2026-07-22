@@ -1,5 +1,5 @@
-SDES2APPTYPES ;ALB/TJB,AGW - VISTA SCHEDULING SDES2 GET APPOINTMENT TYPES RPC in APPOINTMENT TYPES FILE 409.1 ;July 2, 2025
- ;;5.3;Scheduling;**864,909**;Aug 13, 1993;Build 12
+SDES2APPTYPES ;ALB/TJB,AGW,MCB - VISTA SCHEDULING SDES2 GET APPOINTMENT TYPES RPC in APPOINTMENT TYPES FILE 409.1 ;May 7, 2026
+ ;;5.3;Scheduling;**864,909,944**;Aug 13, 1993;Build 2
  ;;Per VHA Directive 6402, this routine should not be modified
  ; Reference to DUZ^XUP is supported by IA #7487
  ;
@@ -21,7 +21,7 @@ GETAPPTYPES(RETURNJSON,SDCONTEXT,SDPARAM) ;Entry point
  ; SDCONTEXT("USER DUZ") = The DUZ of the user taking action in the calling application.
  ; SDCONTEXT("USER SECID") = The SECID of the user taking action in the calling application.
  ;
- ; SDPARAM("APP TYPE STATUS")="A|I|B"  Appointmet Type Status (optional)
+ ; SDPARAM("APP TYPE STATUS")="A|I|B"  Appointment Type Status (optional)
  ;                             A - Active Only, I - Inactive only, B - Both Active and Inactive
  ;                             Default is Active only
  ;
@@ -70,7 +70,7 @@ GETAPTYDFN(RETURNJSON,SDCONTEXT,SDPARAM) ;Entry point
  ;    RETURNJSON = Returns the list of Appointment Types from File 409.1 in JSON formatted string.
  ;    Otherwise, JSON Errors will be returned for any invalid/missing parameters.
  ;
- N ERRORS,RETURN,VRETURN
+ N ERRORS,RETURN,VRETURN,VAERR
  D VALCONTEXT^SDES2VALCONTEXT(.ERRORS,.SDCONTEXT)
  I $D(ERRORS) S ERRORS("AppointmentTypes",1)="" D BUILDJSON^SDES2JSON(.RETURNJSON,.ERRORS) Q
  I $G(SDCONTEXT("USER DUZ"))'="" N DUZ D DUZ^XUP(SDCONTEXT("USER DUZ"))

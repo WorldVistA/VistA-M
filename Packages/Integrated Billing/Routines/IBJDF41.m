@@ -1,5 +1,5 @@
 IBJDF41 ;ALB/RB - FIRST PARTY FOLLOW-UP REPORT (COMPILE) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473,568,618,651,694,705,715,739**;21-MAR-94;Build 3
+ ;;2.0;INTEGRATED BILLING;**123,159,204,356,451,473,568,618,651,694,705,715,739,841**;21-MAR-94;Build 5
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to FILE 433.001 in ICR #7321
@@ -121,7 +121,7 @@ PROC ; - Process data for report(s).
  . W !,IBEXCEL1 K IBD,IBEXCEL1
  ;
  I '($D(^TMP("IBJDF4",$J,IBPAT))#10) D
- . S ^TMP("IBJDF4",$J,IBPAT)=$P(IBPT,U,3,5)_U_$$MTRX(DFN)_U_$P(IBPT,U,6)_"^"_$P(IBVA,"^",2)_"^"_$$ACCBAL($P(IBPT,U,7))
+ . S ^TMP("IBJDF4",$J,IBPAT)=$P(IBPT,U,3,5)_U_$$MTRX(DFN)_U_$P(IBPT,U,6)_"^"_$P(IBVA,"^",2)_"^"_$$ACCBAL($P(IBPT,U,7))_U_$$GETPACT(DFN)  ; IB*2.0*841
  S ^TMP("IBJDF4",$J,IBPAT,IB0,IBCAT,IBBN)=IBPD_U_IBBA_U_IBPA_U_IBINT_U_IBADM_U_IBIDX_U_$S($D(IBSUSTYP):IBSUSTYP,1:"")
  ;
  I IBSH D COM
@@ -386,3 +386,14 @@ REPDATA(RPIEN,DAYS) ; - Return Repayment Plan information IB*2.0*694
  I PDUE=0 Q ""  ; plan was paid in full
  S $P(RES,U,7)=PDUE,$P(RES,U,8)=PDEF,$P(RES,U,9)=STATUS  ; #of payments due, # of defaulted payments, & plan status
  Q RES
+ ;
+GETPACT(DFN) ; get PACT act eligibility  IB*2.0*841
+ ;
+ ; DFN - patient DFN
+ ;
+ ; returns 1 if patient is PACT act eligible, 0 otherwise
+ ;
+ N VASV
+ I $G(DFN)'>0 Q 0
+ D SVC^VADPT
+ Q +$P($G(VASV(15)),U)

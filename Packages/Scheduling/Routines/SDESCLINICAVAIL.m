@@ -1,5 +1,5 @@
-SDESCLINICAVAIL ;ALB/RRM,KML,BWF,MGD,DJS,ANU,MGD,JAS,BWF - VISTA SCHEDULING RPCS GET CLINIC AVAILABILITY ; Jun 21, 2024@14:50
- ;;5.3;Scheduling;**800,805,809,816,820,823,826,827,828,831,864,881,889**;Aug 13, 1993;Build 9
+SDESCLINICAVAIL ;ALB/RRM,KML,BWF,MGD,DJS,ANU,MGD,JAS,BWF,MGD - VISTA SCHEDULING RPCS GET CLINIC AVAILABILITY ; Mar 26, 2026
+ ;;5.3;Scheduling;**800,805,809,816,820,823,826,827,828,831,864,881,889,941**;Aug 13, 1993;Build 3
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  ; External References
@@ -100,6 +100,12 @@ BUILDDATA(CLINICIEN) ;retrieve clinic availability data
  . S SDP3=+$P(@SDTMPARY@(II),U,4) ;open slots available
  . S SDP4=$P(@SDTMPARY@(II),U,5) ;access type  (1=available, 2=not available, 3=cancelled)
  . I $P(SDP1,".",2)=""!($P(SDP1,".",2)="00") S $P(SDP1,".",2)="0001"
+ . ; Adjust start date/time if time is greater than 24 so it will pass $$FMTISO^SDAMUTDT
+ . I $E($P(SDP1,".",2),1,2)=24,($E($P(SDP1,".",2),3,6))>0 D
+ . . N FMDATE,FMTIME
+ . . S FMDATE=$P(SDP1,".",1),FMTIME=$P(SDP1,".",2)
+ . . S FMDATE=$$FMADD^XLFDT(FMDATE,1)
+ . . S SDP1=FMDATE_".00"_$E(FMTIME,3,6)
  . S SDSTRTTM=$$FMTISO^SDAMUTDT(SDP1,CLINICIEN)
  . S SDSTOPTM=$$FMTISO^SDAMUTDT(SDP2,CLINICIEN)
  . S SDSLOTS=$P(@SDTMPARY@(II),U,4)

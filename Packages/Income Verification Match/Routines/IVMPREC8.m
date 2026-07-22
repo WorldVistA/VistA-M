@@ -1,5 +1,5 @@
 IVMPREC8 ;ALB/KCL,BRM,PJR,CKN,TDM,PWC,LBD,DPR,KUM - PROCESS INCOMING (Z05 EVENT TYPE) HL7 MESSAGES (CON'T) ;7/24/24 8:56AM
- ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152,168,167,171,164,188,187,210,214,215,217,219**;21-OCT-94;Build 36
+ ;;2.0;INCOME VERIFICATION MATCH;**5,6,12,58,73,79,102,115,121,148,151,152,168,167,171,164,188,187,210,214,215,217,219,222**;21-OCT-94;Build 3
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine will process (event type Z05)
@@ -384,6 +384,8 @@ ADDRCNV(ADDRSRC) ;convert Addr Source from HL7 to DHCP
  Q:ADDRSRC="LACS" "LACS"
  Q:ADDRSRC="USVOA" "VOA"
  Q:ADDRSRC="VET360" "VET360"
+ ;IVM*2.0*222 - Add VAPROF to the list
+ Q:ADDRSRC="VAPROF" "VAPROF"
  Q ""
 EPCSRCC(EPCSRC) ;Convert Email, Cell, Pager Change Source from HL7 to DHCP
  ;
@@ -393,6 +395,8 @@ EPCSRCC(EPCSRC) ;Convert Email, Cell, Pager Change Source from HL7 to DHCP
  Q:EPCSRC="USVAHBSC" "HBSC"
  Q:EPCSRC="USVOA" "VOA"
  Q:EPCSRC="VET360" "VET360"
+ ;IVM*2.0*222 - Add VAPROF to the list
+ Q:EPCSRC="VAPROF" "VAPROF"
  Q ""
 BAICONV(BAISRC) ;Convert Bad addr source from HL7 to DHCP format
  Q:$G(BAISRC)']"" ""

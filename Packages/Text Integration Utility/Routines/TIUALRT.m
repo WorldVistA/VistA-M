@@ -1,5 +1,5 @@
-TIUALRT ; SLC/JER,AJB - SEND ALERTS ;11/08/23  10:36
- ;;1.0;TEXT INTEGRATION UTILITIES;**21,84,79,88,58,61,151,158,175,221,227,259,355,358,353,357**;Jun 20, 1997;Build 5
+TIUALRT ; SLC/JER,AJB - SEND ALERTS ; Sep 16, 2025@13:26:36
+ ;;1.0;TEXT INTEGRATION UTILITIES;**21,84,79,88,58,61,151,158,175,221,227,259,355,358,353,357,369**;Jun 20, 1997;Build 4
  ;
  ; Reference to ^DPT( supported by ICR #10035
  ; Reference to ^VA(200 supported by ICR #4329
@@ -158,6 +158,16 @@ ACTADD ; Act on ADDENDUM alerts
  W !!,"A NEW Addendum has been added to your document...",!
  W:$L($P($G(XQX),U,3)) !,$P($G(XQX),U,3),!
  I '+$$READ^TIUU("YAO","Do you wish to Browse the Addendum now? ","NO") Q
+ D:'$D(TIUPRM0)!'$D(TIUPRM1) SETPARM^TIULE
+ D EN^VALM("TIU BROWSE FOR CLINICIAN")
+ Q
+ACTTXT ; Act on text alerts
+ N TIUQUIK,TIUDA,TIUPRM0,TIUPRM1,TIUPRM3 S TIUQUIK=1 K XQAKILL
+ S TIUDA=$P(XQADATA,U),XQAKILL=1
+ I '$D(^TIU(8925,+TIUDA,0)) Q
+ W !!,"A NEW text alert has been sent for a document...",!
+ W:$L($P($G(XQX),U,3)) !,$P($G(XQX),U,3),!
+ I '+$$READ^TIUU("YAO","Do you wish to Browse the document now? ","NO") Q
  D:'$D(TIUPRM0)!'$D(TIUPRM1) SETPARM^TIULE
  D EN^VALM("TIU BROWSE FOR CLINICIAN")
  Q

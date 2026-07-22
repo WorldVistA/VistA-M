@@ -1,5 +1,5 @@
-PSXMISC1 ;BIR/WPB,BAB-Transmission Data Validation ;MAR 1,2002@13:13:34
- ;;2.0;CMOP;**3,18,23,28,30,42,41,52,54,58,64,76,78,98**;11 Apr 97;Build 5
+PSXMISC1 ;BIR/WPB,BAB-Transmission Data Validation; Apr 01, 2026@15:04
+ ;;2.0;CMOP;**3,18,23,28,30,42,41,52,54,58,64,76,78,98,102**;11 Apr 97;Build 1
  ;Reference to ^PSDRUG(  supported by DBIA #1983
  ;Reference to ^PS(52.5, supported by DBIA #1978
  ;Reference to ^PSRX(    supported by DBIA #1977
@@ -62,6 +62,8 @@ NG1 S PHY=$S(RXF>0:$P($G(^PSRX(RXN,1,RXF,0)),U,17),RXF=0:$P($G(^PSRX(RXN,0)),U,4
  S DAYS=$S(RXF>0:$P($G(^PSRX(RXN,1,RXF,0)),U,10),RXF=0:$P($G(^PSRX(RXN,0)),U,8),1:"") I (DAYS'>0)!(DAYS="") S RXERR=4,PSXRXERR=PSXRXERR_"^"_RXERR
  S PHARCLK=$S(RXF>0:$P($G(^PSRX(RXN,1,RXF,0)),U,7),RXF=0:$P($G(^PSRX(RXN,0)),U,16),1:"") I PHARCLK="" S RXERR=9,PSXRXERR=PSXRXERR_"^"_RXERR
  S DRUG=$P($G(^PSRX(RXN,0)),U,6),PSTAT=$P($G(^(0)),U,3),FDATE=$P($G(^PSRX(RXN,2)),U,2)
+ ;PSX*2.0*102: Initialize SIG to prevent possible undefined error at NG1+30
+ N SIG S SIG=""
  D TSTSIG
  S DFN=$P($G(^PSRX(RXN,0)),U,2) D ADD^VADPT I (($G(VAPA(1))="")!($G(VAPA(4))="")!($P($G(VAPA(5)),"^",2)="")!($G(VAPA(6))'>0)!($P($G(VAPA(11)),"^",2)'>0)),(($$BADADR^DGUTL3(DFN))'>0) S RXERR=10,PSXRXERR=PSXRXERR_"^"_RXERR
  D DEM^VADPT

@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: ERROR TRAP SUMMARY
 ZWR
-^%ZTER(3.077,0)="ERROR TRAP SUMMARY^3.077^71^71"
+^%ZTER(3.077,0)="ERROR TRAP SUMMARY^3.077^72^72"
 ^%ZTER(3.077,1,0)="RE+2~XMLTCP, <READ>^3120423.133115^3200624.125112"
 ^%ZTER(3.077,1,4,0)="^3.0775^^-68"
 ^%ZTER(3.077,1,4,63918,0)="~~~~~~~~~3~~~~~~~~~~10"
@@ -1291,6 +1291,9 @@ ZWR
 ^%ZTER(3.077,71,0)="LR582 : Application Error! please disregard NO need to report^3251022.12472^3251022.12472"
 ^%ZTER(3.077,71,4,0)="^3.0775"
 ^%ZTER(3.077,71,4,67500,0)="~~~~~~~~~~~~1"
+^%ZTER(3.077,72,0)="LR588 : Application Error! please disregard NO need to report^3260602.093521^3260602.093521"
+^%ZTER(3.077,72,4,0)="^3.0775"
+^%ZTER(3.077,72,4,67723,0)="~~~~~~~~~1"
 ^%ZTER(3.077,"B",", <NOROUTINE>",22)=""
 ^%ZTER(3.077,"B","61+1~DIU0, <PROTECT>",20)=""
 ^%ZTER(3.077,"B","ACCEPT+4~XUS, <DSCON>",39)=""
@@ -1323,6 +1326,7 @@ ZWR
 ^%ZTER(3.077,"B","LR571 : Application Error! ple",66)=""
 ^%ZTER(3.077,"B","LR576 : Application Error! ple",68)=""
 ^%ZTER(3.077,"B","LR582 : Application Error! ple",71)=""
+^%ZTER(3.077,"B","LR588 : Application Error! ple",72)=""
 ^%ZTER(3.077,"B","MORE+5~PSN533D, <SUBSCRIPT>",26)=""
 ^%ZTER(3.077,"B","NEWL~DIWE2, <DSCON>",44)=""
 ^%ZTER(3.077,"B","OUT+12~XQ1, <DSCON>",67)=""

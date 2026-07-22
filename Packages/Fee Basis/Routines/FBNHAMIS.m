@@ -1,5 +1,5 @@
 FBNHAMIS ;AISC/GRR-CALCULATE AMIS 349 ;18DEC00
- ;;3.5;FEE BASIS;**12,25**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**12,25,194**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  D DT^DICRW S %DT="AEPMX",%DT(0)=-$E(DT,1,5)_31,%DT("A")="Calculate AMIS for which Month/Year: " D ^%DT G:X=""!(X="^") END S FBPAYDT=$E(+Y,1,5)_"00",FBMM=$E(+Y,4,5),FBYY=$E(+Y,2,3),X=+Y D DAYS^FBAAUTL1
  W ! S FBDAYS=X,FBENDDT=$E(+Y,1,5)_FBDAYS+.9
@@ -52,8 +52,10 @@ DISCR ;print out pts whose authorization dates have been exceeded
  W !?5,">>>NOTICE OF INCOMPLETE PATIENT MOVEMENTS AFFECTING AMIS TOTALS<<<",!!!,"The following patient(s) have met or exceeded their authorizations, and have",!,"not been discharged.  This will result in inaccurate AMIS 349 calculations"
  W !,"for the current month's amis, and will affect the balancing segment for",!,"subsequent months!!",!!,"To obtain an accurate AMIS, you must either discharge the patient,"
  W !,"or extend their Authorization To Date.  Once the data has been corrected,",!,"you may run the AMIS 349 again to obtain accurate figures."
- W !!?10,"PATIENT",?44,"PT. ID",?55,"AUTHORIZATION TO DATE",!
+ I $G(FBSSNRF) W !!?5,"PATIENT",?40,"ICN",?59,"AUTHORIZATION TO DATE",!
+ I '$G(FBSSNRF) W !!?10,"PATIENT",?44,"PT. ID",?55,"AUTHORIZATION TO DATE",!
  S FBZ=0 F  S FBZ=$O(FBER(FBZ)) Q:'FBZ!($G(FBOUT))  S FBDD=0 F  S FBDD=$O(FBER(FBZ,FBDD)) Q:'FBDD!($G(FBOUT))  D PGCK^FBNHPAMS(3) Q:$G(FBOUT)  D
- .W !,$S(FBER(FBZ,FBDD)=1:"",1:"**"),?5,$$NAME^FBCHREQ2(FBZ),?40,$$SSN^FBAAUTL(FBZ),?60,$$DATX^FBAAUTL(FBDD) I FBER(FBZ,FBDD)="" S FBMOV=1
+ . I $G(FBSSNRF)="" W !,$S(FBER(FBZ,FBDD)=1:"",1:"**"),?10,$$NAME^FBCHREQ2(FBZ),?44,$$SSN^FBAAUTL(FBZ),?55,$$DATX^FBAAUTL(FBDD) I FBER(FBZ,FBDD)="" S FBMOV=1
+ . I $G(FBSSNRF)=1 W !,$S(FBER(FBZ,FBDD)=1:"",1:"**"),?5,$$NAME^FBCHREQ2(FBZ)," (",$$SSN^FBAAUTL(FBZ,1),")",?40,$$GETICN^FBAAUTL(FBZ),?59,$$DATX^FBAAUTL(FBDD) I FBER(FBZ,FBDD)="" S FBMOV=1
  I $G(FBMOV) D PGCK^FBNHPAMS(4) Q:$G(FBOUT)  W !!,"** indicates movement problem from the prior month that is affecting",!,"the balancing segment."
  Q

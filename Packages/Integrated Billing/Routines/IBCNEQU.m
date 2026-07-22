@@ -1,5 +1,5 @@
 IBCNEQU ;DAOU/BHS - eIV REQUEST ELECTRONIC INSURANCE INQUIRY ; 24-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582,601,631,668,702,732,737,822**;21-MAR-94;Build 21
+ ;;2.0;INTEGRATED BILLING;**184,271,416,438,497,582,601,631,668,702,732,737,822,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to ^DILF   in ICR #2054
@@ -26,8 +26,7 @@ EN1 I $G(IBFASTXT) G ENX
 ENX ; EN exit pt
  Q
  ;
-PI ; Entry point for Patient Insurance Info View/Edit (PI)
- Q   ;IB*822/CKB - this tag will be implemented as part of IB*827
+PI ;IB*827/CKB - Entry point for Patient Insurance Info View/Edit (PI)
  N IBFASTXT
  I '$G(DFN) G PIX
  D EN^VALM("IBCNE REQUEST INS INQUIRY LIST")

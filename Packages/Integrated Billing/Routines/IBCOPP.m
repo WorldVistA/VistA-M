@@ -1,5 +1,5 @@
 IBCOPP ;ALB/NLR - LIST INS. PLANS BY CO. (DRIVER) ; 20-OCT-2015
- ;;2.0;INTEGRATED BILLING;**28,62,528,549**;21-MAR-94;Build 54
+ ;;2.0;INTEGRATED BILLING;**28,62,528,549,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Describe report
@@ -164,7 +164,10 @@ START ; Gather plans for all selected companies.
  . . ;
  . . ; IB*2.0*549 - Add Active/Inactive/Both Plan filter
  . . S XX=$S(IBAIPA=0:2,IBAIPA=1:0,IBAIPA=2:1)
- . . D LKP^IBCNSU2(IBCNS,1,1,.IBSEL,0,XX)
+ . . ;
+ . . ; D LKP^IBCNSU2(IBCNS,1,1,.IBSEL,0,XX)   ;plan lookup
+ . . D LKP^IBCNSU21(IBCNS,1,IBAIPA,3,5)       ;IB*827/DW use new plan lookup
+ . . ;
  . . Q:IBQUIT
  . . I '$O(^TMP($J,"IBSEL",0)) D  Q
  . . . K ^TMP("IBINC",$J,IBIC,IBCNS)

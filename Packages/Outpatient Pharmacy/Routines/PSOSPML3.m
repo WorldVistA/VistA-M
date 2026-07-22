@@ -1,5 +1,5 @@
 PSOSPML3 ;BIRM/MFR - ASAP Definitions Listman Driver ;09/01/12
- ;;7.0;OUTPATIENT PHARMACY;**408,451,625,772**;DEC 1997;Build 105
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,625,772,810**;DEC 1997;Build 9
  ;
  N ASAPVER,VERLST,DIR,DIRUT,DTOUT,X,Y,DIC,VALM,VALMBG,VALMCNT,VALMHDR,VALMBCK,VALMSG,PSOLSTLN
  ;
@@ -79,12 +79,14 @@ SETSEG(ARRNAM,LEVEL) ; Set list content with the Segment info
  . . I PSOSHOW=1 Q
  . . S DETLN=JUST_"Requirement: "_$S($P(ASAP(SEGID,ELMCNT),"^",6)="R":"Required",$P(ASAP(SEGID,ELMCNT),"^",6)="O":"Optional",$P(ASAP(SEGID,ELMCNT),"^",6)="N":"Not Used",1:"")
  . . S TYPE=$P(ASAP(SEGID,ELMCNT),"^",3)
- . . S $E(DETLN,33)="Format: "_$S(TYPE="AN":"Alphanumeric",TYPE="N":"Numeric",TYPE="D":"Decimal",TYPE="DT":"Date (YYYYMMDD)",TYPE="TM":"Time (HHMMSS or HHMM)",1:"")
+ . . ;S $E(DETLN,33)="Format: "_$S(TYPE="AN":"Alphanumeric",TYPE="N":"Numeric",TYPE="D":"Decimal",TYPE="DT":"Date (YYYYMMDD)",TYPE="TM":"Time (HHMMSS or HHMM)",1:"")  ;p810
+ . . S $E(DETLN,31)="Format: "_$S(TYPE="AN":"Alphanumeric",TYPE="N":"Numeric",TYPE="D":"Decimal",TYPE="DT":"Date (YYYYMMDD)",TYPE="TM":"Time (HHMMSS or HHMM)",1:"")
  . . S $E(DETLN,62)="Maximum Length: "_$P(ASAP(SEGID,ELMCNT),"^",4)
  . . D SETLN^PSOSPMU1("PSOSPML3",DETLN)
  . . ; Highlighting fields Requirement, Format and Length
  . . D CNTRL^VALM10(LINE,13,10,IOINHI,IOINORM)
- . . D CNTRL^VALM10(LINE,41,20,IOINHI,IOINORM)
+ . . ;D CNTRL^VALM10(LINE,41,20,IOINHI,IOINORM)     ;p810
+ . . D CNTRL^VALM10(LINE,39,21,IOINHI,IOINORM)
  . . D CNTRL^VALM10(LINE,77,5,IOINHI,IOINORM)
  . . F DESCNT=1:1 Q:'$D(ASAP(SEGID,ELMCNT,"DES",DESCNT))  D
  . . . D SETLN^PSOSPMU1("PSOSPML3",JUST_ASAP(SEGID,ELMCNT,"DES",DESCNT))

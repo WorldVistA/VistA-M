@@ -1,5 +1,5 @@
 IBJDF62 ;ALB/RB - MISC. BILLS FOLLOW-UP REPORT (PRINT) ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**123,159,618,841**;21-MAR-94;Build 5
  ;;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;Read ^PRCA(430.2) via Private IA 594
@@ -72,7 +72,7 @@ HDR1 ; - Write the primary report header.
  S X="ALL ACTIVE "_$G(IBCATNM)_" RECEIVABLES "
  I IBSMN S X=X_"OVER "_IBSMN_" AND LESS THAN "_IBSMX_" DAYS OLD "
  I IBCAT(IBCAT)<8 D    ;IB*2.0*618
- . S X=X_" / BY PATIENT "_$S(IBSN="N":"NAME",1:"LAST 4 DIGITS OF SSN")
+ . S X=X_" / BY PATIENT NAME"  ; IB*2.0*841
  . S X=X_" ("_$S($G(IBSNA)="ALL":"ALL",1:"From "_$S(IBSNF="":"FIRST",1:IBSNF)_" to "_$S(IBSNL="zzzzz":"LAST",1:IBSNL))_") / "
  I IBCAT(IBCAT)>7 D     ;IB*2.0*618
  . S X=X_" / BY DEBTOR NAME"
@@ -86,7 +86,7 @@ HDR1 ; - Write the primary report header.
  ;
  I IBCAT1<8 D  G HDQ     ;IB*2.0*618
  .W !!?84,"Date",?94,"Bill",?104,"Bill",?114,"Original   Current"
- .W !,"Patient (Age)",?33,"SSN",?47,"Other Insurance",?71,"Bill Number"
+ .W !,"Patient (Age)",?33,"DOB",?47,"Other Insurance",?71,"Bill Number"  ; IB*2.0*841
  .W ?84,"Prepared  From Dte  To Date",?116,"Amount   Balance"
  ;
  W !!?47,"Date Bill",?92,"Original   Last Amt    Current"
@@ -120,7 +120,7 @@ NAR ; - Write detail line (if '$D).
  ;
 WPAT ; - Write patient data.
  I IBCAT1<8 D  Q     ;IB*2.0*618
- . W $P(IBPD,U)," (",$P(IBPD,U,2),")",?33,$P(IBPD,U,3),?47,$P(IBPD,U,4)
+ . W $P(IBPD,U)," (",$P(IBPD,U,2),")",?33,$$FMTE^XLFDT($P(IBPD,U,5),"2DZ"),?47,$P(IBPD,U,4)  ; IB*2.0*841
  W $P(IBPD,U)
  Q
  ;

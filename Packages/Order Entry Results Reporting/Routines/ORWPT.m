@@ -1,5 +1,5 @@
-ORWPT ;SLC/KCM/REV - Patient Lookup Functions ;Jan 23, 2025@10:18:50
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280,306,311,441,528,519,544,405,608,628,586**;Dec 17, 1997;Build 5
+ORWPT ;SLC/KCM/REV - Patient Lookup Functions ;Nov 10, 2025@11:55:00
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,132,149,206,187,190,215,243,280,306,311,441,528,519,544,405,608,628,586,632**;Dec 17, 1997;Build 9
  ;
  ; Reference to ^UTILITY( in ICR #10061
  ; Reference to ^%ZOSF() in ICR #10096
@@ -196,6 +196,7 @@ TOP(LST) ; Return top for all patients list (last selected for now)
 ENCTITL(REC,DFN,LOC,PROV) ; Return external values for encounter
  ; LOCNAME^LOCABBR^ROOMBED^PROVNAME
  K ^TMP("OR QUICK ORDER AUDIT",$J,"REC") ;RTW
+ S REC=$S($G(DFN)="":"Error: Patient identifier value is missing.",$D(^DPT(DFN))=0:"Error: Patient not found in record.",1:"") I $G(REC)'="" Q
  S $P(REC,U,1)=$P($G(^SC(+LOC,0)),U,1,2)
  S $P(REC,U,3)=$P($G(^DPT(DFN,.101)),U)
  S $P(REC,U,4)=$$GET1^DIQ(200,+PROV,.01)

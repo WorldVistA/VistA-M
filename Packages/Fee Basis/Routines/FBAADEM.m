@@ -1,5 +1,5 @@
 FBAADEM ;AISC/DMK-DISPLAY PATIENT DEMOGRAPHICS ;2/12/2003
- ;;3.5;FEE BASIS;**52**;JAN 30, 1995
+ ;;3.5;FEE BASIS;**52,194**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  I '$D(IOSL) D HOME^%ZIS
  I $S('$D(DFN):1,'DFN:1,1:0) Q
@@ -8,7 +8,8 @@ FBAADEM ;AISC/DMK-DISPLAY PATIENT DEMOGRAPHICS ;2/12/2003
  I $E(IOST,1,2)="C-" W @IOF
  W !
  W:+VADM(6) !,*7,"*** Patient Died on ",$P(VADM(6),"^",2)
- W !,VADM(1),?39,"Pt.ID: ",$P(VADM(2),"^",2)
+ I $G(FBSSNRF)=1 W !,$E(VADM(1),1,32)," (",$P($P(VADM(2),"^",2),"-",3),")",?41,"ICN: ",$$GETICN^FBAAUTL(DFN)  ;194
+ I $G(FBSSNRF)="" W !,VADM(1),?39,"Pt.ID: ",$P(VADM(2),"^",2)
  W !,VAPA(1),?41,"DOB: ",$P(VADM(3),"^",2)
  I VAPA(2)]"" W !,VAPA(2)
  I VAPA(3)]"" W !,VAPA(3)

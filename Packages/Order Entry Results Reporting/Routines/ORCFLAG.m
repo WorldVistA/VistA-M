@@ -1,5 +1,5 @@
-ORCFLAG ; SLC/MKB - Flag orders ;12/26/2006
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,243**;Dec 17, 1997;Build 242
+ORCFLAG ; SLC/MKB - Flag orders ; Feb 13, 2025@14:03:54
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**141,243,632**;Dec 17, 1997;Build 9
  ;
 EN1(ORIFN) ; -- standalone entry point to un/flag order ORIFN
  N ORLK,ORERR,VA,VADM,VAERR,DFN,ORVP,ORPNM,ORSSN,ORAGE,ORACTN,ORPS
@@ -21,7 +21,7 @@ EN ; -- Flag order ORIFN
  D BULLETIN ;use ORNP?
  K ^OR(100,+ORIFN,8,DA,3) S ^(3)="1^"_$G(XMZ)_U_ORNOW_U_DUZ_U_OREASON_"^^^^"_ORNP
  S $P(^OR(100,+ORIFN,3),U)=$$NOW^XLFDT,OREBUILD=1 ; Last Activity
- S ORB=+ORVP_U_+ORIFN_U_ORNP_"^1" D EN^OCXOERR(ORB) ; notification
+ S ORB=+ORVP_U_+ORIFN_U_ORNP_"^1" D IPOVERRIDE^OCXOERR(ORB,0) ; override ignore period notification
  W !?10,"... order flagged." H 1 D KILL^XM,MSG(ORIFN)
  Q
  ;
@@ -33,13 +33,16 @@ UN ; -- Unflag order ORIFN
  S ORNP=+$P(^OR(100,+ORIFN,8,DA,3),U,9) S:'ORNP ORNP=+$P($G(^(0)),U,3)
  S ORB=+ORVP_U_+ORIFN_U_ORNP_"^0" D EN^OCXOERR(ORB) ; notification
  S $P(^OR(100,+ORIFN,3),U)=$$NOW^XLFDT,OREBUILD=1 ; Last Activity
+ ; remove from "duplicate notification" list so that if flagged again...new notification will get sent
+ N ORDUPTXT S ORDUPTXT="" F  S ORDUPTXT=$O(^XTMP("ORBDUP",ORDUPTXT)) Q:'$L(ORDUPTXT)  D
+ .I $P(ORDUPTXT,";",2)=6,$P($G(^XTMP("ORBDUP",ORDUPTXT)),U,2)=+ORIFN K ^XTMP("ORBDUP",ORDUPTXT)
  W !?10,"... order unflagged." H 1 D MSG(ORIFN)
  Q
  ;
 SHOWFLAG ; -- Display [last] flag for order ORIFN
  N FLAG
  S FLAG=$G(^OR(100,+ORIFN,8,DA,3))
- W !," FLAGGED: "_$$LTIM($P(FLAG,U,3))_" by "_$P($G(^VA(200,+$P(FLAG,U,4),0)),U)
+ W !," FLAGGED: "_$$LTIM($P(FLAG,U,3))_" by "_$$GET1^DIQ(200,+$P(FLAG,U,4)_",",.01)
  W !?10,$P(FLAG,U,5) ; reason
  Q
  ;
@@ -60,7 +63,7 @@ COMMENT() ; -- Comments on unflag
 PROV(ORDR) ; -- Get provider to alert
  N X,Y,DIC
  S DIC=200,DIC(0)="AEQM",DIC("A")="Send alert to: "
- I $G(ORDR) S ORDR=$P($G(^VA(200,+ORDR,0)),U) S:$L(ORDR) DIC("B")=ORDR
+ I $G(ORDR) S ORDR=$$GET1^DIQ(200,+ORDR_",",.01) S:$L(ORDR) DIC("B")=ORDR
  S DIC("S")="N ORT S ORT=$P(^(0),U,11) I 'ORT!(ORT>DT)"
  D ^DIC S:Y>0 Y=+Y I Y'>0 S Y="^"
  Q Y
@@ -68,12 +71,12 @@ PROV(ORDR) ; -- Get provider to alert
 BULLETIN ; -- Send bulletin re: flag
  N OR0,OR3,ORDTXT,XMB,XMY,XMDUZ,ORENT,BULL,ORSRV,ORUSR
  S OR0=$G(^OR(100,+ORIFN,0)),OR3=$G(^(3)) ;ORUSR=+$P(OR0,U,4)
- S ORUSR=+$G(ORNP),ORSRV=+$P($G(^VA(200,ORUSR,5)),U)
+ S ORUSR=+$G(ORNP),ORSRV=+$$GET1^DIQ(200,ORUSR_",",29,"I")
  S ORENT="USR.`"_ORUSR_"^SRV.`"_ORSRV_"^DIV^SYS^PKG"
  S BULL=$$GET^XPAR(ORENT,"ORB FLAGGED ORDERS BULLETIN",1,"Q")
  Q:$G(BULL)'="Y"   ;quit if parameter value is not 'Y'es
  ;
- W !,"Sending bulletin to "_$P($G(^VA(200,ORUSR,0)),U)_"..."
+ W !,"Sending bulletin to "_$$GET1^DIQ(200,ORUSR_",",.01)_"..."
  S XMB="OR FLAGGED ORDER",XMDUZ=DUZ,XMY(ORUSR)=""
  S XMB(1)=ORPNM,XMB(2)=ORSSN,XMB(3)=ORAGE,XMB(4)=$$LTIM($P(OR0,U,7))
  D TEXT^ORQ12(.ORDTXT,+ORIFN,80)

@@ -1,5 +1,5 @@
-ORWDXA ; SLC/KCM/JLI - Utilities for Order Actions ; May 20, 2024@11:05
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436,434,397,377,539,405,577,466**;Dec 17, 1997;Build 5
+ORWDXA ; SLC/KCM/JLI - Utilities for Order Actions ; Feb 13, 2025@14:03:54
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,148,141,149,187,213,195,215,243,280,306,390,421,436,434,397,377,539,405,577,466,632**;Dec 17, 1997;Build 9
  ;
  ;Per VA Directive 6402, this routine should not be modified.
  ;
@@ -142,7 +142,7 @@ DC(REC,ORID,ORNP,ORL,REASON,DCORIG,ISNEWORD) ; Discontinue/Cancel/Delete order
  I REASON=16&(PKG="PS") D
  . N XMB
  . S XMB="OR DRUG ORDER CANCELLED"
- . S XMB(1)=$P($G(REC(2)),"tDiscontinue",2),XMB(4)=$P($G(^VA(200,DUZ,0)),U)
+ . S XMB(1)=$P($G(REC(2)),"tDiscontinue",2),XMB(4)=$$GET1^DIQ(200,DUZ_",",.01)
  . S XMB(2)=+ORID
  . S XMB(3)=+$P($G(^OR(100,+ORID,0)),U,2)
  . S XMB(3)=$P($G(^DPT(XMB(3),0)),U)
@@ -200,7 +200,7 @@ FLAG(REC,ORIFN,OREASON,ORNP,OREXP,ORLIST) ; Flag order ;p539
  D KILL^XM,MSG^ORCFLAG(ORIFN)
  S $P(^OR(100,+ORIFN,3),U)=ORNOW ; Last Activity
  I '$D(ORUSR),$G(ORNP)="" S ORNP=+$P($G(^OR(100,+ORIFN,8,DA,0)),U,3)
- S USR=$S($G(ORNP):ORNP,1:$O(ORUSR(""))) I USR'="" S ORB=+ORVP_U_+ORIFN_U_USR_"^1" D EN^OCXOERR(ORB) ; notification
+ S USR=$S($G(ORNP):ORNP,1:$O(ORUSR(""))) I USR'="" S ORB=+ORVP_U_+ORIFN_U_USR_"^1" D IPOVERRIDE^OCXOERR(ORB,0) ; override ignore period notification
  D GETBYIFN^ORWORR(.REC,ORIFN)
  Q
 BULLETIN ; flagged order bulletin
@@ -210,7 +210,7 @@ BULLETIN ; flagged order bulletin
  S OR0=$G(^OR(100,+ORIFN,0)),OR3=$G(^(3))
  ;CLA - 3/21/96:
  S ORUSR=+$P(OR0,U,4)
- S ORSRV=$G(^VA(200,ORUSR,5)) I +ORSRV>0 S ORSRV=$P(ORSRV,U)
+ S ORSRV=$$GET1^DIQ(200,ORUSR_",",29,"I")
  S ORENT="USR.`"_ORUSR_"^SRV.`"_$G(ORSRV)_"^DIV^SYS^PKG"
  S BULL=$$GET^XPAR(ORENT,"ORB FLAGGED ORDERS BULLETIN",1,"Q")
  Q:$G(BULL)'="Y"   ;quit if parm val not 'Y'es
@@ -235,11 +235,14 @@ UNFLAG(REC,ORIFN,OREASON) ; Unflag order ;p539
  S ORB=+ORVP_U_+ORIFN_U_ORNP_"^0" D EN^OCXOERR(ORB) ; notification
  D GETBYIFN^ORWORR(.REC,ORIFN)
  D CHOREXP^ORWDXA1(+ORIFN)  ;check if entry in file #100.97 needs to be deleted
+ ; remove from "duplicate notification" list so that if flagged again...new notification will get sent
+ N ORDUPTXT S ORDUPTXT="" F  S ORDUPTXT=$O(^XTMP("ORBDUP",ORDUPTXT)) Q:'$L(ORDUPTXT)  D
+ .I $P(ORDUPTXT,";",2)=6,$P($G(^XTMP("ORBDUP",ORDUPTXT)),U,2)=+ORIFN K ^XTMP("ORBDUP",ORDUPTXT)
  Q
 FLAGTXT(LST,ORID) ; flag reason
  N FLAG,CNT,I,ORUSR,ORCOM,F
  S FLAG=$G(^OR(100,+ORID,8,$P(ORID,";",2),3))
- S LST(1)="FLAGGED: "_$$FMTE^XLFDT($P(FLAG,U,3))_" by "_$P($G(^VA(200,+$P(FLAG,U,4),0)),U)
+ S LST(1)="FLAGGED: "_$$FMTE^XLFDT($P(FLAG,U,3))_" by "_$$GET1^DIQ(200,+$P(FLAG,U,4)_",",.01)
  S LST(2)=$P(FLAG,U,5) ; reason
  S CNT=2
  I $P(FLAG,U,10)'="" S CNT=CNT+1,LST(CNT)="NO ACTION ALERT: "_$$FMTE^XLFDT($P(FLAG,U,10))

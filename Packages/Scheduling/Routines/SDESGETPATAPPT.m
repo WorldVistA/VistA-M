@@ -1,5 +1,5 @@
-SDESGETPATAPPT ;ALB/BLB,ANU - VISTA SCHEDULING RPCS ;JUNE 27, 2023@14:48
- ;;5.3;Scheduling;**809,847**;Aug 13, 1993;Build 4
+SDESGETPATAPPT ;ALB/BLB,ANU,MCB - VISTA SCHEDULING RPCS ;APRIL 09, 2026
+ ;;5.3;Scheduling;**809,847,942**;Aug 13, 1993;Build 2
  ;;Per VHA Directive 6402, this routine should not be modified
  ;
  Q
@@ -85,7 +85,7 @@ GETAPPT(SDPATAPPT,DFN,DATETIME) ; get patient appointment from file
  S SDPATAPPT("PatientAppt",NUM,"NoShowCancelledBy")=$G(APPTARY(F,IENS,14,"E"))
  S SDPATAPPT("PatientAppt",NUM,"NoShowCancelDateTime")=$$FMTISO^SDAMUTDT($G(APPTARY(F,IENS,15,"I")))
  S SDPATAPPT("PatientAppt",NUM,"CancellationReason")=$G(APPTARY(F,IENS,16,"E"))
- S SDPATAPPT("PatientAppt",NUM,"CancellationRemarks")=$G(APPTARY(F,IENS,17,"E"))
+ S SDPATAPPT("PatientAppt",NUM,"CancellationRemarks")=$$CLEANCMMTS^SDES2APPTUTIL($G(APPTARY(F,IENS,17,"E")))
  S SDPATAPPT("PatientAppt",NUM,"ApptCancelled")=$G(APPTARY(F,IENS,18,"E"))
  S SDPATAPPT("PatientAppt",NUM,"DataEntryClerk")=$G(APPTARY(F,IENS,19,"E"))
  S SDPATAPPT("PatientAppt",NUM,"DateApptMade")=$$FMTISO^SDAMUTDT($G(APPTARY(F,IENS,20,"I")))

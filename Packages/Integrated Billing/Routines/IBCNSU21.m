@@ -1,5 +1,5 @@
 IBCNSU21 ;ALB/TAZ - INSURANCE PLAN SELECTOR UTILITY ; 13-OCT-2021
- ;;2.0;INTEGRATED BILLING;**702**;21-MAR-94;Build 53
+ ;;2.0;INTEGRATED BILLING;**702,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 LKP(IBCNS,IBIND,IBACT,IBIGN,IBFIL) ; Select Utility for Insurance Company Plans
@@ -18,6 +18,8 @@ LKP(IBCNS,IBIND,IBACT,IBIGN,IBFIL) ; Select Utility for Insurance Company Plans
  ;           A - 1 - Search for Group(s) that Begin with specified text (case insensitive)
  ;               2 - Search for Group(s) that Contain the specified text (case insensitive)
  ;               3 - Search for Group(s) in a specified Range (inclusive, case insensitive)
+ ;               4 - Search for Group(s) that are blank (null)
+ ;               5 - Allow all plans to be available for searching via this utility
  ;           B - Begin with text if A=1, Contains Text if A=2 or Range start if A=3
  ;           C - Range End text (only present when A=3)
  ;Output:  
@@ -82,7 +84,7 @@ HDR ; Build the list header.
  ;
  S X="#" I $G(IBIND) S X="#  + => Indiv. Plan"
  I $G(IBACT) S X=$E(X_$J("",23),1,23)_"* => Inactive Plan"
- S VALMHDR(4)=$$SETSTR^VALM1("Pre-  Pre-  Ben",X,64,17)
+ S VALMHDR(4)=$$SETSTR^VALM1("Pre- Pre- Ben",X,68,17)  ;IB*827 was (...,X,66,17)
  Q
  ;
 EXIT ; Exit action.
@@ -105,10 +107,10 @@ BLD ;
  Q
  ;
 BLDLN(ICTR,IIEN,DATA) ;EP
- ; Builds a line to display one insurance company
+ ; Builds a line to display one group/plan
  ; Input:   ICTR                        - Selection Number
- ;          IIEN                        - IEN of the Policy to be displayed
- ;          ^TMP("IBCNSU21A",$J,IIEN)    - Array of currently selected policies
+ ;          IIEN                        - IEN of the Plan to be displayed
+ ;          ^TMP("IBCNSU21A",$J,IIEN)    - Array of currently selected plans
  ;
  ; Output:  LINE    - Formatted for setting into the list display
  N DATA,LINEVAR
@@ -116,31 +118,40 @@ BLDLN(ICTR,IIEN,DATA) ;EP
  S LINEVAR=""
  I $D(^TMP("IBCNSU21A",$J,IIEN)) S ICTR=ICTR_">"
  S LINEVAR=$$SETFLD^VALM1(ICTR,"","CTR")
- I '$G(DATA(355.3,IIEN_",",.02,"I")) S $E(LINEVAR,4)="+"
+ I '$G(DATA(355.3,IIEN_",",.02,"I")) S $E(LINEVAR,8)="+"  ;IB*827 was (LINEVAR,4)
  S LINEVAR=$$SETFLD^VALM1($G(DATA(355.3,IIEN_",",2.01,"E")),LINEVAR,"GNAME")
- I $G(DATA(355.3,IIEN_",",.11,"I")) S $E(LINEVAR,24)="*"
+ I $G(DATA(355.3,IIEN_",",.11,"I")) S $E(LINEVAR,29)="*"  ;IB*827 was (LINEVAR,24)
  S LINEVAR=$$SETFLD^VALM1($G(DATA(355.3,IIEN_",",2.02,"E")),LINEVAR,"GNUM")
- S LINEVAR=$$SETFLD^VALM1($G(DATA(355.3,IIEN_",",.09,"E")),LINEVAR,"TYPE")
+ ;S LINEVAR=$$SETFLD^VALM1($G(DATA(355.3,IIEN_",",.09,"E")),LINEVAR,"TYPE")  IB*827
  S LINEVAR=$$SETFLD^VALM1($$YN^IBCNSM($G(DATA(355.3,IIEN_",",.05,"I"))),LINEVAR,"UR")
  S LINEVAR=$$SETFLD^VALM1($$YN^IBCNSM($G(DATA(355.3,IIEN_",",.06,"I"))),LINEVAR,"PREC")
  S LINEVAR=$$SETFLD^VALM1($$YN^IBCNSM($G(DATA(355.3,IIEN_",",.07,"I"))),LINEVAR,"PREEX")
  S LINEVAR=$$SETFLD^VALM1($$YN^IBCNSM($G(DATA(355.3,IIEN_",",.08,"I"))),LINEVAR,"BENAS")
+ ;
+ ; IB*827/DJW change to display abbreviation if Type of Plan name is longer than 12 characters.
+ N IBTYPA,IBTYPN,IBTYPO,IB3551IEN
+ S IB3551IEN=$$GET1^DIQ(355.3,IIEN_",",".09","I")
+ S IBTYPN=$$GET1^DIQ(355.1,IB3551IEN_",",".01")  ;name
+ S IBTYPA=$$GET1^DIQ(355.1,IB3551IEN_",",".02")  ;abbrev
+ S IBTYPO=IBTYPN I $L(IBTYPN)>12&(IBTYPA'="") S IBTYPO=IBTYPA
+ S LINEVAR=$$SETFLD^VALM1(IBTYPO,LINEVAR,"TYPE")  ; type of plan
+ ;
  Q LINEVAR
  ;
 SEL ;EP
- ; Protocol Action to select an unselected policy
- ; Input:   NUMSEL                  - Current number of selected policies
- ;          ^TMP("IBCNSU21",$J)     - Current Array of displayed policies
- ;          ^TMP("IBCNSU21IX",$J)    - Current Index of displayed policies
- ;          ^TMP("IBCNSU21A,$J,IIEN) - Current Array of selected policies
- ; Output:  NUMSEL                  - Updated number of selected policies
- ;          ^TMP("IBCNSU21A,$J,IIEN)- Updated Array of selected policies
- ;          Selected Insurance Company is added to the worklist 
+ ; Protocol Action to select an unselected plans
+ ; Input:   NUMSEL                  - Current number of selected plans
+ ;          ^TMP("IBCNSU21",$J)     - Current Array of displayed plans
+ ;          ^TMP("IBCNSU21IX",$J)    - Current Index of displayed plans
+ ;          ^TMP("IBCNSU21A,$J,IIEN) - Current Array of selected plans
+ ; Output:  NUMSEL                  - Updated number of selected plans
+ ;          ^TMP("IBCNSU21A,$J,IIEN)- Updated Array of selected plans
+ ;          Selected Group/Plan is added to the worklist 
  ;          Error message displayed (potentially)
  N DIR,DIROUT,DIRUT,DLINE,DTOUT,DUOUT,ERROR,IEN,IIENS,IX,LINE
  S VALMBCK="R",ERROR=0
  ; 
- ; First select the Policy(s) to be selected
+ ; First select the Plan(s) to be selected
  S IIENS=$$SELPOL(1,.DLINE,1,"IBCNSU21IX")
  I IIENS="" S VALMBCK="R" Q                 ; None Selected
  F IX=1:1:$L(IIENS,",") D
@@ -156,27 +167,56 @@ SEL ;EP
  D:ERROR PAUSE^VALM1
  Q
  ;
+SELALL ;EP
+ ;IB*827/DW new action added "Choose All"
+ ;
+ ; Protocol Action to select all policies in this ListMan regardless of the page it is on
+ ;
+ ; Input:   NUMSEL                  - Current number of selected plans
+ ;          ^TMP("IBCNSU21",$J)      - Current Array of displayed plans
+ ;          ^TMP("IBCNSU21IX",$J)    - Current Index of displayed plans
+ ;          ^TMP("IBCNSU21A,$J,IIEN) - Current Array of selected plans
+ ; Output:  NUMSEL                  - Updated number of selected plans
+ ;          ^TMP("IBCNSU21A,$J,IIEN)- Updated Array of selected plans
+ ;          Selected Group/Plan is added to the worklist 
+ ;          Error message displayed (potentially)
+ N DIR,DIROUT,DIRUT,DLINE,DTOUT,DUOUT,ERROR,IEN,IIENS,IX,LINE
+ S VALMBCK="R",ERROR=0
+ ;
+ S NUMSEL=0  ; reset # of selected, tag MARK counts the # selected as it loops thru all
+ ;
+ S LINE=0 F  S LINE=$O(^TMP("IBCNSU21IX",$J,LINE)) Q:'LINE  D
+ . S IIEN=^TMP("IBCNSU21IX",$J,LINE)
+ . D MARK(1,IIEN,LINE,.NUMSEL)              ; Show the selection mark
+ D HDR                                      ; Update the header
+ D:ERROR PAUSE^VALM1
+ Q
+ ;
 UNSEL(SELECTED) ;EP
- ; Protocol Action to deselect an already selected policy
+ ; Protocol Action to deselect an already selected plan
  ; Input:   SELECTED                - 1 - Called from IBCN POL DESELECT
  ;                                    0 - Called from IBCN DESELECT
  ;                                    Optional, defaults to 0
- ;          NUMSEL                  - Current number of selected policies
- ;          ^TMP("IBCNSU21",$J)     - Current Array of displayed policies
- ;          ^TMP("IBCNSU21S",$J)    - Current Array of selected policies
- ;          ^TMP("IBCNSU21IX",$J)   - Current Index of displayed policies
- ;          ^TMP("IBCNSU21A,$J,IIEN)- Current Array of selected policies
- ; Output:  NUMSEL                  - Current number of selected policies
- ;          ^TMP("IBCNSU21A,$J,IIEN)- Updated Array of selected policies
- ;          Selected policy is removed from the worklist 
+ ;          NUMSEL                  - Current number of selected plans
+ ;          ^TMP("IBCNSU21",$J)     - Current Array of displayed plans
+ ;          ^TMP("IBCNSU21S",$J)    - Current Array of selected plans
+ ;          ^TMP("IBCNSU21IX",$J)   - Current Index of displayed plans
+ ;          ^TMP("IBCNSU21A,$J,IIEN)- Current Array of selected plans
+ ; Output:  NUMSEL                  - Current number of selected plans
+ ;          ^TMP("IBCNSU21A,$J,IIEN)- Updated Array of selected plans
+ ;          Selected Group/Plan is removed from the worklist 
  ;          Error message displayed (potentially)
  N DIR,DIROUT,DIRUT,DLINE,DTOUT,DUOUT,ERROR,IEN,IIENS,IX,LINE,WARRAY
- I '$D(SELECTED) D
- . S SELECTED=0,WARRAY="IBCNSU21IX"
- E  S WARRAY="IBCNSU21SIX"
+ ;
+ ;IB*827/DW - redo if/else without changing functionality
+ ;I '$D(SELECTED) D
+ ;. S SELECTED=0,WARRAY="IBCNSU21IX"
+ ;E  S WARRAY="IBCNSU21SIX"
+ S SELECTED=+$G(SELECTED)
+ S WARRAY=$S('SELECTED:"IBCNSU21IX",1:"IBCNSU21SIX")
  S VALMBCK="R",ERROR=0
  ; 
- ; First select the Policy(s) to be deselected
+ ; First select the Group/Plan(s) to be deselected
  S IIENS=$$SELPOL(1,.DLINE,1,WARRAY)
  I IIENS="" S VALMBCK="R" Q                 ; None Selected
  F IX=1:1:$L(IIENS,",") D
@@ -200,11 +240,11 @@ MARK(WHICH,IIEN,LINE,NUMSEL)   ;EP
  ;          IENIN   - IEN of the entry to Mark/Remove 'In-Progress'
  ;          LINE    - Line number being marked/unmarked
  ;          WLIST   - Worklist, the user is selecting from.
- ;          NUMSEL  - Current # of selected policies
- ;          ^TMP("IBCNSU21A",$J)- Current array of selected policies 
- ; Output:  Policy is marked or unmarked as selected
- ;          NUMSEL  - Current # of selected policies
- ;          ^TMP("IBCNSU21A",$J)- Updated array of selected policies 
+ ;          NUMSEL  - Current # of selected plans
+ ;          ^TMP("IBCNSU21A",$J)- Current array of selected plans 
+ ; Output:  Plan is marked or unmarked as selected
+ ;          NUMSEL  - Current # of selected plans
+ ;          ^TMP("IBCNSU21A",$J)- Updated array of selected plans 
  ;      
  N TEXT
  I WHICH D                                  ; Mark as selected
@@ -218,22 +258,22 @@ MARK(WHICH,IIEN,LINE,NUMSEL)   ;EP
  Q
  ;
 SELPOL(FULL,DLINE,MULT,WLIST)    ;EP
- ; Select Insurance Company(s) to on report
+ ; Select Group/Plan to perform an action upon
  ; Also called from IBCNRDV1@UNSEL
  ; Input:   FULL                    - 1 - full screen mode, 0 otherwise
  ;          MULT                    - 1 to allow multiple entry selection
  ;                                    0 to only allow single entry selection
  ;                                    Optional, defaults to 0
  ;          WLIST                   - Worklist, the user is selecting from
- ;          ^TMP("IBCNSU21IX",$J)   - Index of displayed lines of the policy
+ ;          ^TMP("IBCNSU21IX",$J)   - Index of displayed lines of the plan
  ;                                    Selector Template. 
  ;                                    Only used when WLIST="IBCNSU21IX"
- ;          ^TMP("IBCNSU21SIX",$J)  - Index of displayed lines of the policy
+ ;          ^TMP("IBCNSU21SIX",$J)  - Index of displayed lines of the plan
  ;                                    Selected Template
  ;                                    Only used if WLIST is "IBCNSU21SIX"
  ; Output:  DLINE                   - Comma delimited list of Line #(s) of the 
- ;                                    selected Ins Cos
- ; Returns: IIEN(s) - Comma delimited string or IENS for the selected policy(s)
+ ;                                    selected plans
+ ; Returns: IIEN(s) - Comma delimited string or IENS for the selected plan(s)
  ;          Error message and "" IENS if multi-selection and not allowed
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,IIEN,IIENS,IX,VALMY,X,Y
  S:'$D(MULT) MULT=0
@@ -262,13 +302,15 @@ SELPOL(FULL,DLINE,MULT,WLIST)    ;EP
  ;
 SHOWSEL ;EP
  ; Protocol action used to display a listman template of the currently
- ; selected policies
- ; Input:   NUMSEL                      - Current number of selected policies
- ;          ^TMP("IBCNSU21A",$J,IEN)    - Current Array of selected policies
- ; Output:  NUMSEL                      - Updated number of selected policies
- ;          ^TMP("IBCNSU21A",$J,IEN)    - Updated Array of selected policies
+ ; selected group/plans
+ ; Input:   NUMSEL                      - Current number of selected plans
+ ;          ^TMP("IBCNSU21A",$J,IEN)    - Current Array of selected plans
+ ; Output:  NUMSEL                      - Updated number of selected plans
+ ;          ^TMP("IBCNSU21A",$J,IEN)    - Updated Array of selected plans
  S VALMBCK="R",SELECTED=1
- D EN^VALM("IBCNS POLICIES SELECTED")
+ ; IB*827/DW Renamed ListMan as these are not policies, code now calls the new name
+ ;D EN^VALM("IBCNS POLICIES SELECTED")
+ D EN^VALM("IBCNS PLAN SHOW SELECTED")
  I '$D(IBFASTXT) D HDR,INIT
  Q
  ;
@@ -297,7 +339,7 @@ BLD2 ; Build listman body for Show Selections
  . S ^TMP("IBCNSU21SIX",$J,VALMCNT)=IIEN
  ;
  I VALMCNT=0 D
- . S ^TMP("IBCNSU21S",$J,1,0)="No Selected Policies were found."
+ . S ^TMP("IBCNSU21S",$J,1,0)="No Selected Plans were found."
  Q
  ;
 EXIT2 ;EP for Show Selections
@@ -308,9 +350,20 @@ EXIT2 ;EP for Show Selections
  Q
  ;
 HELP  ;
+ ; IB*827/DW Added code, this was a tag with only a quit statement
+ D FULL^VALM1
+ W !!,"After the Plan selection number, an '>' indicates that this Group/Plan "
+ W !,"      has already been selected.",!
+ I $G(VALMANS)="?" D
+ . N DIR,X,Y
+ . S DIR(0)="E",DIR("A")="Press <Enter> to return back to the list of Plans"
+ . D ^DIR
+ . K DIR,X,Y
+ S VALMBCK="R"
  Q
  ;
 PLANOK(DATA,IBACT,IBNANU,IBFLT) ;Check to see if plan qualifies
+ ; IB*822/DW added description for existing input parameter IBFLT
  ;Input:
  ;DATA   - This array is passed by reference.  It is constructed by the SETS^DIQ call:
  ;           D GETS^DIQ(355.3,+IBP_",",".02;.05;.06;.07;.08;.09;.11;2.01;2.02","EI","PLANDATA")
@@ -326,6 +379,15 @@ PLANOK(DATA,IBACT,IBNANU,IBFLT) ;Check to see if plan qualifies
  ;IBNANU - 1 - Check GROUP NAME only
  ;         2 - Check GROUP NUMBER only
  ;         3 - Check BOTH
+ ;
+ ;IBFLT -  A^B^C
+ ;         A - 1 - Search for Group(s) that Begin with specified text (case insensitive)
+ ;             2 - Search for Group(s) that Contain the specified text (case insensitive)
+ ;             3 - Search for Group(s) in a specified Range (inclusive, case insensitive)
+ ;             4 - Search for Group(s) that are blank (null)
+ ;             5 - Allow all plans to be available for searching via this utility
+ ;         B - Begin with text if A=1, Contains Text if A=2 or Range start if A=3
+ ;         C - Range End text (only present when A=3)
  ;
  N IBP,INACTIVE,OK
  S OK=0
@@ -352,9 +414,12 @@ FILTER(STR,FLT) ; Filter Group Name or Number
  ;             3 - Search for Group(s) in a specified
  ;                 range (inclusive, case insensitive)
  ;             4 - Search for Group(s) that are blank (null)
+ ;             5 - Allow all plans to be available for searching via this utility
  ;         B - Begin with text if A=1, Contains Text if A=2 or
  ;             the range start if A=3
  ;         C - Range End text (only present when A=3)
+ ;
+ ;IB*822/DW - added choice 5 for piece A within IBFLT
  ;
  N BEG,CHR,END,OK,TYPE
  S STR=$$UP^XLFSTR(STR)
@@ -362,6 +427,8 @@ FILTER(STR,FLT) ; Filter Group Name or Number
  S BEG=$$UP^XLFSTR($P(FLT,U,2))
  S END=$$UP^XLFSTR($P(FLT,U,3))
  S OK=0
+ ;Allow all plans
+ I TYPE=5 S OK=1 G FILTERX
  ;Blank
  I TYPE=4 D  G FILTERX
  . I STR="" S OK=1
@@ -375,8 +442,8 @@ FILTER(STR,FLT) ; Filter Group Name or Number
  I TYPE=3 D  G FILTERX
  . N XX
  . S XX=$E(STR,1,$L(BEG))
- . I XX=BEG S OK=1 Q   ;Matches begining characters of BEG - include
- . I XX']BEG Q         ;Preceeds Beg search
+ . I XX=BEG S OK=1 Q   ;Matches beginning characters of BEG - include
+ . I XX']BEG Q         ;Precedes Beg search
  . S XX=$E(STR,1,$L(END))
  . I XX=END S OK=1 Q   ;Matches beginning characters of END - include
  . I XX]END Q          ;Follows End search

@@ -1,6 +1,6 @@
 OSEHRA ZGO Export: BPS NCPDP REJECT CODES
 ZWR
-^BPSF(9002313.93,0)="BPS NCPDP REJECT CODES^9002313.93I^1542^1540"
+^BPSF(9002313.93,0)="BPS NCPDP REJECT CODES^9002313.93I^1544^1542"
 ^BPSF(9002313.93,1,0)="01^M/I IIN Number"
 ^BPSF(9002313.93,2,0)="02^M/I Version/Release Number"
 ^BPSF(9002313.93,3,0)="03^M/I Transaction Code"
@@ -1541,6 +1541,8 @@ ZWR
 ^BPSF(9002313.93,1540,0)="DO5^DUR Conflict. Limited override at pharmacy. Prior auth may be needed."
 ^BPSF(9002313.93,1541,0)="DO6^Prescription Required. Claim without an associated Rx is not covered."
 ^BPSF(9002313.93,1542,0)="DO7^M/I Transmission Time"
+^BPSF(9002313.93,1543,0)="DO8^This product may be covered under Workers Compensation."
+^BPSF(9002313.93,1544,0)="DO9^Plan Does Not Request Brand or Reference Product"
 ^BPSF(9002313.93,"B",10,10)=""
 ^BPSF(9002313.93,"B",11,11)=""
 ^BPSF(9002313.93,"B",12,12)=""
@@ -2743,6 +2745,8 @@ ZWR
 ^BPSF(9002313.93,"B","DO5",1540)=""
 ^BPSF(9002313.93,"B","DO6",1541)=""
 ^BPSF(9002313.93,"B","DO7",1542)=""
+^BPSF(9002313.93,"B","DO8",1543)=""
+^BPSF(9002313.93,"B","DO9",1544)=""
 ^BPSF(9002313.93,"B","DP",119)=""
 ^BPSF(9002313.93,"B","DQ",121)=""
 ^BPSF(9002313.93,"B","DR",120)=""

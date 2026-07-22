@@ -1,5 +1,5 @@
-SDESORDCLEAN ;ALB/LAB - Clean-up of Pending and partialdd RTC orders ;Dec 06,2022@08:00
- ;;5.3;Scheduling;**831**;Aug 13, 1993;Build 4
+SDESORDCLEAN ;ALB/LAB,JDJ - Clean-up of Pending and partialdd RTC orders ;FEB 22,2026@08:00
+ ;;5.3;Scheduling;**831,943**;Aug 13, 1993;Build 5
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  ;  Close RTC orders in CPRS if the corresponding order in Appointment Request file (#409.85) was closed (appointment made) or otherwise dispositioned.
@@ -109,6 +109,8 @@ CLEANUPSTEPS(ORIEN,ORSTATUS,DISPOSITION,SDPATIENT,SDIEN,POP) ;
  I +SDDISPDT=0 D
  . W !,"Disposition Date field is missing from request.  Status has not been updated."
  . S POP=1
+ S SDDISPBY=DUZ
+ S SDDISPDT=$P($$NOW^XLFDT,".",1)
  Q:POP
  S ORDIS=$S(DISPOSITION="REMOVED/SCHEDULED-ASSIGNED":0,DISPOSITION="MRTC PARENT CLOSED":0,1:1)
  K VADM S DFN=SDPATIENT D DEM^VADPT ; ICR #10061

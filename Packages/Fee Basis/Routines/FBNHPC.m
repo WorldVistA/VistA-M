@@ -1,5 +1,5 @@
 FBNHPC ;AISC/GRR-POST COMMITMENTS TO 1358 ;1DEC00
- ;;3.5;FEE BASIS;**25,153,162**;JAN 30, 1995;Build 2
+ ;;3.5;FEE BASIS;**25,153,162,194**;JAN 30, 1995;Build 8
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;FB*3.5*153 Save requested site internal to insure obligation found in file
@@ -37,7 +37,8 @@ WRT() ;determine if write to output
  ;return 1 if nothing to post
  Q $S('$G(FBTOT):1,'$G(FBTOTAL):1,1:0)
  ;
-ERR W !!,*7,"Unable to Post the following transaction because of the following:",!,Y,!?7,FBNAME,?40,FBSSN I '$G(FBLERR) W ?60,"$"_$FN(FBDEFP,",",2)
+ERR I $G(FBSSNRF)="" W !!,*7,"Unable to Post the following transaction because of the following:",!,Y,!?7,FBNAME,?40,FBSSN I '$G(FBLERR) W ?60,"$"_$FN(FBDEFP,",",2)
+ I $G(FBSSNRF)=1 W !!,*7,"Unable to Post the following transaction because of the following:",!,Y,!?7,FBNAME,?40,$$SSNL4^FBAAUTL(FBSSN) I '$G(FBLERR) W ?60,"$"_$FN(FBDEFP,",",2)
  Q
  ;
 L(FBDA,FBL) ;lock/unlock 7078

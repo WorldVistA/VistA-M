@@ -1,5 +1,5 @@
 FBPCR ;AISC/DMK,GRR,TET-POTENTIAL COST RECOVERY OUTPUT DRIVER ;5/23/2006
- ;;3.5;FEE BASIS;**12,48,76,98,103,135,163**;JAN 30, 1995;Build 21
+ ;;3.5;FEE BASIS;**12,48,76,98,103,135,163,194**;JAN 30, 1995;Build 8
  ;Per VA Directive 6402, this routine should not be modified.
  ; DBIA SUPPORTED REF $$NPI^XUSNPI = 4532
 DOC ;Refer to fbdoc, tag fbpcr, for documentation of fbpcr* routines 
@@ -173,7 +173,8 @@ HDR ;general header for potential recoveries
  W !?(IOM-14/2),"NPI: ",$S($G(FBSTANPI)="":"",$G(FBSTANPI)<1:"",1:$G(FBSTANPI))
  W !?(IOM-19/2),$$DATX^FBAAUTL(FBBDATE)," - ",$$DATX^FBAAUTL(FBEDATE)
  W !?71,"Page: ",FBPG
- W !,"Patient: ",$G(FBPNAME),?40,"Pat. ID: ",$G(FBPID),?62,"DOB: ",$G(FBDOB)
+ I $G(FBSSNRF)="" W !,"Patient: ",$G(FBPNAME),?40,"Pat. ID: ",$G(FBPID),?62,"DOB: ",$G(FBDOB)
+ I $G(FBSSNRF)=1 W !,"Patient: ",$E($G(FBPNAME),1,21)," (",$P(FBPID,"-",3),")",?38,"ICN: ",$$GETICN^FBAAUTL(DFN),?62,"DOB: ",$G(FBDOB)
  W !
  S FBFIRST=1  ;FB*3.5*163
  I '$D(DFN) Q  ;FB*3.5*163

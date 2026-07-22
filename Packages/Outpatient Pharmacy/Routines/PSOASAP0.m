@@ -1,5 +1,5 @@
 PSOASAP0 ;BIRM/MFR - American Society for Automation in Pharmacy (ASAP) Segments & Fields ;09/07/12
- ;;7.0;OUTPATIENT PHARMACY;**408,451,496,504,625,630,659,705,772**;DEC 1997;Build 105
+ ;;7.0;OUTPATIENT PHARMACY;**408,451,496,504,625,630,659,705,772,810**;DEC 1997;Build 9
  ;External reference to $$SITE^VASITE() supported by ICR 10112 
  ;External reference to $$NATURE^ORUTL3 supported by ICR 5890
  ;External reference to PATIENT file (#2) supported by DBIA 5597
@@ -51,6 +51,10 @@ ASAP95(RXIEN,FILL) ;Returns the entire ASAP 1995 record for the Rx/Fill
 TH02() ;ASAP 3.0 : Business Partner Implemetation Version (Not Used)
  ;      ASAP 4.0+: Transaction Control Number
  I PSOASVER="3.0" Q ""
+ I '$G(BATCHIEN),$G(BAT) S BATCHIEN=BAT     ;p810 Start
+ I '$G(BATCHIEN) D
+ . I $G(RXIEN),$G(FILLIEN)'="" S BATCHIEN=$O(^PS(58.42,"ARX",RXIEN,FILLIEN,""),-1)
+ I '$G(BATCHIEN) S BATCHIEN=0     ;p810 End
  Q +$$SITE^VASITE()_"-"_+$G(BATCHIEN)
  ;
 TH03() ;ASAP 3.0 : Transaction Control Number

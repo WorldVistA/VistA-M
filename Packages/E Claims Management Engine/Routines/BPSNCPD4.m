@@ -1,5 +1,5 @@
 BPSNCPD4 ;OAK/ELZ - Extension of BPSNCPDP ;4/16/08  17:07
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,24,26,29,40,41**;JUN 2004;Build 11
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,24,26,29,40,41,42**;JUN 2004;Build 11
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Certification Testing
@@ -157,9 +157,12 @@ BILLABLE(DFN,BWHERE,MOREDATA,BPSARRY,CERTIEN,BPSELIG) ;
  ; If IB determined the claim is not billable, set response code to 2.  If the reason
  ; the claim is not billable is NO ECME INSURANCE, set response code to 6 if the
  ; patient type is not TRICARE/CHAMPVA
+ ; If the reason the claim is not billable is due to ePharmacy billing parameters
+ ; for 8e/8g/Inelgible patients, set response code to 2.
  I IB=2 D  Q BPSX_$P(MOREDATA("BILL"),"^",2)
  . S BPSX="2^2^"
  . I $G(BPSARRY("NO ECME INSURANCE")),"^C^T^"'[("^"_$G(BPSARRY("PATIENT TYPE"))_"^") S BPSX="2^6^"
+ . I $G(MOREDATA("BILL"))["ePharmacy Claim: " S BPSX="2^2^"
  I (IB=0)!('$G(MOREDATA("BILL"))) Q $S($G(BPSARRY("NO ECME INSURANCE")):"0^6^",1:"0^2^")_"Flagged by IB to not 3rd Party Insurance bill through ECME.^D^2"
  Q 1
  ;

@@ -1,5 +1,5 @@
 IBCNEHL1A ;AITC/DJW - HL7 Process Incoming RPI Messages (Cont.) ; 10-JAN-2025
- ;;2.0;INTEGRATED BILLING;**806**;21-MAR-94;Build 19
+ ;;2.0;INTEGRATED BILLING;**806,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q  ; No direct calls allowed
@@ -21,7 +21,7 @@ AUTOUPD(RIEN) ;
  ;
  N APPIEN,GDATA,GIEN,GNAME,GNUM,GNUM1,GOK,IEN2,IEN312,IEN36,IDATA0,IDATA3,ISSUB,MWNRA,MWNRB,MWNRIEN,MWNRTYP
  N ONEPOL,PIEN,RDATA0,RDATA1,RES,TQIEN,IDATA7,RDATA13,RDATA14,ISBLUE
- N IBGETTQ,IBGETWE,IBGETSTC,IBGETDEF,IBGETNOK
+ N IBGETTQ,IBGETWE,IBGETSD,IBGETSTC,IBGETDEF,IBGETNOK    ;IB*827/CKB - added IBGETSD
  S RES=0
  I +$G(RIEN)'>0 Q RES          ;Invalid ien for file 365
  ; - if entry is missing from #200, file in buffer
@@ -51,22 +51,46 @@ AUTOUPD(RIEN) ;
  ; Don't allow any entry with Contract Services SOI to auto-update
  I $P(RDATA0,U,5)'="" I "^HMS^CONTRACT SERVICES^"[("^"_$$GET1^DIQ(365.1,$P(RDATA0,U,5)_",","SOURCE OF INFORMATION","E")_"^") Q RES  ; HAN IB*621
  ;
+ ;IB*827/CKB - Apply both Date of Service and Service Type Code (STC)
+ ;              logic when determing if entry can be auto-updated
+ ;
+ ; NOTE: this replaces the old "Request Electronic Insurance Inquiry" auto update logic
+ ;
+ S (IBGETDEF,IBGETSD,IBGETSTC,IBGETTQ,IBGETWE)=""
+ ; Get TRANSMISSION QUEUE from the IIV RESPONSE file (#365)
+ S IBGETTQ=$$GET1^DIQ(365,RIEN_",",.05,"I")
+ ; Get SERVICE DATE from the IIV RESPONSE file (#365) - also known as Date of Service
+ S IBGETSD=$$GET1^DIQ(365,RIEN_",",.14,"I")
+ ; Get REQUESTED SERVICE TYPE CODE from the IIV RESPONSE file (#365)
+ S IBGETSTC=$$GET1^DIQ(365,RIEN_",",.15)
+ ; Get WHICH EXTRACT from the IIV TRANSMISSION QUEUE file (#365.1)
+ S IBGETWE=$$GET1^DIQ(365.1,IBGETTQ_",",.1,"I")
+ ;
+ S IBGETNOK=0
+ ; If Which Extract is not 2-Appt, check Date of Service and Service Type Code (STC)
+ I IBGETWE'=2 D  I IBGETNOK Q RES
+ . ; If STC is NOT 30, 35 or 'MH' prevent auto-updating, regardless of the Date of Service
+ . I "^30^35^MH^"'[IBGETSTC S IBGETNOK=1 Q
+ . ; If STC is 30,35 or 'MH'(excluded above) and the Date of Service is not TODAY, prevent auto-updating
+ . I IBGETSD'=DT S IBGETNOK=1
+ . Q
+ ;
  ; Start, allow auto update for some "Request Electronic Insurance Inquiry" requests
  ;
  ;Check dictionary 365.1 MANUAL REQUEST DATE/TIME Flag, Quit if Set.
  ;I $P(RDATA0,U,5)'="",$P($G(^IBCN(365.1,$P(RDATA0,U,5),3)),U,1)'="" Q RES
  ;
  ; get values
- S (IBGETTQ,IBGETDEF,IBGETWE,IBGETSTC)=""
+ ;S (IBGETTQ,IBGETDEF,IBGETWE,IBGETSTC)=""
  ; Get 365.1 transmission queue number
- S IBGETTQ=$$GET1^DIQ(365,RIEN_",",.05,"I") I IBGETTQ="" Q RES
+ ;S IBGETTQ=$$GET1^DIQ(365,RIEN_",",.05,"I") I IBGETTQ="" Q RES
  ; Get 365.1 which extract
- S IBGETNOK=0
- S IBGETWE=$$GET1^DIQ(365.1,IBGETTQ_",",.1,"I") I IBGETWE=5 D  I IBGETNOK Q RES
- . ; Get 350.9 default service type code
- . S IBGETDEF=$$GET1^DIQ(350.9,1_",",60.01,"I") I IBGETDEF="" S IBGETNOK=1 Q
- . ; Get 365 requested service type code
- . S IBGETSTC=$$GET1^DIQ(365,RIEN_",",.15,"I") I IBGETSTC'=IBGETDEF S IBGETNOK=1 Q
+ ;S IBGETNOK=0
+ ;S IBGETWE=$$GET1^DIQ(365.1,IBGETTQ_",",.1,"I") I IBGETWE=5 D  I IBGETNOK Q RES
+ ;. ; Get 350.9 default service type code
+ ;. S IBGETDEF=$$GET1^DIQ(350.9,1_",",60.01,"I") I IBGETDEF="" S IBGETNOK=1 Q
+ ;. ; Get 365 requested service type code
+ ;. S IBGETSTC=$$GET1^DIQ(365,RIEN_",",.15,"I") I IBGETSTC'=IBGETDEF S IBGETNOK=1 Q
  ;
  ; End, allow auto update for some "Request Electronic Insurance Inquiry" requests
  ;
@@ -125,19 +149,42 @@ CHKMCR ; Medicare checks to determine if we can auto-load new policy
  ;Don't allow any entry with Contract Services SOI to auto-update
  I $P(RDATA0,U,5)'="" I "^HMS^CONTRACT SERVICES^"[("^"_$$GET1^DIQ(365.1,$P(RDATA0,U,5)_",","SOURCE OF INFORMATION","E")_"^") Q RES
  ;
+ ;IB*827/CKB - Apply both Date of Service and Service Type Code (STC)
+ ;              logic when determing if entry can be auto-updated
+ ;
+ ; NOTE: this replaces the old "Request Electronic Insurance Inquiry" auto update logic
+ ;
+ S (IBGETDEF,IBGETSD,IBGETSTC,IBGETTQ,IBGETWE)=""
+ ; Get TRANSMISSION QUEUE from the IIV RESPONSE file (#365)
+ S IBGETTQ=$$GET1^DIQ(365,RIEN_",",.05,"I")
+ ; Get SERVICE DATE from the IIV RESPONSE file (#365) - also known as Date of Service
+ S IBGETSD=$$GET1^DIQ(365,RIEN_",",.14,"I")
+ ; Get REQUESTED SERVICE TYPE CODE from the IIV RESPONSE file (#365)
+ S IBGETSTC=$$GET1^DIQ(365,RIEN_",",.15)
+ ; Get WHICH EXTRACT from the IIV TRANSMISSION QUEUE file (#365.1)
+ S IBGETWE=$$GET1^DIQ(365.1,IBGETTQ_",",.1,"I")
+ ;
+ S IBGETNOK=0
+ ; If Which Extract is not 2-Appt, check Date of Service and Service Type Code (STC)
+ I IBGETWE'=2 D  I IBGETNOK Q RES
+ . ; If STC is NOT 30, 35 or 'MH' prevent auto-updating, regardless of the Date of Service
+ . I "^30^35^MH^"'[IBGETSTC S IBGETNOK=1 Q
+ . ; If STC is 30,35 or 'MH'(excluded above) and the Date of Service is not TODAY, prevent auto-updating
+ . I IBGETSD'=DT S IBGETNOK=1 Q
+ ; 
  ; allow auto update for some "Request Electronic Insurance Inquiry" requests
  ;
  ; get values
- S (IBGETTQ,IBGETDEF,IBGETWE,IBGETSTC)=""
+ ;S (IBGETTQ,IBGETDEF,IBGETWE,IBGETSTC)=""
  ; Get 365.1 transmission queue number
- S IBGETTQ=$$GET1^DIQ(365,RIEN_",",.05,"I") I IBGETTQ="" Q
+ ;S IBGETTQ=$$GET1^DIQ(365,RIEN_",",.05,"I") I IBGETTQ="" Q
  ; Get 365.1 which extract
- S IBGETNOK=0
- S IBGETWE=$$GET1^DIQ(365.1,IBGETTQ_",",.1,"I") I IBGETWE=5 D  I IBGETNOK Q
- . ; Get 350.9 default service type code
- . S IBGETDEF=$$GET1^DIQ(350.9,1_",",60.01,"I") I IBGETDEF="" S IBGETNOK=1 Q
- . ; Get 365 requested service type code
- . S IBGETSTC=$$GET1^DIQ(365,RIEN_",",.15,"I") I IBGETSTC'=IBGETDEF S IBGETNOK=1 Q
+ ;S IBGETNOK=0
+ ;S IBGETWE=$$GET1^DIQ(365.1,IBGETTQ_",",.1,"I") I IBGETWE=5 D  I IBGETNOK Q
+ ;. ; Get 350.9 default service type code
+ ;. S IBGETDEF=$$GET1^DIQ(350.9,1_",",60.01,"I") I IBGETDEF="" S IBGETNOK=1 Q
+ ;. ; Get 365 requested service type code
+ ;. S IBGETSTC=$$GET1^DIQ(365,RIEN_",",.15,"I") I IBGETSTC'=IBGETDEF S IBGETNOK=1 Q
  ;
  I '$$GET1^DIQ(365.121,APPIEN_","_PIEN_",",4.01,"I") Q  ; auto-update is OFF
  ;

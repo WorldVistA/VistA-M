@@ -1,5 +1,5 @@
 IBJDF6 ;ALB/RB - MISCELLANEOUS BILLS FOLLOW-UP REPORT ;15-APR-00
- ;;2.0;INTEGRATED BILLING;**123,159,618**;21-MAR-94;Build 61
+ ;;2.0;INTEGRATED BILLING;**123,159,618,841**;21-MAR-94;Build 5
  ;
 EN ; - Option entry point.
  ;
@@ -46,12 +46,13 @@ SEL ; - Select type of receivables to print.
  ;end IB*2.0*618
  ;
  G DEV:IBRPT="S"
+ S IBEXCEL=$$EXCEL^IBJD() G ENQ:IBEXCEL="^"  ;; Determine whether to gather data for Excel report  IB*2.0*841
  ;
  ; - Determine sorting (By name or Last 4 SSN)
  S (IBSN,X)=""
  I IB0 D  I IBSN="^"!(X="^") G ENQ
- . S IBSN=$$SNL^IBJD() Q:IBSN="^"
- . W !!,"These receivables will be sorted by PATIENT/SSN:",!
+ . S IBSN=$S(IBEXCEL:$$SNL^IBJD(),1:"N") Q:IBSN="^"  ; IB*2.0*841
+ . W !!,"These receivables will be sorted by PATIENT"_$S(IBEXCEL:"/SSN:",1:":"),!  ; IB*2.0*841
  . F X=2:1 S Y=$P(IBSEL,",",X) Q:'Y  I Y<8 W !?6,IBCTG(Y)
  . ; - Determine the PATIENT range
  . S X=$$INTV^IBJD("PATIENT "_$S(IBSN="N":"NAME",1:"LAST 4")) Q:X="^"
@@ -94,7 +95,7 @@ AMT ; - Print receivables with a minimum balance.
  S DIR("A")="Print receivables with a minimum balance"
  S DIR("T")=DTIME,DIR("?")="^S IBOFF=19 D HELP^IBJDF6H"
  D ^DIR K DIR G:$D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) ENQ
- S IBSAM=+Y K DIROUT,DTOUT,DUOUT,DIRUT G:'IBSAM EXCEL
+ S IBSAM=+Y K DIROUT,DTOUT,DUOUT,DIRUT G:'IBSAM AMTQ  ; IB*2.0*841
  ;
 AMT1 ; - Determine the minimum balance amount.
  S DIR(0)="NA^1:9999999"
@@ -102,9 +103,7 @@ AMT1 ; - Determine the minimum balance amount.
  S DIR("T")=DTIME,DIR("?")="^S IBOFF=26 D HELP^IBJDF6H"
  D ^DIR K DIR G:$D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) ENQ
  S IBSAM=+Y K DIROUT,DTOUT,DUOUT,DIRUT
- ;
-EXCEL ; - Determine whether to gather data for Excel report.
- S IBEXCEL=$$EXCEL^IBJD() G ENQ:IBEXCEL="^"
+AMTQ ;  IB*2.0*841
  I IBEXCEL S IBSH=1,IBSH1="M" G DEV
  ;
 BCH ; - Determine whether to include the bill comment history.
@@ -153,7 +152,7 @@ DQ I $G(IBXTRACT) F I=22:1:24 D E^IBJDE(I,1)
  ;
  D ST^IBJDF61 ;    Compile and print the report.
  ;
-ENQ K IBSDA,IBSDF,IBSDL,IBSDV,IBSEL,IBSN,IBSNA,IBSNF,IBSNL,IBSH,IBSH1,IBSH2
- K IBCTG,IBCTS,IBOFF,IBPRT,IBRPT,IBSAM,IBSMN,IBSMX,IBTEXT,IBI,DIROUT
+ENQ K IBSDA,IBSDF,IBSDL,IBSDV,IBSEL,IBSN,IBSNA,IBSNF,IBSNL,IBSH,IBSH1,IBSH2,IBEXCEL
+ K IBCTG,IBCTS,IBOFF,IBPRT,IBRPT,IBSAM,IBSMN,IBSMX,IBTEXT,IBI,DIROUT,IBXTRACT
  K DTOUT,DUOUT,DIRUT,POP,VAUTD,%ZIS,ZTDESC,ZTRTN,ZTSAVE,I,X,Y,Z
  Q

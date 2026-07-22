@@ -1,5 +1,5 @@
 RCRPTLR ;EDE/YMG - REPAYMENT PLAN TERM LENGTH EXCEEDED REPORT; 11/23/2020
- ;;4.5;Accounts Receivable;**378,423**;Mar 20, 1995;Build 8
+ ;;4.5;Accounts Receivable;**378,423,442**;Mar 20, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -12,8 +12,7 @@ EN ; entry point
  S SORT=$$ASKSORT() I SORT=-1 Q
  ; export to Excel?
  S EXCEL=$$ASKEXCEL^RCRPRPU() I EXCEL<0 Q
- I EXCEL D EXCMSG^RCTCSJR    ; Display Excel display message I EXCEL
- I 'EXCEL W !!,"This report requires 132 characters",!
+ I EXCEL D EXCMSG^RCTCSJR    ; Display Excel display message
  ; ask for device
  K IOP,IO("Q")
  S %ZIS="MQ",%ZIS("B")="",POP=0 D ^%ZIS Q:POP

@@ -1,5 +1,5 @@
 FBAAVD ;AISC/DMK-DISPLAY/EDIT VENDOR DEMOGRAPHICS ; 8/28/09 12:35pm
- ;;3.5;FEE BASIS;**9,98,111,122**;JAN 30, 1995;Build 8
+ ;;3.5;FEE BASIS;**9,98,111,122,194**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;FBTEMP set = 1 if called from input template
 RDV ;ask vendor
@@ -20,7 +20,8 @@ EN1 ;display vendor demographics
  ;Z=zero node,V=one node,T=ams node,A=adel node
  ;
  S IOP=$S($D(ION):ION,1:"HOME") D ^%ZIS W @IOF K IOP
- I +$G(DFN)>0 W !,"Patient Name: ",$P($G(^DPT(DFN,0)),U),?48,"Pt.ID: ",$$SSN^FBAAUTL(DFN),!
+ I $G(FBSSNRF)="",+$G(DFN)>0 W !,"Patient Name: ",$P($G(^DPT(DFN,0)),U),?48,"Pt.ID: ",$$SSN^FBAAUTL(DFN),!
+ I $G(FBSSNRF)=1,+$G(DFN)>0 W !,"Patient Name: ",$E($P($G(^DPT(DFN,0)),U),1,25)," (",$$SSN^FBAAUTL(DFN,1),")",?48,"ICN: ",$$GETICN^FBAAUTL(DFN),!
  W !?22,"***  VENDOR DEMOGRAPHICS  ***" D
  .I FBDEL W !?19,"==> FLAGGED FOR DELETION <==" Q
  .I $$CKVEN^FBAADV(DA) W !?20,"==> AWAITING AUSTIN APPROVAL <=="

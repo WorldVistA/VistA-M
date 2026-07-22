@@ -1,5 +1,5 @@
 FBPAY671 ;AISC/DMK,TET,BPOIFO/MEC - CH/CNH PAYMENT HISTORY PRINT ; 9/14/09 3:34pm
- ;;3.5;FEE BASIS;**4,32,55,69,101,108**;JAN 30, 1995;Build 115
+ ;;3.5;FEE BASIS;**4,32,55,69,101,108,194**;JAN 30, 1995;Build 8
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 PRINT ;print data from tmp global
  S FBOUT=0 D:FBCRT&(FBPG) CR Q:FBOUT
@@ -75,7 +75,8 @@ HDR ;main header
  .I $G(FB1725R)]"",FB1725R'="A" W " ",$S(FB1725R="M":"for 38 U.S.C. 1725 Claims",1:"excluding 38 U.S.C. 1725 Claims")
  .W !,?24,$E(FBDASH,1,24),?71,"Page: ",FBPG,!?48,"Date Range: ",$$DATX^FBAAUTL(FBBDATE)," to ",$$DATX^FBAAUTL(FBEDATE)
  I '$D(FBHEAD) W !?30,"INVOICE DISPLAY",!?29,$E(FBDASH,1,17),!
- W ! W:FBSORT "Patient: ",FBPNAME,?41,"Patient ID: ",FBPID W:'FBSORT "Vendor: ",FBVNAME,?41,"Vendor ID: ",FBVID
+ I $G(FBSSNRF)="" W ! W:FBSORT "Patient: ",FBPNAME,?41,"Patient ID: ",FBPID W:'FBSORT "Vendor: ",FBVNAME,?41,"Vendor ID: ",FBVID
+ I $G(FBSSNRF)=1 W ! W:FBSORT "Patient: ",FBPNAME," (",$P($$SSN^FBAAUTL(DFN),"-",3),")",?41,"ICN: ",$$GETICN^FBAAUTL(DFN) W:'FBSORT "Vendor: ",FBVNAME,?41,"Vendor ID: ",FBVID
  W !?(IOM-(13+$L(FBPROG(+FBPI)))/2),"FEE PROGRAM: ",FBPROG(+FBPI)
  W !?3,"('*' Reimb. to Patient  '+' Cancel. Activity  '#' Voided Payment)"
  W !,?3,"(paid symbol: 'R' RBRVS  'F' 75th percentile  'C' contract  'M' Mill Bill"

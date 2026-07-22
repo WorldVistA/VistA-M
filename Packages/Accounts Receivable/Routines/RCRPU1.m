@@ -1,5 +1,5 @@
 RCRPU1 ;EDE/SAB - REPAYMENT PLAN UTILITIES;12/11/2020  8:40 AM
- ;;4.5;Accounts Receivable;**377,381,378,389,423,422**;Mar 20, 1995;Build 13
+ ;;4.5;Accounts Receivable;**377,381,378,389,423,422,442**;Mar 20, 1995;Build 6
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
@@ -91,13 +91,13 @@ UPDSTAT(RCRPIEN,RCNWSTAT) ; Update the status of the plan
  . D UPDPRDL^RCRPNP(RCRPIEN,0)
  . D UPDPRDF^RCRPNP(RCRPIEN,0)
  ; PRCA*4.5*422
- I RCNWSTAT=6 D
+ I "^6^8^"[(U_RCNWSTAT_U) D  ; PRCA*4.5*442
  .S Z=0 F  S Z=$O(^RCRP(340.5,RCRPIEN,6,Z)) Q:'Z  D
  ..S RCBILLDA=$G(^RCRP(340.5,RCRPIEN,6,Z,0)) Q:'RCBILLDA
  ..; remove fields 41 and 45 from the bill
  ..D RMVPLN^RCRPU1(RCBILLDA)
- ..D TRAN^RCRPU(RCBILLDA,0,69)  ; file "RPP Terminated" transaction
- .D UPDAUDIT^RCRPU2(RCRPIEN,DT,"C","S") ; update Audit Log with System Termination Comment
+ ..D:RCNWSTAT=6 TRAN^RCRPU(RCBILLDA,0,69)  ; file "RPP Terminated" transaction  PRCA*4.5*442
+ .D:RCNWSTAT=6 UPDAUDIT^RCRPU2(RCRPIEN,DT,"C","S") ; update Audit Log with System Termination Comment  PRCA*4.5*442
  .Q
  ; end PRCA*4.5*422
  Q

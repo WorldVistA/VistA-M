@@ -1,5 +1,5 @@
-SDESGETCLINAPPT ;ALB/LAB - VISTA SCHEDULING READ CLINIC APPOINTMENT ;FEB 21,2023@15:01
- ;;5.3;Scheduling;**805,838**;Aug 13, 1993;Build 7
+SDESGETCLINAPPT ;ALB/LAB,MCB - VISTA SCHEDULING READ CLINIC APPOINTMENT ;APRIL 09,2026
+ ;;5.3;Scheduling;**805,838,942**;Aug 13, 1993;Build 2
  ;;Per VHA Directive 6402, this routine should not be modified
  Q
  ;
@@ -67,10 +67,10 @@ BLDREC ; build an appointment record
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"Patient",DFN,"EnrollmentCode")=SDAPPT(44.003,SDIEN,1.6,"I")
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"Patient",DFN,"EnrollmentDate")=$$FMTISO^SDAMUTDT(SDAPPT(44.003,SDIEN,1.7,"I"))
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"XRAY")=SDAPPT(44.003,SDIEN,2,"I")
- S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"OtherTests")=SDAPPT(44.003,SDIEN,3,"I")
+ S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"OtherTests")=$$CLEANCMMTS^SDES2APPTUTIL(SDAPPT(44.003,SDIEN,3,"I"))
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"WardLocation")=SDAPPT(44.003,SDIEN,4,"I")
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"Status")=SDAPPT(44.003,SDIEN,5,"I")
- S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"OtherTravel")=SDAPPT(44.003,SDIEN,6,"I")
+ S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"OtherTravel")=$$CLEANCMMTS^SDES2APPTUTIL(SDAPPT(44.003,SDIEN,6,"I"))
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"DataEntryClerk")=SDAPPT(44.003,SDIEN,7,"E")
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"DateAppointmentMade")=$$FMTISO^SDAMUTDT(SDAPPT(44.003,SDIEN,8,"I"))
  S APPTREC("ClinicApptDate",SDSTDT,"ClinicApptNumber",SDAPPTNO,"OverbookFlag")=SDAPPT(44.003,SDIEN,9,"I")

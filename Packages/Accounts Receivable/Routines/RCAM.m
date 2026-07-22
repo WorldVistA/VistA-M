@@ -1,5 +1,5 @@
 RCAM ;WASH-ISC@ALTOONA,PA/RGY-Manager Debtor Information ;12/19/96  12:48 PM
-V ;;4.5;Accounts Receivable;**34,190,198,223,359,438,441**;Mar 20, 1995;Build 2
+V ;;4.5;Accounts Receivable;**34,190,198,223,359,438,441,443**;Mar 20, 1995;Build 4
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRCA*4.5*359 Ensure displayed phone is correct format: 111-222-3333
@@ -12,14 +12,19 @@ EDT ;Select AR Debtor address information
  N DPTNOFZY,DPTNOFZK S (DPTNOFZY,DPTNOFZK)=1
  F  W ! S DIC="^RCD(340,",DIC(0)="QEAM" D ^DIC Q:Y<0  D EN1($P(^RCD(340,+Y,0),U)) Q:$D(DTOUT)
  Q
-EN1(RCDB) ;Edit Debtor address
+EN1(RCDB) ;Edit Debtor address  PRCA*4.5*443
+ N AUDFLG,RCDB0
+ S RCDB0=$O(^RCD(340,"B",RCDB,0))
+ S AUDFLG=$S(RCDB["DPT(":$$ASKAUD(),1:0) Q:AUDFLG<0
  D DIS(RCDB)
- I RCDB["VA(200" D PER(RCDB) G Q2
- I RCDB["DPT(" D PAT(RCDB) G Q2
- I RCDB["PRC(440" D VEN(RCDB) G Q2
- I RCDB["DIC(4" D INST(RCDB) G Q2
+ I AUDFLG D GETAUD(340,RCDB0),DISPAUD
+ I $$ASKEDT()'>0 Q
+ I RCDB["VA(200" D PER(RCDB) Q
+ I RCDB["DPT(" D PAT(RCDB) Q
+ I RCDB["PRC(440" D VEN(RCDB) Q
+ I RCDB["DIC(4" D INST(RCDB) Q
  I RCDB["DIC(36" D INSUR(RCDB)
-Q2 Q
+ Q
 PER(RCDB) ;Edit person address
  NEW DA,DIE,DR
  S DA=+RCDB,DIE="^VA(200,",DR=".111;.112;.113;.114;.115;.116;.131" D ^DIE
@@ -28,8 +33,7 @@ INSUR(RCDB) ;Edit insurance address
  W !!,"Sorry, edit to the insurance file must be done via MAS",!!
  Q
 PAT(RCDB) ;Edit Patient Address
- NEW RCDB0,RCAD,DIR,DIRUT,DUOUT,DIROUT,DA,DIE,DR,ADR1,ADR2,ADR3
- S RCDB0=$O(^RCD(340,"B",RCDB,0))
+ N RCAD,DIR,DIRUT,DUOUT,DIROUT,DA,DIE,DR,ADR1,ADR2,ADR3
  S ADR1=$$PAT^RCAMADD(+RCDB,0) ;permanent address
  S ADR2=$$PAT^RCAMADD(+RCDB,1) ;confidential mailing address
  S ADR3=$$ARDEB^RCAMADD(RCDB0) ;accounts receivable address
@@ -43,11 +47,12 @@ PAT(RCDB) ;Edit Patient Address
  .W !,"Please contact Enrollment to have the Debtor's Confidential Address updated.",!
  .Q
 PAT1 S DA=RCDB0
+ N RCDA,X1,X2 ;  PRCA*4.5*443
  S DIR("B")=$S($P($G(^RCD(340,+RCDB0,1)),U,9):"YES",1:"NO")
  S DIR(0)="340,1.09^AO" D ^DIR
  G:$D(DIRUT) Q1
- S $P(^RCD(340,+RCDB0,1),U,9)=Y
- S DIE="^RCD(340,",DR="[RCAM ADDRESS EDIT]" D ^DIE
+ S DIE="^RCD(340,",DR="1.09////"_Y D ^DIE ;  PRCA*4.5*443
+ S DR="[RCAM ADDRESS EDIT]" D ^DIE ;  PRCA*4.5*443
  I $P($G(^RCD(340,+RCDB0,1)),U,9) D
  .N DIK,DA,DR
  .S DA=$O(^RC(341,"AD",+RCDB0,2,0))
@@ -83,8 +88,7 @@ VEN(RCDB) ;Edit Vendor file
  S DA=+RCDB,DIE="^PRC(440,",DR="22.1;22.2;22.3;22.4;22.5;22.6;22.7" D ^DIE
  Q
 DIS(RCDB) ;Display address information
- NEW RCDB0,RCCONF,ADR1,ADR2,RCNAM
- S RCDB0=$O(^RCD(340,"B",RCDB,0))
+ N RCCONF,ADR1,ADR2,RCNAM
  G:'$D(^RCD(340,+RCDB0,0)) Q3
  S RCNAM=$$NAM^RCFN01(RCDB0) ;debtor name
  S ADR1=$$DADD^RCAMADD(RCDB),ADR2=""
@@ -121,4 +125,79 @@ DIS2(ADR1,ADR2) N TAB1,TAB2
 FOL ;Called by input transform from 341,4.02
  I X<$P($G(^RC(341,DA,0)),U,6) W !!,*7,"Follow-up Date is before Date of Contact",! K X Q
  I $P($G(^RC(341,DA,0)),U,6)="" W !!,*7,"Date of Contact does not exist!",! K X Q
+ Q
+ ;
+ASKEDT() ; display "edit address" prompt  PRCA*4.5*443
+ ;
+ ; returns 1 for "yes", 0 for "no", or -1 for user exit / timeout
+ ;
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
+ W !
+ S DIR("A")="Would you like to Edit the AR Debtor Address? (Y/N): "
+ S DIR(0)="YA"
+ D ^DIR
+ I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) Q -1
+ Q $S(+Y=1:1,1:0)
+ ;
+ASKAUD() ; display "view audit history" prompt  PRCA*4.5*443
+ ;
+ ; returns 1 for "yes", 0 for "no", or -1 for user exit / timeout
+ ;
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT
+ W !
+ S DIR("A")="Do you wish to view the AR Debtor Address change history? (Y/N): "
+ S DIR(0)="YA"
+ D ^DIR
+ I $D(DIRUT)!$D(DTOUT)!$D(DUOUT)!$D(DIROUT) Q -1
+ Q $S(+Y=1:1,1:0)
+ ;
+GETAUD(FILE,IEN) ; get audit file data  PRCA*4.5*443
+ ;
+ ; FILE - file # to get audit data for
+ ; IEN - ien in FILE to get audit data for
+ ;
+ ; sets global ^TMP("AUD",$J,n) = user (1.1/.04) ^ field changed (1.1/.03) ^ old value (1.1/2) ^ new value (1.1/3), where n is a sequential counter
+ ; sets global ^TMP("AUD",$J,"IDX",timestamp (1.1/.02),n)=""
+ ;
+ N AUDIEN,N0,TSTAMP
+ I $G(FILE)'>0 Q
+ I $G(IEN)'>0 Q
+ K ^TMP("AUD",$J)
+ S (AUDIEN,CNT)=0 F  S AUDIEN=$O(^DIA(FILE,"B",IEN,AUDIEN)) Q:'AUDIEN  D
+ .S N0=$G(^DIA(FILE,AUDIEN,0)),TSTAMP=$P(N0,U,2)
+ .S CNT=CNT+1,^TMP("AUD",$J,CNT)=$P(N0,U,4)_U_$P(N0,U,3)_U_$G(^DIA(FILE,AUDIEN,2))_U_$G(^DIA(FILE,AUDIEN,3))
+ .S ^TMP("AUD",$J,"IDX",TSTAMP,CNT)=""
+ .Q
+ Q
+ ;
+DISPAUD ; display audit file data  PRCA*4.5*443
+ ;
+ ; uses global ^TMP("AUD",$J) that is populated by tag GETAUD
+ ;
+ N CNT,DATA,FLD,LN,NEWVAL,OLDVAL,PAGE,TSTAMP
+ S PAGE=0
+ D AUDHDR
+ I '$D(^TMP("AUD",$J)) W !!,$$CJ^XLFSTR("No address change history found.",80) Q
+ S TSTAMP="" F  S TSTAMP=$O(^TMP("AUD",$J,"IDX",TSTAMP),-1) Q:TSTAMP=""  D
+ .S CNT=0 F  S CNT=$O(^TMP("AUD",$J,"IDX",TSTAMP,CNT)) Q:'CNT  D
+ ..S DATA=^TMP("AUD",$J,CNT)
+ ..D FIELD^DID(340,$P(DATA,U,2),,"LABEL","FLD")
+ ..I LN>(IOSL-7) D AUDHDR
+ ..W !,$$FMTE^XLFDT(TSTAMP,"2Z"),?20,$$EXTERNAL^DILFD(1.1,.04,,$P(DATA,U)),?40,FLD("LABEL")
+ ..S OLDVAL=$P(DATA,U,3) S:OLDVAL="" OLDVAL="<no value>"
+ ..S NEWVAL=$P(DATA,U,4) S:NEWVAL="" NEWVAL="<deleted>"
+ ..W !!,?5,"  Original value: ",OLDVAL
+ ..W !,?5,"Value changed to: ",NEWVAL,!
+ ..S LN=LN+5
+ ..Q
+ .Q
+ K ^TMP("AUD",$J)
+ Q
+ ;
+AUDHDR ; print audit file data header  PRCA*4.5*443
+ I PAGE>0 D PAUSE^RCRPRPU
+ S PAGE=PAGE+1,LN=3
+ W !,"AR Debtor Address change history",?68,"Page: ",PAGE
+ W !!,"Date/Time           User                Field"
+ W ! D DASH^RCRPRPU(80)
  Q

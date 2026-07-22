@@ -1,6 +1,6 @@
 BPSPRRX2 ;ALB/SS - ePharmacy secondary billing ;16-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,11,42**;JUN 2004;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 DISPBILL(BPSPAYSQ,BPSINS,BPSBILL,BPSSTAT,BPSRXIEN,BPSREF,BPSDOS,BPDISTTL) ;
@@ -64,7 +64,9 @@ SUBMCLM(RX,FILL,DOS,BWHERE,PAYSEQ,PLAN,COBDATA,RTYPE) ;
  I $G(BWHERE)="" Q ""
  I '$G(PAYSEQ) Q ""
  S BPSRET=$$EN^BPSNCPDP(RX,FILL,$G(DOS),BWHERE,"","","","","","",PAYSEQ,"F","","",$G(PLAN),.COBDATA,$G(RTYPE))
- D ECMEACT^PSOBPSU1(RX,FILL,"Claim submitted to third party payer: ECME P2 Bill")
+ ; Do not log entry if claim not submitted due to ePharmacy Billing Parameter
+ I BPSRET'["Billing Parameter set to ""Not Bill""" D
+ . D ECMEACT^PSOBPSU1(RX,FILL,"Claim submitted to third party payer: ECME P2 Bill")
  Q BPSRET
  ;
 MORE4SEC(BPSMORE,BPSECNDR) ;

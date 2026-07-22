@@ -677,7 +677,7 @@ ZWR
 ^XMB(3.8,137,2,2,0)="from file 354.71 cannot be transmitted to at least one of the patient's"
 ^XMB(3.8,137,2,3,0)="treating facilities for at least 2 days."
 ^XMB(3.8,137,3)=""
-^XMB(3.8,138,0)="XUMF SERVER^PU^^29^3250612^0^1"
+^XMB(3.8,138,0)="XUMF SERVER^PU^^30^3260623^0^1"
 ^XMB(3.8,138,1,0)="^3.81P^1^1"
 ^XMB(3.8,138,1,1,0)=1
 ^XMB(3.8,138,1,"B",1,1)=""
@@ -697,7 +697,7 @@ ZWR
 ^XMB(3.8,140,2,0)="^^2^2^3010313^"
 ^XMB(3.8,140,2,1,0)="Mail group to send messages regarding accessing images on offline"
 ^XMB(3.8,140,2,2,0)="jukebox platters."
-^XMB(3.8,141,0)="MAG SERVER^PU^y^581^3260508^0"
+^XMB(3.8,141,0)="MAG SERVER^PU^y^586^3260714^0"
 ^XMB(3.8,141,1,0)="^3.81P^1^1"
 ^XMB(3.8,141,1,1,0)=1
 ^XMB(3.8,141,1,"B",1,1)=""
@@ -1162,7 +1162,7 @@ ZWR
 ^XMB(3.8,219,2,1,0)="Alerts users when status of SD WAIT LIST types(pcmm,clinic,specialty)"
 ^XMB(3.8,219,2,2,0)="change."
 ^XMB(3.8,219,3)=1
-^XMB(3.8,220,0)="XTPM PATCH MONITOR^PU^^6210^3260517^^1"
+^XMB(3.8,220,0)="XTPM PATCH MONITOR^PU^^6273^3260719^^1"
 ^XMB(3.8,220,1,0)="^3.81P^9^4"
 ^XMB(3.8,220,1,1,0)=1
 ^XMB(3.8,220,1,5,0)=65
@@ -1181,7 +1181,7 @@ ZWR
 ^XMB(3.8,220,6,4,0)="John.Stewart2@DOMAIN.EXT"
 ^XMB(3.8,220,6,"B","John.Stewart2@DOMAIN.EXT",4)=""
 ^XMB(3.8,220,6,"B","RICHARD.BARFIELD@DOMAIN.EXT",3)=""
-^XMB(3.8,221,0)="XTPM PATCH MONITOR USER^PU^^4317^3260517^0^1"
+^XMB(3.8,221,0)="XTPM PATCH MONITOR USER^PU^^4380^3260719^0^1"
 ^XMB(3.8,221,1,0)="^3.81P^7^4"
 ^XMB(3.8,221,1,1,0)=1
 ^XMB(3.8,221,1,3,0)=65
@@ -1285,7 +1285,7 @@ ZWR
 ^XMB(3.8,235,2,1,0)="This mail group contains users responsible for DSS extracts. A message is"
 ^XMB(3.8,235,2,2,0)="sent to this group upon completion of package extracts. "
 ^XMB(3.8,235,3)=1
-^XMB(3.8,236,0)="PATCHES^PU^^11877^3260514"
+^XMB(3.8,236,0)="PATCHES^PU^^11941^3260717"
 ^XMB(3.8,236,1,0)="^3.81P^13^8"
 ^XMB(3.8,236,1,1,0)=1
 ^XMB(3.8,236,1,3,0)=17
@@ -1346,7 +1346,7 @@ ZWR
 ^XMB(3.8,240,2,6,0)="  "
 ^XMB(3.8,240,2,7,0)="PER XU*8*449"
 ^XMB(3.8,240,3)=1
-^XMB(3.8,241,0)="TIU CACS^PU^n^29^3250612^^1"
+^XMB(3.8,241,0)="TIU CACS^PU^n^30^3260623^^1"
 ^XMB(3.8,241,2,0)="^^3^3^3070312^"
 ^XMB(3.8,241,2,1,0)="This cross-reference identifies the people who should receive "
 ^XMB(3.8,241,2,2,0)="informational bulletins concerning the implementation of the Text "
@@ -1477,7 +1477,7 @@ ZWR
 ^XMB(3.8,262,2,2,0)="Enhanced Order Checks (drug-drug interactions, duplicate therapy and dosing"
 ^XMB(3.8,262,2,3,0)="checks) introduced with PRE V. 0.5 utilizing a COTS database."
 ^XMB(3.8,262,3)=17
-^XMB(3.8,263,0)="AUTORENEWAL^PU^y^1607^3260517^^17"
+^XMB(3.8,263,0)="AUTORENEWAL^PU^y^1670^3260719^^17"
 ^XMB(3.8,263,2,0)="^^4^4^3090713^"
 ^XMB(3.8,263,2,1,0)="This mail group contains the list of users that will received messages "
 ^XMB(3.8,263,2,2,0)="related to the auto-renewal process. The auto-renewal process is "
@@ -1524,7 +1524,7 @@ ZWR
 ^XMB(3.8,270,1,1,0)=17
 ^XMB(3.8,270,1,"B",17,1)=""
 ^XMB(3.8,270,3)=17
-^XMB(3.8,271,0)="MAG_ZZT_Application_process_^PU^^126^3260501"
+^XMB(3.8,271,0)="MAG_ZZT_Application_process_^PU^^127^3260601"
 ^XMB(3.8,271,1,0)="^3.81P^1^1"
 ^XMB(3.8,271,1,1,0)=17
 ^XMB(3.8,271,1,"B",17,1)=""
@@ -1534,7 +1534,7 @@ ZWR
 ^XMB(3.8,272,1,1,0)=17
 ^XMB(3.8,272,1,"B",17,1)=""
 ^XMB(3.8,272,3)=17
-^XMB(3.8,273,0)="MAG_ZZT_Monthly_Image_Site_U^PU^^131^3260501"
+^XMB(3.8,273,0)="MAG_ZZT_Monthly_Image_Site_U^PU^^134^3260701"
 ^XMB(3.8,273,1,0)="^3.81P^1^1"
 ^XMB(3.8,273,1,1,0)=17
 ^XMB(3.8,273,1,"B",17,1)=""
@@ -1544,7 +1544,7 @@ ZWR
 ^XMB(3.8,274,1,1,0)=17
 ^XMB(3.8,274,1,"B",17,1)=""
 ^XMB(3.8,274,3)=17
-^XMB(3.8,275,0)="MAG_ZZT_INSTALLATION^PU^^127^3260316"
+^XMB(3.8,275,0)="MAG_ZZT_INSTALLATION^PU^^129^3260714"
 ^XMB(3.8,275,1,0)="^3.81P^1^1"
 ^XMB(3.8,275,1,1,0)=17
 ^XMB(3.8,275,1,"B",17,1)=""

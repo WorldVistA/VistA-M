@@ -1,5 +1,5 @@
 DGSEC4 ;ALB/MM,JAP,LAB,ATG/JPN,ISL/DKA - Utilities for record access & sensitive record processing ;July 6, 2020@21:55
- ;;5.3;Registration;**249,281,391,471,684,699,964,1130**;Aug 13, 1993;Build 7
+ ;;5.3;Registration;**249,281,391,471,684,699,964,1130,1150**;Aug 13, 1993;Build 8
  ;Per VHA Directive 6402, this routine should not be modified.
  ;
  ;Line tags OWNREC & SENS moved from DGSEC in DG*5.3*249 when DGSEC 
@@ -99,15 +99,28 @@ OWNREC(DGREC,DFN,DGDUZ,DGMSG,DGNEWPT,DGPTSSN) ;Determine if user accessing his/h
  ;Check if user holds security key
  I $D(^XUSEC("DG RECORD ACCESS",DGDUZ)) Q
  I $G(DGMSG)="" S DGMSG=1
- N DGNPERR
+ N DGNPERR,DGTFLST,DGSTA
+ S DGSTA=$$STA^XUAF4(DUZ(2))
  ; quit if user is a proxy user, i.e., not a real person
+ I '$$PROD^XUPROD Q  ;DG*5.3*1150 bypass OWNREC lockout if account is not a production account. For non-production MPI connected sites, this will still bypass OWNREC lockout.
  I $$ACTIVE^XUSAP(DGDUZ),$$USERTYPE^XUSAP(DGDUZ,"CONNECTOR PROXY")!($$USERTYPE^XUSAP(DGDUZ,"APPLICATION PROXY")) Q
+ D TFL^VAFCTFU2(.DGTFLST,DGDUZ_"^PN^USDVA^"_DGSTA) ;DG*5.3*1150 Uses API (Local Call) to check if user is looking at OWNREC
+ N DGXTFL,DGTFDATA,DGTFDFN
+ S DGXTFL=0
+ F  S DGXTFL=$O(DGTFLST(DGXTFL)) Q:DGXTFL=""  D
+ .S DGTFDATA=$G(DGTFLST(DGXTFL))
+ .Q:$P(DGTFDATA,"^",2)'="PI"
+ .Q:$P(DGTFDATA,"^",4)'=DGSTA
+ .S DGTFDFN=$P(DGTFDATA,"^",1)
+ .I DFN=DGTFDFN D  Q
+ ..S DGREC(1)=1
+ ..S DGREC(2)="Security regulations prohibit computer access to your own medical record."
  S DGNPSSN=$$GET1^DIQ(200,DGDUZ_",",9,"I","","DGNPERR")
- I 'DGNPSSN D  Q
- .S DGREC(1)=2
- .S DGREC(2)="Your SSN is missing from the NEW PERSON file.  Contact your ADP Coordinator."
- .;Only send message if parameter set to 1
- .I DGMSG=1 D MSG(DGDUZ)
+ I 'DGNPSSN Q
+ ; .S DGREC(1)=2
+ ; .S DGREC(2)="Your SSN is missing from the NEW PERSON file.  Contact your ADP Coordinator."
+ ; Only send message if parameter set to 1
+ ; .I DGMSG=1 D MSG(DGDUZ)
  I +$G(DGNEWPT)'=1 S DGPTSSN=$P($G(^DPT(DFN,0)),U,9)
  I +$G(DGNEWPT)=1 S DGPTSSN=$TR(DGPTSSN,"-","")
  I DGNPSSN=DGPTSSN D  Q

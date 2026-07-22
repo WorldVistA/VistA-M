@@ -1,6 +1,11 @@
 IBCMDT ;ALB/VD - INSURANCE PLANS MISSING DATA REPORT (DRIVER) ; 10-APR-15
- ;;2.0;INTEGRATED BILLING ;**549,763**; 10-APR-15;Build 29
+ ;;2.0;INTEGRATED BILLING ;**549,763,827**;21-MAR-94;Build 24
  ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to ^XUTMDEVQ in ICR #1519
+ ; Reference to ^DIQ in ICR #2056
+ ; Reference to ^DIR in ICR #10026
+ ; Reference to ^VALM1 in ICR #10116
  ;
  ; IB - Insurance Plans Missing Data Report.
  ;
@@ -52,7 +57,10 @@ C0 ; Start the Insurance Company Prompts.
  W !?5,"that are missing the data that you select to be reported upon.",!!
  ;
  ; Select Insurance Companies or All Insurance Companies w/Plans
-C10 D SLAI^IBCMDT1 I STOP G:$$STOP EXIT G C0
+ ;IB*827/DTG quit on up arrow
+C10 D SLAI^IBCMDT1 ;I STOP G:$$STOP EXIT G C0
+ I STOP G EXIT
+ ;
  N IBQUIT S IBQUIT=0
  S IBAI=+$G(IBMDTSPC("IBAI"))
  D START
@@ -212,6 +220,9 @@ COMPILE(IBMDTSPC) ;
  ;                        See top of routine for a detailed explanation
  ;
  N FLTRS,IBAI,IBAPL,IBBIN,IBCLM,IBEPT,IBGRN,IBNMSPC,IBPCN,IBPTY,IBTFT,SUBHD
+ ;
+ N CRT S CRT=1 I IOST'["C-" S CRT=0  ;IB*827/DTG initialize for dots and page feeds
+ ;
  S FLTRS=$G(IBMDTSPC("FLTRS"))
  S IBAI=$G(IBMDTSPC("IBAI"))
  S IBAPL=$G(IBMDTSPC("IBAPL"))

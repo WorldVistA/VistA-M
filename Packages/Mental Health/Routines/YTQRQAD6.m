@@ -1,10 +1,12 @@
-YTQRQAD6 ;SLC/LLB - Determine High Risk Flagging ; 07/15/2020
- ;;5.01;MENTAL HEALTH;**158,181,187,204,240**;Dec 30, 1994;Build 10
+YTQRQAD6 ;SLC/LLB - Determine High Risk Flagging ;Aug 06, 2025@12:06:54
+ ;;5.01;MENTAL HEALTH;**158,181,187,204,240,269**;Dec 30, 1994;Build 7
+ ;
+ ; Reference to ^PXRMINDX( in ICR #4290
  ;
  ; The assumption is made that variable DFN will exist prior to calling this routine.
  ;
 FLAG(DFN,INST,HRR,PR) ; ROUTINE to calculate Positive response and High Risk flagging
- ; ICR #4290 READ OF CLINICAL REMINDER INDEX (PXRMINDX)
+ ;
  ;  DFN:    IEN to Patient file (#2)
  ;  INST:   Instrument name in MH TESTS AND SURVEYS file (#601.71)
  ;  INSTIEN: IEN to instrument in MH TESTS AND SURVEYS file (#601.71)
@@ -17,14 +19,14 @@ FLAG(DFN,INST,HRR,PR) ; ROUTINE to calculate Positive response and High Risk fla
  ;            G3^0,5^1,q^n. Comma delimited list of question#^Value for question response Greater Than Value
  ;            T#p Can be added to any HRR parameter where # is a positive integer and
  ;                p is the time period M months, W weeks, D day. This will be treated as
- ;                the most recent administration of the instrument but only if the 
+ ;                the most recent administration of the instrument but only if the
  ;                  Ex: "Y,1,2,3,T6M" indicates Yes to Q 1,2, or 3 within the last 6
  ;                      months.
  ;                  Ex: "Y,1,2,3,T6M-I9" is the same as the previous example except that
  ;                      a positive I9, without regard to time frame, triggers High Risk.
  ;           HRR parameters can be combined by adding "-" between them indicating an "or"
  ;               such as "Y,3,4,5,8-I9"
- ;  PR:     Positive Response threshold, Score greater than number passed in PR. 
+ ;  PR:     Positive Response threshold, Score greater than number passed in PR.
  ;          Based solely on total score. Ex: 8 indicating any score greater than 8.
  ;  YSFLAG: Will be 0 for no risk
  ;                  1 for Positive Response
@@ -57,12 +59,12 @@ FLAG2 ;
  D QUEST(ADMID,INST) ; Retrieve questions and patient answers and set them into ^TMP("YSQA",$J,INST,CNT)
  D SCORES ; Get scores for assessment
  S YSFLAG=0
- I PR,YSCORE>PR S YSFLAG=1 ; Evaluate Positive response 
+ I PR,YSCORE>PR S YSFLAG=1 ; Evaluate Positive response
  S MULT=$L(HRR,"-") ; Parse HRR for multiples
  F X=1:1:MULT Q:YSFLAG>1  D
  . S YSLIM=14600 ; 40 Yrs
  . S YSHRT=$P(HRR,"-",X)
- . I YSHRT["T" S YSLIM=$$TIME(YSHRT) ; Check for T specific parameter 
+ . I YSHRT["T" S YSLIM=$$TIME(YSHRT) ; Check for T specific parameter
  . I $$FMDIFF^XLFDT($$NOW^XLFDT,DATE,1)>YSLIM Q  ;Assignment too old
  . I YSHRT?1N.E S SI=+YSHRT D HRSCR Q:YSFLAG>1  ; Test for HR based only on Total Raw score
  . I YSFLAG>1 Q  ; High Risk flag already set
@@ -79,7 +81,7 @@ FLAG2 ;
  D SETFLAG Q
  ;
 QUEST(ADMID,INST) ; Create core code to look at questions and answers
- ; Requires Administration ID (ADMID) and Instrument name (INST) as an pre-existing value. 
+ ; Requires Administration ID (ADMID) and Instrument name (INST) as an pre-existing value.
  N TEMP,QNUM,ANSID,QST,CHOICE,CNT,LEG,I
  K ^TMP("YSQA",$J)
  S (QNUM,CNT)=0
@@ -148,7 +150,7 @@ YATAG ; If Yes to any question is High Risk
  . . I YSFLAG=1 S YSFLAG=3
  . . E  S YSFLAG=2
  Q
- ; 
+ ;
 ATAG ; any question with a score > that passed in with the A# parameter.
  N MIN,AID,TEMP,QID,CHOICEID,LEG
  S MIN=$E(YSHRT,2,$L(YSHRT))
@@ -195,11 +197,11 @@ SETFLAG ; Set YSFLAG into the MH ADMISISTRATION file (#601.84)
  S XXX=ADMID_","
  S YSFDA(601.84,XXX,16)=YSFLAG D FILE^DIE("K","YSFDA","YSERR")
  D UPADM^YTQEVNT(ADMID,"flag") ; publish admin update event
- Q 
+ Q
  ;
 BHS ; BHS
  ; High Risk: Score of > 8
- ; Positive Response: None 
+ ; Positive Response: None
  N INST,HRR,PR
  S INST="BHS"
  S HRR=8
@@ -239,7 +241,7 @@ PSS3 ; PSS-3
  ;
 PSS32ND ; PSS-3 2ND
  ; High Risk: Yes to any of the questions
- ; Positive Response: None 
+ ; Positive Response: None
  N INST,HRR,PR
  S INST="PSS-3 2ND"
  S HRR="YA"
@@ -249,10 +251,20 @@ PSS32ND ; PSS-3 2ND
  ;
 CSSRS ; C-SSRS
  ; High Risk: Yes to any of Q3,4,5,8
- ; Positive Response: None 
+ ; Positive Response: None
  N INST,HRR,PR
  S INST="C-SSRS"
  S HRR="Y3,4,5,8"
+ S PR=""
+ D FLAG(DFN,INST,HRR,PR)
+ Q
+ ;
+CSSRSV2 ; C-SSRS_V2
+ ; High Risk: Yes to any of the questions
+ ; Positive Response: None
+ N INST,HRR,PR
+ S INST="C-SSRS_V2"
+ S HRR="YA"
  S PR=""
  D FLAG(DFN,INST,HRR,PR)
  Q
@@ -269,7 +281,7 @@ I9CSSRS ; I9+C-SSRS
  ;
 PHQ9 ; PHQ9 Instrument
  ; High Risk: I9 > 0
- ; Positive Response: Score > 9 
+ ; Positive Response: Score > 9
  N INST,HRR,PR
  S INST="PHQ9"
  S HRR="I9"
@@ -279,7 +291,7 @@ PHQ9 ; PHQ9 Instrument
  ;
 PTSD5I9 ; PC-PTSD-5+19
  ; High Risk: I9 > 0
- ; Positive Response: None 
+ ; Positive Response: None
  N INST,HRR,PR
  S INST="PC-PTSD-5+I9"
  S HRR="I9"
